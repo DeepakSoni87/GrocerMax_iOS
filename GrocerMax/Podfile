@@ -2,7 +2,14 @@
 # platform :ios, '7.0'
 
 target 'GrocerMax' do
-
+    pod 'AFNetworking', '~> 2.5'
+    pod 'TPKeyboardAvoiding', '~> 1.2'
+    pod 'HockeySDK', '~> 3.6'
+    pod 'SVProgressHUD', '~> 1.1'
+    pod 'RaisinToast'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
+    pod 'Google/SignIn', '~> 1.0.0'
 end
 
 target 'GrocerMaxTests' do

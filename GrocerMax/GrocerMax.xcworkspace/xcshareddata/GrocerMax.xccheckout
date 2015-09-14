@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>35173D7B-4FDD-4A6A-8942-95C749A9A65B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GrocerMax</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AEF780F3E9CF6543C9DDC968E21A1E62479EB206</key>
+		<string>https://github.com/DeepakSoni87/GrocerMax_iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GrocerMax/GrocerMax.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AEF780F3E9CF6543C9DDC968E21A1E62479EB206</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/DeepakSoni87/GrocerMax_iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AEF780F3E9CF6543C9DDC968E21A1E62479EB206</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AEF780F3E9CF6543C9DDC968E21A1E62479EB206</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Grocer_Repo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
