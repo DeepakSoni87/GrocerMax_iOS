@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */; };
+		3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */; };
+		3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */; };
+		3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC71BA0BD8600B5EB9D /* GMLoginVC.m */; };
+		3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B670CC81BA0BD8600B5EB9D /* GMLoginVC.xib */; };
+		3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B670CCB1BA0BF2400B5EB9D /* Messages.strings */; };
+		3B70BAE81BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70BAE71BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m */; };
+		766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */; };
+		821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778E81BA43141009937C7 /* GMProfileVC.m */; };
+		821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778E91BA43141009937C7 /* GMProfileVC.xib */; };
+		821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778ED1BA5F334009937C7 /* GMRegisterVC.m */; };
+		821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778EE1BA5F334009937C7 /* GMRegisterVC.xib */; };
+		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
+		82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B01B9F5E60001550FC /* Main.storyboard */; };
+		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
+		82B1B2B71B9F5E60001550FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */; };
+		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
+		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
+		82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D21B9F60D0001550FC /* NSString+Extension.m */; };
+		82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D51B9F60D0001550FC /* UIColor+Additions.m */; };
+		82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D81B9F60D0001550FC /* UITableView+Wave.m */; };
+		82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2DE1B9F60D0001550FC /* ViewController.m */; };
+		82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EC1B9F616B001550FC /* GMSharedClass.m */; };
+		82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82B1B2BD1B9F5E60001550FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82B1B29B1B9F5E60001550FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82B1B2A21B9F5E60001550FC;
+			remoteInfo = GrocerMax;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.release.xcconfig"; sourceTree = "<group>"; };
+		3B670CBD1BA0BB4600B5EB9D /* GMOperationalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOperationalHandler.h; sourceTree = "<group>"; };
+		3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOperationalHandler.m; sourceTree = "<group>"; };
+		3B670CC01BA0BC1700B5EB9D /* GMApiPathGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMApiPathGenerator.h; sourceTree = "<group>"; };
+		3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMApiPathGenerator.m; sourceTree = "<group>"; };
+		3B670CC31BA0BC7600B5EB9D /* GMRequestParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRequestParams.h; sourceTree = "<group>"; };
+		3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRequestParams.m; sourceTree = "<group>"; };
+		3B670CC61BA0BD8600B5EB9D /* GMLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMLoginVC.h; sourceTree = "<group>"; };
+		3B670CC71BA0BD8600B5EB9D /* GMLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMLoginVC.m; sourceTree = "<group>"; };
+		3B670CC81BA0BD8600B5EB9D /* GMLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMLoginVC.xib; sourceTree = "<group>"; };
+		3B670CCB1BA0BF2400B5EB9D /* Messages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Messages.strings; sourceTree = "<group>"; };
+		3B70BAE61BA1FC1300E142DF /* UIViewController+GMProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GMProgressIndicator.h"; sourceTree = "<group>"; };
+		3B70BAE71BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GMProgressIndicator.m"; sourceTree = "<group>"; };
+		43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.debug.xcconfig"; sourceTree = "<group>"; };
+		594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GrocerMax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		821778E71BA43141009937C7 /* GMProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProfileVC.h; sourceTree = "<group>"; };
+		821778E81BA43141009937C7 /* GMProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProfileVC.m; sourceTree = "<group>"; };
+		821778E91BA43141009937C7 /* GMProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMProfileVC.xib; sourceTree = "<group>"; };
+		821778EC1BA5F334009937C7 /* GMRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegisterVC.h; sourceTree = "<group>"; };
+		821778ED1BA5F334009937C7 /* GMRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegisterVC.m; sourceTree = "<group>"; };
+		821778EE1BA5F334009937C7 /* GMRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMRegisterVC.xib; sourceTree = "<group>"; };
+		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		82B1B2B11B9F5E60001550FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		82B1B2B31B9F5E60001550FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
+		82B1B2B61B9F5E60001550FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		82B1B2BC1B9F5E60001550FC /* GrocerMaxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrocerMaxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B1B2C11B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrocerMaxTests.m; sourceTree = "<group>"; };
+		82B1B2CD1B9F60D0001550FC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		82B1B2CE1B9F60D0001550FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		82B1B2D11B9F60D0001550FC /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		82B1B2D21B9F60D0001550FC /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		82B1B2D41B9F60D0001550FC /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		82B1B2D51B9F60D0001550FC /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
+		82B1B2D71B9F60D0001550FC /* UITableView+Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Wave.h"; sourceTree = "<group>"; };
+		82B1B2D81B9F60D0001550FC /* UITableView+Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Wave.m"; sourceTree = "<group>"; };
+		82B1B2DD1B9F60D0001550FC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		82B1B2DE1B9F60D0001550FC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
+		82B1B2EB1B9F616B001550FC /* GMSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSharedClass.h; sourceTree = "<group>"; };
+		82B1B2EC1B9F616B001550FC /* GMSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSharedClass.m; sourceTree = "<group>"; };
+		82B1B2EE1B9F62F3001550FC /* GMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMNavigationController.h; sourceTree = "<group>"; };
+		82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMNavigationController.m; sourceTree = "<group>"; };
+		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82B1B2A01B9F5E60001550FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B1B2B91B9F5E60001550FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B70BAE51BA1FBA800E142DF /* UIViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				3B70BAE61BA1FC1300E142DF /* UIViewController+GMProgressIndicator.h */,
+				3B70BAE71BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m */,
+			);
+			path = UIViewContoller;
+			sourceTree = "<group>";
+		};
+		821778E61BA4311E009937C7 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				821778E71BA43141009937C7 /* GMProfileVC.h */,
+				821778E81BA43141009937C7 /* GMProfileVC.m */,
+				821778E91BA43141009937C7 /* GMProfileVC.xib */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		82B1B29A1B9F5E60001550FC = {
+			isa = PBXGroup;
+			children = (
+				82B1B2A51B9F5E60001550FC /* GrocerMax */,
+				82B1B2BF1B9F5E60001550FC /* GrocerMaxTests */,
+				82B1B2A41B9F5E60001550FC /* Products */,
+				FA1193D135B13B1CA0AC1684 /* Pods */,
+				B9BF57FEB8C9D49E7397393D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		82B1B2A41B9F5E60001550FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2A31B9F5E60001550FC /* GrocerMax.app */,
+				82B1B2BC1B9F5E60001550FC /* GrocerMaxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82B1B2A51B9F5E60001550FC /* GrocerMax */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2CC1B9F60D0001550FC /* AppDelegate */,
+				82B1B2CF1B9F60D0001550FC /* Category */,
+				82B1B2D91B9F60D0001550FC /* Controllers */,
+				82B1B2DF1B9F60D0001550FC /* CustomClasses */,
+				82B1B2E11B9F60D0001550FC /* Modal */,
+				82B1B2E21B9F60D0001550FC /* OperationalHandler */,
+				82B1B2E31B9F60D0001550FC /* UtilityAndConstants */,
+				82B1B2E91B9F60FA001550FC /* Resource */,
+				82B1B2A61B9F5E60001550FC /* Supporting Files */,
+			);
+			path = GrocerMax;
+			sourceTree = "<group>";
+		};
+		82B1B2A61B9F5E60001550FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2A71B9F5E60001550FC /* Info.plist */,
+				82B1B2A81B9F5E60001550FC /* main.m */,
+				82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82B1B2BF1B9F5E60001550FC /* GrocerMaxTests */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */,
+				82B1B2C01B9F5E60001550FC /* Supporting Files */,
+			);
+			path = GrocerMaxTests;
+			sourceTree = "<group>";
+		};
+		82B1B2C01B9F5E60001550FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2C11B9F5E60001550FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82B1B2CC1B9F60D0001550FC /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2CD1B9F60D0001550FC /* AppDelegate.h */,
+				82B1B2CE1B9F60D0001550FC /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		82B1B2CF1B9F60D0001550FC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3B70BAE51BA1FBA800E142DF /* UIViewContoller */,
+				82B1B2D01B9F60D0001550FC /* NSString+Extensions */,
+				82B1B2D31B9F60D0001550FC /* UIColor */,
+				82B1B2D61B9F60D0001550FC /* UITableView */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		82B1B2D01B9F60D0001550FC /* NSString+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2D11B9F60D0001550FC /* NSString+Extension.h */,
+				82B1B2D21B9F60D0001550FC /* NSString+Extension.m */,
+			);
+			path = "NSString+Extensions";
+			sourceTree = "<group>";
+		};
+		82B1B2D31B9F60D0001550FC /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2D41B9F60D0001550FC /* UIColor+Additions.h */,
+				82B1B2D51B9F60D0001550FC /* UIColor+Additions.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		82B1B2D61B9F60D0001550FC /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2D71B9F60D0001550FC /* UITableView+Wave.h */,
+				82B1B2D81B9F60D0001550FC /* UITableView+Wave.m */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		82B1B2D91B9F60D0001550FC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				821778E61BA4311E009937C7 /* ProfileVC */,
+				82B1B2DA1B9F60D0001550FC /* LoginVC */,
+				82B1B2DB1B9F60D0001550FC /* RegisterVC */,
+				82B1B2DC1B9F60D0001550FC /* ViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		82B1B2DA1B9F60D0001550FC /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				3B670CC61BA0BD8600B5EB9D /* GMLoginVC.h */,
+				3B670CC71BA0BD8600B5EB9D /* GMLoginVC.m */,
+				3B670CC81BA0BD8600B5EB9D /* GMLoginVC.xib */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		82B1B2DB1B9F60D0001550FC /* RegisterVC */ = {
+			isa = PBXGroup;
+			children = (
+				821778EC1BA5F334009937C7 /* GMRegisterVC.h */,
+				821778ED1BA5F334009937C7 /* GMRegisterVC.m */,
+				821778EE1BA5F334009937C7 /* GMRegisterVC.xib */,
+			);
+			path = RegisterVC;
+			sourceTree = "<group>";
+		};
+		82B1B2DC1B9F60D0001550FC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2DD1B9F60D0001550FC /* ViewController.h */,
+				82B1B2DE1B9F60D0001550FC /* ViewController.m */,
+				82B1B2B01B9F5E60001550FC /* Main.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82B1B2DF1B9F60D0001550FC /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2E01B9F60D0001550FC /* Navigation */,
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		82B1B2E01B9F60D0001550FC /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2EE1B9F62F3001550FC /* GMNavigationController.h */,
+				82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		82B1B2E11B9F60D0001550FC /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		82B1B2E21B9F60D0001550FC /* OperationalHandler */ = {
+			isa = PBXGroup;
+			children = (
+				3B670CBD1BA0BB4600B5EB9D /* GMOperationalHandler.h */,
+				3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */,
+				3B670CC01BA0BC1700B5EB9D /* GMApiPathGenerator.h */,
+				3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */,
+				3B670CC31BA0BC7600B5EB9D /* GMRequestParams.h */,
+				3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */,
+			);
+			path = OperationalHandler;
+			sourceTree = "<group>";
+		};
+		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
+			isa = PBXGroup;
+			children = (
+				82B1B2EA1B9F6143001550FC /* GMConstants.h */,
+				82B1B2EB1B9F616B001550FC /* GMSharedClass.h */,
+				82B1B2EC1B9F616B001550FC /* GMSharedClass.m */,
+			);
+			path = UtilityAndConstants;
+			sourceTree = "<group>";
+		};
+		82B1B2E91B9F60FA001550FC /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3B670CCB1BA0BF2400B5EB9D /* Messages.strings */,
+				82B1B2B31B9F5E60001550FC /* Images.xcassets */,
+				82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B9BF57FEB8C9D49E7397393D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA1193D135B13B1CA0AC1684 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */,
+				313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		82B1B2A21B9F5E60001550FC /* GrocerMax */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82B1B2C61B9F5E60001550FC /* Build configuration list for PBXNativeTarget "GrocerMax" */;
+			buildPhases = (
+				7E112397D91F0F9DB8F06A43 /* Check Pods Manifest.lock */,
+				82B1B29F1B9F5E60001550FC /* Sources */,
+				82B1B2A01B9F5E60001550FC /* Frameworks */,
+				82B1B2A11B9F5E60001550FC /* Resources */,
+				5B35169C50489091F54C7D77 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrocerMax;
+			productName = GrocerMax;
+			productReference = 82B1B2A31B9F5E60001550FC /* GrocerMax.app */;
+			productType = "com.apple.product-type.application";
+		};
+		82B1B2BB1B9F5E60001550FC /* GrocerMaxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82B1B2C91B9F5E60001550FC /* Build configuration list for PBXNativeTarget "GrocerMaxTests" */;
+			buildPhases = (
+				82B1B2B81B9F5E60001550FC /* Sources */,
+				82B1B2B91B9F5E60001550FC /* Frameworks */,
+				82B1B2BA1B9F5E60001550FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82B1B2BE1B9F5E60001550FC /* PBXTargetDependency */,
+			);
+			name = GrocerMaxTests;
+			productName = GrocerMaxTests;
+			productReference = 82B1B2BC1B9F5E60001550FC /* GrocerMaxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82B1B29B1B9F5E60001550FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GM;
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Deepak Soni";
+				TargetAttributes = {
+					82B1B2A21B9F5E60001550FC = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					82B1B2BB1B9F5E60001550FC = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 82B1B2A21B9F5E60001550FC;
+					};
+				};
+			};
+			buildConfigurationList = 82B1B29E1B9F5E60001550FC /* Build configuration list for PBXProject "GrocerMax" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 82B1B29A1B9F5E60001550FC;
+			productRefGroup = 82B1B2A41B9F5E60001550FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				82B1B2A21B9F5E60001550FC /* GrocerMax */,
+				82B1B2BB1B9F5E60001550FC /* GrocerMaxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82B1B2A11B9F5E60001550FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */,
+				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
+				821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */,
+				82B1B2B71B9F5E60001550FC /* LaunchScreen.xib in Resources */,
+				821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */,
+				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
+				82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B1B2BA1B9F5E60001550FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B35169C50489091F54C7D77 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E112397D91F0F9DB8F06A43 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82B1B29F1B9F5E60001550FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
+				3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */,
+				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
+				82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */,
+				3B70BAE81BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m in Sources */,
+				82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */,
+				3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */,
+				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
+				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
+				82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */,
+				82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */,
+				82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */,
+				3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */,
+				82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */,
+				82B1B2A91B9F5E60001550FC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B1B2B81B9F5E60001550FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82B1B2BE1B9F5E60001550FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82B1B2A21B9F5E60001550FC /* GrocerMax */;
+			targetProxy = 82B1B2BD1B9F5E60001550FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		82B1B2B01B9F5E60001550FC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82B1B2B11B9F5E60001550FC /* Base */,
+			);
+			name = Main.storyboard;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82B1B2B61B9F5E60001550FC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		82B1B2C41B9F5E60001550FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		82B1B2C51B9F5E60001550FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		82B1B2C71B9F5E60001550FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
+				INFOPLIST_FILE = GrocerMax/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		82B1B2C81B9F5E60001550FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
+				INFOPLIST_FILE = GrocerMax/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		82B1B2CA1B9F5E60001550FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
+			};
+			name = Debug;
+		};
+		82B1B2CB1B9F5E60001550FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82B1B29E1B9F5E60001550FC /* Build configuration list for PBXProject "GrocerMax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B1B2C41B9F5E60001550FC /* Debug */,
+				82B1B2C51B9F5E60001550FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82B1B2C61B9F5E60001550FC /* Build configuration list for PBXNativeTarget "GrocerMax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B1B2C71B9F5E60001550FC /* Debug */,
+				82B1B2C81B9F5E60001550FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82B1B2C91B9F5E60001550FC /* Build configuration list for PBXNativeTarget "GrocerMaxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B1B2CA1B9F5E60001550FC /* Debug */,
+				82B1B2CB1B9F5E60001550FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 82B1B29B1B9F5E60001550FC /* Project object */;
+}
