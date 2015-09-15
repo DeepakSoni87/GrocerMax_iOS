@@ -10,6 +10,7 @@ target 'GrocerMax' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
     pod 'Google/SignIn', '~> 1.0.0'
+    pod 'Mantle', '~> 2.0'
 end
 
 target 'GrocerMaxTests' do
