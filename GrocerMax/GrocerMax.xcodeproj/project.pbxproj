@@ -19,6 +19,17 @@
 		821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778E91BA43141009937C7 /* GMProfileVC.xib */; };
 		821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778ED1BA5F334009937C7 /* GMRegisterVC.m */; };
 		821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778EE1BA5F334009937C7 /* GMRegisterVC.xib */; };
+		824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */; };
+		824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */; };
+		824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */; };
+		824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E61BA8B3F5008686C2 /* GMUserModal.m */; };
+		824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E91BA8B890008686C2 /* GMGenderCell.m */; };
+		824046EC1BA8B890008686C2 /* GMGenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046EA1BA8B890008686C2 /* GMGenderCell.xib */; };
+		824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046EF1BA94A28008686C2 /* UIImage+Extends.m */; };
+		824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046F51BAA044F008686C2 /* GMOtpVC.m */; };
+		824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046F61BAA044F008686C2 /* GMOtpVC.xib */; };
+		824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046FA1BAA046A008686C2 /* GMForgotVC.m */; };
+		824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046FB1BAA046A008686C2 /* GMForgotVC.xib */; };
 		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
 		82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B01B9F5E60001550FC /* Main.storyboard */; };
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
@@ -65,6 +76,25 @@
 		821778EC1BA5F334009937C7 /* GMRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegisterVC.h; sourceTree = "<group>"; };
 		821778ED1BA5F334009937C7 /* GMRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegisterVC.m; sourceTree = "<group>"; };
 		821778EE1BA5F334009937C7 /* GMRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMRegisterVC.xib; sourceTree = "<group>"; };
+		824046DB1BA8AF8F008686C2 /* GMRegisterInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegisterInputCell.h; sourceTree = "<group>"; };
+		824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegisterInputCell.m; sourceTree = "<group>"; };
+		824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMRegisterInputCell.xib; sourceTree = "<group>"; };
+		824046E11BA8B099008686C2 /* PlaceholderAndValidStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderAndValidStatus.h; sourceTree = "<group>"; };
+		824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderAndValidStatus.m; sourceTree = "<group>"; };
+		824046E51BA8B3F5008686C2 /* GMUserModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMUserModal.h; sourceTree = "<group>"; };
+		824046E61BA8B3F5008686C2 /* GMUserModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMUserModal.m; sourceTree = "<group>"; };
+		824046E81BA8B890008686C2 /* GMGenderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGenderCell.h; sourceTree = "<group>"; };
+		824046E91BA8B890008686C2 /* GMGenderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGenderCell.m; sourceTree = "<group>"; };
+		824046EA1BA8B890008686C2 /* GMGenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMGenderCell.xib; sourceTree = "<group>"; };
+		824046EE1BA94A28008686C2 /* UIImage+Extends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extends.h"; sourceTree = "<group>"; };
+		824046EF1BA94A28008686C2 /* UIImage+Extends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extends.m"; sourceTree = "<group>"; };
+		824046F11BA98D2B008686C2 /* GMEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMEnums.h; sourceTree = "<group>"; };
+		824046F41BAA044F008686C2 /* GMOtpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOtpVC.h; sourceTree = "<group>"; };
+		824046F51BAA044F008686C2 /* GMOtpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOtpVC.m; sourceTree = "<group>"; };
+		824046F61BAA044F008686C2 /* GMOtpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOtpVC.xib; sourceTree = "<group>"; };
+		824046F91BAA046A008686C2 /* GMForgotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMForgotVC.h; sourceTree = "<group>"; };
+		824046FA1BAA046A008686C2 /* GMForgotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMForgotVC.m; sourceTree = "<group>"; };
+		824046FB1BAA046A008686C2 /* GMForgotVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMForgotVC.xib; sourceTree = "<group>"; };
 		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,6 +158,66 @@
 				821778E91BA43141009937C7 /* GMProfileVC.xib */,
 			);
 			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		824046DA1BA8AF45008686C2 /* RegisterCell */ = {
+			isa = PBXGroup;
+			children = (
+				824046DB1BA8AF8F008686C2 /* GMRegisterInputCell.h */,
+				824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */,
+				824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */,
+				824046E81BA8B890008686C2 /* GMGenderCell.h */,
+				824046E91BA8B890008686C2 /* GMGenderCell.m */,
+				824046EA1BA8B890008686C2 /* GMGenderCell.xib */,
+			);
+			path = RegisterCell;
+			sourceTree = "<group>";
+		};
+		824046E01BA8B099008686C2 /* RegisterModal */ = {
+			isa = PBXGroup;
+			children = (
+				824046E11BA8B099008686C2 /* PlaceholderAndValidStatus.h */,
+				824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */,
+			);
+			path = RegisterModal;
+			sourceTree = "<group>";
+		};
+		824046E41BA8B3DD008686C2 /* UserModal */ = {
+			isa = PBXGroup;
+			children = (
+				824046E51BA8B3F5008686C2 /* GMUserModal.h */,
+				824046E61BA8B3F5008686C2 /* GMUserModal.m */,
+			);
+			path = UserModal;
+			sourceTree = "<group>";
+		};
+		824046ED1BA949C8008686C2 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				824046EE1BA94A28008686C2 /* UIImage+Extends.h */,
+				824046EF1BA94A28008686C2 /* UIImage+Extends.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		824046F21BAA03F0008686C2 /* ForgotVC */ = {
+			isa = PBXGroup;
+			children = (
+				824046F91BAA046A008686C2 /* GMForgotVC.h */,
+				824046FA1BAA046A008686C2 /* GMForgotVC.m */,
+				824046FB1BAA046A008686C2 /* GMForgotVC.xib */,
+			);
+			path = ForgotVC;
+			sourceTree = "<group>";
+		};
+		824046F31BAA03F0008686C2 /* OtpVC */ = {
+			isa = PBXGroup;
+			children = (
+				824046F41BAA044F008686C2 /* GMOtpVC.h */,
+				824046F51BAA044F008686C2 /* GMOtpVC.m */,
+				824046F61BAA044F008686C2 /* GMOtpVC.xib */,
+			);
+			path = OtpVC;
 			sourceTree = "<group>";
 		};
 		82B1B29A1B9F5E60001550FC = {
@@ -205,6 +295,7 @@
 		82B1B2CF1B9F60D0001550FC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				824046ED1BA949C8008686C2 /* UIImage */,
 				3B70BAE51BA1FBA800E142DF /* UIViewContoller */,
 				82B1B2D01B9F60D0001550FC /* NSString+Extensions */,
 				82B1B2D31B9F60D0001550FC /* UIColor */,
@@ -243,6 +334,8 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				824046F21BAA03F0008686C2 /* ForgotVC */,
+				824046F31BAA03F0008686C2 /* OtpVC */,
 				821778E61BA4311E009937C7 /* ProfileVC */,
 				82B1B2DA1B9F60D0001550FC /* LoginVC */,
 				82B1B2DB1B9F60D0001550FC /* RegisterVC */,
@@ -264,6 +357,7 @@
 		82B1B2DB1B9F60D0001550FC /* RegisterVC */ = {
 			isa = PBXGroup;
 			children = (
+				824046DA1BA8AF45008686C2 /* RegisterCell */,
 				821778EC1BA5F334009937C7 /* GMRegisterVC.h */,
 				821778ED1BA5F334009937C7 /* GMRegisterVC.m */,
 				821778EE1BA5F334009937C7 /* GMRegisterVC.xib */,
@@ -301,6 +395,8 @@
 		82B1B2E11B9F60D0001550FC /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				824046E41BA8B3DD008686C2 /* UserModal */,
+				824046E01BA8B099008686C2 /* RegisterModal */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -324,6 +420,7 @@
 				82B1B2EA1B9F6143001550FC /* GMConstants.h */,
 				82B1B2EB1B9F616B001550FC /* GMSharedClass.h */,
 				82B1B2EC1B9F616B001550FC /* GMSharedClass.m */,
+				824046F11BA98D2B008686C2 /* GMEnums.h */,
 			);
 			path = UtilityAndConstants;
 			sourceTree = "<group>";
@@ -439,11 +536,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */,
+				824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */,
+				824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */,
+				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
 				821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */,
 				82B1B2B71B9F5E60001550FC /* LaunchScreen.xib in Resources */,
 				821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
+				824046EC1BA8B890008686C2 /* GMGenderCell.xib in Resources */,
 				82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,15 +596,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */,
+				824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
+				824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */,
 				3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */,
 				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
+				824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */,
 				82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */,
+				824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */,
 				3B70BAE81BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */,
 				3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */,
+				824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */,
 				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
+				824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */,
 				82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */,
 				82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */,
 				82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */,

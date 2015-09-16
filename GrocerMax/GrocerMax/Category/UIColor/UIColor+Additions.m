@@ -22,4 +22,14 @@
     CGFloat b = blue / 255.0f;
     return [self initWithRed:r green:g blue:b alpha:1.0f];
 }
+
++ (UIColor *)inputTextFieldColor {
+    
+    return [UIColor colorWithRGBValue:29.0 green:29.0 blue:29.0];
+}
+
++ (UIColor *)inputTextFieldWarningColor {
+    
+    return [UIColor colorWithRGBValue:208.0 green:79.0 blue:59.0];
+}
 @end

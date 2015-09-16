@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMLoginVC">
@@ -26,20 +27,26 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8r-qQ-Qd2">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9c-At-TR3">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="IcM-xb-XiU">
+                                    <rect key="frame" x="44" y="40" width="233" height="142"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="IcM-xb-XiU" secondAttribute="height" multiplier="233:142" id="DUL-pi-0Df"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9c-At-TR3">
                                     <rect key="frame" x="8" y="234" width="148" height="37"/>
                                     <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="FB">
+                                    <state key="normal" image="facebook">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
                                         <action selector="fbLoginButtonPressed:" destination="-1" eventType="touchUpInside" id="2eC-Tf-13G"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-jx-Vc1">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-jx-Vc1">
                                     <rect key="frame" x="164" y="234" width="148" height="37"/>
                                     <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Google">
+                                    <state key="normal" image="google">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -54,8 +61,8 @@
                                     <string key="text" base64-UTF8="YES">
 X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
 </string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xz5-gO-azx">
@@ -76,8 +83,8 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dts-Qv-zvd" secondAttribute="height" multiplier="152:17" id="Ybj-SM-G3j"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lik-LO-CFg">
@@ -85,29 +92,31 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="lik-LO-CFg" secondAttribute="height" multiplier="152:17" id="5HT-Ni-zO1"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-ny-87a">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="****" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-ny-87a">
                                             <rect key="frame" x="8" y="84" width="288" height="25"/>
-                                            <color key="backgroundColor" red="0.86368634259259258" green="0.14021990740740742" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="8Dk-ny-87a" secondAttribute="height" multiplier="288:25" id="4Zu-hD-T0H"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="l1A-lG-Cd6"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8fo-k6-PyV">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8fo-k6-PyV">
                                             <rect key="frame" x="8" y="26" width="288" height="25"/>
-                                            <color key="backgroundColor" red="0.86368634259999999" green="0.14021990740000001" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="8fo-k6-PyV" secondAttribute="height" multiplier="288:25" id="Mpr-Gq-g3n"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="J0x-YN-JqD"/>
@@ -115,12 +124,13 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ckl-bl-WPT">
                                             <rect key="frame" x="204" y="59" width="92" height="21"/>
-                                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Ckl-bl-WPT" secondAttribute="height" multiplier="92:21" id="Hil-a6-nEX"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Forgot ?">
+                                                <color key="titleColor" red="0.93333333333333335" green="0.17647058823529413" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -159,11 +169,13 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoW-Hi-umK">
                                     <rect key="frame" x="8" y="433" width="304" height="40"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="DoW-Hi-umK" secondAttribute="height" multiplier="38:5" id="3nu-qi-NT3"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                     <state key="normal" title="Login">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -175,17 +187,19 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="NgA-sO-bdE" secondAttribute="height" multiplier="304:21" id="T1N-lJ-i8U"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                    <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5n-w2-c2k">
                                     <rect key="frame" x="8" y="510" width="304" height="40"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.6588235294117647" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Y5n-w2-c2k" secondAttribute="height" multiplier="38:5" id="Yy9-mK-A04"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                     <state key="normal" title="Sign Up">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -204,6 +218,7 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                 <constraint firstAttribute="width" secondItem="D8r-qQ-Qd2" secondAttribute="height" multiplier="40:71" id="QDP-fG-BJ6"/>
                                 <constraint firstAttribute="trailing" secondItem="PY3-jx-Vc1" secondAttribute="trailing" constant="8" id="VNc-ff-9cx"/>
                                 <constraint firstItem="PY3-jx-Vc1" firstAttribute="leading" secondItem="X9c-At-TR3" secondAttribute="trailing" constant="8" id="XLy-3P-BwU"/>
+                                <constraint firstItem="IcM-xb-XiU" firstAttribute="width" secondItem="D8r-qQ-Qd2" secondAttribute="width" multiplier="0.728125" id="cKG-ni-oLn"/>
                                 <constraint firstItem="dZm-ZT-JQT" firstAttribute="top" secondItem="PY3-jx-Vc1" secondAttribute="bottom" constant="14" id="cea-tb-F8J"/>
                                 <constraint firstItem="Xz5-gO-azx" firstAttribute="leading" secondItem="D8r-qQ-Qd2" secondAttribute="leading" constant="8" id="eKh-3y-IMA"/>
                                 <constraint firstItem="NgA-sO-bdE" firstAttribute="leading" secondItem="D8r-qQ-Qd2" secondAttribute="leading" constant="8" id="fMU-C8-sbl"/>
@@ -214,8 +229,10 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                                 <constraint firstItem="PY3-jx-Vc1" firstAttribute="width" secondItem="X9c-At-TR3" secondAttribute="height" multiplier="4:1" id="k6t-mU-c19"/>
                                 <constraint firstItem="Y5n-w2-c2k" firstAttribute="leading" secondItem="D8r-qQ-Qd2" secondAttribute="leading" constant="8" id="l7J-fs-qR6"/>
                                 <constraint firstAttribute="trailing" secondItem="dZm-ZT-JQT" secondAttribute="trailing" constant="8" id="lUL-ac-uWo"/>
+                                <constraint firstAttribute="centerX" secondItem="IcM-xb-XiU" secondAttribute="centerX" id="n2W-Rl-Zqg"/>
                                 <constraint firstAttribute="trailing" secondItem="DoW-Hi-umK" secondAttribute="trailing" constant="8" id="npQ-EG-bO7"/>
                                 <constraint firstItem="dZm-ZT-JQT" firstAttribute="top" secondItem="X9c-At-TR3" secondAttribute="bottom" constant="14" id="sKM-Nz-kXs"/>
+                                <constraint firstItem="IcM-xb-XiU" firstAttribute="top" secondItem="D8r-qQ-Qd2" secondAttribute="top" constant="40" id="t4K-P2-LqJ"/>
                                 <constraint firstItem="X9c-At-TR3" firstAttribute="leading" secondItem="D8r-qQ-Qd2" secondAttribute="leading" constant="8" id="vBm-Ak-Zv6"/>
                                 <constraint firstItem="PY3-jx-Vc1" firstAttribute="width" secondItem="X9c-At-TR3" secondAttribute="width" id="wSO-Cv-vzH"/>
                                 <constraint firstItem="Y5n-w2-c2k" firstAttribute="top" secondItem="NgA-sO-bdE" secondAttribute="bottom" constant="5" id="yYl-BE-LBg"/>
@@ -243,10 +260,13 @@ X19fX19fX18gT1IgTE9HIElOIFVTSU5HIEUDTUFJTCBfX19fX19fXw
                 <constraint firstItem="h9c-M8-7cL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u2X-sE-ZMD"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="622" y="436"/>
+            <point key="canvasLocation" x="312" y="402"/>
         </view>
     </objects>
     <resources>
+        <image name="facebook" width="148" height="37"/>
+        <image name="google" width="148" height="37"/>
         <image name="login-screen_bg" width="1280" height="2272"/>
+        <image name="logo" width="233" height="142"/>
     </resources>
 </document>

@@ -59,4 +59,14 @@ static GMSharedClass *sharedHandler;
     return isValid;
 }
 
++ (BOOL)validateMobileNumberWithString:(NSString*)mobile {
+    
+    if (!NSSTRING_HAS_DATA(mobile))
+        return NO;
+    
+    NSString *phoneRegex = @"^[789]\\d{9}$";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    BOOL isValid = [phoneTest evaluateWithObject:mobile];
+    return isValid;
+}
 @end
