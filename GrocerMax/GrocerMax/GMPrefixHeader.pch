@@ -24,6 +24,8 @@
 // categories
 #import "UIViewController+GMProgressIndicator.h"
 #import "UIColor+Additions.h"
+#import "UIImage+Extends.h"
 
+#import "GMEnums.h"
 
 #endif
