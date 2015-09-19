@@ -20,7 +20,7 @@
 
 @property (nonatomic, readwrite, strong) NSString *password;
 
-@property (nonatomic, readwrite, assign) GMGenderType *gender;
+@property (nonatomic, readwrite, assign) GMGenderType gender;
 @end
 
 @implementation GMUserModal
