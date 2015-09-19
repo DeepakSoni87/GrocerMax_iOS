@@ -35,6 +35,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     self.subcategoryDataArray = [[NSMutableArray alloc]init];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
     self.subcategoryDataArray = [[self.rootCategoryModal.subCategories filteredArrayUsingPredicate:pred] mutableCopy];
+    
+    self.navigationController.title = self.rootCategoryModal.categoryName;
 //    [self.subcategoryDataArray addObjectsFromArray:self.rootCategoryModal.subCategories];
     //[self testData];
 }
@@ -122,7 +124,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return 45.0;
+        return 62.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
