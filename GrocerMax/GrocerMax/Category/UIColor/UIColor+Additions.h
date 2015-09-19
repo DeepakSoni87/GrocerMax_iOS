@@ -11,4 +11,8 @@
 @interface UIColor (Additions)
 
 + (instancetype)colorWithRGBValue:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+
++ (UIColor *)inputTextFieldColor;
+
++ (UIColor *)inputTextFieldWarningColor;
 @end
