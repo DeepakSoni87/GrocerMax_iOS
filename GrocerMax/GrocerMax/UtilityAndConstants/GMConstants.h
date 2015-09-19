@@ -9,8 +9,11 @@
 #ifndef GrocerMax_GMConstants_h
 #define GrocerMax_GMConstants_h
 
-
-
+#ifdef DEBUG
+#define DLOG(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define DLOG(xx, ...)  ((void)0)
+#endif
 
 #define SYSTEM_VERSION_LESS_THAN(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
@@ -30,6 +33,9 @@
 
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
+#define grocerMaxDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+
 
 // fonts
 

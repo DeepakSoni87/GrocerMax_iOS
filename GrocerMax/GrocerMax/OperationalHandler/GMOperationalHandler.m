@@ -12,6 +12,11 @@
 #import <AFNetworking/AFHTTPRequestOperation.h>
 
 #import "GMApiPathGenerator.h"
+#import "GMCategoryModal.h"
+
+static NSString * const kFlagKey                    = @"flag";
+static NSString * const kCategoryKey                   = @"Category";
+
 
 static GMOperationalHandler *sharedHandler;
 
@@ -66,5 +71,24 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-
+- (void)fetchCategoriesFromServerWithSuccessBlock:(void (^)(GMCategoryModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator userLoginPath]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *mtlError = nil;
+        
+        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:responseObject[kCategoryKey] error:&mtlError];
+        
+        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+        else            { if (successBlock) successBlock(rootCategoryModal); }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
 @end

@@ -30,6 +30,13 @@
 		824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046F61BAA044F008686C2 /* GMOtpVC.xib */; };
 		824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046FA1BAA046A008686C2 /* GMForgotVC.m */; };
 		824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046FB1BAA046A008686C2 /* GMForgotVC.xib */; };
+		824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047001BAB22F6008686C2 /* XHDrawerController.m */; };
+		824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047031BAB22F6008686C2 /* XHZoomDrawerView.m */; };
+		824047091BAB26D5008686C2 /* GMCategoryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047081BAB26D5008686C2 /* GMCategoryModal.m */; };
+		82AC6EA21BAB5E7D007FF7EA /* GMLeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */; };
+		82AC6EA31BAB5E7D007FF7EA /* GMLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */; };
+		82AC6EA81BAD6E97007FF7EA /* GMHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */; };
+		82AC6EA91BAD6E97007FF7EA /* GMHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */; };
 		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
 		82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B01B9F5E60001550FC /* Main.storyboard */; };
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
@@ -95,6 +102,19 @@
 		824046F91BAA046A008686C2 /* GMForgotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMForgotVC.h; sourceTree = "<group>"; };
 		824046FA1BAA046A008686C2 /* GMForgotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMForgotVC.m; sourceTree = "<group>"; };
 		824046FB1BAA046A008686C2 /* GMForgotVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMForgotVC.xib; sourceTree = "<group>"; };
+		824046FF1BAB22F6008686C2 /* XHDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDrawerController.h; sourceTree = "<group>"; };
+		824047001BAB22F6008686C2 /* XHDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDrawerController.m; sourceTree = "<group>"; };
+		824047011BAB22F6008686C2 /* XHDrawerControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDrawerControllerHeader.h; sourceTree = "<group>"; };
+		824047021BAB22F6008686C2 /* XHZoomDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHZoomDrawerView.h; sourceTree = "<group>"; };
+		824047031BAB22F6008686C2 /* XHZoomDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHZoomDrawerView.m; sourceTree = "<group>"; };
+		824047071BAB26D5008686C2 /* GMCategoryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCategoryModal.h; sourceTree = "<group>"; };
+		824047081BAB26D5008686C2 /* GMCategoryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCategoryModal.m; sourceTree = "<group>"; };
+		82AC6E9F1BAB5E7D007FF7EA /* GMLeftMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMLeftMenuVC.h; sourceTree = "<group>"; };
+		82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMLeftMenuVC.m; sourceTree = "<group>"; };
+		82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMLeftMenuVC.xib; sourceTree = "<group>"; };
+		82AC6EA51BAD6E97007FF7EA /* GMHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeVC.h; sourceTree = "<group>"; };
+		82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeVC.m; sourceTree = "<group>"; };
+		82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMHomeVC.xib; sourceTree = "<group>"; };
 		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -220,6 +240,47 @@
 			path = OtpVC;
 			sourceTree = "<group>";
 		};
+		824046FE1BAB22F6008686C2 /* XHDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				824046FF1BAB22F6008686C2 /* XHDrawerController.h */,
+				824047001BAB22F6008686C2 /* XHDrawerController.m */,
+				824047011BAB22F6008686C2 /* XHDrawerControllerHeader.h */,
+				824047021BAB22F6008686C2 /* XHZoomDrawerView.h */,
+				824047031BAB22F6008686C2 /* XHZoomDrawerView.m */,
+			);
+			path = XHDrawerController;
+			sourceTree = "<group>";
+		};
+		824047061BAB2559008686C2 /* CategoryModal */ = {
+			isa = PBXGroup;
+			children = (
+				824047071BAB26D5008686C2 /* GMCategoryModal.h */,
+				824047081BAB26D5008686C2 /* GMCategoryModal.m */,
+			);
+			path = CategoryModal;
+			sourceTree = "<group>";
+		};
+		82AC6E9E1BAB5E58007FF7EA /* LeftMenuVC */ = {
+			isa = PBXGroup;
+			children = (
+				82AC6E9F1BAB5E7D007FF7EA /* GMLeftMenuVC.h */,
+				82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */,
+				82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */,
+			);
+			path = LeftMenuVC;
+			sourceTree = "<group>";
+		};
+		82AC6EA41BAD6E45007FF7EA /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				82AC6EA51BAD6E97007FF7EA /* GMHomeVC.h */,
+				82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */,
+				82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
 		82B1B29A1B9F5E60001550FC = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +395,8 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				82AC6EA41BAD6E45007FF7EA /* HomeVC */,
+				82AC6E9E1BAB5E58007FF7EA /* LeftMenuVC */,
 				824046F21BAA03F0008686C2 /* ForgotVC */,
 				824046F31BAA03F0008686C2 /* OtpVC */,
 				821778E61BA4311E009937C7 /* ProfileVC */,
@@ -395,6 +458,7 @@
 		82B1B2E11B9F60D0001550FC /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				824047061BAB2559008686C2 /* CategoryModal */,
 				824046E41BA8B3DD008686C2 /* UserModal */,
 				824046E01BA8B099008686C2 /* RegisterModal */,
 			);
@@ -417,6 +481,7 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				824046FE1BAB22F6008686C2 /* XHDrawerController */,
 				82B1B2EA1B9F6143001550FC /* GMConstants.h */,
 				82B1B2EB1B9F616B001550FC /* GMSharedClass.h */,
 				82B1B2EC1B9F616B001550FC /* GMSharedClass.m */,
@@ -537,9 +602,11 @@
 			files = (
 				3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */,
 				824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */,
+				82AC6EA31BAB5E7D007FF7EA /* GMLeftMenuVC.xib in Resources */,
 				824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */,
 				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
+				82AC6EA91BAD6E97007FF7EA /* GMHomeVC.xib in Resources */,
 				821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */,
 				82B1B2B71B9F5E60001550FC /* LaunchScreen.xib in Resources */,
 				821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */,
@@ -596,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82AC6EA21BAB5E7D007FF7EA /* GMLeftMenuVC.m in Sources */,
 				824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */,
 				824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
@@ -604,11 +672,14 @@
 				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
 				824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */,
 				82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */,
+				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
 				824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */,
+				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
 				3B70BAE81BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */,
 				3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */,
 				824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */,
+				82AC6EA81BAD6E97007FF7EA /* GMHomeVC.m in Sources */,
 				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */,
@@ -617,6 +688,7 @@
 				82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */,
 				3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */,
 				82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */,
+				824047091BAB26D5008686C2 /* GMCategoryModal.m in Sources */,
 				82B1B2A91B9F5E60001550FC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -746,11 +818,13 @@
 			baseConfigurationReference = 43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 			};
 			name = Debug;
 		};
@@ -759,11 +833,13 @@
 			baseConfigurationReference = 313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 			};
 			name = Release;
 		};
@@ -771,6 +847,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -782,6 +859,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -790,6 +868,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -797,6 +876,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

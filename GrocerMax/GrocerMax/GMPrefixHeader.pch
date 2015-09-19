@@ -27,5 +27,9 @@
 #import "UIImage+Extends.h"
 
 #import "GMEnums.h"
+#import "XHDrawerController.h"
+#import <Mantle/Mantle.h>
+
+#import "GMCategoryModal.h"
 
 #endif

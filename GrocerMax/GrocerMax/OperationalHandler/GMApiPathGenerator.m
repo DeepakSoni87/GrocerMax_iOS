@@ -14,7 +14,7 @@ static NSString const *baseUrl = @"http://dev.grocermax.com/webservice/new_servi
 
 + (NSString *)userLoginPath{
     
-    return [NSString stringWithFormat:@"%@%@", baseUrl, @"login"];
+    return [NSString stringWithFormat:@"%@%@", baseUrl, @"category"];
 }
 
 @end
