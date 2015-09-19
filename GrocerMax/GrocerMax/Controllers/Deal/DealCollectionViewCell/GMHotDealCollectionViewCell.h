@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GMHotDealCollectionViewCell : UICollectionViewCell
+@property (strong, nonatomic) IBOutlet UIView *cellBgView;
+@property (strong, nonatomic) IBOutlet UIImageView *dealImage;
 
 @end
