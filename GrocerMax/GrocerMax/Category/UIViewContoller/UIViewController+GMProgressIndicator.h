@@ -14,4 +14,6 @@
 - (void)showProgressWithText:(NSString *)message;
 - (void)removeProgress;
 
+- (void)addLeftMenuButton;
+- (void)menuButtonPressed:(UIBarButtonItem*)button;
 @end

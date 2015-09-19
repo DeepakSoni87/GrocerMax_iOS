@@ -7,6 +7,7 @@
 //
 
 #import "GMUserModal.h"
+#import "GMEnums.h"
 
 @interface GMUserModal()
 
@@ -19,8 +20,6 @@
 @property (nonatomic, readwrite, strong) NSString *email;
 
 @property (nonatomic, readwrite, strong) NSString *password;
-
-@property (nonatomic, readwrite, assign) GMGenderType gender;
 @end
 
 @implementation GMUserModal

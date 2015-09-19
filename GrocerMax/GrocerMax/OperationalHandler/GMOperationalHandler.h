@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+@class GMCategoryModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -18,5 +18,5 @@
 
 - (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(id loggedInUser))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
-
+- (void)fetchCategoriesFromServerWithSuccessBlock:(void(^)(GMCategoryModal *rootCategoryModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 @end
