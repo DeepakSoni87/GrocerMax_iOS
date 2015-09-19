@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMUserModal.h"
 
 @interface GMOtpVC : UIViewController
+
+@property (nonatomic, strong) GMUserModal *userModal;
 
 @end

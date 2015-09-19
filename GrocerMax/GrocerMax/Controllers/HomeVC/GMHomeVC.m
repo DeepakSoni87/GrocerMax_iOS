@@ -33,10 +33,10 @@
 
 - (IBAction)loginButtonTapped:(id)sender {
     
-    GMOfferListVC *subCategoryVC = [GMOfferListVC new];
-    [self.navigationController pushViewController:subCategoryVC animated:YES];
-    
-    return;
+//    GMOfferListVC *subCategoryVC = [GMOfferListVC new];
+//    [self.navigationController pushViewController:subCategoryVC animated:YES];
+//    
+//    return;
     GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
 }

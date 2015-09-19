@@ -42,6 +42,11 @@
 #define FONT_BOLD(s)    [UIFont fontWithName:@"HelveticaNeue-Bold" size:s]
 #define FONT_LIGHT(s)   [UIFont fontWithName:@"HelveticaNeue-Light" size:s]
 
+
+//Resoponce Key
+#define kEY_Result                        @"Result"
+#define kEY_flag                          @"flag"
+
 // Key : Login
 
 #define kEY_uemail                        @"uemail"
