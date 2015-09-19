@@ -20,7 +20,7 @@
 
 @property (nonatomic, readonly, strong) NSString *password;
 
-@property (nonatomic, readonly, assign) GMGenderType gender;
+@property (nonatomic, readwrite, assign) GMGenderType gender;
 
 - (void)setFirstName:(NSString *)firstName;
 

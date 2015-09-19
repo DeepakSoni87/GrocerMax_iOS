@@ -28,5 +28,23 @@
     [SVProgressHUD dismiss];
 }
 
+- (void)addLeftMenuButton {
+    
+    UIImage *image = [[UIImage imageNamed:@"menuBtn"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if (self.navigationItem.leftBarButtonItem == nil){
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                                  initWithImage:image
+                                                  style:UIBarButtonItemStylePlain
+                                                  target:self
+                                                  action:@selector(menuButtonPressed:)];
+    }
+}
+
+- (void)menuButtonPressed:(UIBarButtonItem*)button {
+    
+    [self.view endEditing:YES];
+    NSLog(@"menuButtonPressed");
+    [self.drawerController toggleDrawerSide:XHDrawerSideLeft animated:YES completion:nil];
+}
 
 @end

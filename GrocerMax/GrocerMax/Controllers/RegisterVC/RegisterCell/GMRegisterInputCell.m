@@ -10,6 +10,13 @@
 
 @implementation GMRegisterInputCell
 
+- (void)setInputTextField:(UITextField *)inputTextField {
+    
+    _inputTextField = inputTextField;
+    _inputTextField.rightViewMode = UITextFieldViewModeUnlessEditing;
+    [_inputTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+}
+
 - (void)setStatusType:(StatusType)statusType{
    
     _statusType = statusType;

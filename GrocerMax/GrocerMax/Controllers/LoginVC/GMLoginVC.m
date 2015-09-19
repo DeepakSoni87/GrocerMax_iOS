@@ -11,12 +11,12 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "GMRegisterVC.h"
+#import "GMForgotVC.h"
 
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txt_email;
 @property (weak, nonatomic) IBOutlet UITextField *txt_password;
-
 @end
 
 @implementation GMLoginVC
@@ -31,6 +31,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)configureView{
@@ -76,6 +81,8 @@
 
 - (IBAction)forgotButtonPressed:(UIButton *)sender {
     
+    GMForgotVC *forgotVC = [[GMForgotVC alloc] initWithNibName:@"GMForgotVC" bundle:nil];
+    [self flipVC:forgotVC to:UIViewAnimationTransitionFlipFromRight];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {

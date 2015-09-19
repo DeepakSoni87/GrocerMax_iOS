@@ -11,6 +11,7 @@
 #import "PlaceholderAndValidStatus.h"
 #import "GMUserModal.h"
 #import "GMGenderCell.h"
+#import "GMOtpVC.h"
 
 @interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate>
 
@@ -54,9 +55,14 @@ static NSString * const kGenderCell                         =  @"Gender";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)registerCellsForTableView {
     
-    [self.registerTableView registerNib:[UINib nibWithNibName:@"MAInputFieldCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
+    [self.registerTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
 }
 
 #pragma mark - GETTER/SETTER Methods
@@ -127,6 +133,7 @@ static NSString * const kGenderCell                         =  @"Gender";
     inputCell.inputTextField.tag = cellIndex;
     inputCell.inputTextField.secureTextEntry = NO;
     inputCell.cellNameLabel.text = objPlaceholderAndStatus.inputFieldCellType;
+    [inputCell.showButton setHidden:YES];
     
     if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kFirstNameCell]) {
         
@@ -151,6 +158,7 @@ static NSString * const kGenderCell                         =  @"Gender";
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.password : @"";
         inputCell.inputTextField.secureTextEntry = YES;
+        [inputCell.showButton setHidden:NO];
     }
 }
 
@@ -427,6 +435,8 @@ static NSString * const kGenderCell                         =  @"Gender";
     
     if([self performValidations]) {
         
+        GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
+        [self.navigationController pushViewController:otpVC animated:YES];
     }
 }
 

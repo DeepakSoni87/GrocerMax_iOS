@@ -18,9 +18,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2J-h5-EWW">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2J-h5-EWW">
                     <rect key="frame" x="0.0" y="462" width="320" height="42"/>
                     <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="sfj-qV-Cgi"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title="CREATE ACCOUNT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,7 +33,7 @@
                         <action selector="createAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="2Ag-6b-fq4"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-Ra-pLN">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-Ra-pLN" customClass="TPKeyboardAvoidingTableView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="462"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -40,6 +43,15 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="r2J-h5-EWW" secondAttribute="trailing" id="AnZ-fM-QEc"/>
+                <constraint firstItem="Aap-Ra-pLN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D51-iX-FIC"/>
+                <constraint firstAttribute="trailing" secondItem="Aap-Ra-pLN" secondAttribute="trailing" id="GhR-h4-tds"/>
+                <constraint firstItem="Aap-Ra-pLN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="S4Z-au-aqc"/>
+                <constraint firstAttribute="bottom" secondItem="r2J-h5-EWW" secondAttribute="bottom" id="fEl-ue-15T"/>
+                <constraint firstItem="r2J-h5-EWW" firstAttribute="top" secondItem="Aap-Ra-pLN" secondAttribute="bottom" id="naw-x0-Cdz"/>
+                <constraint firstItem="r2J-h5-EWW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sqf-lA-mfq"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="214" y="323"/>
