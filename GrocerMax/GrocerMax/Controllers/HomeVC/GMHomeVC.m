@@ -8,6 +8,7 @@
 
 #import "GMHomeVC.h"
 #import "GMLoginVC.h"
+#import "GMSubCategoryVC.h"
 
 @interface GMHomeVC ()
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
@@ -29,6 +30,10 @@
 
 - (IBAction)loginButtonTapped:(id)sender {
     
+    GMSubCategoryVC *subCategoryVC = [GMSubCategoryVC new];
+    [self.navigationController pushViewController:subCategoryVC animated:YES];
+    
+    return;
     GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
