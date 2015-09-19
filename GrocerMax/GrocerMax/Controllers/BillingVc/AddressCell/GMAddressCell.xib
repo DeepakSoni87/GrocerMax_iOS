@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="GMAddressCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAU-0U-I4D">
+                        <rect key="frame" x="5" y="5" width="310" height="115"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oau-1J-eJx">
+                                <rect key="frame" x="8" y="8" width="259" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="259" id="GRF-FX-QnC"/>
+                                    <constraint firstAttribute="height" constant="65" id="xRn-bf-5BI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-LV-87D">
+                                <rect key="frame" x="0.0" y="86" width="305" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="geg-BL-4UV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-mc-KPM">
+                                <rect key="frame" x="0.0" y="88" width="302" height="27"/>
+                                <inset key="titleEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="275" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Edit Address" image="arrow">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEB-L1-gmN">
+                                <rect key="frame" x="270" y="4" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="2d6-L0-Wyc"/>
+                                    <constraint firstAttribute="height" constant="35" id="5zI-2S-sOm"/>
+                                </constraints>
+                                <state key="normal" title="B" image="unselect">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oau-1J-eJx" firstAttribute="leading" secondItem="RAU-0U-I4D" secondAttribute="leading" constant="8" id="0Hj-XC-rL8"/>
+                            <constraint firstItem="7SE-mc-KPM" firstAttribute="leading" secondItem="RAU-0U-I4D" secondAttribute="leading" id="CGV-dx-fTN"/>
+                            <constraint firstItem="7SE-mc-KPM" firstAttribute="top" secondItem="RAU-0U-I4D" secondAttribute="top" constant="88" id="E56-cf-h2A"/>
+                            <constraint firstItem="Oau-1J-eJx" firstAttribute="top" secondItem="RAU-0U-I4D" secondAttribute="top" constant="8" id="Eno-wO-zxb"/>
+                            <constraint firstItem="Cjf-LV-87D" firstAttribute="top" secondItem="RAU-0U-I4D" secondAttribute="top" constant="86" id="Psu-2Z-Stp"/>
+                            <constraint firstAttribute="trailing" secondItem="Cjf-LV-87D" secondAttribute="trailing" constant="5" id="WFU-5u-ClA"/>
+                            <constraint firstAttribute="bottom" secondItem="7SE-mc-KPM" secondAttribute="bottom" id="ZlQ-zd-zf4"/>
+                            <constraint firstAttribute="trailing" secondItem="7SE-mc-KPM" secondAttribute="trailing" constant="8" id="dqJ-yc-j7d"/>
+                            <constraint firstItem="kEB-L1-gmN" firstAttribute="top" secondItem="RAU-0U-I4D" secondAttribute="top" constant="4" id="ecE-9z-KTw"/>
+                            <constraint firstItem="Cjf-LV-87D" firstAttribute="leading" secondItem="RAU-0U-I4D" secondAttribute="leading" id="hzK-8o-lsx"/>
+                            <constraint firstAttribute="trailing" secondItem="kEB-L1-gmN" secondAttribute="trailing" constant="5" id="qfw-fH-xkc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="RAU-0U-I4D" secondAttribute="trailing" constant="5" id="AcP-WQ-iAp"/>
+                    <constraint firstItem="RAU-0U-I4D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="GQC-Hq-He2"/>
+                    <constraint firstItem="RAU-0U-I4D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ejt-95-7KN"/>
+                    <constraint firstAttribute="bottom" secondItem="RAU-0U-I4D" secondAttribute="bottom" constant="6" id="xpC-dO-pch"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLbl" destination="Oau-1J-eJx" id="x0s-5L-3jV"/>
+                <outlet property="cellBgView" destination="RAU-0U-I4D" id="JRi-qP-5it"/>
+                <outlet property="editAddressBtn" destination="7SE-mc-KPM" id="a0v-BI-bci"/>
+                <outlet property="selectUnSelectBtn" destination="kEB-L1-gmN" id="ujq-mF-KDi"/>
+            </connections>
+            <point key="canvasLocation" x="254" y="228.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="arrow" width="40" height="40"/>
+        <image name="unselect" width="50" height="50"/>
+    </resources>
+</document>

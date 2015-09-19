@@ -8,7 +8,7 @@
 
 #import "GMNavigationController.h"
 
-@interface GMNavigationController ()
+@interface GMNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
 @end
 
@@ -17,6 +17,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    __weak GMNavigationController *weakSelf = self;
+    
+    self.navigationBar.exclusiveTouch = YES;
+    self.navigationBar.multipleTouchEnabled = NO;
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationBar setBarTintColor:[UIColor colorFromHexString:@"#EE2D09"]];
+    
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                [UIFont fontWithName:@"" size:15.0f], NSFontAttributeName, nil]];
+    self.navigationBar.translucent = NO;
+    
+    
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        self.interactivePopGestureRecognizer.delegate = weakSelf;
+        self.delegate = weakSelf;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +45,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark UINavigationControllerDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animate
+{
+    // Enable the gesture again once the new controller is shown
+    viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
+        self.interactivePopGestureRecognizer.enabled = NO;// ([self respondsToSelector:@selector(interactivePopGestureRecognizer)] && [self.viewControllers count] > 1);
 }
-*/
+
 
 @end

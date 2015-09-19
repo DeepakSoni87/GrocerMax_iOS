@@ -10,9 +10,11 @@
 #import "GMLoginVC.h"
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "GMHomeVC.h"
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) XHDrawerController *drawerController;
 @end
 
 @implementation AppDelegate
@@ -34,9 +36,21 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.navController = [[GMNavigationController alloc] initWithRootViewController:[GMLoginVC new]];
+    self.drawerController = [[XHDrawerController alloc] init];
+    self.drawerController.springAnimationOn = NO;
+    [self.drawerController setRestorationIdentifier:@"RPDrawer"];
+    
+    
+    self.drawerController.centerViewController = [[GMNavigationController alloc] initWithRootViewController:[GMHomeVC new]];
+    [self.drawerController setRightViewController:nil];
+    [self.drawerController.centerViewController setRestorationIdentifier:@"RPCenterNavigationControllerRestorationKey"];
+    
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-screen_bg"]];
+    [backgroundImageView setContentMode:UIViewContentModeScaleAspectFill];
+    self.drawerController.backgroundView = backgroundImageView;
+    
     self.navController.navigationBarHidden = YES;
-    self.window.rootViewController = self.navController;
+    self.window.rootViewController = self.drawerController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

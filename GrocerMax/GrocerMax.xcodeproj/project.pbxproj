@@ -19,6 +19,24 @@
 		821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778E91BA43141009937C7 /* GMProfileVC.xib */; };
 		821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778ED1BA5F334009937C7 /* GMRegisterVC.m */; };
 		821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778EE1BA5F334009937C7 /* GMRegisterVC.xib */; };
+		824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */; };
+		824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */; };
+		824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */; };
+		824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E61BA8B3F5008686C2 /* GMUserModal.m */; };
+		824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046E91BA8B890008686C2 /* GMGenderCell.m */; };
+		824046EC1BA8B890008686C2 /* GMGenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046EA1BA8B890008686C2 /* GMGenderCell.xib */; };
+		824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046EF1BA94A28008686C2 /* UIImage+Extends.m */; };
+		824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046F51BAA044F008686C2 /* GMOtpVC.m */; };
+		824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046F61BAA044F008686C2 /* GMOtpVC.xib */; };
+		824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824046FA1BAA046A008686C2 /* GMForgotVC.m */; };
+		824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824046FB1BAA046A008686C2 /* GMForgotVC.xib */; };
+		824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047001BAB22F6008686C2 /* XHDrawerController.m */; };
+		824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047031BAB22F6008686C2 /* XHZoomDrawerView.m */; };
+		824047091BAB26D5008686C2 /* GMCategoryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047081BAB26D5008686C2 /* GMCategoryModal.m */; };
+		82AC6EA21BAB5E7D007FF7EA /* GMLeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */; };
+		82AC6EA31BAB5E7D007FF7EA /* GMLeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */; };
+		82AC6EA81BAD6E97007FF7EA /* GMHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */; };
+		82AC6EA91BAD6E97007FF7EA /* GMHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */; };
 		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
 		82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B01B9F5E60001550FC /* Main.storyboard */; };
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
@@ -31,6 +49,29 @@
 		82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2DE1B9F60D0001550FC /* ViewController.m */; };
 		82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EC1B9F616B001550FC /* GMSharedClass.m */; };
 		82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */; };
+		E8ED6CE81BAD94790087AA1D /* GMAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CBD1BAD94790087AA1D /* GMAddressCell.m */; };
+		E8ED6CE91BAD94790087AA1D /* GMAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CBE1BAD94790087AA1D /* GMAddressCell.xib */; };
+		E8ED6CEA1BAD94790087AA1D /* GMBillingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CC01BAD94790087AA1D /* GMBillingAddressVC.m */; };
+		E8ED6CEB1BAD94790087AA1D /* GMBillingAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CC11BAD94790087AA1D /* GMBillingAddressVC.xib */; };
+		E8ED6CEC1BAD94790087AA1D /* GMHotDealCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CC51BAD94790087AA1D /* GMHotDealCollectionViewCell.m */; };
+		E8ED6CED1BAD94790087AA1D /* GMHotDealCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CC61BAD94790087AA1D /* GMHotDealCollectionViewCell.xib */; };
+		E8ED6CEE1BAD94790087AA1D /* GMHotDealVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CC81BAD94790087AA1D /* GMHotDealVC.m */; };
+		E8ED6CEF1BAD94790087AA1D /* GMHotDealVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CC91BAD94790087AA1D /* GMHotDealVC.xib */; };
+		E8ED6CF01BAD94790087AA1D /* GMOfferListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CCC1BAD94790087AA1D /* GMOfferListVC.m */; };
+		E8ED6CF11BAD94790087AA1D /* GMOfferListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CCD1BAD94790087AA1D /* GMOfferListVC.xib */; };
+		E8ED6CF21BAD94790087AA1D /* GMTOfferListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CD01BAD94790087AA1D /* GMTOfferListCell.m */; };
+		E8ED6CF31BAD94790087AA1D /* GMTOfferListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CD11BAD94790087AA1D /* GMTOfferListCell.xib */; };
+		E8ED6CF41BAD94790087AA1D /* GMOrderHistryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CD41BAD94790087AA1D /* GMOrderHistryVC.m */; };
+		E8ED6CF51BAD94790087AA1D /* GMOrderHistryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CD51BAD94790087AA1D /* GMOrderHistryVC.xib */; };
+		E8ED6CF61BAD94790087AA1D /* GMOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */; };
+		E8ED6CF71BAD94790087AA1D /* GMOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */; };
+		E8ED6CF81BAD94790087AA1D /* GMOrderHistryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */; };
+		E8ED6CF91BAD94790087AA1D /* GMSubCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CDE1BAD94790087AA1D /* GMSubCategoryVC.m */; };
+		E8ED6CFA1BAD94790087AA1D /* GMSubCategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CDF1BAD94790087AA1D /* GMSubCategoryVC.xib */; };
+		E8ED6CFB1BAD94790087AA1D /* GMSubCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CE21BAD94790087AA1D /* GMSubCategoryCell.m */; };
+		E8ED6CFC1BAD94790087AA1D /* GMSubCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CE31BAD94790087AA1D /* GMSubCategoryCell.xib */; };
+		E8ED6CFD1BAD94790087AA1D /* GMSubCategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CE61BAD94790087AA1D /* GMSubCategoryHeaderView.m */; };
+		E8ED6CFE1BAD94790087AA1D /* GMSubCategoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CE71BAD94790087AA1D /* GMSubCategoryHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +106,38 @@
 		821778EC1BA5F334009937C7 /* GMRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegisterVC.h; sourceTree = "<group>"; };
 		821778ED1BA5F334009937C7 /* GMRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegisterVC.m; sourceTree = "<group>"; };
 		821778EE1BA5F334009937C7 /* GMRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMRegisterVC.xib; sourceTree = "<group>"; };
+		824046DB1BA8AF8F008686C2 /* GMRegisterInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegisterInputCell.h; sourceTree = "<group>"; };
+		824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegisterInputCell.m; sourceTree = "<group>"; };
+		824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMRegisterInputCell.xib; sourceTree = "<group>"; };
+		824046E11BA8B099008686C2 /* PlaceholderAndValidStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderAndValidStatus.h; sourceTree = "<group>"; };
+		824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderAndValidStatus.m; sourceTree = "<group>"; };
+		824046E51BA8B3F5008686C2 /* GMUserModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMUserModal.h; sourceTree = "<group>"; };
+		824046E61BA8B3F5008686C2 /* GMUserModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMUserModal.m; sourceTree = "<group>"; };
+		824046E81BA8B890008686C2 /* GMGenderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGenderCell.h; sourceTree = "<group>"; };
+		824046E91BA8B890008686C2 /* GMGenderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGenderCell.m; sourceTree = "<group>"; };
+		824046EA1BA8B890008686C2 /* GMGenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMGenderCell.xib; sourceTree = "<group>"; };
+		824046EE1BA94A28008686C2 /* UIImage+Extends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extends.h"; sourceTree = "<group>"; };
+		824046EF1BA94A28008686C2 /* UIImage+Extends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extends.m"; sourceTree = "<group>"; };
+		824046F11BA98D2B008686C2 /* GMEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMEnums.h; sourceTree = "<group>"; };
+		824046F41BAA044F008686C2 /* GMOtpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOtpVC.h; sourceTree = "<group>"; };
+		824046F51BAA044F008686C2 /* GMOtpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOtpVC.m; sourceTree = "<group>"; };
+		824046F61BAA044F008686C2 /* GMOtpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOtpVC.xib; sourceTree = "<group>"; };
+		824046F91BAA046A008686C2 /* GMForgotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMForgotVC.h; sourceTree = "<group>"; };
+		824046FA1BAA046A008686C2 /* GMForgotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMForgotVC.m; sourceTree = "<group>"; };
+		824046FB1BAA046A008686C2 /* GMForgotVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMForgotVC.xib; sourceTree = "<group>"; };
+		824046FF1BAB22F6008686C2 /* XHDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDrawerController.h; sourceTree = "<group>"; };
+		824047001BAB22F6008686C2 /* XHDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDrawerController.m; sourceTree = "<group>"; };
+		824047011BAB22F6008686C2 /* XHDrawerControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDrawerControllerHeader.h; sourceTree = "<group>"; };
+		824047021BAB22F6008686C2 /* XHZoomDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHZoomDrawerView.h; sourceTree = "<group>"; };
+		824047031BAB22F6008686C2 /* XHZoomDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHZoomDrawerView.m; sourceTree = "<group>"; };
+		824047071BAB26D5008686C2 /* GMCategoryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCategoryModal.h; sourceTree = "<group>"; };
+		824047081BAB26D5008686C2 /* GMCategoryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCategoryModal.m; sourceTree = "<group>"; };
+		82AC6E9F1BAB5E7D007FF7EA /* GMLeftMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMLeftMenuVC.h; sourceTree = "<group>"; };
+		82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMLeftMenuVC.m; sourceTree = "<group>"; };
+		82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMLeftMenuVC.xib; sourceTree = "<group>"; };
+		82AC6EA51BAD6E97007FF7EA /* GMHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeVC.h; sourceTree = "<group>"; };
+		82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeVC.m; sourceTree = "<group>"; };
+		82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMHomeVC.xib; sourceTree = "<group>"; };
 		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +163,41 @@
 		82B1B2EE1B9F62F3001550FC /* GMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMNavigationController.h; sourceTree = "<group>"; };
 		82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMNavigationController.m; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		E8ED6CBC1BAD94790087AA1D /* GMAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAddressCell.h; sourceTree = "<group>"; };
+		E8ED6CBD1BAD94790087AA1D /* GMAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAddressCell.m; sourceTree = "<group>"; };
+		E8ED6CBE1BAD94790087AA1D /* GMAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMAddressCell.xib; sourceTree = "<group>"; };
+		E8ED6CBF1BAD94790087AA1D /* GMBillingAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMBillingAddressVC.h; sourceTree = "<group>"; };
+		E8ED6CC01BAD94790087AA1D /* GMBillingAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMBillingAddressVC.m; sourceTree = "<group>"; };
+		E8ED6CC11BAD94790087AA1D /* GMBillingAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMBillingAddressVC.xib; sourceTree = "<group>"; };
+		E8ED6CC41BAD94790087AA1D /* GMHotDealCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealCollectionViewCell.h; sourceTree = "<group>"; };
+		E8ED6CC51BAD94790087AA1D /* GMHotDealCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealCollectionViewCell.m; sourceTree = "<group>"; };
+		E8ED6CC61BAD94790087AA1D /* GMHotDealCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMHotDealCollectionViewCell.xib; sourceTree = "<group>"; };
+		E8ED6CC71BAD94790087AA1D /* GMHotDealVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealVC.h; sourceTree = "<group>"; };
+		E8ED6CC81BAD94790087AA1D /* GMHotDealVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealVC.m; sourceTree = "<group>"; };
+		E8ED6CC91BAD94790087AA1D /* GMHotDealVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMHotDealVC.xib; sourceTree = "<group>"; };
+		E8ED6CCB1BAD94790087AA1D /* GMOfferListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOfferListVC.h; sourceTree = "<group>"; };
+		E8ED6CCC1BAD94790087AA1D /* GMOfferListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOfferListVC.m; sourceTree = "<group>"; };
+		E8ED6CCD1BAD94790087AA1D /* GMOfferListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOfferListVC.xib; sourceTree = "<group>"; };
+		E8ED6CCF1BAD94790087AA1D /* GMTOfferListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMTOfferListCell.h; sourceTree = "<group>"; };
+		E8ED6CD01BAD94790087AA1D /* GMTOfferListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMTOfferListCell.m; sourceTree = "<group>"; };
+		E8ED6CD11BAD94790087AA1D /* GMTOfferListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMTOfferListCell.xib; sourceTree = "<group>"; };
+		E8ED6CD31BAD94790087AA1D /* GMOrderHistryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderHistryVC.h; sourceTree = "<group>"; };
+		E8ED6CD41BAD94790087AA1D /* GMOrderHistryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderHistryVC.m; sourceTree = "<group>"; };
+		E8ED6CD51BAD94790087AA1D /* GMOrderHistryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderHistryVC.xib; sourceTree = "<group>"; };
+		E8ED6CD71BAD94790087AA1D /* GMOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderHistoryCell.h; sourceTree = "<group>"; };
+		E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderHistoryCell.m; sourceTree = "<group>"; };
+		E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderHistoryCell.xib; sourceTree = "<group>"; };
+		E8ED6CDA1BAD94790087AA1D /* GMOrderHistryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderHistryModal.h; sourceTree = "<group>"; };
+		E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderHistryModal.m; sourceTree = "<group>"; };
+		E8ED6CDD1BAD94790087AA1D /* GMSubCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSubCategoryVC.h; sourceTree = "<group>"; };
+		E8ED6CDE1BAD94790087AA1D /* GMSubCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSubCategoryVC.m; sourceTree = "<group>"; };
+		E8ED6CDF1BAD94790087AA1D /* GMSubCategoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSubCategoryVC.xib; sourceTree = "<group>"; };
+		E8ED6CE11BAD94790087AA1D /* GMSubCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSubCategoryCell.h; sourceTree = "<group>"; };
+		E8ED6CE21BAD94790087AA1D /* GMSubCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSubCategoryCell.m; sourceTree = "<group>"; };
+		E8ED6CE31BAD94790087AA1D /* GMSubCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSubCategoryCell.xib; sourceTree = "<group>"; };
+		E8ED6CE51BAD94790087AA1D /* GMSubCategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSubCategoryHeaderView.h; sourceTree = "<group>"; };
+		E8ED6CE61BAD94790087AA1D /* GMSubCategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSubCategoryHeaderView.m; sourceTree = "<group>"; };
+		E8ED6CE71BAD94790087AA1D /* GMSubCategoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSubCategoryHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +236,107 @@
 				821778E91BA43141009937C7 /* GMProfileVC.xib */,
 			);
 			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		824046DA1BA8AF45008686C2 /* RegisterCell */ = {
+			isa = PBXGroup;
+			children = (
+				824046DB1BA8AF8F008686C2 /* GMRegisterInputCell.h */,
+				824046DC1BA8AF8F008686C2 /* GMRegisterInputCell.m */,
+				824046DD1BA8AF8F008686C2 /* GMRegisterInputCell.xib */,
+				824046E81BA8B890008686C2 /* GMGenderCell.h */,
+				824046E91BA8B890008686C2 /* GMGenderCell.m */,
+				824046EA1BA8B890008686C2 /* GMGenderCell.xib */,
+			);
+			path = RegisterCell;
+			sourceTree = "<group>";
+		};
+		824046E01BA8B099008686C2 /* RegisterModal */ = {
+			isa = PBXGroup;
+			children = (
+				824046E11BA8B099008686C2 /* PlaceholderAndValidStatus.h */,
+				824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */,
+			);
+			path = RegisterModal;
+			sourceTree = "<group>";
+		};
+		824046E41BA8B3DD008686C2 /* UserModal */ = {
+			isa = PBXGroup;
+			children = (
+				824046E51BA8B3F5008686C2 /* GMUserModal.h */,
+				824046E61BA8B3F5008686C2 /* GMUserModal.m */,
+			);
+			path = UserModal;
+			sourceTree = "<group>";
+		};
+		824046ED1BA949C8008686C2 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				824046EE1BA94A28008686C2 /* UIImage+Extends.h */,
+				824046EF1BA94A28008686C2 /* UIImage+Extends.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		824046F21BAA03F0008686C2 /* ForgotVC */ = {
+			isa = PBXGroup;
+			children = (
+				824046F91BAA046A008686C2 /* GMForgotVC.h */,
+				824046FA1BAA046A008686C2 /* GMForgotVC.m */,
+				824046FB1BAA046A008686C2 /* GMForgotVC.xib */,
+			);
+			path = ForgotVC;
+			sourceTree = "<group>";
+		};
+		824046F31BAA03F0008686C2 /* OtpVC */ = {
+			isa = PBXGroup;
+			children = (
+				824046F41BAA044F008686C2 /* GMOtpVC.h */,
+				824046F51BAA044F008686C2 /* GMOtpVC.m */,
+				824046F61BAA044F008686C2 /* GMOtpVC.xib */,
+			);
+			path = OtpVC;
+			sourceTree = "<group>";
+		};
+		824046FE1BAB22F6008686C2 /* XHDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				824046FF1BAB22F6008686C2 /* XHDrawerController.h */,
+				824047001BAB22F6008686C2 /* XHDrawerController.m */,
+				824047011BAB22F6008686C2 /* XHDrawerControllerHeader.h */,
+				824047021BAB22F6008686C2 /* XHZoomDrawerView.h */,
+				824047031BAB22F6008686C2 /* XHZoomDrawerView.m */,
+			);
+			path = XHDrawerController;
+			sourceTree = "<group>";
+		};
+		824047061BAB2559008686C2 /* CategoryModal */ = {
+			isa = PBXGroup;
+			children = (
+				824047071BAB26D5008686C2 /* GMCategoryModal.h */,
+				824047081BAB26D5008686C2 /* GMCategoryModal.m */,
+			);
+			path = CategoryModal;
+			sourceTree = "<group>";
+		};
+		82AC6E9E1BAB5E58007FF7EA /* LeftMenuVC */ = {
+			isa = PBXGroup;
+			children = (
+				82AC6E9F1BAB5E7D007FF7EA /* GMLeftMenuVC.h */,
+				82AC6EA01BAB5E7D007FF7EA /* GMLeftMenuVC.m */,
+				82AC6EA11BAB5E7D007FF7EA /* GMLeftMenuVC.xib */,
+			);
+			path = LeftMenuVC;
+			sourceTree = "<group>";
+		};
+		82AC6EA41BAD6E45007FF7EA /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				82AC6EA51BAD6E97007FF7EA /* GMHomeVC.h */,
+				82AC6EA61BAD6E97007FF7EA /* GMHomeVC.m */,
+				82AC6EA71BAD6E97007FF7EA /* GMHomeVC.xib */,
+			);
+			path = HomeVC;
 			sourceTree = "<group>";
 		};
 		82B1B29A1B9F5E60001550FC = {
@@ -205,6 +414,7 @@
 		82B1B2CF1B9F60D0001550FC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				824046ED1BA949C8008686C2 /* UIImage */,
 				3B70BAE51BA1FBA800E142DF /* UIViewContoller */,
 				82B1B2D01B9F60D0001550FC /* NSString+Extensions */,
 				82B1B2D31B9F60D0001550FC /* UIColor */,
@@ -243,6 +453,15 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8ED6CBA1BAD94790087AA1D /* BillingVc */,
+				E8ED6CC21BAD94790087AA1D /* Deal */,
+				E8ED6CCA1BAD94790087AA1D /* OfferListing */,
+				E8ED6CD21BAD94790087AA1D /* OrderHistry */,
+				E8ED6CDC1BAD94790087AA1D /* SubCategory */,
+				82AC6EA41BAD6E45007FF7EA /* HomeVC */,
+				82AC6E9E1BAB5E58007FF7EA /* LeftMenuVC */,
+				824046F21BAA03F0008686C2 /* ForgotVC */,
+				824046F31BAA03F0008686C2 /* OtpVC */,
 				821778E61BA4311E009937C7 /* ProfileVC */,
 				82B1B2DA1B9F60D0001550FC /* LoginVC */,
 				82B1B2DB1B9F60D0001550FC /* RegisterVC */,
@@ -264,6 +483,7 @@
 		82B1B2DB1B9F60D0001550FC /* RegisterVC */ = {
 			isa = PBXGroup;
 			children = (
+				824046DA1BA8AF45008686C2 /* RegisterCell */,
 				821778EC1BA5F334009937C7 /* GMRegisterVC.h */,
 				821778ED1BA5F334009937C7 /* GMRegisterVC.m */,
 				821778EE1BA5F334009937C7 /* GMRegisterVC.xib */,
@@ -301,6 +521,9 @@
 		82B1B2E11B9F60D0001550FC /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				824047061BAB2559008686C2 /* CategoryModal */,
+				824046E41BA8B3DD008686C2 /* UserModal */,
+				824046E01BA8B099008686C2 /* RegisterModal */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -321,9 +544,11 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				824046FE1BAB22F6008686C2 /* XHDrawerController */,
 				82B1B2EA1B9F6143001550FC /* GMConstants.h */,
 				82B1B2EB1B9F616B001550FC /* GMSharedClass.h */,
 				82B1B2EC1B9F616B001550FC /* GMSharedClass.m */,
+				824046F11BA98D2B008686C2 /* GMEnums.h */,
 			);
 			path = UtilityAndConstants;
 			sourceTree = "<group>";
@@ -344,6 +569,124 @@
 				594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8ED6CBA1BAD94790087AA1D /* BillingVc */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CBB1BAD94790087AA1D /* AddressCell */,
+				E8ED6CBF1BAD94790087AA1D /* GMBillingAddressVC.h */,
+				E8ED6CC01BAD94790087AA1D /* GMBillingAddressVC.m */,
+				E8ED6CC11BAD94790087AA1D /* GMBillingAddressVC.xib */,
+			);
+			path = BillingVc;
+			sourceTree = "<group>";
+		};
+		E8ED6CBB1BAD94790087AA1D /* AddressCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CBC1BAD94790087AA1D /* GMAddressCell.h */,
+				E8ED6CBD1BAD94790087AA1D /* GMAddressCell.m */,
+				E8ED6CBE1BAD94790087AA1D /* GMAddressCell.xib */,
+			);
+			path = AddressCell;
+			sourceTree = "<group>";
+		};
+		E8ED6CC21BAD94790087AA1D /* Deal */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CC31BAD94790087AA1D /* DealCollectionViewCell */,
+				E8ED6CC71BAD94790087AA1D /* GMHotDealVC.h */,
+				E8ED6CC81BAD94790087AA1D /* GMHotDealVC.m */,
+				E8ED6CC91BAD94790087AA1D /* GMHotDealVC.xib */,
+			);
+			path = Deal;
+			sourceTree = "<group>";
+		};
+		E8ED6CC31BAD94790087AA1D /* DealCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CC41BAD94790087AA1D /* GMHotDealCollectionViewCell.h */,
+				E8ED6CC51BAD94790087AA1D /* GMHotDealCollectionViewCell.m */,
+				E8ED6CC61BAD94790087AA1D /* GMHotDealCollectionViewCell.xib */,
+			);
+			path = DealCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		E8ED6CCA1BAD94790087AA1D /* OfferListing */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CCB1BAD94790087AA1D /* GMOfferListVC.h */,
+				E8ED6CCC1BAD94790087AA1D /* GMOfferListVC.m */,
+				E8ED6CCD1BAD94790087AA1D /* GMOfferListVC.xib */,
+				E8ED6CCE1BAD94790087AA1D /* OfferListCell */,
+			);
+			path = OfferListing;
+			sourceTree = "<group>";
+		};
+		E8ED6CCE1BAD94790087AA1D /* OfferListCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CCF1BAD94790087AA1D /* GMTOfferListCell.h */,
+				E8ED6CD01BAD94790087AA1D /* GMTOfferListCell.m */,
+				E8ED6CD11BAD94790087AA1D /* GMTOfferListCell.xib */,
+			);
+			path = OfferListCell;
+			sourceTree = "<group>";
+		};
+		E8ED6CD21BAD94790087AA1D /* OrderHistry */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CD31BAD94790087AA1D /* GMOrderHistryVC.h */,
+				E8ED6CD41BAD94790087AA1D /* GMOrderHistryVC.m */,
+				E8ED6CD51BAD94790087AA1D /* GMOrderHistryVC.xib */,
+				E8ED6CD61BAD94790087AA1D /* OrderHistoryCell */,
+			);
+			path = OrderHistry;
+			sourceTree = "<group>";
+		};
+		E8ED6CD61BAD94790087AA1D /* OrderHistoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CD71BAD94790087AA1D /* GMOrderHistoryCell.h */,
+				E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */,
+				E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */,
+				E8ED6CDA1BAD94790087AA1D /* GMOrderHistryModal.h */,
+				E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */,
+			);
+			path = OrderHistoryCell;
+			sourceTree = "<group>";
+		};
+		E8ED6CDC1BAD94790087AA1D /* SubCategory */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CDD1BAD94790087AA1D /* GMSubCategoryVC.h */,
+				E8ED6CDE1BAD94790087AA1D /* GMSubCategoryVC.m */,
+				E8ED6CDF1BAD94790087AA1D /* GMSubCategoryVC.xib */,
+				E8ED6CE01BAD94790087AA1D /* SubCategoryCell */,
+				E8ED6CE41BAD94790087AA1D /* SubCategoryHeaderView */,
+			);
+			path = SubCategory;
+			sourceTree = "<group>";
+		};
+		E8ED6CE01BAD94790087AA1D /* SubCategoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CE11BAD94790087AA1D /* GMSubCategoryCell.h */,
+				E8ED6CE21BAD94790087AA1D /* GMSubCategoryCell.m */,
+				E8ED6CE31BAD94790087AA1D /* GMSubCategoryCell.xib */,
+			);
+			path = SubCategoryCell;
+			sourceTree = "<group>";
+		};
+		E8ED6CE41BAD94790087AA1D /* SubCategoryHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E8ED6CE51BAD94790087AA1D /* GMSubCategoryHeaderView.h */,
+				E8ED6CE61BAD94790087AA1D /* GMSubCategoryHeaderView.m */,
+				E8ED6CE71BAD94790087AA1D /* GMSubCategoryHeaderView.xib */,
+			);
+			path = SubCategoryHeaderView;
 			sourceTree = "<group>";
 		};
 		FA1193D135B13B1CA0AC1684 /* Pods */ = {
@@ -438,12 +781,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8ED6CF51BAD94790087AA1D /* GMOrderHistryVC.xib in Resources */,
 				3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */,
+				E8ED6CEF1BAD94790087AA1D /* GMHotDealVC.xib in Resources */,
+				824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */,
+				82AC6EA31BAB5E7D007FF7EA /* GMLeftMenuVC.xib in Resources */,
+				E8ED6CEB1BAD94790087AA1D /* GMBillingAddressVC.xib in Resources */,
+				E8ED6CF11BAD94790087AA1D /* GMOfferListVC.xib in Resources */,
+				824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */,
+				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
+				82AC6EA91BAD6E97007FF7EA /* GMHomeVC.xib in Resources */,
+				E8ED6CFC1BAD94790087AA1D /* GMSubCategoryCell.xib in Resources */,
+				E8ED6CFE1BAD94790087AA1D /* GMSubCategoryHeaderView.xib in Resources */,
+				E8ED6CFA1BAD94790087AA1D /* GMSubCategoryVC.xib in Resources */,
+				E8ED6CF31BAD94790087AA1D /* GMTOfferListCell.xib in Resources */,
+				E8ED6CF71BAD94790087AA1D /* GMOrderHistoryCell.xib in Resources */,
 				821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */,
 				82B1B2B71B9F5E60001550FC /* LaunchScreen.xib in Resources */,
 				821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
+				E8ED6CED1BAD94790087AA1D /* GMHotDealCollectionViewCell.xib in Resources */,
+				824046EC1BA8B890008686C2 /* GMGenderCell.xib in Resources */,
+				E8ED6CE91BAD94790087AA1D /* GMAddressCell.xib in Resources */,
 				82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,20 +855,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82AC6EA21BAB5E7D007FF7EA /* GMLeftMenuVC.m in Sources */,
+				E8ED6CFD1BAD94790087AA1D /* GMSubCategoryHeaderView.m in Sources */,
+				824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */,
+				824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */,
+				E8ED6CF61BAD94790087AA1D /* GMOrderHistoryCell.m in Sources */,
+				E8ED6CFB1BAD94790087AA1D /* GMSubCategoryCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
+				824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */,
+				E8ED6CF21BAD94790087AA1D /* GMTOfferListCell.m in Sources */,
+				E8ED6CF01BAD94790087AA1D /* GMOfferListVC.m in Sources */,
 				3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */,
 				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
+				824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */,
 				82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */,
+				E8ED6CEE1BAD94790087AA1D /* GMHotDealVC.m in Sources */,
+				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
+				824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */,
+				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
 				3B70BAE81BA1FC1300E142DF /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */,
 				3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */,
+				E8ED6CF81BAD94790087AA1D /* GMOrderHistryModal.m in Sources */,
+				824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */,
+				E8ED6CEA1BAD94790087AA1D /* GMBillingAddressVC.m in Sources */,
+				82AC6EA81BAD6E97007FF7EA /* GMHomeVC.m in Sources */,
+				E8ED6CEC1BAD94790087AA1D /* GMHotDealCollectionViewCell.m in Sources */,
 				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
+				824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */,
 				82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */,
 				82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */,
 				82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */,
+				E8ED6CF41BAD94790087AA1D /* GMOrderHistryVC.m in Sources */,
 				3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */,
+				E8ED6CE81BAD94790087AA1D /* GMAddressCell.m in Sources */,
 				82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */,
+				E8ED6CF91BAD94790087AA1D /* GMSubCategoryVC.m in Sources */,
+				824047091BAB26D5008686C2 /* GMCategoryModal.m in Sources */,
 				82B1B2A91B9F5E60001550FC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,11 +1022,13 @@
 			baseConfigurationReference = 43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 			};
 			name = Debug;
 		};
@@ -651,11 +1037,13 @@
 			baseConfigurationReference = 313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 			};
 			name = Release;
 		};
@@ -663,6 +1051,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -674,6 +1063,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -682,6 +1072,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -689,6 +1080,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "323724ca-fc7f-492d-9d19-5b2f254e8449";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

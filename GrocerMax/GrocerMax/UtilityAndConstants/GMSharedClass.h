@@ -12,14 +12,15 @@
 
 + (instancetype)sharedClass;
 
--(void) showErrorMessage:(NSString*)message;
+- (void) showErrorMessage:(NSString*)message;
 
--(void) showWarningMessage:(NSString*)message;
+- (void) showWarningMessage:(NSString*)message;
 
--(void) showSuccessMessage:(NSString*)message;
+- (void) showSuccessMessage:(NSString*)message;
 
--(void) showInfoMessage:(NSString*)message;
+- (void) showInfoMessage:(NSString*)message;
 
 + (BOOL)validateEmail:(NSString*)emailString;
 
++ (BOOL)validateMobileNumberWithString:(NSString*)mobile;
 @end

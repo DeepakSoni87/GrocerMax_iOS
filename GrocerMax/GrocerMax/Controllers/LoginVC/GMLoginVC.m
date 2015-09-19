@@ -10,12 +10,13 @@
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "GMRegisterVC.h"
+#import "GMForgotVC.h"
 
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txt_email;
 @property (weak, nonatomic) IBOutlet UITextField *txt_password;
-
 @end
 
 @implementation GMLoginVC
@@ -30,6 +31,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)configureView{
@@ -75,6 +81,8 @@
 
 - (IBAction)forgotButtonPressed:(UIButton *)sender {
     
+    GMForgotVC *forgotVC = [[GMForgotVC alloc] initWithNibName:@"GMForgotVC" bundle:nil];
+    [self flipVC:forgotVC to:UIViewAnimationTransitionFlipFromRight];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
@@ -101,6 +109,8 @@
 
 - (IBAction)signUpButtonPressed:(UIButton *)sender {
     
+    GMRegisterVC *registerVC = [[GMRegisterVC alloc] initWithNibName:@"GMRegisterVC" bundle:nil];
+    [self flipVC:registerVC to:UIViewAnimationTransitionFlipFromRight];
 }
 
 #pragma mark - Validations...
@@ -142,4 +152,20 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     // ...
 }
 
+#pragma mark - Flip Animation methods
+
+- (void)flipVC:(UIViewController*) controller to:(UIViewAnimationTransition) trasition {
+    
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:0.80];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    [UIView setAnimationTransition:trasition
+                           forView:self.navigationController.view cache:NO];
+    
+    if (controller)
+        [self.navigationController pushViewController:controller animated:YES];
+    
+    [UIView commitAnimations];
+}
 @end
