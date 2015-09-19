@@ -45,10 +45,13 @@
         self.subCategoryBtn3.tag = cellTag+2;
         self.subCategoryBtn2.tag = cellTag+1;
         self.subCategoryBtn1.tag = cellTag;
+        GMCategoryModal *categoryModal3 = [subcategoryArray objectAtIndex:cellTag+2];
+        GMCategoryModal *categoryModal2 = [subcategoryArray objectAtIndex:cellTag+1];
+        GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
         
-        [self.subCategoryBtn3 setTitle:[subcategoryArray objectAtIndex:cellTag+2] forState:UIControlStateNormal];
-        [self.subCategoryBtn2 setTitle:[subcategoryArray objectAtIndex:cellTag+1] forState:UIControlStateNormal];
-        [self.subCategoryBtn1 setTitle:[subcategoryArray objectAtIndex:cellTag] forState:UIControlStateNormal];
+        [self.subCategoryBtn3 setTitle:categoryModal3.categoryName forState:UIControlStateNormal];
+        [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
+        [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
     }
     else if(subcategoryArray.count >= cellTag+2)
     {
@@ -59,8 +62,12 @@
         self.subCategoryBtn2.tag = cellTag+1;
         self.subCategoryBtn1.tag = cellTag;
         
-        [self.subCategoryBtn2 setTitle:[subcategoryArray objectAtIndex:cellTag+1] forState:UIControlStateNormal];
-        [self.subCategoryBtn1 setTitle:[subcategoryArray objectAtIndex:cellTag] forState:UIControlStateNormal];
+        
+        GMCategoryModal *categoryModal2 = [subcategoryArray objectAtIndex:cellTag+1];
+        GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
+        
+        [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
+        [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
     }
     else if(subcategoryArray.count >= cellTag+1 )
     {
@@ -69,7 +76,10 @@
         self.subCategoryBtn1 .hidden = FALSE;
         
         self.subCategoryBtn1.tag = cellTag;
-        [self.subCategoryBtn1 setTitle:[subcategoryArray objectAtIndex:cellTag] forState:UIControlStateNormal];
+        
+        GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
+        
+        [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
     }
     else
     {

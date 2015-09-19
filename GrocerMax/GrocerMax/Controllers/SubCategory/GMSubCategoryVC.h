@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *subcategoryDataArray;//Use to store subcategory data Array
 
+@property (nonatomic, strong) GMCategoryModal *rootCategoryModal;//Use to store subcategory Modal
+
 @end

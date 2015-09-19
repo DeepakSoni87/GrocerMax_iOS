@@ -8,10 +8,8 @@
 
 #import "GMSubCategoryVC.h"
 #import "GMSubCategoryHeaderView.h"
-#import "GMSubCategoryHeaderView+GMSubcategoryConfiger.h"
-#import "GMSubCategoryModal.h"
+#import "GMCategoryModal.h"
 #import "GMSubCategoryCell.h"
-#import "GMSubCategoryCell+GMSubCategory.h"
 
 static NSString *kIdentifierSubCategoryHeader = @"subcategoryIdentifierHeader";
 static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
@@ -32,48 +30,20 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     [self registerCellsForTableView];
     self.navigationController.navigationBarHidden = NO;
     
-    self.subcategoryDataArray = [[NSMutableArray alloc]init];
     [self testData];
+    
+    self.subcategoryDataArray = [[NSMutableArray alloc]init];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
+    self.subcategoryDataArray = [[self.rootCategoryModal.subCategories filteredArrayUsingPredicate:pred] mutableCopy];
+//    [self.subcategoryDataArray addObjectsFromArray:self.rootCategoryModal.subCategories];
+    //[self testData];
 }
 
 -(void)testData {
-    NSMutableArray *data = [[NSMutableArray alloc]init];
-    [data addObject:@"Oil & Ghee"];
-    [data addObject:@"Dry Fruit"];
-    [data addObject:@"Salt & Masalas"];
-    [data addObject:@"Salt & Masalas"];
-    [data addObject:@"Dry Fruit"];
-    [data addObject:@"Dry Fruit"];
     
-    [data addObject:@"Oil & Ghee"];
-    [data addObject:@"Dry Fruit"];
-    [data addObject:@"Salt & Masalas"];
-    [data addObject:@"Salt & Masalas"];
-    [data addObject:@"Dry Fruit"];
-    [data addObject:@"Dry Fruit"];
-    
-    
-    
-    
-    for(int i = 0; i<data.count; i++)
-    {
-        GMSubCategoryModal *subCategoryModal = [[GMSubCategoryModal alloc]init];
-        subCategoryModal.categoryName = [data objectAtIndex:i];
-        subCategoryModal.categoryId  = [NSString stringWithFormat:@"%d",i];
-        subCategoryModal.subcategoryArray = [[NSMutableArray alloc]init];
-        if(i ==0)
-        {
-            self.expandedIndex = i;
-            subCategoryModal.isExpand = TRUE;
-            [subCategoryModal.subcategoryArray addObject:[NSString stringWithFormat:@"Dried Nuts %d0",i]];
-        }
-        for(int k = 0; k<i; k++)
-        {
-            [subCategoryModal.subcategoryArray addObject:[NSString stringWithFormat:@"Dried Nuts %d%d",i,k]];
-        }
-        [self.subcategoryDataArray addObject:subCategoryModal];
-    }
-
+    GMCategoryModal *rootModal = [GMCategoryModal loadRootCategory];
+    GMCategoryModal *defaultCategory = rootModal.subCategories.firstObject;
+    self.rootCategoryModal = defaultCategory.subCategories.firstObject;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,17 +78,25 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-        GMSubCategoryModal *subCategoryModal = [self.subcategoryDataArray objectAtIndex:section];
-    if(subCategoryModal.isExpand) {
-        if(subCategoryModal.subcategoryArray.count%3 == 0) {
-            return subCategoryModal.subcategoryArray.count/3;
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:section];
+    
+    if(categoryModal.isExpand)
+    {
+        if(section == self.expandedIndex) {
+            if(categoryModal.subCategories.count%3 == 0) {
+                return categoryModal.subCategories.count/3;
+            }
+            else {
+                return (categoryModal.subCategories.count/3) + 1;
+            }
+            
         }
         else {
-            return (subCategoryModal.subcategoryArray.count/3) + 1;
+            return 0;
         }
-        
     }
-    else {
+    else
+    {
         return 0;
     }
 }
@@ -127,8 +105,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     
     GMSubCategoryCell *subCategoryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierSubCategoryCell];
     subCategoryCell.tag = indexPath.row;
-    GMSubCategoryModal *subCategoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
-    [subCategoryCell configerViewWithData:subCategoryModal.subcategoryArray];
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
+    [subCategoryCell configerViewWithData:categoryModal.subCategories];
     
     [subCategoryCell.subCategoryBtn3 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [subCategoryCell.subCategoryBtn3 setExclusiveTouch:YES];
@@ -162,15 +140,14 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     
     UIView *headerView;
    GMSubCategoryHeaderView *header  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kIdentifierSubCategoryHeader];
-//    header.tag = section;
     if (!header) {
                     header = [[GMSubCategoryHeaderView alloc] initWithReuseIdentifier:kIdentifierSubCategoryHeader];
             }
-    GMSubCategoryModal *subCategoryModal = [self.subcategoryDataArray objectAtIndex:section];
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:section];
     header.subcategoryBtn.tag = section;
     [header.subcategoryBtn addTarget:self action:@selector(actionHeaderBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [header.subcategoryBtn setExclusiveTouch:YES];
-    [header configerViewWithData:subCategoryModal];
+    [header configerViewWithData:categoryModal];
      headerView = header;
     return headerView;
 }
@@ -178,29 +155,31 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 -(void)actionHeaderBtnClicked:(UIButton *)sender {
     
     NSInteger btnTag = sender.tag;
-    if(self.expandedIndex != btnTag)
+    
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:btnTag];
+    
+    if(categoryModal.isExpand)
     {
-        GMSubCategoryModal *subCategoryModal = [self.subcategoryDataArray objectAtIndex:btnTag];
-        subCategoryModal.isExpand = TRUE;
-        
-        GMSubCategoryModal *tempSubCategoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];
-        tempSubCategoryModal.isExpand = FALSE;
-        
-        self.expandedIndex = btnTag;
-        [self.subCategoryTableView reloadData];
+        if(self.expandedIndex != btnTag)
+        {
+            self.expandedIndex = btnTag;
+            [self.subCategoryTableView reloadData];
+        }
     }
+    else
+    {
+        
+    }
+    
     
 }
 
 -(void)actionSubCategoryBtnClicked:(UIButton *)sender {
     
     NSInteger btnTag = sender.tag;
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];;
     
-    GMSubCategoryModal *subCategoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];
-    
-    [subCategoryModal.subcategoryArray objectAtIndex:btnTag];
-    
-    [[GMSharedClass sharedClass] showInfoMessage:[subCategoryModal.subcategoryArray objectAtIndex:btnTag]];
+    [[GMSharedClass sharedClass] showInfoMessage:[categoryModal.subCategories objectAtIndex:btnTag]];
 }
 
 

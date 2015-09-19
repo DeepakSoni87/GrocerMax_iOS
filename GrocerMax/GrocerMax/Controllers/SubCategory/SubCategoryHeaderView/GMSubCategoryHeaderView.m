@@ -21,7 +21,7 @@
 
 -(void)configerViewWithData:(id)modal {
     
-    GMSubCategoryModal *subCategoryModal = (GMSubCategoryModal *)modal;
+    GMCategoryModal *subCategoryModal = (GMCategoryModal *)modal;
     
     if(subCategoryModal.isExpand)
     {
