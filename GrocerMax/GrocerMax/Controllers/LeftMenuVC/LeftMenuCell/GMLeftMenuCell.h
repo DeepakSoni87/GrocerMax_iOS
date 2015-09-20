@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMCategoryModal.h"
 
 @interface GMLeftMenuCell : UITableViewCell
 
 - (void)configureWithCategoryName:(NSString *)categoryName;
+
+- (void)configureCellWith:(GMCategoryModal *)categoryModal;
+
+- (void)maskCellFromTop:(CGFloat)margin;
 
 + (CGFloat)cellHeight;
 @end
