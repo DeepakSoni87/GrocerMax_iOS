@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Deepak Soni. All rights reserved.
 //
 
-#ifndef GrocerMax_GMConstants_h
 #define GrocerMax_GMConstants_h
 
 #ifdef DEBUG
@@ -14,6 +13,8 @@
 #else
 #define DLOG(xx, ...)  ((void)0)
 #endif
+
+#define SCREEN_SIZE    CGSizeMake([[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)
 
 #define SYSTEM_VERSION_LESS_THAN(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
@@ -43,10 +44,94 @@
 #define FONT_BOLD(s)    [UIFont fontWithName:@"HelveticaNeue-Bold" size:s]
 #define FONT_LIGHT(s)   [UIFont fontWithName:@"HelveticaNeue-Light" size:s]
 
+
+//Resoponce Key
+#define kEY_Result                        @"Result"
+#define kEY_flag                          @"flag"
+
 // Key : Login
 
 #define kEY_uemail                        @"uemail"
 #define kEY_password                      @"password"
+#define kEY_email                         @"email"
 
 
-#endif
+
+//key : Registration
+
+#define kEY_fname                          @"fname"
+#define kEY_lname                          @"lname"
+#define kEY_number                         @"number"
+#define kEY_otp                            @"otp"
+
+//key : userdetail
+
+#define kEY_userid                         @"userid"
+
+//key : changepassword
+
+#define kEY_old_password                   @"old_password"
+
+//key : addaddress
+
+#define kEY_addressid                      @"addressid"
+#define kEY_addressline1                   @"addressline1"
+#define kEY_addressline2                   @"addressline2"
+#define kEY_city                           @"city"
+#define kEY_state                          @"state"
+#define kEY_pin                            @"pin"
+#define kEY_state                          @"state"
+#define kEY_countrycode                    @"countrycode"
+#define kEY_phone                          @"phone"
+#define kEY_phone                          @"phone"
+#define kEY_default_billing                @"default_billing"
+#define kEY_default_shipping               @"default_shipping"
+
+//key : category
+
+#define kEY_parentid                       @"parentid"
+#define kEY_cat_id                         @"cat_id"
+#define kEY_pro_id                         @"pro_id"
+#define kEY_page                           @"page"
+
+//key : search
+
+#define kEY_keyword                        @"keyword"
+
+//key : getorderdetail
+
+#define kEY_orderid                        @"orderid"
+
+//key : addtocart
+
+#define kEY_cus_id                         @"cus_id"
+#define kEY_quote_id                       @"quote_id"
+#define kEY_products                       @"products"
+
+//key : deleteitem
+
+#define kEY_productid                      @"productid"
+#define kEY_updateid                       @"updateid"
+#define kEY_products                       @"products"
+
+//key : setstatus
+
+#define kEY_orderid                        @"orderid"
+#define kEY_status                         @"status"
+#define kEY_comment                        @"comment"
+
+//key : checkout
+
+#define kEY_shipping                       @"shipping"
+#define kEY_billing                        @"billing"
+#define kEY_lot                            @"lot"
+#define kEY_payment_method                 @"payment_method"
+#define kEY_shipping_method                @"shipping_method"
+#define kEY_timeslot                       @"timeslot"
+#define kEY_date                           @"date"
+
+//key : addcoupon
+
+#define kEY_couponcode                     @"couponcode"
+#define kEY_products                       @"products"
+#define kEY_quantity                       @"quantity"

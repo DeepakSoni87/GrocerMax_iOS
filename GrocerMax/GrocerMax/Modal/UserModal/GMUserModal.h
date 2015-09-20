@@ -19,6 +19,7 @@
 @property (nonatomic, readonly, strong) NSString *email;
 
 @property (nonatomic, readonly, strong) NSString *password;
+@property (nonatomic, readonly, strong) NSString *otp;
 
 @property (nonatomic, readwrite, assign) GMGenderType gender;
 
@@ -33,4 +34,6 @@
 - (void)setPassword:(NSString *)password;
 
 - (void)setGender:(GMGenderType)gender;
+
+- (void)setOtp:(NSString *)otp;
 @end

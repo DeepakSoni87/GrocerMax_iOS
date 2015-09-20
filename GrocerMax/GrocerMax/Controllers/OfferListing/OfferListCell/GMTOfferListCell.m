@@ -13,11 +13,11 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    self.cellBgView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.cellBgView.layer.borderWidth = 0.50;
+    self.cellBgView.layer.borderColor = [UIColor colorFromHexString:@"BEBEBE"].CGColor;
+    self.cellBgView.layer.borderWidth = 1.0;
+    self.cellBgView.layer.cornerRadius = 2.0;
     
-    self.addSubstractView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.addSubstractView.layer.borderWidth = 0.40;
+    [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     
 }
 

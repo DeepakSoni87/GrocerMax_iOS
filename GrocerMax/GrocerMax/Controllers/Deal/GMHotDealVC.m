@@ -22,7 +22,6 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.navigationBarHidden = NO;
     [self registerCellsForCollectionView];
 }
 
@@ -60,7 +59,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize retval =  CGSizeMake(160, 160);
+    CGSize retval =  CGSizeMake(160 + 160 *(SCREEN_SIZE.width-320)/320, 160);
     return retval;
 }
 
