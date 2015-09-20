@@ -24,7 +24,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self addLeftMenuButton];
     [self configureUI];
 }
 
@@ -48,33 +47,25 @@
     UIImage *homeVCTabSelectedImg = [[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:homeVCTabImg selectedImage:homeVCTabSelectedImg];
     GMNavigationController *homeVCNavController = [[GMNavigationController alloc] initWithRootViewController:homeVC];
-    homeVCNavController.navigationBarHidden = YES;
-    
     
     GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
     UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
     GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:profileVC];
-    profileVCNavController.navigationBarHidden = YES;
-
-    
     
     GMHotDealVC *hotDealVC = [[GMHotDealVC alloc] initWithNibName:@"GMHotDealVC" bundle:nil];
     UIImage *hotDealVCTabImg = [[UIImage imageNamed:@"offer_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *hotDealVCSelectedImg = [[UIImage imageNamed:@"offer_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     hotDealVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:hotDealVCTabImg selectedImage:hotDealVCSelectedImg];
     GMNavigationController *hotDealVCNavController = [[GMNavigationController alloc] initWithRootViewController:hotDealVC];
-    hotDealVCNavController.navigationBarHidden = YES;
-
-    
     
     GMCartVC *cartVC = [[GMCartVC alloc] initWithNibName:@"GMCartVC" bundle:nil];
     UIImage *cartVCTabImg = [[UIImage imageNamed:@"cart_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
-    cartVCNavController.navigationBarHidden = YES;
+    
 
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController];
 }

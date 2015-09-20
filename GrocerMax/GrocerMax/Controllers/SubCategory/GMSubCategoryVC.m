@@ -30,7 +30,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     [self registerCellsForTableView];
     self.navigationController.navigationBarHidden = NO;
     
-    [self testData];
+//    [self testData];
     
     self.subcategoryDataArray = [[NSMutableArray alloc]init];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
@@ -181,7 +181,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     NSInteger btnTag = sender.tag;
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];;
     
-    [[GMSharedClass sharedClass] showInfoMessage:[categoryModal.subCategories objectAtIndex:btnTag]];
+    GMCategoryModal *categoryModal1 = [categoryModal.subCategories objectAtIndex:btnTag];
+//Rahut put your code here
 }
 
 
