@@ -22,7 +22,7 @@
     // Configure the view for the selected state
 }
 
--(void)configerViewWithData:(id)modal {
+- (void)configerViewWithData:(id)modal {
     
     NSString *mainStrign= @"";
     
@@ -51,4 +51,8 @@
     self.addressLbl.attributedText = attString;
 }
 
++ (CGFloat)cellHeight {
+    
+    return 126.0f;
+}
 @end

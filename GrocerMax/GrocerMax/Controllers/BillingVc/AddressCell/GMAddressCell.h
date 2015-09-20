@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *selectUnSelectBtn;
 
 
--(void)configerViewWithData:(id)modal;
+- (void)configerViewWithData:(id)modal;
 
++ (CGFloat)cellHeight;
 @end
