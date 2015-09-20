@@ -22,7 +22,6 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.navigationBarHidden = NO;
     [self registerCellsForCollectionView];
 }
 
