@@ -8,6 +8,7 @@
 
 #import "UIViewController+GMProgressIndicator.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "AppDelegate.h"
 
 @implementation UIViewController (GMProgressIndicator)
 
@@ -44,7 +45,9 @@
     
     [self.view endEditing:YES];
     NSLog(@"menuButtonPressed");
-    [self.drawerController toggleDrawerSide:XHDrawerSideLeft animated:YES completion:nil];
+//    [self.drawerController toggleDrawerSide:XHDrawerSideLeft animated:YES completion:nil];
+    AppDelegate *appdel = APP_DELEGATE;
+    [appdel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 @end
