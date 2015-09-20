@@ -20,6 +20,8 @@
 @property (nonatomic, readwrite, strong) NSString *email;
 
 @property (nonatomic, readwrite, strong) NSString *password;
+
+@property (nonatomic, readwrite, strong) NSString *otp;
 @end
 
 @implementation GMUserModal

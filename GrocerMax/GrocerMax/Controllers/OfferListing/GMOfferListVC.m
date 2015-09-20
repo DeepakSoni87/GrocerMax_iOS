@@ -22,6 +22,7 @@ static NSString *kIdentifierOfferListCell = @"offerListIdentifierCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBarHidden = NO;
+    [self.view setBackgroundColor:[UIColor colorFromHexString:@"BEBEBE"]];
     [self registerCellsForTableView];
 }
 

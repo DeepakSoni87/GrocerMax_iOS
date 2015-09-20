@@ -113,11 +113,13 @@ static NSString * const kGenderCell                         =  @"Gender";
     if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kGenderCell]) {
         
         [self.genderCell setDelegate:self];
+        self.genderCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return self.genderCell;
     }
     else {
         
         GMRegisterInputCell *inputFieldCell = (GMRegisterInputCell *)[tableView dequeueReusableCellWithIdentifier:kInputFieldCellIdentifier];
+        inputFieldCell.selectionStyle = UITableViewCellSelectionStyleNone;
         inputFieldCell.inputTextField.delegate = self;
         [self configureInputFieldCell:inputFieldCell withIndex:indexPath.row];
         return inputFieldCell;
@@ -434,9 +436,64 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (IBAction)createAccountButtonTapped:(id)sender {
     
     if([self performValidations]) {
+        NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+        if(NSSTRING_HAS_DATA(self.userModal.firstName))
+            [userDic setObject:self.userModal.firstName forKey:kEY_fname];
+        if(NSSTRING_HAS_DATA(self.userModal.lastName))
+            [userDic setObject:self.userModal.lastName forKey:kEY_lname];
+        if(NSSTRING_HAS_DATA(self.userModal.email))
+            [userDic setObject:self.userModal.email forKey:kEY_uemail];
+        if(NSSTRING_HAS_DATA(self.userModal.mobile))
+            [userDic setObject:self.userModal.mobile forKey:kEY_number];
+        if(NSSTRING_HAS_DATA(self.userModal.password))
+            [userDic setObject:self.userModal.password forKey:kEY_password];
+            [userDic setObject:@"0" forKey:kEY_otp];
         
-        GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
-        [self.navigationController pushViewController:otpVC animated:YES];
+        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(id responceData) {
+           
+            NSMutableDictionary *responceDic = (NSMutableDictionary *)responceData;
+            if([responceDic objectForKey:kEY_flag] && [[responceDic objectForKey:kEY_flag] isEqualToString:@"1" ])
+            {
+                if([responceDic objectForKey:kEY_otp])
+                {
+                    self.userModal.otp = [NSString stringWithFormat:@"%@",[responceDic objectForKey:kEY_otp]];
+                    
+                    GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
+                    otpVC.userModal = self.userModal;
+                    [self.navigationController pushViewController:otpVC animated:YES];
+                    
+                }
+                else
+                {
+                    if([responceDic objectForKey:kEY_Result])
+                    {
+                        [[GMSharedClass sharedClass] showErrorMessage:[responceDic objectForKey:kEY_Result]];
+                    }
+                    else
+                    {
+                         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+                    }
+                    
+                }
+            }
+            else
+            {
+                if([responceDic objectForKey:kEY_Result])
+                {
+                    [[GMSharedClass sharedClass] showErrorMessage:[responceDic objectForKey:kEY_Result]];
+                }
+                else
+                {
+                     [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+                }
+                
+            }
+            
+        } failureBlock:^(NSError *error) {
+             [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+            
+        }];
+        
     }
 }
 

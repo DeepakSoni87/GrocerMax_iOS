@@ -86,7 +86,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 136.0;
+    return 131.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

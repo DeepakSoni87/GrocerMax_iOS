@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -27,14 +29,14 @@
     
     
     NSInteger cellTag = self.tag *3;
-    self.subCategoryBtn1.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.subCategoryBtn1.layer.borderWidth = 1.0;
-    
-    self.subCategoryBtn2.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.subCategoryBtn2.layer.borderWidth = 1.0;
-    
-    self.subCategoryBtn3.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.subCategoryBtn3.layer.borderWidth = 1.0;
+//    self.subCategoryBtn1.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.subCategoryBtn1.layer.borderWidth = 1.0;
+//    
+//    self.subCategoryBtn2.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.subCategoryBtn2.layer.borderWidth = 1.0;
+//    
+//    self.subCategoryBtn3.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.subCategoryBtn3.layer.borderWidth = 1.0;
     
     if(subcategoryArray.count >= cellTag+3 )
     {

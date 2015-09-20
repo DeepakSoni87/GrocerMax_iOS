@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GMSubCategoryHeaderView : UITableViewHeaderFooterView
+@property (strong, nonatomic) IBOutlet UIView *cellBgView;
+
+
 @property (strong, nonatomic) IBOutlet UIImageView *subcategoryImageView;
 @property (strong, nonatomic) IBOutlet UIButton *subcategoryBtn;
 @property (strong, nonatomic) IBOutlet UILabel *titleLbl;

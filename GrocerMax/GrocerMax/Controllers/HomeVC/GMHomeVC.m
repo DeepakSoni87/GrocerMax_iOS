@@ -9,6 +9,10 @@
 #import "GMHomeVC.h"
 #import "GMLoginVC.h"
 #import "GMSubCategoryVC.h"
+#import "GMOfferListVC.H"
+#import "GMOrderHistryVC.h"
+#import "GMOfferListVC.h"
+#import "GMHotDealVC.h"
 
 @interface GMHomeVC ()
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
@@ -30,10 +34,10 @@
 
 - (IBAction)loginButtonTapped:(id)sender {
     
-    GMSubCategoryVC *subCategoryVC = [GMSubCategoryVC new];
-    [self.navigationController pushViewController:subCategoryVC animated:YES];
+//    GMHotDealVC *subCategoryVC = [GMHotDealVC new];
+//    [self.navigationController pushViewController:subCategoryVC animated:YES];
+//    return;
     
-    return;
     GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
