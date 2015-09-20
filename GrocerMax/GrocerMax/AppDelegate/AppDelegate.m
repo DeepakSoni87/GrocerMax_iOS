@@ -10,7 +10,7 @@
 #import "GMLoginVC.h"
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "GMHomeVC.h"
+#import "GMTabBarVC.h"
 
 @interface AppDelegate ()
 
@@ -41,7 +41,7 @@
     [self.drawerController setRestorationIdentifier:@"RPDrawer"];
     
     
-    self.drawerController.centerViewController = [[GMNavigationController alloc] initWithRootViewController:[GMHomeVC new]];
+    self.drawerController.centerViewController = [[GMNavigationController alloc] initWithRootViewController:[GMTabBarVC new]];
     [self.drawerController setRightViewController:nil];
     [self.drawerController.centerViewController setRestorationIdentifier:@"RPCenterNavigationControllerRestorationKey"];
     
