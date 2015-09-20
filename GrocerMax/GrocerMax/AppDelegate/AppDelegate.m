@@ -10,11 +10,16 @@
 #import "GMLoginVC.h"
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import "GMTabBarVC.h"
+
+#import "GMHomeVC.h"
+#import "GMLeftMenuVC.h"
+
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) XHDrawerController *drawerController;
+//@property (nonatomic, strong) XHDrawerController *drawerController;
 @end
 
 @implementation AppDelegate
@@ -36,18 +41,11 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.drawerController = [[XHDrawerController alloc] init];
-    self.drawerController.springAnimationOn = NO;
-    [self.drawerController setRestorationIdentifier:@"RPDrawer"];
+
     
-    
-    self.drawerController.centerViewController = [[GMNavigationController alloc] initWithRootViewController:[GMTabBarVC new]];
-    [self.drawerController setRightViewController:nil];
-    [self.drawerController.centerViewController setRestorationIdentifier:@"RPCenterNavigationControllerRestorationKey"];
-    
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-screen_bg"]];
-    [backgroundImageView setContentMode:UIViewContentModeScaleAspectFill];
-    self.drawerController.backgroundView = backgroundImageView;
+    GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
+    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[[GMNavigationController alloc] initWithRootViewController:[GMHomeVC new]] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
+    self.drawerController.maximumLeftDrawerWidth = 260.0;
     
     self.navController.navigationBarHidden = YES;
     self.window.rootViewController = self.drawerController;
@@ -105,6 +103,42 @@
     return [[GIDSignIn sharedInstance] handleURL:url
                                sourceApplication:sourceApplication
                                       annotation:annotation];
+}
+
+#pragma mark - Drawer Handling Methods
+
+- (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC {
+    
+    UINavigationController *centerNavVC = (UINavigationController*)(self.drawerController.centerViewController);
+    
+    for (UIViewController *vc in [centerNavVC viewControllers]) {// pop to dashboard
+        
+        if ( [NSStringFromClass([vc class]) isEqualToString:NSStringFromClass([GMHomeVC class])]) {
+            [centerNavVC popToViewController:vc animated:NO];
+            break;
+        }
+    }
+    if ([NSStringFromClass([topVC class]) isEqualToString:NSStringFromClass([GMHomeVC class])]) {
+        // for dashboard
+        
+    }
+    else {
+        //other
+        [centerNavVC pushViewController:topVC animated:NO];
+    }
+    [self.drawerController closeDrawerAnimated:YES completion:nil];
+}
+
+- (void)popToCenterViewController {
+    
+    UINavigationController *centerNavVC = (UINavigationController*)(self.drawerController.centerViewController);
+    for (UIViewController *vc in [centerNavVC viewControllers]) {// pop to dashboard
+        
+        if ( [NSStringFromClass([vc class]) isEqualToString:NSStringFromClass([GMHomeVC class])]) {
+            [centerNavVC popToViewController:vc animated:NO];
+            break;
+        }
+    }
 }
 
 

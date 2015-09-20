@@ -26,6 +26,10 @@
 
 @property (nonatomic, readonly, assign) BOOL isExpand;
 
+@property (nonatomic, readonly, assign) NSUInteger indentationLevel;
+
+@property (nonatomic, readonly, assign) BOOL isSelected;
+
 + (instancetype)loadRootCategory;
 
 - (void)archiveRootCategory;
@@ -45,4 +49,8 @@
 - (void)setSubCategories:(NSArray *)subCategories;
 
 - (void)setIsExpand:(BOOL)isExpand;
+
+- (void)setIndentationLevel:(NSUInteger)indentationLevel;
+
+- (void)setIsSelected:(BOOL)isSelected;
 @end
