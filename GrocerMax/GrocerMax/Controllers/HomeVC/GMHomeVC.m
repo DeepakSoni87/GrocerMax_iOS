@@ -13,6 +13,7 @@
 #import "GMOrderHistryVC.h"
 #import "GMOfferListVC.h"
 #import "GMHotDealVC.h"
+#import "GMDeliveryDetailVC.h"
 
 @interface GMHomeVC ()
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
@@ -34,7 +35,7 @@
 
 - (IBAction)loginButtonTapped:(id)sender {
     
-//    GMHotDealVC *subCategoryVC = [GMHotDealVC new];
+//    GMDeliveryDetailVC *subCategoryVC = [GMDeliveryDetailVC new];
 //    [self.navigationController pushViewController:subCategoryVC animated:YES];
 //    return;
     
