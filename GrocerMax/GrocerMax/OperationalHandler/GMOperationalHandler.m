@@ -14,6 +14,7 @@
 #import "GMApiPathGenerator.h"
 #import "GMCategoryModal.h"
 #import "GMTimeSlotBaseModal.h"
+#import "GMProductModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -495,8 +496,15 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
-            }
+                
+                NSError *mtlError = nil;
+                
+                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(productListingModal); }
+
+        }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
