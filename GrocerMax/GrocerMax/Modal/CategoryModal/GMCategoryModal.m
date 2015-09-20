@@ -25,6 +25,10 @@
 @property (nonatomic, readwrite, strong) NSArray *subCategories;
 
 @property (nonatomic, readwrite, assign) BOOL isExpand;
+
+@property (nonatomic, readwrite, assign) NSUInteger indentationLevel;
+
+@property (nonatomic, readwrite, assign) BOOL isSelected;
 @end
 
 static GMCategoryModal *rootCategoryModal;

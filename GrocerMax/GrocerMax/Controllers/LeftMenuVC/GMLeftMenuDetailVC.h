@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMCategoryModal.h"
 
 @interface GMLeftMenuDetailVC : UIViewController
 
+@property (nonatomic, strong) GMCategoryModal *subCategoryModal;
 @end

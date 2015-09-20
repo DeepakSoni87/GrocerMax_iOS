@@ -69,7 +69,7 @@ static NSString *kIdentifierBillingAddressCell = @"BillingAddressIdentifierCell"
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 126.0;
+    return [GMAddressCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

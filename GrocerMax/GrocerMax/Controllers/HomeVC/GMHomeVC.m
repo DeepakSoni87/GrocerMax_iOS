@@ -16,6 +16,7 @@
 #import "GMOrderHistryVC.h"
 #import "GMOfferListVC.h"
 #import "GMHotDealVC.h"
+#import "GMDeliveryDetailVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -50,10 +51,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - configureUI
 
 -(void) configureUI{
-    
+
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
     self.tblView.tableFooterView = [UIView new];
+
     
 }
 

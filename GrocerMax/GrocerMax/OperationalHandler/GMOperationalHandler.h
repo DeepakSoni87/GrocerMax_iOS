@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class GMCategoryModal;
+@class GMTimeSlotBaseModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -94,7 +95,7 @@
  * Function for Get User Address With Available Date / Time Slot
  * @param
  **/
-- (void)getAddressWithTimeSlot:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)getAddressWithTimeSlot:(NSDictionary *)param withSuccessBlock:(void(^)(GMTimeSlotBaseModal *timeSlotBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Category Listing
