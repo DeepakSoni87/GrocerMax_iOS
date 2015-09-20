@@ -10,8 +10,12 @@
 #import "GMLoginVC.h"
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+#import "GMTabBarVC.h"
+
 #import "GMHomeVC.h"
 #import "GMLeftMenuVC.h"
+
 
 @interface AppDelegate ()
 
