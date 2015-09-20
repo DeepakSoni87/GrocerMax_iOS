@@ -16,6 +16,10 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) GMNavigationController *navController;
 
+@property (nonatomic, strong) MMDrawerController *drawerController;
 
+- (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC;
+
+- (void)popToCenterViewController;
 @end
 

@@ -65,6 +65,18 @@ PODS:
   - Mantle (2.0.5):
     - Mantle/extobjc (= 2.0.5)
   - Mantle/extobjc (2.0.5)
+  - MMDrawerController (0.6.0):
+    - MMDrawerController/Core (= 0.6.0)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
+    - MMDrawerController/MMDrawerVisualStates (= 0.6.0)
+    - MMDrawerController/Subclass (= 0.6.0)
+  - MMDrawerController/Core (0.6.0)
+  - MMDrawerController/MMDrawerBarButtonItem (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.6.0):
+    - MMDrawerController/Core
   - RaisinToast (1.0.4)
   - SVProgressHUD (1.1.3)
   - TPKeyboardAvoiding (1.2.9)
@@ -76,6 +88,7 @@ DEPENDENCIES:
   - Google/SignIn (~> 1.0.0)
   - HockeySDK (~> 3.6)
   - Mantle (~> 2.0)
+  - MMDrawerController (~> 0.6)
   - RaisinToast
   - SVProgressHUD (~> 1.1)
   - TPKeyboardAvoiding (~> 1.2)
@@ -94,8 +107,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   HockeySDK: a0b915dc081f1ba67782a347220a8623dbe93b8a
   Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
+  MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   RaisinToast: 830c4034a525a277518f85e486ff45a9d13a5297
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TPKeyboardAvoiding: ff1ee4e5a5a0c119b965552af8f183868ea20207
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.36.3

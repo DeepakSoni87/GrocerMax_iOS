@@ -11,6 +11,7 @@ target 'GrocerMax' do
     pod 'FBSDKLoginKit'
     pod 'Google/SignIn', '~> 1.0.0'
     pod 'Mantle', '~> 2.0'
+    pod 'MMDrawerController', '~> 0.6'
 end
 
 target 'GrocerMaxTests' do
