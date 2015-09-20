@@ -53,6 +53,8 @@
 		E87851071BAEAA6800FDD930 /* GMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851061BAEAA6800FDD930 /* GMButton.m */; };
 		E878510B1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E878510A1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m */; };
 		E878510E1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E878510D1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.m */; };
+		E87851131BAEDC5000FDD930 /* GMCreateAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851111BAEDC5000FDD930 /* GMCreateAddressVC.m */; };
+		E87851141BAEDC5000FDD930 /* GMCreateAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87851121BAEDC5000FDD930 /* GMCreateAddressVC.xib */; };
 		E88B9D061BADFA8400AD9016 /* GMDeliveryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E88B9D041BADFA8400AD9016 /* GMDeliveryDetailVC.m */; };
 		E88B9D071BADFA8400AD9016 /* GMDeliveryDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E88B9D051BADFA8400AD9016 /* GMDeliveryDetailVC.xib */; };
 		E88B9D0C1BAE026500AD9016 /* GMDeliveryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E88B9D0A1BAE026500AD9016 /* GMDeliveryDetailCell.m */; };
@@ -179,6 +181,9 @@
 		E878510A1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMTimeSlotBaseModal.m; sourceTree = "<group>"; };
 		E878510C1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDeliveryDateTimeSlotModal.h; sourceTree = "<group>"; };
 		E878510D1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDeliveryDateTimeSlotModal.m; sourceTree = "<group>"; };
+		E87851101BAEDC5000FDD930 /* GMCreateAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCreateAddressVC.h; sourceTree = "<group>"; };
+		E87851111BAEDC5000FDD930 /* GMCreateAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCreateAddressVC.m; sourceTree = "<group>"; };
+		E87851121BAEDC5000FDD930 /* GMCreateAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCreateAddressVC.xib; sourceTree = "<group>"; };
 		E88B9D031BADFA8400AD9016 /* GMDeliveryDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDeliveryDetailVC.h; sourceTree = "<group>"; };
 		E88B9D041BADFA8400AD9016 /* GMDeliveryDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDeliveryDetailVC.m; sourceTree = "<group>"; };
 		E88B9D051BADFA8400AD9016 /* GMDeliveryDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMDeliveryDetailVC.xib; sourceTree = "<group>"; };
@@ -475,6 +480,7 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E878510F1BAEDC2F00FDD930 /* CreateAddressVC */,
 				E88B9D021BADFA6C00AD9016 /* DeliveryDetail */,
 				E8ED6CBA1BAD94790087AA1D /* BillingVc */,
 				E8ED6CC21BAD94790087AA1D /* Deal */,
@@ -616,6 +622,16 @@
 				E878510D1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.m */,
 			);
 			path = DeliveryDetailModal;
+			sourceTree = "<group>";
+		};
+		E878510F1BAEDC2F00FDD930 /* CreateAddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				E87851101BAEDC5000FDD930 /* GMCreateAddressVC.h */,
+				E87851111BAEDC5000FDD930 /* GMCreateAddressVC.m */,
+				E87851121BAEDC5000FDD930 /* GMCreateAddressVC.xib */,
+			);
+			path = CreateAddressVC;
 			sourceTree = "<group>";
 		};
 		E88B9D021BADFA6C00AD9016 /* DeliveryDetail */ = {
@@ -854,6 +870,7 @@
 				E8ED6CEF1BAD94790087AA1D /* GMHotDealVC.xib in Resources */,
 				E88B9D071BADFA8400AD9016 /* GMDeliveryDetailVC.xib in Resources */,
 				824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */,
+				E87851141BAEDC5000FDD930 /* GMCreateAddressVC.xib in Resources */,
 				82AC6EA31BAB5E7D007FF7EA /* GMLeftMenuVC.xib in Resources */,
 				E8ED6CEB1BAD94790087AA1D /* GMBillingAddressVC.xib in Resources */,
 				E8ED6CF11BAD94790087AA1D /* GMOfferListVC.xib in Resources */,
@@ -932,6 +949,7 @@
 				824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */,
 				824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */,
 				E8ED6CF61BAD94790087AA1D /* GMOrderHistoryCell.m in Sources */,
+				E87851131BAEDC5000FDD930 /* GMCreateAddressVC.m in Sources */,
 				E8ED6CFB1BAD94790087AA1D /* GMSubCategoryCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
 				824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */,

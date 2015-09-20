@@ -7,8 +7,20 @@
 //
 
 #import "GMCreateAddressVC.h"
+#import "GMRegisterInputCell.h"
+#import "PlaceholderAndValidStatus.h"
+#import "GMUserModal.h"
 
-@interface GMCreateAddressVC ()
+
+
+@interface GMCreateAddressVC ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *addressTableView;
+
+@property (nonatomic, strong) GMUserModal *userModal;
+
+@property (nonatomic, strong) UITextField *currentTextField;
+
 
 @end
 

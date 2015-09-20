@@ -35,9 +35,9 @@
 
 - (IBAction)loginButtonTapped:(id)sender {
     
-    GMDeliveryDetailVC *subCategoryVC = [GMDeliveryDetailVC new];
-    [self.navigationController pushViewController:subCategoryVC animated:YES];
-    return;
+//    GMDeliveryDetailVC *subCategoryVC = [GMDeliveryDetailVC new];
+//    [self.navigationController pushViewController:subCategoryVC animated:YES];
+//    return;
     
     GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
