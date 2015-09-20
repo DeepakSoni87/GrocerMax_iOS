@@ -29,7 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [self fetchAllCategories];
+//    [self fetchAllCategories];
     
     //https://developers.google.com/identity/sign-in/ios/offline-access
     NSError* configureError;
@@ -46,14 +46,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     
-//    GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
-//    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[[GMNavigationController alloc] initWithRootViewController:[GMTabBarVC new]] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
-//    self.drawerController.maximumLeftDrawerWidth = 260.0;
-//    
-//    self.navController.navigationBarHidden = YES;
-//    self.window.rootViewController = self.drawerController;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+    GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
+    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[GMTabBarVC new] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
+    self.drawerController.maximumLeftDrawerWidth = 260.0;
+    
+    self.navController.navigationBarHidden = YES;
+    self.window.rootViewController = self.drawerController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -152,14 +152,7 @@
         [self categoryLevelCategorization];
         [self.rootCategoryModal archiveRootCategory];
         
-        GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
-        self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[GMTabBarVC new] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
-        self.drawerController.maximumLeftDrawerWidth = 260.0;
         
-        self.navController.navigationBarHidden = YES;
-        self.window.rootViewController = self.drawerController;
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
     } failureBlock:^(NSError *error) {
         
     }];

@@ -14,6 +14,7 @@
 #import "GMApiPathGenerator.h"
 #import "GMCategoryModal.h"
 #import "GMTimeSlotBaseModal.h"
+#import "GMAddressModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -370,10 +371,15 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSError *mtlError = nil;
+            
+            GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(addressModal.addressArray);}
                 
-                if(successBlock) successBlock(responseObject);
-            }
+            
+           
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
