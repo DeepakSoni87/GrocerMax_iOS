@@ -37,8 +37,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self addLeftMenuButton];
     [self fetchAllCategories];
-
+    
     [self registerCellsForTableView];
     [self configureUI];
 }
@@ -51,11 +52,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - configureUI
 
 -(void) configureUI{
-
+    
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
     self.tblView.tableFooterView = [UIView new];
-
+    
     
 }
 
@@ -181,6 +182,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - Categories cell Delegate
 
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
+    GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
+    
+    GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
+    categoryVC.rootCategoryModal = catModal;
+    [self.navigationController pushViewController:categoryVC animated:YES];
+    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
@@ -197,65 +205,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (void)fetchAllCategories {
     
-    [self showProgress];
-    [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
-        
-        self.rootCategoryModal = rootCategoryModal;
-        [self categoryLevelCategorization];
-        [self.rootCategoryModal archiveRootCategory];
-        GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-        NSLog(@"%@", mdl);
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
-        GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
-        self.categoriesArray = defaultCategory.subCategories;
-        self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
-        
-        [self.tblView reloadData];
-        
-        [self removeProgress];
-    } failureBlock:^(NSError *error) {
-        [self removeProgress];
-    }];
-}
-
-- (void)categoryLevelCategorization {
+    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
+    NSLog(@"%@", mdl);
     
-    GMCategoryModal *defaultCategory = self.rootCategoryModal.subCategories.firstObject;
-    [self createCategoryLevelArchitecturForDisplay:defaultCategory.subCategories];
-}
-
-- (void)createCategoryLevelArchitecturForDisplay:(NSArray *)menuArray {
-    
-    for (GMCategoryModal *categoryModal in menuArray) {
-        
-        [self updateExpandPropertyOfSubCategory:categoryModal];
-    }
-}
-
-- (void)updateExpandPropertyOfSubCategory:(GMCategoryModal *)categoryModal {
-    
-    if(categoryModal.subCategories.count) {
-        
-        BOOL expandStatus = [self checkIsCategoryExpanded:categoryModal.subCategories];
-        [categoryModal setIsExpand:expandStatus];
-        [self createCategoryLevelArchitecturForDisplay:categoryModal.subCategories]; // recursion for sub categories
-    }
-    else {
-        
-        [categoryModal setIsExpand:NO];
-        return;
-    }
-}
-
-// checking the two level categories count
-
-- (BOOL)checkIsCategoryExpanded:(NSArray *)subCategoryArray {
-    
-    GMCategoryModal *subCatModal = subCategoryArray.firstObject;
-    if(subCatModal.subCategories.count)
-        return YES;
-    else
-        return NO;
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
+    GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
+    self.categoriesArray = defaultCategory.subCategories;
+    self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
+    [self.tblView reloadData];
 }
 @end

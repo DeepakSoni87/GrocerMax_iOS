@@ -74,7 +74,7 @@
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arvindgupta/Documents/Working/MyProjects/GrocerMax/GrocerMax/Controllers/RegisterVC/GMRegisterVC.m"
-                  timestampString = "464450310.650826"
+                  timestampString = "464455582.45767"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "452"
@@ -89,7 +89,7 @@
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arvindgupta/Documents/Working/MyProjects/GrocerMax/GrocerMax/Controllers/RegisterVC/GMRegisterVC.m"
-                  timestampString = "464450310.651093"
+                  timestampString = "464455582.457915"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "452"
@@ -176,6 +176,22 @@
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "-actionNextDate:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/AppDelegate/AppDelegate.m"
+            timestampString = "464455578.371583"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-setTopVCOnCenterOfDrawerController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

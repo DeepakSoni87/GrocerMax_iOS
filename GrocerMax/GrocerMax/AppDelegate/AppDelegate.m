@@ -20,6 +20,7 @@
 @interface AppDelegate ()
 
 //@property (nonatomic, strong) XHDrawerController *drawerController;
+@property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
 @end
 
 @implementation AppDelegate
@@ -27,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self fetchAllCategories];
     
     //https://developers.google.com/identity/sign-in/ios/offline-access
     NSError* configureError;
@@ -43,14 +46,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     
-    GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
-    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[[GMNavigationController alloc] initWithRootViewController:[GMHomeVC new]] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
-    self.drawerController.maximumLeftDrawerWidth = 260.0;
-    
-    self.navController.navigationBarHidden = YES;
-    self.window.rootViewController = self.drawerController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+//    GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
+//    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[[GMNavigationController alloc] initWithRootViewController:[GMTabBarVC new]] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
+//    self.drawerController.maximumLeftDrawerWidth = 260.0;
+//    
+//    self.navController.navigationBarHidden = YES;
+//    self.window.rootViewController = self.drawerController;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -139,6 +142,67 @@
             break;
         }
     }
+}
+
+- (void)fetchAllCategories {
+    
+    [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
+        
+        self.rootCategoryModal = rootCategoryModal;
+        [self categoryLevelCategorization];
+        [self.rootCategoryModal archiveRootCategory];
+        
+        GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
+        self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[GMTabBarVC new] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
+        self.drawerController.maximumLeftDrawerWidth = 260.0;
+        
+        self.navController.navigationBarHidden = YES;
+        self.window.rootViewController = self.drawerController;
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+- (void)categoryLevelCategorization {
+    
+    GMCategoryModal *defaultCategory = self.rootCategoryModal.subCategories.firstObject;
+    [self createCategoryLevelArchitecturForDisplay:defaultCategory.subCategories];
+}
+
+- (void)createCategoryLevelArchitecturForDisplay:(NSArray *)menuArray {
+    
+    for (GMCategoryModal *categoryModal in menuArray) {
+        
+        [self updateExpandPropertyOfSubCategory:categoryModal];
+    }
+}
+
+- (void)updateExpandPropertyOfSubCategory:(GMCategoryModal *)categoryModal {
+    
+    if(categoryModal.subCategories.count) {
+        
+        BOOL expandStatus = [self checkIsCategoryExpanded:categoryModal.subCategories];
+        [categoryModal setIsExpand:expandStatus];
+        [self createCategoryLevelArchitecturForDisplay:categoryModal.subCategories]; // recursion for sub categories
+    }
+    else {
+        
+        [categoryModal setIsExpand:NO];
+        return;
+    }
+}
+
+// checking the two level categories count
+
+- (BOOL)checkIsCategoryExpanded:(NSArray *)subCategoryArray {
+    
+    GMCategoryModal *subCatModal = subCategoryArray.firstObject;
+    if(subCatModal.subCategories.count)
+        return YES;
+    else
+        return NO;
 }
 
 
