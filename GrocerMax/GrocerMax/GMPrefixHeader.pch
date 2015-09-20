@@ -31,5 +31,5 @@
 #import <Mantle/Mantle.h>
 
 #import "GMCategoryModal.h"
-
+#import "GMButton.h"
 #endif
