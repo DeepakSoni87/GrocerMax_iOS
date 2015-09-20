@@ -13,6 +13,7 @@
 
 #import "GMApiPathGenerator.h"
 #import "GMCategoryModal.h"
+#import "GMTimeSlotBaseModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -415,7 +416,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)getAddressWithTimeSlot:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)getAddressWithTimeSlot:(NSDictionary *)param withSuccessBlock:(void (^)(GMTimeSlotBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator getAddressWithTimeSlotPath],[GMRequestParams getAddressWithTimeSlotParameter:param]];
     
@@ -429,10 +430,13 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
+            NSError *mtlError = nil;
+            
+            GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(timeSlotBaseModal); }
+            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
