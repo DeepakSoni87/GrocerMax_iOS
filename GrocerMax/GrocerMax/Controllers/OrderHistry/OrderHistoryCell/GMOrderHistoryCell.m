@@ -23,9 +23,17 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    [self.cellBgView.layer setCornerRadius:5.0f];
-    self.cellBgView.layer.borderWidth =1.0f;
-    self.cellBgView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    [self.cellBgView.layer setCornerRadius:5.0f];
+//    self.cellBgView.layer.borderWidth =1.0f;
+//    self.cellBgView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    
+    self.cellBgView.layer.borderColor = [UIColor colorFromHexString:@"BEBEBE"].CGColor;
+    self.cellBgView.layer.borderWidth = 1.0;
+    self.cellBgView.layer.cornerRadius = 2.0;
+    
+    [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

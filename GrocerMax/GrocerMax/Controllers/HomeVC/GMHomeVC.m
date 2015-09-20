@@ -12,6 +12,10 @@
 #import "GMShopByDealCell.h"
 #import "GMRootPageViewController.h"
 #import "GMSubCategoryVC.h"
+#import "GMOfferListVC.H"
+#import "GMOrderHistryVC.h"
+#import "GMOfferListVC.h"
+#import "GMHotDealVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -206,7 +210,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
         
         [self.tblView reloadData];
-
+        
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -252,6 +256,4 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     else
         return NO;
 }
-
-
 @end

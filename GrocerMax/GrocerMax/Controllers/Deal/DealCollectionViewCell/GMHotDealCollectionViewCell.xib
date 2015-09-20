@@ -12,13 +12,35 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hotdeal" translatesAutoresizingMaskIntoConstraints="NO" id="E7R-bG-tpu">
-                        <rect key="frame" x="10" y="10" width="140" height="140"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xH-Cm-9I0">
+                        <rect key="frame" x="5" y="5" width="150" height="150"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotdeal" translatesAutoresizingMaskIntoConstraints="NO" id="E7R-bG-tpu">
+                                <rect key="frame" x="3" y="3" width="144" height="144"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="E7R-bG-tpu" secondAttribute="trailing" constant="3" id="1hI-X2-0Qn"/>
+                            <constraint firstItem="E7R-bG-tpu" firstAttribute="leading" secondItem="1xH-Cm-9I0" secondAttribute="leading" constant="3" id="4yR-5M-b9N"/>
+                            <constraint firstAttribute="bottom" secondItem="E7R-bG-tpu" secondAttribute="bottom" constant="3" id="thl-0c-h2L"/>
+                            <constraint firstItem="E7R-bG-tpu" firstAttribute="top" secondItem="1xH-Cm-9I0" secondAttribute="top" constant="3" id="zku-kF-6nh"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstItem="1xH-Cm-9I0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="0Se-hc-oYg"/>
+                <constraint firstAttribute="trailing" secondItem="1xH-Cm-9I0" secondAttribute="trailing" constant="5" id="aoW-S9-w9n"/>
+                <constraint firstAttribute="bottom" secondItem="1xH-Cm-9I0" secondAttribute="bottom" constant="5" id="eHh-ek-mjq"/>
+                <constraint firstItem="1xH-Cm-9I0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="xUT-rJ-n3R"/>
+            </constraints>
             <size key="customSize" width="50" height="56"/>
+            <connections>
+                <outlet property="cellBgView" destination="1xH-Cm-9I0" id="YKs-wM-pdb"/>
+                <outlet property="dealImage" destination="E7R-bG-tpu" id="xaZ-sd-Unf"/>
+            </connections>
             <point key="canvasLocation" x="257" y="166"/>
         </collectionViewCell>
     </objects>
