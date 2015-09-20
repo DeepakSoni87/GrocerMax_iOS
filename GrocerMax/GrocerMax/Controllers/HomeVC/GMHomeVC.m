@@ -55,14 +55,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     self.tblView.dataSource = self;
     self.tblView.tableFooterView = [UIView new];
     
-<<<<<<< HEAD
-//    GMHotDealVC *subCategoryVC = [GMHotDealVC new];
-//    [self.navigationController pushViewController:subCategoryVC animated:YES];
-//    return;
-    
-    GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
-    [self.navigationController pushViewController:loginVC animated:YES];
-=======
 }
 
 #pragma mark - Register Cells
@@ -199,7 +191,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 -(void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
->>>>>>> Rahul_iOS
 }
 
 - (void)fetchAllCategories {
@@ -219,7 +210,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
         
         [self.tblView reloadData];
-
+        
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -265,6 +256,4 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     else
         return NO;
 }
-
-
 @end
