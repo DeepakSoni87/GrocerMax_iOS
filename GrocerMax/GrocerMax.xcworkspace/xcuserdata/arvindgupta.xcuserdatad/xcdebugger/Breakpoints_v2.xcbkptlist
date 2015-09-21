@@ -30,9 +30,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "494"
-            endingLineNumber = "494"
-            landmarkName = "-createAccountButtonTapped:"
-            landmarkType = "5">
+            endingLineNumber = "494">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,6 +174,38 @@
             startingLineNumber = "173"
             endingLineNumber = "173"
             landmarkName = "-getBillingAddress"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/ChangePassword/GMChangePasswordVC.m"
+            timestampString = "464560263.960686"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+            landmarkName = "-checkValidPassword:rowNumber:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/ChangePassword/GMChangePasswordVC.m"
+            timestampString = "464560076.698869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-checkValidPassword:rowNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
