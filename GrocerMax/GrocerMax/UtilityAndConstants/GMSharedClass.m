@@ -7,6 +7,7 @@
 //
 
 #import "GMSharedClass.h"
+#import "GMUserModal.h"
 
 
 #define kAlertTitle @"GrocerMax"
@@ -14,6 +15,11 @@
 @implementation GMSharedClass
 
 static GMSharedClass *sharedHandler;
+
+static NSString *const loggedInUserKey = @"com.GrocerMax.loggedInUserKey";
+static NSString *const signedInUserKey = @"com.GroxcerMax.signedInUserKey";
+
+CGFloat const kMATabBarHeight = 49.0f;
 
 #pragma mark - SharedInstance Method
 
@@ -68,5 +74,56 @@ static GMSharedClass *sharedHandler;
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     BOOL isValid = [phoneTest evaluateWithObject:mobile];
     return isValid;
+}
+
+- (BOOL)getUserLoggedStatus {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [[defaults objectForKey:loggedInUserKey] boolValue];
+}
+
+- (void)setUserLoggedStatus:(BOOL)status {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(status) forKey:loggedInUserKey];
+    [defaults synchronize];
+}
+
+#pragma mark- UITabBar Animation
+
+- (BOOL)tabBarIsVisible:(UIViewController*)controller {
+    
+    return controller.tabBarController.tabBar.frame.origin.y < SCREEN_SIZE.height;
+}
+
+- (void)setTabBarVisible:(BOOL)visible ForController:(UIViewController *)controller animated:(BOOL)animated {
+    
+    if ([self tabBarIsVisible:controller] == visible) return;
+    
+    CGRect frame = controller.tabBarController.tabBar.frame;
+    CGFloat offsetY = (visible)? -kMATabBarHeight : kMATabBarHeight;
+    
+    CGFloat duration = (animated)? 0.3 : 0.0;
+    
+    [UIView animateWithDuration:duration animations:^{
+        controller.tabBarController.tabBar.frame = CGRectOffset(frame, 0, offsetY);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)saveLoggedInUserWithData:(NSData *)userData {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:userData forKey:signedInUserKey];
+    [defaults synchronize];
+}
+
+- (GMUserModal *)getLoggedInUser {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedObject = [defaults objectForKey:signedInUserKey];
+    GMUserModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return archivedUser;
 }
 @end

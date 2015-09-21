@@ -1,54 +1,53 @@
 //
-//  GMRegisterVC.m
+//  GMAddBillingAddressVC.m
 //  GrocerMax
 //
-//  Created by Deepak Soni on 13/09/15.
+//  Created by Deepak Soni on 21/09/15.
 //  Copyright (c) 2015 Deepak Soni. All rights reserved.
 //
 
-#import "GMRegisterVC.h"
+#import "GMAddBillingAddressVC.h"
 #import "GMRegisterInputCell.h"
-#import "PlaceholderAndValidStatus.h"
-#import "GMUserModal.h"
-#import "GMGenderCell.h"
-#import "GMOtpVC.h"
-#import "GMRegistrationResponseModal.h"
+#import "PBPickerVC.h"
+#import "GMStateBaseModal.h"
 
-@interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate>
+@interface GMAddBillingAddressVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PBPickerDoneCancelDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *registerTableView;
-
-@property (strong, nonatomic) IBOutlet UIView *registerHeaderView;
+@property (weak, nonatomic) IBOutlet UITableView *billingAddressTableView;
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, strong) NSMutableArray *cellArray;
 
-@property (nonatomic, strong) GMGenderCell *genderCell;
+@property (nonatomic, strong) NSMutableArray *stateArray;
 
 @property (nonatomic, strong) GMUserModal *userModal;
 
 @property (nonatomic, strong) UITextField *currentTextField;
+
+/** This property is for picker for name prefix, occupation, marital status */
+@property (nonatomic, strong) PBPickerVC* valuePickerVC;
+
+@property (nonatomic, assign) BOOL isDefaultBillingAddress;
 @end
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
 
-static NSString * const kFirstNameCell                      =  @"First Name";
-static NSString * const kLastNameCell                       =  @"Last Name";
-static NSString * const kMobileCell                         =  @"Mobile No";
-static NSString * const kEmailCell                          =  @"Email";
-static NSString * const kPasswordCell                       =  @"Password";
-static NSString * const kGenderCell                         =  @"Gender";
+static NSString * const kHouseCell                      =  @"House No.";
+static NSString * const kStreetCell                     =  @"Street Address/ Locality";
+static NSString * const kClosestLandmarkCell            =  @"Closest landmark";
+static NSString * const kCityCell                       =  @"City";
+static NSString * const kStateCell                      =  @"State";
+static NSString * const kPincodeCell                    =  @"Pincode";
 
-
-@implementation GMRegisterVC
+@implementation GMAddBillingAddressVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
-    [self.registerTableView setTableHeaderView:self.registerHeaderView];
-    [self.registerTableView setTableFooterView:self.footerView];
+    [self.billingAddressTableView setTableFooterView:self.footerView];
+    [self fetchStatesFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +62,20 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (void)registerCellsForTableView {
     
-    [self.registerTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
+    [self.billingAddressTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
+}
+
+- (void)fetchStatesFromServer {
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] getStateWithSuccessBlock:^(GMStateBaseModal *stateBaseModal) {
+        [self removeProgress];
+        if(stateBaseModal)
+            self.stateArray = [NSMutableArray arrayWithArray:stateBaseModal.stateArray];
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
 }
 
 #pragma mark - GETTER/SETTER Methods
@@ -73,21 +85,14 @@ static NSString * const kGenderCell                         =  @"Gender";
     if(!_cellArray) {
         
         _cellArray = [NSMutableArray arrayWithObjects:
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kHouseCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kStreetCell placeHolder:@"eg. A-1221, DLF OakWood Apartment" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kClosestLandmarkCell placeHolder:@"to get your groceries to you quicker" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kStateCell placeHolder:@"eg. Gurgaon" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPincodeCell placeHolder:@"Select from dropdown" andStatus:kNone],
                       nil];
     }
     return _cellArray;
-}
-
-- (GMGenderCell *)genderCell {
-    
-    if(!_genderCell) _genderCell = [[[NSBundle mainBundle] loadNibNamed:@"GMGenderCell" owner:self options:nil] lastObject];
-    return _genderCell;
 }
 
 - (GMUserModal *)userModal {
@@ -110,21 +115,11 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PlaceholderAndValidStatus *objPlaceholderAndStatus = [self.cellArray objectAtIndex:indexPath.row];
-    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kGenderCell]) {
-        
-        [self.genderCell setDelegate:self];
-        self.genderCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return self.genderCell;
-    }
-    else {
-        
-        GMRegisterInputCell *inputFieldCell = (GMRegisterInputCell *)[tableView dequeueReusableCellWithIdentifier:kInputFieldCellIdentifier];
-        inputFieldCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        inputFieldCell.inputTextField.delegate = self;
-        [self configureInputFieldCell:inputFieldCell withIndex:indexPath.row];
-        return inputFieldCell;
-    }
+    GMRegisterInputCell *inputFieldCell = (GMRegisterInputCell *)[tableView dequeueReusableCellWithIdentifier:kInputFieldCellIdentifier];
+    inputFieldCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    inputFieldCell.inputTextField.delegate = self;
+    [self configureInputFieldCell:inputFieldCell withIndex:indexPath.row];
+    return inputFieldCell;
 }
 
 - (void)configureInputFieldCell:(GMRegisterInputCell*)inputCell withIndex:(NSInteger)cellIndex {
@@ -137,31 +132,29 @@ static NSString * const kGenderCell                         =  @"Gender";
     inputCell.inputTextField.secureTextEntry = NO;
     inputCell.cellNameLabel.text = objPlaceholderAndStatus.inputFieldCellType;
     [inputCell.showButton setHidden:YES];
+    inputCell.inputTextField.keyboardType = UIKeyboardTypeDefault;
     
-    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kFirstNameCell]) {
+    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kHouseCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.firstName) ? self.userModal.firstName : @"";
     }
-    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kLastNameCell]) {
+    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kStreetCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.lastName) ? self.userModal.lastName : @"";
     }
-    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kMobileCell]) {
+    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kClosestLandmarkCell]) {
+        
+        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.mobile) ? self.userModal.mobile : @"";
+    }
+    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kCityCell]) {
+        
+        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.email) ? self.userModal.email : @"";
+    }
+    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kPincodeCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.mobile) ? self.userModal.mobile : @"";
         inputCell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
         inputCell.inputTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    }
-    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kEmailCell]) {
-        
-        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.email) ? self.userModal.email : @"";
-        inputCell.inputTextField.keyboardType = UIKeyboardTypeEmailAddress;
-    }
-    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kPasswordCell]) {
-        
-        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.password : @"";
-        inputCell.inputTextField.secureTextEntry = YES;
-        [inputCell.showButton setHidden:NO];
     }
 }
 
@@ -170,6 +163,13 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     self.currentTextField = textField;
+    if (self.currentTextField.tag == 4) {
+        
+        textField.inputView = [self configureValuePicker];
+    }
+    else{
+        self.currentTextField.inputView = nil;
+    }
     return YES;  // Hide both keyboard and blinking cursor.
 }
 
@@ -181,7 +181,7 @@ static NSString * const kGenderCell                         =  @"Gender";
             NSString *firstName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = firstName;
             [self.userModal setFirstName:firstName];
-            [self checkValidFirstName];
+            [self checkValidHouseNo];
         }
             break;
         case 1: {
@@ -189,7 +189,7 @@ static NSString * const kGenderCell                         =  @"Gender";
             NSString *lastName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = lastName;
             [self.userModal setLastName:lastName];
-            [self checkValidLastName];
+            [self checkValidStreetAddress];
         }
             break;
         case 2: {
@@ -197,7 +197,7 @@ static NSString * const kGenderCell                         =  @"Gender";
             NSString *phoneNumber = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = phoneNumber;
             [self.userModal setMobile:phoneNumber];
-            [self checkValidMobileNumber];
+            [self checkValidClosestLandmark];
         }
             break;
         case 3: {
@@ -205,15 +205,22 @@ static NSString * const kGenderCell                         =  @"Gender";
             NSString *email = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = email;
             [self.userModal setEmail:email];
-            [self checkValidEmailAddress];
+            [self checkValidCity];
         }
             break;
         case 4: {
             
+            if(!NSSTRING_HAS_DATA(textField.text))
+                [self.userModal setPassword:textField.text];
+            [self checkValidState];
+        }
+            break;
+        case 5: {
+            
             NSString *password = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = password;
             [self.userModal setPassword:password];
-            [self checkValidPassword];
+            [self checkValidPincode];
         }
             break;
         default:
@@ -229,57 +236,26 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    NSString *ACCEPTABLE_CHARACTERS;
     NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     switch (textField.tag) {
-        case 0: {
-            ACCEPTABLE_CHARACTERS = @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            if([resultString length] > 30)
-                return NO;
-        }
-            break;
-        case 1: {
-            ACCEPTABLE_CHARACTERS = @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            if([resultString length] > 30)
-                return NO;
-        }
-            break;
-        case 2: {
             
-            if([resultString length] > 10)
-                return NO;
-        }
-            break;
-        case 3: {
+        case 5: {
             
-            if([resultString length] > 30)
-                return NO;
-        }
-            break;
-        case 4: {
-            
-            if([resultString length] > 20)
+            if([resultString length] >= 6)
                 return NO;
         }
             break;
         default:
             break;
     }
-    
-    if (ACCEPTABLE_CHARACTERS != nil) {
-        
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
-        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        return [string isEqualToString:filtered];
-    }else
-        return YES;
+    return YES;
 }
 
 - (void)focusToNextInputField {
     
     [self.currentTextField resignFirstResponder];
     NSInteger nextTag = self.currentTextField.tag + 1;
-    GMRegisterInputCell *cell = (GMRegisterInputCell*)[self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:nextTag inSection:0]];
+    GMRegisterInputCell *cell = (GMRegisterInputCell*)[self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:nextTag inSection:0]];
     if ([GMRegisterInputCell class] == [cell class]) {
         UIResponder* nextResponder = cell.inputTextField;
         if (nextResponder) {
@@ -295,27 +271,32 @@ static NSString * const kGenderCell                         =  @"Gender";
     
     BOOL resultedBool = YES;
     
-    if (![self checkValidFirstName]) {
+    if (![self checkValidHouseNo]) {
         resultedBool =  resultedBool && NO;
     }else{
         resultedBool =  resultedBool && YES;
     }
-    if (![self checkValidLastName]) {
+    if (![self checkValidStreetAddress]) {
         resultedBool =  resultedBool && NO;
     }else{
         resultedBool =  resultedBool && YES;
     }
-    if (![self checkValidMobileNumber]) {
+    if (![self checkValidClosestLandmark]) {
         resultedBool =  resultedBool && NO;
     }else{
         resultedBool =  resultedBool && YES;
     }
-    if (![self checkValidEmailAddress]) {
+    if (![self checkValidCity]) {
         resultedBool =  resultedBool && NO;
     }else{
         resultedBool =  resultedBool && YES;
     }
-    if (![self checkValidPassword]) {
+    if (![self checkValidState]) {
+        resultedBool =  resultedBool && NO;
+    }else{
+        resultedBool =  resultedBool && YES;
+    }
+    if (![self checkValidPincode]) {
         resultedBool =  resultedBool && NO;
     }else{
         resultedBool =  resultedBool && YES;
@@ -323,19 +304,19 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
-- (BOOL)checkValidFirstName {
+- (BOOL)checkValidHouseNo {
     
     BOOL resultedBool = YES;
     int  rowNumber = 0;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.userModal.firstName)){
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kInvalid;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kInvalid;
         return NO;
     }else {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
@@ -344,19 +325,19 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
-- (BOOL)checkValidLastName{
+- (BOOL)checkValidStreetAddress {
     
     BOOL resultedBool = YES;
     int  rowNumber = 1;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.userModal.lastName)) {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kInvalid;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kInvalid;
         return NO;
     }else {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
@@ -365,19 +346,19 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
-- (BOOL)checkValidMobileNumber{
+- (BOOL)checkValidClosestLandmark {
     
     BOOL resultedBool = YES;
     int  rowNumber = 2;
     GMRegisterInputCell* cell ;
     if (![GMSharedClass validateMobileNumberWithString:self.userModal.mobile]) {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kInvalid;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kInvalid;
         return NO;
     }else {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
@@ -386,19 +367,19 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
-- (BOOL)checkValidEmailAddress{
+- (BOOL)checkValidCity {
     
     BOOL resultedBool = YES;
     int  rowNumber = 3;
     GMRegisterInputCell* cell ;
     if (![GMSharedClass validateEmail:self.userModal.email]) {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kInvalid;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kInvalid;
         return NO;
     }else {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell =(GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
@@ -407,14 +388,14 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
-- (BOOL)checkValidPassword{
+- (BOOL)checkValidState {
     
     BOOL resultedBool = YES;
     int  rowNumber = 4;
     GMRegisterInputCell* cell ;
     if(NSSTRING_HAS_DATA(self.userModal.password) && [self.userModal.password length] >= 6) {
         
-        cell = (GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell = (GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
@@ -423,7 +404,7 @@ static NSString * const kGenderCell                         =  @"Gender";
     }
     else {
         
-        cell = (GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell = (GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kInvalid;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kInvalid;
@@ -432,46 +413,92 @@ static NSString * const kGenderCell                         =  @"Gender";
     return resultedBool;
 }
 
+- (BOOL)checkValidPincode {
+    
+    BOOL resultedBool = YES;
+    int  rowNumber = 5;
+    GMRegisterInputCell* cell ;
+    if(NSSTRING_HAS_DATA(self.userModal.password) && [self.userModal.password length] >= 6) {
+        
+        cell = (GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kValid;
+        resultedBool = YES;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kValid;
+        return YES;
+    }
+    else {
+        
+        cell = (GMRegisterInputCell*) [self.billingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kInvalid;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kInvalid;
+        return NO;
+    }
+    return resultedBool;
+}
+
+#pragma mark - Picker Configurations
+
+- (UIView*)configureValuePicker {
+    
+    if (self.valuePickerVC == nil) {
+        self.valuePickerVC = [[PBPickerVC alloc] initWithNibName:@"PBPickerVC" bundle:nil];
+        self.valuePickerVC.pickerDoneCancelDelegate = self;
+    }
+    
+    self.valuePickerVC.arrayValuesToDisplay = [self statesToDisplay];
+    //    if(NSSTRING_HAS_DATA(self.userSignUpModal.profession))
+    //        [self.valuePickerVC.pickerView selectRow:[self.occupationArray indexOfObject:self.userSignUpModal.profession] inComponent:0 animated:NO];
+    return self.valuePickerVC.view;
+}
+
+- (NSMutableArray*)statesToDisplay {
+    
+    NSMutableArray* displayValues = [NSMutableArray array];
+    for (GMStateModal* stateModal in self.stateArray) {
+        [displayValues addObject:stateModal.stateName];
+    }
+    return [NSMutableArray arrayWithObject:displayValues];
+}
+
+#pragma mark - PickerView Delegates
+
+- (void)pickerValueChanged:(NSString *)changeValue {
+    
+    self.currentTextField.text = changeValue;
+}
+
+- (void)donePressedValuePicker:(NSArray *)selectedIndeces{
+    
+    if (!selectedIndeces.count)
+        return;
+    int selectedIndex = [[selectedIndeces objectAtIndex:0] intValue];
+    GMStateModal *stateModal = [self.stateArray objectAtIndex:selectedIndex];
+    [self.userModal setPassword:stateModal.stateName];
+    self.currentTextField.text = self.userModal.password;
+    [self focusToNextInputField];
+}
+
+- (void)cancelPressedValuePicker:(id)sender{
+    
+    self.currentTextField.text = self.userModal.password;
+    [self.currentTextField resignFirstResponder];
+}
+
 #pragma mark - IBAction Methods
 
-- (IBAction)createAccountButtonTapped:(id)sender {
+- (IBAction)saveButtonTapped:(id)sender {
     
-    [self.view endEditing:YES];
     if([self performValidations]) {
-        NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
-        if(NSSTRING_HAS_DATA(self.userModal.firstName))
-            [userDic setObject:self.userModal.firstName forKey:kEY_fname];
-        if(NSSTRING_HAS_DATA(self.userModal.lastName))
-            [userDic setObject:self.userModal.lastName forKey:kEY_lname];
-        if(NSSTRING_HAS_DATA(self.userModal.email))
-            [userDic setObject:self.userModal.email forKey:kEY_uemail];
-        if(NSSTRING_HAS_DATA(self.userModal.mobile))
-            [userDic setObject:self.userModal.mobile forKey:kEY_number];
-        if(NSSTRING_HAS_DATA(self.userModal.password))
-            [userDic setObject:self.userModal.password forKey:kEY_password];
-        [userDic setObject:@"0" forKey:kEY_otp];
         
-        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
-            
-            if([registrationResponse.flag isEqualToString:@"1"]) {
-                [self.userModal setOtp:[NSString stringWithFormat:@"%@", registrationResponse.otp]];
-                GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
-                otpVC.userModal = self.userModal;
-                [self.navigationController pushViewController:otpVC animated:YES];
-            }
-            else
-                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
-            
-        } failureBlock:^(NSError *error) {
-            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
-        }];
+        
     }
 }
 
-#pragma mark - GenderCell Delegate Method
-
-- (void)genderSelectionWithType:(GMGenderType)genderType {
+- (IBAction)defaultBillingAddressButtonTapped:(UIButton *)sender {
     
-    [self.userModal setGender:genderType];
+    sender.selected = !sender.selected;
+    self.isDefaultBillingAddress = !self.isDefaultBillingAddress;
 }
 @end

@@ -27,6 +27,18 @@
 		3BF4A2831BADF5BF007D66C6 /* GMCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4A2811BADF5BF007D66C6 /* GMCartVC.m */; };
 		3BF4A2841BADF5BF007D66C6 /* GMCartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF4A2821BADF5BF007D66C6 /* GMCartVC.xib */; };
 		766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */; };
+		820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */; };
+		820C4EC11BAF482500DCCF39 /* GMRegistrationResponseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EC01BAF482500DCCF39 /* GMRegistrationResponseModal.m */; };
+		820C4ECA1BAF576D00DCCF39 /* PBDatePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EC41BAF576D00DCCF39 /* PBDatePickerVC.m */; };
+		820C4ECB1BAF576D00DCCF39 /* PBDatePickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4EC51BAF576D00DCCF39 /* PBDatePickerVC.xib */; };
+		820C4ECC1BAF576D00DCCF39 /* PBPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EC81BAF576D00DCCF39 /* PBPickerVC.m */; };
+		820C4ECD1BAF576D00DCCF39 /* PBPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4EC91BAF576D00DCCF39 /* PBPickerVC.xib */; };
+		820C4ED41BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4ED21BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m */; };
+		820C4ED51BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4ED31BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib */; };
+		820C4ED91BAF5AAC00DCCF39 /* GMAddShippingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4ED71BAF5AAC00DCCF39 /* GMAddShippingAddressVC.m */; };
+		820C4EDA1BAF5AAC00DCCF39 /* GMAddShippingAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4ED81BAF5AAC00DCCF39 /* GMAddShippingAddressVC.xib */; };
+		820C4EDE1BB03E3800DCCF39 /* GMStateBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EDD1BB03E3800DCCF39 /* GMStateBaseModal.m */; };
+		820C4EE21BB046AB00DCCF39 /* GMLocalityBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EE11BB046AB00DCCF39 /* GMLocalityBaseModal.m */; };
 		821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778E81BA43141009937C7 /* GMProfileVC.m */; };
 		821778EB1BA43141009937C7 /* GMProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821778E91BA43141009937C7 /* GMProfileVC.xib */; };
 		821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 821778ED1BA5F334009937C7 /* GMRegisterVC.m */; };
@@ -65,6 +77,12 @@
 		827047361BAEA19C00E224E8 /* GMLeftMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827047211BAEA19C00E224E8 /* GMLeftMenuCell.xib */; };
 		827047371BAEA19C00E224E8 /* GMSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827047231BAEA19C00E224E8 /* GMSectionView.m */; };
 		827047381BAEA19C00E224E8 /* GMSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827047241BAEA19C00E224E8 /* GMSectionView.xib */; };
+
+		827047431BAF2D9D00E224E8 /* GMEditProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 827047411BAF2D9D00E224E8 /* GMEditProfileVC.m */; };
+		827047441BAF2D9D00E224E8 /* GMEditProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827047421BAF2D9D00E224E8 /* GMEditProfileVC.xib */; };
+		827047481BAF2DB700E224E8 /* GMMyAddressesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 827047461BAF2DB700E224E8 /* GMMyAddressesVC.m */; };
+		827047491BAF2DB700E224E8 /* GMMyAddressesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827047471BAF2DB700E224E8 /* GMMyAddressesVC.xib */; };
+
 		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
 		82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B01B9F5E60001550FC /* Main.storyboard */; };
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
@@ -74,7 +92,6 @@
 		82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D51B9F60D0001550FC /* UIColor+Additions.m */; };
 		82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D81B9F60D0001550FC /* UITableView+Wave.m */; };
 		82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2DE1B9F60D0001550FC /* ViewController.m */; };
-		82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EC1B9F616B001550FC /* GMSharedClass.m */; };
 		82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */; };
 		E87851031BAE931200FDD930 /* GMTimeSloteModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851021BAE931200FDD930 /* GMTimeSloteModal.m */; };
 		E87851071BAEAA6800FDD930 /* GMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851061BAEAA6800FDD930 /* GMButton.m */; };
@@ -157,6 +174,26 @@
 		3BF4A2821BADF5BF007D66C6 /* GMCartVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCartVC.xib; sourceTree = "<group>"; };
 		43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.debug.xcconfig"; sourceTree = "<group>"; };
 		594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GrocerMax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSharedClass.h; sourceTree = "<group>"; };
+		820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSharedClass.m; sourceTree = "<group>"; };
+		820C4EBF1BAF482500DCCF39 /* GMRegistrationResponseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRegistrationResponseModal.h; sourceTree = "<group>"; };
+		820C4EC01BAF482500DCCF39 /* GMRegistrationResponseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRegistrationResponseModal.m; sourceTree = "<group>"; };
+		820C4EC31BAF576D00DCCF39 /* PBDatePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBDatePickerVC.h; sourceTree = "<group>"; };
+		820C4EC41BAF576D00DCCF39 /* PBDatePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBDatePickerVC.m; sourceTree = "<group>"; };
+		820C4EC51BAF576D00DCCF39 /* PBDatePickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PBDatePickerVC.xib; sourceTree = "<group>"; };
+		820C4EC71BAF576D00DCCF39 /* PBPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPickerVC.h; sourceTree = "<group>"; };
+		820C4EC81BAF576D00DCCF39 /* PBPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPickerVC.m; sourceTree = "<group>"; };
+		820C4EC91BAF576D00DCCF39 /* PBPickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PBPickerVC.xib; sourceTree = "<group>"; };
+		820C4ED11BAF5A8E00DCCF39 /* GMAddBillingAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAddBillingAddressVC.h; sourceTree = "<group>"; };
+		820C4ED21BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAddBillingAddressVC.m; sourceTree = "<group>"; };
+		820C4ED31BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMAddBillingAddressVC.xib; sourceTree = "<group>"; };
+		820C4ED61BAF5AAC00DCCF39 /* GMAddShippingAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAddShippingAddressVC.h; sourceTree = "<group>"; };
+		820C4ED71BAF5AAC00DCCF39 /* GMAddShippingAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAddShippingAddressVC.m; sourceTree = "<group>"; };
+		820C4ED81BAF5AAC00DCCF39 /* GMAddShippingAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMAddShippingAddressVC.xib; sourceTree = "<group>"; };
+		820C4EDC1BB03E3800DCCF39 /* GMStateBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMStateBaseModal.h; sourceTree = "<group>"; };
+		820C4EDD1BB03E3800DCCF39 /* GMStateBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMStateBaseModal.m; sourceTree = "<group>"; };
+		820C4EE01BB046AB00DCCF39 /* GMLocalityBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMLocalityBaseModal.h; sourceTree = "<group>"; };
+		820C4EE11BB046AB00DCCF39 /* GMLocalityBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMLocalityBaseModal.m; sourceTree = "<group>"; };
 		821778E71BA43141009937C7 /* GMProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProfileVC.h; sourceTree = "<group>"; };
 		821778E81BA43141009937C7 /* GMProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProfileVC.m; sourceTree = "<group>"; };
 		821778E91BA43141009937C7 /* GMProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMProfileVC.xib; sourceTree = "<group>"; };
@@ -219,6 +256,14 @@
 		827047221BAEA19C00E224E8 /* GMSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSectionView.h; sourceTree = "<group>"; };
 		827047231BAEA19C00E224E8 /* GMSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSectionView.m; sourceTree = "<group>"; };
 		827047241BAEA19C00E224E8 /* GMSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSectionView.xib; sourceTree = "<group>"; };
+
+		827047401BAF2D9D00E224E8 /* GMEditProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMEditProfileVC.h; sourceTree = "<group>"; };
+		827047411BAF2D9D00E224E8 /* GMEditProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMEditProfileVC.m; sourceTree = "<group>"; };
+		827047421BAF2D9D00E224E8 /* GMEditProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMEditProfileVC.xib; sourceTree = "<group>"; };
+		827047451BAF2DB700E224E8 /* GMMyAddressesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMMyAddressesVC.h; sourceTree = "<group>"; };
+		827047461BAF2DB700E224E8 /* GMMyAddressesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMMyAddressesVC.m; sourceTree = "<group>"; };
+		827047471BAF2DB700E224E8 /* GMMyAddressesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMMyAddressesVC.xib; sourceTree = "<group>"; };
+
 		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -239,8 +284,6 @@
 		82B1B2DD1B9F60D0001550FC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		82B1B2DE1B9F60D0001550FC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
-		82B1B2EB1B9F616B001550FC /* GMSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSharedClass.h; sourceTree = "<group>"; };
-		82B1B2EC1B9F616B001550FC /* GMSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSharedClass.m; sourceTree = "<group>"; };
 		82B1B2EE1B9F62F3001550FC /* GMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMNavigationController.h; sourceTree = "<group>"; };
 		82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMNavigationController.m; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
@@ -385,6 +428,73 @@
 			path = CartVC;
 			sourceTree = "<group>";
 		};
+		820C4EC21BAF576D00DCCF39 /* PBDatePIcker */ = {
+			isa = PBXGroup;
+			children = (
+				820C4EC31BAF576D00DCCF39 /* PBDatePickerVC.h */,
+				820C4EC41BAF576D00DCCF39 /* PBDatePickerVC.m */,
+				820C4EC51BAF576D00DCCF39 /* PBDatePickerVC.xib */,
+			);
+			path = PBDatePIcker;
+			sourceTree = "<group>";
+		};
+		820C4EC61BAF576D00DCCF39 /* PBPicker */ = {
+			isa = PBXGroup;
+			children = (
+				820C4EC71BAF576D00DCCF39 /* PBPickerVC.h */,
+				820C4EC81BAF576D00DCCF39 /* PBPickerVC.m */,
+				820C4EC91BAF576D00DCCF39 /* PBPickerVC.xib */,
+			);
+			path = PBPicker;
+			sourceTree = "<group>";
+		};
+		820C4ECE1BAF580900DCCF39 /* AddAddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				820C4ECF1BAF580900DCCF39 /* AddBillingAddressVC */,
+				820C4ED01BAF580900DCCF39 /* AddShippingAddressVC */,
+			);
+			path = AddAddressVC;
+			sourceTree = "<group>";
+		};
+		820C4ECF1BAF580900DCCF39 /* AddBillingAddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				820C4ED11BAF5A8E00DCCF39 /* GMAddBillingAddressVC.h */,
+				820C4ED21BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m */,
+				820C4ED31BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib */,
+			);
+			path = AddBillingAddressVC;
+			sourceTree = "<group>";
+		};
+		820C4ED01BAF580900DCCF39 /* AddShippingAddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				820C4ED61BAF5AAC00DCCF39 /* GMAddShippingAddressVC.h */,
+				820C4ED71BAF5AAC00DCCF39 /* GMAddShippingAddressVC.m */,
+				820C4ED81BAF5AAC00DCCF39 /* GMAddShippingAddressVC.xib */,
+			);
+			path = AddShippingAddressVC;
+			sourceTree = "<group>";
+		};
+		820C4EDB1BB03DF500DCCF39 /* StateModal */ = {
+			isa = PBXGroup;
+			children = (
+				820C4EDC1BB03E3800DCCF39 /* GMStateBaseModal.h */,
+				820C4EDD1BB03E3800DCCF39 /* GMStateBaseModal.m */,
+			);
+			path = StateModal;
+			sourceTree = "<group>";
+		};
+		820C4EDF1BB0453C00DCCF39 /* LocalityModal */ = {
+			isa = PBXGroup;
+			children = (
+				820C4EE01BB046AB00DCCF39 /* GMLocalityBaseModal.h */,
+				820C4EE11BB046AB00DCCF39 /* GMLocalityBaseModal.m */,
+			);
+			path = LocalityModal;
+			sourceTree = "<group>";
+		};
 		821778E61BA4311E009937C7 /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +523,8 @@
 			children = (
 				824046E11BA8B099008686C2 /* PlaceholderAndValidStatus.h */,
 				824046E21BA8B099008686C2 /* PlaceholderAndValidStatus.m */,
+				820C4EBF1BAF482500DCCF39 /* GMRegistrationResponseModal.h */,
+				820C4EC01BAF482500DCCF39 /* GMRegistrationResponseModal.m */,
 			);
 			path = RegisterModal;
 			sourceTree = "<group>";
@@ -544,6 +656,28 @@
 			path = LeftMenuCell;
 			sourceTree = "<group>";
 		};
+
+		8270473E1BAF2D6000E224E8 /* EditProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				827047401BAF2D9D00E224E8 /* GMEditProfileVC.h */,
+				827047411BAF2D9D00E224E8 /* GMEditProfileVC.m */,
+				827047421BAF2D9D00E224E8 /* GMEditProfileVC.xib */,
+			);
+			path = EditProfileVC;
+			sourceTree = "<group>";
+		};
+		8270473F1BAF2D6B00E224E8 /* MyAddressesVC */ = {
+			isa = PBXGroup;
+			children = (
+				827047451BAF2DB700E224E8 /* GMMyAddressesVC.h */,
+				827047461BAF2DB700E224E8 /* GMMyAddressesVC.m */,
+				827047471BAF2DB700E224E8 /* GMMyAddressesVC.xib */,
+			);
+			path = MyAddressesVC;
+			sourceTree = "<group>";
+		};
+
 		82B1B29A1B9F5E60001550FC = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +792,11 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+
+				820C4ECE1BAF580900DCCF39 /* AddAddressVC */,
+				8270473F1BAF2D6B00E224E8 /* MyAddressesVC */,
+				8270473E1BAF2D6000E224E8 /* EditProfileVC */,
+
 				827047021BAEA19C00E224E8 /* HomeVC */,
 				827047171BAEA19C00E224E8 /* LeftMenuVC */,
 				3B8F18BF1BAE188A00DE3FF9 /* ProductDescription */,
@@ -715,6 +854,8 @@
 		82B1B2DF1B9F60D0001550FC /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				820C4EC21BAF576D00DCCF39 /* PBDatePIcker */,
+				820C4EC61BAF576D00DCCF39 /* PBPicker */,
 				E87851041BAEAA5700FDD930 /* GMButton */,
 				82B1B2E01B9F60D0001550FC /* Navigation */,
 			);
@@ -733,7 +874,12 @@
 		82B1B2E11B9F60D0001550FC /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+
 				E87851151BAF370000FDD930 /* AddressModal */,
+
+				820C4EDF1BB0453C00DCCF39 /* LocalityModal */,
+				820C4EDB1BB03DF500DCCF39 /* StateModal */,
+
 				E87851081BAEAE9900FDD930 /* DeliveryDetailModal */,
 				824047061BAB2559008686C2 /* CategoryModal */,
 				824046E41BA8B3DD008686C2 /* UserModal */,
@@ -758,10 +904,10 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */,
+				820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */,
 				824046FE1BAB22F6008686C2 /* XHDrawerController */,
 				82B1B2EA1B9F6143001550FC /* GMConstants.h */,
-				82B1B2EB1B9F616B001550FC /* GMSharedClass.h */,
-				82B1B2EC1B9F616B001550FC /* GMSharedClass.m */,
 				824046F11BA98D2B008686C2 /* GMEnums.h */,
 			);
 			path = UtilityAndConstants;
@@ -1062,16 +1208,24 @@
 			files = (
 				E8ED6CF51BAD94790087AA1D /* GMOrderHistryVC.xib in Resources */,
 				3B670CCA1BA0BD8600B5EB9D /* GMLoginVC.xib in Resources */,
+				827047441BAF2D9D00E224E8 /* GMEditProfileVC.xib in Resources */,
 				827047381BAEA19C00E224E8 /* GMSectionView.xib in Resources */,
 				E8ED6CEF1BAD94790087AA1D /* GMHotDealVC.xib in Resources */,
 				827047261BAEA19C00E224E8 /* GMHomeVC.xib in Resources */,
 				3BF4A2841BADF5BF007D66C6 /* GMCartVC.xib in Resources */,
 				824046FD1BAA046A008686C2 /* GMForgotVC.xib in Resources */,
 				E88B9D071BADFA8400AD9016 /* GMDeliveryDetailVC.xib in Resources */,
+
+				820C4EDA1BAF5AAC00DCCF39 /* GMAddShippingAddressVC.xib in Resources */,
+
 				E87851141BAEDC5000FDD930 /* GMCreateAddressVC.xib in Resources */,
 				E8ED6CEB1BAD94790087AA1D /* GMBillingAddressVC.xib in Resources */,
 				E8ED6CF11BAD94790087AA1D /* GMOfferListVC.xib in Resources */,
+				820C4ECD1BAF576D00DCCF39 /* PBPickerVC.xib in Resources */,
 				824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */,
+
+				820C4ED51BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib in Resources */,
+
 				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
 				8270472A1BAEA19C00E224E8 /* GMShopByDealCollectionViewCell.xib in Resources */,
@@ -1090,9 +1244,11 @@
 				3BF4A27E1BADF465007D66C6 /* GMTabBarVC.xib in Resources */,
 				821778F01BA5F334009937C7 /* GMRegisterVC.xib in Resources */,
 				827047301BAEA19C00E224E8 /* GMShopByDealCell.xib in Resources */,
+				827047491BAF2DB700E224E8 /* GMMyAddressesVC.xib in Resources */,
 				827047361BAEA19C00E224E8 /* GMLeftMenuCell.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				E8ED6CED1BAD94790087AA1D /* GMHotDealCollectionViewCell.xib in Resources */,
+				820C4ECB1BAF576D00DCCF39 /* PBDatePickerVC.xib in Resources */,
 				E88B9D0D1BAE026500AD9016 /* GMDeliveryDetailCell.xib in Resources */,
 				824046EC1BA8B890008686C2 /* GMGenderCell.xib in Resources */,
 				8270472C1BAEA19C00E224E8 /* GMPageControllCell.xib in Resources */,
@@ -1155,6 +1311,8 @@
 				E878510B1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m in Sources */,
 				E8ED6CFD1BAD94790087AA1D /* GMSubCategoryHeaderView.m in Sources */,
 				824046E71BA8B3F5008686C2 /* GMUserModal.m in Sources */,
+				827047431BAF2D9D00E224E8 /* GMEditProfileVC.m in Sources */,
+				820C4EDE1BB03E3800DCCF39 /* GMStateBaseModal.m in Sources */,
 				824046FC1BAA046A008686C2 /* GMForgotVC.m in Sources */,
 				E8ED6CF61BAD94790087AA1D /* GMOrderHistoryCell.m in Sources */,
 				E87851131BAEDC5000FDD930 /* GMCreateAddressVC.m in Sources */,
@@ -1163,6 +1321,7 @@
 				824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */,
 				8270472D1BAEA19C00E224E8 /* GMShopByCategoryCell.m in Sources */,
 				3BF4A2771BADF357007D66C6 /* GMRootPageViewController.m in Sources */,
+				820C4ED41BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m in Sources */,
 				3BF4A2751BADF357007D66C6 /* GMOffersVC.m in Sources */,
 				E87851031BAE931200FDD930 /* GMTimeSloteModal.m in Sources */,
 				E8ED6CF01BAD94790087AA1D /* GMOfferListVC.m in Sources */,
@@ -1172,7 +1331,9 @@
 				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
 				827047251BAEA19C00E224E8 /* GMHomeVC.m in Sources */,
 				824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */,
+
 				82B1B2ED1B9F616B001550FC /* GMSharedClass.m in Sources */,
+
 				E8ED6CEE1BAD94790087AA1D /* GMHotDealVC.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
 				824046F01BA94A28008686C2 /* UIImage+Extends.m in Sources */,
@@ -1189,21 +1350,28 @@
 				824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */,
 				8270472B1BAEA19C00E224E8 /* GMPageControllCell.m in Sources */,
 				E8ED6CEA1BAD94790087AA1D /* GMBillingAddressVC.m in Sources */,
+				827047481BAF2DB700E224E8 /* GMMyAddressesVC.m in Sources */,
 				E8ED6CEC1BAD94790087AA1D /* GMHotDealCollectionViewCell.m in Sources */,
 				3BF4A27D1BADF465007D66C6 /* GMTabBarVC.m in Sources */,
 				8270472F1BAEA19C00E224E8 /* GMShopByDealCell.m in Sources */,
+				820C4EC11BAF482500DCCF39 /* GMRegistrationResponseModal.m in Sources */,
 				827047351BAEA19C00E224E8 /* GMLeftMenuCell.m in Sources */,
 				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */,
 				82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */,
 				82B1B2E61B9F60D0001550FC /* UIColor+Additions.m in Sources */,
+				820C4ECC1BAF576D00DCCF39 /* PBPickerVC.m in Sources */,
 				82B1B2E51B9F60D0001550FC /* NSString+Extension.m in Sources */,
+
 				E878511C1BAF536000FDD930 /* GMTAddAddressCell.m in Sources */,
+
 				E8ED6CF41BAD94790087AA1D /* GMOrderHistryVC.m in Sources */,
 				827047311BAEA19C00E224E8 /* GMLeftMenuDetailVC.m in Sources */,
 				3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */,
 				E8ED6CE81BAD94790087AA1D /* GMAddressCell.m in Sources */,
+				820C4ED91BAF5AAC00DCCF39 /* GMAddShippingAddressVC.m in Sources */,
+				820C4EE21BB046AB00DCCF39 /* GMLocalityBaseModal.m in Sources */,
 				3BF4A2731BADF357007D66C6 /* GMOffersCollectionViewCell.m in Sources */,
 				82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */,
 				E8ED6CF91BAD94790087AA1D /* GMSubCategoryVC.m in Sources */,
@@ -1211,7 +1379,11 @@
 				E87851071BAEAA6800FDD930 /* GMButton.m in Sources */,
 				82B1B2A91B9F5E60001550FC /* main.m in Sources */,
 				827047291BAEA19C00E224E8 /* GMShopByDealCollectionViewCell.m in Sources */,
+
+				820C4ECA1BAF576D00DCCF39 /* PBDatePickerVC.m in Sources */,
 				E878510E1BAEC4AD00FDD930 /* GMDeliveryDateTimeSlotModal.m in Sources */,
+				820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

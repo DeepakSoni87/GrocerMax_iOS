@@ -7,6 +7,7 @@
 //
 
 #import "GMOtpVC.h"
+#import "GMRegistrationResponseModal.h"
 
 @interface GMOtpVC () <UITextFieldDelegate>
 
@@ -50,7 +51,7 @@
 
 - (IBAction)submitButtonTapped:(id)sender {
     
-    
+    [self.view endEditing:YES];
     if(NSSTRING_HAS_DATA(self.oneTimePasswordTF.text) && [self.oneTimePasswordTF.text isEqualToString:self.userModal.otp]) {
         [self.view endEditing:YES];
         NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
@@ -66,37 +67,23 @@
             [userDic setObject:self.userModal.password forKey:kEY_password];
         [userDic setObject:@"1" forKey:kEY_otp];
         
-        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(id responceData) {
-            //responceData = {"flag":"1","Result":"User Register Successfully","UserID":"5187"}
+        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
-            NSMutableDictionary *responceDic = (NSMutableDictionary *)responceData;
-            if([responceDic objectForKey:kEY_flag] && [[responceDic objectForKey:kEY_flag] isEqualToString:@"1" ])
-            {
-                if([responceDic objectForKey:@"UserID"])
-                {
-                    
-                }
+            if([registrationResponse.flag isEqualToString:@"1"]) {
+                
+                [self.userModal setUserId:registrationResponse.userId];
+                [self.userModal persistUser];
+                [[GMSharedClass sharedClass] setUserLoggedStatus:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else
-            {
-                if([responceDic objectForKey:kEY_Result])
-                {
-                    [[GMSharedClass sharedClass] showErrorMessage:[responceDic objectForKey:kEY_Result]];
-                }
-                else
-                {
-                    [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-                }
-                
-            }
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
             
         } failureBlock:^(NSError *error) {
-             [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         }];
     }
     else
-    {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter OTP."];
-    }
 }
 @end

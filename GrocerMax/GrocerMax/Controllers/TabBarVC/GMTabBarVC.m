@@ -12,7 +12,7 @@
 #import "GMProfileVC.h"
 #import "GMHotDealVC.h"
 #import "GMCartVC.h"
-
+#import "GMLoginVC.h"
 
 @interface GMTabBarVC ()
 
@@ -40,19 +40,20 @@
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     self.tabBar.tintColor = [UIColor yellowColor];
     self.tabBar.clipsToBounds = YES;
-
     
     GMHomeVC *homeVC = [[GMHomeVC alloc] initWithNibName:@"GMHomeVC" bundle:nil];
     UIImage *homeVCTabImg = [[UIImage imageNamed:@"home_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *homeVCTabSelectedImg = [[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:homeVCTabImg selectedImage:homeVCTabSelectedImg];
     GMNavigationController *homeVCNavController = [[GMNavigationController alloc] initWithRootViewController:homeVC];
+
     
     GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
     UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
     GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:profileVC];
+
     
     GMHotDealVC *hotDealVC = [[GMHotDealVC alloc] initWithNibName:@"GMHotDealVC" bundle:nil];
     UIImage *hotDealVCTabImg = [[UIImage imageNamed:@"offer_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
@@ -65,7 +66,7 @@
     UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
-    
+
 
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController];
 }
