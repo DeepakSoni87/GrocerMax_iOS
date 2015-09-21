@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMRootPageAPIController.h"
+#import "GMProductModal.h"
+#import "GMCategoryModal.h"
 
 @interface GMOffersVC : UIViewController
-
-@property (strong, nonatomic) id dataObject;
 
 @end
