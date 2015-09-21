@@ -38,6 +38,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
+    self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
     [self uiChange];
 }
@@ -69,7 +70,28 @@ static NSString * const kMobileCell                         =  @"Mobile No";
             [userDic setObject:self.userModal.email forKey:kEY_uemail];
         if(NSSTRING_HAS_DATA(self.userModal.mobile))
             [userDic setObject:self.userModal.mobile forKey:kEY_number];
+        if(NSSTRING_HAS_DATA(self.userModal.userId))
+            [userDic setObject:self.userModal.userId forKey:kEY_userid];
         
+        [self showProgress];
+        [[GMOperationalHandler handler] editProfile:userDic   withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
+            
+            if([registrationResponse.flag isEqualToString:@"1"]) {
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
+                [self.userModal persistUser];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
+            
+            [self removeProgress];
+            
+        } failureBlock:^(NSError *error) {
+            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            [self removeProgress];
+        }];
+
         
 //        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
 //            
@@ -107,11 +129,11 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     }
     return _cellArray;
 }
-- (GMUserModal *)userModal {
-    
-    if(!_userModal) _userModal = [[GMUserModal alloc] init];
-    return _userModal;
-}
+//- (GMUserModal *)userModal {
+//    
+//    if(!_userModal) _userModal = [[GMUserModal alloc] init];
+//    return _userModal;
+//}
 
 
 #pragma mark - UITavleView Delegate/Datasource methods

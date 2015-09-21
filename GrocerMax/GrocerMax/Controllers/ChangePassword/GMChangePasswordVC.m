@@ -12,13 +12,14 @@
 #import "PlaceholderAndValidStatus.h"
 #import "GMUserModal.h"
 #import "TPKeyboardAvoidingTableView.h"
+#import "GMRegistrationResponseModal.h"
 
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
 
-static NSString * const kOldPasswordCell                         =  @"OldPassword";
-static NSString * const kNewPasswordCell                          =  @"NewPassword";
-static NSString * const kConformPasswordCell                       =  @"ConformPassword";
+static NSString * const kOldPasswordCell                         =  @"Old password";
+static NSString * const kNewPasswordCell                          =  @"New password";
+static NSString * const kConformPasswordCell                       =  @"Conform password";
 
 
 @interface GMChangePasswordVC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -39,7 +40,7 @@ static NSString * const kConformPasswordCell                       =  @"ConformP
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
     [self uiChange];
 }
@@ -66,16 +67,28 @@ static NSString * const kConformPasswordCell                       =  @"ConformP
         if(NSSTRING_HAS_DATA(self.userModal.email))
             [userDic setObject:self.userModal.email forKey:kEY_uemail];
         if(NSSTRING_HAS_DATA(self.userModal.password))
-            [userDic setObject:self.userModal.password forKey:kEY_password];
+            [userDic setObject:self.userModal.password forKey:kEY_oldPassword];
         if(NSSTRING_HAS_DATA(self.userModal.newpassword))
-            [userDic setObject:self.userModal.newpassword forKey:kEY_newPassword];
-        [userDic setObject:@"0" forKey:kEY_otp];
+            [userDic setObject:self.userModal.newpassword forKey:kEY_password];
         
-//        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
-//            
-//        } failureBlock:^(NSError *error) {
-//            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
-//        }];
+        [userDic setObject:@"321" forKey:kEY_userid];
+        [self showProgress];
+        [[GMOperationalHandler handler] changePassword:userDic  withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
+            
+            if([registrationResponse.flag isEqualToString:@"1"]) {
+                
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
+            
+            [self removeProgress];
+            
+        } failureBlock:^(NSError *error) {
+            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            [self removeProgress];
+        }];
     }
 }
 
@@ -109,11 +122,13 @@ static NSString * const kConformPasswordCell                       =  @"ConformP
     }
     return _cellArray;
 }
-- (GMUserModal *)userModal {
-    
-    if(!_userModal) _userModal = [[GMUserModal alloc] init];
-    return _userModal;
-}
+//- (GMUserModal *)userModal {
+//    
+//    if(!_userModal) _userModal = [[GMUserModal alloc] init];
+//    
+//    
+//    return _userModal;
+//}
 
 
 #pragma mark - UITavleView Delegate/Datasource methods

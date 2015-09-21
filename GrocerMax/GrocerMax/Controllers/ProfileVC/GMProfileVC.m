@@ -11,6 +11,7 @@
 #import "GMMyAddressesVC.h"
 #import "GMEditProfileVC.h"
 #import "GMOrderHistryVC.h"
+#import "GMChangePasswordVC.h"
 
 @interface GMProfileModal : NSObject
 
@@ -62,6 +63,7 @@ static NSString * const kEditProfileCell                    =  @"Edit My Informa
 static NSString * const kInviteFriendsCell                  =  @"Invite Friends";
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
+static NSString * const kChangePasswordCell                      =  @"Change Password";
 
 @implementation GMProfileVC
 
@@ -106,6 +108,11 @@ static NSString * const kWriteToUsCell                      =  @"Write To Us";
     [self.cellArray addObject:callUs];
     GMProfileModal *writeUs = [[GMProfileModal alloc] initWithCellText:kWriteToUsCell andClassName:@""];
     [self.cellArray addObject:writeUs];
+    
+    GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@""];
+    [self.cellArray addObject:changePassword];
+    
+    
     [self.profileTableView reloadData];
 }
 
@@ -179,6 +186,10 @@ static CGFloat const kProfileCellHeight = 44.0f;
     }
     else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
         
+    }
+    else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]){
+        GMChangePasswordVC *changePasswordVC  = [GMChangePasswordVC new];
+        [self.navigationController pushViewController:changePasswordVC animated:YES];
     }
     else {
         

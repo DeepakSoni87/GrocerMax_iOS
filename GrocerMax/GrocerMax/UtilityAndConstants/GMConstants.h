@@ -54,7 +54,7 @@
 #define kEY_uemail                        @"uemail"
 #define kEY_password                      @"password"
 #define kEY_email                         @"email"
-#define kEY_newPassword                   @"new_password"
+#define kEY_oldPassword                   @"old_password"
 
 
 

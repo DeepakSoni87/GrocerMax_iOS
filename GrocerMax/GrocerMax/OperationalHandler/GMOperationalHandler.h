@@ -65,13 +65,13 @@
  * Function for User Change Password
  * @param
  **/
-- (void)changePassword:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)changePassword:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for User Edit Profile
  * @param
  **/
-- (void)editProfile:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)editProfile:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Add User Address
