@@ -12,6 +12,7 @@
 #import "GMUserModal.h"
 #import "GMGenderCell.h"
 #import "GMOtpVC.h"
+#import "GMRegistrationResponseModal.h"
 
 @interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate>
 
@@ -167,7 +168,7 @@ static NSString * const kGenderCell                         =  @"Gender";
 #pragma mark- UITextField Delegates...
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-
+    
     self.currentTextField = textField;
     return YES;  // Hide both keyboard and blinking cursor.
 }
@@ -435,6 +436,7 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (IBAction)createAccountButtonTapped:(id)sender {
     
+    [self.view endEditing:YES];
     if([self performValidations]) {
         NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
         if(NSSTRING_HAS_DATA(self.userModal.firstName))
@@ -447,53 +449,22 @@ static NSString * const kGenderCell                         =  @"Gender";
             [userDic setObject:self.userModal.mobile forKey:kEY_number];
         if(NSSTRING_HAS_DATA(self.userModal.password))
             [userDic setObject:self.userModal.password forKey:kEY_password];
-            [userDic setObject:@"0" forKey:kEY_otp];
+        [userDic setObject:@"0" forKey:kEY_otp];
         
-        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(id responceData) {
-           
-            NSMutableDictionary *responceDic = (NSMutableDictionary *)responceData;
-            if([responceDic objectForKey:kEY_flag] && [[responceDic objectForKey:kEY_flag] isEqualToString:@"1" ])
-            {
-                if([responceDic objectForKey:kEY_otp])
-                {
-                    self.userModal.otp = [NSString stringWithFormat:@"%@",[responceDic objectForKey:kEY_otp]];
-                    
-                    GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
-                    otpVC.userModal = self.userModal;
-                    [self.navigationController pushViewController:otpVC animated:YES];
-                    
-                }
-                else
-                {
-                    if([responceDic objectForKey:kEY_Result])
-                    {
-                        [[GMSharedClass sharedClass] showErrorMessage:[responceDic objectForKey:kEY_Result]];
-                    }
-                    else
-                    {
-                         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-                    }
-                    
-                }
+        [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
+            
+            if([registrationResponse.flag isEqualToString:@"1"]) {
+                [self.userModal setOtp:[NSString stringWithFormat:@"%@", registrationResponse.otp]];
+                GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
+                otpVC.userModal = self.userModal;
+                [self.navigationController pushViewController:otpVC animated:YES];
             }
             else
-            {
-                if([responceDic objectForKey:kEY_Result])
-                {
-                    [[GMSharedClass sharedClass] showErrorMessage:[responceDic objectForKey:kEY_Result]];
-                }
-                else
-                {
-                     [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-                }
-                
-            }
+                [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
             
         } failureBlock:^(NSError *error) {
-             [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-            
+            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         }];
-        
     }
 }
 

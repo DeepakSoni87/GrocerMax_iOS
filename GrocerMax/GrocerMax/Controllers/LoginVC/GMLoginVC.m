@@ -82,7 +82,7 @@
 - (IBAction)forgotButtonPressed:(UIButton *)sender {
     
     GMForgotVC *forgotVC = [[GMForgotVC alloc] initWithNibName:@"GMForgotVC" bundle:nil];
-    [self flipVC:forgotVC to:UIViewAnimationTransitionFlipFromRight];
+    [self.navigationController pushViewController:forgotVC animated:YES];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
@@ -110,7 +110,8 @@
 - (IBAction)signUpButtonPressed:(UIButton *)sender {
     
     GMRegisterVC *registerVC = [[GMRegisterVC alloc] initWithNibName:@"GMRegisterVC" bundle:nil];
-    [self flipVC:registerVC to:UIViewAnimationTransitionFlipFromRight];
+    [self.navigationController pushViewController:registerVC animated:YES];
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 #pragma mark - Validations...

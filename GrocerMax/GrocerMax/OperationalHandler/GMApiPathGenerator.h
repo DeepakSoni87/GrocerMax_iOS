@@ -224,5 +224,9 @@
  **/
 + (NSString *)getLocationPath;
 
++ (NSString *)getStatePath;
+
++ (NSString *)getLocalityPath;
+
 
 @end

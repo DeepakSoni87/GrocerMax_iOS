@@ -8,19 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
+@class GMUserModal;
+@class UIViewController;
+
 @interface GMSharedClass : NSObject
 
 + (instancetype)sharedClass;
 
-- (void) showErrorMessage:(NSString*)message;
+- (void)showErrorMessage:(NSString*)message;
 
-- (void) showWarningMessage:(NSString*)message;
+- (void)showWarningMessage:(NSString*)message;
 
-- (void) showSuccessMessage:(NSString*)message;
+- (void)showSuccessMessage:(NSString*)message;
 
-- (void) showInfoMessage:(NSString*)message;
+- (void)showInfoMessage:(NSString*)message;
 
 + (BOOL)validateEmail:(NSString*)emailString;
 
 + (BOOL)validateMobileNumberWithString:(NSString*)mobile;
+
+- (BOOL)getUserLoggedStatus;
+
+- (void)setUserLoggedStatus:(BOOL)status;
+
+- (void)setTabBarVisible:(BOOL)visible ForController:(UIViewController *)controller animated:(BOOL)animated;
+
+- (void)saveLoggedInUserWithData:(NSData *)userData;
+
+- (GMUserModal *)getLoggedInUser;
+
 @end

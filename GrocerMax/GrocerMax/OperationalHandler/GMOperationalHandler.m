@@ -16,6 +16,13 @@
 #import "GMTimeSlotBaseModal.h"
 #import "GMProductModal.h"
 
+#import "GMAddressModal.h"
+
+#import "GMRegistrationResponseModal.h"
+#import "GMStateBaseModal.h"
+#import "GMLocalityBaseModal.h"
+
+
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
 
@@ -124,8 +131,8 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)createUser:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
-{
+- (void)createUser:(NSDictionary *)param withSuccessBlock:(void (^)(GMRegistrationResponseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator createUserPath],[GMRequestParams createUserParameter:param]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -133,19 +140,12 @@ static GMOperationalHandler *sharedHandler;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if (responseObject) {
-            
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
-        }
+        NSError *mtlError = nil;
+        
+        GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
+        
+        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+        else            { if (successBlock) successBlock(registrationResponse); }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -371,10 +371,15 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSError *mtlError = nil;
+            
+            GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(addressModal.addressArray);}
                 
-                if(successBlock) successBlock(responseObject);
-            }
+            
+           
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -992,8 +997,52 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
+#pragma mark - State Api
+
+- (void)getStateWithSuccessBlock:(void (^)(GMStateBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getStatePath]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *mtlError = nil;
+        
+        GMStateBaseModal *stateBaseModal = [MTLJSONAdapter modelOfClass:[GMStateBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+        
+        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+        else            { if (successBlock) successBlock(stateBaseModal); }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+#pragma mark - Locality Api
+
+- (void)getLocalitiesOfCity:(NSString *)cityId withSuccessBlock:(void (^)(GMLocalityBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
+    
+//    http://dev.grocermax.com/webservice/new_services/getlocality?cityid=1
+    NSString *urlStr = [NSString stringWithFormat:@"%@?cityid=%@", [GMApiPathGenerator getLocalityPath], cityId];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *mtlError = nil;
+        
+        GMLocalityBaseModal *localityBaseModal = [MTLJSONAdapter modelOfClass:[GMLocalityBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+        
+        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+        else            { if (successBlock) successBlock(localityBaseModal); }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
 @end
