@@ -17,6 +17,7 @@
 #import "GMOfferListVC.h"
 #import "GMHotDealVC.h"
 #import "GMDeliveryDetailVC.h"
+#import "GMBillingAddressVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -183,6 +184,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
+//    
+//    GMBillingAddressVC * billingAddressVC  = [GMBillingAddressVC new];
+//    [self.navigationController pushViewController:billingAddressVC animated:YES];
+//    return;
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
@@ -193,6 +198,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 }
 
 -(void)offerBtnPressedAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
@@ -200,18 +206,72 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 
 -(void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
 - (void)fetchAllCategories {
     
-    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-    NSLog(@"%@", mdl);
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
-    GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
-    self.categoriesArray = defaultCategory.subCategories;
-    self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
-    [self.tblView reloadData];
+    [self showProgress];
+    [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
+        
+        self.rootCategoryModal = rootCategoryModal;
+        [self categoryLevelCategorization];
+        [self.rootCategoryModal archiveRootCategory];
+        GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
+        NSLog(@"%@", mdl);
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
+        GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
+        self.categoriesArray = defaultCategory.subCategories;
+        self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
+        
+        [self.tblView reloadData];
+        
+        [self removeProgress];
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
+
+- (void)categoryLevelCategorization {
+    
+    GMCategoryModal *defaultCategory = self.rootCategoryModal.subCategories.firstObject;
+    [self createCategoryLevelArchitecturForDisplay:defaultCategory.subCategories];
+}
+
+- (void)createCategoryLevelArchitecturForDisplay:(NSArray *)menuArray {
+    
+    for (GMCategoryModal *categoryModal in menuArray) {
+        
+        [self updateExpandPropertyOfSubCategory:categoryModal];
+    }
+}
+
+- (void)updateExpandPropertyOfSubCategory:(GMCategoryModal *)categoryModal {
+    
+    if(categoryModal.subCategories.count) {
+        
+        BOOL expandStatus = [self checkIsCategoryExpanded:categoryModal.subCategories];
+        [categoryModal setIsExpand:expandStatus];
+        [self createCategoryLevelArchitecturForDisplay:categoryModal.subCategories]; // recursion for sub categories
+    }
+    else {
+        
+        [categoryModal setIsExpand:NO];
+        return;
+    }
+}
+
+// checking the two level categories count
+
+- (BOOL)checkIsCategoryExpanded:(NSArray *)subCategoryArray {
+    
+    GMCategoryModal *subCatModal = subCategoryArray.firstObject;
+    if(subCatModal.subCategories.count)
+        return YES;
+    else
+        return NO;
 }
 @end
