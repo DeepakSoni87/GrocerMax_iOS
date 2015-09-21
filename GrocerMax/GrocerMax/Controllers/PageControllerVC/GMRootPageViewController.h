@@ -11,5 +11,6 @@
 @interface GMRootPageViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *pageData;
+@property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
 
 @end

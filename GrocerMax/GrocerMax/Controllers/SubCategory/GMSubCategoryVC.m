@@ -10,6 +10,7 @@
 #import "GMSubCategoryHeaderView.h"
 #import "GMCategoryModal.h"
 #import "GMSubCategoryCell.h"
+#import "GMRootPageViewController.h"
 
 static NSString *kIdentifierSubCategoryHeader = @"subcategoryIdentifierHeader";
 static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
@@ -182,9 +183,16 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];;
     
     GMCategoryModal *categoryModal1 = [categoryModal.subCategories objectAtIndex:btnTag];
-//Rahut put your code here
+    //Rahut put your code here
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal1.subCategories];
+    [arr insertObject:categoryModal1 atIndex:0];
+    
+    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+    rootVC.pageData = arr;
+    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+    [self.navigationController pushViewController:rootVC animated:YES];
 }
-
 
 
 @end

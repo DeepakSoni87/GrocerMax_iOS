@@ -7,6 +7,8 @@
 //
 
 #import "GMOffersCollectionViewCell.h"
+#import "GMProductModal.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface GMOffersCollectionViewCell ()
 
@@ -28,7 +30,10 @@
 
 -(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
     
+    GMProductModal *mdl = data;
     
+    [self.itemImgView setImageWithURL:[NSURL URLWithString:mdl.image] placeholderImage:[UIImage imageNamed:@"STAPLES"]];
+
     NSDictionary* style1 = @{
                              NSFontAttributeName:FONT_LIGHT(13),
                              NSForegroundColorAttributeName : [UIColor whiteColor]
@@ -39,9 +44,9 @@
                              NSForegroundColorAttributeName : [UIColor lightGrayColor]
                              };
     
-    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:@"Buy 1 Get 1 Free \n" attributes:style1];
+    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:mdl.name attributes:style1];
     
-    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"Maaza" attributes:style2]];
+    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
     
     self.itemName.attributedText = attString1;
 }
