@@ -44,7 +44,7 @@
                         <constraint firstAttribute="trailing" secondItem="aqW-YR-5GO" secondAttribute="trailing" id="tQO-yy-4sF"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pagingImage" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-N9-7lH">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progress-bar-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-N9-7lH">
                     <rect key="frame" x="100" y="3" width="120" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="EXm-Kf-i5X"/>
@@ -70,6 +70,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pagingImage" width="300" height="27"/>
+        <image name="progress-bar-2" width="142" height="12"/>
     </resources>
 </document>

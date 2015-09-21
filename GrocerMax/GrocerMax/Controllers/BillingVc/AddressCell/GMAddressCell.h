@@ -11,8 +11,8 @@
 @interface GMAddressCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
 @property (strong, nonatomic) IBOutlet UILabel *addressLbl;
-@property (strong, nonatomic) IBOutlet UIButton *editAddressBtn;
-@property (strong, nonatomic) IBOutlet UIButton *selectUnSelectBtn;
+@property (strong, nonatomic) IBOutlet GMButton *editAddressBtn;
+@property (strong, nonatomic) IBOutlet GMButton *selectUnSelectBtn;
 
 
 - (void)configerViewWithData:(id)modal;

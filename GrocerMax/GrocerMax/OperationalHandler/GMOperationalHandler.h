@@ -10,6 +10,7 @@
 
 @class GMCategoryModal;
 @class GMTimeSlotBaseModal;
+@class GMAddressModal;
 
 @interface GMOperationalHandler : NSObject
 
