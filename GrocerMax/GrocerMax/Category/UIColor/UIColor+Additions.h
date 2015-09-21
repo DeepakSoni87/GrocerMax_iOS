@@ -17,4 +17,6 @@
 + (UIColor *)inputTextFieldWarningColor;
 
 + (UIColor *) colorFromHexString:(NSString *)hexString;
+
++ (UIColor *)inputTextFieldDisableColor;
 @end

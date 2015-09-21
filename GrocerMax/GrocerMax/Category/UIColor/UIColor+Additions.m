@@ -23,16 +23,6 @@
     return [self initWithRed:r green:g blue:b alpha:1.0f];
 }
 
-+ (UIColor *)inputTextFieldColor {
-    
-    return [UIColor colorWithRGBValue:29.0 green:29.0 blue:29.0];
-}
-
-+ (UIColor *)inputTextFieldWarningColor {
-    
-    return [UIColor colorWithRGBValue:208.0 green:79.0 blue:59.0];
-}
-
 + (UIColor *) colorFromHexString:(NSString *)hexString {
     
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
@@ -56,4 +46,20 @@
     
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
+
++ (UIColor *)inputTextFieldColor {
+    
+    return [UIColor colorWithRGBValue:29.0 green:29.0 blue:29.0];
+}
+
++ (UIColor *)inputTextFieldWarningColor {
+    
+    return [UIColor colorWithRGBValue:208.0 green:79.0 blue:59.0];
+}
+
++ (UIColor *)inputTextFieldDisableColor {
+    return [UIColor colorWithRGBValue:233.0 green:233.0 blue:233.0];
+}
+
+
 @end

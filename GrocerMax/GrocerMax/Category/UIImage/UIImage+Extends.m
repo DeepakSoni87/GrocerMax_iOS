@@ -10,6 +10,7 @@
 
 static NSString * const kValidInputImage                 = @"check";
 static NSString * const kInValidInputImage               = @"error";
+static NSString * const kForwardArrowImage               = @"forward_caret";
 
 @implementation UIImage (Extends)
 
@@ -23,6 +24,11 @@ static NSString * const kInValidInputImage               = @"error";
 + (UIImage *)inValidInputFieldImage {
     
     return [[UIImage imageNamed:kInValidInputImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)forwardArrowImage {
+    
+    return [[UIImage imageNamed:kForwardArrowImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 @end

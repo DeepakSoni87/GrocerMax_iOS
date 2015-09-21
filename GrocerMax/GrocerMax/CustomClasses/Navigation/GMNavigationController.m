@@ -15,8 +15,7 @@
 @implementation GMNavigationController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     __weak GMNavigationController *weakSelf = self;
@@ -28,7 +27,7 @@
     
     [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                [UIFont fontWithName:@"" size:15.0f], NSFontAttributeName, nil]];
+                                                FONT_REGULAR(17), NSFontAttributeName, nil]];
     self.navigationBar.translucent = NO;
     
     

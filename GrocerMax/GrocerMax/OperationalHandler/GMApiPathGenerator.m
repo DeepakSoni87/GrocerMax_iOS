@@ -40,7 +40,8 @@ static NSString const *successMethodName = @"success";
 static NSString const *failMethodName = @"fail";
 static NSString const *addToCartGustMethodName = @"addtocartgust";
 static NSString const *getLocationMethodName = @"getlocation";
-
+static NSString const *getStateMethodName = @"getstate";
+static NSString const *getLocalityMethodName = @"getlocality";
 
 
 @implementation GMApiPathGenerator
@@ -201,7 +202,15 @@ static NSString const *getLocationMethodName = @"getlocation";
     return [NSString stringWithFormat:@"%@%@", baseUrl, getLocationMethodName];
 }
 
++ (NSString *)getStatePath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, getStateMethodName];
+}
 
++ (NSString *)getLocalityPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, getLocalityMethodName];
+}
 
 @end
 
