@@ -45,6 +45,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="STAPLES" width="736" height="416"/>
+        <image name="STAPLES" width="576" height="576"/>
     </resources>
 </document>

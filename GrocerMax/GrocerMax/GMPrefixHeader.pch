@@ -17,6 +17,7 @@
 #import "GMSharedClass.h"
 #import "GMOperationalHandler.h"
 #import "GMRequestParams.h"
+#import "GMEnums.h"
 
 // ThirdParty/POD
 #import "RZErrorMessenger.h"
@@ -25,6 +26,7 @@
 #import "UIViewController+GMProgressIndicator.h"
 #import "UIColor+Additions.h"
 #import "UIImage+Extends.h"
+#import "UIImageView+AFNetworking.h"
 
 #import "GMEnums.h"
 #import "XHDrawerController.h"

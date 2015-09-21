@@ -14,4 +14,11 @@ typedef NS_ENUM(NSInteger, GMGenderType) {
     GMGenderTypeFemale
 };
 
+
+typedef NS_ENUM(NSInteger, GMRootPageViewControllerType) {
+    GMRootPageViewControllerTypeProductlisting,
+    GMRootPageViewControllerTypeOffersListing
+};
+
+
 #endif

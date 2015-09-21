@@ -12,7 +12,7 @@
 
 NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
-@interface GMOffersVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface GMOffersVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *offersCollectionView;
 
@@ -22,7 +22,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view from its
     
     [self configureUI];
 }
@@ -34,6 +34,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     self.offersCollectionView.delegate = self;
     self.offersCollectionView.dataSource = self;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -62,6 +63,11 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectItemAtIndexPath");
+}
+
+- (void) collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   
 }
 
 
