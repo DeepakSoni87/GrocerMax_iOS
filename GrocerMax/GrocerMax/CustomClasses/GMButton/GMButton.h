@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GMTimeSloteModal.h"
+#import "GMAddressModal.h"
 
 @interface GMButton : UIButton
 
 @property (nonatomic, strong) GMTimeSloteModal *timeSlotModal;
+
+@property (nonatomic, strong) GMAddressModalData *addressModal;
 @end

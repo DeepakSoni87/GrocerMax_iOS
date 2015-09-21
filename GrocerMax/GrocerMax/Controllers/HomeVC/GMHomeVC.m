@@ -17,6 +17,7 @@
 #import "GMOfferListVC.h"
 #import "GMHotDealVC.h"
 #import "GMDeliveryDetailVC.h"
+#import "GMBillingAddressVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -37,8 +38,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self addLeftMenuButton];
     [self fetchAllCategories];
-
+    
     [self registerCellsForTableView];
     [self configureUI];
 }
@@ -51,11 +53,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - configureUI
 
 -(void) configureUI{
-
+    
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
     self.tblView.tableFooterView = [UIView new];
-
+    
     
 }
 
@@ -181,10 +183,22 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - Categories cell Delegate
 
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
+//    
+//    GMBillingAddressVC * billingAddressVC  = [GMBillingAddressVC new];
+//    [self.navigationController pushViewController:billingAddressVC animated:YES];
+//    return;
+    GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
+    
+    GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
+    categoryVC.rootCategoryModal = catModal;
+    [self.navigationController pushViewController:categoryVC animated:YES];
+    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
 -(void)offerBtnPressedAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
@@ -192,10 +206,12 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 
 -(void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
 - (void)fetchAllCategories {
+    
     
     [self showProgress];
     [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {

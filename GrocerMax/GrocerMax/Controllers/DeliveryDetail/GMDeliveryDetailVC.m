@@ -215,15 +215,17 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
         NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
     
         [dataDic setObject:@"321" forKey:kEY_userid];
-        
+        [self showProgress];
         [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
              self.timeSlotBaseModal = responceData;
             NSArray *array = self.timeSlotBaseModal.timeSlotArray;
             [self setDataInArray:array];
             [self.timeSloteTableView reloadData];
+            [self removeProgress];
             
         } failureBlock:^(NSError *error) {
             [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+            [self removeProgress];
             
         }];
 }

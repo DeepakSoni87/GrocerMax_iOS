@@ -12,8 +12,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.cellBgView.layer.borderWidth =0.70f;
-    self.cellBgView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.cellBgView.layer.borderColor = [UIColor colorWithRed:216.0/256.0 green:216.0/256.0 blue:216.0/256.0 alpha:1].CGColor;
+    self.cellBgView.layer.borderWidth = 2.0;
+    self.cellBgView.layer.cornerRadius = 4.0;
+    
+    [self setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -24,12 +27,35 @@
 
 - (void)configerViewWithData:(id)modal {
     
+    GMAddressModalData *addressModalData = (GMAddressModalData *)modal;
+    self.selectUnSelectBtn.addressModal = addressModalData;
+    self.editAddressBtn.addressModal = addressModalData;
+    
+    if(addressModalData.isSelected)
+    {
+        self.selectUnSelectBtn.selected = YES;
+    }
+    else
+    {
+        self.selectUnSelectBtn.selected = NO;
+    }
+    
     NSString *mainStrign= @"";
     
-    NSString *str1 = @"Home";
+    
+    NSString *str1 = @"";
+    
+    if([addressModalData.userType isEqualToString:@"individual"])
+    {
+        str1 = @"Home";
+    }
+    else
+    {
+        str1 = @"Work";
+    }
         mainStrign = [NSString stringWithFormat:@"%@",str1];
     
-    NSString *str2 = @"B - 323, Columbia Blvd W, Near 7/11, Lethbridge, T1k4B8";
+    NSString *str2 = addressModalData.street;;
     
         mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
    
@@ -39,7 +65,7 @@
     
     
     
-    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17.0]} range:[mainStrign rangeOfString:str2]];
+    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
     
     
     [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
