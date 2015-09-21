@@ -12,7 +12,7 @@
 #import "GMProfileVC.h"
 #import "GMHotDealVC.h"
 #import "GMCartVC.h"
-
+#import "GMLoginVC.h"
 
 @interface GMTabBarVC ()
 
@@ -41,14 +41,12 @@
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     self.tabBar.tintColor = [UIColor yellowColor];
     self.tabBar.clipsToBounds = YES;
-
     
     GMHomeVC *homeVC = [[GMHomeVC alloc] initWithNibName:@"GMHomeVC" bundle:nil];
     UIImage *homeVCTabImg = [[UIImage imageNamed:@"home_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *homeVCTabSelectedImg = [[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:homeVCTabImg selectedImage:homeVCTabSelectedImg];
     GMNavigationController *homeVCNavController = [[GMNavigationController alloc] initWithRootViewController:homeVC];
-    homeVCNavController.navigationBarHidden = YES;
     
     
     GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
@@ -56,8 +54,6 @@
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
     GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:profileVC];
-    profileVCNavController.navigationBarHidden = YES;
-
     
     
     GMHotDealVC *hotDealVC = [[GMHotDealVC alloc] initWithNibName:@"GMHotDealVC" bundle:nil];
@@ -65,16 +61,12 @@
     UIImage *hotDealVCSelectedImg = [[UIImage imageNamed:@"offer_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     hotDealVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:hotDealVCTabImg selectedImage:hotDealVCSelectedImg];
     GMNavigationController *hotDealVCNavController = [[GMNavigationController alloc] initWithRootViewController:hotDealVC];
-    hotDealVCNavController.navigationBarHidden = YES;
-
-    
     
     GMCartVC *cartVC = [[GMCartVC alloc] initWithNibName:@"GMCartVC" bundle:nil];
     UIImage *cartVCTabImg = [[UIImage imageNamed:@"cart_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
-    cartVCNavController.navigationBarHidden = YES;
 
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController];
 }

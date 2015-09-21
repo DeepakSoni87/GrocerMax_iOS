@@ -10,6 +10,9 @@
 
 @class GMCategoryModal;
 @class GMTimeSlotBaseModal;
+@class GMRegistrationResponseModal;
+@class GMStateBaseModal;
+@class GMLocalityBaseModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -34,7 +37,7 @@
  * Function for Create New User
  * @param
  **/
-- (void)createUser:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)createUser:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal *registrationResponse))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Get User Details
@@ -204,5 +207,17 @@
  * @param
  **/
 - (void)getLocation:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for Get State
+ * @param
+ **/
+- (void)getStateWithSuccessBlock:(void(^)(GMStateBaseModal *stateBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for Get Locality
+ * @param
+ **/
+- (void)getLocalitiesOfCity:(NSString *)cityId withSuccessBlock:(void(^)(GMLocalityBaseModal *localityBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 @end

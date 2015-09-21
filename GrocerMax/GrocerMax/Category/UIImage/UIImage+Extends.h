@@ -13,4 +13,6 @@
 + (UIImage *)validInputFieldImage;
 
 + (UIImage *)inValidInputFieldImage;
+
++ (UIImage *)forwardArrowImage;
 @end

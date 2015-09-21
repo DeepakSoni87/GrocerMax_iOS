@@ -44,7 +44,7 @@
 
     
     GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
-    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[[GMNavigationController alloc] initWithRootViewController:[GMHomeVC new]] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
+    self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:[GMTabBarVC new] leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
     self.drawerController.maximumLeftDrawerWidth = 260.0;
     
     self.navController.navigationBarHidden = YES;
