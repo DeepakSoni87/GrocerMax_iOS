@@ -171,10 +171,17 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     }
     else
     {
+        //Rahut put your code here
+        
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal.subCategories];
+        [arr insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = arr;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        [self.navigationController pushViewController:rootVC animated:YES];
         
     }
-    
-    
 }
 
 -(void)actionSubCategoryBtnClicked:(UIButton *)sender {
