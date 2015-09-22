@@ -7,12 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "drawer-back@2x.png"
+      "filename" : "drawer-minus@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "drawer-back@3x.png"
+      "filename" : "drawer-minus@3x.png"
     }
   ],
   "info" : {

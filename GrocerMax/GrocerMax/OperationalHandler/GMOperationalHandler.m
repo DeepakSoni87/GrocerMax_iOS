@@ -55,7 +55,7 @@ static GMOperationalHandler *sharedHandler;
 //http://dev.grocermax.com/webservice/new_services/login?uemail=kundan@sakshay.in&password=sakshay
 
 - (void)login:(NSDictionary *)param withSuccessBlock:(void (^)(GMUserModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
-
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator userLoginPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -296,10 +296,13 @@ static GMOperationalHandler *sharedHandler;
     
 }
 
+#pragma mark - Add Address Api
 
-- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void (^)(BOOL))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator addAddressPath],[GMRequestParams addAndEditAddressParameter:param]];
+    //    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator addAddressPath],[GMRequestParams addAndEditAddressParameter:param]];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addAddressPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -313,7 +316,11 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                if(HAS_KEY(responseObject, @"AddressId"))  {
+                    if(successBlock) successBlock(YES);
+                }
+                else
+                    if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : responseObject[kEY_Result]}]);
             }
         }else {
             
@@ -325,6 +332,7 @@ static GMOperationalHandler *sharedHandler;
     
 }
 
+#pragma mark - Edit Address Api
 
 - (void)editAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
@@ -376,9 +384,9 @@ static GMOperationalHandler *sharedHandler;
             
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
             else            { if (successBlock) successBlock(addressModal.addressArray);}
-                
             
-           
+            
+            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -507,8 +515,8 @@ static GMOperationalHandler *sharedHandler;
                 
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(productListingModal); }
-
-        }
+                
+            }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -1025,7 +1033,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)getLocalitiesOfCity:(NSString *)cityId withSuccessBlock:(void (^)(GMLocalityBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-//    http://dev.grocermax.com/webservice/new_services/getlocality?cityid=1
+    //    http://dev.grocermax.com/webservice/new_services/getlocality?cityid=1
     NSString *urlStr = [NSString stringWithFormat:@"%@?cityid=%@", [GMApiPathGenerator getLocalityPath], cityId];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -36,6 +36,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
 }
 
 - (void)configureView{

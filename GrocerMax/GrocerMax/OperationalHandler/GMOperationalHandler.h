@@ -76,7 +76,7 @@
  * Function for Add User Address
  * @param
  **/
-- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void(^)(BOOL success))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Edit User Address

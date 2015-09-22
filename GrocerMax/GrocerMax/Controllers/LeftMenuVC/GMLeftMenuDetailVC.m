@@ -153,7 +153,7 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
         [self.navigationController popToRootViewControllerAnimated:YES];
         [APP_DELEGATE setTopVCOnCenterOfDrawerController:rootVC];
     }
-    //    [filterCell.expandButton setSelected:categoryModal.isSelected];
+    [filterCell.expandButton setSelected:categoryModal.isSelected];
 }
 
 

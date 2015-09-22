@@ -19,29 +19,33 @@
                         <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-9N-py7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-9N-py7">
                         <rect key="frame" x="300" y="16" width="5" height="8"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="5" id="KjE-Ni-9qQ"/>
                             <constraint firstAttribute="height" constant="8" id="g6b-84-xX8"/>
                         </constraints>
                     </imageView>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_plus" translatesAutoresizingMaskIntoConstraints="NO" id="XXf-EI-S43">
-                        <rect key="frame" x="296" y="15" width="9" height="9"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuO-Hm-xuF">
+                        <rect key="frame" x="290" y="12" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="9" id="g7C-MP-SWz"/>
-                            <constraint firstAttribute="width" constant="9" id="wvD-il-035"/>
+                            <constraint firstAttribute="width" constant="15" id="SMX-AA-Y52"/>
+                            <constraint firstAttribute="height" constant="15" id="xFh-TH-lSR"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" image="left_plus">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="left_minus"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5C7-da-3AW"/>
                     <constraint firstItem="RyZ-9N-py7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ko6-c2-Iuv"/>
                     <constraint firstItem="RyZ-9N-py7" firstAttribute="leading" secondItem="xrl-dR-bLo" secondAttribute="trailing" constant="15" id="MKA-LH-rV2"/>
-                    <constraint firstItem="XXf-EI-S43" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="fLO-05-xbH"/>
+                    <constraint firstAttribute="trailing" secondItem="SuO-Hm-xuF" secondAttribute="trailing" constant="15" id="aN6-KJ-1EH"/>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hti-sr-zvP"/>
                     <constraint firstAttribute="trailing" secondItem="RyZ-9N-py7" secondAttribute="trailing" constant="15" id="jka-8f-MYB"/>
-                    <constraint firstAttribute="trailing" secondItem="XXf-EI-S43" secondAttribute="trailing" constant="15" id="ssH-P3-zIX"/>
+                    <constraint firstItem="SuO-Hm-xuF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="wIQ-fU-vJg"/>
                     <constraint firstAttribute="bottom" secondItem="xrl-dR-bLo" secondAttribute="bottom" id="xBM-AF-zhe"/>
                 </constraints>
             </tableViewCellContentView>
@@ -49,13 +53,15 @@
             <connections>
                 <outlet property="arrowImageView" destination="RyZ-9N-py7" id="Ol2-Tm-cr2"/>
                 <outlet property="categoryNameLabel" destination="xrl-dR-bLo" id="elT-4m-i5c"/>
-                <outlet property="expandArrowImageView" destination="XXf-EI-S43" id="cV0-U9-OMQ"/>
+                <outlet property="expandButton" destination="SuO-Hm-xuF" id="Pgu-AA-wQY"/>
                 <outlet property="leftMarginConstraint" destination="5C7-da-3AW" id="7yk-ZG-a08"/>
             </connections>
             <point key="canvasLocation" x="290" y="248"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="left_arrow" width="5" height="8"/>
+        <image name="left_minus" width="9" height="1"/>
         <image name="left_plus" width="9" height="9"/>
     </resources>
 </document>
