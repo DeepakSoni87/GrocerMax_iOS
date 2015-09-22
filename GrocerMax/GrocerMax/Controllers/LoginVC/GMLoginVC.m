@@ -94,10 +94,13 @@
         NSDictionary *param = [[GMRequestParams sharedClass] getUserLoginRequestParamsWith:self.txt_email.text password:self.txt_password.text] ;
         
         [self showProgress];
-        [[GMOperationalHandler handler] login:param withSuccessBlock:^(id loggedInUser) {
+        [[GMOperationalHandler handler] login:param withSuccessBlock:^(GMUserModal *userModal) {
             
             [self removeProgress];
-            // do work here
+            [userModal setEmail:self.txt_email.text];
+            [userModal persistUser];
+            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
 
         } failureBlock:^(NSError *error) {
             

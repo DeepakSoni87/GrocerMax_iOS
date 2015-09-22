@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GMUserModal : NSObject
+@interface GMUserModal : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, readonly, strong) NSString *firstName;
 
@@ -26,9 +26,14 @@
 
 @property (nonatomic, readonly, strong) NSString *userId;
 
+@property (nonatomic, readonly, strong) NSString *quoteId;
+
+@property (nonatomic, readonly, strong) NSNumber *totalItem;
+
 @property (nonatomic, readonly, strong) NSString *newpassword;
 
 @property (nonatomic, readonly, strong) NSString *conformPassword;
+
 
 - (void)setFirstName:(NSString *)firstName;
 
@@ -45,6 +50,10 @@
 - (void)setOtp:(NSString *)otp;
 
 - (void)setUserId:(NSString *)userId;
+
+- (void)setQuoteId:(NSString *)quoteId;
+
+- (void)setTotalItem:(NSNumber *)totalItem;
 
 - (void)setNewpassword:(NSString *)newpassword;
 

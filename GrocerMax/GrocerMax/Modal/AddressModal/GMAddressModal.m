@@ -11,17 +11,33 @@
 @interface GMAddressModal()
 
 @property (nonatomic, readwrite, strong) NSArray *addressArray;
+
+@property (nonatomic, readwrite, strong) NSArray *billingAddressArray;
+
+@property (nonatomic, readwrite, strong) NSArray *shippingAddressArray;
 @end
 
 @implementation GMAddressModal
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"addressArray"                  : @"BillingAddress"
+    return @{@"addressArray"                  : @"Address",
+             @"billingAddressArray"           : @"BillingAddress",
+             @"shippingAddressArray"          : @"ShippingAddress"
              };
 }
 
 + (NSValueTransformer *)addressArrayJSONTransformer {
+    
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMAddressModalData class]];
+}
+
++ (NSValueTransformer *)billingAddressArrayJSONTransformer {
+    
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMAddressModalData class]];
+}
+
++ (NSValueTransformer *)shippingAddressArrayJSONTransformer {
     
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMAddressModalData class]];
 }
@@ -53,5 +69,22 @@
              };
 }
 
+- (instancetype)initWithUserModal:(GMUserModal *)userModal {
+    
+    if(self = [super init]) {
+        
+        _firstName = [self getValidString:userModal.firstName];
+        _lastName = [self getValidString:userModal.lastName];
+        _telephone = [self getValidString:userModal.mobile];
+    }
+    return self;
+}
 
+- (NSString *)getValidString:(NSString *)str {
+    
+    if(NSSTRING_HAS_DATA(str))
+        return str;
+    else
+        return @"";
+}
 @end

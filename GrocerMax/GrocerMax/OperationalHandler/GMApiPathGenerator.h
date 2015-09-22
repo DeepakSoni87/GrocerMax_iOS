@@ -228,5 +228,7 @@
 
 + (NSString *)getLocalityPath;
 
++ (NSString *)userCategoryPath;
+
 
 @end

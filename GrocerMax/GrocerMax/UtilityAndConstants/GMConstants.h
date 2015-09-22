@@ -78,6 +78,7 @@
 #define kEY_addressid                      @"addressid"
 #define kEY_addressline1                   @"addressline1"
 #define kEY_addressline2                   @"addressline2"
+#define kEY_addressline3                   @"addressline3"
 #define kEY_city                           @"city"
 #define kEY_state                          @"state"
 #define kEY_pin                            @"pin"
@@ -87,6 +88,7 @@
 #define kEY_phone                          @"phone"
 #define kEY_default_billing                @"default_billing"
 #define kEY_default_shipping               @"default_shipping"
+#define kEY_cityId                         @"cityid"
 
 //key : category
 

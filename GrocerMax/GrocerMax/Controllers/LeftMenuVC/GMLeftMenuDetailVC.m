@@ -8,6 +8,7 @@
 
 #import "GMLeftMenuDetailVC.h"
 #import "GMLeftMenuCell.h"
+#import "GMRootPageViewController.h"
 
 @interface GMLeftMenuDetailVC () <UITableViewDataSource, UITableViewDelegate>
 
@@ -39,7 +40,7 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
 - (void)configureUI {
     
     [self.categoryNameLabel setText:self.subCategoryModal.categoryName];
-
+    
 }
 
 - (void)registerCellsForTableView {
@@ -81,7 +82,7 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
         [self updateLevelsInMenuArray:self.subCategoryModal.subCategories];
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
         NSMutableArray *activeCategoriesArr = [NSMutableArray arrayWithArray:[self.subCategoryModal.subCategories filteredArrayUsingPredicate:pred]];
-
+        
         _menuCategorizationArray = [NSMutableArray arrayWithArray:activeCategoriesArr];
     }
     return _menuCategorizationArray;
@@ -143,8 +144,16 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
     }
     else {
         
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal.subCategories];
+        [arr insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = arr;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [APP_DELEGATE setTopVCOnCenterOfDrawerController:rootVC];
     }
-//    [filterCell.expandButton setSelected:categoryModal.isSelected];
+    //    [filterCell.expandButton setSelected:categoryModal.isSelected];
 }
 
 
@@ -161,9 +170,9 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
         if([self.menuCategorizationArray indexOfObjectIdenticalTo:subCategoryModal]!=NSNotFound) {
             [self.menuCategorizationArray removeObjectIdenticalTo:subCategoryModal];
             [self.categoryDetailTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:
-                                                              [NSIndexPath indexPathForRow:indexToRemove inSection:0]
-                                                              ]
-                                            withRowAnimation:UITableViewRowAnimationFade];
+                                                                  [NSIndexPath indexPathForRow:indexToRemove inSection:0]
+                                                                  ]
+                                                withRowAnimation:UITableViewRowAnimationFade];
         }
     }
 }
