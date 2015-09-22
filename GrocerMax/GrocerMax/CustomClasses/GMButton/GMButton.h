@@ -15,4 +15,6 @@
 @property (nonatomic, strong) GMTimeSloteModal *timeSlotModal;
 
 @property (nonatomic, strong) GMAddressModalData *addressModal;
+
+@property (nonatomic, strong) GMCityModal *cityModal;
 @end
