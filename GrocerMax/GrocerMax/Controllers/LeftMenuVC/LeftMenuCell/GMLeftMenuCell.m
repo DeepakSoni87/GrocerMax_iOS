@@ -14,8 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *expandArrowImageView;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginConstraint;
 
 @end
@@ -27,20 +25,20 @@ NSUInteger const leftMargin = 15;
 - (void)configureWithCategoryName:(NSString *)categoryName {
     
     [self.categoryNameLabel setText:categoryName];
-    [self.expandArrowImageView setHidden:NO];
-//    [self.arrowImageView setHidden:NO];
+    [self.expandButton setHidden:YES];
+    [self.arrowImageView setHidden:NO];
 }
 
 - (void)configureCellWith:(GMCategoryModal *)categoryModal {
     
     [self.arrowImageView setHidden:YES];
     [self.categoryNameLabel setText:categoryModal.categoryName];
-    [self.expandArrowImageView setHighlighted:categoryModal.isExpand];
+    [self.expandButton setSelected:!categoryModal.isExpand];
     [self setIdentationLevelOfCustomCell:categoryModal.indentationLevel];
     if(categoryModal.isExpand)
-        [self.expandArrowImageView setHidden:NO];
+        [self.expandButton setHidden:NO];
     else
-        [self.expandArrowImageView setHidden:YES];
+        [self.expandButton setHidden:YES];
 }
 
 - (void)setIdentationLevelOfCustomCell:(NSUInteger)level {

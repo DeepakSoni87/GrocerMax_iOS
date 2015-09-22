@@ -700,9 +700,13 @@ static GMRequestParams *sharedClass;
     
 }
 
-- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal {
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress {
     
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionary];
+    if(!isNewAddress)
+        [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.customer_address_id] forKey:kEY_addressid];
+    [addressDictionary setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.firstName] forKey:kEY_fname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.lastName] forKey:kEY_lname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];

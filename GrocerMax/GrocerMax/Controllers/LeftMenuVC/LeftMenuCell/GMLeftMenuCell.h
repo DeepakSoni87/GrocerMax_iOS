@@ -11,6 +11,9 @@
 
 @interface GMLeftMenuCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *expandButton;
+
+
 - (void)configureWithCategoryName:(NSString *)categoryName;
 
 - (void)configureCellWith:(GMCategoryModal *)categoryModal;

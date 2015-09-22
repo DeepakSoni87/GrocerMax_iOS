@@ -23,10 +23,10 @@
                     <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AG-ws-VfI">
-                            <rect key="frame" x="5" y="0.0" width="44" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="44" id="Un5-mH-d5m"/>
-                                <constraint firstAttribute="height" constant="50" id="icD-wn-M5Z"/>
+                                <constraint firstAttribute="height" constant="50" id="cYg-3A-ych"/>
+                                <constraint firstAttribute="width" constant="44" id="jnF-sa-Pvx"/>
                             </constraints>
                             <state key="normal" image="left_back">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,8 +35,11 @@
                                 <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="CSc-7K-ZGM"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STAPLES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcT-wo-1MY">
-                            <rect key="frame" x="60" y="0.0" width="245" height="50"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STAPLES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcT-wo-1MY">
+                            <rect key="frame" x="45" y="0.0" width="267" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="oJ8-tU-b6y"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -45,8 +48,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="71c-Ci-m3D"/>
-                        <constraint firstItem="6AG-ws-VfI" firstAttribute="top" secondItem="4iG-3Z-26h" secondAttribute="top" id="Biw-BI-P4o"/>
-                        <constraint firstItem="6AG-ws-VfI" firstAttribute="leading" secondItem="4iG-3Z-26h" secondAttribute="leading" constant="5" id="xVe-e1-cvW"/>
+                        <constraint firstItem="6AG-ws-VfI" firstAttribute="top" secondItem="4iG-3Z-26h" secondAttribute="top" id="DEh-gf-HJD"/>
+                        <constraint firstItem="6AG-ws-VfI" firstAttribute="leading" secondItem="4iG-3Z-26h" secondAttribute="leading" id="FLZ-XD-XNd"/>
+                        <constraint firstItem="dcT-wo-1MY" firstAttribute="leading" secondItem="6AG-ws-VfI" secondAttribute="trailing" constant="1" id="QJ0-HT-4eh"/>
+                        <constraint firstAttribute="trailing" secondItem="dcT-wo-1MY" secondAttribute="trailing" constant="8" id="eB4-Ys-7DV"/>
+                        <constraint firstItem="dcT-wo-1MY" firstAttribute="top" secondItem="4iG-3Z-26h" secondAttribute="top" id="lPY-gT-8Yx"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rbs-wQ-gYe">
@@ -78,6 +84,6 @@
     </objects>
     <resources>
         <image name="drawerBg" width="246" height="568"/>
-        <image name="left_back" width="17" height="16"/>
+        <image name="left_back" width="15" height="14"/>
     </resources>
 </document>
