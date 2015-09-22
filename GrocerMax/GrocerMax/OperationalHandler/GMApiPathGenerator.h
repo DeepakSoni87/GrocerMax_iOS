@@ -228,5 +228,36 @@
 
 + (NSString *)getLocalityPath;
 
+/**
+ * Function for shop by Catalog Listing
+ * @param
+ * @Return shopbyCategoryPath
+ */
+
++ (NSString *)shopbyCategoryPath;
+
+/**
+ * Function for shop by Catalog Listing
+ * @param GET Var page, cat_id
+ * @output shopByDealTypePath
+ */
+
++ (NSString *)shopByDealTypePath;
+
+/**
+ * Function for Deals by deal type  Listing
+ * @param GET Var page, deal_type_id
+ * @output dealsbydealtypePath
+ */
+
++ (NSString *)dealsbydealtypePath;
+
+/**
+ * Function for Deal Catalog Listing
+ * @param GET Var page, deal_id
+ * @output dealProductListingPath
+ */
+
++ (NSString *)dealProductListingPath;
 
 @end

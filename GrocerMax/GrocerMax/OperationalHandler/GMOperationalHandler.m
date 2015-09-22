@@ -21,7 +21,7 @@
 #import "GMRegistrationResponseModal.h"
 #import "GMStateBaseModal.h"
 #import "GMLocalityBaseModal.h"
-
+#import "GMProductDetailModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -538,7 +538,14 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSError *mtlError = nil;
+                
+                GMProductDetailBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductDetailBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(productListingModal); }
+                
+
             }
         }else {
             
@@ -1045,4 +1052,115 @@ static GMOperationalHandler *sharedHandler;
         if(failureBlock) failureBlock(error);
     }];
 }
+
+
+- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopbyCategoryPath],[GMRequestParams shopbyCategoryParameter:param]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                if(successBlock) successBlock(responseObject);
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopByDealTypePath],[GMRequestParams shopByDealTypeParameter:param]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                if(successBlock) successBlock(responseObject);
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealsbydealtypePath],[GMRequestParams dealsByDealTypeParameter:param]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                if(successBlock) successBlock(responseObject);
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealProductListingPath],[GMRequestParams dealProductListingParameter:param]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                if(successBlock) successBlock(responseObject);
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+
 @end

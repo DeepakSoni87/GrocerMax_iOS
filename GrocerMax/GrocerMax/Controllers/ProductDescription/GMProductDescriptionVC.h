@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMProductModal.h"
 
 @interface GMProductDescriptionVC : UIViewController
+
+@property (strong, nonatomic) GMProductModal *modal;
 
 @end

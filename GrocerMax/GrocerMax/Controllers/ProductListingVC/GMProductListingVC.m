@@ -8,6 +8,7 @@
 
 #import "GMProductListingVC.h"
 #import "GMProductListTableViewCell.h"
+#import "GMProductDescriptionVC.h"
 
 NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
@@ -76,6 +77,13 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 120;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+    vc.modal = self.productBaseModal.productsListArray[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - scrollView Delegate

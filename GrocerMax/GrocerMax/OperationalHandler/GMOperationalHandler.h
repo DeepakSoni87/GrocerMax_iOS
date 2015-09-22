@@ -223,4 +223,29 @@
  **/
 - (void)getLocalitiesOfCity:(NSString *)cityId withSuccessBlock:(void(^)(GMLocalityBaseModal *localityBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
+/**
+ * Function for shopbyCategory
+ * @param
+ **/
+- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for shopByDealType
+ * @param
+ **/
+- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for dealsByDealType
+ * @param
+ **/
+- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for dealProductListing
+ * @param
+ **/
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+
 @end
