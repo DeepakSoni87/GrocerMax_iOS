@@ -38,7 +38,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.lastAddressView.layer.borderWidth = 2.0;
     self.lastAddressView.layer.cornerRadius = 4.0;
     
-    [self getBillingAddress];
+    [self getShippingAddress];
     [self registerCellsForTableView];
 }
 
@@ -163,7 +163,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 #pragma mark Request Methods
 
-- (void)getBillingAddress {
+- (void)getShippingAddress {
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
     
     if(NSSTRING_HAS_DATA(self.userModal.email))
