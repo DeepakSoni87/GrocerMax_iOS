@@ -7,13 +7,13 @@
 //
 
 #import "GMOrderHistryVC.h"
-#import "GMOrderHistryModal.h"
 #import "GMOrderHistoryCell.h"
-
+#import "GMBaseOrderHistoryModal.h"
 
 static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 @interface GMOrderHistryVC ()
 @property (weak, nonatomic) IBOutlet UITableView *orderHistryTableView;
+@property (nonatomic, strong) GMUserModal *userModal;
 
 @end
 
@@ -22,25 +22,34 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.userModal = [GMUserModal loggedInUser];
     self.navigationController.navigationBarHidden = NO;
-    [self registerCellsForTableView];
-    [self testData];
-}
-
--(void)testData
-{
     self.orderHistoryDataArray = [[NSMutableArray alloc]init];
-    for (int i=0; i<10; i++) {
-        GMOrderHistryModal *orderHistryModal = [[GMOrderHistryModal alloc]init];
-        orderHistryModal.orderId = [NSString stringWithFormat:@"%d",i*234 + 77];
-        orderHistryModal.orderDate = @"Aug 21, 2015. 13:25 pm";
-        orderHistryModal.orderAmountPaid = @"$18.98";
-        orderHistryModal.orderStatus = @"Pending";
-        orderHistryModal.orderItems = [NSString stringWithFormat:@"%d",i+2];
-        [self.orderHistoryDataArray addObject:orderHistryModal];
-    }
+    [self registerCellsForTableView];
+    [self getOrderHistryFromServer];
 }
 
+
+- (void)getOrderHistryFromServer
+{
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.userModal.email))
+        [userDic setObject:self.userModal.email forKey:kEY_email];
+    if(NSSTRING_HAS_DATA(self.userModal.userId))
+        [userDic setObject:self.userModal.userId forKey:kEY_userid];
+    
+    [self showProgress];
+    
+    [[GMOperationalHandler handler] orderHistory:userDic withSuccessBlock:^(NSArray *responceData) {
+        [self.orderHistoryDataArray addObjectsFromArray:responceData];
+        [self.orderHistryTableView reloadData];
+            [self removeProgress];
+    } failureBlock:^(NSError *error) {
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+        [self removeProgress];
+        
+    }];
+}
 - (void)registerCellsForTableView {
     
     UINib *nib = [UINib nibWithNibName:@"GMOrderHistoryCell" bundle:[NSBundle mainBundle]];
@@ -79,8 +88,8 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     GMOrderHistoryCell *orderHistoryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOrderHistoryCell];
     orderHistoryCell.selectionStyle = UITableViewCellSelectionStyleNone;
     orderHistoryCell.tag = indexPath.row;
-    GMOrderHistryModal *orderHistryModal  = [self.orderHistoryDataArray objectAtIndex:indexPath.section];
-    [orderHistoryCell configerViewWithData:orderHistryModal];
+    GMOrderHistoryModal *orderHistoryModal  = [self.orderHistoryDataArray objectAtIndex:indexPath.row];
+    [orderHistoryCell configerViewWithData:orderHistoryModal];
     return orderHistoryCell;
     
 }
@@ -90,6 +99,10 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GMOrderHistoryModal *orderHistoryModal  = [self.orderHistoryDataArray objectAtIndex:indexPath.row];
+    
+    //use for detail;
     
 }
 

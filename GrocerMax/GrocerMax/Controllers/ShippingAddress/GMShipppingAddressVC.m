@@ -20,6 +20,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @property (strong, nonatomic) NSMutableArray *addressArray;
 @property (weak, nonatomic) IBOutlet UIView *lastAddressView;
 @property (weak, nonatomic) IBOutlet UIButton *shippingAsBillingBtn;
+@property (nonatomic, strong) GMUserModal *userModal;
+
 
 @end
 
@@ -28,7 +30,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.userModal = [GMUserModal loggedInUser];
     self.navigationController.navigationBarHidden = NO;
     [self.shippingAddressTableView setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
     [self.view setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
@@ -70,7 +72,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     }
 }
 
-- (void) editBtnClicked:(UIButton *)sender {
+- (void) editBtnClicked:(GMButton *)sender {
     
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
@@ -162,14 +164,16 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 #pragma mark Request Methods
 
 - (void)getBillingAddress {
-    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
     
-    [dataDic setObject:@"321" forKey:kEY_userid];
+    if(NSSTRING_HAS_DATA(self.userModal.email))
+        [userDic setObject:self.userModal.email forKey:kEY_email];
+    if(NSSTRING_HAS_DATA(self.userModal.userId))
+        [userDic setObject:self.userModal.userId forKey:kEY_userid];
     [self showProgress];
-    [[GMOperationalHandler handler] getAddress:dataDic  withSuccessBlock:^(id responceData) {
+    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
         
-        self.addressArray = (NSMutableArray *)responceData;
-        
+        self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
         [self.shippingAddressTableView reloadData];
         [self removeProgress];
         

@@ -43,8 +43,8 @@
     NSString *mainStrign= @"";
     
     
-//    NSString *str1 = @"";
-//    
+    NSString *str1 = @"";
+    
 //    if([addressModalData.userType isEqualToString:@"individual"])
 //    {
 //        str1 = @"Home";
@@ -53,28 +53,37 @@
 //    {
 //        str1 = @"Work";
 //    }
-//        mainStrign = [NSString stringWithFormat:@"%@",str1];
+    self.addressLbl.numberOfLines = 3;
+    mainStrign = [NSString stringWithFormat:@"%@",str1];
     
-    NSString *str2 = addressModalData.street;;
+    if(NSSTRING_HAS_DATA(addressModalData.street))
+    {
+        NSString *str2 = addressModalData.street;
+        
+        self.addressLbl.text = str2;
+    }
+    else
+    {
+         self.addressLbl.text = @"";
+    }
     
-        mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
-   
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:mainStrign];
-    
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor darkGrayColor]} range:[mainStrign rangeOfString:str2]];
-    
-    
-    
-    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
-    
-    
+//        mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
+//   
+//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:mainStrign];
+//    
+//    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor darkGrayColor]} range:[mainStrign rangeOfString:str2]];
+//    
+//    
+//    
+//    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
+//    
+//    
 //    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
 //    
 //    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:[mainStrign rangeOfString:str1]];
     
     
-    self.addressLbl.numberOfLines = 4;
-    self.addressLbl.attributedText = attString;
+    
 }
 
 + (CGFloat)cellHeight {
