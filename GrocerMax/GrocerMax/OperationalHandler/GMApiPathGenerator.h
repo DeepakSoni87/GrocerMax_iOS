@@ -228,10 +228,13 @@
 
 + (NSString *)getLocalityPath;
 
++ (NSString *)userCategoryPath;
+
+
 /**
  * Function for shop by Catalog Listing
- * @param
- * @Return shopbyCategoryPath
+ * @param GET Var page, cat_id
+ * @output shopbyCategoryPath
  */
 
 + (NSString *)shopbyCategoryPath;

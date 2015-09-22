@@ -45,40 +45,49 @@
     
     NSString *str1 = @"";
     
-    if([addressModalData.userType isEqualToString:@"individual"])
+//    if([addressModalData.userType isEqualToString:@"individual"])
+//    {
+//        str1 = @"Home";
+//    }
+//    else
+//    {
+//        str1 = @"Work";
+//    }
+    self.addressLbl.numberOfLines = 3;
+    mainStrign = [NSString stringWithFormat:@"%@",str1];
+    
+    if(NSSTRING_HAS_DATA(addressModalData.street))
     {
-        str1 = @"Home";
+        NSString *str2 = addressModalData.street;
+        
+        self.addressLbl.text = str2;
     }
     else
     {
-        str1 = @"Work";
+         self.addressLbl.text = @"";
     }
-        mainStrign = [NSString stringWithFormat:@"%@",str1];
     
-    NSString *str2 = addressModalData.street;;
-    
-        mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
-   
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:mainStrign];
-    
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor darkGrayColor]} range:[mainStrign rangeOfString:str2]];
-    
-    
-    
-    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
-    
-    
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
-    
-    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:[mainStrign rangeOfString:str1]];
+//        mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
+//   
+//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:mainStrign];
+//    
+//    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor darkGrayColor]} range:[mainStrign rangeOfString:str2]];
+//    
+//    
+//    
+//    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
+//    
+//    
+//    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
+//    
+//    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:[mainStrign rangeOfString:str1]];
     
     
-    self.addressLbl.numberOfLines = 4;
-    self.addressLbl.attributedText = attString;
+    
 }
 
 + (CGFloat)cellHeight {
     
-    return 126.0f;
+    return 116.0f;
 }
 @end

@@ -60,12 +60,13 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
-    [self createSectionArray];
+//    [self createSectionArray];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
+    [self createSectionArray];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -66,7 +66,7 @@
         if(NSSTRING_HAS_DATA(self.userModal.password))
             [userDic setObject:self.userModal.password forKey:kEY_password];
         [userDic setObject:@"1" forKey:kEY_otp];
-        
+        [self showProgress];
         [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
             if([registrationResponse.flag isEqualToString:@"1"]) {
@@ -79,8 +79,11 @@
             else
                 [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
             
+            [self removeProgress];
+            
         } failureBlock:^(NSError *error) {
             [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            [self removeProgress];
         }];
     }
     else

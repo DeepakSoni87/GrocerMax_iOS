@@ -12,6 +12,12 @@
 #import "GMEditProfileVC.h"
 #import "GMOrderHistryVC.h"
 
+#import "GMAddBillingAddressVC.h"
+#import "GMAddShippingAddressVC.h"
+
+#import "GMChangePasswordVC.h"
+
+
 @interface GMProfileModal : NSObject
 
 @property (nonatomic, strong) NSString *displayCellText;
@@ -62,6 +68,7 @@ static NSString * const kEditProfileCell                    =  @"Edit My Informa
 static NSString * const kInviteFriendsCell                  =  @"Invite Friends";
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
+static NSString * const kChangePasswordCell                      =  @"Change Password";
 
 @implementation GMProfileVC
 
@@ -78,6 +85,7 @@ static NSString * const kWriteToUsCell                      =  @"Write To Us";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationItem.title = @"My Profile";
+    self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if([[GMSharedClass sharedClass] getUserLoggedStatus]) {
         
@@ -106,6 +114,11 @@ static NSString * const kWriteToUsCell                      =  @"Write To Us";
     [self.cellArray addObject:callUs];
     GMProfileModal *writeUs = [[GMProfileModal alloc] initWithCellText:kWriteToUsCell andClassName:@""];
     [self.cellArray addObject:writeUs];
+    
+    GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@""];
+    [self.cellArray addObject:changePassword];
+    
+    
     [self.profileTableView reloadData];
 }
 
@@ -173,12 +186,20 @@ static CGFloat const kProfileCellHeight = 44.0f;
     GMProfileModal *profileModal = [self.cellArray objectAtIndex:indexPath.row];
     if([profileModal.displayCellText isEqualToString:kInviteFriendsCell]) {
         
+        GMAddBillingAddressVC *biilingVC = [[GMAddBillingAddressVC alloc] initWithNibName:@"GMAddBillingAddressVC" bundle:nil];
+        [self.navigationController pushViewController:biilingVC animated:YES];
     }
     else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
         
+        GMAddShippingAddressVC *biilingVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
+        [self.navigationController pushViewController:biilingVC animated:YES];
     }
     else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
         
+    }
+    else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]){
+        GMChangePasswordVC *changePasswordVC  = [GMChangePasswordVC new];
+        [self.navigationController pushViewController:changePasswordVC animated:YES];
     }
     else {
         

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GMAddressModalData;
+
 @interface GMRequestParams : NSObject
 
 + (instancetype)sharedClass;
@@ -211,6 +213,7 @@
  **/
 + (NSString *)getLocationParameter:(NSDictionary *)parameterDic;
 
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress;
 
 /**
  * Function for shop by Catalog Listing

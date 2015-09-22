@@ -15,6 +15,8 @@
 @class GMRegistrationResponseModal;
 @class GMStateBaseModal;
 @class GMLocalityBaseModal;
+@class GMUserModal;
+@class GMBaseOrderHistoryModal;
 
 
 @interface GMOperationalHandler : NSObject
@@ -23,12 +25,10 @@
 
 #pragma mark - Login
 
-- (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(id loggedInUser))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(GMUserModal *userModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
 
 - (void)fetchCategoriesFromServerWithSuccessBlock:(void(^)(GMCategoryModal *rootCategoryModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
-
-
-
 
 /**
  * Function for Check User Login
@@ -65,19 +65,19 @@
  * Function for User Change Password
  * @param
  **/
-- (void)changePassword:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)changePassword:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for User Edit Profile
  * @param
  **/
-- (void)editProfile:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)editProfile:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Add User Address
  * @param
  **/
-- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)addAddress:(NSDictionary *)param withSuccessBlock:(void(^)(BOOL success))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Edit User Address
@@ -89,7 +89,7 @@
  * Function for Get All User Address
  * @param
  **/
-- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Delete User Address
@@ -137,7 +137,7 @@
  * Function for Get User All Orders History
  * @param
  **/
-- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Get Orders Detail

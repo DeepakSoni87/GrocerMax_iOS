@@ -24,6 +24,15 @@
 @property (nonatomic, readwrite, strong) NSString *otp;
 
 @property (nonatomic, readwrite, strong) NSString *userId;
+
+@property (nonatomic, readwrite, strong) NSString *quoteId;
+
+@property (nonatomic, readwrite, strong) NSNumber *totalItem;
+
+@property (nonatomic, readwrite, strong) NSString *newpassword;
+
+@property (nonatomic, readwrite, strong) NSString *conformPassword;
+
 @end
 
 static NSString * const kFirstNameKey                       = @"firstName";
@@ -32,6 +41,8 @@ static NSString * const kMobileNumberKey                    = @"mobileNumber";
 static NSString * const kEmailKey                           = @"email";
 static NSString * const kPasswordKey                        = @"password";
 static NSString * const kUserIdKey                          = @"userId";
+static NSString * const kQuoteIdKey                         = @"quoteId";
+static NSString * const kTotalItemsKey                      = @"totalItems";
 
 static GMUserModal *loggedInUser;
 
@@ -53,6 +64,17 @@ static GMUserModal *loggedInUser;
     return archivedUser;
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    
+    return @{@"firstName"             : @"Firstname",
+             @"lastName"              : @"Lastname",
+             @"mobile"                : @"Mobile",
+             @"quoteId"               : @"QuoteId",
+             @"userId"                : @"UserID",
+             @"totalItem"             : @"TotalItem"
+             };
+}
+
 #pragma mark - Encoder/Decoder Methods
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -63,6 +85,8 @@ static GMUserModal *loggedInUser;
     [aCoder encodeObject:self.email forKey:kEmailKey];
     [aCoder encodeObject:self.password forKey:kPasswordKey];
     [aCoder encodeObject:self.userId forKey:kUserIdKey];
+    [aCoder encodeObject:self.quoteId forKey:kQuoteIdKey];
+    [aCoder encodeObject:self.totalItem forKey:kTotalItemsKey];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -75,6 +99,8 @@ static GMUserModal *loggedInUser;
         self.email = [aDecoder decodeObjectForKey:kEmailKey];
         self.password = [aDecoder decodeObjectForKey:kPasswordKey];
         self.userId = [aDecoder decodeObjectForKey:kUserIdKey];
+        self.quoteId = [aDecoder decodeObjectForKey:kQuoteIdKey];
+        self.totalItem = [aDecoder decodeObjectForKey:kTotalItemsKey];
     }
     return self;
 }

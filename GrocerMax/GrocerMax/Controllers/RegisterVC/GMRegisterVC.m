@@ -450,7 +450,7 @@ static NSString * const kGenderCell                         =  @"Gender";
         if(NSSTRING_HAS_DATA(self.userModal.password))
             [userDic setObject:self.userModal.password forKey:kEY_password];
         [userDic setObject:@"0" forKey:kEY_otp];
-        
+        [self showProgress];
         [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
             if([registrationResponse.flag isEqualToString:@"1"]) {
@@ -461,9 +461,11 @@ static NSString * const kGenderCell                         =  @"Gender";
             }
             else
                 [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
+            [self removeProgress];
             
         } failureBlock:^(NSError *error) {
             [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            [self removeProgress];
         }];
     }
 }
