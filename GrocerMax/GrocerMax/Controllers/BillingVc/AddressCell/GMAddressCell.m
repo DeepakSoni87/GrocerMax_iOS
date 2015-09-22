@@ -43,17 +43,17 @@
     NSString *mainStrign= @"";
     
     
-    NSString *str1 = @"";
-    
-    if([addressModalData.userType isEqualToString:@"individual"])
-    {
-        str1 = @"Home";
-    }
-    else
-    {
-        str1 = @"Work";
-    }
-        mainStrign = [NSString stringWithFormat:@"%@",str1];
+//    NSString *str1 = @"";
+//    
+//    if([addressModalData.userType isEqualToString:@"individual"])
+//    {
+//        str1 = @"Home";
+//    }
+//    else
+//    {
+//        str1 = @"Work";
+//    }
+//        mainStrign = [NSString stringWithFormat:@"%@",str1];
     
     NSString *str2 = addressModalData.street;;
     
@@ -68,9 +68,9 @@
     [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0]} range:[mainStrign rangeOfString:str2]];
     
     
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
-    
-    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:[mainStrign rangeOfString:str1]];
+//    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:str1]];
+//    
+//    [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:[mainStrign rangeOfString:str1]];
     
     
     self.addressLbl.numberOfLines = 4;
@@ -79,6 +79,6 @@
 
 + (CGFloat)cellHeight {
     
-    return 126.0f;
+    return 116.0f;
 }
 @end

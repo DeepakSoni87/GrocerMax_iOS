@@ -28,6 +28,11 @@
 @property (nonatomic, readwrite, strong) NSString *quoteId;
 
 @property (nonatomic, readwrite, strong) NSNumber *totalItem;
+
+@property (nonatomic, readwrite, strong) NSString *newpassword;
+
+@property (nonatomic, readwrite, strong) NSString *conformPassword;
+
 @end
 
 static NSString * const kFirstNameKey                       = @"firstName";

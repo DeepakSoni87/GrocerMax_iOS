@@ -30,6 +30,11 @@
 
 @property (nonatomic, readonly, strong) NSNumber *totalItem;
 
+@property (nonatomic, readonly, strong) NSString *newpassword;
+
+@property (nonatomic, readonly, strong) NSString *conformPassword;
+
+
 - (void)setFirstName:(NSString *)firstName;
 
 - (void)setLastName:(NSString *)lastName;
@@ -49,6 +54,10 @@
 - (void)setQuoteId:(NSString *)quoteId;
 
 - (void)setTotalItem:(NSNumber *)totalItem;
+
+- (void)setNewpassword:(NSString *)newpassword;
+
+- (void)setConformPassword:(NSString *)conformPassword;
 
 + (instancetype)loggedInUser;
 
