@@ -18,14 +18,14 @@
                         <rect key="frame" x="8" y="8" width="304" height="108"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypZ-hH-B9p">
-                                <rect key="frame" x="103" y="9" width="193" height="91"/>
+                                <rect key="frame" x="93" y="9" width="203" height="91"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z5M-1Z-ihk">
-                                <rect key="frame" x="8" y="9" width="90" height="90"/>
+                                <rect key="frame" x="8" y="14" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="z5M-1Z-ihk" secondAttribute="height" multiplier="1:1" id="zam-gv-QTR"/>
                                 </constraints>
@@ -36,10 +36,10 @@
                             <constraint firstItem="z5M-1Z-ihk" firstAttribute="leading" secondItem="ye1-mf-dqa" secondAttribute="leading" constant="8" id="Jws-Fr-gV4"/>
                             <constraint firstItem="ypZ-hH-B9p" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="9" id="TEK-df-HRs"/>
                             <constraint firstAttribute="trailing" secondItem="ypZ-hH-B9p" secondAttribute="trailing" constant="8" id="UBP-2e-FD4"/>
-                            <constraint firstAttribute="bottom" secondItem="z5M-1Z-ihk" secondAttribute="bottom" constant="9" id="Zg9-L6-Lo7"/>
+                            <constraint firstAttribute="bottom" secondItem="z5M-1Z-ihk" secondAttribute="bottom" constant="14" id="Zg9-L6-Lo7"/>
                             <constraint firstItem="ypZ-hH-B9p" firstAttribute="leading" secondItem="z5M-1Z-ihk" secondAttribute="trailing" constant="5" id="bwY-Dh-Nwo"/>
                             <constraint firstAttribute="bottom" secondItem="ypZ-hH-B9p" secondAttribute="bottom" constant="8" id="sdG-ya-Cqu"/>
-                            <constraint firstItem="z5M-1Z-ihk" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="9" id="zFy-5V-ex2"/>
+                            <constraint firstItem="z5M-1Z-ihk" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="14" id="zFy-5V-ex2"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oI-7n-0A5">
@@ -55,7 +55,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ynp-Ou-jur">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="ynp-Ou-jur">
                                 <rect key="frame" x="34" y="0.0" width="33" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

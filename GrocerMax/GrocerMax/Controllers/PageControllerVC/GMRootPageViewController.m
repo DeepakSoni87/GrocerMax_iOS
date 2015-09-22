@@ -32,7 +32,7 @@ CGFloat btnHeight = 40.0; //same as scrollview
     self.modelController = [[GMRootPageModelController alloc] init];
     self.modelController.modelPageData = self.pageData;
     self.modelController.rootControllerType = self.rootControllerType;
-
+    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5* NSEC_PER_SEC), dispatch_get_main_queue(), ^{
        
