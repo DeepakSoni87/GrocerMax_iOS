@@ -1,19 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMMyAddressesVC">
             <connections>
+                <outlet property="myAddressTableView" destination="ve3-g2-SI9" id="xjJ-8n-w8k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="455"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-g2-SI9">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="332"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="upe-Au-u6o"/>
+                        <outlet property="delegate" destination="-1" id="lHp-0F-a3F"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UO-hB-OJc">
+                    <rect key="frame" x="0.0" y="345" width="320" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQt-nC-RWl">
+                            <rect key="frame" x="11" y="8" width="298" height="28"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="270" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Add address">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="Add address">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionAddAddressBtnClicked:" destination="-1" eventType="touchUpInside" id="cJV-m3-VKN"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PQt-nC-RWl" secondAttribute="trailing" constant="11" id="BBZ-sr-JgV"/>
+                        <constraint firstAttribute="bottom" secondItem="PQt-nC-RWl" secondAttribute="bottom" constant="8" id="H08-yG-mxZ"/>
+                        <constraint firstItem="PQt-nC-RWl" firstAttribute="leading" secondItem="3UO-hB-OJc" secondAttribute="leading" constant="11" id="PiB-Bd-WiE"/>
+                        <constraint firstAttribute="height" constant="44" id="Z5w-U2-osU"/>
+                        <constraint firstItem="PQt-nC-RWl" firstAttribute="top" secondItem="3UO-hB-OJc" secondAttribute="top" constant="8" id="yyx-Im-5Dc"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="3UO-hB-OJc" secondAttribute="bottom" constant="66" id="FEn-2I-Qyr"/>
+                <constraint firstAttribute="trailing" secondItem="ve3-g2-SI9" secondAttribute="trailing" id="NhH-yT-TTI"/>
+                <constraint firstItem="ve3-g2-SI9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aBy-hq-Miq"/>
+                <constraint firstItem="3UO-hB-OJc" firstAttribute="top" secondItem="ve3-g2-SI9" secondAttribute="bottom" constant="13" id="aDc-N4-RmV"/>
+                <constraint firstItem="3UO-hB-OJc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mnj-xH-itP"/>
+                <constraint firstAttribute="trailing" secondItem="3UO-hB-OJc" secondAttribute="trailing" id="uNE-Xq-cZd"/>
+                <constraint firstItem="ve3-g2-SI9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uQv-6v-jiB"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="319" y="230"/>
         </view>
     </objects>
 </document>

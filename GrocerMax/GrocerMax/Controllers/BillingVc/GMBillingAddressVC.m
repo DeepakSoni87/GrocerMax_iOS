@@ -15,6 +15,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @interface GMBillingAddressVC ()
 @property (strong, nonatomic) NSMutableArray *billingAddressArray;
 @property (strong, nonatomic) IBOutlet UITableView *billingAddressTableView;
+@property (nonatomic, strong) GMUserModal *userModal;
 
 @end
 
@@ -25,7 +26,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBarHidden = NO;
     [self.billingAddressTableView setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
-
+    self.userModal = [GMUserModal loggedInUser];
     [self getBillingAddress];
     [self registerCellsForTableView];
 }
@@ -71,7 +72,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     }
 }
 
-- (void) editBtnClicked:(UIButton *)sender {
+- (void) editBtnClicked:(GMButton *)sender {
     
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
@@ -143,12 +144,18 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 #pragma mark Request Methods
 
 - (void)getBillingAddress {
-    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
     
-    [dataDic setObject:@"321" forKey:kEY_userid];
+    
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    
+    if(NSSTRING_HAS_DATA(self.userModal.email))
+        [userDic setObject:self.userModal.email forKey:kEY_email];
+    if(NSSTRING_HAS_DATA(self.userModal.userId))
+        [userDic setObject:self.userModal.userId forKey:kEY_userid];
+    
     [self showProgress];
-    [[GMOperationalHandler handler] getAddress:dataDic  withSuccessBlock:^(id responceData) {
-        self.billingAddressArray = (NSMutableArray *)responceData;
+    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
+        self.billingAddressArray = (NSMutableArray *)responceData.billingAddressArray;
         [self removeProgress];
         [self.billingAddressTableView reloadData];
         

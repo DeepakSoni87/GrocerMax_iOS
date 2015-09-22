@@ -98,6 +98,7 @@
 		82B1B2E71B9F60D0001550FC /* UITableView+Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2D81B9F60D0001550FC /* UITableView+Wave.m */; };
 		82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2DE1B9F60D0001550FC /* ViewController.m */; };
 		82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */; };
+		E80F4BFB1BB16666005FE75C /* GMBaseOrderHistoryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */; };
 		E87851031BAE931200FDD930 /* GMTimeSloteModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851021BAE931200FDD930 /* GMTimeSloteModal.m */; };
 		E87851071BAEAA6800FDD930 /* GMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851061BAEAA6800FDD930 /* GMButton.m */; };
 		E878510B1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E878510A1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m */; };
@@ -130,7 +131,6 @@
 		E8ED6CF51BAD94790087AA1D /* GMOrderHistryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CD51BAD94790087AA1D /* GMOrderHistryVC.xib */; };
 		E8ED6CF61BAD94790087AA1D /* GMOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */; };
 		E8ED6CF71BAD94790087AA1D /* GMOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */; };
-		E8ED6CF81BAD94790087AA1D /* GMOrderHistryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */; };
 		E8ED6CF91BAD94790087AA1D /* GMSubCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CDE1BAD94790087AA1D /* GMSubCategoryVC.m */; };
 		E8ED6CFA1BAD94790087AA1D /* GMSubCategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ED6CDF1BAD94790087AA1D /* GMSubCategoryVC.xib */; };
 		E8ED6CFB1BAD94790087AA1D /* GMSubCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ED6CE21BAD94790087AA1D /* GMSubCategoryCell.m */; };
@@ -306,6 +306,8 @@
 		82B1B2EE1B9F62F3001550FC /* GMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMNavigationController.h; sourceTree = "<group>"; };
 		82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMNavigationController.m; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		E80F4BF91BB16666005FE75C /* GMBaseOrderHistoryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMBaseOrderHistoryModal.h; sourceTree = "<group>"; };
+		E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMBaseOrderHistoryModal.m; sourceTree = "<group>"; };
 		E87851011BAE931200FDD930 /* GMTimeSloteModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMTimeSloteModal.h; path = ../../Controllers/DeliveryDetail/DeliveryDetailCell/GMTimeSloteModal.h; sourceTree = "<group>"; };
 		E87851021BAE931200FDD930 /* GMTimeSloteModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMTimeSloteModal.m; path = ../../Controllers/DeliveryDetail/DeliveryDetailCell/GMTimeSloteModal.m; sourceTree = "<group>"; };
 		E87851051BAEAA6800FDD930 /* GMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMButton.h; sourceTree = "<group>"; };
@@ -358,8 +360,6 @@
 		E8ED6CD71BAD94790087AA1D /* GMOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderHistoryCell.h; sourceTree = "<group>"; };
 		E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderHistoryCell.m; sourceTree = "<group>"; };
 		E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderHistoryCell.xib; sourceTree = "<group>"; };
-		E8ED6CDA1BAD94790087AA1D /* GMOrderHistryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderHistryModal.h; sourceTree = "<group>"; };
-		E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderHistryModal.m; sourceTree = "<group>"; };
 		E8ED6CDD1BAD94790087AA1D /* GMSubCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSubCategoryVC.h; sourceTree = "<group>"; };
 		E8ED6CDE1BAD94790087AA1D /* GMSubCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSubCategoryVC.m; sourceTree = "<group>"; };
 		E8ED6CDF1BAD94790087AA1D /* GMSubCategoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSubCategoryVC.xib; sourceTree = "<group>"; };
@@ -856,12 +856,9 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-
 				3BCFCED81BB0888700F1BABE /* HomeVC */,
-
 				E896F1CE1BB094F4009D8011 /* ChangePassword */,
 				E896F1C81BB075F0009D8011 /* ShippingAddress */,
-
 				3B406D6E1BAF707B007E37C4 /* PageControllerVC */,
 				3B406D5C1BAF541B007E37C4 /* ProductListingVC */,
 				820C4ECE1BAF580900DCCF39 /* AddAddressVC */,
@@ -944,6 +941,7 @@
 		82B1B2E11B9F60D0001550FC /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				E80F4BF81BB16649005FE75C /* OrderHistoryModal */,
 				3B406D521BAF1BA0007E37C4 /* ProductModal */,
 				E87851151BAF370000FDD930 /* AddressModal */,
 				820C4EDF1BB0453C00DCCF39 /* LocalityModal */,
@@ -997,6 +995,15 @@
 				594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E80F4BF81BB16649005FE75C /* OrderHistoryModal */ = {
+			isa = PBXGroup;
+			children = (
+				E80F4BF91BB16666005FE75C /* GMBaseOrderHistoryModal.h */,
+				E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */,
+			);
+			path = OrderHistoryModal;
 			sourceTree = "<group>";
 		};
 		E87851041BAEAA5700FDD930 /* GMButton */ = {
@@ -1164,8 +1171,6 @@
 				E8ED6CD71BAD94790087AA1D /* GMOrderHistoryCell.h */,
 				E8ED6CD81BAD94790087AA1D /* GMOrderHistoryCell.m */,
 				E8ED6CD91BAD94790087AA1D /* GMOrderHistoryCell.xib */,
-				E8ED6CDA1BAD94790087AA1D /* GMOrderHistryModal.h */,
-				E8ED6CDB1BAD94790087AA1D /* GMOrderHistryModal.m */,
 			);
 			path = OrderHistoryCell;
 			sourceTree = "<group>";
@@ -1316,12 +1321,8 @@
 				824046DF1BA8AF8F008686C2 /* GMRegisterInputCell.xib in Resources */,
 				820C4ED51BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib in Resources */,
 				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
-
 				3B6712481BB0B08F001178EE /* GMPageControllCell.xib in Resources */,
-
-				
 				E896F1CD1BB0762C009D8011 /* GMShipppingAddressVC.xib in Resources */,
-
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
 				3B406D791BAF707B007E37C4 /* GMRootPageViewController.xib in Resources */,
 				E8ED6CFC1BAD94790087AA1D /* GMSubCategoryCell.xib in Resources */,
@@ -1413,6 +1414,7 @@
 				E8ED6CFB1BAD94790087AA1D /* GMSubCategoryCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
 				824046EB1BA8B890008686C2 /* GMGenderCell.m in Sources */,
+				E80F4BFB1BB16666005FE75C /* GMBaseOrderHistoryModal.m in Sources */,
 				E896F1CC1BB0762C009D8011 /* GMShipppingAddressVC.m in Sources */,
 				3B406D6C1BAF5AEB007E37C4 /* GMProductListTableViewCell.m in Sources */,
 				820C4ED41BAF5A8E00DCCF39 /* GMAddBillingAddressVC.m in Sources */,
@@ -1437,7 +1439,6 @@
 				82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */,
 				827047331BAEA19C00E224E8 /* GMLeftMenuVC.m in Sources */,
 				3B670CC91BA0BD8600B5EB9D /* GMLoginVC.m in Sources */,
-				E8ED6CF81BAD94790087AA1D /* GMOrderHistryModal.m in Sources */,
 				827047371BAEA19C00E224E8 /* GMSectionView.m in Sources */,
 				824046F71BAA044F008686C2 /* GMOtpVC.m in Sources */,
 				E8ED6CEA1BAD94790087AA1D /* GMBillingAddressVC.m in Sources */,
