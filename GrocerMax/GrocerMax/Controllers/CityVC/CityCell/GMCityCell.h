@@ -10,4 +10,9 @@
 
 @interface GMCityCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet GMButton *cityBtn;
+
+-(void) configureCellWithData:(id)data ;
+
++ (CGFloat)cellHeight;
 @end
