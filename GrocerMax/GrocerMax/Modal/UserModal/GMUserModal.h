@@ -26,6 +26,10 @@
 
 @property (nonatomic, readonly, strong) NSString *userId;
 
+@property (nonatomic, readonly, strong) NSString *newpassword;
+
+@property (nonatomic, readonly, strong) NSString *conformPassword;
+
 - (void)setFirstName:(NSString *)firstName;
 
 - (void)setLastName:(NSString *)lastName;
@@ -41,6 +45,10 @@
 - (void)setOtp:(NSString *)otp;
 
 - (void)setUserId:(NSString *)userId;
+
+- (void)setNewpassword:(NSString *)newpassword;
+
+- (void)setConformPassword:(NSString *)conformPassword;
 
 + (instancetype)loggedInUser;
 

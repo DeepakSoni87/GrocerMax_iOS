@@ -24,6 +24,11 @@
 @property (nonatomic, readwrite, strong) NSString *otp;
 
 @property (nonatomic, readwrite, strong) NSString *userId;
+
+@property (nonatomic, readwrite, strong) NSString *newpassword;
+
+@property (nonatomic, readwrite, strong) NSString *conformPassword;
+
 @end
 
 static NSString * const kFirstNameKey                       = @"firstName";
