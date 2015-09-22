@@ -15,6 +15,7 @@
 @class GMRegistrationResponseModal;
 @class GMStateBaseModal;
 @class GMLocalityBaseModal;
+@class GMUserModal;
 
 
 @interface GMOperationalHandler : NSObject
@@ -23,12 +24,10 @@
 
 #pragma mark - Login
 
-- (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(id loggedInUser))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(GMUserModal *userModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
 
 - (void)fetchCategoriesFromServerWithSuccessBlock:(void(^)(GMCategoryModal *rootCategoryModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
-
-
-
 
 /**
  * Function for Check User Login

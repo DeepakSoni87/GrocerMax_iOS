@@ -7,6 +7,7 @@
 //
 
 #import "GMRequestParams.h"
+#import "GMAddressModal.h"
 
 @implementation GMRequestParams
 
@@ -697,5 +698,31 @@ static GMRequestParams *sharedClass;
         return parameter;
     }
     
+}
+
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal {
+    
+    NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionary];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.firstName] forKey:kEY_fname];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.lastName] forKey:kEY_lname];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.city] forKey:kEY_city];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.region] forKey:kEY_state];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.pincode] forKey:kEY_pin];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.houseNo] forKey:kEY_addressline1];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.locality] forKey:kEY_addressline2];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.closestLandmark] forKey:kEY_addressline3];
+    [addressDictionary setObject:@"IN" forKey:kEY_countrycode];
+    [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
+    [addressDictionary setObject:@"1" forKeyedSubscript:kEY_cityId];
+    return addressDictionary;
+}
+
+- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
+    
+    if(NSSTRING_HAS_DATA(strInput))
+        return strInput;
+    else
+        return @"";
 }
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GMAddressModalData;
+
 @interface GMRequestParams : NSObject
 
 + (instancetype)sharedClass;
@@ -210,4 +212,6 @@
  * @Return get parameter for get location
  **/
 + (NSString *)getLocationParameter:(NSDictionary *)parameterDic;
+
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal;
 @end
