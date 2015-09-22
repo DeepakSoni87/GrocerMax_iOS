@@ -138,3 +138,9 @@
 #define kEY_couponcode                     @"couponcode"
 #define kEY_products                       @"products"
 #define kEY_quantity                       @"quantity"
+
+// Key : Deals
+
+#define kEY_deal_type_id                  @"deal_type_id"
+#define kEY_deal_id                       @"deal_id"
+
