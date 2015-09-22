@@ -42,6 +42,7 @@ static NSString const *addToCartGustMethodName = @"addtocartgust";
 static NSString const *getLocationMethodName = @"getlocation";
 static NSString const *getStateMethodName = @"getstate";
 static NSString const *getLocalityMethodName = @"getlocality";
+static NSString const *getCategoryMethodName = @"category";
 
 
 @implementation GMApiPathGenerator
@@ -49,12 +50,12 @@ static NSString const *getLocalityMethodName = @"getlocality";
 
 + (NSString *)userLoginPath{
     
-    return [NSString stringWithFormat:@"%@%@", baseUrl, @"category"];
+    return [NSString stringWithFormat:@"%@%@", baseUrl, loginMethodName];
 }
 
-+ (NSString *)userLoginPath1{
++ (NSString *)userCategoryPath {
     
-    return [NSString stringWithFormat:@"%@%@", baseUrl, loginMethodName];
+    return [NSString stringWithFormat:@"%@%@", baseUrl, getCategoryMethodName];
 }
 
 + (NSString *)createUserPath{

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GMNavigationController.h"
 
+@class GMTabBarVC;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) RZMessagingWindow *errorWindow;
@@ -17,6 +19,8 @@
 @property (strong, nonatomic) GMNavigationController *navController;
 
 @property (nonatomic, strong) MMDrawerController *drawerController;
+
+@property (nonatomic, strong) GMTabBarVC *tabBarVC;
 
 - (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC;
 

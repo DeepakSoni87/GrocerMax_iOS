@@ -11,6 +11,8 @@
 #import "GMMyAddressesVC.h"
 #import "GMEditProfileVC.h"
 #import "GMOrderHistryVC.h"
+#import "GMAddBillingAddressVC.h"
+#import "GMAddShippingAddressVC.h"
 
 @interface GMProfileModal : NSObject
 
@@ -78,6 +80,7 @@ static NSString * const kWriteToUsCell                      =  @"Write To Us";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationItem.title = @"My Profile";
+    self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if([[GMSharedClass sharedClass] getUserLoggedStatus]) {
         
@@ -173,9 +176,13 @@ static CGFloat const kProfileCellHeight = 44.0f;
     GMProfileModal *profileModal = [self.cellArray objectAtIndex:indexPath.row];
     if([profileModal.displayCellText isEqualToString:kInviteFriendsCell]) {
         
+        GMAddBillingAddressVC *biilingVC = [[GMAddBillingAddressVC alloc] initWithNibName:@"GMAddBillingAddressVC" bundle:nil];
+        [self.navigationController pushViewController:biilingVC animated:YES];
     }
     else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
         
+        GMAddShippingAddressVC *biilingVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
+        [self.navigationController pushViewController:biilingVC animated:YES];
     }
     else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
         

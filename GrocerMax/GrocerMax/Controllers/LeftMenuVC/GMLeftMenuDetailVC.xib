@@ -16,6 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drawerBg" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-LF-gDb">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iG-3Z-26h">
                     <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                     <subviews>
@@ -55,14 +58,18 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="jjN-LF-gDb" secondAttribute="bottom" id="09U-H1-sVy"/>
                 <constraint firstItem="4iG-3Z-26h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="2RB-ia-gJx"/>
                 <constraint firstAttribute="bottom" secondItem="rbs-wQ-gYe" secondAttribute="bottom" id="8Fe-zF-bL7"/>
                 <constraint firstAttribute="trailing" secondItem="rbs-wQ-gYe" secondAttribute="trailing" id="H80-dB-PLb"/>
                 <constraint firstItem="rbs-wQ-gYe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Her-fj-oFk"/>
                 <constraint firstItem="4iG-3Z-26h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c7L-bB-VIO"/>
+                <constraint firstAttribute="trailing" secondItem="jjN-LF-gDb" secondAttribute="trailing" id="czu-3c-g4C"/>
                 <constraint firstAttribute="trailing" secondItem="4iG-3Z-26h" secondAttribute="trailing" id="i8D-AK-lfo"/>
+                <constraint firstItem="jjN-LF-gDb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oVm-Xo-t0t"/>
+                <constraint firstItem="jjN-LF-gDb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sWv-dL-XIB"/>
                 <constraint firstItem="rbs-wQ-gYe" firstAttribute="top" secondItem="4iG-3Z-26h" secondAttribute="bottom" id="zlx-su-hO8"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -70,6 +77,7 @@
         </view>
     </objects>
     <resources>
+        <image name="drawerBg" width="246" height="568"/>
         <image name="left_back" width="17" height="16"/>
     </resources>
 </document>
