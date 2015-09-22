@@ -16,6 +16,7 @@
 @class GMStateBaseModal;
 @class GMLocalityBaseModal;
 @class GMUserModal;
+@class GMBaseOrderHistoryModal;
 
 
 @interface GMOperationalHandler : NSObject
@@ -88,7 +89,7 @@
  * Function for Get All User Address
  * @param
  **/
-- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Delete User Address
@@ -136,7 +137,7 @@
  * Function for Get User All Orders History
  * @param
  **/
-- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Get Orders Detail

@@ -22,6 +22,7 @@
 #import "GMStateBaseModal.h"
 #import "GMLocalityBaseModal.h"
 #import "GMUserModal.h"
+#import "GMBaseOrderHistoryModal.h"
 
 
 static NSString * const kFlagKey                    = @"flag";
@@ -356,7 +357,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator getAddressPath],[GMRequestParams getAddressParameter:param]];
     
@@ -375,7 +376,7 @@ static GMOperationalHandler *sharedHandler;
             GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
             
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(addressModal.addressArray);}
+            else            { if (successBlock) successBlock(addressModal);}
                 
             
            
@@ -618,17 +619,21 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, NSArray *responseObject) {
         
         if (responseObject) {
             
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+//
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
+            NSError *mtlError = nil;
+            
+            GMBaseOrderHistoryModal *baseOrderHistoryModal = [MTLJSONAdapter modelOfClass:[GMBaseOrderHistoryModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(baseOrderHistoryModal.orderHistoryArray);}
+            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);

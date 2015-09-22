@@ -70,8 +70,8 @@ static NSString * const kConformPasswordCell                       =  @"Conform 
             [userDic setObject:self.userModal.password forKey:kEY_oldPassword];
         if(NSSTRING_HAS_DATA(self.userModal.newpassword))
             [userDic setObject:self.userModal.newpassword forKey:kEY_password];
-        
-        [userDic setObject:@"321" forKey:kEY_userid];
+        if(NSSTRING_HAS_DATA(self.userModal.userId))
+            [userDic setObject:self.userModal.userId forKey:kEY_userid];
         [self showProgress];
         [[GMOperationalHandler handler] changePassword:userDic  withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
