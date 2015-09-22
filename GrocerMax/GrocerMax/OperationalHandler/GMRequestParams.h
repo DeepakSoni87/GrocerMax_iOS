@@ -213,5 +213,5 @@
  **/
 + (NSString *)getLocationParameter:(NSDictionary *)parameterDic;
 
-- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal;
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress;
 @end

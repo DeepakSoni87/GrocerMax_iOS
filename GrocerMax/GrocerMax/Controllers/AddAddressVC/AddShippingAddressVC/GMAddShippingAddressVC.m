@@ -511,6 +511,16 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     if([self performValidations]) {
         
         [self.addressModal setIs_default_shipping:[NSNumber numberWithBool:self.isDefaultShippingAddress]];
+        GMRequestParams *requestParam = [GMRequestParams sharedClass];
+        NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:YES];
+        [self showProgress];
+        [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
+            [self removeProgress];
+            
+        } failureBlock:^(NSError *error) {
+            [self removeProgress];
+            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+        }];
     }
 }
 
