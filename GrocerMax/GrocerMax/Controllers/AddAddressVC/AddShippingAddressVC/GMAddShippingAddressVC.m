@@ -59,6 +59,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = NO;
+    self.title = @"Shipping Address";
 }
 
 - (void)registerCellsForTableView {
@@ -549,6 +550,11 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     sender.selected = !sender.selected;
     self.isDefaultShippingAddress = !self.isDefaultShippingAddress;
+}
+
+- (IBAction)defaultBillingAddressButtonTapped:(id)sender {
+    
+    
 }
 
 @end

@@ -40,7 +40,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     // Do any additional setup after loading the view from its nib.
     self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
-    [self uiChange];
+    self.editProfileTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,17 +48,15 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - IBAction Methods
--(void) uiChange
-{
-    self.saveBtn.layer.cornerRadius = 4.0;
-    [self.saveBtn setClipsToBounds:YES];
-    UIView *footer =
-    [[UIView alloc] initWithFrame:CGRectZero];
-    self.editProfileTableView.tableFooterView = footer;
-    footer = nil;
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.title = @"Edit Profile";
 }
+
+#pragma mark - IBAction Methods
+
 - (IBAction)actionSaveBtn:(id)sender {
+    
     [self.view endEditing:YES];
     if([self performValidations]) {
         NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
@@ -101,19 +99,11 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     }
 
 }
+
 - (void)registerCellsForTableView {
     
     [self.editProfileTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - GETTER/SETTER Methods
 
@@ -129,12 +119,6 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     }
     return _cellArray;
 }
-//- (GMUserModal *)userModal {
-//    
-//    if(!_userModal) _userModal = [[GMUserModal alloc] init];
-//    return _userModal;
-//}
-
 
 #pragma mark - UITavleView Delegate/Datasource methods
 

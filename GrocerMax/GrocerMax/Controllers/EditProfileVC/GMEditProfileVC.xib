@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-CA-1Ru" customClass="TPKeyboardAvoidingTableView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="311"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="m4f-E1-np9"/>
@@ -25,13 +25,12 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXo-dE-Y5H">
-                    <rect key="frame" x="109" y="355" width="102" height="30"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="0.0" y="413" width="320" height="42"/>
+                    <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="QFI-80-bJS"/>
-                        <constraint firstAttribute="width" constant="102" id="xmY-7Q-1i5"/>
+                        <constraint firstAttribute="height" constant="42" id="OZh-am-9ez"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title="Save">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,12 +42,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="WXo-dE-Y5H" secondAttribute="centerX" id="G8h-Rd-1mW"/>
-                <constraint firstItem="GQb-CA-1Ru" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Sme-5x-iNX"/>
-                <constraint firstAttribute="bottom" secondItem="WXo-dE-Y5H" secondAttribute="bottom" constant="70" id="e5a-89-NsT"/>
-                <constraint firstItem="WXo-dE-Y5H" firstAttribute="top" secondItem="GQb-CA-1Ru" secondAttribute="bottom" constant="44" id="gwc-NW-AVe"/>
-                <constraint firstAttribute="trailing" secondItem="GQb-CA-1Ru" secondAttribute="trailing" id="iFb-bB-vuw"/>
-                <constraint firstItem="GQb-CA-1Ru" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qoM-sh-Lvb"/>
+                <constraint firstItem="WXo-dE-Y5H" firstAttribute="top" secondItem="GQb-CA-1Ru" secondAttribute="bottom" id="5QX-70-Kns"/>
+                <constraint firstAttribute="bottom" secondItem="WXo-dE-Y5H" secondAttribute="bottom" id="E1s-km-veI"/>
+                <constraint firstItem="GQb-CA-1Ru" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Een-JY-nit"/>
+                <constraint firstItem="GQb-CA-1Ru" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PKN-zZ-gSf"/>
+                <constraint firstAttribute="trailing" secondItem="WXo-dE-Y5H" secondAttribute="trailing" id="biv-yd-kw4"/>
+                <constraint firstAttribute="trailing" secondItem="GQb-CA-1Ru" secondAttribute="trailing" id="sFe-OH-F6F"/>
+                <constraint firstItem="WXo-dE-Y5H" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ssJ-pX-lTX"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
