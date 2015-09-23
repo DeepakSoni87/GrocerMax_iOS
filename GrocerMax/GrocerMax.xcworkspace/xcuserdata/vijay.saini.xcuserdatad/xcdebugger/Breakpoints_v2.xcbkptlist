@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1131"
             endingLineNumber = "1131"
-            landmarkName = "-dealsByDealType:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopByDealType:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,6 +21,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *addBtn;
 @property (strong, nonatomic) IBOutlet UILabel *addSubstractLbl;
 
-
--(void)configerViewWithData:(id)modal;
++ (CGFloat) getCellHeight;
+- (void)configerViewWithData:(id)modal;
 @end

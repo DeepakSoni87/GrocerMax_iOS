@@ -32,6 +32,7 @@ static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
 
 
+
 static GMOperationalHandler *sharedHandler;
 
 @implementation GMOperationalHandler
@@ -501,7 +502,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)productList:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator productListPath],[GMRequestParams productListParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator productListPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -575,7 +576,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)search:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator searchPath],[GMRequestParams searchParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator searchPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -589,7 +590,12 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSError *mtlError = nil;
+                
+                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(productListingModal); }
             }
         }else {
             
@@ -1075,7 +1081,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id catArray))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopbyCategoryPath],[GMRequestParams shopbyCategoryParameter:param]];
     
@@ -1090,8 +1096,8 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
+                                
+                if(successBlock) successBlock(responseObject[kEY_category]);
             }
         }else {
             
