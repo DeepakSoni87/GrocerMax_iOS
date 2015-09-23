@@ -18,6 +18,7 @@
 @class GMUserModal;
 @class GMBaseOrderHistoryModal;
 @class GMHotDealBaseModal;
+@class GMDealCategoryBaseModal;
 
 
 @interface GMOperationalHandler : NSObject
@@ -240,13 +241,13 @@
  * Function for dealsByDealType
  * @param
  **/
-- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(GMDealCategoryBaseModal *dealCategoryBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for dealProductListing
  * @param
  **/
-- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *productArray))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 
 @end

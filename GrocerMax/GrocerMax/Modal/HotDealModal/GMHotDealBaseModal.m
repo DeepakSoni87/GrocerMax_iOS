@@ -75,7 +75,7 @@ static GMHotDealBaseModal *hotDealArrayModal;
 
 @interface GMHotDealModal()
 
-@property (nonatomic, readwrite, strong) NSString *dealId;
+@property (nonatomic, readwrite, strong) NSString *dealTypeId;
 
 @property (nonatomic, readwrite, strong) NSString *dealType;
 
@@ -94,7 +94,7 @@ static NSString * const kImageUrlKey                     = @"imageURL";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"dealId"                    : @"id",
+    return @{@"dealTypeId"                : @"id",
              @"dealType"                  : @"dealType",
              @"imageName"                 : @"img",
              @"imageURL"                  : @"img_url"
@@ -105,7 +105,7 @@ static NSString * const kImageUrlKey                     = @"imageURL";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
-    [aCoder encodeObject:self.dealId forKey:kDealIdKey];
+    [aCoder encodeObject:self.dealTypeId forKey:kDealIdKey];
     [aCoder encodeObject:self.dealType forKey:kDealTypeKey];
     [aCoder encodeObject:self.imageName forKey:kImageNameKey];
     [aCoder encodeObject:self.imageURL forKey:kImageUrlKey];
@@ -115,7 +115,7 @@ static NSString * const kImageUrlKey                     = @"imageURL";
     
     if((self = [super init])) {
         
-        self.dealId = [aDecoder decodeObjectForKey:kDealIdKey];
+        self.dealTypeId = [aDecoder decodeObjectForKey:kDealIdKey];
         self.dealType = [aDecoder decodeObjectForKey:kDealTypeKey];
         self.imageName = [aDecoder decodeObjectForKey:kImageNameKey];
         self.imageURL = [aDecoder decodeObjectForKey:kImageUrlKey];
