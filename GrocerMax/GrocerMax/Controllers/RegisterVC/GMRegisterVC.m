@@ -59,6 +59,8 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = NO;
+    self.title = @"Register";
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 - (void)registerCellsForTableView {

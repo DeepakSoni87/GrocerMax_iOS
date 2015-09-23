@@ -39,7 +39,7 @@
              @"product_price"           : @"product_price",
              @"product_qty"             : @"product_qty",
              @"product_thumbnail"       : @"product_thumbnail",
-             @"product_thumbnail"       : @"sale_price",
+             @"sale_price"              : @"sale_price",
              };
 }
 

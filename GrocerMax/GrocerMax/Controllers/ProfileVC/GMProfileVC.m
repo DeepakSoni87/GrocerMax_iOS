@@ -84,7 +84,7 @@ static NSString * const kChangePasswordCell                      =  @"Change Pas
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.navigationController.navigationItem.title = @"My Profile";
+    self.title = @"My Profile";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if([[GMSharedClass sharedClass] getUserLoggedStatus]) {

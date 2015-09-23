@@ -59,6 +59,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = NO;
+    self.title = @"Billing Address";
 }
 
 - (void)registerCellsForTableView {

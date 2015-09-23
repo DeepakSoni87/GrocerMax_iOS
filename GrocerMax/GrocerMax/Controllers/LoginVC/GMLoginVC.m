@@ -115,7 +115,7 @@
     
     GMRegisterVC *registerVC = [[GMRegisterVC alloc] initWithNibName:@"GMRegisterVC" bundle:nil];
     [self.navigationController pushViewController:registerVC animated:YES];
-    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+//    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 #pragma mark - Validations...
