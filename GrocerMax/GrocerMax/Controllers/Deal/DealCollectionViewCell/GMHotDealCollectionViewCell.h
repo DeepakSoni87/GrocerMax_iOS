@@ -12,4 +12,6 @@
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
 @property (strong, nonatomic) IBOutlet UIImageView *dealImage;
 
+- (void)configureCellWithData:(id)data ;
+
 @end

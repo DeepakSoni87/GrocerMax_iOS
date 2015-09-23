@@ -17,6 +17,7 @@
 @class GMLocalityBaseModal;
 @class GMUserModal;
 @class GMBaseOrderHistoryModal;
+@class GMHotDealBaseModal;
 
 
 @interface GMOperationalHandler : NSObject

@@ -126,7 +126,7 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
 }
 
 
-#pragma mark TableView DataSource and Delegate Methods
+#pragma mark - TableView DataSource and Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     

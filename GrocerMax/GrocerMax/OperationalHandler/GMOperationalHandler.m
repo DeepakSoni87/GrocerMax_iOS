@@ -24,6 +24,7 @@
 #import "GMUserModal.h"
 #import "GMBaseOrderHistoryModal.h"
 #import "GMProductDetailModal.h"
+#import "GMHotDealBaseModal.h"
 
 
 static NSString * const kFlagKey                    = @"flag";
@@ -1102,7 +1103,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopByDealTypePath],[GMRequestParams shopByDealTypeParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator shopByDealTypePath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -1114,10 +1115,12 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
+            NSError *mtlError = nil;
+            
+            GMHotDealBaseModal *hotDealBaseModal = [MTLJSONAdapter modelOfClass:[GMHotDealBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(hotDealBaseModal.hotDealArray); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
