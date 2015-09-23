@@ -234,7 +234,7 @@
  * Function for shopByDealType
  * @param
  **/
-- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(GMHotDealBaseModal *hotDealBaseModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for dealsByDealType
