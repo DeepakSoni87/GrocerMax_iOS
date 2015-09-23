@@ -14,6 +14,10 @@
 
 @end
 
+static NSString * const kHotDealsKey                       = @"hotDeals";
+
+static GMHotDealBaseModal *hotDealArrayModal;
+
 @implementation GMHotDealBaseModal
 
 
@@ -26,6 +30,45 @@
 + (NSValueTransformer *)hotDealArrayJSONTransformer {
     
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMHotDealModal class]];
+}
+
++ (instancetype)loadHotDeals {
+    
+    hotDealArrayModal = [self unarchiveHotDeals];
+    return hotDealArrayModal;
+}
+
++ (GMHotDealBaseModal *)unarchiveHotDeals {
+    
+    NSString *archivePath = [grocerMaxDirectory stringByAppendingPathComponent:@"hotDeals"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:archivePath]) {
+        GMHotDealBaseModal *hotDealsModal  = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
+        return hotDealsModal;
+    }
+    return nil;
+}
+
+- (void)archiveHotDeals {
+    
+    NSString *archivePath = [grocerMaxDirectory stringByAppendingPathComponent:@"hotDeals"];
+    BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:archivePath];
+    DLOG(@"archived : %d",success);
+}
+
+#pragma mark - Encoder/Decoder Methods
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [aCoder encodeObject:self.hotDealArray forKey:kHotDealsKey];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    if((self = [super init])) {
+        
+        self.hotDealArray = [aDecoder decodeObjectForKey:kHotDealsKey];
+    }
+    return self;
 }
 
 @end
@@ -42,6 +85,11 @@
 
 @end
 
+static NSString * const kDealIdKey                       = @"dealId";
+static NSString * const kDealTypeKey                     = @"dealType";
+static NSString * const kImageNameKey                    = @"imageName";
+static NSString * const kImageUrlKey                     = @"imageURL";
+
 @implementation GMHotDealModal
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -51,6 +99,28 @@
              @"imageName"                 : @"img",
              @"imageURL"                  : @"img_url"
              };
+}
+
+#pragma mark - Encoder/Decoder Methods
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [aCoder encodeObject:self.dealId forKey:kDealIdKey];
+    [aCoder encodeObject:self.dealType forKey:kDealTypeKey];
+    [aCoder encodeObject:self.imageName forKey:kImageNameKey];
+    [aCoder encodeObject:self.imageURL forKey:kImageUrlKey];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    if((self = [super init])) {
+        
+        self.dealId = [aDecoder decodeObjectForKey:kDealIdKey];
+        self.dealType = [aDecoder decodeObjectForKey:kDealTypeKey];
+        self.imageName = [aDecoder decodeObjectForKey:kImageNameKey];
+        self.imageURL = [aDecoder decodeObjectForKey:kImageUrlKey];
+    }
+    return self;
 }
 
 @end

@@ -53,15 +53,16 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 #pragma mark - WebService Handler
 
 - (void) getHotDealDataFromServer {
-        [self showProgress];
     
-    [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(NSArray *responceData) {
-        self.hotdealArray = (NSMutableArray *)responceData;
-        if(self.hotdealArray.count>0) {
-            [self.dealCollectionView reloadData];
-        } else {
-            [[GMSharedClass sharedClass] showErrorMessage:@"No Hot deal available"];
-        }
+    [self showProgress];
+    [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(GMHotDealBaseModal *hotDealBaseModal) {
+        
+//        self.hotdealArray = (NSMutableArray *)responceData;
+//        if(self.hotdealArray.count>0) {
+//            [self.dealCollectionView reloadData];
+//        } else {
+//            [[GMSharedClass sharedClass] showErrorMessage:@"No Hot deal available"];
+//        }
         
         [self removeProgress];
     } failureBlock:^(NSError *error) {
@@ -70,6 +71,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
         
     }];
 }
+
 #pragma mark - UICollectionView DataSource and Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

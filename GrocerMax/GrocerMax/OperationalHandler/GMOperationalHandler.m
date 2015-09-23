@@ -1101,7 +1101,7 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)shopByDealType:(NSDictionary *)param withSuccessBlock:(void (^)(GMHotDealBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator shopByDealTypePath]];
     
@@ -1112,15 +1112,12 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
-            
             NSError *mtlError = nil;
             
             GMHotDealBaseModal *hotDealBaseModal = [MTLJSONAdapter modelOfClass:[GMHotDealBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(hotDealBaseModal.hotDealArray); }
+            else            { if (successBlock) successBlock(hotDealBaseModal); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);

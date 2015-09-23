@@ -12,6 +12,9 @@
 
 @property (nonatomic, readonly, strong) NSArray *hotDealArray;
 
++ (instancetype)loadHotDeals;
+
+- (void)archiveHotDeals;
 @end
 
 @interface GMHotDealModal : MTLModel <MTLJSONSerializing>
