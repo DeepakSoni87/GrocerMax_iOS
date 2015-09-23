@@ -29,7 +29,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     [self getOrderHistryFromServer];
 }
 
-
+#pragma mark - WebService Handler
 - (void)getOrderHistryFromServer
 {
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
@@ -50,6 +50,9 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
         
     }];
 }
+
+#pragma mark - Register Cell
+
 - (void)registerCellsForTableView {
     
     UINib *nib = [UINib nibWithNibName:@"GMOrderHistoryCell" bundle:[NSBundle mainBundle]];
@@ -72,7 +75,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 }
 */
 
-#pragma mark TableView DataSource and Delegate Methods
+#pragma mark - TableView DataSource and Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 1;
