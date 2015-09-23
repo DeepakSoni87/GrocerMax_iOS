@@ -83,7 +83,7 @@
  * Function for Edit User Address
  * @param
  **/
-- (void)editAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)editAddress:(NSDictionary *)param withSuccessBlock:(void(^)(BOOL success))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Get All User Address

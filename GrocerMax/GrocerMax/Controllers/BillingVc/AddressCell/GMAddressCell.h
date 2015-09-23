@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface GMAddressCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
+
 @property (strong, nonatomic) IBOutlet UILabel *addressLbl;
+
 @property (strong, nonatomic) IBOutlet GMButton *editAddressBtn;
+
 @property (strong, nonatomic) IBOutlet GMButton *selectUnSelectBtn;
 
 

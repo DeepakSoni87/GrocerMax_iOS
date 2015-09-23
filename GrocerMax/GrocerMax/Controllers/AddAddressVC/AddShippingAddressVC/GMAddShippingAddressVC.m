@@ -102,9 +102,14 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     if(!_addressModal) {
         
-        _addressModal = [[GMAddressModalData alloc] initWithUserModal:[GMUserModal loggedInUser]];
-        [_addressModal setCity:@"Gurgaon"];
-        [_addressModal setRegion:@"Haryana"];
+        if(!self.editAddressModal) {
+            
+            _addressModal = [[GMAddressModalData alloc] initWithUserModal:[GMUserModal loggedInUser]];
+            [_addressModal setCity:@"Gurgaon"];
+            [_addressModal setRegion:@"Haryana"];
+        }
+        else
+            _addressModal = self.editAddressModal;
     }
     return _addressModal;
 }
@@ -222,14 +227,14 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             NSString *city = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = city;
             [self.addressModal setCity:city];
-//            [self checkValidCity];
+            //            [self checkValidCity];
         }
             break;
         case 4: {
             
             if(!NSSTRING_HAS_DATA(textField.text))
                 [self.addressModal setRegion:textField.text];
-//            [self checkValidState];
+            //            [self checkValidState];
         }
             break;
         case 5: {
@@ -303,16 +308,16 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     }else{
         resultedBool =  resultedBool && YES;
     }
-//    if (![self checkValidCity]) {
-//        resultedBool =  resultedBool && NO;
-//    }else{
-//        resultedBool =  resultedBool && YES;
-//    }
-//    if (![self checkValidState]) {
-//        resultedBool =  resultedBool && NO;
-//    }else{
-//        resultedBool =  resultedBool && YES;
-//    }
+    //    if (![self checkValidCity]) {
+    //        resultedBool =  resultedBool && NO;
+    //    }else{
+    //        resultedBool =  resultedBool && YES;
+    //    }
+    //    if (![self checkValidState]) {
+    //        resultedBool =  resultedBool && NO;
+    //    }else{
+    //        resultedBool =  resultedBool && YES;
+    //    }
     if (![self checkValidPincode]) {
         resultedBool =  resultedBool && NO;
     }else{
@@ -512,15 +517,31 @@ static NSString * const kPincodeCell                    =  @"Pincode";
         
         [self.addressModal setIs_default_shipping:[NSNumber numberWithBool:self.isDefaultShippingAddress]];
         GMRequestParams *requestParam = [GMRequestParams sharedClass];
-        NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:YES];
+        NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:self.editAddressModal ? NO : YES];
         [self showProgress];
-        [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
-            [self removeProgress];
+        
+        if(self.editAddressModal) {
             
-        } failureBlock:^(NSError *error) {
-            [self removeProgress];
-            [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
-        }];
+            [[GMOperationalHandler handler] editAddress:requestDict withSuccessBlock:^(BOOL success) {
+                
+                [self removeProgress];
+                [self.navigationController popViewControllerAnimated:YES];
+            } failureBlock:^(NSError *error) {
+                
+                [self removeProgress];
+                [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            }];
+        }
+        else {
+            
+            [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
+                [self removeProgress];
+                [self.navigationController popViewControllerAnimated:YES];
+            } failureBlock:^(NSError *error) {
+                [self removeProgress];
+                [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            }];
+        }
     }
 }
 

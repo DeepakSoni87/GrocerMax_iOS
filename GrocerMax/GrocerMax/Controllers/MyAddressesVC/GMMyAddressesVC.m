@@ -7,9 +7,9 @@
 //
 
 #import "GMMyAddressesVC.h"
-
 #import "GMAddressCell.h"
 #import "GMTAddAddressCell.h"
+#import "GMAddShippingAddressVC.h"
 
 static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
@@ -28,12 +28,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.userModal = [GMUserModal loggedInUser];
-    self.navigationController.navigationBarHidden = NO;
-    [self.myAddressTableView setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
-    
-    [self getMyAddress];
+//    [self getMyAddress];
     [self registerCellsForTableView];
 }
 
@@ -42,61 +37,44 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)registerCellsForTableView {
     
     UINib *nib = [UINib nibWithNibName:@"GMAddressCell" bundle:[NSBundle mainBundle]];
     [self.myAddressTableView registerNib:nib forCellReuseIdentifier:kIdentifierMyAddressCell];
 }
-#pragma mark Button Action Methods
-- (void) selectUnselectBtnClicked:(GMButton *)sender {
+
+- (void)viewWillAppear:(BOOL)animated {
     
-    GMAddressModalData *addressModalData = sender.addressModal;
-    
-    
-    if(addressModalData.isSelected) {
-        sender.selected = FALSE;
-        addressModalData.isSelected = FALSE;
-    }
-    else {
-        sender.selected = TRUE;
-        addressModalData.isSelected = TRUE;
-    }
+    [self getMyAddress];
 }
 
-- (void) editBtnClicked:(GMButton *)sender {
+#pragma mark - GETTER/SETTER Methods
+
+- (GMUserModal *)userModal {
     
+    if(!_userModal) _userModal = [GMUserModal loggedInUser];
+    return _userModal;
 }
-- (void) addAddressBtnClicked:(UIButton *)sender {
-    
-}
-- (IBAction)actionAddAddressBtnClicked:(id)sender {
-    
-}
-#pragma mark Request Methods
+
+#pragma mark - Request Methods
 
 - (void)getMyAddress {
-    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
     
-    if(NSSTRING_HAS_DATA(self.userModal.email))
-        [userDic setObject:self.userModal.email forKey:kEY_email];
-    if(NSSTRING_HAS_DATA(self.userModal.userId))
-//        [userDic setObject:@"321"forKey:kEY_userid];
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    [userDic setObject:@"1" forKey:kEY_cityId];
+    [userDic setObject:self.userModal.userId forKey:kEY_userid];
+    
     [self showProgress];
     [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
         
-        self.addressArray = (NSMutableArray *)responceData.addressArray;
-        [self.myAddressTableView reloadData];
         [self removeProgress];
+        self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
+        if(!self.addressArray.count) {
+            
+            [self addNewAddressButtonTapped:nil];
+            return;
+        }
+        [self.myAddressTableView reloadData];
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
@@ -105,42 +83,50 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 }
 
 
-#pragma mark TableView DataSource and Delegate Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
-}
+#pragma mark - TableView DataSource and Delegate Methods
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     
     return [self.addressArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-        GMAddressCell *addressCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierMyAddressCell];
-        
-        GMAddressModalData *addressModalData = [self.addressArray objectAtIndex:indexPath.row];
-        addressCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        addressCell.tag = indexPath.row;
-        [addressCell configerViewWithData:addressModalData];
-        
-        [addressCell.selectUnSelectBtn addTarget:self action:@selector(selectUnselectBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [addressCell.selectUnSelectBtn setExclusiveTouch:YES];
-        [addressCell.editAddressBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [addressCell.editAddressBtn setExclusiveTouch:YES];
-        
-        return addressCell;
-    
+    return [GMAddressCell cellHeight];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return [GMAddressCell cellHeight];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GMAddressCell *addressCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierMyAddressCell];
+    
+    GMAddressModalData *addressModalData = [self.addressArray objectAtIndex:indexPath.row];
+    addressCell.tag = indexPath.row;
+    [addressCell configerViewWithData:addressModalData];
+    [addressCell.selectUnSelectBtn setHidden:YES];
+    [addressCell.editAddressBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    return addressCell;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+#pragma mark - Button Action Methods
+
+- (void) editBtnClicked:(GMButton *)sender {
+    
+    GMAddressModalData *addressModalData = sender.addressModal;
+    GMAddShippingAddressVC *shippingAddressVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
+    shippingAddressVC.editAddressModal = addressModalData;
+    [self.navigationController pushViewController:shippingAddressVC animated:YES];
+}
+
+- (IBAction)addNewAddressButtonTapped:(id)sender {
+    
+    GMAddShippingAddressVC *shippingAddressVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
+    [self.navigationController pushViewController:shippingAddressVC animated:YES];
+}
+
 
 @end

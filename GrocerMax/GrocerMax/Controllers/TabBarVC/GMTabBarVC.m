@@ -40,6 +40,7 @@
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     self.tabBar.tintColor = [UIColor yellowColor];
     self.tabBar.clipsToBounds = YES;
+    [self.tabBar setTranslucent:NO];
     
     GMHomeVC *homeVC = [[GMHomeVC alloc] initWithNibName:@"GMHomeVC" bundle:nil];
     UIImage *homeVCTabImg = [[UIImage imageNamed:@"home_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
