@@ -10,6 +10,7 @@
 #import "GMCategoryModal.h"
 #import "GMRootPageAPIController.h"
 #import "GMProductListingVC.h"
+#import "GMOffersVC.h"
 
 @interface GMRootPageModelController ()
 
@@ -47,9 +48,13 @@
             return proListVC;
         }
             break;
-        case GMRootPageViewControllerTypeOffersListing:
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
+            GMOffersVC *offersVC = [[GMOffersVC alloc] initWithNibName:@"GMOffersVC" bundle:nil];
+            offersVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
+            offersVC.data = self.modelPageData[index];
             
+            return offersVC;
         }
             break;
             
@@ -72,9 +77,10 @@
             return [self.modelPageData indexOfObject:proListVC.catMdl];
         }
             break;
-        case GMRootPageViewControllerTypeOffersListing:
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-
+            GMOffersVC *offersVC = (GMOffersVC*)viewController;
+            return [self.modelPageData indexOfObject:offersVC.data];
         }
             break;
             
@@ -94,9 +100,11 @@
             return catMdl.categoryName;
         }
             break;
-        case GMRootPageViewControllerTypeOffersListing:
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
+            NSDictionary *dic = mdl;
 
+            return dic.allKeys[0];
         }
             break;
             

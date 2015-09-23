@@ -15,6 +15,7 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
 
 @property(nonatomic,weak)IBOutlet UICollectionView *categoryCollectionView;
 @property (nonatomic) NSIndexPath* tblIndexPath;
+@property (nonatomic) NSArray* hotDealsArray;
 
 @end
 
@@ -40,6 +41,7 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
 
 -(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
     
+    self.hotDealsArray = data;
     self.tblIndexPath = indexPath;
     [self.categoryCollectionView reloadData];
 }
@@ -48,14 +50,14 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 15;
+    return self.hotDealsArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GMShopByDealCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:shopByDealCollectionViewCell forIndexPath:indexPath];
 
-    [cell configureCellWithData:nil cellIndexPath:indexPath];
+    [cell configureCellWithData:self.hotDealsArray[indexPath.item] cellIndexPath:indexPath];
     return cell;
 }
 

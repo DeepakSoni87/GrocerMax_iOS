@@ -47,6 +47,9 @@ static NSString const *shopbyCategoryMethodName = @"shopbycategory";
 static NSString const *shopByDealTypeMethodName = @"shopbydealtype";
 static NSString const *dealsbydealtypeMethodName = @"dealsbydealtype";
 static NSString const *dealProductListingMethodName = @"dealproductlisting";
+static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
+
+
 
 
 @implementation GMApiPathGenerator
@@ -237,6 +240,10 @@ static NSString const *dealProductListingMethodName = @"dealproductlisting";
     return [NSString stringWithFormat:@"%@%@", baseUrl, dealProductListingMethodName];
 }
 
++ (NSString *)offerByDealTypePath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, offerbydealtypeMethodName];
+}
 
 @end
 

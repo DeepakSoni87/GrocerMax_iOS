@@ -9,6 +9,7 @@
 #import "GMOffersCollectionViewCell.h"
 #import "GMProductModal.h"
 #import "UIImageView+AFNetworking.h"
+#import "GMOffersByDealTypeModal.h"
 
 @interface GMOffersCollectionViewCell ()
 
@@ -28,11 +29,24 @@
     self.itemImgView.layer.borderWidth = 3.0;
 }
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
+-(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
     
-    GMProductModal *mdl = data;
+    NSString *titleName = @"";
     
-    [self.itemImgView setImageWithURL:[NSURL URLWithString:mdl.image] placeholderImage:[UIImage imageNamed:@"STAPLES"]];
+    switch (rootType) {
+            
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
+        {
+            GMOffersByDealTypeModal *mdl = data;
+            titleName = mdl.dealType;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+//    [self.itemImgView setImageWithURL:[NSURL URLWithString:mdl.image] placeholderImage:[UIImage imageNamed:@"STAPLES"]];
 
     NSDictionary* style1 = @{
                              NSFontAttributeName:FONT_LIGHT(13),
@@ -44,9 +58,9 @@
                              NSForegroundColorAttributeName : [UIColor lightGrayColor]
                              };
     
-    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:mdl.name attributes:style1];
+    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:titleName attributes:style1];
     
-    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
+//    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
     
     self.itemName.attributedText = attString1;
 }

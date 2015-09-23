@@ -10,6 +10,6 @@
 
 @interface GMOffersCollectionViewCell : UICollectionViewCell
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath;
+-(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType;
 
 @end

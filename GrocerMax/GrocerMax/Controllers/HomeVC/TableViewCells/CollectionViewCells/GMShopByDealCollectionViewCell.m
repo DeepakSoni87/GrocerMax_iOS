@@ -7,6 +7,7 @@
 //
 
 #import "GMShopByDealCollectionViewCell.h"
+#import "GMHotDealBaseModal.h"
 
 @interface GMShopByDealCollectionViewCell ()
 
@@ -29,6 +30,8 @@
 
 -(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
 
+    GMHotDealModal *mdl = data;
+    
     NSDictionary* style1 = @{
                              NSFontAttributeName:FONT_LIGHT(11),
                              NSForegroundColorAttributeName : [UIColor whiteColor]
