@@ -100,6 +100,10 @@
 		82B1B2E81B9F60D0001550FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2DE1B9F60D0001550FC /* ViewController.m */; };
 		82B1B2F01B9F62F3001550FC /* GMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2EF1B9F62F3001550FC /* GMNavigationController.m */; };
 		E80F4BFB1BB16666005FE75C /* GMBaseOrderHistoryModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */; };
+		E8468C051BB1D6C900C74FEE /* GMCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8468C031BB1D6C900C74FEE /* GMCityVC.m */; };
+		E8468C061BB1D6C900C74FEE /* GMCityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8468C041BB1D6C900C74FEE /* GMCityVC.xib */; };
+		E8468C0B1BB1FA2500C74FEE /* GMCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8468C091BB1FA2500C74FEE /* GMCityCell.m */; };
+		E8468C0C1BB1FA2500C74FEE /* GMCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8468C0A1BB1FA2500C74FEE /* GMCityCell.xib */; };
 		E87851031BAE931200FDD930 /* GMTimeSloteModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851021BAE931200FDD930 /* GMTimeSloteModal.m */; };
 		E87851071BAEAA6800FDD930 /* GMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E87851061BAEAA6800FDD930 /* GMButton.m */; };
 		E878510B1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E878510A1BAEBAFB00FDD930 /* GMTimeSlotBaseModal.m */; };
@@ -311,6 +315,12 @@
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
 		E80F4BF91BB16666005FE75C /* GMBaseOrderHistoryModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMBaseOrderHistoryModal.h; sourceTree = "<group>"; };
 		E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMBaseOrderHistoryModal.m; sourceTree = "<group>"; };
+		E8468C021BB1D6C900C74FEE /* GMCityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCityVC.h; sourceTree = "<group>"; };
+		E8468C031BB1D6C900C74FEE /* GMCityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCityVC.m; sourceTree = "<group>"; };
+		E8468C041BB1D6C900C74FEE /* GMCityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCityVC.xib; sourceTree = "<group>"; };
+		E8468C081BB1FA2500C74FEE /* GMCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCityCell.h; sourceTree = "<group>"; };
+		E8468C091BB1FA2500C74FEE /* GMCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCityCell.m; sourceTree = "<group>"; };
+		E8468C0A1BB1FA2500C74FEE /* GMCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCityCell.xib; sourceTree = "<group>"; };
 		E87851011BAE931200FDD930 /* GMTimeSloteModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMTimeSloteModal.h; path = ../../Controllers/DeliveryDetail/DeliveryDetailCell/GMTimeSloteModal.h; sourceTree = "<group>"; };
 		E87851021BAE931200FDD930 /* GMTimeSloteModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMTimeSloteModal.m; path = ../../Controllers/DeliveryDetail/DeliveryDetailCell/GMTimeSloteModal.m; sourceTree = "<group>"; };
 		E87851051BAEAA6800FDD930 /* GMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMButton.h; sourceTree = "<group>"; };
@@ -868,6 +878,7 @@
 		82B1B2D91B9F60D0001550FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8468C011BB1D6A100C74FEE /* CityVC */,
 				3BCFCED81BB0888700F1BABE /* HomeVC */,
 				E896F1CE1BB094F4009D8011 /* ChangePassword */,
 				E896F1C81BB075F0009D8011 /* ShippingAddress */,
@@ -1017,6 +1028,27 @@
 				E80F4BFA1BB16666005FE75C /* GMBaseOrderHistoryModal.m */,
 			);
 			path = OrderHistoryModal;
+			sourceTree = "<group>";
+		};
+		E8468C011BB1D6A100C74FEE /* CityVC */ = {
+			isa = PBXGroup;
+			children = (
+				E8468C071BB1FA0C00C74FEE /* CityCell */,
+				E8468C021BB1D6C900C74FEE /* GMCityVC.h */,
+				E8468C031BB1D6C900C74FEE /* GMCityVC.m */,
+				E8468C041BB1D6C900C74FEE /* GMCityVC.xib */,
+			);
+			path = CityVC;
+			sourceTree = "<group>";
+		};
+		E8468C071BB1FA0C00C74FEE /* CityCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8468C081BB1FA2500C74FEE /* GMCityCell.h */,
+				E8468C091BB1FA2500C74FEE /* GMCityCell.m */,
+				E8468C0A1BB1FA2500C74FEE /* GMCityCell.xib */,
+			);
+			path = CityCell;
 			sourceTree = "<group>";
 		};
 		E87851041BAEAA5700FDD930 /* GMButton */ = {
@@ -1335,6 +1367,7 @@
 				820C4ED51BAF5A8E00DCCF39 /* GMAddBillingAddressVC.xib in Resources */,
 				824046F81BAA044F008686C2 /* GMOtpVC.xib in Resources */,
 				3B6712481BB0B08F001178EE /* GMPageControllCell.xib in Resources */,
+				E8468C061BB1D6C900C74FEE /* GMCityVC.xib in Resources */,
 				E896F1CD1BB0762C009D8011 /* GMShipppingAddressVC.xib in Resources */,
 				82B1B2B21B9F5E60001550FC /* Main.storyboard in Resources */,
 				3B406D791BAF707B007E37C4 /* GMRootPageViewController.xib in Resources */,
@@ -1361,6 +1394,7 @@
 				E878511D1BAF536000FDD930 /* GMTAddAddressCell.xib in Resources */,
 				E8ED6CE91BAD94790087AA1D /* GMAddressCell.xib in Resources */,
 				82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */,
+				E8468C0C1BB1FA2500C74FEE /* GMCityCell.xib in Resources */,
 				827047341BAEA19C00E224E8 /* GMLeftMenuVC.xib in Resources */,
 				3B6712441BB0B08F001178EE /* GMShopByCategoryCollectionViewCell.xib in Resources */,
 			);
@@ -1439,6 +1473,7 @@
 				3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */,
 				3B8F18C31BAE18D000DE3FF9 /* GMProductDescriptionVC.m in Sources */,
 				3B6712431BB0B08F001178EE /* GMShopByCategoryCollectionViewCell.m in Sources */,
+				E8468C0B1BB1FA2500C74FEE /* GMCityCell.m in Sources */,
 				821778EA1BA43141009937C7 /* GMProfileVC.m in Sources */,
 				3B406D761BAF707B007E37C4 /* GMRootPageAPIController.m in Sources */,
 				824046E31BA8B099008686C2 /* PlaceholderAndValidStatus.m in Sources */,
@@ -1464,6 +1499,7 @@
 				820C4EC11BAF482500DCCF39 /* GMRegistrationResponseModal.m in Sources */,
 				827047351BAEA19C00E224E8 /* GMLeftMenuCell.m in Sources */,
 				821778EF1BA5F334009937C7 /* GMRegisterVC.m in Sources */,
+				E8468C051BB1D6C900C74FEE /* GMCityVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				824046DE1BA8AF8F008686C2 /* GMRegisterInputCell.m in Sources */,
 				3B406D771BAF707B007E37C4 /* GMRootPageModelController.m in Sources */,

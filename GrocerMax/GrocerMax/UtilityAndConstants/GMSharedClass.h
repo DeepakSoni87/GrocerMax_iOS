@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class GMUserModal;
+@class GMCityModal;
 @class UIViewController;
 
 @interface GMSharedClass : NSObject
@@ -36,5 +37,10 @@
 - (void)saveLoggedInUserWithData:(NSData *)userData;
 
 - (GMUserModal *)getLoggedInUser;
+
+- (GMCityModal *)getSavedLocation;
+
+- (void)saveSelectedLocationData:(NSData *)userData;
+
 
 @end

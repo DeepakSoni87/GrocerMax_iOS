@@ -8,6 +8,7 @@
 
 #import "GMSharedClass.h"
 #import "GMUserModal.h"
+#import "GMStateBaseModal.h"
 
 
 #define kAlertTitle @"GrocerMax"
@@ -18,6 +19,7 @@ static GMSharedClass *sharedHandler;
 
 static NSString *const loggedInUserKey = @"com.GrocerMax.loggedInUserKey";
 static NSString *const signedInUserKey = @"com.GroxcerMax.signedInUserKey";
+static NSString *const userSelectedUserLocationKey = @"com.GroxcerMax.selectedUserLocation";
 
 CGFloat const kMATabBarHeight = 49.0f;
 
@@ -126,4 +128,21 @@ CGFloat const kMATabBarHeight = 49.0f;
     GMUserModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
     return archivedUser;
 }
+
+- (GMCityModal *)getSavedLocation {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedObject = [defaults objectForKey:userSelectedUserLocationKey];
+    GMCityModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return archivedUser;
+}
+
+- (void)saveSelectedLocationData:(NSData *)userData {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:userData forKey:userSelectedUserLocationKey];
+    [defaults synchronize];
+}
+
+
 @end

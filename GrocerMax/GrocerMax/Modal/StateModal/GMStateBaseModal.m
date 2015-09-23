@@ -8,22 +8,34 @@
 
 #import "GMStateBaseModal.h"
 
+static NSString * const kCityIdKey                     = @"cityId";
+static NSString * const kCityNameKey                   = @"cityName";
+static NSString * const kStateIdKey                    = @"stateId";
+static NSString * const kStateNameKey                  = @"stateName";
+
 @interface GMStateBaseModal()
 
 @property (nonatomic, readwrite, strong) NSArray *stateArray;
+@property (nonatomic, readwrite, strong) NSArray *cityArray;
 @end
 
 @implementation GMStateBaseModal
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"stateArray"                  : @"state"
+    return @{@"stateArray"                  : @"state",
+             @"cityArray"                   : @"location"
              };
 }
 
 + (NSValueTransformer *)stateArrayJSONTransformer {
     
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMStateModal class]];
+}
+
++ (NSValueTransformer *)cityArrayJSONTransformer {
+    
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMCityModal class]];
 }
 
 @end
@@ -58,15 +70,70 @@
 @property (nonatomic, readwrite, strong) NSString *cityId;
 
 @property (nonatomic, readwrite, strong) NSString *cityName;
+
+@property (nonatomic, readwrite, strong) NSString *stateId;
+
+@property (nonatomic, readwrite, strong) NSString *stateName;
+
+@property (nonatomic, readwrite) BOOL isSelected;
+
 @end
 
 @implementation GMCityModal
 
+static GMCityModal *cityModal;
+
++ (instancetype)selectedLocation {
+    
+    if(!cityModal) {
+        
+        cityModal = [GMCityModal loadCityModal];
+    }
+    return cityModal;
+}
+
++ (GMCityModal *)loadCityModal {
+    
+    GMCityModal *archivedUser = [[GMSharedClass sharedClass] getSavedLocation];
+    return archivedUser;
+}
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
     return @{@"cityId"                  : @"id",
-             @"cityName"                : @"name"
+             @"cityName"                : @"city_name",
+             @"stateId"                 : @"region_id",
+             @"stateName"               : @"default_name"
              };
+}
+
+
+#pragma mark - Encoder/Decoder Methods
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [aCoder encodeObject:self.cityId forKey:kCityIdKey];
+    [aCoder encodeObject:self.cityName forKey:kCityNameKey];
+    [aCoder encodeObject:self.stateId forKey:kStateIdKey];
+    [aCoder encodeObject:self.stateName forKey:kStateNameKey];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if((self = [super init])) {
+        
+        self.cityId = [aDecoder decodeObjectForKey:kCityIdKey];
+        self.cityName = [aDecoder decodeObjectForKey:kCityNameKey];
+        self.stateId = [aDecoder decodeObjectForKey:kStateIdKey];
+        self.stateName = [aDecoder decodeObjectForKey:kStateNameKey];
+    }
+    return self;
+}
+
+- (void)persistLocation {
+    
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self];
+    [[GMSharedClass sharedClass] saveSelectedLocationData:encodedObject];
+    cityModal = nil;
 }
 
 @end
