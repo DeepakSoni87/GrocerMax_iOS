@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMAddShippingAddressVC">
@@ -44,36 +45,74 @@
             <point key="canvasLocation" x="201" y="320"/>
         </view>
         <view contentMode="scaleToFill" id="DhC-pU-Jrr" userLabel="Footer View">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X3o-2k-18y">
-                    <rect key="frame" x="13" y="0.0" width="294" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUY-L2-seq">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-Ui-K3z">
-                            <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="checkBox">
-                                <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="checkBoxSelected"/>
-                            <connections>
-                                <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="Zji-Ba-9je"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
-                            <rect key="frame" x="40" y="12" width="254" height="26"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3o-2k-18y" userLabel="Inner View">
+                            <rect key="frame" x="13" y="0.0" width="294" height="90"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-Ui-K3z">
+                                    <rect key="frame" x="0.0" y="7" width="35" height="35"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="checkBox">
+                                        <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="checkBoxSelected"/>
+                                    <connections>
+                                        <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="Zji-Ba-9je"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
+                                    <rect key="frame" x="40" y="12" width="254" height="26"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make it my default billing address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-jZ-zRs">
+                                    <rect key="frame" x="40" y="55" width="254" height="26"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwF-8Y-Xo7">
+                                    <rect key="frame" x="0.0" y="50" width="35" height="35"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="checkBox">
+                                        <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="checkBoxSelected"/>
+                                    <connections>
+                                        <action selector="defaultBillingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="wQe-MT-lg4"/>
+                                        <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="gIQ-ah-5aQ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="X3o-2k-18y" secondAttribute="bottom" id="EgE-MX-ck7"/>
+                        <constraint firstItem="X3o-2k-18y" firstAttribute="top" secondItem="uUY-L2-seq" secondAttribute="top" id="Ict-zh-D3C"/>
+                        <constraint firstAttribute="centerX" secondItem="X3o-2k-18y" secondAttribute="centerX" id="M15-8h-ONc"/>
+                        <constraint firstItem="X3o-2k-18y" firstAttribute="width" secondItem="uUY-L2-seq" secondAttribute="width" multiplier="0.91875" id="TOE-dg-pez"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uUY-L2-seq" secondAttribute="trailing" id="5ji-dx-qgS"/>
+                <constraint firstAttribute="bottom" secondItem="uUY-L2-seq" secondAttribute="bottom" id="8jX-a2-1zu"/>
+                <constraint firstItem="uUY-L2-seq" firstAttribute="leading" secondItem="DhC-pU-Jrr" secondAttribute="leading" id="NXr-d4-l8H"/>
+                <constraint firstItem="uUY-L2-seq" firstAttribute="top" secondItem="DhC-pU-Jrr" secondAttribute="top" id="z8q-ia-Qi6"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="197" y="715"/>

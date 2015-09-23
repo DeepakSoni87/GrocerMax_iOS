@@ -129,7 +129,7 @@
         </view>
     </objects>
     <resources>
-        <image name="facebook" width="148" height="37"/>
-        <image name="google" width="148" height="37"/>
+        <image name="facebook" width="136" height="39"/>
+        <image name="google" width="136" height="39"/>
     </resources>
 </document>
