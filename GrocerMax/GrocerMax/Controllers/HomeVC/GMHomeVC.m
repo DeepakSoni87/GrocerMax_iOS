@@ -20,6 +20,8 @@
 #import "GMBillingAddressVC.h"
 #import "GMShipppingAddressVC.h"
 #import "GMEditProfileVC.h"
+#import "GMCityVC.h"
+#import "GMStateBaseModal.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -45,8 +47,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self registerCellsForTableView];
     [self configureUI];
-}
 
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self userSelectLocation];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -61,6 +68,12 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     self.tblView.tableFooterView = [UIView new];
     
     
+}
+- (void)userSelectLocation {
+    if([GMCityModal selectedLocation] == nil) {
+        GMCityVC * cityVC  = [GMCityVC new];
+        [self.navigationController pushViewController:cityVC animated:NO];
+    }
 }
 
 #pragma mark - Register Cells
@@ -187,7 +200,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
 //    
-//    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
+//    GMCityVC * billingAddressVC  = [GMCityVC new];
 //    [self.navigationController pushViewController:billingAddressVC animated:YES];
 //    return;
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];

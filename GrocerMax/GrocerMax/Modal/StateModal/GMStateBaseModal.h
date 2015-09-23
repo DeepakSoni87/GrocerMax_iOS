@@ -11,6 +11,7 @@
 @interface GMStateBaseModal : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, readonly, strong) NSArray *stateArray;
+@property (nonatomic, readonly, strong) NSArray *cityArray;
 @end
 
 @interface GMStateModal : MTLModel <MTLJSONSerializing>
@@ -27,4 +28,18 @@
 @property (nonatomic, readonly, strong) NSString *cityId;
 
 @property (nonatomic, readonly, strong) NSString *cityName;
+
+@property (nonatomic, readonly, strong) NSString *stateId;
+
+@property (nonatomic, readonly, strong) NSString *stateName;
+
+@property (nonatomic, readonly) BOOL isSelected;
+
+- (void) setCityId:(NSString *)cityId;
+- (void) setCityName:(NSString *)cityName;
+- (void) setStateId:(NSString *)stateId;
+- (void) setStateName:(NSString *)stateName;
+- (void) setIsSelected:(BOOL)isSelected;
++ (instancetype)selectedLocation;
+- (void)persistLocation;
 @end
