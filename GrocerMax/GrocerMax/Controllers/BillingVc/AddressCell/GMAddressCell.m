@@ -19,10 +19,18 @@
     [self setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+#pragma mark - GETTER/SETTER Methods
 
-    // Configure the view for the selected state
+- (void)setEditAddressBtn:(GMButton *)editAddressBtn {
+    
+    _editAddressBtn = editAddressBtn;
+    [_editAddressBtn setExclusiveTouch:YES];
+}
+
+- (void)setSelectUnSelectBtn:(GMButton *)selectUnSelectBtn {
+    
+    _selectUnSelectBtn = selectUnSelectBtn;
+    [_selectUnSelectBtn setExclusiveTouch:YES];
 }
 
 - (void)configerViewWithData:(id)modal {
@@ -32,40 +40,23 @@
     self.editAddressBtn.addressModal = addressModalData;
     
     if(addressModalData.isSelected)
-    {
         self.selectUnSelectBtn.selected = YES;
-    }
     else
-    {
         self.selectUnSelectBtn.selected = NO;
-    }
     
     NSString *mainStrign= @"";
-    
-    
     NSString *str1 = @"";
     
-//    if([addressModalData.userType isEqualToString:@"individual"])
-//    {
-//        str1 = @"Home";
-//    }
-//    else
-//    {
-//        str1 = @"Work";
-//    }
     self.addressLbl.numberOfLines = 3;
     mainStrign = [NSString stringWithFormat:@"%@",str1];
     
-    if(NSSTRING_HAS_DATA(addressModalData.street))
-    {
-        NSString *str2 = addressModalData.street;
+    if(NSSTRING_HAS_DATA(addressModalData.street)) {
         
+        NSString *str2 = addressModalData.street;
         self.addressLbl.text = str2;
     }
     else
-    {
          self.addressLbl.text = @"";
-    }
     
 //        mainStrign = [NSString stringWithFormat:@"%@\n%@",mainStrign,str2];
 //   

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class GMAddressModalData;
+
 @interface GMAddShippingAddressVC : UIViewController
 
+@property (nonatomic, strong) GMAddressModalData *editAddressModal;
 @end
