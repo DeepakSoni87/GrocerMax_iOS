@@ -146,7 +146,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             break;
             
         default:
-            return 110;
+            return 180;
             break;
     }
 }
@@ -275,7 +275,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             
             [hotDealBaseModal archiveHotDeals];
             self.hotDealsArray = [GMHotDealBaseModal loadHotDeals].hotDealArray;
-            
+            [self.tblView reloadData];
+
         } failureBlock:^(NSError *error) {
             
         }];

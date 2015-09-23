@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 @property (weak, nonatomic) IBOutlet UILabel *buy1Lbl;
 @property (weak, nonatomic) IBOutlet UILabel *get1FreeLbl;
+@property (weak, nonatomic) IBOutlet UILabel *testLbl;
 
 @end
 
@@ -42,12 +43,15 @@
                              NSForegroundColorAttributeName : [UIColor whiteColor]
                              };
     
-    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:@"Buy 1 \nBuy 2 \nBuy 3" attributes:style1];
-    NSMutableAttributedString *attString2 = [[NSMutableAttributedString alloc] initWithString:@"GET 1 \nFREE" attributes:style2];
+//    NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:@"Buy 1 \nBuy 2 \nBuy 3" attributes:style1];
+//    NSMutableAttributedString *attString2 = [[NSMutableAttributedString alloc] initWithString:@"GET 1 \nFREE" attributes:style2];
+//    
+//    self.buy1Lbl.attributedText = attString1;
+//    self.get1FreeLbl.attributedText = attString2;
     
-    self.buy1Lbl.attributedText = attString1;
-    self.get1FreeLbl.attributedText = attString2;
-    
+    NSMutableAttributedString *attString2 = [[NSMutableAttributedString alloc] initWithString:mdl.dealType attributes:style2];
+
+    self.testLbl.attributedText = attString2;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "GMOffersVC.h"
 #import "GMOffersCollectionViewCell.h"
-
+#import "GMDealCategoryBaseModal.h"
 
 NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
@@ -73,13 +73,19 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     
     switch (self.rootControllerType) {
             
+            
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
             NSDictionary *dic = self.data;
             self.dataSource = dic[dic.allKeys[0]];
         }
             break;
-            
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMDealCategoryModal *mdl = self.data;
+            self.dataSource = mdl.deals;
+        }
+            break;
         default:
             break;
     }

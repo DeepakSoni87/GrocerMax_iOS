@@ -11,6 +11,7 @@
 #import "GMRootPageAPIController.h"
 #import "GMProductListingVC.h"
 #import "GMOffersVC.h"
+#import "GMDealCategoryBaseModal.h"
 
 @interface GMRootPageModelController ()
 
@@ -58,6 +59,17 @@
         }
             break;
             
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMOffersVC *offersVC = [[GMOffersVC alloc] initWithNibName:@"GMOffersVC" bundle:nil];
+            offersVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
+            offersVC.data = self.modelPageData[index];
+            
+            return offersVC;
+        }
+            break;
+            
+            
         default:
             break;
     }
@@ -78,6 +90,12 @@
         }
             break;
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
+        {
+            GMOffersVC *offersVC = (GMOffersVC*)viewController;
+            return [self.modelPageData indexOfObject:offersVC.data];
+        }
+            break;
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
         {
             GMOffersVC *offersVC = (GMOffersVC*)viewController;
             return [self.modelPageData indexOfObject:offersVC.data];
@@ -105,6 +123,12 @@
             NSDictionary *dic = mdl;
 
             return dic.allKeys[0];
+        }
+            break;
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMDealCategoryModal *modal = mdl;
+            return modal.categoryName;
         }
             break;
             

@@ -10,6 +10,7 @@
 #import "GMProductModal.h"
 #import "UIImageView+AFNetworking.h"
 #import "GMOffersByDealTypeModal.h"
+#import "GMDealCategoryBaseModal.h"
 
 @interface GMOffersCollectionViewCell ()
 
@@ -41,6 +42,14 @@
             titleName = mdl.dealType;
         }
             break;
+            
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMDealModal *mdl = data;
+            titleName = mdl.dealName;
+        }
+            break;
+            
             
         default:
             break;
