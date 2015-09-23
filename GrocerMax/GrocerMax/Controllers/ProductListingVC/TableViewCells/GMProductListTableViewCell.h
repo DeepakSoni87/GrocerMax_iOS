@@ -10,6 +10,8 @@
 
 @interface GMProductListTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
+
 -(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath;
 
 @end

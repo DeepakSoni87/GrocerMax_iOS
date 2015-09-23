@@ -729,4 +729,68 @@ static GMRequestParams *sharedClass;
     else
         return @"";
 }
+
++ (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }else
+    {
+        return parameter;
+    }
+}
+
++ (NSString *)shopByDealTypeParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_cat_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_cat_id, [parameterDic objectForKey:kEY_cat_id]];
+        }
+        return parameter;
+    }
+}
+
++ (NSString *)dealsByDealTypeParameter:(NSDictionary *)parameterDic {
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_deal_type_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_deal_type_id, [parameterDic objectForKey:kEY_deal_type_id]];
+        }
+        return parameter;
+    }
+}
+
++ (NSString *)dealProductListingParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_deal_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_deal_id, [parameterDic objectForKey:kEY_deal_id]];
+        }
+        return parameter;
+    }
+}
+
 @end
