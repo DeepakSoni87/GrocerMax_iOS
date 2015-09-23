@@ -8,12 +8,16 @@
 
 #import "GMHotDealVC.h"
 #import "GMHotDealCollectionViewCell.h"
+#import "GMHotDealBaseModal.h"
+
 
 static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectionCell";
 
 @interface GMHotDealVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UICollectionView *dealCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *dealCollectionView;
+
+@property (strong, nonatomic) NSMutableArray *hotdealArray;
 
 @end
 
@@ -23,6 +27,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForCollectionView];
+    [self getHotDealDataFromServer];
 }
 
 - (void)registerCellsForCollectionView {
@@ -45,15 +50,37 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - WebService Handler
+
+- (void) getHotDealDataFromServer {
+        [self showProgress];
+    
+    [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(NSArray *responceData) {
+        self.hotdealArray = (NSMutableArray *)responceData;
+        if(self.hotdealArray.count>0) {
+            [self.dealCollectionView reloadData];
+        } else {
+            [[GMSharedClass sharedClass] showErrorMessage:@"No Hot deal available"];
+        }
+        
+        [self removeProgress];
+    } failureBlock:^(NSError *error) {
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+        [self removeProgress];
+        
+    }];
+}
+#pragma mark - UICollectionView DataSource and Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return [self.hotdealArray count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
     GMHotDealCollectionViewCell *hotDealCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdentifierHotDealCollectionCell forIndexPath:indexPath];
+    [hotDealCollectionViewCell configureCellWithData:hotDealModal];
     return hotDealCollectionViewCell;
     
 }
@@ -68,8 +95,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-[[GMSharedClass sharedClass] showInfoMessage:[NSString stringWithFormat:@"Arvind %ld",indexPath.row]];
-    
+    GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
+    [[GMSharedClass sharedClass] showInfoMessage:hotDealModal.dealType];
 }
 @end
