@@ -22,6 +22,8 @@
 #import "GMEditProfileVC.h"
 #import "GMCityVC.h"
 #import "GMStateBaseModal.h"
+#import "Sequencer.h"
+#import "GMHotDealBaseModal.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -43,11 +45,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
-    [self fetchAllCategories];
+    [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
     [self configureUI];
-
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -199,10 +201,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
-//    
-//    GMCityVC * billingAddressVC  = [GMCityVC new];
-//    [self.navigationController pushViewController:billingAddressVC animated:YES];
-//    return;
+    //
+    //    GMCityVC * billingAddressVC  = [GMCityVC new];
+    //    [self.navigationController pushViewController:billingAddressVC animated:YES];
+    //    return;
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
@@ -248,6 +250,50 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     } failureBlock:^(NSError *error) {
         [self removeProgress];
     }];
+}
+
+- (void)fetchAllCategoriesAndDeals {
+    
+    Sequencer *sequencer = [Sequencer new];
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        
+        [self showProgress];
+        [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
+            
+            self.rootCategoryModal = rootCategoryModal;
+            [self categoryLevelCategorization];
+            [self.rootCategoryModal archiveRootCategory];
+            GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
+            NSLog(@"%@", mdl);
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
+            GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
+            self.categoriesArray = defaultCategory.subCategories;
+            self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
+            
+            [self.tblView reloadData];
+            
+            completion (nil);
+        } failureBlock:^(NSError *error) {
+            completion (nil);
+        }];
+    }];
+    
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        
+        [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(GMHotDealBaseModal *hotDealBaseModal) {
+            
+            [self removeProgress];
+            [hotDealBaseModal archiveHotDeals];
+            GMHotDealBaseModal *dealModal = [GMHotDealBaseModal loadHotDeals];
+            
+        } failureBlock:^(NSError *error) {
+            
+            [self removeProgress];
+        }];
+        completion (nil);
+    }];
+    [sequencer run];
 }
 
 - (void)categoryLevelCategorization {
