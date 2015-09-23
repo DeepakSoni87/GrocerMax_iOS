@@ -21,6 +21,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 @property (nonatomic, strong) GMUserModal *userModal;
 
+@property (nonatomic, strong) GMAddShippingAddressVC *addressShippingVC;
 @end
 
 @implementation GMMyAddressesVC
@@ -45,6 +46,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    self.title = @"Shipping Addresses";
     [self getMyAddress];
 }
 
@@ -54,6 +56,16 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     
     if(!_userModal) _userModal = [GMUserModal loggedInUser];
     return _userModal;
+}
+
+- (GMAddShippingAddressVC *)addressShippingVC {
+    
+    if(!_addressShippingVC) {
+        
+        _addressShippingVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
+        [_addressShippingVC.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    }
+    return _addressShippingVC;
 }
 
 #pragma mark - Request Methods
@@ -71,8 +83,10 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
         self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
         if(!self.addressArray.count) {
             
-            [self addNewAddressButtonTapped:nil];
-            return;
+//            [self addNewAddressButtonTapped:nil];
+//            self.title = @"Shipping Address";
+//            [self.view addSubview:self.addressShippingVC.view];
+//            return;
         }
         [self.myAddressTableView reloadData];
         
