@@ -138,6 +138,8 @@
 		82A52AA91BB28EE3009A4235 /* GMCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AA51BB28EE3009A4235 /* GMCityVC.m */; };
 		82A52AAA1BB28EE3009A4235 /* GMCityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A52AA61BB28EE3009A4235 /* GMCityVC.xib */; };
 		82A52AAE1BB28F19009A4235 /* GMProductDetailModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AAD1BB28F19009A4235 /* GMProductDetailModal.m */; };
+		82A52AB21BB3362D009A4235 /* Sequencer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AB11BB3362D009A4235 /* Sequencer.m */; };
+		82A52AB61BB34D3A009A4235 /* GMDealCategoryBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AB51BB34D3A009A4235 /* GMDealCategoryBaseModal.m */; };
 		82B1B2A91B9F5E60001550FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2A81B9F5E60001550FC /* main.m */; };
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
 		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
@@ -370,6 +372,10 @@
 		82A52AA61BB28EE3009A4235 /* GMCityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCityVC.xib; sourceTree = "<group>"; };
 		82A52AAC1BB28F19009A4235 /* GMProductDetailModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProductDetailModal.h; sourceTree = "<group>"; };
 		82A52AAD1BB28F19009A4235 /* GMProductDetailModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProductDetailModal.m; sourceTree = "<group>"; };
+		82A52AB01BB3362D009A4235 /* Sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequencer.h; sourceTree = "<group>"; };
+		82A52AB11BB3362D009A4235 /* Sequencer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sequencer.m; sourceTree = "<group>"; };
+		82A52AB41BB34D3A009A4235 /* GMDealCategoryBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDealCategoryBaseModal.h; sourceTree = "<group>"; };
+		82A52AB51BB34D3A009A4235 /* GMDealCategoryBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDealCategoryBaseModal.m; sourceTree = "<group>"; };
 		82B1B2A31B9F5E60001550FC /* GrocerMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrocerMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B1B2A71B9F5E60001550FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B1B2A81B9F5E60001550FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -408,6 +414,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
 				E8B2C18B1BB29A08000F70EB /* HotDealModal */,
 				82A52AAB1BB28F19009A4235 /* ProductDetailModal */,
 				820C4EFF1BB1CC5C00DCCF39 /* AddressModal */,
@@ -1138,6 +1145,24 @@
 			path = ProductDetailModal;
 			sourceTree = "<group>";
 		};
+		82A52AAF1BB3362D009A4235 /* Sequencer */ = {
+			isa = PBXGroup;
+			children = (
+				82A52AB01BB3362D009A4235 /* Sequencer.h */,
+				82A52AB11BB3362D009A4235 /* Sequencer.m */,
+			);
+			path = Sequencer;
+			sourceTree = "<group>";
+		};
+		82A52AB31BB34D22009A4235 /* DealCategoryModal */ = {
+			isa = PBXGroup;
+			children = (
+				82A52AB41BB34D3A009A4235 /* GMDealCategoryBaseModal.h */,
+				82A52AB51BB34D3A009A4235 /* GMDealCategoryBaseModal.m */,
+			);
+			path = DealCategoryModal;
+			sourceTree = "<group>";
+		};
 		82B1B29A1B9F5E60001550FC = {
 			isa = PBXGroup;
 			children = (
@@ -1226,6 +1251,7 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				82A52AAF1BB3362D009A4235 /* Sequencer */,
 				820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */,
 				820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */,
 				824046FE1BAB22F6008686C2 /* XHDrawerController */,
@@ -1464,6 +1490,7 @@
 				820C50071BB1CC5C00DCCF39 /* UITableView+Wave.m in Sources */,
 				820C505C1BB1CC5C00DCCF39 /* GMRegisterInputCell.m in Sources */,
 				820C50191BB1CC5C00DCCF39 /* GMHotDealCollectionViewCell.m in Sources */,
+				82A52AB61BB34D3A009A4235 /* GMDealCategoryBaseModal.m in Sources */,
 				820C501F1BB1CC5C00DCCF39 /* GMTimeSloteModal.m in Sources */,
 				820C50481BB1CC5C00DCCF39 /* GMOrderHistoryCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
@@ -1504,6 +1531,7 @@
 				820C50061BB1CC5C00DCCF39 /* UIImage+Extends.m in Sources */,
 				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
 				820C50401BB1CC5C00DCCF39 /* GMTOfferListCell.m in Sources */,
+				82A52AB21BB3362D009A4235 /* Sequencer.m in Sources */,
 				820C50301BB1CC5C00DCCF39 /* GMShopByDealCell.m in Sources */,
 				820C501D1BB1CC5C00DCCF39 /* GMDeliveryDetailCell.m in Sources */,
 				820C50281BB1CC5C00DCCF39 /* GMShopByCategoryCollectionViewCell.m in Sources */,

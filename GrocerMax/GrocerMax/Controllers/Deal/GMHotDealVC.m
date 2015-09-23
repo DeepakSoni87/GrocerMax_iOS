@@ -9,7 +9,7 @@
 #import "GMHotDealVC.h"
 #import "GMHotDealCollectionViewCell.h"
 #import "GMHotDealBaseModal.h"
-
+#import "GMDealCategoryBaseModal.h"
 
 static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectionCell";
 
@@ -27,7 +27,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForCollectionView];
-    [self getHotDealDataFromServer];
+    [self fetchHotDealsDataFronDB];
 }
 
 - (void)registerCellsForCollectionView {
@@ -36,47 +36,33 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     
     [self.dealCollectionView registerNib:nib forCellWithReuseIdentifier:kIdentifierHotDealCollectionCell];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.title = @"Hot Offers";
 }
-*/
+
 #pragma mark - WebService Handler
 
-- (void) getHotDealDataFromServer {
-        [self showProgress];
+- (void)fetchHotDealsDataFronDB {
     
-    [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(NSArray *responceData) {
-        self.hotdealArray = (NSMutableArray *)responceData;
-        if(self.hotdealArray.count>0) {
-            [self.dealCollectionView reloadData];
-        } else {
-            [[GMSharedClass sharedClass] showErrorMessage:@"No Hot deal available"];
-        }
-        
-        [self removeProgress];
-    } failureBlock:^(NSError *error) {
-        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
-        [self removeProgress];
-        
-    }];
+    GMHotDealBaseModal *hotDealBaseModal = [GMHotDealBaseModal loadHotDeals];
+    self.hotdealArray = [NSMutableArray arrayWithArray:hotDealBaseModal.hotDealArray];
+    [self.dealCollectionView reloadData];
 }
+
 #pragma mark - UICollectionView DataSource and Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.hotdealArray count];
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
     GMHotDealCollectionViewCell *hotDealCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdentifierHotDealCollectionCell forIndexPath:indexPath];
@@ -95,7 +81,32 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
-    [[GMSharedClass sharedClass] showInfoMessage:hotDealModal.dealType];
+    [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
+}
+
+#pragma mark - Server handling Methods
+
+- (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+        
+        NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
+#pragma warning Rahul do your work here i provided you the array with All at top
+    } failureBlock:^(NSError *error) {
+        
+        [self showProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
+}
+
+- (NSMutableArray *)createCategoryDealsArrayWith:(GMDealCategoryBaseModal *)dealCategoryBaseModal {
+    
+    NSMutableArray *dealCategoryArray = [NSMutableArray arrayWithArray:dealCategoryBaseModal.dealCategories];
+    GMDealCategoryModal *allModal = [[GMDealCategoryModal alloc] initWithCategoryId:@"" images:@"" categoryName:@"All" isActive:@"1" andDeals:dealCategoryBaseModal.allDealCategory];
+    [dealCategoryArray insertObject:allModal atIndex:0];
+    return dealCategoryArray;
 }
 @end
