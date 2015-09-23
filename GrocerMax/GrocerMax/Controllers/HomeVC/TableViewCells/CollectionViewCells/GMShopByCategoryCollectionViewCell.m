@@ -57,7 +57,7 @@
     [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[strArr componentsJoinedByString:@","] attributes:style2]];
     
     self.titleLbl.attributedText = attString1;
-    [self.offerBtn setTitle:@"20 OFFERS >" forState:UIControlStateNormal];
+    [self.offerBtn setTitle:[NSString stringWithFormat:@"%li OFFERS >",(long)[mdl.offercount integerValue]] forState:UIControlStateNormal];
     self.offerBtn.tag = indexPath.item;
 }
 

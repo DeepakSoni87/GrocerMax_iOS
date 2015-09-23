@@ -47,12 +47,16 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self registerCellsForTableView];
     [self configureUI];
-
-    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self userSelectLocation];
+    
+    // if categoies exist in memory
+    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
+    if (mdl != nil) {
+        [self getShopByCategoriesFromServer];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -244,6 +248,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         
         [self.tblView reloadData];
         
+        // get shop by categories
+        [self getShopByCategoriesFromServer];
+        
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -289,4 +296,28 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     else
         return NO;
 }
+
+#pragma mark - Get categories from server
+
+-(void)getShopByCategoriesFromServer {
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] shopbyCategory:nil withSuccessBlock:^(id catArray) {
+        
+        NSArray *arr = catArray;
+        
+        for (NSDictionary *dic in arr) {
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.categoryId == %@", dic[kEY_category_id]];
+            
+            GMCategoryModal *defaultCategory = [[self.categoriesArray filteredArrayUsingPredicate:pred] firstObject];
+            defaultCategory.offercount = dic[kEY_offercount];
+        }
+        [self.tblView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
+
 @end

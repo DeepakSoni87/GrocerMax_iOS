@@ -30,6 +30,8 @@
 
 @property (nonatomic, readonly, assign) BOOL isSelected;
 
+@property (nonatomic, strong) NSString *offercount;
+
 + (instancetype)loadRootCategory;
 
 - (void)archiveRootCategory;
@@ -53,4 +55,7 @@
 - (void)setIndentationLevel:(NSUInteger)indentationLevel;
 
 - (void)setIsSelected:(BOOL)isSelected;
+
+-(void)setOffercount:(NSString *)offercount;
+
 @end

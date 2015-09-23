@@ -31,6 +31,7 @@ static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
 
 
+
 static GMOperationalHandler *sharedHandler;
 
 @implementation GMOperationalHandler
@@ -1074,7 +1075,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id catArray))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopbyCategoryPath],[GMRequestParams shopbyCategoryParameter:param]];
     
@@ -1089,8 +1090,8 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
+                                
+                if(successBlock) successBlock(responseObject[kEY_category]);
             }
         }else {
             
