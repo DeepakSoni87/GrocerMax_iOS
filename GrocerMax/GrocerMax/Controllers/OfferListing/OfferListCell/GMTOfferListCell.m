@@ -21,6 +21,9 @@
     
 }
 
++ (CGFloat) getCellHeight {
+    return 126.0;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -29,6 +32,8 @@
 
 
 -(void)configerViewWithData:(id)modal {
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self.substractBtn addTarget:self action:@selector(actionSubstractProduct:) forControlEvents:UIControlEventTouchUpInside];
     [self.substractBtn setExclusiveTouch:YES];
