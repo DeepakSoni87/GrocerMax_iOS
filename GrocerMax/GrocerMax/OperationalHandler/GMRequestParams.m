@@ -7,6 +7,7 @@
 //
 
 #import "GMRequestParams.h"
+#import "GMAddressModal.h"
 
 @implementation GMRequestParams
 
@@ -698,4 +699,98 @@ static GMRequestParams *sharedClass;
     }
     
 }
+
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress {
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionary];
+    if(!isNewAddress)
+        [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.customer_address_id] forKey:kEY_addressid];
+    [addressDictionary setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.firstName] forKey:kEY_fname];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.lastName] forKey:kEY_lname];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.city] forKey:kEY_city];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.region] forKey:kEY_state];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.pincode] forKey:kEY_pin];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.houseNo] forKey:kEY_addressline1];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.locality] forKey:kEY_addressline2];
+    [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.closestLandmark] forKey:kEY_addressline3];
+    [addressDictionary setObject:@"IN" forKey:kEY_countrycode];
+    [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
+    [addressDictionary setObject:@"1" forKeyedSubscript:kEY_cityId];
+    return addressDictionary;
+}
+
+- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
+    
+    if(NSSTRING_HAS_DATA(strInput))
+        return strInput;
+    else
+        return @"";
+}
+
++ (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }else
+    {
+        return parameter;
+    }
+}
+
++ (NSString *)shopByDealTypeParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_cat_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_cat_id, [parameterDic objectForKey:kEY_cat_id]];
+        }
+        return parameter;
+    }
+}
+
++ (NSString *)dealsByDealTypeParameter:(NSDictionary *)parameterDic {
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_deal_type_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_deal_type_id, [parameterDic objectForKey:kEY_deal_type_id]];
+        }
+        return parameter;
+    }
+}
+
++ (NSString *)dealProductListingParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_deal_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_deal_id, [parameterDic objectForKey:kEY_deal_id]];
+        }
+        return parameter;
+    }
+}
+
 @end

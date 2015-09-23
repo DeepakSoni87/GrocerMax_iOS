@@ -42,6 +42,11 @@ static NSString const *addToCartGustMethodName = @"addtocartgust";
 static NSString const *getLocationMethodName = @"getlocation";
 static NSString const *getStateMethodName = @"getstate";
 static NSString const *getLocalityMethodName = @"getlocality";
+static NSString const *getCategoryMethodName = @"category";
+static NSString const *shopbyCategoryMethodName = @"shopbycategory";
+static NSString const *shopByDealTypeMethodName = @"shopbydealtype";
+static NSString const *dealsbydealtypeMethodName = @"dealsbydealtype";
+static NSString const *dealProductListingMethodName = @"dealproductlisting";
 
 
 @implementation GMApiPathGenerator
@@ -49,12 +54,12 @@ static NSString const *getLocalityMethodName = @"getlocality";
 
 + (NSString *)userLoginPath{
     
-    return [NSString stringWithFormat:@"%@%@", baseUrl, @"category"];
+    return [NSString stringWithFormat:@"%@%@", baseUrl, loginMethodName];
 }
 
-+ (NSString *)userLoginPath1{
++ (NSString *)userCategoryPath {
     
-    return [NSString stringWithFormat:@"%@%@", baseUrl, loginMethodName];
+    return [NSString stringWithFormat:@"%@%@", baseUrl, getCategoryMethodName];
 }
 
 + (NSString *)createUserPath{
@@ -211,6 +216,27 @@ static NSString const *getLocalityMethodName = @"getlocality";
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, getLocalityMethodName];
 }
+
++ (NSString *)shopbyCategoryPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, shopbyCategoryMethodName];
+}
+
++ (NSString *)shopByDealTypePath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, shopByDealTypeMethodName];
+}
+
++ (NSString *)dealsbydealtypePath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, dealsbydealtypeMethodName];
+}
+
++ (NSString *)dealProductListingPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, dealProductListingMethodName];
+}
+
 
 @end
 

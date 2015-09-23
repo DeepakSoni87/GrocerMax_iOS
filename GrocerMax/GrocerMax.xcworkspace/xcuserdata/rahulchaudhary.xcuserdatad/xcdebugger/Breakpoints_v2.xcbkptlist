@@ -95,8 +95,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
             endingLineNumber = "51"
-            landmarkName = "-login:withSuccessBlock:failureBlock:"
-            landmarkType = "5">
+            landmarkName = "@implementation GMOperationalHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,22 +112,6 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "-login:withSuccessBlock:failureBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Category/UIViewContoller/UIViewController+GMProgressIndicator.m"
-            timestampString = "464393442.739396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-addLeftMenuButton"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

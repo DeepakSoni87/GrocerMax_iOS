@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMProductListingVC">
             <connections>
                 <outlet property="productListTblView" destination="LDx-Pq-rBc" id="bxH-bc-oNL"/>
+                <outlet property="tblFooterLoadMoreView" destination="ADu-fE-0Au" id="1w9-gB-bhS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,14 +18,14 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LDx-Pq-rBc">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="NrM-1c-mty"/>
                         <outlet property="delegate" destination="-1" id="guM-CZ-Xkj"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="LDx-Pq-rBc" secondAttribute="trailing" id="LPg-sE-KSn"/>
                 <constraint firstItem="LDx-Pq-rBc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gi2-sh-94f"/>
@@ -34,7 +35,24 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="671" y="419"/>
+            <point key="canvasLocation" x="403" y="405"/>
+        </view>
+        <view contentMode="scaleToFill" id="ADu-fE-0Au">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="k5d-af-yxF">
+                    <rect key="frame" x="150" y="5" width="20" height="20"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="k5d-af-yxF" secondAttribute="centerY" id="K2G-mn-oQd"/>
+                <constraint firstAttribute="centerX" secondItem="k5d-af-yxF" secondAttribute="centerX" id="jyQ-Jr-0Fd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="921" y="178.5"/>
         </view>
     </objects>
 </document>

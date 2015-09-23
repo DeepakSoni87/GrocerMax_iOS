@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GMAddressModalData;
+
 @interface GMRequestParams : NSObject
 
 + (instancetype)sharedClass;
@@ -210,4 +212,37 @@
  * @Return get parameter for get location
  **/
 + (NSString *)getLocationParameter:(NSDictionary *)parameterDic;
+
+- (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress;
+
+/**
+ * Function for shop by Catalog Listing
+ * @param parameter dictionary
+ * @Return get parameter for shopbyCategory
+ **/
++ (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic;
+
+/**
+ * Function for shop by Catalog Listing
+ * @param parameter dictionary
+ * @Return get parameter for shopByDealType
+ **/
++ (NSString *)shopByDealTypeParameter:(NSDictionary *)parameterDic;
+
+
+/**
+ * Function for Deals by deal type  Listing
+ * @param parameter dictionary
+ * @Return get parameter for dealsByDealType
+ **/
++ (NSString *)dealsByDealTypeParameter:(NSDictionary *)parameterDic ;
+
+
+/**
+ * Function for Deal Catalog Listing
+ * @param parameter dictionary
+ * @Return get parameter for dealProductListing
+ **/
++ (NSString *)dealProductListingParameter:(NSDictionary *)parameterDic;
+
 @end

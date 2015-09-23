@@ -18,8 +18,8 @@
 
 - (void)showProgressWithText:(NSString *)message {
     
-    [SVProgressHUD setBackgroundColor:[UIColor colorWithRGBValue:89 green:43 blue:89]];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+    [SVProgressHUD setForegroundColor:[UIColor inputTextFieldWarningColor]];
     //    [SVProgressHUD setRingThickness:1.0f];
     [SVProgressHUD setFont:FONT_REGULAR(13)];
     [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeClear];

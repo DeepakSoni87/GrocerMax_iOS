@@ -24,12 +24,15 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+
+    self.addBtn.layer.cornerRadius = 5.0;
+    self.addBtn.layer.masksToBounds = YES;
+
     self.bgVeiw.layer.cornerRadius = 5.0;
     self.bgVeiw.layer.masksToBounds = YES;
     
-    self.bgVeiw.layer.borderWidth = 0.50;
-    self.bgVeiw.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3].CGColor;
+    self.bgVeiw.layer.borderWidth = 0.80;
+    self.bgVeiw.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,8 +48,20 @@
     GMProductModal *mdl = data;
     
     [self.productImgView setImageWithURL:[NSURL URLWithString:mdl.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
-    self.productDescriptionLbl.text = mdl.name;
-        
+     
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",mdl.p_brand] attributes:@{
+NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
+    
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",mdl.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}]];
+    
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",mdl.p_pack] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor lightGrayColor]}]];
+
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ | ",mdl.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor blackColor]}]];
+
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",mdl.Price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
+
+    self.productDescriptionLbl.attributedText = attString;
+
 }
 
 @end

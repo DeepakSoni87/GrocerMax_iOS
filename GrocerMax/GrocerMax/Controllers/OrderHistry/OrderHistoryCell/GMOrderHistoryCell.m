@@ -7,7 +7,7 @@
 //
 
 #import "GMOrderHistoryCell.h"
-#import "GMOrderHistryModal.h"
+#import "GMBaseOrderHistoryModal.h"
 
 #define ORDER_ID @"Order Id: "
 #define ORDER_DATE @"Order Date: "
@@ -15,8 +15,8 @@
 #define ORDER_STATUS @"Status: "
 #define ORDER_ITEMS @"Items: "
 
-#define FIRST_FONTSIZE 15.0
-#define TITLE_FONTSIZE 15.0
+#define FIRST_FONTSIZE 13.0
+#define TITLE_FONTSIZE 12.0
 
 @implementation GMOrderHistoryCell
 
@@ -45,7 +45,7 @@
 
 -(void)configerViewWithData:(id)modal {
     
-    GMOrderHistryModal *orderHistryModal = (GMOrderHistryModal *)modal;
+    GMOrderHistoryModal *orderHistryModal = (GMOrderHistoryModal *)modal;
     
     
     
@@ -59,37 +59,52 @@
     {
         mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_DATE,orderHistryModal.orderDate];
     }
-    if(NSSTRING_HAS_DATA(orderHistryModal.orderAmountPaid))
+    if(NSSTRING_HAS_DATA(orderHistryModal.paidAmount))
     {
-        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_AMOUNT_PAID,orderHistryModal.orderAmountPaid];
+        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_AMOUNT_PAID,orderHistryModal.paidAmount];
     }
-    if(NSSTRING_HAS_DATA(orderHistryModal.orderStatus))
+    if(NSSTRING_HAS_DATA(orderHistryModal.status))
     {
-        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_STATUS ,orderHistryModal.orderStatus];
+        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_STATUS ,orderHistryModal.status];
     }
-    if(NSSTRING_HAS_DATA(orderHistryModal.orderItems))
+    if(NSSTRING_HAS_DATA(orderHistryModal.totalItem))
     {
-        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_ITEMS,orderHistryModal.orderItems];
+        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_ITEMS,orderHistryModal.totalItem];
     }
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:mainStrign];
     
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderId]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderDate]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderAmountPaid]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderStatus]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderItems]];
+    if(NSSTRING_HAS_DATA(orderHistryModal.orderId))
+    {
+        [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderId]];
+        [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderId]];
+    }
+    if(NSSTRING_HAS_DATA(orderHistryModal.orderDate))
+    {
+        [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.orderDate]];
+        [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderDate]];
+    }
+    if(NSSTRING_HAS_DATA(orderHistryModal.paidAmount))
+    {
+        [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.paidAmount]];
+        [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.paidAmount]];
+    }
+    if(NSSTRING_HAS_DATA(orderHistryModal.status))
+    {
+        [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.status]];
+        [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.status]];
+    }
+    if(NSSTRING_HAS_DATA(orderHistryModal.totalItem))
+    {
+        [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[mainStrign rangeOfString:orderHistryModal.totalItem]];
+        [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:[NSString stringWithFormat:@"%@%@",ORDER_ITEMS,orderHistryModal.totalItem]]];
+    }
     
-    [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderId]];
-    [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderDate]];
-    [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderAmountPaid]];
-    [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:orderHistryModal.orderStatus]];
-    [attString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:[NSString stringWithFormat:@"%@%@",ORDER_ITEMS,orderHistryModal.orderItems]]];
 
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:ORDER_ID]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:ORDER_DATE]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:ORDER_AMOUNT_PAID]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:ORDER_STATUS]];
-    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} range:[mainStrign rangeOfString:ORDER_ITEMS]];
+    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[mainStrign rangeOfString:ORDER_ID]];
+    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[mainStrign rangeOfString:ORDER_DATE]];
+    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[mainStrign rangeOfString:ORDER_AMOUNT_PAID]];
+    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[mainStrign rangeOfString:ORDER_STATUS]];
+    [attString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[mainStrign rangeOfString:ORDER_ITEMS]];
     
     [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:ORDER_ID]];
     [attString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:FIRST_FONTSIZE]} range:[mainStrign rangeOfString:ORDER_DATE]];

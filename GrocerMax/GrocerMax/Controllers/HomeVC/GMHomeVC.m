@@ -18,6 +18,8 @@
 #import "GMHotDealVC.h"
 #import "GMDeliveryDetailVC.h"
 #import "GMBillingAddressVC.h"
+#import "GMShipppingAddressVC.h"
+#import "GMEditProfileVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -185,7 +187,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
 //    
-//    GMBillingAddressVC * billingAddressVC  = [GMBillingAddressVC new];
+//    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
 //    [self.navigationController pushViewController:billingAddressVC animated:YES];
 //    return;
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
