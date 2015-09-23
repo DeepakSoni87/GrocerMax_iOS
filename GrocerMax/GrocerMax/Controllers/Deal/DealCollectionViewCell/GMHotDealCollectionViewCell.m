@@ -7,6 +7,7 @@
 //
 
 #import "GMHotDealCollectionViewCell.h"
+#import "GMHotDealBaseModal.h"
 
 @implementation GMHotDealCollectionViewCell
 
@@ -20,4 +21,9 @@
     [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
 }
 
+
+- (void)configureCellWithData:(id)data {
+    GMHotDealModal *hotDealModal = (GMHotDealModal *)data;
+    NSLog(@"%@",hotDealModal.imageName);
+}
 @end

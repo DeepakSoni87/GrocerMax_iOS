@@ -142,6 +142,7 @@
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
 		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
+		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +382,8 @@
 		82B1B2CE1B9F60D0001550FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
+		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +408,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				E8B2C18B1BB29A08000F70EB /* HotDealModal */,
 				82A52AAB1BB28F19009A4235 /* ProductDetailModal */,
 				820C4EFF1BB1CC5C00DCCF39 /* AddressModal */,
 				820C4F021BB1CC5C00DCCF39 /* CategoryModal */,
@@ -1249,6 +1253,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E8B2C18B1BB29A08000F70EB /* HotDealModal */ = {
+			isa = PBXGroup;
+			children = (
+				E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */,
+				E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */,
+			);
+			path = HotDealModal;
+			sourceTree = "<group>";
+		};
 		FA1193D135B13B1CA0AC1684 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1506,6 +1519,7 @@
 				820C50171BB1CC5C00DCCF39 /* GMCreateAddressVC.m in Sources */,
 				3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */,
 				820C50041BB1CC5C00DCCF39 /* NSString+Extension.m in Sources */,
+				E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */,
 				820C50381BB1CC5C00DCCF39 /* GMSectionView.m in Sources */,
 				820C50151BB1CC5C00DCCF39 /* GMChangePasswordVC.m in Sources */,
 				820C505E1BB1CC5C00DCCF39 /* GMShipppingAddressVC.m in Sources */,
