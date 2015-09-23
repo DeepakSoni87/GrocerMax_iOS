@@ -336,7 +336,7 @@ static GMOperationalHandler *sharedHandler;
 
 #pragma mark - Edit Address Api
 
-- (void)editAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)editAddress:(NSDictionary *)param withSuccessBlock:(void (^)(BOOL))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator editAddressPath],[GMRequestParams addAndEditAddressParameter:param]];
     
@@ -352,7 +352,7 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                if(successBlock) successBlock(YES);
             }
         }else {
             
@@ -368,7 +368,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator getAddressPath],[GMRequestParams getAddressParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getAddressPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
