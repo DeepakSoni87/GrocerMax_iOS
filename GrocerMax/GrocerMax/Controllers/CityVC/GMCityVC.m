@@ -60,12 +60,13 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     // Pass the selected object to the new view controller.
 }
 */
+
 -(void)configerView {
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
-
+#pragma mark - Register Cells
 - (void)registerCellsForTableView {
     
     UINib *nib = [UINib nibWithNibName:@"GMCityCell" bundle:[NSBundle mainBundle]];
