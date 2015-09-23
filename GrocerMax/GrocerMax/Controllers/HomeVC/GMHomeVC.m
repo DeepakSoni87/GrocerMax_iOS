@@ -205,10 +205,17 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 -(void)didSelectCategoryItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
+
+//    
+//    GMOfferListVC * billingAddressVC  = [GMOfferListVC new];
+//    [self.navigationController pushViewController:billingAddressVC animated:YES];
+//    return;
+
     //
     //    GMCityVC * billingAddressVC  = [GMCityVC new];
     //    [self.navigationController pushViewController:billingAddressVC animated:YES];
     //    return;
+
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];

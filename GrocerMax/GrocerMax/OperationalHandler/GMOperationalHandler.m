@@ -25,7 +25,8 @@
 #import "GMBaseOrderHistoryModal.h"
 #import "GMProductDetailModal.h"
 #import "GMHotDealBaseModal.h"
-
+#import "GMDealCategoryBaseModal.h"
+#import "GMProductModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -501,7 +502,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)productList:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator productListPath],[GMRequestParams productListParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator productListPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -575,7 +576,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)search:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator searchPath],[GMRequestParams searchParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator searchPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -589,7 +590,12 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSError *mtlError = nil;
+                
+                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(productListingModal); }
             }
         }else {
             
@@ -1128,7 +1134,7 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void (^)(GMDealCategoryBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealsbydealtypePath],[GMRequestParams dealsByDealTypeParameter:param]];
     
@@ -1139,13 +1145,12 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            NSError *mtlError = nil;
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
+            GMDealCategoryBaseModal *dealCategoryBaseModal = [MTLJSONAdapter modelOfClass:[GMDealCategoryBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(dealCategoryBaseModal); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -1155,7 +1160,7 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(NSArray *))successBlock failureBlock:(void (^)(NSError *))failureBlock{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealProductListingPath],[GMRequestParams dealProductListingParameter:param]];
     
@@ -1166,13 +1171,12 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            NSError *mtlError = nil;
             
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
-            }
+            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(productListBaseModal.productsListArray); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
