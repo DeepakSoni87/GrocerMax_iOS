@@ -19,7 +19,7 @@
 
 @interface GMHotDealModal : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, readonly, strong) NSString *dealId;
+@property (nonatomic, readonly, strong) NSString *dealTypeId;
 
 @property (nonatomic, readonly, strong) NSString *dealType;
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic, readonly, strong) NSString *imageURL;
 
-- (void) setDealId:(NSString *)dealId;
+- (void)setDealTypeId:(NSString *)dealTypeId;
 
 - (void) setDealType:(NSString *)dealType;
 

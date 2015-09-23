@@ -23,6 +23,7 @@
 
 
 - (void)configureCellWithData:(id)data {
+    
     GMHotDealModal *hotDealModal = (GMHotDealModal *)data;
     NSLog(@"%@",hotDealModal.imageName);
 }
