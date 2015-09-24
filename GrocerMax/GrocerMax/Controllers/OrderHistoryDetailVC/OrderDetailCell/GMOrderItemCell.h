@@ -10,4 +10,6 @@
 
 @interface GMOrderItemCell : UITableViewCell
 
+
++ (CGFloat)cellHeight;
 @end

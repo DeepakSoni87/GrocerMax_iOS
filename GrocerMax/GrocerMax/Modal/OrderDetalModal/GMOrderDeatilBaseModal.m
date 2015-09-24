@@ -79,6 +79,7 @@
                 if([[itemArray objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *itemDic = [itemArray objectAtIndex:i];
                     GMOrderItemDeatilModal *orderItemDeatilModal = [[GMOrderItemDeatilModal alloc]init];
+                    [self.itemModalArray addObject:orderItemDeatilModal];
                 }
             }
             

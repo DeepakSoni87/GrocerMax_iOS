@@ -10,8 +10,10 @@
 #import "GMOrderDetailCell.h"
 #import "GMOrderDetailHeaderView.h"
 #import "GMOrderDeatilBaseModal.h"
+#import "GMOrderItemCell.h"
 
 static NSString *kIdentifierOrderDetailCell = @"OrderDetailIdentifierCell";
+static NSString *kIdentifierOrderItemCell = @"OrderItemIdentifierCell";
 static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 
 
@@ -48,6 +50,11 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
     
     nib = [UINib nibWithNibName:@"GMOrderDetailHeaderView" bundle:[NSBundle mainBundle]];
     [self.orderDetailTableView registerNib:nib forHeaderFooterViewReuseIdentifier:kIdentifierOrderDetailHeader];
+    
+    [UINib nibWithNibName:@"GMOrderItemCell" bundle:[NSBundle mainBundle]];
+    [self.orderDetailTableView registerNib:nib forCellReuseIdentifier:kIdentifierOrderItemCell];
+    
+    
 //
 }
 
@@ -79,6 +86,10 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
         {
             return 6;
         }
+        else if(section == 1)
+        {
+            return 2;
+        }
         return 0;
     } else {
         return 0;
@@ -87,37 +98,44 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GMOrderDetailCell *oderDetailCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOrderDetailCell];
-    
-    oderDetailCell.tag = indexPath.row;
-    NSString *value = @"";
-    switch (indexPath.row) {
-        case 0:
-            value = self.orderDeatilBaseModal.orderDate;
-            break;
-        case 1:
-            value = self.orderDeatilBaseModal.shippingCharge;
-            break;
-        case 2:
-            value = self.orderDeatilBaseModal.paymentMethod;
-            break;
-        case 3:
-            value = self.orderDeatilBaseModal.deliveryDate;
-            break;
-        case 4:
-            value = self.orderDeatilBaseModal.deliveryTime;
-            break;
-        case 5:
-            value = self.orderDeatilBaseModal.shippingAddress;
-            break;
-            
-        default:
-            value = @"";
-            break;
+    if(indexPath.section == 0) {
+        GMOrderDetailCell *oderDetailCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOrderDetailCell];
+        
+        oderDetailCell.tag = indexPath.row;
+        NSString *value = @"";
+        switch (indexPath.row) {
+            case 0:
+                value = self.orderDeatilBaseModal.orderDate;
+                break;
+            case 1:
+                value = self.orderDeatilBaseModal.shippingCharge;
+                break;
+            case 2:
+                value = self.orderDeatilBaseModal.paymentMethod;
+                break;
+            case 3:
+                value = self.orderDeatilBaseModal.deliveryDate;
+                break;
+            case 4:
+                value = self.orderDeatilBaseModal.deliveryTime;
+                break;
+            case 5:
+                value = self.orderDeatilBaseModal.shippingAddress;
+                break;
+                
+            default:
+                value = @"";
+                break;
+        }
+        [oderDetailCell configerViewData:[self.detailArray objectAtIndex:indexPath.row] value:value];
+        
+        return oderDetailCell;
+    } else if(indexPath.section == 1){
+        GMOrderItemCell *orderItemCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOrderDetailCell];
+        
+        orderItemCell.tag = indexPath.row;
+        return orderItemCell;
     }
-    [oderDetailCell configerViewData:[self.detailArray objectAtIndex:indexPath.row] value:value];
-    
-    return oderDetailCell;
     
     
         return nil;
@@ -131,8 +149,9 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
         } else {
             return 0;
         }
-    }
-    else {
+    } else if(indexPath.section == 1){
+        return [GMOrderItemCell cellHeight];
+    } else {
         return 0.01;
     }
 }
@@ -141,12 +160,13 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
     if(indexPath.section == 0) {
         if([self isDataAtIndex:indexPath.row]) {
             return UITableViewAutomaticDimension;
-        } else {
+        }  else {
             return 0;
         }
     
-    }
-    else {
+    } else if(indexPath.section == 1){
+        return [GMOrderItemCell cellHeight];
+    } else {
         return 1.0;
     }
 }
@@ -156,8 +176,11 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    return 42.0f;
+    if(section == 0) {
+        return 42.0f;
+    } else {
+        return 0.1;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
