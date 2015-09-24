@@ -24,6 +24,7 @@
 #import "GMStateBaseModal.h"
 #import "Sequencer.h"
 #import "GMHotDealBaseModal.h"
+#import "GMOrderDetailVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -203,9 +204,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
 
 //    
-//    GMOfferListVC * billingAddressVC  = [GMOfferListVC new];
-//    [self.navigationController pushViewController:billingAddressVC animated:YES];
-//    return;
+    GMOrderDetailVC * billingAddressVC  = [GMOrderDetailVC new];
+    [self.navigationController pushViewController:billingAddressVC animated:YES];
+    return;
 
     //
     //    GMCityVC * billingAddressVC  = [GMCityVC new];
