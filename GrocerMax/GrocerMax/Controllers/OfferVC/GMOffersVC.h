@@ -13,4 +13,7 @@
 
 @interface GMOffersVC : UIViewController
 
+@property (strong, nonatomic) id data;
+@property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
+
 @end

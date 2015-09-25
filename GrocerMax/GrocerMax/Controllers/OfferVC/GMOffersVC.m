@@ -8,13 +8,14 @@
 
 #import "GMOffersVC.h"
 #import "GMOffersCollectionViewCell.h"
-
+#import "GMDealCategoryBaseModal.h"
 
 NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
 @interface GMOffersVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *offersCollectionView;
+@property(nonatomic,strong) NSArray *dataSource;
 
 @end
 
@@ -24,6 +25,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its
     
+    [self fillDataSourceArray];
     [self configureUI];
 }
 
@@ -44,13 +46,13 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 15;
+    return self.dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GMOffersCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:offersCollectionViewCell forIndexPath:indexPath];
-    [cell configureCellWithData:nil cellIndexPath:indexPath];
+    [cell configureCellWithData:self.dataSource[indexPath.row] cellIndexPath:indexPath andPageContType:self.rootControllerType];
     return cell;
 }
 
@@ -65,10 +67,30 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     NSLog(@"didSelectItemAtIndexPath");
 }
 
-- (void) collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-   
-}
+#pragma mark - Fill DataSource Array
 
+-(void)fillDataSourceArray {
+    
+    switch (self.rootControllerType) {
+            
+            
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
+        {
+            NSDictionary *dic = self.data;
+            self.dataSource = dic[dic.allKeys[0]];
+        }
+            break;
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMDealCategoryModal *mdl = self.data;
+            self.dataSource = mdl.deals;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    [self.offersCollectionView reloadData];
+}
 
 @end

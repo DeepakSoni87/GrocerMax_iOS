@@ -10,6 +10,7 @@
 #import "GMHotDealCollectionViewCell.h"
 #import "GMHotDealBaseModal.h"
 #import "GMDealCategoryBaseModal.h"
+#import "GMRootPageViewController.h"
 
 static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectionCell";
 
@@ -93,11 +94,23 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [self showProgress];
     [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
+        [self removeProgress];
+
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
 #pragma warning Rahul do your work here i provided you the array with All at top
+        
+        if (dealCategoryArray.count == 0) {
+            return ;
+        }
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = dealCategoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
+        [self.navigationController pushViewController:rootVC animated:YES];
+        
     } failureBlock:^(NSError *error) {
         
-        [self showProgress];
+        [self removeProgress];
         [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
     }];
 }

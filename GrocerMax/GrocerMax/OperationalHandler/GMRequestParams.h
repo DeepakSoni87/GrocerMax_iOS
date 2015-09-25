@@ -245,4 +245,11 @@
  **/
 + (NSString *)dealProductListingParameter:(NSDictionary *)parameterDic;
 
+/**
+ * Function for offer By Deal Type
+ * @param parameter dictionary
+ * @Return get parameter for offerByDealType
+ **/
++ (NSString *)offerByDealTypeParameter:(NSDictionary *)parameterDic;
+
 @end
