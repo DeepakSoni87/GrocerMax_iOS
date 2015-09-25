@@ -29,10 +29,11 @@
 #import "GMDealCategoryBaseModal.h"
 #import "GMProductModal.h"
 #import "GMOrderDeatilBaseModal.h"
+#import "GMCartDetailModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
-
+static NSString * const kQuoteId                    = @"QuoteId";
 
 
 static GMOperationalHandler *sharedHandler;
@@ -766,9 +767,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)deleteItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)deleteItem:(NSDictionary *)param withSuccessBlock:(void (^)(GMCartDetailModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator deleteItemPath],[GMRequestParams deleteItemParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator deleteItemPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -782,7 +783,8 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
+                if(successBlock) successBlock(cartDetailModal);
             }
         }else {
             
@@ -791,8 +793,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 
@@ -976,9 +976,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void (^)(NSString *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator addTocartGustPath],[GMRequestParams addToCartGustParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addTocartGustPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -992,7 +992,10 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSString *quoteId;
+                if(HAS_KEY(responseObject, kQuoteId))
+                    quoteId = responseObject[kQuoteId];
+                if(successBlock) successBlock(quoteId);
             }
         }else {
             
@@ -1221,6 +1224,5 @@ static GMOperationalHandler *sharedHandler;
         if(failureBlock) failureBlock(error);
     }];
 }
-
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GMTOfferListCell : UITableViewCell
+@class GMProductModal;
+
+@interface GMCartCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
 @property (strong, nonatomic) IBOutlet UIImageView *productListImageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLbl;
@@ -21,6 +23,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *addBtn;
 @property (strong, nonatomic) IBOutlet UILabel *addSubstractLbl;
 
+@property (weak, nonatomic) IBOutlet GMButton *deleteButton;
+
+
 + (CGFloat) getCellHeight;
-- (void)configerViewWithData:(id)modal;
+
+- (void)configureViewWithProductModal:(GMProductModal *)productModal;
 @end

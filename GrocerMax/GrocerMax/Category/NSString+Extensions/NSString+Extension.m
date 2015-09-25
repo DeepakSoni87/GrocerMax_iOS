@@ -128,4 +128,14 @@
     return s;
 }
 
++ (NSString *)getJsonStringFromObject:(id)parameterObject {
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameterObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonStr;
+}
 @end

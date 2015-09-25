@@ -85,8 +85,6 @@
 		820C503D1BB1CC5C00DCCF39 /* GMMyAddressesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4F931BB1CC5C00DCCF39 /* GMMyAddressesVC.xib */; };
 		820C503E1BB1CC5C00DCCF39 /* GMOfferListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4F961BB1CC5C00DCCF39 /* GMOfferListVC.m */; };
 		820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4F971BB1CC5C00DCCF39 /* GMOfferListVC.xib */; };
-		820C50401BB1CC5C00DCCF39 /* GMTOfferListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4F9A1BB1CC5C00DCCF39 /* GMTOfferListCell.m */; };
-		820C50411BB1CC5C00DCCF39 /* GMTOfferListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4F9B1BB1CC5C00DCCF39 /* GMTOfferListCell.xib */; };
 		820C50421BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4F9F1BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.m */; };
 		820C50431BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4FA01BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.xib */; };
 		820C50441BB1CC5C00DCCF39 /* GMOffersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4FA21BB1CC5C00DCCF39 /* GMOffersVC.m */; };
@@ -134,6 +132,11 @@
 		820C506E1BB1CC5C00DCCF39 /* PBPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820C4FF81BB1CC5C00DCCF39 /* PBPickerVC.xib */; };
 		824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047001BAB22F6008686C2 /* XHDrawerController.m */; };
 		824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 824047031BAB22F6008686C2 /* XHZoomDrawerView.m */; };
+		824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9A41BB53C46001652B9 /* GMCartModal.m */; };
+		824AF9A81BB566A2001652B9 /* GMCartRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9A71BB566A2001652B9 /* GMCartRequestParam.m */; };
+		824AF9AD1BB5BE67001652B9 /* GMCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9AB1BB5BE67001652B9 /* GMCartCell.m */; };
+		824AF9AE1BB5BE67001652B9 /* GMCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824AF9AC1BB5BE67001652B9 /* GMCartCell.xib */; };
+		824AF9B21BB5CF6E001652B9 /* GMCartDetailModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */; };
 		82A52AA71BB28EE3009A4235 /* GMCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AA21BB28EE3009A4235 /* GMCityCell.m */; };
 		82A52AA81BB28EE3009A4235 /* GMCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A52AA31BB28EE3009A4235 /* GMCityCell.xib */; };
 		82A52AA91BB28EE3009A4235 /* GMCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AA51BB28EE3009A4235 /* GMCityVC.m */; };
@@ -299,9 +302,6 @@
 		820C4F951BB1CC5C00DCCF39 /* GMOfferListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOfferListVC.h; sourceTree = "<group>"; };
 		820C4F961BB1CC5C00DCCF39 /* GMOfferListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOfferListVC.m; sourceTree = "<group>"; };
 		820C4F971BB1CC5C00DCCF39 /* GMOfferListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOfferListVC.xib; sourceTree = "<group>"; };
-		820C4F991BB1CC5C00DCCF39 /* GMTOfferListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMTOfferListCell.h; sourceTree = "<group>"; };
-		820C4F9A1BB1CC5C00DCCF39 /* GMTOfferListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMTOfferListCell.m; sourceTree = "<group>"; };
-		820C4F9B1BB1CC5C00DCCF39 /* GMTOfferListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMTOfferListCell.xib; sourceTree = "<group>"; };
 		820C4F9E1BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOffersCollectionViewCell.h; sourceTree = "<group>"; };
 		820C4F9F1BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOffersCollectionViewCell.m; sourceTree = "<group>"; };
 		820C4FA01BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOffersCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -378,6 +378,15 @@
 		824047011BAB22F6008686C2 /* XHDrawerControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDrawerControllerHeader.h; sourceTree = "<group>"; };
 		824047021BAB22F6008686C2 /* XHZoomDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHZoomDrawerView.h; sourceTree = "<group>"; };
 		824047031BAB22F6008686C2 /* XHZoomDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHZoomDrawerView.m; sourceTree = "<group>"; };
+		824AF9A31BB53C46001652B9 /* GMCartModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCartModal.h; sourceTree = "<group>"; };
+		824AF9A41BB53C46001652B9 /* GMCartModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCartModal.m; sourceTree = "<group>"; };
+		824AF9A61BB566A2001652B9 /* GMCartRequestParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCartRequestParam.h; sourceTree = "<group>"; };
+		824AF9A71BB566A2001652B9 /* GMCartRequestParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCartRequestParam.m; sourceTree = "<group>"; };
+		824AF9AA1BB5BE67001652B9 /* GMCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCartCell.h; sourceTree = "<group>"; };
+		824AF9AB1BB5BE67001652B9 /* GMCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCartCell.m; sourceTree = "<group>"; };
+		824AF9AC1BB5BE67001652B9 /* GMCartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCartCell.xib; sourceTree = "<group>"; };
+		824AF9B01BB5CF6E001652B9 /* GMCartDetailModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCartDetailModal.h; sourceTree = "<group>"; };
+		824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCartDetailModal.m; sourceTree = "<group>"; };
 		82A52AA11BB28EE3009A4235 /* GMCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCityCell.h; sourceTree = "<group>"; };
 		82A52AA21BB28EE3009A4235 /* GMCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCityCell.m; sourceTree = "<group>"; };
 		82A52AA31BB28EE3009A4235 /* GMCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCityCell.xib; sourceTree = "<group>"; };
@@ -454,6 +463,10 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+
+				824AF9AF1BB5CF54001652B9 /* CartDetailModal */,
+				824AF9A21BB53C04001652B9 /* CartModal */,
+
 				3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */,
 				E85310F31BB48EF0005A008B /* OrderDetalModal */,
 				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
@@ -705,6 +718,7 @@
 		820C4F431BB1CC5C00DCCF39 /* CartVC */ = {
 			isa = PBXGroup;
 			children = (
+				824AF9A91BB5BE67001652B9 /* GMCartCell */,
 				820C4F441BB1CC5C00DCCF39 /* GMCartVC.h */,
 				820C4F451BB1CC5C00DCCF39 /* GMCartVC.m */,
 				820C4F461BB1CC5C00DCCF39 /* GMCartVC.xib */,
@@ -890,19 +904,8 @@
 				820C4F951BB1CC5C00DCCF39 /* GMOfferListVC.h */,
 				820C4F961BB1CC5C00DCCF39 /* GMOfferListVC.m */,
 				820C4F971BB1CC5C00DCCF39 /* GMOfferListVC.xib */,
-				820C4F981BB1CC5C00DCCF39 /* OfferListCell */,
 			);
 			path = OfferListing;
-			sourceTree = "<group>";
-		};
-		820C4F981BB1CC5C00DCCF39 /* OfferListCell */ = {
-			isa = PBXGroup;
-			children = (
-				820C4F991BB1CC5C00DCCF39 /* GMTOfferListCell.h */,
-				820C4F9A1BB1CC5C00DCCF39 /* GMTOfferListCell.m */,
-				820C4F9B1BB1CC5C00DCCF39 /* GMTOfferListCell.xib */,
-			);
-			path = OfferListCell;
 			sourceTree = "<group>";
 		};
 		820C4F9C1BB1CC5C00DCCF39 /* OfferVC */ = {
@@ -1158,6 +1161,34 @@
 			path = XHDrawerController;
 			sourceTree = "<group>";
 		};
+		824AF9A21BB53C04001652B9 /* CartModal */ = {
+			isa = PBXGroup;
+			children = (
+				824AF9A31BB53C46001652B9 /* GMCartModal.h */,
+				824AF9A41BB53C46001652B9 /* GMCartModal.m */,
+			);
+			path = CartModal;
+			sourceTree = "<group>";
+		};
+		824AF9A91BB5BE67001652B9 /* GMCartCell */ = {
+			isa = PBXGroup;
+			children = (
+				824AF9AA1BB5BE67001652B9 /* GMCartCell.h */,
+				824AF9AB1BB5BE67001652B9 /* GMCartCell.m */,
+				824AF9AC1BB5BE67001652B9 /* GMCartCell.xib */,
+			);
+			path = GMCartCell;
+			sourceTree = "<group>";
+		};
+		824AF9AF1BB5CF54001652B9 /* CartDetailModal */ = {
+			isa = PBXGroup;
+			children = (
+				824AF9B01BB5CF6E001652B9 /* GMCartDetailModal.h */,
+				824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */,
+			);
+			path = CartDetailModal;
+			sourceTree = "<group>";
+		};
 		82A52A9F1BB28EE3009A4235 /* CityVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1287,6 +1318,8 @@
 				3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */,
 				3B670CC31BA0BC7600B5EB9D /* GMRequestParams.h */,
 				3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */,
+				824AF9A61BB566A2001652B9 /* GMCartRequestParam.h */,
+				824AF9A71BB566A2001652B9 /* GMCartRequestParam.m */,
 			);
 			path = OperationalHandler;
 			sourceTree = "<group>";
@@ -1491,7 +1524,7 @@
 				820C500C1BB1CC5C00DCCF39 /* GMAddShippingAddressVC.xib in Resources */,
 				820C50141BB1CC5C00DCCF39 /* GMCartVC.xib in Resources */,
 				820C50671BB1CC5C00DCCF39 /* GMTabBarVC.xib in Resources */,
-				820C50411BB1CC5C00DCCF39 /* GMTOfferListCell.xib in Resources */,
+				824AF9AE1BB5BE67001652B9 /* GMCartCell.xib in Resources */,
 				820C504F1BB1CC5C00DCCF39 /* GMRootPageViewController.xib in Resources */,
 				820C500E1BB1CC5C00DCCF39 /* GMAddressCell.xib in Resources */,
 				820C50451BB1CC5C00DCCF39 /* GMOffersVC.xib in Resources */,
@@ -1582,6 +1615,7 @@
 				82A52AB61BB34D3A009A4235 /* GMDealCategoryBaseModal.m in Sources */,
 				820C501F1BB1CC5C00DCCF39 /* GMTimeSloteModal.m in Sources */,
 				820C50481BB1CC5C00DCCF39 /* GMOrderHistoryCell.m in Sources */,
+				824AF9AD1BB5BE67001652B9 /* GMCartCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
 				82A52AA91BB28EE3009A4235 /* GMCityVC.m in Sources */,
 				820C50461BB1CC5C00DCCF39 /* GMOrderHistryVC.m in Sources */,
@@ -1608,6 +1642,7 @@
 				3B2A83F71BB352AC0066DA7A /* GMOffersByDealTypeModal.m in Sources */,
 				820C502E1BB1CC5C00DCCF39 /* GMShopByCategoryCell.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
+				824AF9B21BB5CF6E001652B9 /* GMCartDetailModal.m in Sources */,
 				820C503A1BB1CC5C00DCCF39 /* GMLoginVC.m in Sources */,
 				820C503C1BB1CC5C00DCCF39 /* GMMyAddressesVC.m in Sources */,
 				820C4FFA1BB1CC5C00DCCF39 /* GMCategoryModal.m in Sources */,
@@ -1621,13 +1656,13 @@
 				820C4FFB1BB1CC5C00DCCF39 /* GMDeliveryDateTimeSlotModal.m in Sources */,
 				820C50061BB1CC5C00DCCF39 /* UIImage+Extends.m in Sources */,
 				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
-				820C50401BB1CC5C00DCCF39 /* GMTOfferListCell.m in Sources */,
 				82A52AB21BB3362D009A4235 /* Sequencer.m in Sources */,
 				820C50301BB1CC5C00DCCF39 /* GMShopByDealCell.m in Sources */,
 				820C501D1BB1CC5C00DCCF39 /* GMDeliveryDetailCell.m in Sources */,
 				820C50281BB1CC5C00DCCF39 /* GMShopByCategoryCollectionViewCell.m in Sources */,
 				820C50021BB1CC5C00DCCF39 /* GMStateBaseModal.m in Sources */,
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
+				824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */,
 				820C504D1BB1CC5C00DCCF39 /* GMRootPageModelController.m in Sources */,
 				E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */,
 				E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */,
@@ -1644,6 +1679,7 @@
 				820C50381BB1CC5C00DCCF39 /* GMSectionView.m in Sources */,
 				820C50151BB1CC5C00DCCF39 /* GMChangePasswordVC.m in Sources */,
 				820C505E1BB1CC5C00DCCF39 /* GMShipppingAddressVC.m in Sources */,
+				824AF9A81BB566A2001652B9 /* GMCartRequestParam.m in Sources */,
 				820C500F1BB1CC5C00DCCF39 /* GMTAddAddressCell.m in Sources */,
 				820C502A1BB1CC5C00DCCF39 /* GMShopByDealCollectionViewCell.m in Sources */,
 				820C50521BB1CC5C00DCCF39 /* GMProductListingVC.m in Sources */,

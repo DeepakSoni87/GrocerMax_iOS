@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class GMProductModal;
+
 @interface GMProductListTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *addBtn;
+@property (weak, nonatomic) IBOutlet GMButton *addBtn;
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath;
+- (void)configureCellWithProductModal:(GMProductModal *)productModal;
 
++ (CGFloat)cellHeight;
 @end

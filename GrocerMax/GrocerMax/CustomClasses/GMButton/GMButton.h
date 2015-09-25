@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GMTimeSloteModal.h"
 #import "GMAddressModal.h"
+#import "GMProductModal.h"
 
 @interface GMButton : UIButton
 
@@ -17,4 +18,6 @@
 @property (nonatomic, strong) GMAddressModalData *addressModal;
 
 @property (nonatomic, strong) GMCityModal *cityModal;
+
+@property (nonatomic, strong) GMProductModal *produtModal;
 @end

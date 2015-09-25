@@ -29,5 +29,10 @@
 @property (strong, nonatomic) NSString *p_pack;
 @property (strong, nonatomic) NSString *sale_price;
 @property (strong, nonatomic) NSString *Status;
+@property (strong, nonatomic) NSString *productQuantity;
+@property (strong, nonatomic) NSString *sku;
+@property (strong, nonatomic) NSString *noDiscount;
+
+- (instancetype)initWithProductItemDict:(NSDictionary *)productDict;
 
 @end

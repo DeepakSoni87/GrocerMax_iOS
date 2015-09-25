@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMCartModal.h"
 
 @interface GMRootPageViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *pageData;
 @property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
 
+@property (nonatomic, strong) GMCartModal *cartModal;
 @end
