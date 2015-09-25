@@ -8,6 +8,11 @@
 
 #import "GMRequestParams.h"
 #import "GMAddressModal.h"
+#import "GMCartModal.h"
+#import "GMProductModal.h"
+
+
+
 
 @implementation GMRequestParams
 
@@ -722,14 +727,6 @@ static GMRequestParams *sharedClass;
     return addressDictionary;
 }
 
-- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
-    
-    if(NSSTRING_HAS_DATA(strInput))
-        return strInput;
-    else
-        return @"";
-}
-
 + (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic{
     
     NSString *parameter = @"?";
@@ -810,6 +807,13 @@ static GMRequestParams *sharedClass;
     }
 }
 
+#pragma mark - Helper Methods
 
-
+- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
+    
+    if(NSSTRING_HAS_DATA(strInput))
+        return strInput;
+    else
+        return @"";
+}
 @end

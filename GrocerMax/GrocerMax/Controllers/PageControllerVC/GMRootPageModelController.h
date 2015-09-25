@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GMRootPageViewController.h"
 
 @interface GMRootPageModelController : NSObject
 
 @property (strong, nonatomic) NSArray *modelPageData;
 @property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
+@property (nonatomic, strong) GMRootPageViewController *rootPageViewController;
 
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index ;
 - (NSUInteger)indexOfViewController:(UIViewController *)viewController;

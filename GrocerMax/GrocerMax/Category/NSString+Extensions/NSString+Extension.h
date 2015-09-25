@@ -19,4 +19,5 @@
 - (NSString*) removeMultipleExtraSpaces;
 - (NSString *) stringByStrippingHTML;
 //- (NSString *)convertStringIntoMD5:(NSString *)inputString;
++ (NSString *)getJsonStringFromObject:(id)parameterObject;
 @end

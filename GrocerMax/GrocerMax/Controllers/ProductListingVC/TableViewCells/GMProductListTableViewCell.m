@@ -15,9 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *bgVeiw;
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImgView;
+
 @property (weak, nonatomic) IBOutlet UILabel *productDescriptionLbl;
-
-
 @end
 
 @implementation GMProductListTableViewCell
@@ -43,14 +42,15 @@
 
 #pragma mark - Configure Cell
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
+- (void)configureCellWithProductModal:(GMProductModal *)productModal {
     
-    GMProductModal *mdl = data;
+    GMProductModal *mdl = productModal;
+    self.addBtn.produtModal = productModal;
     
     [self.productImgView setImageWithURL:[NSURL URLWithString:mdl.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
      
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",mdl.p_brand] attributes:@{
-NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
+    NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
     
     [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",mdl.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}]];
     
@@ -64,4 +64,10 @@ NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor red
 
 }
 
+#pragma mark - Cell height
+
++ (CGFloat)cellHeight {
+    
+    return 120.0f;
+}
 @end
