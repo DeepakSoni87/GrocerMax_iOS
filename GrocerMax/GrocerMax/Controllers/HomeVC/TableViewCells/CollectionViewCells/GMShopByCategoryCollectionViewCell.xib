@@ -54,7 +54,7 @@
             <size key="customSize" width="209" height="130"/>
             <connections>
                 <outlet property="bgImgView" destination="P0Z-PJ-7dj" id="O8c-L4-yan"/>
-                <outlet property="offerBtn" destination="Tou-iS-mkt" id="1OJ-uF-ltW"/>
+                <outlet property="offerBtn" destination="Tou-iS-mkt" id="aF6-RI-kcR"/>
                 <outlet property="titleLbl" destination="aUD-lZ-U9u" id="s5p-Nb-YRP"/>
             </connections>
             <point key="canvasLocation" x="-17.5" y="213"/>

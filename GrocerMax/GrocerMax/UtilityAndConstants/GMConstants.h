@@ -144,3 +144,12 @@
 #define kEY_deal_type_id                  @"deal_type_id"
 #define kEY_deal_id                       @"deal_id"
 
+// Key : Categoriew
+
+#define kEY_category_id                    @"category_id"
+#define kEY_category                       @"category"
+#define kEY_offercount                     @"offercount"
+
+
+
+

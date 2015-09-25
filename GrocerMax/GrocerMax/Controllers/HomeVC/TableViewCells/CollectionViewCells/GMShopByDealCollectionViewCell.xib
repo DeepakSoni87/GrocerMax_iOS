@@ -13,9 +13,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="215" height="130"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="STAPLES" translatesAutoresizingMaskIntoConstraints="NO" id="Xjh-fx-L6i">
-                        <rect key="frame" x="10" y="0.0" width="195" height="130"/>
+                        <rect key="frame" x="10" y="0.0" width="195" height="120"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy 1  Buy 2  Buy 3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUY-Q7-Qt6">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-Kf-aA8" userLabel="testLbl">
+                        <rect key="frame" x="15" y="0.0" width="185" height="120"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy 1  Buy 2  Buy 3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUY-Q7-Qt6">
                         <rect key="frame" x="9" y="0.0" width="78" height="130"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -25,7 +31,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqA-Py-RGW" userLabel="verticalLine">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqA-Py-RGW" userLabel="verticalLine">
                         <rect key="frame" x="89" y="20" width="1" height="90"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -35,7 +41,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Get 1  Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-rI-4wx">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Get 1  Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-rI-4wx">
                         <rect key="frame" x="92" y="0.0" width="113" height="130"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -51,16 +57,20 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="RqA-Py-RGW" secondAttribute="bottom" constant="20" id="4fY-ir-KUt"/>
+                <constraint firstItem="7SE-Kf-aA8" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="15" id="7NB-x6-HWx"/>
                 <constraint firstItem="Xjh-fx-L6i" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="CPn-oc-r7C"/>
                 <constraint firstAttribute="bottom" secondItem="UUY-Q7-Qt6" secondAttribute="bottom" id="JsK-aV-TMc"/>
+                <constraint firstItem="7SE-Kf-aA8" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="NL5-Wf-Yds"/>
                 <constraint firstItem="UUY-Q7-Qt6" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="9" id="POF-Sy-vEd"/>
                 <constraint firstAttribute="trailing" secondItem="Xjh-fx-L6i" secondAttribute="trailing" constant="10" id="SN7-ER-Dyl"/>
                 <constraint firstItem="RqA-Py-RGW" firstAttribute="leading" secondItem="UUY-Q7-Qt6" secondAttribute="trailing" constant="2" id="Wxq-V6-yjN"/>
                 <constraint firstItem="xVr-rI-4wx" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="XXt-la-dJj"/>
                 <constraint firstAttribute="trailing" secondItem="xVr-rI-4wx" secondAttribute="trailing" constant="10" id="Zut-He-ae6"/>
                 <constraint firstItem="UUY-Q7-Qt6" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="cOg-nf-0zU"/>
-                <constraint firstAttribute="bottom" secondItem="Xjh-fx-L6i" secondAttribute="bottom" id="dOA-WM-Xo7"/>
+                <constraint firstAttribute="bottom" secondItem="7SE-Kf-aA8" secondAttribute="bottom" constant="10" id="cV5-ga-m81"/>
+                <constraint firstAttribute="bottom" secondItem="Xjh-fx-L6i" secondAttribute="bottom" constant="10" id="dOA-WM-Xo7"/>
                 <constraint firstItem="xVr-rI-4wx" firstAttribute="leading" secondItem="RqA-Py-RGW" secondAttribute="trailing" constant="2" id="gOd-4U-mDh"/>
+                <constraint firstAttribute="trailing" secondItem="7SE-Kf-aA8" secondAttribute="trailing" constant="15" id="pt0-UO-vSQ"/>
                 <constraint firstAttribute="bottom" secondItem="xVr-rI-4wx" secondAttribute="bottom" id="tRN-D0-xyS"/>
                 <constraint firstItem="Xjh-fx-L6i" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="10" id="ueL-vq-NaF"/>
                 <constraint firstItem="RqA-Py-RGW" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" constant="20" id="vmX-2j-ZDW"/>
@@ -70,11 +80,12 @@
                 <outlet property="bgImgView" destination="Xjh-fx-L6i" id="ect-zG-xzt"/>
                 <outlet property="buy1Lbl" destination="UUY-Q7-Qt6" id="W9g-ag-SnD"/>
                 <outlet property="get1FreeLbl" destination="xVr-rI-4wx" id="jb6-SE-l1G"/>
+                <outlet property="testLbl" destination="7SE-Kf-aA8" id="l9l-FY-CEU"/>
             </connections>
             <point key="canvasLocation" x="529.5" y="425"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="STAPLES" width="736" height="416"/>
+        <image name="STAPLES" width="576" height="576"/>
     </resources>
 </document>
