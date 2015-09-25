@@ -77,6 +77,12 @@
                     <constraint firstItem="HNe-9x-axX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rpP-RU-xGR"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="orderItemNameLbl" destination="LnL-dI-B1i" id="Nai-O0-JZA"/>
+                <outlet property="orderQuantityLbl" destination="VoN-41-Tnv" id="P6h-gM-kZM"/>
+                <outlet property="oredrItemPriceLbl" destination="xZB-uK-ozu" id="S5i-Wj-ao8"/>
+                <outlet property="totalOrderQuantityLbl" destination="iYV-7T-8ux" id="llA-TF-fbu"/>
+            </connections>
             <point key="canvasLocation" x="268" y="212.5"/>
         </tableViewCell>
     </objects>
