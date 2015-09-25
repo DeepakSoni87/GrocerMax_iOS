@@ -26,6 +26,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    GMCartModal *cartModal = self.parentVC.cartModal;
+    
     [self registerCellsForTableView];
     [self configureUI];
     
@@ -62,25 +64,27 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 #pragma mark - UITableviewDelegate/DataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.productBaseModal.productsListArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GMProductModal *productModal = [self.productBaseModal.productsListArray objectAtIndex:indexPath.row];
     GMProductListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGMProductListTableViewCell];
-    [cell configureCellWithData:self.productBaseModal.productsListArray[indexPath.row] cellIndexPath:indexPath];
+    [cell.addBtn addTarget:self action:@selector(addButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cell configureCellWithProductModal:productModal];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [GMProductListTableViewCell cellHeight];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
     vc.modal = self.productBaseModal.productsListArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
@@ -108,12 +112,39 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 #pragma mark -
 
--(void)rootPageAPIControllerDidFinishTask:(GMRootPageAPIController *)controller
-{
+- (void)rootPageAPIControllerDidFinishTask:(GMRootPageAPIController *)controller {
+    
     self.isLoading = NO;
     self.productListTblView.tableFooterView = nil;
     self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.catMdl.categoryId];
     [self.productListTblView reloadData];
+}
+
+#pragma mark - IBAction methods
+
+- (void)addButtonTapped:(GMButton *)sender {
+    
+    GMProductModal *productModal = sender.produtModal;
+    [productModal setProductQuantity:@"1"];
+    [self.parentVC.cartModal.cartItems addObject:productModal];
+    [self.parentVC.cartModal archiveCart];
+    
+    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
+    [self showProgress];
+    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:^(NSString *quoteId) {
+        [self removeProgress];
+        
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        if(quoteId && !userModal) {
+            
+            userModal = [[GMUserModal alloc] init];
+            [userModal setQuoteId:quoteId];
+            [userModal persistUser];
+        }
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        
+    }];
 }
 
 @end

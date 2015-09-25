@@ -19,7 +19,7 @@
 @class GMBaseOrderHistoryModal;
 @class GMHotDealBaseModal;
 @class GMDealCategoryBaseModal;
-
+@class GMCartDetailModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -163,7 +163,7 @@
  * Function for Delete and Update Item from Cart
  * @param
  **/
-- (void)deleteItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)deleteItem:(NSDictionary *)param withSuccessBlock:(void(^)(GMCartDetailModal *cartDetailModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Set Order Status
@@ -205,7 +205,7 @@
  * Function for Add to Cart
  * @param
  **/
-- (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void(^)(NSString *quoteId))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Location

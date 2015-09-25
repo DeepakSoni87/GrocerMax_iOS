@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class GMCartModal;
 @class GMAddressModalData;
+@class GMProductModal;
 
 @interface GMRequestParams : NSObject
 

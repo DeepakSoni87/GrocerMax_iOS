@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -90,7 +90,7 @@
                             <constraint firstItem="ynp-Ou-jur" firstAttribute="top" secondItem="4oI-7n-0A5" secondAttribute="top" id="zYD-pa-Mqy"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEL-2d-Or8">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEL-2d-Or8" customClass="GMButton">
                         <rect key="frame" x="262" y="38" width="46" height="30"/>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.38823529410000002" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -117,7 +117,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="addBtn" destination="jEL-2d-Or8" id="oAH-2S-JSi"/>
+                <outlet property="addBtn" destination="jEL-2d-Or8" id="fpf-Ce-9IX"/>
                 <outlet property="bgVeiw" destination="ye1-mf-dqa" id="aol-BB-mE6"/>
                 <outlet property="productDescriptionLbl" destination="ypZ-hH-B9p" id="9Bd-lA-nHG"/>
                 <outlet property="productImgView" destination="z5M-1Z-ihk" id="B3p-Ay-wNW"/>
