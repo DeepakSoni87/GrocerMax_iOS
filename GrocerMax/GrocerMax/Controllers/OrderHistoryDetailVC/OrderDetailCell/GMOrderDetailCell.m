@@ -21,7 +21,7 @@
 }
 
 - (void)configerViewData:(NSString *)title value:(NSString *)value {
-    
+     self.selectionStyle = UITableViewCellSelectionStyleNone;
     if(NSSTRING_HAS_DATA(title) && NSSTRING_HAS_DATA(value)) {
         self.titleLbl.text = title;
         self.valueLbl.text = value;
