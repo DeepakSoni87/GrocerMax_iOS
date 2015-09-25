@@ -24,6 +24,7 @@
 #import "GMStateBaseModal.h"
 #import "Sequencer.h"
 #import "GMHotDealBaseModal.h"
+#import "GMOffersByDealTypeModal.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -33,8 +34,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 @property (nonatomic,weak) IBOutlet UITableView *tblView;
 @property (nonatomic,strong) NSArray *categoriesArray;
+@property (nonatomic,strong) NSArray *hotDealsArray;
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
-
 
 @end
 
@@ -145,7 +146,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             break;
             
         default:
-            return 110;
+            return 180;
             break;
     }
 }
@@ -189,7 +190,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(GMShopByDealCell*)shopByDealCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath{
     
     GMShopByDealCell *cell = [tableView dequeueReusableCellWithIdentifier:shopByDealCell];
-    [cell configureCellWithData:nil cellIndexPath:indexPath];
+    [cell configureCellWithData:self.hotDealsArray cellIndexPath:indexPath];
     cell.delegate = self;
     return cell;
 }
@@ -228,6 +229,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(void)offerBtnPressedAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
+    GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
+
+    [self getOffersDealFromServerWithCatID:catModal.categoryId];
 }
 
 #pragma mark - Deal cell Delegate
@@ -236,34 +240,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
-}
-
-- (void)fetchAllCategories {
-    
-    
-    [self showProgress];
-    [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
-        
-        self.rootCategoryModal = rootCategoryModal;
-        [self categoryLevelCategorization];
-        [self.rootCategoryModal archiveRootCategory];
-        GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-        NSLog(@"%@", mdl);
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
-        GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
-        self.categoriesArray = defaultCategory.subCategories;
-        self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
-        
-        [self.tblView reloadData];
-        
-        // get shop by categories
-        [self getShopByCategoriesFromServer];
-        
-        [self removeProgress];
-    } failureBlock:^(NSError *error) {
-        [self removeProgress];
-    }];
 }
 
 - (void)fetchAllCategoriesAndDeals {
@@ -297,16 +273,23 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         
         [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(GMHotDealBaseModal *hotDealBaseModal) {
             
-            [self removeProgress];
             [hotDealBaseModal archiveHotDeals];
-            GMHotDealBaseModal *dealModal = [GMHotDealBaseModal loadHotDeals];
-            
+            self.hotDealsArray = [GMHotDealBaseModal loadHotDeals].hotDealArray;
+            [self.tblView reloadData];
+
         } failureBlock:^(NSError *error) {
             
-            [self removeProgress];
         }];
         completion (nil);
     }];
+    
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        // get shop by categories
+        [self getShopByCategoriesFromServer];
+        
+        completion (nil);
+    }];
+
     [sequencer run];
 }
 
@@ -368,9 +351,40 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         }
         [self.tblView reloadData];
         
+        [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
     }];
+}
+
+#pragma mark - offersByDeal
+
+-(void)getOffersDealFromServerWithCatID:(NSString*)catID {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:catID forKey:kEY_cat_id];
+
+    [self showProgress];
+    [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
+        
+        [self removeProgress];
+        
+        GMOffersByDealTypeBaseModal *baseMdl = offersByDealTypeBaseModal;
+        
+        if (baseMdl.allArray.count == 0 || baseMdl.deal_categoryArray == 0) {
+            return ;
+        }
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = @[@{@"All" : baseMdl.allArray}, @{@"Deal Category" : baseMdl.deal_categoryArray}];
+        rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
+        [self.navigationController pushViewController:rootVC animated:YES];
+
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+    
 }
 
 @end

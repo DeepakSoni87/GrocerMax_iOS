@@ -263,4 +263,13 @@
 
 + (NSString *)dealProductListingPath;
 
+/**
+ * Function for offer By Deal Type
+ * @param GET Var page, deal_id
+ * @output offerByDealType
+ */
+
++ (NSString *)offerByDealTypePath;
+
+
 @end

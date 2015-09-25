@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B2A83F71BB352AC0066DA7A /* GMOffersByDealTypeModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A83F61BB352AC0066DA7A /* GMOffersByDealTypeModal.m */; };
 		3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */; };
 		3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */; };
 		3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */; };
@@ -159,6 +160,8 @@
 
 /* Begin PBXFileReference section */
 		313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.release.xcconfig"; sourceTree = "<group>"; };
+		3B2A83F51BB352AB0066DA7A /* GMOffersByDealTypeModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOffersByDealTypeModal.h; sourceTree = "<group>"; };
+		3B2A83F61BB352AC0066DA7A /* GMOffersByDealTypeModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOffersByDealTypeModal.m; sourceTree = "<group>"; };
 		3B670CBD1BA0BB4600B5EB9D /* GMOperationalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOperationalHandler.h; sourceTree = "<group>"; };
 		3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOperationalHandler.m; sourceTree = "<group>"; };
 		3B670CC01BA0BC1700B5EB9D /* GMApiPathGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMApiPathGenerator.h; sourceTree = "<group>"; };
@@ -411,9 +414,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A83F51BB352AB0066DA7A /* GMOffersByDealTypeModal.h */,
+				3B2A83F61BB352AC0066DA7A /* GMOffersByDealTypeModal.m */,
+			);
+			path = OffersByDealTypeModal;
+			sourceTree = "<group>";
+		};
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */,
 				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
 				E8B2C18B1BB29A08000F70EB /* HotDealModal */,
 				82A52AAB1BB28F19009A4235 /* ProductDetailModal */,
@@ -1516,6 +1529,7 @@
 				820C50201BB1CC5C00DCCF39 /* GMDeliveryDetailVC.m in Sources */,
 				820C50001BB1CC5C00DCCF39 /* GMRegistrationResponseModal.m in Sources */,
 				820C50501BB1CC5C00DCCF39 /* GMProductDescriptionVC.m in Sources */,
+				3B2A83F71BB352AC0066DA7A /* GMOffersByDealTypeModal.m in Sources */,
 				820C502E1BB1CC5C00DCCF39 /* GMShopByCategoryCell.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
 				820C503A1BB1CC5C00DCCF39 /* GMLoginVC.m in Sources */,
