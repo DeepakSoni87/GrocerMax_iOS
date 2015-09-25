@@ -25,6 +25,12 @@
 
 @property (nonatomic, strong) NSString *shippingAddress;
 
+@property (nonatomic, strong) NSString *subTotal;
+
+@property (nonatomic, strong) NSString *deliveryCharge;
+
+@property (nonatomic, strong) NSString *totalPrice;
+
 @property (nonatomic, strong) NSMutableArray *itemModalArray;
 
 - (GMOrderDeatilBaseModal *) initWithDictionary:(NSMutableDictionary *)dataDic;

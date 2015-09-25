@@ -42,7 +42,10 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     self.dateTimeSloteModalArray = [[NSMutableArray alloc]init];;
     [self getDateAndTimeSlot];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"DELIVERY DETAIL";
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -18,7 +18,17 @@
 #define Key_Delivery_value @"value"
 #define Key_Sipping_Address @"shipping_address"
 #define Key_Sipping_Street @"street"
+
+#define Key_Subtotal @"subtotal"
+#define Key_Sipping_DeliveryCharge @"base_shipping_amount"
+#define Key_Total @"base_grand_total"
+#define Key_itemQuantity @"qty_ordered"
+
 #define Key_items @"items"
+#define Key_itemId @"item_id"
+#define Key_itemName @"name"
+#define Key_itemPrice @"price"
+
 
 @implementation GMOrderDeatilBaseModal
 
@@ -71,14 +81,39 @@
             }
         }
         
-        self.itemModalArray = [[NSMutableArray alloc]init];
+        if([dataDic objectForKey:Key_Subtotal]) {
+            [self setSubTotal:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_Subtotal]]];
+        }
         
+        if([dataDic objectForKey:Key_Sipping_DeliveryCharge]) {
+            [self setDeliveryCharge:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_Sipping_DeliveryCharge]]];
+        }
+        if([dataDic objectForKey:Key_Total]) {
+            [self setTotalPrice:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_Total]]];
+        }
+        
+        self.itemModalArray = [[NSMutableArray alloc]init];
         if([dataDic objectForKey:Key_items] && [[dataDic objectForKey:Key_items] isKindOfClass:[NSArray class]]) {
             NSArray *itemArray = [dataDic objectForKey:Key_items];
             for(int i = 0; i<itemArray.count; i++){
                 if([[itemArray objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *itemDic = [itemArray objectAtIndex:i];
                     GMOrderItemDeatilModal *orderItemDeatilModal = [[GMOrderItemDeatilModal alloc]init];
+                    
+                    if([itemDic objectForKey:Key_itemId] && [[itemDic objectForKey:Key_itemId] isKindOfClass:[NSString class]]) {
+                        orderItemDeatilModal.itemId = [itemDic objectForKey:Key_itemId];
+                    }
+                    if([itemDic objectForKey:Key_itemName] && [[itemDic objectForKey:Key_itemName] isKindOfClass:[NSString class]]) {
+                        orderItemDeatilModal.itemName = [itemDic objectForKey:Key_itemName];
+                    }
+                    if([itemDic objectForKey:Key_itemPrice] && [[itemDic objectForKey:Key_itemPrice] isKindOfClass:[NSString class]]) {
+                        orderItemDeatilModal.itemPrice = [itemDic objectForKey:Key_itemPrice];
+                    }
+                    if([itemDic objectForKey:Key_itemQuantity] && [[itemDic objectForKey:Key_itemQuantity] isKindOfClass:[NSString class]]) {
+                        orderItemDeatilModal.quantity = [itemDic objectForKey:Key_itemQuantity];
+                    }
+                    
+                    
                     [self.itemModalArray addObject:orderItemDeatilModal];
                 }
             }
