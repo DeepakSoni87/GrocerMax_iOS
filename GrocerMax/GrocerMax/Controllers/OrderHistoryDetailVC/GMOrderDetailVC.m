@@ -11,10 +11,12 @@
 #import "GMOrderDetailHeaderView.h"
 #import "GMOrderDeatilBaseModal.h"
 #import "GMOrderItemCell.h"
+#import "GMOrderDetailLastHeaderView.h"
 
 static NSString *kIdentifierOrderDetailCell = @"OrderDetailIdentifierCell";
 static NSString *kIdentifierOrderItemCell = @"OrderItemIdentifierCell";
 static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
+static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader";
 
 
 @interface GMOrderDetailVC () <UITableViewDataSource,UITableViewDelegate>
@@ -35,7 +37,10 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
     [self configerData];
     [self getorderDetail];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"DELIVERY INFO";
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,6 +55,9 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
     
     nib = [UINib nibWithNibName:@"GMOrderDetailHeaderView" bundle:[NSBundle mainBundle]];
     [self.orderDetailTableView registerNib:nib forHeaderFooterViewReuseIdentifier:kIdentifierOrderDetailHeader];
+    
+    nib = [UINib nibWithNibName:@"GMOrderDetailLastHeaderView" bundle:[NSBundle mainBundle]];
+    [self.orderDetailTableView registerNib:nib forHeaderFooterViewReuseIdentifier:kIdentifierLastDetailHeader];
     
     nib = [UINib nibWithNibName:@"GMOrderItemCell" bundle:[NSBundle mainBundle]];
     [self.orderDetailTableView registerNib:nib forCellReuseIdentifier:kIdentifierOrderItemCell];
@@ -76,7 +84,11 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 
 #pragma mark - TableView DataSource and Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    if(self.orderDeatilBaseModal) {
+        return 3;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -88,7 +100,10 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
         }
         else if(section == 1)
         {
-            return 2;
+            if(self.orderDeatilBaseModal.itemModalArray.count>0) {
+                return self.orderDeatilBaseModal.itemModalArray.count;
+            }
+            return 0;
         }
         return 0;
     } else {
@@ -132,12 +147,11 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
         return oderDetailCell;
     } else if(indexPath.section == 1){
         GMOrderItemCell *orderItemCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOrderItemCell];
-        
+        GMOrderItemDeatilModal *orderItemDeatilModal = [self.orderDeatilBaseModal.itemModalArray objectAtIndex:indexPath.row];
+        [orderItemCell configerViewData:orderItemDeatilModal];
         orderItemCell.tag = indexPath.row;
         return orderItemCell;
     }
-    
-    
         return nil;
     
 }
@@ -176,10 +190,15 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0) {
-        return 42.0f;
-    } else if(section == 1) {
-        return 42.0f;
+    
+    if(self.orderDeatilBaseModal) {
+        if(section == 0) {
+            return 42.0f;
+        } else if(section == 1) {
+            return 42.0f;
+        } else {
+            return [GMOrderDetailLastHeaderView headerHeight];
+        }
     } else {
         return 0.1;
     }
@@ -189,6 +208,7 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
+    if(self.orderDeatilBaseModal) {
     if(section == 0 || section == 1) {
         UIView *headerView;
         GMOrderDetailHeaderView *header  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kIdentifierOrderDetailHeader];
@@ -196,7 +216,7 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
             header = [[GMOrderDetailHeaderView alloc] initWithReuseIdentifier:kIdentifierOrderDetailHeader];
         }
         if(section == 0) {
-            [header congigerHeaderData:self.orderDeatilBaseModal.orderId];
+            [header congigerHeaderData:self.orderHistoryModal.orderId];
         } else {
              [header congigerHeaderData:@"YOUE ORDER"];
         }
@@ -204,6 +224,18 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
         return headerView;
     }
     else {
+        UIView *headerView;
+        GMOrderDetailLastHeaderView *header  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kIdentifierLastDetailHeader];
+        if (!header) {
+            header = [[GMOrderDetailLastHeaderView alloc] initWithReuseIdentifier:kIdentifierLastDetailHeader];
+        }
+        [header configerViewData:self.orderDeatilBaseModal];
+       
+        headerView = header;
+        return headerView;
+        return nil;
+    }
+    } else {
         return nil;
     }
 }
@@ -215,7 +247,7 @@ static NSString *kIdentifierOrderDetailHeader = @"OrderDetailIdentifierHeader";
     
     
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
-    [dataDic setObject:@"5407" forKey:kEY_orderid];
+//    [dataDic setObject:@"5407" forKey:kEY_orderid];
     [dataDic setObject:self.orderHistoryModal.orderId forKey:kEY_orderid];
     
     
