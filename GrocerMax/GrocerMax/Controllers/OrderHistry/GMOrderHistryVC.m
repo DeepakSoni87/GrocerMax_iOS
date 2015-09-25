@@ -9,7 +9,7 @@
 #import "GMOrderHistryVC.h"
 #import "GMOrderHistoryCell.h"
 #import "GMBaseOrderHistoryModal.h"
-
+#import "GMOrderDetailVC.h"
 static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 @interface GMOrderHistryVC ()
 @property (weak, nonatomic) IBOutlet UITableView *orderHistryTableView;
@@ -105,6 +105,9 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     
     GMOrderHistoryModal *orderHistoryModal  = [self.orderHistoryDataArray objectAtIndex:indexPath.row];
     
+    GMOrderDetailVC *orderDetailVC = [GMOrderDetailVC new];
+    orderDetailVC.orderHistoryModal = orderHistoryModal;
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
     //use for detail;
     
 }

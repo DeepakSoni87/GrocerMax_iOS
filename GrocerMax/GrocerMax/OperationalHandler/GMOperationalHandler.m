@@ -28,6 +28,7 @@
 #import "GMOffersByDealTypeModal.h"
 #import "GMDealCategoryBaseModal.h"
 #import "GMProductModal.h"
+#import "GMOrderDeatilBaseModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -676,7 +677,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)getOrderDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator getOrderDetailPath],[GMRequestParams getOrderDetailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getOrderDetailPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -689,8 +690,9 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
+                GMOrderDeatilBaseModal *orderDeatilBaseModal = [[GMOrderDeatilBaseModal alloc]initWithDictionary:responseObject];
                 
-                if(successBlock) successBlock(responseObject);
+                if(successBlock) successBlock(orderDeatilBaseModal);
             }
         }else {
             
