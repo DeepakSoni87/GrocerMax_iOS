@@ -30,23 +30,21 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     self.navigationController.navigationBarHidden = NO;
-    
-//    [self testData];
-    
     self.subcategoryDataArray = [[NSMutableArray alloc]init];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
     self.subcategoryDataArray = [[self.rootCategoryModal.subCategories filteredArrayUsingPredicate:pred] mutableCopy];
     
     self.navigationController.title = self.rootCategoryModal.categoryName;
-//    [self.subcategoryDataArray addObjectsFromArray:self.rootCategoryModal.subCategories];
-    //[self testData];
+    if(NSSTRING_HAS_DATA(self.rootCategoryModal.categoryName)) {
+        self.title = self.rootCategoryModal.categoryName;
+    }
 }
 
--(void)testData {
-    
-    GMCategoryModal *rootModal = [GMCategoryModal loadRootCategory];
-    GMCategoryModal *defaultCategory = rootModal.subCategories.firstObject;
-    self.rootCategoryModal = defaultCategory.subCategories.firstObject;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if(NSSTRING_HAS_DATA(self.rootCategoryModal.categoryName)) {
+        self.title = self.rootCategoryModal.categoryName;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

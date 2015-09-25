@@ -154,6 +154,8 @@
 		E85310F61BB48F15005A008B /* GMOrderDeatilBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */; };
 		E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F81BB4A286005A008B /* GMOrderItemCell.m */; };
 		E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310F91BB4A286005A008B /* GMOrderItemCell.xib */; };
+		E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */; };
+		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
@@ -414,6 +416,9 @@
 		E85310F71BB4A286005A008B /* GMOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderItemCell.h; sourceTree = "<group>"; };
 		E85310F81BB4A286005A008B /* GMOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderItemCell.m; sourceTree = "<group>"; };
 		E85310F91BB4A286005A008B /* GMOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderItemCell.xib; sourceTree = "<group>"; };
+		E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailLastHeaderView.h; sourceTree = "<group>"; };
+		E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailLastHeaderView.m; sourceTree = "<group>"; };
+		E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailLastHeaderView.xib; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -449,11 +454,8 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-
 				3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */,
-
 				E85310F31BB48EF0005A008B /* OrderDetalModal */,
-
 				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
 				E8B2C18B1BB29A08000F70EB /* HotDealModal */,
 				82A52AAB1BB28F19009A4235 /* ProductDetailModal */,
@@ -1343,6 +1345,9 @@
 				E85310F71BB4A286005A008B /* GMOrderItemCell.h */,
 				E85310F81BB4A286005A008B /* GMOrderItemCell.m */,
 				E85310F91BB4A286005A008B /* GMOrderItemCell.xib */,
+				E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */,
+				E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */,
+				E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */,
 			);
 			path = OrderDetailCell;
 			sourceTree = "<group>";
@@ -1497,6 +1502,7 @@
 				820C50431BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.xib in Resources */,
 				E85310F21BB489F2005A008B /* GMOrderDetailHeaderView.xib in Resources */,
 				820C50471BB1CC5C00DCCF39 /* GMOrderHistryVC.xib in Resources */,
+				E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */,
 				820C50211BB1CC5C00DCCF39 /* GMDeliveryDetailVC.xib in Resources */,
 				820C50631BB1CC5C00DCCF39 /* GMSubCategoryCell.xib in Resources */,
 				820C501E1BB1CC5C00DCCF39 /* GMDeliveryDetailCell.xib in Resources */,
@@ -1624,6 +1630,7 @@
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
 				820C504D1BB1CC5C00DCCF39 /* GMRootPageModelController.m in Sources */,
 				E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */,
+				E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */,
 				820C50081BB1CC5C00DCCF39 /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				820C506B1BB1CC5C00DCCF39 /* PBDatePickerVC.m in Sources */,

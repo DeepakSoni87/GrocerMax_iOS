@@ -29,6 +29,11 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     [self getOrderHistryFromServer];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"Order History";
+}
+
 #pragma mark - WebService Handler
 - (void)getOrderHistryFromServer
 {
