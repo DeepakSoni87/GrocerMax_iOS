@@ -145,6 +145,15 @@
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
 		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
+		E85310E61BB47F93005A008B /* GMOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310E41BB47F93005A008B /* GMOrderDetailVC.m */; };
+		E85310E71BB47F93005A008B /* GMOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */; };
+		E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310EA1BB482E9005A008B /* GMOrderDetailCell.m */; };
+		E85310ED1BB482E9005A008B /* GMOrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310EB1BB482E9005A008B /* GMOrderDetailCell.xib */; };
+		E85310F01BB489CF005A008B /* GMOrderDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310EF1BB489CF005A008B /* GMOrderDetailHeaderView.m */; };
+		E85310F21BB489F2005A008B /* GMOrderDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310F11BB489F2005A008B /* GMOrderDetailHeaderView.xib */; };
+		E85310F61BB48F15005A008B /* GMOrderDeatilBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */; };
+		E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F81BB4A286005A008B /* GMOrderItemCell.m */; };
+		E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310F91BB4A286005A008B /* GMOrderItemCell.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
@@ -391,6 +400,20 @@
 		82B1B2CE1B9F60D0001550FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		E85310E31BB47F93005A008B /* GMOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailVC.h; sourceTree = "<group>"; };
+		E85310E41BB47F93005A008B /* GMOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailVC.m; sourceTree = "<group>"; };
+		E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailVC.xib; sourceTree = "<group>"; };
+		E85310E91BB482E9005A008B /* GMOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailCell.h; sourceTree = "<group>"; };
+		E85310EA1BB482E9005A008B /* GMOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailCell.m; sourceTree = "<group>"; };
+		E85310EB1BB482E9005A008B /* GMOrderDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailCell.xib; sourceTree = "<group>"; };
+		E85310EE1BB489CF005A008B /* GMOrderDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailHeaderView.h; sourceTree = "<group>"; };
+		E85310EF1BB489CF005A008B /* GMOrderDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailHeaderView.m; sourceTree = "<group>"; };
+		E85310F11BB489F2005A008B /* GMOrderDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailHeaderView.xib; sourceTree = "<group>"; };
+		E85310F41BB48F15005A008B /* GMOrderDeatilBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDeatilBaseModal.h; sourceTree = "<group>"; };
+		E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDeatilBaseModal.m; sourceTree = "<group>"; };
+		E85310F71BB4A286005A008B /* GMOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderItemCell.h; sourceTree = "<group>"; };
+		E85310F81BB4A286005A008B /* GMOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderItemCell.m; sourceTree = "<group>"; };
+		E85310F91BB4A286005A008B /* GMOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderItemCell.xib; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,7 +449,11 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+
 				3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */,
+
+				E85310F31BB48EF0005A008B /* OrderDetalModal */,
+
 				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
 				E8B2C18B1BB29A08000F70EB /* HotDealModal */,
 				82A52AAB1BB28F19009A4235 /* ProductDetailModal */,
@@ -588,6 +615,7 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E85310DF1BB47F42005A008B /* OrderHistoryDetailVC */,
 				82A52A9F1BB28EE3009A4235 /* CityVC */,
 				820C4F2F1BB1CC5C00DCCF39 /* AddAddressVC */,
 				820C4F381BB1CC5C00DCCF39 /* BillingVc */,
@@ -1292,6 +1320,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E85310DF1BB47F42005A008B /* OrderHistoryDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				E85310E81BB482C7005A008B /* OrderDetailCell */,
+				E85310E31BB47F93005A008B /* GMOrderDetailVC.h */,
+				E85310E41BB47F93005A008B /* GMOrderDetailVC.m */,
+				E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */,
+			);
+			path = OrderHistoryDetailVC;
+			sourceTree = "<group>";
+		};
+		E85310E81BB482C7005A008B /* OrderDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				E85310E91BB482E9005A008B /* GMOrderDetailCell.h */,
+				E85310EA1BB482E9005A008B /* GMOrderDetailCell.m */,
+				E85310EB1BB482E9005A008B /* GMOrderDetailCell.xib */,
+				E85310EE1BB489CF005A008B /* GMOrderDetailHeaderView.h */,
+				E85310EF1BB489CF005A008B /* GMOrderDetailHeaderView.m */,
+				E85310F11BB489F2005A008B /* GMOrderDetailHeaderView.xib */,
+				E85310F71BB4A286005A008B /* GMOrderItemCell.h */,
+				E85310F81BB4A286005A008B /* GMOrderItemCell.m */,
+				E85310F91BB4A286005A008B /* GMOrderItemCell.xib */,
+			);
+			path = OrderDetailCell;
+			sourceTree = "<group>";
+		};
+		E85310F31BB48EF0005A008B /* OrderDetalModal */ = {
+			isa = PBXGroup;
+			children = (
+				E85310F41BB48F15005A008B /* GMOrderDeatilBaseModal.h */,
+				E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */,
+			);
+			path = OrderDetalModal;
+			sourceTree = "<group>";
+		};
 		E8B2C18B1BB29A08000F70EB /* HotDealModal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1396,6 +1460,7 @@
 				820C50651BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.xib in Resources */,
 				820C50391BB1CC5C00DCCF39 /* GMSectionView.xib in Resources */,
 				820C50271BB1CC5C00DCCF39 /* GMHomeVC.xib in Resources */,
+				E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */,
 				820C505F1BB1CC5C00DCCF39 /* GMShipppingAddressVC.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */,
@@ -1430,6 +1495,7 @@
 				820C503D1BB1CC5C00DCCF39 /* GMMyAddressesVC.xib in Resources */,
 				820C50311BB1CC5C00DCCF39 /* GMShopByDealCell.xib in Resources */,
 				820C50431BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.xib in Resources */,
+				E85310F21BB489F2005A008B /* GMOrderDetailHeaderView.xib in Resources */,
 				820C50471BB1CC5C00DCCF39 /* GMOrderHistryVC.xib in Resources */,
 				820C50211BB1CC5C00DCCF39 /* GMDeliveryDetailVC.xib in Resources */,
 				820C50631BB1CC5C00DCCF39 /* GMSubCategoryCell.xib in Resources */,
@@ -1443,6 +1509,8 @@
 				820C501A1BB1CC5C00DCCF39 /* GMHotDealCollectionViewCell.xib in Resources */,
 				820C506E1BB1CC5C00DCCF39 /* PBPickerVC.xib in Resources */,
 				820C50291BB1CC5C00DCCF39 /* GMShopByCategoryCollectionViewCell.xib in Resources */,
+				E85310E71BB47F93005A008B /* GMOrderDetailVC.xib in Resources */,
+				E85310ED1BB482E9005A008B /* GMOrderDetailCell.xib in Resources */,
 				820C50571BB1CC5C00DCCF39 /* GMProfileVC.xib in Resources */,
 				820C50331BB1CC5C00DCCF39 /* GMLeftMenuDetailVC.xib in Resources */,
 			);
@@ -1495,11 +1563,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85310E61BB47F93005A008B /* GMOrderDetailVC.m in Sources */,
 				820C502C1BB1CC5C00DCCF39 /* GMPageControllCell.m in Sources */,
 				820C500D1BB1CC5C00DCCF39 /* GMAddressCell.m in Sources */,
 				820C50031BB1CC5C00DCCF39 /* GMUserModal.m in Sources */,
 				820C50341BB1CC5C00DCCF39 /* GMLeftMenuVC.m in Sources */,
 				820C50641BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.m in Sources */,
+				E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */,
 				820C50071BB1CC5C00DCCF39 /* UITableView+Wave.m in Sources */,
 				820C505C1BB1CC5C00DCCF39 /* GMRegisterInputCell.m in Sources */,
 				820C50191BB1CC5C00DCCF39 /* GMHotDealCollectionViewCell.m in Sources */,
@@ -1536,6 +1606,7 @@
 				820C503C1BB1CC5C00DCCF39 /* GMMyAddressesVC.m in Sources */,
 				820C4FFA1BB1CC5C00DCCF39 /* GMCategoryModal.m in Sources */,
 				820C50051BB1CC5C00DCCF39 /* UIColor+Additions.m in Sources */,
+				E85310F01BB489CF005A008B /* GMOrderDetailHeaderView.m in Sources */,
 				820C4FFF1BB1CC5C00DCCF39 /* GMProductModal.m in Sources */,
 				820C504C1BB1CC5C00DCCF39 /* GMRootPageAPIController.m in Sources */,
 				820C504A1BB1CC5C00DCCF39 /* GMOtpVC.m in Sources */,
@@ -1552,6 +1623,7 @@
 				820C50021BB1CC5C00DCCF39 /* GMStateBaseModal.m in Sources */,
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
 				820C504D1BB1CC5C00DCCF39 /* GMRootPageModelController.m in Sources */,
+				E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */,
 				820C50081BB1CC5C00DCCF39 /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				820C506B1BB1CC5C00DCCF39 /* PBDatePickerVC.m in Sources */,
@@ -1579,6 +1651,7 @@
 				820C50691BB1CC5C00DCCF39 /* GMButton.m in Sources */,
 				820C50241BB1CC5C00DCCF39 /* GMForgotVC.m in Sources */,
 				820C4FFD1BB1CC5C00DCCF39 /* GMLocalityBaseModal.m in Sources */,
+				E85310F61BB48F15005A008B /* GMOrderDeatilBaseModal.m in Sources */,
 				820C50661BB1CC5C00DCCF39 /* GMTabBarVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
