@@ -50,6 +50,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
+    [self addLogImageInNavBar];
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];

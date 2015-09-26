@@ -16,5 +16,6 @@
 
 @property (strong, nonatomic) GMCategoryModal *catMdl;
 @property (strong, nonatomic) GMRootPageAPIController *rootPageAPIController;
+@property (assign, nonatomic) GMProductListingFromType productListingType;
 
 @end

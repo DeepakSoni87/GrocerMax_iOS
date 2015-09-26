@@ -45,7 +45,8 @@
             GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
             proListVC.catMdl = self.modelPageData[index];
             proListVC.rootPageAPIController = self.rootPageAPIController;
-
+            proListVC.productListingType = GMProductListingFromTypeCategory;
+            
             return proListVC;
         }
             break;
@@ -121,7 +122,6 @@
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
             NSDictionary *dic = mdl;
-
             return dic.allKeys[0];
         }
             break;
