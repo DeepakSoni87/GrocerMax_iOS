@@ -41,6 +41,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="headerBgView" destination="hri-yb-XKa" id="r0e-sZ-dyG"/>
                 <outlet property="headerTitleLbl" destination="mig-CI-rsj" id="81T-sk-EEV"/>
             </connections>
             <point key="canvasLocation" x="227" y="-54.5"/>

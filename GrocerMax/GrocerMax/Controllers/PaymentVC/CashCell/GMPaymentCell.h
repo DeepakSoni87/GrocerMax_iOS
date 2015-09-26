@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface GMPaymentCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *paymentLbl;
+
+@property (weak, nonatomic) IBOutlet GMButton *checkBoxBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *paymentImage;
+@property (weak, nonatomic) IBOutlet UILabel *topHorizentalSepretorLbl;
+
+@property (weak, nonatomic) IBOutlet UILabel *bottomHorizentalSepretorLbl;
+
++ (CGFloat) cellHeight;
+- (void)configerViewData:(NSString *)paymentName;
 
 @end

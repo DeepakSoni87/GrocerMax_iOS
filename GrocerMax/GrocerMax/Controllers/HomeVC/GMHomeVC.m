@@ -212,9 +212,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
 
 //    
-//    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
-//    [self.navigationController pushViewController:billingAddressVC animated:YES];
-//    return;
+    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
+    [self.navigationController pushViewController:billingAddressVC animated:YES];
+    return;
 
     //
     //    GMCityVC * billingAddressVC  = [GMCityVC new];

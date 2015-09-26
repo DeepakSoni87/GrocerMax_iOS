@@ -20,4 +20,31 @@
     // Configure the view for the selected state
 }
 
++ (CGFloat) cellHeight {
+    return 45.0;
+}
+- (void)configerViewData:(NSString *)paymentName {
+    self.bottomHorizentalSepretorLbl.hidden = TRUE;
+    [self.checkBoxBtn setExclusiveTouch:YES];
+    
+    if([paymentName isEqualToString:@"payU"]) {
+        self.paymentImage.hidden = FALSE;
+        self.paymentLbl.hidden = TRUE;
+        [self.paymentImage setImage:[UIImage imageNamed:@"payU"]];
+    } else if([paymentName isEqualToString:@"mobikwik"]) {
+        self.paymentImage.hidden = FALSE;
+        self.paymentLbl.hidden = TRUE;
+        [self.paymentImage setImage:[UIImage imageNamed:@"mobikit"]];
+        
+    } else {
+        self.paymentImage.hidden = TRUE;
+        self.paymentLbl.hidden = FALSE;
+        if(NSSTRING_HAS_DATA(paymentName)) {
+            self.paymentLbl.text = paymentName;
+        } else {
+            self.paymentLbl.text = @"";
+        }
+    }
+   
+}
 @end
