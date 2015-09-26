@@ -12,7 +12,7 @@
 
 @property (nonatomic, readwrite, strong) NSArray *timeSlotArray;
 
-@property (nonatomic, readwrite, strong) NSArray *addressesArray;
+@property (nonatomic, readwrite, strong) NSMutableArray *addressesArray;
 @end
 
 @implementation GMTimeSlotBaseModal

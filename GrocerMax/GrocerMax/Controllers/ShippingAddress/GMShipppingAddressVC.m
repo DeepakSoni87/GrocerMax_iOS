@@ -46,7 +46,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.lastAddressView.layer.borderWidth = 2.0;
     self.lastAddressView.layer.cornerRadius = 4.0;
     self.checkOutModal = [[GMCheckOutModal alloc] init];
-    
+    self.checkOutModal.userModal = self.userModal;
     [self getShippingAddress];
     [self registerCellsForTableView];
 }
