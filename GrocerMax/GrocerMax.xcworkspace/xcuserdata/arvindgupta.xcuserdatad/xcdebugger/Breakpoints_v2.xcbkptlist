@@ -201,13 +201,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/PaymentVC/GMPaymentVC.m"
-            timestampString = "464981404.598489"
+            filePath = "GrocerMax/Controllers/PaymentVC/CashCell/GMPaymentCell.m"
+            timestampString = "464994031.896162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-actionPaymentCash:"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-configerViewData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
