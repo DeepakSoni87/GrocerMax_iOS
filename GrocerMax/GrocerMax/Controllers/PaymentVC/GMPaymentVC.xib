@@ -11,31 +11,70 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hS-kB-5Xe">
-                    <rect key="frame" x="89" y="187" width="135" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jls-hO-Go5">
+                    <rect key="frame" x="0.0" y="462" width="320" height="42"/>
+                    <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="4dp-Fh-RXf"/>
+                        <constraint firstAttribute="height" constant="42" id="lkY-0d-3R9"/>
                     </constraints>
-                    <state key="normal" title="Cash PayMent">
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="PLACE ORDER">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="actionPaymentCash:" destination="-1" eventType="touchUpInside" id="k1E-0C-8rI"/>
+                        <action selector="actionPaymentCash:" destination="-1" eventType="touchUpInside" id="kmh-zp-qOj"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Hv-cG-Qcg">
+                    <rect key="frame" x="0.0" y="408" width="320" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30y-8h-WYe">
+                            <rect key="frame" x="15" y="0.0" width="199" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="wJa-Lu-1S5"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progress-bar-4" translatesAutoresizingMaskIntoConstraints="NO" id="cqa-cf-q7O">
+                    <rect key="frame" x="89" y="8" width="142" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="HPT-t5-a2L"/>
+                        <constraint firstAttribute="width" constant="142" id="Yum-wr-dax"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YLg-Yi-Cy1">
+                    <rect key="frame" x="0.0" y="23" width="320" height="374"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3hS-kB-5Xe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="187" id="WxG-4i-VCF"/>
-                <constraint firstAttribute="trailing" secondItem="3hS-kB-5Xe" secondAttribute="trailing" constant="96" id="YC8-1q-3Ik"/>
-                <constraint firstItem="3hS-kB-5Xe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="89" id="hcZ-pm-vao"/>
+                <constraint firstItem="Jls-hO-Go5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4vn-Zf-n7g"/>
+                <constraint firstItem="3Hv-cG-Qcg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Fyd-aU-D3q"/>
+                <constraint firstAttribute="centerX" secondItem="cqa-cf-q7O" secondAttribute="centerX" id="VeN-aH-12j"/>
+                <constraint firstItem="Jls-hO-Go5" firstAttribute="top" secondItem="3Hv-cG-Qcg" secondAttribute="bottom" constant="4" id="YAX-c9-wFV"/>
+                <constraint firstItem="3Hv-cG-Qcg" firstAttribute="top" secondItem="YLg-Yi-Cy1" secondAttribute="bottom" constant="11" id="YcK-Av-4pF"/>
+                <constraint firstAttribute="bottom" secondItem="Jls-hO-Go5" secondAttribute="bottom" id="bPt-GN-s0V"/>
+                <constraint firstAttribute="trailing" secondItem="3Hv-cG-Qcg" secondAttribute="trailing" id="byX-Ol-gnq"/>
+                <constraint firstItem="YLg-Yi-Cy1" firstAttribute="top" secondItem="cqa-cf-q7O" secondAttribute="bottom" constant="3" id="j6j-ea-A7v"/>
+                <constraint firstItem="YLg-Yi-Cy1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lWl-FP-OWZ"/>
+                <constraint firstAttribute="trailing" secondItem="YLg-Yi-Cy1" secondAttribute="trailing" id="qhi-nS-54a"/>
+                <constraint firstItem="cqa-cf-q7O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="tNv-5D-H7d"/>
+                <constraint firstAttribute="trailing" secondItem="Jls-hO-Go5" secondAttribute="trailing" id="uJZ-j6-u5P"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="progress-bar-4" width="142" height="12"/>
+    </resources>
 </document>
