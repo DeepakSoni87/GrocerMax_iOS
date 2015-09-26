@@ -10,6 +10,9 @@
 
 #import "GMAddressCell.h"
 #import "GMTAddAddressCell.h"
+#import "GMBillingAddressVC.h"
+#import "GMDeliveryDetailVC.h"
+#import "GMAddShippingAddressVC.h"
 
 static NSString *kIdentifierShippingAddressCell = @"ShippingAddressIdentifierCell";
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
@@ -21,6 +24,11 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @property (weak, nonatomic) IBOutlet UIView *lastAddressView;
 @property (weak, nonatomic) IBOutlet UIButton *shippingAsBillingBtn;
 @property (nonatomic, strong) GMUserModal *userModal;
+@property (nonatomic, strong) GMAddressModalData *selectedAddressModalData;
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+@property (nonatomic, strong) GMTimeSlotBaseModal *timeSlotBaseModal;
+
+
 
 
 @end
@@ -37,6 +45,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.lastAddressView.layer.borderColor = [UIColor colorWithRed:216.0/256.0 green:216.0/256.0 blue:216.0/256.0 alpha:1].CGColor;
     self.lastAddressView.layer.borderWidth = 2.0;
     self.lastAddressView.layer.cornerRadius = 4.0;
+    self.checkOutModal = [[GMCheckOutModal alloc] init];
     
     [self getShippingAddress];
     [self registerCellsForTableView];
@@ -61,6 +70,9 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddressModalData *addressModalData = sender.addressModal;
     
+    self.selectedAddressModalData.isSelected = FALSE;
+    
+    
     
     if(addressModalData.isSelected) {
         sender.selected = FALSE;
@@ -70,22 +82,74 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         sender.selected = TRUE;
         addressModalData.isSelected = TRUE;
     }
+    
+    self.checkOutModal.shippingAddressModal = addressModalData;
+    self.selectedAddressModalData = addressModalData;
+    [self.shippingAddressTableView reloadData];
 }
 
 - (void) editBtnClicked:(GMButton *)sender {
+    GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
+    addShippingAddressVC.editAddressModal = sender.addressModal;
+    [self.navigationController pushViewController:addShippingAddressVC animated:YES];
     
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
+    GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
+    [self.navigationController pushViewController:addShippingAddressVC animated:YES];
+    
+}
+- (IBAction)actionProcess:(id)sender {
+    
+    if(self.checkOutModal.shippingAddressModal) {
+        if(self.shippingAsBillingBtn.selected) {
+            GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
+            self.checkOutModal.billingAddressModal = self.selectedAddressModalData;
+            deliveryDetailVC.checkOutModal = self.checkOutModal;
+            deliveryDetailVC.timeSlotBaseModal = self.timeSlotBaseModal;
+            [self.navigationController pushViewController:deliveryDetailVC animated:YES];
+            return ;
+        }
+        
+        GMBillingAddressVC *billingAddressVC = [GMBillingAddressVC new];
+        billingAddressVC.checkOutModal = self.checkOutModal;
+        billingAddressVC.timeSlotBaseModal = self.timeSlotBaseModal;
+        
+        if(self.timeSlotBaseModal.addressesArray.count>0) {
+            
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
+                
+                int isBillingValue = evaluatedObject.is_default_billing.intValue;
+                
+                if(isBillingValue == 1) {
+                    return YES;
+                }
+                else
+                    return NO;
+            }];
+            
+            NSArray *arry = [self.timeSlotBaseModal.addressesArray filteredArrayUsingPredicate:predicate];
+            if(arry.count>0)
+            {
+                NSMutableArray *billingAddressArray = [[NSMutableArray alloc]init];
+                [billingAddressArray addObjectsFromArray:arry];
+                billingAddressVC.billingAddressArray = billingAddressArray;
+            }
+        }
+        [self.navigationController pushViewController:billingAddressVC animated:YES];
+    } else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please select shipping address."];
+    }
     
 }
 
 - (IBAction)actionShippingAsBilling:(UIButton *)sender {
     
-   if( sender.selected) {
-        sender.selected = FALSE;
+   if(self.shippingAsBillingBtn.selected) {
+        self.shippingAsBillingBtn.selected = FALSE;
     }
     else {
-        sender.selected = TRUE;
+        self.shippingAsBillingBtn.selected = TRUE;
     }
 }
 
@@ -164,22 +228,57 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 #pragma mark Request Methods
 
 - (void)getShippingAddress {
-    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+//    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+//    
+//    if(NSSTRING_HAS_DATA(self.userModal.email))
+//        [userDic setObject:self.userModal.email forKey:kEY_email];
+//    if(NSSTRING_HAS_DATA(self.userModal.userId))
+//        [userDic setObject:self.userModal.userId forKey:kEY_userid];
+//    [self showProgress];
+//    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
+//        
+//        self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
+//        [self.shippingAddressTableView reloadData];
+//        [self removeProgress];
+//        
+//    } failureBlock:^(NSError *error) {
+//        [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+//        [self removeProgress];
+//    }];
     
-    if(NSSTRING_HAS_DATA(self.userModal.email))
-        [userDic setObject:self.userModal.email forKey:kEY_email];
-    if(NSSTRING_HAS_DATA(self.userModal.userId))
-        [userDic setObject:self.userModal.userId forKey:kEY_userid];
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
+    [dataDic setObject:@"13807" forKey:kEY_userid];
     [self showProgress];
-    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
-        
-        self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
-        [self.shippingAddressTableView reloadData];
+    [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
+        self.timeSlotBaseModal = responceData;
+        if(responceData.addressesArray.count>0) {
+            
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
+                
+                int isShippingValue = evaluatedObject.is_default_shipping.intValue;
+                int isBillingValue = evaluatedObject.is_default_billing.intValue;
+                
+                if((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) {
+                    return YES;
+                }
+                else
+                    return NO;
+            }];
+            
+            NSArray *arry = [responceData.addressesArray filteredArrayUsingPredicate:predicate];
+            if(arry.count>0)
+            {
+                self.addressArray = (NSMutableArray *)arry;
+                [self.shippingAddressTableView reloadData];
+            }
+        }
+
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
         [self removeProgress];
+        
     }];
 }
 @end

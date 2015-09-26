@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GMCheckOutModal.h"
 @interface GMShipppingAddressVC : UIViewController
+
+@property (strong, nonatomic) NSMutableArray *billingAddressArray;
 
 @end

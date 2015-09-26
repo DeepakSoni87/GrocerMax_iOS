@@ -344,7 +344,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)editAddress:(NSDictionary *)param withSuccessBlock:(void (^)(BOOL))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator editAddressPath],[GMRequestParams addAndEditAddressParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator editAddressPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -442,7 +442,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)getAddressWithTimeSlot:(NSDictionary *)param withSuccessBlock:(void (^)(GMTimeSlotBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator getAddressWithTimeSlotPath],[GMRequestParams getAddressWithTimeSlotParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getAddressWithTimeSlotPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -642,14 +642,14 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator orderHistoryPath],[GMRequestParams activeOrderOrOrderHistryParameter:param]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, NSArray *responseObject) {
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -828,7 +828,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)checkout:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator checkoutPath],[GMRequestParams checkoutParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator checkoutPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

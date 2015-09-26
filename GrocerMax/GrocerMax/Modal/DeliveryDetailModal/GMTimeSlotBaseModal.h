@@ -11,6 +11,8 @@
 @interface GMTimeSlotBaseModal : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, readonly, strong) NSArray *timeSlotArray;
+
+@property (nonatomic, readonly, strong) NSArray *addressesArray;
 @end
 
 @interface GMDeliveryTimeSlotModal : MTLModel <MTLJSONSerializing>

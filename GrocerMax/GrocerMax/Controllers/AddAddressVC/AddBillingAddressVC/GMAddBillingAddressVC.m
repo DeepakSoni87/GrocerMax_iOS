@@ -102,7 +102,11 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     if(!_addressModal) {
         
-        _addressModal = [[GMAddressModalData alloc] initWithUserModal:[GMUserModal loggedInUser]];
+        if(!self.editAddressModal) {
+            _addressModal = [[GMAddressModalData alloc] initWithUserModal:[GMUserModal loggedInUser]];
+        }
+        else
+            _addressModal = self.editAddressModal;
     }
     return _addressModal;
 }
@@ -458,8 +462,8 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     }
     
     self.valuePickerVC.arrayValuesToDisplay = [self statesToDisplay];
-//    if(NSSTRING_HAS_DATA(self.addressModal.region))
-//        [self.valuePickerVC.pickerView selectRow:[self.stateArray indexOfObject:self.addressModal.region] inComponent:0 animated:NO];
+    //    if(NSSTRING_HAS_DATA(self.addressModal.region))
+    //        [self.valuePickerVC.pickerView selectRow:[self.stateArray indexOfObject:self.addressModal.region] inComponent:0 animated:NO];
     return self.valuePickerVC.view;
 }
 

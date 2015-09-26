@@ -135,11 +135,19 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
         [self removeProgress];
         
         GMUserModal *userModal = [GMUserModal loggedInUser];
-        if(quoteId && !userModal) {
+        if(!userModal && NSSTRING_HAS_DATA(quoteId)) {
             
             userModal = [[GMUserModal alloc] init];
             [userModal setQuoteId:quoteId];
             [userModal persistUser];
+        }
+        else {
+            
+            if(!NSSTRING_HAS_DATA(userModal.quoteId) && NSSTRING_HAS_DATA(quoteId)) {
+                
+                [userModal setQuoteId:quoteId];
+                [userModal persistUser];
+            }
         }
     } failureBlock:^(NSError *error) {
         [self removeProgress];

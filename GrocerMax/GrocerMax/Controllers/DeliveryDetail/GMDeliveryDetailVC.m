@@ -11,6 +11,7 @@
 #import "GMTimeSloteModal.h"
 #import "GMTimeSlotBaseModal.h"
 #import "GMDeliveryDateTimeSlotModal.h"
+#import "GMPaymentVC.h"
 
 static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell";
 
@@ -41,6 +42,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     [self.timeSloteTableView setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     self.dateTimeSloteModalArray = [[NSMutableArray alloc]init];;
     [self getDateAndTimeSlot];
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -86,6 +88,11 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
 
 #pragma mark - Button Action Methods
 - (IBAction)actionProceed:(id)sender {
+    GMPaymentVC *paymentVC = [GMPaymentVC new];
+    paymentVC.checkOutModal = self.checkOutModal;
+    [self.navigationController pushViewController:paymentVC animated:YES];
+    
+    //
 }
 - (IBAction)actionPriviouesDate:(id)sender {
     
@@ -101,7 +108,9 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
         if(arry.count>0)
         {
             GMTimeSloteModal *timeSloteModal =[arry objectAtIndex:0];
+            timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
             self.selectedTimeSlotModal = timeSloteModal;
+            self.checkOutModal.timeSloteModal = timeSloteModal;
         }
         
         selectedDateIndex = selectedDateIndex-1;
@@ -121,6 +130,8 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
         {
            GMTimeSloteModal *timeSloteModal =[arry objectAtIndex:0];
             self.selectedTimeSlotModal = timeSloteModal;
+            timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
+            self.checkOutModal.timeSloteModal = timeSloteModal;
         }
         selectedDateIndex = selectedDateIndex+1;
         
@@ -133,6 +144,8 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     GMTimeSloteModal *timeSloteModal = sender.timeSlotModal;
     if(timeSloteModal.isSloatFull || sender.selected)
         return;
+    timeSloteModal.deliveryDate= self.dateLbl.text;
+    self.checkOutModal.timeSloteModal = timeSloteModal;
     
     if(self.selectedTimeSlotModal)
        [self.selectedTimeSlotModal setIsSelected:NO];
@@ -142,8 +155,8 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     self.timeLbl.text = timeSloteModal.firstTimeSlote;
     [self.timeSloteTableView reloadData];
     
-    return;
 }
+
 //Use to fill the timeslot modal into array from base modal array
 - (void)setDataInArray:( NSArray*)array {
     NSString *date = @"";
@@ -207,6 +220,8 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
         if(arry.count>0) {
             GMTimeSloteModal *timeSloteModal =[arry objectAtIndex:0];
             self.selectedTimeSlotModal = timeSloteModal;
+            timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
+            self.checkOutModal.timeSloteModal = timeSloteModal;
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
         }
     }
@@ -215,22 +230,28 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
 #pragma mark Request Methods
 
 - (void)getDateAndTimeSlot {
-        NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
     
-        [dataDic setObject:@"321" forKey:kEY_userid];
-        [self showProgress];
-        [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
-             self.timeSlotBaseModal = responceData;
-            NSArray *array = self.timeSlotBaseModal.timeSlotArray;
-            [self setDataInArray:array];
-            [self.timeSloteTableView reloadData];
-            [self removeProgress];
-            
-        } failureBlock:^(NSError *error) {
-            [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-            [self removeProgress];
-            
-        }];
+    NSArray *array = self.timeSlotBaseModal.timeSlotArray;
+    [self setDataInArray:array];
+    [self.timeSloteTableView reloadData];
+    
+    
+//        NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
+//    
+//        [dataDic setObject:@"13807" forKey:kEY_userid];
+//        [self showProgress];
+//        [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
+//             self.timeSlotBaseModal = responceData;
+//            NSArray *array = self.timeSlotBaseModal.timeSlotArray;
+//            [self setDataInArray:array];
+//            [self.timeSloteTableView reloadData];
+//            [self removeProgress];
+//            
+//        } failureBlock:^(NSError *error) {
+//            [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+//            [self removeProgress];
+//            
+//        }];
 }
 
 
