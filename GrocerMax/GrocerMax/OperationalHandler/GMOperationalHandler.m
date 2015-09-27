@@ -1177,7 +1177,7 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(NSArray *))successBlock failureBlock:(void (^)(NSError *))failureBlock{
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(id data))successBlock failureBlock:(void (^)(NSError *))failureBlock{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealProductListingPath],[GMRequestParams dealProductListingParameter:param]];
     
@@ -1190,10 +1190,10 @@ static GMOperationalHandler *sharedHandler;
             
             NSError *mtlError = nil;
             
-            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
+            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(productListBaseModal.productsListArray); }
+            else            { if (successBlock) successBlock(productListBaseModal); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -1210,7 +1210,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             

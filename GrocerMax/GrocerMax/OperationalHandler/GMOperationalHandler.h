@@ -247,7 +247,7 @@
  * Function for dealProductListing
  * @param
  **/
-- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *productArray))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void(^)(id data))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for dealProductListing

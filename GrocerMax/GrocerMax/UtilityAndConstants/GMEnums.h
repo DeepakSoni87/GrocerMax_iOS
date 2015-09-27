@@ -21,5 +21,9 @@ typedef NS_ENUM(NSInteger, GMRootPageViewControllerType) {
     GMRootPageViewControllerTypeDealCategoryTypeListing
 };
 
+typedef NS_ENUM(NSInteger, GMProductListingFromType) {
+    GMProductListingFromTypeCategory,
+    GMProductListingFromTypeOffer_OR_Deal
+};
 
 #endif
