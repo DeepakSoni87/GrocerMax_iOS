@@ -82,10 +82,14 @@
 #define kEY_city                           @"city"
 #define kEY_state                          @"state"
 #define kEY_pin                            @"pin"
+#define kEY_postcode                       @"postcode"
+
 #define kEY_state                          @"state"
 #define kEY_countrycode                    @"countrycode"
 #define kEY_phone                          @"phone"
 #define kEY_phone                          @"phone"
+#define kEY_telephone                      @"telephone"
+
 #define kEY_default_billing                @"default_billing"
 #define kEY_default_shipping               @"default_shipping"
 #define kEY_cityId                         @"cityid"

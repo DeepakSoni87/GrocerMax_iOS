@@ -130,7 +130,33 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self.parentVC.cartModal archiveCart];
     
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
+<<<<<<< HEAD
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
+=======
+    [self showProgress];
+    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:^(NSString *quoteId) {
+        [self removeProgress];
+        
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        if(!userModal && NSSTRING_HAS_DATA(quoteId)) {
+            
+            userModal = [[GMUserModal alloc] init];
+            [userModal setQuoteId:quoteId];
+            [userModal persistUser];
+        }
+        else {
+            
+            if(!NSSTRING_HAS_DATA(userModal.quoteId) && NSSTRING_HAS_DATA(quoteId)) {
+                
+                [userModal setQuoteId:quoteId];
+                [userModal persistUser];
+            }
+        }
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        
+    }];
+>>>>>>> Arvind_iOS
 }
 
 @end

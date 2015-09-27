@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GMCheckOutModal.h"
 @interface GMBillingAddressVC : UIViewController
+
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+
+@property (strong, nonatomic) NSMutableArray *billingAddressArray;
+
+
+@property (strong, nonatomic) GMTimeSlotBaseModal *timeSlotBaseModal;
 
 @end

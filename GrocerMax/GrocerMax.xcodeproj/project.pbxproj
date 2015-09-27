@@ -148,6 +148,9 @@
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
 		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
+		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
+		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
+		E8326C781BB6DB76008ACC8B /* GMPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */; };
 		E85310E61BB47F93005A008B /* GMOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310E41BB47F93005A008B /* GMOrderDetailVC.m */; };
 		E85310E71BB47F93005A008B /* GMOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */; };
 		E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310EA1BB482E9005A008B /* GMOrderDetailCell.m */; };
@@ -157,6 +160,10 @@
 		E85310F61BB48F15005A008B /* GMOrderDeatilBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */; };
 		E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310F81BB4A286005A008B /* GMOrderItemCell.m */; };
 		E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310F91BB4A286005A008B /* GMOrderItemCell.xib */; };
+		E8560EB01BB71B2900C87B2C /* GMPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8560EAE1BB71B2900C87B2C /* GMPaymentCell.m */; };
+		E8560EB11BB71B2900C87B2C /* GMPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8560EAF1BB71B2900C87B2C /* GMPaymentCell.xib */; };
+		E8560EB51BB732C100C87B2C /* GMPaymentOrderSummryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */; };
+		E8560EB61BB732C100C87B2C /* GMPaymentOrderSummryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */; };
 		E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */; };
 		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
@@ -411,6 +418,11 @@
 		82B1B2CE1B9F60D0001550FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		E8326C701BB6B760008ACC8B /* GMCheckOutModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCheckOutModal.h; sourceTree = "<group>"; };
+		E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCheckOutModal.m; sourceTree = "<group>"; };
+		E8326C741BB6DB76008ACC8B /* GMPaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentVC.h; sourceTree = "<group>"; };
+		E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentVC.m; sourceTree = "<group>"; };
+		E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentVC.xib; sourceTree = "<group>"; };
 		E85310E31BB47F93005A008B /* GMOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailVC.h; sourceTree = "<group>"; };
 		E85310E41BB47F93005A008B /* GMOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailVC.m; sourceTree = "<group>"; };
 		E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailVC.xib; sourceTree = "<group>"; };
@@ -425,6 +437,12 @@
 		E85310F71BB4A286005A008B /* GMOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderItemCell.h; sourceTree = "<group>"; };
 		E85310F81BB4A286005A008B /* GMOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderItemCell.m; sourceTree = "<group>"; };
 		E85310F91BB4A286005A008B /* GMOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderItemCell.xib; sourceTree = "<group>"; };
+		E8560EAD1BB71B2900C87B2C /* GMPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentCell.h; sourceTree = "<group>"; };
+		E8560EAE1BB71B2900C87B2C /* GMPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentCell.m; sourceTree = "<group>"; };
+		E8560EAF1BB71B2900C87B2C /* GMPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentCell.xib; sourceTree = "<group>"; };
+		E8560EB21BB732C100C87B2C /* GMPaymentOrderSummryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentOrderSummryCell.h; sourceTree = "<group>"; };
+		E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentOrderSummryCell.m; sourceTree = "<group>"; };
+		E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentOrderSummryCell.xib; sourceTree = "<group>"; };
 		E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailLastHeaderView.h; sourceTree = "<group>"; };
 		E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailLastHeaderView.m; sourceTree = "<group>"; };
 		E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailLastHeaderView.xib; sourceTree = "<group>"; };
@@ -463,10 +481,9 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-
+				E8326C6F1BB6B742008ACC8B /* CheckOutModal */,
 				824AF9AF1BB5CF54001652B9 /* CartDetailModal */,
 				824AF9A21BB53C04001652B9 /* CartModal */,
-
 				3B2A83F41BB3527C0066DA7A /* OffersByDealTypeModal */,
 				E85310F31BB48EF0005A008B /* OrderDetalModal */,
 				82A52AB31BB34D22009A4235 /* DealCategoryModal */,
@@ -630,6 +647,7 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8326C731BB6DB5D008ACC8B /* PaymentVC */,
 				E85310DF1BB47F42005A008B /* OrderHistoryDetailVC */,
 				82A52A9F1BB28EE3009A4235 /* CityVC */,
 				820C4F2F1BB1CC5C00DCCF39 /* AddAddressVC */,
@@ -1355,6 +1373,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E8326C6F1BB6B742008ACC8B /* CheckOutModal */ = {
+			isa = PBXGroup;
+			children = (
+				E8326C701BB6B760008ACC8B /* GMCheckOutModal.h */,
+				E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */,
+			);
+			path = CheckOutModal;
+			sourceTree = "<group>";
+		};
+		E8326C731BB6DB5D008ACC8B /* PaymentVC */ = {
+			isa = PBXGroup;
+			children = (
+				E8560EAC1BB71AC100C87B2C /* CashCell */,
+				E8326C741BB6DB76008ACC8B /* GMPaymentVC.h */,
+				E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */,
+				E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */,
+			);
+			path = PaymentVC;
+			sourceTree = "<group>";
+		};
 		E85310DF1BB47F42005A008B /* OrderHistoryDetailVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1392,6 +1430,19 @@
 				E85310F51BB48F15005A008B /* GMOrderDeatilBaseModal.m */,
 			);
 			path = OrderDetalModal;
+			sourceTree = "<group>";
+		};
+		E8560EAC1BB71AC100C87B2C /* CashCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8560EAD1BB71B2900C87B2C /* GMPaymentCell.h */,
+				E8560EAE1BB71B2900C87B2C /* GMPaymentCell.m */,
+				E8560EAF1BB71B2900C87B2C /* GMPaymentCell.xib */,
+				E8560EB21BB732C100C87B2C /* GMPaymentOrderSummryCell.h */,
+				E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */,
+				E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */,
+			);
+			path = CashCell;
 			sourceTree = "<group>";
 		};
 		E8B2C18B1BB29A08000F70EB /* HotDealModal */ = {
@@ -1499,7 +1550,9 @@
 				820C50391BB1CC5C00DCCF39 /* GMSectionView.xib in Resources */,
 				820C50271BB1CC5C00DCCF39 /* GMHomeVC.xib in Resources */,
 				E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */,
+				E8560EB61BB732C100C87B2C /* GMPaymentOrderSummryCell.xib in Resources */,
 				820C505F1BB1CC5C00DCCF39 /* GMShipppingAddressVC.xib in Resources */,
+				E8560EB11BB71B2900C87B2C /* GMPaymentCell.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */,
 				820C50611BB1CC5C00DCCF39 /* GMSubCategoryVC.xib in Resources */,
@@ -1546,6 +1599,7 @@
 				820C503B1BB1CC5C00DCCF39 /* GMLoginVC.xib in Resources */,
 				820C505D1BB1CC5C00DCCF39 /* GMRegisterInputCell.xib in Resources */,
 				820C501A1BB1CC5C00DCCF39 /* GMHotDealCollectionViewCell.xib in Resources */,
+				E8326C781BB6DB76008ACC8B /* GMPaymentVC.xib in Resources */,
 				820C506E1BB1CC5C00DCCF39 /* PBPickerVC.xib in Resources */,
 				820C50291BB1CC5C00DCCF39 /* GMShopByCategoryCollectionViewCell.xib in Resources */,
 				E85310E71BB47F93005A008B /* GMOrderDetailVC.xib in Resources */,
@@ -1656,6 +1710,7 @@
 				820C4FFB1BB1CC5C00DCCF39 /* GMDeliveryDateTimeSlotModal.m in Sources */,
 				820C50061BB1CC5C00DCCF39 /* UIImage+Extends.m in Sources */,
 				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
+				E8560EB01BB71B2900C87B2C /* GMPaymentCell.m in Sources */,
 				82A52AB21BB3362D009A4235 /* Sequencer.m in Sources */,
 				820C50301BB1CC5C00DCCF39 /* GMShopByDealCell.m in Sources */,
 				820C501D1BB1CC5C00DCCF39 /* GMDeliveryDetailCell.m in Sources */,
@@ -1665,6 +1720,7 @@
 				824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */,
 				820C504D1BB1CC5C00DCCF39 /* GMRootPageModelController.m in Sources */,
 				E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */,
+				E8560EB51BB732C100C87B2C /* GMPaymentOrderSummryCell.m in Sources */,
 				E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */,
 				820C50081BB1CC5C00DCCF39 /* UIViewController+GMProgressIndicator.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
@@ -1685,12 +1741,14 @@
 				820C50521BB1CC5C00DCCF39 /* GMProductListingVC.m in Sources */,
 				82B1B2A91B9F5E60001550FC /* main.m in Sources */,
 				820C50441BB1CC5C00DCCF39 /* GMOffersVC.m in Sources */,
+				E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */,
 				820C500B1BB1CC5C00DCCF39 /* GMAddShippingAddressVC.m in Sources */,
 				820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */,
 				820C4FFE1BB1CC5C00DCCF39 /* GMBaseOrderHistoryModal.m in Sources */,
 				82A52AAE1BB28F19009A4235 /* GMProductDetailModal.m in Sources */,
 				820C50091BB1CC5C00DCCF39 /* GMAddBillingAddressVC.m in Sources */,
 				820C504E1BB1CC5C00DCCF39 /* GMRootPageViewController.m in Sources */,
+				E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */,
 				820C50691BB1CC5C00DCCF39 /* GMButton.m in Sources */,
 				820C50241BB1CC5C00DCCF39 /* GMForgotVC.m in Sources */,
 				820C4FFD1BB1CC5C00DCCF39 /* GMLocalityBaseModal.m in Sources */,

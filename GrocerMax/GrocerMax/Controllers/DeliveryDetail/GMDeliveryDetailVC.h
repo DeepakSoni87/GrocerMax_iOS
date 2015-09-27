@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMCheckOutModal.h"
 
 @interface GMDeliveryDetailVC : UIViewController
 
@@ -16,4 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *dateTimeSloteModalArray;
 
 @property (strong, nonatomic) GMTimeSlotBaseModal *timeSlotBaseModal;
+
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
 @end

@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="54" id="oDl-M0-aBk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-LV-87D">
@@ -35,14 +35,22 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward_caret" translatesAutoresizingMaskIntoConstraints="NO" id="XWA-8x-CmT">
+                                <rect key="frame" x="289" y="80" width="10" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="C2t-aJ-OoX"/>
+                                    <constraint firstAttribute="width" constant="10" id="D1k-cW-pID"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-mc-KPM" customClass="GMButton">
                                 <rect key="frame" x="0.0" y="74" width="302" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="LvD-Yz-dp2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="284" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Edit Address" image="forward_caret">
+                                <state key="normal" title="Edit Address">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -68,9 +76,11 @@
                             <constraint firstAttribute="trailing" secondItem="Oau-1J-eJx" secondAttribute="trailing" constant="43" id="SgE-4K-qCN"/>
                             <constraint firstAttribute="trailing" secondItem="kEB-L1-gmN" secondAttribute="trailing" constant="5" id="Upx-E2-5q1"/>
                             <constraint firstItem="7SE-mc-KPM" firstAttribute="leading" secondItem="RAU-0U-I4D" secondAttribute="leading" id="Xs5-yg-64W"/>
+                            <constraint firstAttribute="bottom" secondItem="XWA-8x-CmT" secondAttribute="bottom" constant="13" id="YC9-Mg-wYk"/>
                             <constraint firstItem="7SE-mc-KPM" firstAttribute="top" secondItem="Cjf-LV-87D" secondAttribute="bottom" constant="6" id="aCR-u7-HqJ"/>
                             <constraint firstAttribute="trailing" secondItem="Cjf-LV-87D" secondAttribute="trailing" id="f4F-zY-h4y"/>
                             <constraint firstAttribute="trailing" secondItem="7SE-mc-KPM" secondAttribute="trailing" constant="8" id="rVL-Ag-SYY"/>
+                            <constraint firstAttribute="trailing" secondItem="XWA-8x-CmT" secondAttribute="trailing" constant="11" id="zHr-D2-Zax"/>
                             <constraint firstItem="Oau-1J-eJx" firstAttribute="leading" secondItem="RAU-0U-I4D" secondAttribute="leading" constant="8" id="zu2-a5-YOv"/>
                         </constraints>
                     </view>

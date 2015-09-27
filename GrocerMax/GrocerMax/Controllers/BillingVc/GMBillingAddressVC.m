@@ -9,17 +9,21 @@
 #import "GMBillingAddressVC.h"
 #import "GMAddressCell.h"
 #import "GMTAddAddressCell.h"
+#import "GMDeliveryDetailVC.h"
+#import "GMAddBillingAddressVC.h"
 
 static NSString *kIdentifierBillingAddressCell = @"BillingAddressIdentifierCell";
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @interface GMBillingAddressVC ()
-@property (strong, nonatomic) NSMutableArray *billingAddressArray;
+//@property (strong, nonatomic) NSMutableArray *billingAddressArray;
 @property (strong, nonatomic) IBOutlet UITableView *billingAddressTableView;
 @property (nonatomic, strong) GMUserModal *userModal;
+@property (nonatomic, strong) GMAddressModalData *selectedAddressModalData;
 
 @end
 
 @implementation GMBillingAddressVC
+@synthesize checkOutModal;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +31,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.navigationController.navigationBarHidden = NO;
     [self.billingAddressTableView setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
     self.userModal = [GMUserModal loggedInUser];
-    [self getBillingAddress];
+//    [self getBillingAddress];
     [self registerCellsForTableView];
 }
 
@@ -61,6 +65,9 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddressModalData *addressModalData = sender.addressModal;
    
+    self.selectedAddressModalData.isSelected = FALSE;
+    
+    self.selectedAddressModalData = addressModalData;
     
     if(addressModalData.isSelected) {
         sender.selected = FALSE;
@@ -70,15 +77,32 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         sender.selected = TRUE;
         addressModalData.isSelected = TRUE;
     }
+    self.checkOutModal.billingAddressModal = addressModalData;
+    [self.billingAddressTableView reloadData];
+    
 }
 
 - (void) editBtnClicked:(GMButton *)sender {
-    
+    GMAddBillingAddressVC *addShippingAddressVC = [GMAddBillingAddressVC new];
+    addShippingAddressVC.editAddressModal = sender.addressModal;
+    [self.navigationController pushViewController:addShippingAddressVC animated:YES];
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
-    
+    GMAddBillingAddressVC *addShippingAddressVC = [GMAddBillingAddressVC new];
+    [self.navigationController pushViewController:addShippingAddressVC animated:YES];
 }
 
+- (IBAction)actionProcess:(id)sender {
+    
+    if(self.checkOutModal.billingAddressModal) {
+        GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
+        deliveryDetailVC.checkOutModal = self.checkOutModal;
+        deliveryDetailVC.timeSlotBaseModal = self.timeSlotBaseModal;
+        [self.navigationController pushViewController:deliveryDetailVC animated:YES];
+    } else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please select billing address."];
+    }
+}
 
 #pragma mark TableView DataSource and Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,7 +161,11 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+//    if(self.billingAddressArray != nil && [self.billingAddressArray count]>indexPath.row)
+//    {
+//        GMAddressModalData *addressModalData = [self.billingAddressArray objectAtIndex:indexPath.row];
+//        self.checkOutModal.billingAddressModal = addressModalData;
+//    }
 }
 
 
@@ -151,7 +179,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     if(NSSTRING_HAS_DATA(self.userModal.email))
         [userDic setObject:self.userModal.email forKey:kEY_email];
     if(NSSTRING_HAS_DATA(self.userModal.userId))
-        [userDic setObject:self.userModal.userId forKey:kEY_userid];
+        [userDic setObject:@"13807"forKey:kEY_userid];
     
     [self showProgress];
     [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {

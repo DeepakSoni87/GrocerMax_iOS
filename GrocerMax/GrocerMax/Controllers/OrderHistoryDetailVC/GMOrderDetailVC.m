@@ -216,7 +216,7 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
             header = [[GMOrderDetailHeaderView alloc] initWithReuseIdentifier:kIdentifierOrderDetailHeader];
         }
         if(section == 0) {
-            [header congigerHeaderData:self.orderHistoryModal.orderId];
+            [header congigerHeaderData:[NSString stringWithFormat:@"Order ID:%@",self.orderHistoryModal.orderId]];
         } else {
              [header congigerHeaderData:@"YOUE ORDER"];
         }
