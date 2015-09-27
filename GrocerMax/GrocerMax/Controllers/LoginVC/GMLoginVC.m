@@ -12,6 +12,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "GMRegisterVC.h"
 #import "GMForgotVC.h"
+#import "GMProfileVC.h"
 
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
@@ -101,6 +102,10 @@
             [userModal setEmail:self.txt_email.text];
             [userModal persistUser];
             [[GMSharedClass sharedClass] setUserLoggedStatus:YES];
+            
+            // set 2nd tab as profile VC after login success
+            [self setSecondTabAsProfile];
+            
             [self.navigationController popToRootViewControllerAnimated:YES];
 
         } failureBlock:^(NSError *error) {
@@ -173,4 +178,18 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     
     [UIView commitAnimations];
 }
+
+#pragma mark - Set 2nd tab as profile VC
+
+- (void)setSecondTabAsProfile{
+    
+    GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
+    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
+    
+    [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
+}
+
+
 @end

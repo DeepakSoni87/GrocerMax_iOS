@@ -16,5 +16,8 @@
 
 - (void)configureCellWithProductModal:(GMProductModal *)productModal;
 
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeightForNonPromotionalLabel;
+
++ (CGFloat)cellHeightForPromotionalLabel;
+
 @end
