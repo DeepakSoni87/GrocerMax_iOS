@@ -74,6 +74,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
     [userDic setObject:@"1" forKey:kEY_cityId];
+    if(NSSTRING_HAS_DATA(self.userModal.userId))
     [userDic setObject:self.userModal.userId forKey:kEY_userid];
     
     [self showProgress];

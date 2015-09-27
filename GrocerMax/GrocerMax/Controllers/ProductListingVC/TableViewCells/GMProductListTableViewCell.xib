@@ -75,10 +75,8 @@
                             <constraint firstAttribute="width" constant="100" id="PUe-bg-GrX"/>
                         </constraints>
                     </view>
-
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEL-2d-Or8">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEL-2d-Or8" customClass="GMButton">
                         <rect key="frame" x="259" y="100" width="46" height="30"/>
-
                         <color key="backgroundColor" red="0.086274509799999996" green="0.38823529410000002" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="1VJ-TJ-7vP"/>

@@ -12,7 +12,7 @@
 
 @interface GMProductListTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet GMButton *addBtn;
+@property (strong, nonatomic) IBOutlet GMButton *addBtn;
 
 - (void)configureCellWithProductModal:(GMProductModal *)productModal;
 
