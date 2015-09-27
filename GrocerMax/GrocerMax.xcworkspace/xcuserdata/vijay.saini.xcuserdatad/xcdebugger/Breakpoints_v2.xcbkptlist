@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
             endingLineNumber = "75"
-            landmarkName = "-fetchCartDetailFromServer"
+            landmarkName = "-registerCellsForTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
             endingLineNumber = "220"
-            landmarkName = "-checkWhetherUpdateRequestNeeded"
+            landmarkName = "-updateOrderButtonTapped:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
