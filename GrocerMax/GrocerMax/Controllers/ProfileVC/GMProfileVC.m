@@ -130,7 +130,12 @@ static NSString * const kChangePasswordCell                      =  @"Change Pas
     else
         [self.userNameLabel setText:self.userModal.firstName];
     [self.userEmailLabel setText:self.userModal.email];
-    [self.userMobileLabel setText:[NSString stringWithFormat:@"+91 %@", self.userModal.mobile]];
+    if(NSSTRING_HAS_DATA(self.userModal.mobile)) {
+        [self.userMobileLabel setText:[NSString stringWithFormat:@"+91 %@", self.userModal.mobile]];
+    }
+    else{
+        [self.userMobileLabel setText:@""];
+    }
     self.profileTableView.tableHeaderView = self.profileHeaderView;
     self.profileTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }

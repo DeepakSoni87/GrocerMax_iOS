@@ -58,6 +58,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass]setTabBarVisible:YES ForController:self animated:YES];
     [self userSelectLocation];
     
     // if categoies exist in memory
@@ -213,7 +214,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
 
 //    
-//    GMOrderDetailVC * billingAddressVC  = [GMOrderDetailVC new];
+//    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
 //    [self.navigationController pushViewController:billingAddressVC animated:YES];
 //    return;
 

@@ -22,7 +22,7 @@
 - (void)congigerHeaderData :(NSString *)value{
     self.backgroundColor = [UIColor colorWithRGBValue:244 green:244 blue:244];
     if(NSSTRING_HAS_DATA(value)) {
-        self.headerTitleLbl.text = value;
+        self.headerTitleLbl.text = [NSString stringWithFormat:@"%@" ,value];
     }
     else {
         self.headerTitleLbl.text = @"";

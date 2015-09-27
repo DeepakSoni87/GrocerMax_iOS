@@ -11,13 +11,16 @@
 @interface GMTimeSlotBaseModal()
 
 @property (nonatomic, readwrite, strong) NSArray *timeSlotArray;
+
+@property (nonatomic, readwrite, strong) NSMutableArray *addressesArray;
 @end
 
 @implementation GMTimeSlotBaseModal
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"timeSlotArray"                  : @"Shipping"
+    return @{@"timeSlotArray"                  : @"Shipping",
+             @"addressesArray"                 : @"Address"
              };
 }
 
@@ -25,6 +28,12 @@
     
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMDeliveryTimeSlotModal class]];
 }
+
++ (NSValueTransformer *)addressesArrayJSONTransformer {
+    
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMAddressModalData class]];
+}
+
 @end
 
 @implementation GMDeliveryTimeSlotModal

@@ -7,7 +7,6 @@
 //
 
 #import "GMOfferListVC.h"
-#import "GMTOfferListCell.h"
 #import "GMProductModal.h"
 
 
@@ -70,17 +69,6 @@ static NSString *kIdentifierOfferListCell = @"offerListIdentifierCell";
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 #pragma mark - TableView DataSource and Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -91,19 +79,29 @@ static NSString *kIdentifierOfferListCell = @"offerListIdentifierCell";
     return [self.productListArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GMTOfferListCell *offerListCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOfferListCell];
-    offerListCell.tag = indexPath.row;
-    [offerListCell configerViewWithData:nil];
-    return offerListCell;
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    GMProductModal *productModal = [self.productListArray objectAtIndex:indexPath.row];
+//    GMTOfferListCell *offerListCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierOfferListCell];
+//    offerListCell.tag = indexPath.row;
+//    [offerListCell.deleteButton addTarget:self action:@selector(deleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    [offerListCell configureViewWithProductModal:productModal];
+//    return offerListCell;
+//    
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return [GMTOfferListCell getCellHeight];
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [GMTOfferListCell getCellHeight];
-}
+#pragma mark - IBAction Methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)deleteButtonTapped:(GMButton *)sender {
+    
     
 }
 

@@ -8,6 +8,11 @@
 
 #import "GMRequestParams.h"
 #import "GMAddressModal.h"
+#import "GMCartModal.h"
+#import "GMProductModal.h"
+
+
+
 
 @implementation GMRequestParams
 
@@ -706,7 +711,7 @@ static GMRequestParams *sharedClass;
     NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionary];
     if(!isNewAddress)
         [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.customer_address_id] forKey:kEY_addressid];
-    [addressDictionary setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
+    [addressDictionary setObject:@"13807" forKey:kEY_userid];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.firstName] forKey:kEY_fname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.lastName] forKey:kEY_lname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];
@@ -720,14 +725,6 @@ static GMRequestParams *sharedClass;
     [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
     [addressDictionary setObject:@"1" forKeyedSubscript:kEY_cityId];
     return addressDictionary;
-}
-
-- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
-    
-    if(NSSTRING_HAS_DATA(strInput))
-        return strInput;
-    else
-        return @"";
 }
 
 + (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic{
@@ -810,6 +807,13 @@ static GMRequestParams *sharedClass;
     }
 }
 
+#pragma mark - Helper Methods
 
-
+- (NSString *)getValidStringObjectFromString:(NSString *)strInput {
+    
+    if(NSSTRING_HAS_DATA(strInput))
+        return strInput;
+    else
+        return @"";
+}
 @end
