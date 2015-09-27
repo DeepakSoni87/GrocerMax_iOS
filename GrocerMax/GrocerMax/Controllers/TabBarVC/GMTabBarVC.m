@@ -48,12 +48,19 @@
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:homeVCTabImg selectedImage:homeVCTabSelectedImg];
     GMNavigationController *homeVCNavController = [[GMNavigationController alloc] initWithRootViewController:homeVC];
 
+    UIViewController *viewController;
     
-    GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
+    if([[GMSharedClass sharedClass] getUserLoggedStatus]) {
+        viewController = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
+    }
+    else {
+        viewController = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+    }
+    
     UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
-    GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:profileVC];
+    viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
+    GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:viewController];
 
     
     GMHotDealVC *hotDealVC = [[GMHotDealVC alloc] initWithNibName:@"GMHotDealVC" bundle:nil];

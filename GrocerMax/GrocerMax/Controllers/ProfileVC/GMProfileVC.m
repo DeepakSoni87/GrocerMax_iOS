@@ -87,16 +87,9 @@ static NSString * const kChangePasswordCell                      =  @"Change Pas
     self.title = @"My Profile";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
-    if([[GMSharedClass sharedClass] getUserLoggedStatus]) {
-        
-        [self createCellArray];
-        [self configureTableHeaderView];
-    }
-    else {
-        
-        GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
-        [self.navigationController pushViewController:loginVC animated:NO];
-    }
+    
+    [self createCellArray];
+    [self configureTableHeaderView];    
 }
 
 - (void)createCellArray {

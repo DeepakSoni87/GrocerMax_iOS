@@ -12,11 +12,15 @@
 
 @interface GMProductListTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UILabel *promotionalLbl;
+
 @property (weak, nonatomic) IBOutlet UIView *bgVeiw;
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *productDescriptionLbl;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionalLblHeightConstraints;
 @end
 
 @implementation GMProductListTableViewCell
@@ -61,13 +65,26 @@
     [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",mdl.Price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
 
     self.productDescriptionLbl.attributedText = attString;
+    
+    if (productModal.promotion_level.length > 1 )
+        self.promotionalLblHeightConstraints.constant = 20;
+    else
+        self.promotionalLblHeightConstraints.constant = 0;
+    
+    self.promotionalLbl.text = mdl.promotion_level;
 
 }
 
 #pragma mark - Cell height
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeightForNonPromotionalLabel {
     
-    return 120.0f;
+    return 140.0f;
 }
+
++ (CGFloat)cellHeightForPromotionalLabel {
+    
+    return 160.0f;
+}
+
 @end

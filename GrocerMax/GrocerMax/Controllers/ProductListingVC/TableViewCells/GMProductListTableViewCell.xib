@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="KGk-i7-Jjw" customClass="GMProductListTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -87,18 +87,41 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0D-8m-xkC">
+                        <rect key="frame" x="8" y="138" width="304" height="20"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="DqB-Uh-10w"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jEL-2d-Or8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="100" id="CVt-Qm-DgP"/>
+                    <constraint firstItem="V0D-8m-xkC" firstAttribute="top" secondItem="4oI-7n-0A5" secondAttribute="bottom" constant="8" id="Ic0-9V-LsE"/>
                     <constraint firstAttribute="bottom" secondItem="4oI-7n-0A5" secondAttribute="bottom" constant="9" id="J5V-5b-R7T"/>
                     <constraint firstAttribute="bottom" secondItem="jEL-2d-Or8" secondAttribute="bottom" constant="9" id="OGU-C1-Ibz"/>
                     <constraint firstAttribute="trailing" secondItem="jEL-2d-Or8" secondAttribute="trailing" constant="15" id="ObM-fk-vtv"/>
+                    <constraint firstItem="V0D-8m-xkC" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="bottom" constant="2" id="OqT-74-LgZ"/>
                     <constraint firstItem="ye1-mf-dqa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QQl-mY-qaa"/>
                     <constraint firstAttribute="bottom" secondItem="ye1-mf-dqa" secondAttribute="bottom" constant="3" id="SO2-h4-7Gp"/>
                     <constraint firstAttribute="trailing" secondItem="ye1-mf-dqa" secondAttribute="trailing" constant="8" id="TJL-Jl-idp"/>
                     <constraint firstItem="ye1-mf-dqa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Z5K-2p-9Yg"/>
+                    <constraint firstItem="V0D-8m-xkC" firstAttribute="top" secondItem="jEL-2d-Or8" secondAttribute="bottom" constant="8" id="Zlm-2s-C9h"/>
+                    <constraint firstItem="V0D-8m-xkC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="avQ-5w-l5N"/>
                     <constraint firstItem="jEL-2d-Or8" firstAttribute="leading" secondItem="4oI-7n-0A5" secondAttribute="trailing" constant="15" id="fc7-WC-HhQ"/>
+                    <constraint firstAttribute="bottom" secondItem="V0D-8m-xkC" secondAttribute="bottom" constant="1" id="nw3-hU-G1J"/>
+                    <constraint firstAttribute="trailing" secondItem="V0D-8m-xkC" secondAttribute="trailing" constant="8" id="pJ8-Iq-War"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="SO2-h4-7Gp"/>
+                        <exclude reference="J5V-5b-R7T"/>
+                        <exclude reference="OGU-C1-Ibz"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
@@ -106,6 +129,8 @@
                 <outlet property="bgVeiw" destination="ye1-mf-dqa" id="aol-BB-mE6"/>
                 <outlet property="productDescriptionLbl" destination="ypZ-hH-B9p" id="9Bd-lA-nHG"/>
                 <outlet property="productImgView" destination="z5M-1Z-ihk" id="B3p-Ay-wNW"/>
+                <outlet property="promotionalLbl" destination="V0D-8m-xkC" id="q0J-vx-SST"/>
+                <outlet property="promotionalLblHeightConstraints" destination="DqB-Uh-10w" id="Dg9-hl-23W"/>
             </connections>
             <point key="canvasLocation" x="248" y="358"/>
         </tableViewCell>
