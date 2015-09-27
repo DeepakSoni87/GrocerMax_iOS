@@ -33,6 +33,9 @@
 @property (strong, nonatomic) NSString *sku;
 @property (strong, nonatomic) NSString *noDiscount;
 
+@property (nonatomic, assign) BOOL isProductUpdated;
+
 - (instancetype)initWithProductItemDict:(NSDictionary *)productDict;
 
+- (instancetype)initWithProductModal:(GMProductModal *)productModal;
 @end

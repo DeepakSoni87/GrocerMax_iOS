@@ -82,6 +82,7 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
 - (void)createSectionArray {
     
     NSMutableArray *shopByCatArray = [self fetchShopByCategoriesFromDB];
+    [self.sectionArray removeAllObjects];
     SectionModal *shopByCat = [[SectionModal alloc] initWithDisplayName:kShopByCategorySection andRowArray:shopByCatArray];
     [self.sectionArray addObject:shopByCat];
     SectionModal *shopByDeal = [[SectionModal alloc] initWithDisplayName:kShopByDealSection andRowArray:nil];

@@ -11,7 +11,10 @@
 @interface GMCartCell()
 
 @property (nonatomic, strong) GMProductModal *productModal;
+
+@property (nonatomic, assign) NSUInteger quantityValue;
 @end
+
 
 @implementation GMCartCell
 
@@ -46,23 +49,30 @@
     NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x %ld | %ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
     [self.priceWithOfferLbl setText:priceQuantityStr];
     [self.addSubstractLbl setText:self.productModal.productQuantity];
+    self.quantityValue = self.productModal.productQuantity.integerValue;
 }
 
 - (IBAction)actionSubstractProduct:(UIButton *)sender {
     
-    int items = [self.addSubstractLbl.text intValue];
-    if(items != 0)
-    {
-        self.addSubstractLbl.text = [NSString stringWithFormat:@"%d",items-1];
+    if(self.quantityValue > 0) {
+        
+        self.quantityValue --;
+        NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
+        [self.addSubstractLbl setText:productQuantity];
+        [self.productModal setProductQuantity:productQuantity];
+        if([self.delegate respondsToSelector:@selector(productQuantityValueChanged)])
+            [self.delegate productQuantityValueChanged];
     }
-    
 }
 
 - (IBAction)actionAddProduct:(UIButton *)sender {
     
-    int items = [self.addSubstractLbl.text intValue];
-    
-        self.addSubstractLbl.text = [NSString stringWithFormat:@"%d",items+1];
+    self.quantityValue ++;
+    NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
+    [self.addSubstractLbl setText:productQuantity];
+    [self.productModal setProductQuantity:productQuantity];
+    if([self.delegate respondsToSelector:@selector(productQuantityValueChanged)])
+        [self.delegate productQuantityValueChanged];
 }
 
 + (CGFloat) getCellHeight {

@@ -20,4 +20,8 @@
 - (NSDictionary *)addToCartParameterDictionaryFromProductModal:(GMProductModal *)productModal;
 
 - (NSDictionary *)updateDeleteRequestParameterFromCartModal:(GMCartModal *)cartModal;
+
+- (NSDictionary *)updateDeleteRequestParameterFromCartDetailModal:(GMCartDetailModal *)cartModal;
+
+- (NSDictionary *)cartDetailRequestParameter;
 @end
