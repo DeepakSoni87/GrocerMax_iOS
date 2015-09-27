@@ -9,6 +9,8 @@
 #import "GMOffersVC.h"
 #import "GMOffersCollectionViewCell.h"
 #import "GMDealCategoryBaseModal.h"
+#import "GMOffersByDealTypeModal.h"
+#import "GMProductListingVC.h"
 
 NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
@@ -65,6 +67,35 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectItemAtIndexPath");
+    
+    GMCategoryModal *tempCategoryModal = [[GMCategoryModal alloc] init];
+
+    switch (self.rootControllerType) {
+            
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
+        {
+            GMOffersByDealTypeModal *mdl = self.dataSource[indexPath.row];
+            tempCategoryModal.categoryId = mdl.ID;
+        }
+            break;
+            
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            GMDealModal *mdl = self.dataSource[indexPath.row];
+            tempCategoryModal.categoryId = mdl.dealId;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
+    proListVC.catMdl = tempCategoryModal;
+    proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
+    proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
+
+    [self.navigationController pushViewController:proListVC animated:YES];
 }
 
 #pragma mark - Fill DataSource Array

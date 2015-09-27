@@ -41,6 +41,14 @@
     }
 }
 
+- (void)addLogImageInNavBar {
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    imgView.frame = CGRectMake(0, 0, 1.64 * 40, 40);
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    self.navigationItem.titleView = imgView;
+}
+
 - (void)menuButtonPressed:(UIBarButtonItem*)button {
     
     [self.view endEditing:YES];

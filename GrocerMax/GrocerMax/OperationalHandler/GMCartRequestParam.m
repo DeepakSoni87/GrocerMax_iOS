@@ -9,6 +9,7 @@
 #import "GMCartRequestParam.h"
 #import "GMCartModal.h"
 #import "GMProductModal.h"
+#import "GMCartDetailModal.h"
 
 static GMCartRequestParam *sharedClass;
 
@@ -136,7 +137,23 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     return requestParam;
 }
 
+- (NSDictionary *)updateDeleteRequestParameterFromCartDetailModal:(GMCartDetailModal *)cartModal {
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    [requestParam setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
+    [requestParam setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
+    [requestParam setObject:[self deletedProductIds:cartModal.deletedProductItemsArray] forKey:kProductIdKey];
+    [requestParam setObject:[self jsonStringOfProductItems:cartModal.productItemsArray] forKey:kUpdateIdKey];
+    return requestParam;
+}
+
 - (NSString *)jsonStringOfProductItems:(NSMutableArray *)productItems {
+    
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isProductUpdated == YES"];
+//    NSArray *updatedProductsArr = [productItems filteredArrayUsingPredicate:pred];
+//    if(!updatedProductsArr.count)
+//        return @"";
     
     NSMutableArray *productItemsArray = [NSMutableArray array];
     
@@ -158,6 +175,15 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     NSArray *productIdArr = [deletedProductItems valueForKeyPath:@"@distinctUnionOfObjects.productid"];
     NSString *resultedStr = [productIdArr componentsJoinedByString:@","];
     return resultedStr;
+}
+
+- (NSDictionary *)cartDetailRequestParameter {
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    [requestParam setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
+    [requestParam setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
+    return requestParam;
 }
 
 #pragma mark - Helper Methods

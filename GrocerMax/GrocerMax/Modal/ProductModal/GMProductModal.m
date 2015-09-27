@@ -100,6 +100,25 @@ static NSString * const kProductQuantityKey                     = @"productQuant
     return self;
 }
 
+- (instancetype)initWithProductModal:(GMProductModal *)productModal {
+    
+    if(self = [super init]) {
+        
+        _p_brand = productModal.p_brand;
+        _p_pack = productModal.p_pack;
+        _Price = productModal.Price;
+        _image = productModal.image;
+        _name = productModal.name;
+        _productid = productModal.productid;
+        _sku = productModal.sku;
+        _promotion_level = productModal.promotion_level;
+        _noDiscount = productModal.noDiscount;
+        _sale_price = productModal.sale_price;
+        _productQuantity = productModal.productQuantity;
+    }
+    return self;
+}
+
 #pragma mark - Encoder/Decoder Methods
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

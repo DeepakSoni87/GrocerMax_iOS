@@ -737,9 +737,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void (^)(GMCartDetailModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator cartDetailPath],[GMRequestParams cartDetailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator cartDetailPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -753,7 +753,8 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
+                if(successBlock) successBlock(cartDetailModal);
             }
         }else {
             
@@ -978,6 +979,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void (^)(NSString *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
+    NSLog(@"request initiate %@", param);
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addTocartGustPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -993,8 +995,17 @@ static GMOperationalHandler *sharedHandler;
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
                 NSString *quoteId;
-                if(HAS_KEY(responseObject, kQuoteId))
+                if(HAS_KEY(responseObject, kQuoteId)) {
+                    
                     quoteId = responseObject[kQuoteId];
+                    GMUserModal *userModal = [GMUserModal loggedInUser];
+                    if(quoteId && !userModal) {
+                        
+                        userModal = [[GMUserModal alloc] init];
+                        [userModal setQuoteId:quoteId];
+                        [userModal persistUser];
+                    }
+                }
                 if(successBlock) successBlock(quoteId);
             }
         }else {
@@ -1166,7 +1177,7 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
-- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(NSArray *))successBlock failureBlock:(void (^)(NSError *))failureBlock{
+- (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(id data))successBlock failureBlock:(void (^)(NSError *))failureBlock{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealProductListingPath],[GMRequestParams dealProductListingParameter:param]];
     
@@ -1179,10 +1190,10 @@ static GMOperationalHandler *sharedHandler;
             
             NSError *mtlError = nil;
             
-            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
+            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(productListBaseModal.productsListArray); }
+            else            { if (successBlock) successBlock(productListBaseModal); }
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -1199,7 +1210,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             

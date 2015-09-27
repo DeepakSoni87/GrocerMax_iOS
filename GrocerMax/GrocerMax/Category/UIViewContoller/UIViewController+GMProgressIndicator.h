@@ -15,5 +15,6 @@
 - (void)removeProgress;
 
 - (void)addLeftMenuButton;
+- (void)addLogImageInNavBar;
 - (void)menuButtonPressed:(UIBarButtonItem*)button;
 @end

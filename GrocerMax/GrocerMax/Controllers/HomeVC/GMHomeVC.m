@@ -50,6 +50,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
+    [self addLogImageInNavBar];
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
@@ -57,6 +58,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass]setTabBarVisible:YES ForController:self animated:YES];
     [self userSelectLocation];
     
     // if categoies exist in memory
