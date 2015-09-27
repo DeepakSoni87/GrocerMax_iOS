@@ -13,4 +13,9 @@
 @interface GMAddShippingAddressVC : UIViewController
 
 @property (nonatomic, strong) GMAddressModalData *editAddressModal;
+
+@property (weak, nonatomic) IBOutlet UIImageView *prgressBarImageView;
+
+@property (nonatomic) BOOL isProgress;
+
 @end

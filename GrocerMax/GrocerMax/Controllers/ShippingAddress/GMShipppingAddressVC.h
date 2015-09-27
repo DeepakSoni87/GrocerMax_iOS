@@ -10,6 +10,9 @@
 #import "GMCheckOutModal.h"
 @interface GMShipppingAddressVC : UIViewController
 
-@property (strong, nonatomic) NSMutableArray *billingAddressArray;
+//@property (strong, nonatomic) NSMutableArray *billingAddressArray;
+//@property (nonatomic, strong) GMCartModal *cartModal;
+
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
 
 @end

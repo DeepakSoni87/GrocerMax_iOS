@@ -10,6 +10,7 @@
 #import "GMCartModal.h"
 #import "GMCartDetailModal.h"
 #import "GMCartCell.h"
+#import "GMShipppingAddressVC.h"
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
 
@@ -33,6 +34,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+
 @end
 
 static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
@@ -42,6 +45,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.checkOutModal = [[GMCheckOutModal alloc]init];
     [self registerCellsForTableView];
     
 }
@@ -54,9 +58,9 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
-    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     self.cartModal = [GMCartModal loadCart];
-    if(self.cartModal)
+//    if(self.cartModal)
         [self fetchCartDetailFromServer];
 }
 
@@ -185,7 +189,15 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
-    
+    if(self.cartModal && self.cartModal.cartItems.count>0) {
+        GMShipppingAddressVC *shipppingAddressVC = [GMShipppingAddressVC new];
+        self.checkOutModal.cartDetailModal = self.cartDetailModal;
+        self.checkOutModal.cartModal = self.cartModal;
+        shipppingAddressVC.checkOutModal = self.checkOutModal;
+        [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+    } else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"No any item in your cart"];
+    }
     
 }
 
