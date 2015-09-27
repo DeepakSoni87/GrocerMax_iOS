@@ -17,9 +17,12 @@
             <rect key="frame" x="0.0" y="64" width="320" height="455"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csm-rD-PNh">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csm-rD-PNh">
                     <rect key="frame" x="0.0" y="413" width="320" height="42"/>
                     <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="Qdd-Yh-jOo"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title="SAVE">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,7 +32,7 @@
                         <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="mWV-Ul-pK9"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-d3-IUI" customClass="TPKeyboardAvoidingTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-d3-IUI" customClass="TPKeyboardAvoidingTableView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -39,6 +42,15 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gfA-d3-IUI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MgG-bc-VOw"/>
+                <constraint firstAttribute="trailing" secondItem="gfA-d3-IUI" secondAttribute="trailing" id="Npy-Ft-Z7c"/>
+                <constraint firstItem="gfA-d3-IUI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UuK-ck-KXJ"/>
+                <constraint firstAttribute="trailing" secondItem="csm-rD-PNh" secondAttribute="trailing" id="ZDs-kP-sJd"/>
+                <constraint firstItem="csm-rD-PNh" firstAttribute="top" secondItem="gfA-d3-IUI" secondAttribute="bottom" id="h9t-bs-OiL"/>
+                <constraint firstItem="csm-rD-PNh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="y0i-U9-2GB"/>
+                <constraint firstAttribute="bottom" secondItem="csm-rD-PNh" secondAttribute="bottom" id="yAw-KE-zVN"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

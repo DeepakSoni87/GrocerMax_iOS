@@ -10,4 +10,6 @@
 
 @interface GMOfferListVC : UIViewController
 
+@property (strong, nonatomic) GMCategoryModal *categoryModal;
+
 @end

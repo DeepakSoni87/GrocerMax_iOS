@@ -192,6 +192,7 @@
                 <outlet property="couponDiscountLbl" destination="x4I-MK-Az1" id="jC5-AK-dFb"/>
                 <outlet property="shippingPriceLbl" destination="4Wg-7j-phd" id="Yib-aJ-41I"/>
                 <outlet property="subTotalPriceLbl" destination="kBo-6n-jsY" id="h1U-fs-eFs"/>
+                <outlet property="totalItemLbl" destination="MMR-Sa-XpB" id="C99-ky-tav"/>
                 <outlet property="totalItemPriceLbl" destination="hI9-va-Psj" id="l40-3U-CX0"/>
                 <outlet property="totalPriceLbl" destination="2ZY-d9-5Xf" id="OGP-7R-z39"/>
                 <outlet property="youSavedLbl" destination="Lax-MA-KRn" id="ZG7-bI-NXy"/>

@@ -15,6 +15,9 @@
 static NSString *kIdentifierBillingAddressCell = @"BillingAddressIdentifierCell";
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @interface GMBillingAddressVC ()
+{
+    BOOL isHitOnServer;
+}
 //@property (strong, nonatomic) NSMutableArray *billingAddressArray;
 @property (strong, nonatomic) IBOutlet UITableView *billingAddressTableView;
 @property (nonatomic, strong) GMUserModal *userModal;
@@ -33,6 +36,12 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.userModal = [GMUserModal loggedInUser];
 //    [self getBillingAddress];
     [self registerCellsForTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if(isHitOnServer)
+        [self getBillingAddress];
 }
 
 - (void)registerCellsForTableView {
@@ -83,17 +92,19 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 }
 
 - (void) editBtnClicked:(GMButton *)sender {
+    isHitOnServer = TRUE;
     GMAddBillingAddressVC *addShippingAddressVC = [GMAddBillingAddressVC new];
     addShippingAddressVC.editAddressModal = sender.addressModal;
     [self.navigationController pushViewController:addShippingAddressVC animated:YES];
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
+    isHitOnServer = TRUE;
     GMAddBillingAddressVC *addShippingAddressVC = [GMAddBillingAddressVC new];
     [self.navigationController pushViewController:addShippingAddressVC animated:YES];
 }
 
 - (IBAction)actionProcess:(id)sender {
-    
+    isHitOnServer = FALSE;
     if(self.checkOutModal.billingAddressModal) {
         GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
         deliveryDetailVC.checkOutModal = self.checkOutModal;
@@ -174,22 +185,60 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 - (void)getBillingAddress {
     
     
-    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+//    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+//    
+//    if(NSSTRING_HAS_DATA(self.userModal.email))
+//        [userDic setObject:self.userModal.email forKey:kEY_email];
+//    if(NSSTRING_HAS_DATA(self.userModal.userId))
+//    
+//    [self showProgress];
+//    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
+//        self.billingAddressArray = (NSMutableArray *)responceData.billingAddressArray;
+//        [self removeProgress];
+//        [self.billingAddressTableView reloadData];
+//        
+//    } failureBlock:^(NSError *error) {
+//        [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+//        [self removeProgress];
+//    }];
     
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.userModal.email))
-        [userDic setObject:self.userModal.email forKey:kEY_email];
+        [dataDic setObject:self.userModal.email forKey:kEY_email];
     if(NSSTRING_HAS_DATA(self.userModal.userId))
-        [userDic setObject:@"13807"forKey:kEY_userid];
-    
+        [dataDic setObject:self.userModal.userId forKey:kEY_userid];
     [self showProgress];
-    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
-        self.billingAddressArray = (NSMutableArray *)responceData.billingAddressArray;
+    [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
+        isHitOnServer = FALSE;
+        self.timeSlotBaseModal = responceData;
+        if(responceData.addressesArray.count>0) {
+            
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
+                int isBillingValue = evaluatedObject.is_default_billing.intValue;
+                
+                if(isBillingValue == 1) {
+                    return YES;
+                }
+                else
+                    return NO;
+            }];
+            
+            NSArray *arry = [responceData.addressesArray filteredArrayUsingPredicate:predicate];
+            if(arry.count>0)
+            {
+                self.billingAddressArray = (NSMutableArray *)arry;
+                self.checkOutModal.billingAddressModal = nil;
+                [self.billingAddressTableView reloadData];
+            }
+        }
+        
         [self removeProgress];
-        [self.billingAddressTableView reloadData];
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+        isHitOnServer = FALSE;
         [self removeProgress];
+        
     }];
 }
 

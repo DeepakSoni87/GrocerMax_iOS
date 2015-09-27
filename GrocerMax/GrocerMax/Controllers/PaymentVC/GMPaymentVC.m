@@ -11,6 +11,7 @@
 #import "GMOrderDetailHeaderView.h"
 #import "GMPaymentCell.h"
 #import "GMPaymentOrderSummryCell.h"
+#import "GMCartDetailModal.h"
 
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
 static NSString *kIdentifierPaymentSummuryCell = @"paymentSummeryIdentifierCell";
@@ -23,6 +24,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 @property (weak, nonatomic) IBOutlet UITableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
+@property (weak, nonatomic) IBOutlet UITextField *couponCodeTextField;
 @property (strong, nonatomic) NSMutableArray *paymentOptionArray;
 @property (strong, nonatomic) GMButton *checkedBtn;
 
@@ -63,6 +65,9 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     //
 }
 -(void) configerView {
+    if(self.checkOutModal.cartDetailModal.couponCode) {
+        self.couponCodeTextField.text = self.checkOutModal.cartDetailModal.couponCode;
+    }
     self.bottomView.layer.borderWidth = 1.0;
     self.bottomView.layer.borderColor = [UIColor colorWithRGBValue:236 green:236 blue:236].CGColor;
     self.bottomView.layer.cornerRadius = 2.0;
@@ -76,6 +81,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - Action Methods
 - (IBAction)actionPaymentCash:(id)sender {
     
     if(selectedIndex != 0) {
@@ -97,8 +103,6 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     if(NSSTRING_HAS_DATA(userModal.quoteId)) {
         [checkOutDic setObject:userModal.quoteId forKey:kEY_quote_id];
     }
-//    [checkOutDic setObject:@"13807" forKey:kEY_userid];
-//    [checkOutDic setObject:@"14" forKey:kEY_quote_id];
     
     if(NSSTRING_HAS_DATA(timeSloteModal.firstTimeSlote)) {
         [checkOutDic setObject:timeSloteModal.firstTimeSlote forKey:kEY_timeslot];
@@ -230,6 +234,37 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 
     
 }
+- (IBAction)actionApplyCoponCode:(id)sender {
+    
+    if(!NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
+        return;
+    }
+    
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    GMUserModal *userModal = self.checkOutModal.userModal;
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        [userDic setObject:userModal.userId forKey:kEY_userid];
+    }
+    if(NSSTRING_HAS_DATA(userModal.quoteId)) {
+        [userDic setObject:userModal.quoteId forKey:kEY_quote_id];
+    }
+    if(NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
+        [userDic setObject:self.couponCodeTextField.text forKey:kEY_couponcode];
+    }
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] addCoupon:userDic  withSuccessBlock:^(id responceData) {
+        
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+        
+        [self removeProgress];
+    }];
+    
+}
 
 - (void) actionCheckedBtnClicked:(GMButton *)sender {
     
@@ -248,6 +283,12 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     
 }
 
+#pragma mark - keyword hide
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+}
 #pragma mark - TableView DataSource and Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
         return 2;
@@ -281,6 +322,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
         GMPaymentOrderSummryCell *paymentOrderSummryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierPaymentSummuryCell];
         
         paymentOrderSummryCell.tag = indexPath.row;
+        [paymentOrderSummryCell configerViewData:self.checkOutModal.cartDetailModal];
         return paymentOrderSummryCell;
     }
     return nil;

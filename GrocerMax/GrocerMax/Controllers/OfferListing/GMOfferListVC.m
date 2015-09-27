@@ -49,10 +49,19 @@ static NSString *kIdentifierOfferListCell = @"offerListIdentifierCell";
     
     [self showProgress];
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
-    [dataDic setObject:@"2402" forKey:kEY_cat_id];
+    if(self.categoryModal) {
+        if(NSSTRING_HAS_DATA(self.categoryModal.categoryId)) {
+            [dataDic setObject:self.categoryModal.categoryId forKey:kEY_cat_id];
+        } else {
+            [[GMSharedClass sharedClass] showErrorMessage:@"category not available"];
+            return;
+        }
+    } else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Category not available"];
+        return;
+    }
+    
     [dataDic setObject:@"1" forKey:kEY_page];
-//    [dataDic setObject:@"maggi" forKey:kEY_keyword];
-//    [dataDic setObject:@"1" forKey:kEY_page];
     
     [[GMOperationalHandler handler] productList:dataDic  withSuccessBlock:^(GMProductListingBaseModal *responceData) {
         self.productListArray = (NSMutableArray *)responceData.productsListArray;
