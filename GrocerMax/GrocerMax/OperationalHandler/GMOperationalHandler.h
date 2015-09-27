@@ -157,7 +157,7 @@
  * Function for Get Cart Detail
  * @param
  **/
-- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void(^)(GMCartDetailModal *cartDetailModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Delete and Update Item from Cart

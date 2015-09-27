@@ -48,7 +48,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 #pragma mark - configureUI
 
--(void) configureUI{
+- (void) configureUI {
     
     self.productListTblView.delegate = self;
     self.productListTblView.dataSource = self;
@@ -130,21 +130,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self.parentVC.cartModal archiveCart];
     
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
-    [self showProgress];
-    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:^(NSString *quoteId) {
-        [self removeProgress];
-        
-        GMUserModal *userModal = [GMUserModal loggedInUser];
-        if(quoteId && !userModal) {
-            
-            userModal = [[GMUserModal alloc] init];
-            [userModal setQuoteId:quoteId];
-            [userModal persistUser];
-        }
-    } failureBlock:^(NSError *error) {
-        [self removeProgress];
-        
-    }];
+    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
 }
 
 @end

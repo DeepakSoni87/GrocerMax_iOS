@@ -12,5 +12,19 @@
 
 @property (nonatomic, strong) NSMutableArray *productItemsArray;
 
+@property (nonatomic, strong) NSMutableArray *deletedProductItemsArray;
+
+@property (nonatomic, strong) NSString *grandTotal;
+
+@property (nonatomic, strong) NSString *taxAmount;
+
+@property (nonatomic, strong) NSString *shippingAmount;
+
+@property (nonatomic, strong) NSString *subTotal;
+
+@property (nonatomic, strong) NSString *couponCode;
+
+@property (nonatomic, strong) NSString *discountAmount;
+
 - (instancetype)initWithCartDetailDictionary:(NSDictionary *)responseDict;
 @end

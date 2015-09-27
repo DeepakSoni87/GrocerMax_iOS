@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GMProductModal.h"
 #import "GMAddressModal.h"
+#import "GMCartDetailModal.h"
 
 @interface GMCartModal : NSObject
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSMutableArray *deletedProductItems;
 
 - (instancetype)initWithCartItems:(NSMutableArray *)cartItems;
+
+- (instancetype)initWithCartDetailModal:(GMCartDetailModal *)cartDetailModal;
 
 + (instancetype)loadCart;
 

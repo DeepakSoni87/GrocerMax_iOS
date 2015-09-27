@@ -39,6 +39,15 @@ static GMCartModal *cartModal;
     return self;
 }
 
+- (instancetype)initWithCartDetailModal:(GMCartDetailModal *)cartDetailModal {
+    
+    if(self = [super init]) {
+        
+        _cartItems = [NSMutableArray arrayWithArray:cartDetailModal.productItemsArray];
+    }
+    return self;
+}
+
 - (void)archiveCart {
     
     NSString *archivePath = [grocerMaxDirectory stringByAppendingPathComponent:@"cartModal"];

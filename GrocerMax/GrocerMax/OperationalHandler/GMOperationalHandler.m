@@ -737,9 +737,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)cartDetail:(NSDictionary *)param withSuccessBlock:(void (^)(GMCartDetailModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator cartDetailPath],[GMRequestParams cartDetailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator cartDetailPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -753,7 +753,8 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
+                if(successBlock) successBlock(cartDetailModal);
             }
         }else {
             
@@ -978,6 +979,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void (^)(NSString *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
+    NSLog(@"request initiate %@", param);
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addTocartGustPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -993,8 +995,17 @@ static GMOperationalHandler *sharedHandler;
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
                 NSString *quoteId;
-                if(HAS_KEY(responseObject, kQuoteId))
+                if(HAS_KEY(responseObject, kQuoteId)) {
+                    
                     quoteId = responseObject[kQuoteId];
+                    GMUserModal *userModal = [GMUserModal loggedInUser];
+                    if(quoteId && !userModal) {
+                        
+                        userModal = [[GMUserModal alloc] init];
+                        [userModal setQuoteId:quoteId];
+                        [userModal persistUser];
+                    }
+                }
                 if(successBlock) successBlock(quoteId);
             }
         }else {
