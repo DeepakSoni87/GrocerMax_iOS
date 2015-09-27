@@ -48,6 +48,9 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
+    if(self.isProgress) {
+        self.prgressBarImageView.hidden = FALSE;
+    }
     [self fetchLocalitiesFromServer];
 }
 

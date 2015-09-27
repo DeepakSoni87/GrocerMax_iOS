@@ -508,6 +508,35 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     if([self performValidations]) {
         
         [self.addressModal setIs_default_billing:[NSNumber numberWithBool:self.isDefaultBillingAddress]];
+        
+        GMRequestParams *requestParam = [GMRequestParams sharedClass];
+        NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:self.editAddressModal ? NO : YES];
+        [self showProgress];
+        
+        if(self.editAddressModal) {
+            
+            [[GMOperationalHandler handler] editAddress:requestDict withSuccessBlock:^(BOOL success) {
+                
+                [self removeProgress];
+                [self.navigationController popViewControllerAnimated:YES];
+            } failureBlock:^(NSError *error) {
+                
+                [self removeProgress];
+                [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            }];
+        }
+        else {
+            
+            [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
+                [self removeProgress];
+                [self.navigationController popViewControllerAnimated:YES];
+            } failureBlock:^(NSError *error) {
+                [self removeProgress];
+                [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+            }];
+        }
+
+        
     }
 }
 

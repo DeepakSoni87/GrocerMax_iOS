@@ -465,6 +465,7 @@ static GMOperationalHandler *sharedHandler;
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
+        responseObject = nil;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -859,7 +860,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)addCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator addCouponPath],[GMRequestParams addOrRemoveCouponParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addCouponPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -1004,6 +1005,11 @@ static GMOperationalHandler *sharedHandler;
                         userModal = [[GMUserModal alloc] init];
                         [userModal setQuoteId:quoteId];
                         [userModal persistUser];
+                    } else {
+                        if(userModal && !NSSTRING_HAS_DATA(userModal.quoteId)) {
+                            [userModal setQuoteId:quoteId];
+                            [userModal persistUser];
+                        }
                     }
                 }
                 if(successBlock) successBlock(quoteId);
