@@ -50,6 +50,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
+    [self addLogImageInNavBar];
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
@@ -213,7 +214,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
 
 //    
-//    GMOrderDetailVC * billingAddressVC  = [GMOrderDetailVC new];
+//    GMShipppingAddressVC * billingAddressVC  = [GMShipppingAddressVC new];
 //    [self.navigationController pushViewController:billingAddressVC animated:YES];
 //    return;
 

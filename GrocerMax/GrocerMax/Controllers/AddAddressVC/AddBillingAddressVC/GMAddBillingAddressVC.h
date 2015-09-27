@@ -10,4 +10,5 @@
 
 @interface GMAddBillingAddressVC : UIViewController
 
+@property (nonatomic, strong) GMAddressModalData *editAddressModal;
 @end

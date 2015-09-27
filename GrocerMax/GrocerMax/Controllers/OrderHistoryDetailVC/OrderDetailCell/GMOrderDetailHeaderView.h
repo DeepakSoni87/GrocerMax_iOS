@@ -11,6 +11,7 @@
 @interface GMOrderDetailHeaderView : UITableViewHeaderFooterView
 
 @property (weak, nonatomic) IBOutlet UILabel *headerTitleLbl;
+@property (weak, nonatomic) IBOutlet UIView *headerBgView;
 
 - (void)congigerHeaderData :(NSString *)value;
 @end

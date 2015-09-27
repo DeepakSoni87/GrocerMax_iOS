@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="lastAddressView" destination="udC-WG-P8E" id="4Kr-go-NNQ"/>
                 <outlet property="shippingAddressTableView" destination="bJc-No-v7t" id="tdd-gd-whM"/>
-                <outlet property="shippingAsBillingBtn" destination="LPu-lM-8xr" id="gFn-d1-Ba5"/>
+                <outlet property="shippingAsBillingBtn" destination="frK-aQ-THa" id="lde-Aj-i7p"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,22 +38,38 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPu-lM-8xr">
                             <rect key="frame" x="8" y="8" width="298" height="28"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="-65" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="270" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Use Shipping address as Billing Address" image="checkBox">
+                            <state key="normal" title="Use Shipping address as Billing Address">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="checkBoxSelected">
+                            <state key="selected">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="actionShippingAsBilling:" destination="-1" eventType="touchUpInside" id="0dI-gu-3Fr"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frK-aQ-THa">
+                            <rect key="frame" x="275" y="7" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="njI-K3-b2z"/>
+                                <constraint firstAttribute="height" constant="30" id="tEC-cT-vfG"/>
+                            </constraints>
+                            <state key="normal" image="checkBox">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="checkBoxSelected"/>
+                            <connections>
+                                <action selector="actionShippingAsBilling:" destination="-1" eventType="touchUpInside" id="Und-OC-Ztk"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="frK-aQ-THa" secondAttribute="bottom" constant="7" id="JcW-38-Vmi"/>
+                        <constraint firstAttribute="trailing" secondItem="frK-aQ-THa" secondAttribute="trailing" constant="5" id="L20-9B-bXm"/>
                         <constraint firstAttribute="height" constant="44" id="cDm-ug-thA"/>
                     </constraints>
                 </view>
@@ -67,6 +83,9 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="actionProcess:" destination="-1" eventType="touchUpInside" id="EVi-KB-vij"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

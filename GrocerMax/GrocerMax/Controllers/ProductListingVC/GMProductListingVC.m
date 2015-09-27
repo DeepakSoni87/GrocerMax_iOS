@@ -19,6 +19,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 @property (strong, nonatomic) GMProductListingBaseModal *productBaseModal;
 @property (assign, nonatomic) BOOL isLoading;
 
+@property (strong, nonatomic) NSString *productRequestID;
+
 @end
 
 @implementation GMProductListingVC
@@ -32,10 +34,12 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self configureUI];
     
     self.rootPageAPIController.delegate = self;
-    self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.catMdl.categoryId];
+    self.productRequestID = self.catMdl.categoryId;
+    
+    self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.productRequestID];
     
     if (self.productBaseModal.productsListArray.count == 0) {
-        [self.rootPageAPIController fetchProductListingDataForCategory:self.catMdl];
+        [self getProducListFromServer];
     }
     
     [self.productListTblView reloadData];
@@ -78,6 +82,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     return cell;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return [GMProductListTableViewCell cellHeight];
@@ -105,7 +110,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
         if (self.productBaseModal.productsListArray.count < self.productBaseModal.totalcount) {
             self.isLoading = YES;
             self.productListTblView.tableFooterView = self.tblFooterLoadMoreView;
-            [self.rootPageAPIController fetchProductListingDataForCategory:self.catMdl];
+            [self getProducListFromServer];
         }
     }
 }
@@ -116,8 +121,33 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     
     self.isLoading = NO;
     self.productListTblView.tableFooterView = nil;
-    self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.catMdl.categoryId];
+    self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.productRequestID];
     [self.productListTblView reloadData];
+    
+    [self removeProgress];
+}
+
+#pragma mark - API Hit
+
+- (void)getProducListFromServer {
+    
+    switch (self.productListingType) {
+            
+        case GMProductListingFromTypeCategory:
+        {
+            [self.rootPageAPIController fetchProductListingDataForCategory:self.productRequestID];
+        }
+            break;
+        case GMProductListingFromTypeOffer_OR_Deal:
+        {
+            [self showProgress];
+            [self.rootPageAPIController fetchDealProductListingDataForOffersORDeals:self.productRequestID];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - IBAction methods
@@ -130,7 +160,9 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self.parentVC.cartModal archiveCart];
     
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
+
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
+
 }
 
 @end
