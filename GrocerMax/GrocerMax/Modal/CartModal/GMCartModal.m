@@ -42,8 +42,16 @@ static GMCartModal *cartModal;
 - (instancetype)initWithCartDetailModal:(GMCartDetailModal *)cartDetailModal {
     
     if(self = [super init]) {
+//        NSMutableArray *productArray = [[NSMutableArray alloc]init];
+//        for (int i =0; i<cartDetailModal.productItemsArray.count; i++) {
+//            GMProductModal *productModal = [cartDetailModal.productItemsArray objectAtIndex:i];
+//            
+//            GMProductModal *addedProductModal = [productModal copy];
+//            [productArray addObject:addedProductModal];
+//        }
+//        _cartItems = productArray;
         
-        _cartItems = [NSMutableArray arrayWithArray:cartDetailModal.productItemsArray];
+        [NSMutableArray arrayWithArray:cartDetailModal.productItemsArray];
     }
     return self;
 }

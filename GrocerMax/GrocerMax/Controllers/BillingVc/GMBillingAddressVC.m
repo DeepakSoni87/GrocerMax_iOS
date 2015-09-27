@@ -190,7 +190,6 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 //    if(NSSTRING_HAS_DATA(self.userModal.email))
 //        [userDic setObject:self.userModal.email forKey:kEY_email];
 //    if(NSSTRING_HAS_DATA(self.userModal.userId))
-//        [userDic setObject:@"13807"forKey:kEY_userid];
 //    
 //    [self showProgress];
 //    [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {

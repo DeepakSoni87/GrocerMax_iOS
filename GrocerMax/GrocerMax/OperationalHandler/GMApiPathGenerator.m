@@ -9,7 +9,7 @@
 #import "GMApiPathGenerator.h"
 
 
-static NSString const *baseUrl = @"http://dev.grocermax.com/webservice/new_services/";
+static NSString const *baseUrl = @"http://staging.grocermax.com/webservice/new_services/";
 //static NSString const *baseUrl = @"http://grocermax.com/webservice/new_services/";
 //static NSString const *baseUrl = @"http://staging.grocermax.com/webservice/new_services/";
 

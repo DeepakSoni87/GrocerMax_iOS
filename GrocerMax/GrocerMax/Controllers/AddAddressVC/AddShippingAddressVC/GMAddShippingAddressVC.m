@@ -11,6 +11,7 @@
 #import "PBPickerVC.h"
 #import "GMLocalityBaseModal.h"
 #import "GMAddressModal.h"
+#import "GMStateBaseModal.h"
 
 @interface GMAddShippingAddressVC ()  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PBPickerDoneCancelDelegate>
 
@@ -49,7 +50,6 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
     if(self.isProgress) {
-        self.prgressBarImageView.hidden = FALSE;
     }
     [self fetchLocalitiesFromServer];
 }
@@ -73,7 +73,16 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (void)fetchLocalitiesFromServer {
     
     [self showProgress];
-    [[GMOperationalHandler handler] getLocalitiesOfCity:@"1" withSuccessBlock:^(GMLocalityBaseModal *localityBaseModal) {
+    
+    GMCityModal *cityModal =[GMCityModal selectedLocation];
+    NSString *cityId = @"1";
+    if(cityModal != nil) {
+        if(NSSTRING_HAS_DATA(cityModal.cityId))  {
+            cityId = cityModal.cityId;
+        }
+    }
+    
+    [[GMOperationalHandler handler] getLocalitiesOfCity:cityId withSuccessBlock:^(GMLocalityBaseModal *localityBaseModal) {
         
         [self removeProgress];
         if(localityBaseModal)
@@ -529,7 +538,13 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             [[GMOperationalHandler handler] editAddress:requestDict withSuccessBlock:^(BOOL success) {
                 
                 [self removeProgress];
-                [self.navigationController popViewControllerAnimated:YES];
+                if(self.isProgress) {
+                    if([self.delegate respondsToSelector:@selector(removeFromSupperView)]) {
+                        [self.delegate removeFromSupperView];
+                    }
+                } else {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
             } failureBlock:^(NSError *error) {
                 
                 [self removeProgress];
