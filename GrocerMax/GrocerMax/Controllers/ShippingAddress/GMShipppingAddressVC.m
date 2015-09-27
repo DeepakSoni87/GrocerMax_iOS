@@ -18,12 +18,14 @@ static NSString *kIdentifierShippingAddressCell = @"ShippingAddressIdentifierCel
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 
-@interface GMShipppingAddressVC ()
+@interface GMShipppingAddressVC ()<AddAShippingddressDelegate>
 {
-    BOOL isFirst;
-    BOOL isHitOnServer;
+//    BOOL isFirst;
+//    BOOL isHitOnServer;
 }
 @property (weak, nonatomic) IBOutlet UITableView *shippingAddressTableView;
+@property (weak, nonatomic) IBOutlet UIView *addAddressView;
+
 @property (strong, nonatomic) NSMutableArray *addressArray;
 @property (weak, nonatomic) IBOutlet UIView *lastAddressView;
 @property (weak, nonatomic) IBOutlet UIButton *shippingAsBillingBtn;
@@ -31,7 +33,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @property (nonatomic, strong) GMAddressModalData *selectedAddressModalData;
 
 @property (nonatomic, strong) GMTimeSlotBaseModal *timeSlotBaseModal;
-
+@property (nonatomic, strong) GMAddShippingAddressVC *addAddressVC;
 
 
 
@@ -41,7 +43,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    isFirst = TRUE;
+//    isFirst = TRUE;
     // Do any additional setup after loading the view from its nib.
     self.userModal = [GMUserModal loggedInUser];
     self.navigationController.navigationBarHidden = NO;
@@ -50,11 +52,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.lastAddressView.layer.borderColor = [UIColor colorWithRed:216.0/256.0 green:216.0/256.0 blue:216.0/256.0 alpha:1].CGColor;
     self.lastAddressView.layer.borderWidth = 2.0;
     self.lastAddressView.layer.cornerRadius = 4.0;
-//    self.checkOutModal = [[GMCheckOutModal alloc] init];
     self.checkOutModal.userModal = self.userModal;
-//    self.checkOutModal.cartModal = self.cartModal;
-    isHitOnServer = TRUE;
-//    [self getShippingAddress];
+    [self getShippingAddress];
     [self registerCellsForTableView];
 }
 
@@ -62,8 +61,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
-    if(isHitOnServer)
-        [self getShippingAddress];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,15 +102,12 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 }
 
 - (void) editBtnClicked:(GMButton *)sender {
-    isHitOnServer = TRUE;
     GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
     addShippingAddressVC.editAddressModal = sender.addressModal;
     [self.navigationController pushViewController:addShippingAddressVC animated:YES];
     
 }
 - (void) addAddressBtnClicked:(UIButton *)sender {
-    
-    isHitOnServer = TRUE;
     GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
     if(sender == nil) {
         addShippingAddressVC.isProgress = TRUE;
@@ -125,7 +120,6 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 }
 - (IBAction)actionProcess:(id)sender {
     
-    isHitOnServer = FALSE;
     if(self.checkOutModal.shippingAddressModal) {
         if(self.shippingAsBillingBtn.selected) {
             GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
@@ -277,10 +271,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
             [dataDic setObject:self.userModal.email forKey:kEY_email];
         if(NSSTRING_HAS_DATA(self.userModal.userId))
             [dataDic setObject:self.userModal.userId forKey:kEY_userid];
-//    [dataDic setObject:@"13807" forKey:kEY_userid];
     [self showProgress];
     [[GMOperationalHandler handler] getAddressWithTimeSlot:dataDic withSuccessBlock:^(GMTimeSlotBaseModal *responceData) {
-        isHitOnServer = FALSE;
         self.timeSlotBaseModal = responceData;
         if(responceData.addressesArray.count>0) {
             
@@ -302,29 +294,37 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
                 self.addressArray = (NSMutableArray *)arry;
                 [self.shippingAddressTableView reloadData];
             } else {
-                if(isFirst) {
-                    isFirst = FALSE ;
-                    [self addAddressBtnClicked:nil];
-                } else {
-                    [self.navigationController popViewControllerAnimated:NO];
-                }
+                [self addSubview];
             }
         } else {
-            if(isFirst) {
-                isFirst = FALSE ;
-                [self addAddressBtnClicked:nil];
-            } else {
-                [self.navigationController popViewControllerAnimated:NO];
-            }
+            [self addSubview];
         }
 
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-        isHitOnServer = FALSE;
         [self removeProgress];
         
     }];
+}
+
+- (void)addSubview {
+    self.addAddressVC = [GMAddShippingAddressVC new];
+    self.addAddressVC.isProgress = TRUE;
+    self.addAddressVC.delegate = self;
+    self.addAddressVC.view.frame = self.addAddressView.bounds;
+    [self.addAddressView addSubview:self.addAddressVC.view];
+    self.addAddressView.hidden = FALSE;
+    
+    
+}
+
+- (void)removeFromSupperView {
+//    [self.addAddressView removeFromSuperview];
+    [self.addAddressVC.view removeFromSuperview];
+    self.addAddressVC = nil;
+    self.addAddressView.hidden = TRUE;
+    [self getShippingAddress];
 }
 @end

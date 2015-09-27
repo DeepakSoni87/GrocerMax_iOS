@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMShipppingAddressVC">
             <connections>
+                <outlet property="addAddressView" destination="vwG-zb-cZf" id="WqE-te-kak"/>
                 <outlet property="lastAddressView" destination="udC-WG-P8E" id="4Kr-go-NNQ"/>
                 <outlet property="shippingAddressTableView" destination="bJc-No-v7t" id="tdd-gd-whM"/>
                 <outlet property="shippingAsBillingBtn" destination="frK-aQ-THa" id="lde-Aj-i7p"/>
@@ -93,16 +94,24 @@
                         <constraint firstAttribute="height" constant="38" id="RhD-65-H6P"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-zb-cZf">
+                    <rect key="frame" x="0.0" y="23" width="320" height="481"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="bJc-No-v7t" secondAttribute="trailing" id="22G-8G-r6J"/>
+                <constraint firstItem="vwG-zb-cZf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="43h-QE-6Uj"/>
+                <constraint firstItem="vwG-zb-cZf" firstAttribute="top" secondItem="Qwf-sq-TbV" secondAttribute="bottom" constant="8" id="6t5-ez-6pB"/>
                 <constraint firstItem="6ih-x0-YXA" firstAttribute="top" secondItem="udC-WG-P8E" secondAttribute="bottom" constant="13" id="Bae-8B-E0m"/>
                 <constraint firstItem="udC-WG-P8E" firstAttribute="top" secondItem="bJc-No-v7t" secondAttribute="bottom" constant="16" id="UVS-bk-1KW"/>
                 <constraint firstItem="6ih-x0-YXA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XOK-Q6-6xa"/>
+                <constraint firstAttribute="trailing" secondItem="vwG-zb-cZf" secondAttribute="trailing" id="bue-hW-IcT"/>
                 <constraint firstItem="bJc-No-v7t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cYb-TB-UaC"/>
                 <constraint firstAttribute="trailing" secondItem="udC-WG-P8E" secondAttribute="trailing" constant="5" id="ljl-et-EUn"/>
                 <constraint firstItem="Qwf-sq-TbV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="3" id="num-He-vrZ"/>
+                <constraint firstAttribute="bottom" secondItem="vwG-zb-cZf" secondAttribute="bottom" id="tA9-Q5-diS"/>
                 <constraint firstAttribute="trailing" secondItem="6ih-x0-YXA" secondAttribute="trailing" id="tPj-ly-kXW"/>
                 <constraint firstItem="udC-WG-P8E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="xDX-NC-GNc"/>
                 <constraint firstAttribute="centerX" secondItem="Qwf-sq-TbV" secondAttribute="centerX" id="xp9-3n-kqa"/>
