@@ -251,11 +251,26 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         [[GMOperationalHandler handler] deleteItem:requestParam withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
             
             [self removeProgress];
-            self.cartDetailModal = cartDetailModal;
-            [self.cartDetailTableView reloadData];
-            [self.placeOrderButton setHidden:NO];
-            [self.updateOrderButton setHidden:YES];
-            [self configureAmountView];
+            
+            if(cartDetailModal.productItemsArray.count>0) {
+                self.cartDetailModal = cartDetailModal;
+                self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
+                [self.cartModal archiveCart];
+                [self.totalView setHidden:NO];
+                [self.placeOrderButton setHidden:NO];
+                [self.updateOrderButton setHidden:YES];
+                [self configureAmountView];
+            } else {
+                [self.totalView setHidden:YES];
+                [self.placeOrderButton setHidden:YES];
+                messageString = @"No item in your cart, Please add item.";
+            }
+            
+//            self.cartDetailModal = cartDetailModal;
+//            [self.cartDetailTableView reloadData];
+//            [self.placeOrderButton setHidden:NO];
+//            [self.updateOrderButton setHidden:YES];
+//            [self configureAmountView];
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];
@@ -270,8 +285,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (BOOL)checkWhetherUpdateRequestNeeded {
+    if(self.cartDetailModal.deletedProductItemsArray != nil) {
+        
+        [self.cartDetailModal.deletedProductItemsArray removeAllObjects];
+    }
     
-    BOOL updateStatus = YES;
+//    BOOL updateStatus = YES;
     for (GMProductModal *productModal in self.cartDetailModal.productItemsArray) {
         
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", productModal.productid];
@@ -280,16 +299,25 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         if([productModal.productQuantity isEqualToString:cartProductModal.productQuantity]) {
             
             //            [productModal setIsProductUpdated:NO];
-            updateStatus = updateStatus && NO;
+//            updateStatus = updateStatus && NO;
+//            updateStatus = NO;
         }
         else {
             
             //            [productModal setIsProductUpdated:YES];
-            updateStatus = updateStatus && YES;
-            break;
+//            updateStatus = updateStatus && YES;
+//            updateStatus =  YES;
+            if(self.cartDetailModal.deletedProductItemsArray == nil) {
+                self.cartDetailModal.deletedProductItemsArray = [[NSMutableArray alloc]init];
+            }
+            [self.cartDetailModal.deletedProductItemsArray addObject:productModal];
+//            break;
         }
     }
-    
-    return updateStatus;
+    if(self.cartDetailModal.deletedProductItemsArray.count>0) {
+        return YES;
+    }
+    return NO;
+//    return updateStatus;
 }
 @end
