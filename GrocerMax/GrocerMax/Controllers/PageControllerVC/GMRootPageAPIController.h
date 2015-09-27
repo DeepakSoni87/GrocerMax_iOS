@@ -25,8 +25,8 @@
 
 #pragma mark - for Productlisting
 
-- (void)fetchProductListingDataForCategory:(NSString*)catModal;
+- (void)fetchProductListingDataForCategory:(NSString*)catID;
 
-- (void)fetchDealProductListingDataForOffersORDeals:(NSString*)catModal;
+- (void)fetchDealProductListingDataForOffersORDeals:(NSString*)dealID;
 
 @end

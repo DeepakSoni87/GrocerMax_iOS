@@ -97,6 +97,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     
     GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
     vc.modal = self.productBaseModal.productsListArray[indexPath.row];
+    vc.parentVC = self.parentVC;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -159,15 +160,23 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 - (void)addButtonTapped:(GMButton *)sender {
     
+    if (![[GMSharedClass sharedClass] isInternetAvailable]) {
+        
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"no_internet_connection")];
+        return;
+    }
+    
     GMProductModal *productModal = sender.produtModal;
-    [productModal setProductQuantity:@"1"];
     [self.parentVC.cartModal.cartItems addObject:productModal];
     [self.parentVC.cartModal archiveCart];
     
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
-
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
 
+    // first save the modal with there updated quantity then reset the quantity value to 1
+    [productModal setProductQuantity:@"1"];
+    [self.productListTblView reloadData];
+    [self.tabBarController updateBadgeValueOnCartTab];
 }
 
 @end

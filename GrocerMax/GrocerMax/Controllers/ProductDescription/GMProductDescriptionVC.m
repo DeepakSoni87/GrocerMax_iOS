@@ -64,6 +64,7 @@
        GMProductDetailBaseModal* baseMdl = (GMProductDetailBaseModal*)responceData;
         self.proDetailModal = baseMdl.productDetailArray.firstObject;
         [self updateProductDescription];
+        [self updateProductQuantity];
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -87,14 +88,35 @@
         [self updateProductQuantity];
     }
 }
+- (IBAction)addToCartBtnPressed:(UIButton *)sender {
+    
+    if (![[GMSharedClass sharedClass] isInternetAvailable]) {
+        
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"no_internet_connection")];
+        return;
+    }
+    
+    [self.modal setProductQuantity:[NSString stringWithFormat:@"%ld",self.productQuantity]];
+    [self.parentVC.cartModal.cartItems addObject:self.modal];
+    [self.parentVC.cartModal archiveCart];
+    
+    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:self.modal];
+    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
+    
+    // first save the modal with there updated quantity then reset the quantity value to 1
+    [self.modal setProductQuantity:@"1"];
+    self.productQuantity = 1;
+    [self updateProductQuantity];
+    [self.tabBarController updateBadgeValueOnCartTab];
+}
 
 #pragma mark - Update Cost and quantity lbl
 
 - (void)updateProductDescription {
     
-    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@ | ",self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}];
+    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@ | ",self.proDetailModal.currencycode,self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}];
     
-    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
+    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",self.proDetailModal.currencycode,self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
     
     self.productCostLbl.attributedText = attStringPrice;
 

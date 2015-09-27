@@ -28,13 +28,14 @@
 #import "GMOffersByDealTypeModal.h"
 
 #import "GMOrderDetailVC.h"
+#import "GMSearchResultModal.h"
 
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
 NSString *const shopByDealCell = @"GMShopByDealCell";
 
-@interface GMHomeVC ()<UITableViewDataSource,UITableViewDelegate,GMPageControllCellDelegate,GMShopByCategoryCellDelegate,GMShopByDealCellDelegate>
+@interface GMHomeVC ()<UITableViewDataSource,UITableViewDelegate,GMPageControllCellDelegate,GMShopByCategoryCellDelegate,GMShopByDealCellDelegate,GMSearchBarViewDelegate>
 
 @property (nonatomic,weak) IBOutlet UITableView *tblView;
 @property (nonatomic,strong) NSArray *categoriesArray;
@@ -50,7 +51,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
-    [self addLogImageInNavBar];
+    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
@@ -390,7 +391,35 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     } failureBlock:^(NSError *error) {
         [self removeProgress];
     }];
-    
 }
+
+#pragma mark - Search Bar Search Delegate
+
+- (void)searchBarDidCancelSearching:(GMSearchBarView*)searchView{
+    // set old title OR title view
+    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+}
+- (void)searchBarDidFinishSearching:(GMSearchBarView*)searchView withSearchResult:(id)data{
+    
+    GMSearchResultModal *searchResultModal = data;
+
+    if (searchResultModal.categorysListArray.count == 0) {
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"noResultFound")];
+        return;
+    }
+    // set old title OR title view
+    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+
+    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+    rootVC.pageData = searchResultModal.categorysListArray;
+    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+    [self.navigationController pushViewController:rootVC animated:YES];
+}
+
+- (void)searchBarDidFailSearching:(GMSearchBarView*)searchView{
+    // set old title OR title view
+    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+}
+
 
 @end

@@ -11,6 +11,10 @@
 static NSString * const kValidInputImage                 = @"check";
 static NSString * const kInValidInputImage               = @"error";
 static NSString * const kForwardArrowImage               = @"forward_caret";
+static NSString * const kSearch_iconImage                = @"search_icon";
+static NSString * const kLogoImage                       = @"logo";
+static NSString * const kmenuBtnImage                    = @"menuBtn";
+
 
 @implementation UIImage (Extends)
 
@@ -29,6 +33,21 @@ static NSString * const kForwardArrowImage               = @"forward_caret";
 + (UIImage *)forwardArrowImage {
     
     return [[UIImage imageNamed:kForwardArrowImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)searchIconImage{
+    
+    return [[UIImage imageNamed:kSearch_iconImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)logoImage{
+    
+    return [[UIImage imageNamed:kLogoImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)menuBtnImage{
+    
+    return [[UIImage imageNamed:kmenuBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 @end
