@@ -282,11 +282,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             [hotDealBaseModal archiveHotDeals];
             self.hotDealsArray = [GMHotDealBaseModal loadHotDeals].hotDealArray;
             [self.tblView reloadData];
-
+            completion (nil);
         } failureBlock:^(NSError *error) {
             
+            completion (nil);
         }];
-        completion (nil);
     }];
     
     [sequencer enqueueStep:^(id result, SequencerCompletion completion) {

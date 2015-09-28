@@ -10,6 +10,7 @@
 
 @class GMCartModal;
 @class GMProductModal;
+@class GMCheckOutModal;
 
 @interface GMCartRequestParam : NSObject
 
@@ -24,4 +25,6 @@
 - (NSDictionary *)updateDeleteRequestParameterFromCartDetailModal:(GMCartDetailModal *)cartModal;
 
 - (NSDictionary *)cartDetailRequestParameter;
+
+- (NSDictionary *)finalCheckoutParameterDictionaryFromCheckoutModal:(GMCheckOutModal *)checkoutModal;
 @end

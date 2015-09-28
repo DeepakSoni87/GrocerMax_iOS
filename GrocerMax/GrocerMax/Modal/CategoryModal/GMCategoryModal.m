@@ -12,7 +12,7 @@
 
 @property (nonatomic, readwrite, strong) NSString *categoryId;
 
-@property (nonatomic, readwrite, assign) NSInteger parentId;
+@property (nonatomic, readwrite, strong) NSString *parentId;
 
 @property (nonatomic, readwrite, strong) NSString *categoryName;
 
@@ -89,7 +89,7 @@ static NSString * const kIsExpandKey                        = @"isExpand";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
     [aCoder encodeObject:self.categoryId forKey:kCategoryIdKey];
-    [aCoder encodeInteger:self.parentId forKey:kParentIdKey];
+    [aCoder encodeObject:self.parentId forKey:kParentIdKey];
     [aCoder encodeObject:self.categoryName forKey:kCategoryNameKey];
     [aCoder encodeObject:self.isActive forKey:kIsActiveKey];
     [aCoder encodeObject:self.position forKey:kPositionKey];
@@ -103,7 +103,7 @@ static NSString * const kIsExpandKey                        = @"isExpand";
     if((self = [super init])) {
         
         self.categoryId = [aDecoder decodeObjectForKey:kCategoryIdKey];
-        self.parentId = [aDecoder decodeIntegerForKey:kParentIdKey];
+        self.parentId = [aDecoder decodeObjectForKey:kParentIdKey];
         self.categoryName = [aDecoder decodeObjectForKey:kCategoryNameKey];
         self.isActive = [aDecoder decodeObjectForKey:kIsActiveKey];
         self.position = [aDecoder decodeObjectForKey:kPositionKey];

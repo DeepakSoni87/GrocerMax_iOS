@@ -44,7 +44,9 @@
 
 @property (weak, nonatomic) IBOutlet GMButton *deleteButton;
 
-+ (CGFloat) getCellHeight;
++ (CGFloat)cellHeightWithNoPromotion;
+
++ (CGFloat)cellHeightWithPromotion;
 
 - (void)configureViewWithProductModal:(GMProductModal *)productModal;
 @end

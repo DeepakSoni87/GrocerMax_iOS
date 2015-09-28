@@ -13,6 +13,8 @@
 @property (nonatomic, strong) GMProductModal *productModal;
 
 @property (nonatomic, assign) NSUInteger quantityValue;
+
+@property (weak, nonatomic) IBOutlet UILabel *promotionLabel;
 @end
 
 
@@ -46,10 +48,11 @@
     [self.subTitleLbl setText:self.productModal.p_name];
     [self.quantityLbl setText:self.productModal.p_pack];
     [self.priceLbl setText:[NSString stringWithFormat:@"%ld", (long)self.productModal.sale_price.integerValue]];
-    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x %ld | %ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
+    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
     [self.priceWithOfferLbl setText:priceQuantityStr];
     [self.addSubstractLbl setText:self.productModal.productQuantity];
     self.quantityValue = self.productModal.productQuantity.integerValue;
+    [self.promotionLabel setText:self.productModal.promotion_level];
 }
 
 - (IBAction)actionSubstractProduct:(UIButton *)sender {
@@ -75,8 +78,13 @@
         [self.delegate productQuantityValueChanged];
 }
 
-+ (CGFloat) getCellHeight {
++ (CGFloat)cellHeightWithNoPromotion {
     
-    return 119.0;
+    return 120.0;
+}
+
++ (CGFloat)cellHeightWithPromotion {
+    
+    return 145.0;
 }
 @end
