@@ -10,8 +10,12 @@
 
 @interface GMApiPathGenerator : NSObject
 
-+ (NSString *)userLoginPath;
-
+/**
+ * Function for FB Registration
+ * @param
+ * @Return FB Registration
+ **/
++ (NSString *)fbregisterPath;
 
 /**
  * Function for Check User Login

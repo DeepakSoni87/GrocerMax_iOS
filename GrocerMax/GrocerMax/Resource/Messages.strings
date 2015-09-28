@@ -17,6 +17,8 @@
 "plzEnterEmail" = "Please enter email!";
 "plzEnterValidEmail" = "Please enter a valid email!";
 "plzEnterPassword" = "Please enter password!";
+"plzEnterPhonNumber" = "Please enter phoneNumber!";
+"plzEnterValidPhonNumber" = "Please enter a valid phone number!";
 
 
 // Search bar
