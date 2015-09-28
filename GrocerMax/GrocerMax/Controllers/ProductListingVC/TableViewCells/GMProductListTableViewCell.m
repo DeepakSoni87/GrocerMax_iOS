@@ -8,6 +8,7 @@
 
 #import "GMProductListTableViewCell.h"
 #import "GMProductModal.h"
+#import "GMCartModal.h"
 
 #define kMAX_Quantity 500
 
@@ -23,10 +24,23 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *productQuantityLbl;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionalLblHeightConstraints;
+@property (weak, nonatomic) IBOutlet UILabel *productBrandLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *productPackLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *productOfferLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *cartView;
+
+@property (weak, nonatomic) IBOutlet UILabel *itemsNumberLabel;
 
 @property (strong, nonatomic) GMProductModal *productModal;
 
+@property (nonatomic, strong) GMCartModal *cartModal;
+
+@property (nonatomic, assign) NSUInteger totalProductsInCart;
 @end
 
 @implementation GMProductListTableViewCell
@@ -50,39 +64,33 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - GETTER/SETTER Methods
+
+- (void)setCartView:(UIView *)cartView {
+    
+    _cartView = cartView;
+    [_cartView setHidden:YES];
+}
+
 #pragma mark - Configure Cell
 
-- (void)configureCellWithProductModal:(GMProductModal *)productModal {
+- (void)configureCellWithProductModal:(GMProductModal *)productModal andCartModal:(GMCartModal *)cartModal {
     
     self.productModal = productModal;
+    self.cartModal = cartModal;
     self.addBtn.produtModal = productModal;
     
     [self.productImgView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
-     
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.productModal.p_brand] attributes:@{
-    NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
-    
-    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.productModal.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}]];
-    
-    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.productModal.p_pack] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor lightGrayColor]}]];
-
-    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@ | ",self.productModal.currencycode,self.productModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor blackColor]}]];
-
-    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",self.productModal.currencycode,self.productModal.Price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
-
-    self.productDescriptionLbl.attributedText = attString;
-    
-    if (productModal.promotion_level.length > 1 )
-        self.promotionalLblHeightConstraints.constant = 20;
-    else
-        self.promotionalLblHeightConstraints.constant = 0;
+    [self.productBrandLabel setText:self.productModal.p_brand];
+    [self.productNameLabel setText:self.productModal.p_name];
+    [self.productPackLabel setText:self.productModal.p_pack];
+    [self.productOfferLabel setText:[NSString stringWithFormat:@"₹%@ | ₹%@", self.productModal.sale_price, self.productModal.Price]];
     
     self.promotionalLbl.text = self.productModal.promotion_level;
-    
     if ([self.productModal.productQuantity integerValue] == 0)
         self.productModal.productQuantity = @"1";
-        
         self.productQuantityLbl.text = self.productModal.productQuantity;
+    [self updateTotalProductItemsInCart];
 }
     
 #pragma mark - stepper (+/-) Button Action
@@ -109,16 +117,45 @@
     }
 }
 
+- (IBAction)addButtonTapped:(id)sender {
+    
+    if ([[GMSharedClass sharedClass] isInternetAvailable]) {
+        
+        self.totalProductsInCart ++;
+        [self.cartView setHidden:NO];
+        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)self.totalProductsInCart]];
+    }
+    if([self.delegate respondsToSelector:@selector(addProductModalInCart:)])
+        [self.delegate addProductModalInCart:self.productModal];
+}
+
+- (void)updateTotalProductItemsInCart {
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", self.productModal.productid];
+    NSArray *totalProducts = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
+    if(totalProducts.count ) {
+        
+        self.totalProductsInCart = totalProducts.count;
+        [self.cartView setHidden:NO];
+        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)self.totalProductsInCart]];
+    }
+    else {
+        
+        self.totalProductsInCart = 0;
+        [self.cartView setHidden:YES];
+    }
+}
+
 #pragma mark - Cell height
 
 + (CGFloat)cellHeightForNonPromotionalLabel {
     
-    return 140.0f;
+    return 143.0f;
 }
 
 + (CGFloat)cellHeightForPromotionalLabel {
     
-    return 160.0f;
+    return 168.0f;
 }
 
 @end

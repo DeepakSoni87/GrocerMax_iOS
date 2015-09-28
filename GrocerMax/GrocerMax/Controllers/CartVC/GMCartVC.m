@@ -69,8 +69,8 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     messageString = @"Fetching your cart items from server.";
     self.cartModal = [GMCartModal loadCart];
-//    if(self.cartModal)
-        [self fetchCartDetailFromServer];
+    //    if(self.cartModal)
+    [self fetchCartDetailFromServer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -113,11 +113,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (void)configureAmountView {
     
-    [self.subTotalLabel setText:[NSString stringWithFormat:@"%.2f", self.cartDetailModal.subTotal.doubleValue]];
-    [self.shippingChargeLabel setText:[NSString stringWithFormat:@"%.2f", self.cartDetailModal.shippingAmount.doubleValue]];
-    [self.totalLabel setText:[NSString stringWithFormat:@"%.2f", self.cartDetailModal.grandTotal.doubleValue]];
+    [self.subTotalLabel setText:[NSString stringWithFormat:@"₹%.2f", self.cartDetailModal.subTotal.doubleValue]];
+    [self.shippingChargeLabel setText:[NSString stringWithFormat:@"₹%.2f", self.cartDetailModal.shippingAmount.doubleValue]];
+    [self.totalLabel setText:[NSString stringWithFormat:@"₹%.2f", self.cartDetailModal.grandTotal.doubleValue]];
     double savingAmount = [self getSavedAmount];
-    [self.savedLabel setText:[NSString stringWithFormat:@"%.2f", savingAmount]];
+    [self.savedLabel setText:[NSString stringWithFormat:@"₹%.2f", savingAmount]];
 }
 
 - (double)getSavedAmount {
@@ -134,7 +134,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (void)updateAmountViewWhenQuantityChanged {
     
-    [self.shippingChargeLabel setText:[NSString stringWithFormat:@"%.2f", self.cartDetailModal.shippingAmount.doubleValue]];
+    [self.shippingChargeLabel setText:[NSString stringWithFormat:@"₹%.2f", self.cartDetailModal.shippingAmount.doubleValue]];
     double saving = 0;
     double subtotal = 0;
     for (GMProductModal *productModal in self.cartDetailModal.productItemsArray) {
@@ -144,10 +144,10 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     }
     if(NSSTRING_HAS_DATA(self.cartDetailModal.discountAmount))
         saving = saving - self.cartDetailModal.discountAmount.doubleValue;
-    [self.subTotalLabel setText:[NSString stringWithFormat:@"%.2f", subtotal]];
-    [self.savedLabel setText:[NSString stringWithFormat:@"%.2f", saving]];
+    [self.subTotalLabel setText:[NSString stringWithFormat:@"₹%.2f", subtotal]];
+    [self.savedLabel setText:[NSString stringWithFormat:@"₹%.2f", saving]];
     double grandTotal = subtotal + self.cartDetailModal.shippingAmount.doubleValue;
-    [self.totalLabel setText:[NSString stringWithFormat:@"%.2f", grandTotal]];
+    [self.totalLabel setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
 }
 
 #pragma mark - UITableView Delegates/Datasource Methods
@@ -162,26 +162,13 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return [self.cartDetailModal.productItemsArray count];
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.cartDetailTableView.frame), 7.0)];
-//    [headerView setBackgroundColor:[UIColor clearColor]];
-//    return headerView;
-//}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
-    GMCartCell *cartCell = [tableView dequeueReusableCellWithIdentifier:kCartCellIdentifier];
-    [cartCell.deleteButton addTarget:self action:@selector(deleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [cartCell setDelegate:self];
-    [cartCell configureViewWithProductModal:productModal];
-    return cartCell;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return [GMCartCell getCellHeight];
+    GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
+    if(NSSTRING_HAS_DATA(productModal.promotion_level))
+        return [GMCartCell cellHeightWithPromotion];
+    else
+        return [GMCartCell cellHeightWithNoPromotion];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -210,6 +197,17 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     return headerView;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
+    GMCartCell *cartCell = [tableView dequeueReusableCellWithIdentifier:kCartCellIdentifier];
+    [cartCell.deleteButton addTarget:self action:@selector(deleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cartCell setDelegate:self];
+    [cartCell configureViewWithProductModal:productModal];
+    return cartCell;
+}
+
 #pragma mark - GMCartCellDelegate Methods
 
 - (void)productQuantityValueChanged {
@@ -270,11 +268,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 messageString = @"No item in your cart, Please add item.";
             }
             
-//            self.cartDetailModal = cartDetailModal;
-//            [self.cartDetailTableView reloadData];
-//            [self.placeOrderButton setHidden:NO];
-//            [self.updateOrderButton setHidden:YES];
-//            [self configureAmountView];
+            //            self.cartDetailModal = cartDetailModal;
+            //            [self.cartDetailTableView reloadData];
+            //            [self.placeOrderButton setHidden:NO];
+            //            [self.updateOrderButton setHidden:YES];
+            //            [self configureAmountView];
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];

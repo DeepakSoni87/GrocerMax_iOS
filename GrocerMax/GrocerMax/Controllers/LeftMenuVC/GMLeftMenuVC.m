@@ -19,21 +19,23 @@
 @interface SectionModal : NSObject
 
 @property (nonatomic, strong) NSString *sectionDisplayName;
+
 @property (nonatomic, strong) NSMutableArray *rowArray;
+
 @property (nonatomic, assign) BOOL isExpanded;
 
-- (instancetype)initWithDisplayName:(NSString *)displayName andRowArray:(NSMutableArray *)rowArray;
+- (instancetype)initWithDisplayName:(NSString *)displayName rowArray:(NSMutableArray *)rowArray andIsExpand:(BOOL)isExpand;
 @end
 
 @implementation SectionModal
 
-- (instancetype)initWithDisplayName:(NSString *)displayName andRowArray:(NSMutableArray *)rowArray {
+- (instancetype)initWithDisplayName:(NSString *)displayName rowArray:(NSMutableArray *)rowArray andIsExpand:(BOOL)isExpand {
     
     if(self = [super init]) {
         
         _sectionDisplayName = displayName;
         _rowArray = rowArray;
-        _isExpanded = NO;
+        _isExpanded = isExpand;
     }
     return self;
 }
@@ -44,7 +46,9 @@
 @interface GMLeftMenuVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *leftMenuTableView;
+
 @property (nonatomic, strong) NSMutableArray *sectionArray;
+
 @property (nonatomic) SectionModal* preSelectedSectionMdl;
 
 @end
@@ -63,7 +67,7 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
-//    [self createSectionArray];
+    [self.leftMenuTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,15 +90,15 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     
     NSMutableArray *shopByCatArray = [self fetchShopByCategoriesFromDB];
     NSMutableArray *hotDeals = [self fetchHotDealsFromDB];
-
+    
     [self.sectionArray removeAllObjects];
-    SectionModal *shopByCat = [[SectionModal alloc] initWithDisplayName:kShopByCategorySection andRowArray:shopByCatArray];
+    SectionModal *shopByCat = [[SectionModal alloc] initWithDisplayName:kShopByCategorySection rowArray:shopByCatArray andIsExpand:YES];
     [self.sectionArray addObject:shopByCat];
-    SectionModal *shopByDeal = [[SectionModal alloc] initWithDisplayName:kShopByDealSection andRowArray:hotDeals];
+    SectionModal *shopByDeal = [[SectionModal alloc] initWithDisplayName:kShopByDealSection rowArray:hotDeals andIsExpand:NO];
     [self.sectionArray addObject:shopByDeal];
-    SectionModal *getInTouch = [[SectionModal alloc] initWithDisplayName:kGetInTouchSection andRowArray:nil];
+    SectionModal *getInTouch = [[SectionModal alloc] initWithDisplayName:kGetInTouchSection rowArray:nil andIsExpand:NO];
     [self.sectionArray addObject:getInTouch];
-    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection andRowArray:nil];
+    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection rowArray:nil andIsExpand:NO];
     [self.sectionArray addObject:payment];
     [self.leftMenuTableView reloadData];
 }
@@ -133,22 +137,19 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     SectionModal *sectionModal = [self.sectionArray objectAtIndex:section];
     if([sectionModal.sectionDisplayName isEqualToString:kShopByCategorySection])
     {
-        if (sectionModal.isExpanded) {
+        if (sectionModal.isExpanded)
             return sectionModal.rowArray.count;
-        }else{
+        else
             return 0;
-        }
     }
     else if([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection])
     {
-        if (sectionModal.isExpanded) {
+        if (sectionModal.isExpanded)
             return sectionModal.rowArray.count;
-        }else{
+        else
             return 0;
-        }
     }
-
-        return 0;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -185,7 +186,6 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         
         GMHotDealModal *hotDealModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
         GMLeftMenuCell *leftMenuCell = (GMLeftMenuCell *)[tableView dequeueReusableCellWithIdentifier:kLeftMenuCellIdentifier];
-        
         [leftMenuCell configureWithCategoryName:hotDealModal.dealType];// confuse to use new func OR same
         return leftMenuCell;
     }
@@ -219,32 +219,20 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
 - (void)sectionButtonTapped:(UIButton *)sender {
     
     SectionModal *sectionModal = [self.sectionArray objectAtIndex:sender.tag];
-    
-    // Expand collapse
-    if ([self.preSelectedSectionMdl.sectionDisplayName isEqualToString:sectionModal.sectionDisplayName]) {
-            sectionModal.isExpanded = !sectionModal.isExpanded;
-    }else{
-        self.preSelectedSectionMdl.isExpanded = NO;
-        sectionModal.isExpanded = !sectionModal.isExpanded;
-        self.preSelectedSectionMdl = sectionModal;
-    }
-    
-    if([sectionModal.sectionDisplayName isEqualToString:kShopByCategorySection]) {
-        
-    }
-    else if ([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection]) {
-        
-    }
-    else if ([sectionModal.sectionDisplayName isEqualToString:kGetInTouchSection]) {
+    if ([sectionModal.sectionDisplayName isEqualToString:kGetInTouchSection]) {
         
     }
     else if ([sectionModal.sectionDisplayName isEqualToString:kPaymentSection]) {
         
-        GMOtpVC *otpVC = [GMOtpVC new];
-        [APP_DELEGATE setTopVCOnCenterOfDrawerController:otpVC];
     }
-    
-    [self.leftMenuTableView reloadData];//]Sections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationFade];
+    else {
+        
+        for (SectionModal *mdl in self.sectionArray) {
+            mdl.isExpanded = NO;
+        }
+        [sectionModal setIsExpanded:YES];
+        [self.leftMenuTableView reloadData];
+    }
 }
 
 - (IBAction)homeButtonTapped:(id)sender {
