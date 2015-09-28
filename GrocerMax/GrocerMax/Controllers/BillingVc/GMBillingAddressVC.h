@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) NSMutableArray *billingAddressArray;
 
-
 @property (strong, nonatomic) GMTimeSlotBaseModal *timeSlotBaseModal;
 
 @end

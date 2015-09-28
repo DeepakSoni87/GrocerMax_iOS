@@ -12,7 +12,6 @@
 #import "GMShopByDealCell.h"
 #import "GMRootPageViewController.h"
 #import "GMSubCategoryVC.h"
-#import "GMOfferListVC.H"
 #import "GMOrderHistryVC.h"
 #import "GMOfferListVC.h"
 #import "GMHotDealVC.h"

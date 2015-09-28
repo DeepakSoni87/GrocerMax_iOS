@@ -436,8 +436,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 
@@ -459,6 +457,10 @@ static GMOperationalHandler *sharedHandler;
             
             GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
+            for (GMAddressModalData *addressModal in timeSlotBaseModal.addressesArray) {
+                [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+            }
+            
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
             else            { if (successBlock) successBlock(timeSlotBaseModal); }
             
@@ -470,10 +472,7 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
-
 
 - (void)category:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
@@ -1161,7 +1160,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)dealsByDealType:(NSDictionary *)param withSuccessBlock:(void (^)(GMDealCategoryBaseModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealsbydealtypePath],[GMRequestParams dealsByDealTypeParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator dealsbydealtypePath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -1213,12 +1212,12 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)getOfferByDeal:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator offerByDealTypePath],[GMRequestParams offerByDealTypeParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator offerByDealTypePath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             

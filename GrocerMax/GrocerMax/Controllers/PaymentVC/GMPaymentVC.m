@@ -90,7 +90,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     
     NSMutableDictionary *checkOutDic = [[NSMutableDictionary alloc]init];
     
-    GMUserModal *userModal = self.checkOutModal.userModal;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     GMTimeSloteModal *timeSloteModal = self.checkOutModal.timeSloteModal;
     GMAddressModalData *shippingAddressModal = self.checkOutModal.shippingAddressModal;
     GMAddressModalData *billingAddressModal = self.checkOutModal.billingAddressModal;
@@ -103,8 +103,6 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     if(NSSTRING_HAS_DATA(userModal.quoteId)) {
         [checkOutDic setObject:userModal.quoteId forKey:kEY_quote_id];
     }
-//    [checkOutDic setObject:@"13807" forKey:kEY_userid];
-//    [checkOutDic setObject:@"14" forKey:kEY_quote_id];
     
     if(NSSTRING_HAS_DATA(timeSloteModal.firstTimeSlote)) {
         [checkOutDic setObject:timeSloteModal.firstTimeSlote forKey:kEY_timeslot];
@@ -236,6 +234,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 
     
 }
+
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     if(!NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
@@ -244,7 +243,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     }
     
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
-    GMUserModal *userModal = self.checkOutModal.userModal;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     if(NSSTRING_HAS_DATA(userModal.userId)) {
         [userDic setObject:userModal.userId forKey:kEY_userid];
     }
@@ -266,7 +265,6 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
         [self removeProgress];
     }];
     
-    //dev.grocermax.com/webservice/new_services/addcoupon?userid=323&quote_id=###&couponcode=###
 }
 
 - (void) actionCheckedBtnClicked:(GMButton *)sender {

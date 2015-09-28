@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMAddShippingAddressVC">
             <connections>
                 <outlet property="footerView" destination="DhC-pU-Jrr" id="jUs-0a-Fc1"/>
-                <outlet property="prgressBarImageView" destination="SHX-L8-pNM" id="5I0-1a-FAi"/>
                 <outlet property="shippingAddressTableView" destination="gfA-d3-IUI" id="9c5-8M-aLH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -34,30 +33,21 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-d3-IUI" customClass="TPKeyboardAvoidingTableView">
-                    <rect key="frame" x="0.0" y="24" width="320" height="389"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="O3Y-ne-yyY"/>
                         <outlet property="delegate" destination="-1" id="E6Q-CG-WAG"/>
                     </connections>
                 </tableView>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progress-bar-1" translatesAutoresizingMaskIntoConstraints="NO" id="SHX-L8-pNM">
-                    <rect key="frame" x="100" y="4" width="120" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="3f2-Yv-aas"/>
-                        <constraint firstAttribute="width" constant="120" id="pli-sH-qqJ"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="SHX-L8-pNM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="8Nz-pU-PjH"/>
-                <constraint firstAttribute="trailing" secondItem="gfA-d3-IUI" secondAttribute="trailing" id="W2P-w5-bPK"/>
-                <constraint firstItem="gfA-d3-IUI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WGo-hC-CTv"/>
+                <constraint firstItem="gfA-d3-IUI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MgG-bc-VOw"/>
+                <constraint firstAttribute="trailing" secondItem="gfA-d3-IUI" secondAttribute="trailing" id="Npy-Ft-Z7c"/>
+                <constraint firstItem="gfA-d3-IUI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UuK-ck-KXJ"/>
                 <constraint firstAttribute="trailing" secondItem="csm-rD-PNh" secondAttribute="trailing" id="ZDs-kP-sJd"/>
-                <constraint firstItem="gfA-d3-IUI" firstAttribute="top" secondItem="SHX-L8-pNM" secondAttribute="bottom" constant="8" id="bNX-bY-aCJ"/>
-                <constraint firstAttribute="centerX" secondItem="SHX-L8-pNM" secondAttribute="centerX" id="iDz-G7-v8q"/>
-                <constraint firstItem="csm-rD-PNh" firstAttribute="top" secondItem="gfA-d3-IUI" secondAttribute="bottom" id="inE-ke-wXG"/>
+                <constraint firstItem="csm-rD-PNh" firstAttribute="top" secondItem="gfA-d3-IUI" secondAttribute="bottom" id="h9t-bs-OiL"/>
                 <constraint firstItem="csm-rD-PNh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="y0i-U9-2GB"/>
                 <constraint firstAttribute="bottom" secondItem="csm-rD-PNh" secondAttribute="bottom" id="yAw-KE-zVN"/>
             </constraints>
@@ -143,6 +133,5 @@
     <resources>
         <image name="checkBox" width="22" height="22"/>
         <image name="checkBoxSelected" width="22" height="22"/>
-        <image name="progress-bar-1" width="142" height="12"/>
     </resources>
 </document>

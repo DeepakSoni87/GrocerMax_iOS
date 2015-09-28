@@ -10,12 +10,18 @@
 
 @class GMAddressModalData;
 
+@protocol AddAShippingddressDelegate <NSObject>
+
+- (void)removeFromSupperView;
+
+@end
+
 @interface GMAddShippingAddressVC : UIViewController
 
 @property (nonatomic, strong) GMAddressModalData *editAddressModal;
 
-@property (weak, nonatomic) IBOutlet UIImageView *prgressBarImageView;
+@property (nonatomic, strong) id<AddAShippingddressDelegate> delegate;
 
-@property (nonatomic) BOOL isProgress;
+@property (nonatomic) BOOL isComeFromShipping;
 
 @end

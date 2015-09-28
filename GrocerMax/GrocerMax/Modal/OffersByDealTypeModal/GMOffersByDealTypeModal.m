@@ -14,9 +14,13 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
     return @{@"allArray"            : @"dealcategorylisting.all",
-             @"deal_categoryArray"  : @"dealcategorylisting.deal_category",
-             @"flag"                : @"flag"
-             };
+            @"deal_categoryArray"  : @"dealcategorylisting.deal_category",
+            @"flag"                : @"flag"
+            };//
+//    return @{@"allArray"            : @"dealcategorylisting.all",
+//             @"deal_categoryArray"  : @"dealcategorylisting.dealsCategory",
+//             @"flag"                : @"flag"
+//             };//
 }
 
 + (NSValueTransformer *)allArrayJSONTransformer {

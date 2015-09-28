@@ -10,12 +10,16 @@
 #import "GMAddressCell.h"
 #import "GMTAddAddressCell.h"
 #import "GMAddShippingAddressVC.h"
+#import "GMStateBaseModal.h"
 
 static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 @interface GMMyAddressesVC ()
 
 @property (weak, nonatomic) IBOutlet UITableView *myAddressTableView;
+
+@property (strong, nonatomic) IBOutlet UIView *footerView;
+
 
 @property (strong, nonatomic) NSMutableArray *addressArray;
 
@@ -31,6 +35,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     // Do any additional setup after loading the view from its nib.
 //    [self getMyAddress];
     [self registerCellsForTableView];
+    [self.myAddressTableView setTableFooterView:self.footerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +78,17 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 - (void)getMyAddress {
     
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
-    [userDic setObject:@"1" forKey:kEY_cityId];
+    GMCityModal *cityModal =[GMCityModal selectedLocation];
+    if(cityModal == nil) {
+        [userDic setObject:@"1" forKey:kEY_cityId];
+    } else {
+        if(NSSTRING_HAS_DATA(cityModal.cityId))  {
+            [userDic setObject:cityModal.cityId forKey:kEY_cityId];
+        } else {
+            [userDic setObject:@"1" forKey:kEY_cityId];
+        }
+        
+    }
     if(NSSTRING_HAS_DATA(self.userModal.userId))
     [userDic setObject:self.userModal.userId forKey:kEY_userid];
     

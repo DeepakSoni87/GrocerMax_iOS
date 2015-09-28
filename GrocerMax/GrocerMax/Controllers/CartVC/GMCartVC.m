@@ -12,7 +12,11 @@
 #import "GMCartCell.h"
 #import "GMShipppingAddressVC.h"
 
+
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
+{
+    NSString *messageString;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *cartDetailTableView;
 
@@ -43,9 +47,13 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 @implementation GMCartVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.checkOutModal = [[GMCheckOutModal alloc]init];
+    messageString = @"Fetching your cart items from server.";
+    [self.totalView setHidden:YES];
+    [self.placeOrderButton setHidden:YES];
     [self registerCellsForTableView];
     
 }
@@ -59,6 +67,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+    messageString = @"Fetching your cart items from server.";
     self.cartModal = [GMCartModal loadCart];
 //    if(self.cartModal)
         [self fetchCartDetailFromServer];
@@ -82,13 +91,20 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [[GMOperationalHandler handler] cartDetail:requestDict withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
         
         [self removeProgress];
-        self.cartDetailModal = cartDetailModal;
-        self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
-        [self.cartModal archiveCart];
+        if(cartDetailModal.productItemsArray.count>0) {
+            self.cartDetailModal = cartDetailModal;
+            self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
+            [self.cartModal archiveCart];
+            [self.totalView setHidden:NO];
+            [self.placeOrderButton setHidden:NO];
+            [self.updateOrderButton setHidden:YES];
+            [self configureAmountView];
+        } else {
+            [self.totalView setHidden:YES];
+            [self.placeOrderButton setHidden:YES];
+            messageString = @"No item in your cart, Please add item.";
+        }
         [self.cartDetailTableView reloadData];
-        [self.placeOrderButton setHidden:NO];
-        [self.updateOrderButton setHidden:YES];
-        [self configureAmountView];
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];
@@ -146,12 +162,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return [self.cartDetailModal.productItemsArray count];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.cartDetailTableView.frame), 7.0)];
-    [headerView setBackgroundColor:[UIColor clearColor]];
-    return headerView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.cartDetailTableView.frame), 7.0)];
+//    [headerView setBackgroundColor:[UIColor clearColor]];
+//    return headerView;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -168,6 +184,32 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return [GMCartCell getCellHeight];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(self.cartDetailModal.productItemsArray.count>0) {
+        return 0;
+    }
+    else {
+        return tableView.frame.size.height;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    if(self.cartDetailModal.productItemsArray.count>0) {
+        return nil;
+    }
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, CGRectGetHeight(tableView.frame))];
+    [headerView setBackgroundColor:[UIColor clearColor]];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 300, CGRectGetHeight(tableView.frame))];
+    [headerLabel setTextColor:[UIColor darkTextColor]];
+    [headerLabel setFont:[UIFont systemFontOfSize:16.0f]];
+    [headerLabel setTextAlignment:NSTextAlignmentCenter];
+    [headerView addSubview:headerLabel];
+    [headerLabel setText:messageString];
+    
+    return headerView;
+}
 #pragma mark - GMCartCellDelegate Methods
 
 - (void)productQuantityValueChanged {
@@ -189,10 +231,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
-    if(self.cartModal && self.cartModal.cartItems.count>0) {
-        GMShipppingAddressVC *shipppingAddressVC = [GMShipppingAddressVC new];
+    
+    if(self.cartDetailModal.productItemsArray.count) {
+        
+        GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
         self.checkOutModal.cartDetailModal = self.cartDetailModal;
-        self.checkOutModal.cartModal = self.cartModal;
         shipppingAddressVC.checkOutModal = self.checkOutModal;
         [self.navigationController pushViewController:shipppingAddressVC animated:YES];
     } else {
@@ -210,11 +253,28 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         [[GMOperationalHandler handler] deleteItem:requestParam withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
             
             [self removeProgress];
-            self.cartDetailModal = cartDetailModal;
-            [self.cartDetailTableView reloadData];
-            [self.placeOrderButton setHidden:NO];
-            [self.updateOrderButton setHidden:YES];
-            [self configureAmountView];
+            
+            if(cartDetailModal.productItemsArray.count > 0) {
+                
+                self.cartDetailModal = cartDetailModal;
+                self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
+                [self.cartModal archiveCart];
+                [self.totalView setHidden:NO];
+                [self.placeOrderButton setHidden:NO];
+                [self.updateOrderButton setHidden:YES];
+                [self configureAmountView];
+            } else {
+                
+                [self.totalView setHidden:YES];
+                [self.placeOrderButton setHidden:YES];
+                messageString = @"No item in your cart, Please add item.";
+            }
+            
+//            self.cartDetailModal = cartDetailModal;
+//            [self.cartDetailTableView reloadData];
+//            [self.placeOrderButton setHidden:NO];
+//            [self.updateOrderButton setHidden:YES];
+//            [self configureAmountView];
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];
@@ -231,6 +291,10 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (BOOL)checkWhetherUpdateRequestNeeded {
     
     BOOL updateStatus = YES;
+    
+    if(self.cartDetailModal.deletedProductItemsArray.count)
+        return updateStatus;
+    
     for (GMProductModal *productModal in self.cartDetailModal.productItemsArray) {
         
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", productModal.productid];
@@ -251,4 +315,5 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     return updateStatus;
 }
+
 @end
