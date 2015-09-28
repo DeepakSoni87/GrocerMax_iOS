@@ -15,6 +15,9 @@
 #import "GMOrderSuccessVC.h"
 #import "GMCartRequestParam.h"
 
+#import "PayU_iOS_SDK.h"
+
+
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
 static NSString *kIdentifierPaymentSummuryCell = @"paymentSummeryIdentifierCell";
 static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
@@ -22,6 +25,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 @interface GMPaymentVC ()
 {
     NSInteger selectedIndex;
+    float totalAmount;
 }
 @property (weak, nonatomic) IBOutlet UITableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -30,6 +34,14 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 @property (strong, nonatomic) NSMutableArray *paymentOptionArray;
 @property (strong, nonatomic) GMButton *checkedBtn;
 
+///
+@property (nonatomic, strong) NSString *txnID;
+@property (nonatomic, strong) NSDictionary *hashDict;
+@property(nonatomic,strong) NSString *myKey;
+@property(nonatomic,strong) NSString *offerKey;
+typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data, NSError *connectionError);
+///
+
 @end
 
 @implementation GMPaymentVC
@@ -37,15 +49,27 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
+//    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
+    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"payU", nil];
     [self registerCellsForTableView];
     selectedIndex = -1;
     [self configerView];
+    [self initilizedpayUdata];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Payment Method";
+    self.navigationController.navigationBarHidden = NO;
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
+
+//- (void)viewDidDisappear:(BOOL)animated {
+//    [super viewDidDisappear:animated];
+////    self.title = @"Payment Method";
+//    self.navigationController.navigationBarHidden = NO;
+//    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -78,6 +102,9 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 #pragma mark - Action Methods
 - (IBAction)actionPaymentCash:(id)sender {
     
+//    self.txnID = [self randomStringWithLength:17];
+//    [self createHeashKey];
+//    return ;
     if(selectedIndex != 0) {
         return;
     }
@@ -87,8 +114,15 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(id responceData) {
         
         [self removeProgress];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        [self.navigationController pushViewController:successVC animated:YES];
+        if(selectedIndex == 0) {
+            GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+            [self.navigationController pushViewController:successVC animated:YES];
+        } else if(selectedIndex == 1) {
+            //[self initilizedpayUdata];
+            self.txnID = [self randomStringWithLength:17];
+            [self createHeashKey];
+        }
+        
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
@@ -251,4 +285,151 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     }
 }
 
+
+/**
+ PayU Implementation
+ **/
+
+- (void)initilizedpayUdata {
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    self.myKey=[dict valueForKey:@"key"];
+    self.offerKey = @"test123@6622";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(success:) name:@"payment_success_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failure:) name:@"payment_failure_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancel:) name:@"payu_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReceived:) name:@"passData" object:nil];
+//    [self.activity setHidesWhenStopped:YES];
+}
+
+-(void)dataReceived:(NSNotification *)noti
+{
+    NSLog(@"dataReceived from surl/furl:%@", noti.object);
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void) success:(NSDictionary *)info{
+    NSLog(@"Sucess Dict: %@",info);
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+- (void) failure:(NSDictionary *)info{
+    NSLog(@"failure Dict: %@",info);
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToViewController:self animated:NO];
+    
+}
+- (void) cancel:(NSDictionary *)info{
+    NSLog(@"failure Dict: %@",info);
+//    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+-(NSString *) randomStringWithLength:(int) len {
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform((u_int32_t)[letters length])]];
+    }
+    
+    return randomString;
+}
+
+- (void) createHeashKey{
+    
+    [self showProgress];
+    [self generateHashFromServer:nil withCompletionBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self withoutUserDefinedModeBtnClick];
+            [self removeProgress];
+        });
+        NSLog(@"-->>Hash has been created = %@",_hashDict);
+    }];
+}
+
+- (void) generateHashFromServer:(NSDictionary *) paramDict withCompletionBlock:(urlRequestCompletionBlock)completionBlock{
+    void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *data, NSError *error) = completionBlock;
+    _hashDict=nil;
+    PayUPaymentOptionsViewController *paymentOptionsVC = nil;
+    NSURL *restURL = [NSURL URLWithString:@"https://payu.herokuapp.com/get_hash"];
+    // create the request
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:restURL
+                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                        timeoutInterval:60.0];
+    // Specify that it will be a POST request
+    theRequest.HTTPMethod = @"POST";
+    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"email@testsdk1.com",@"10",@"Ram",self.txnID,@"ra:ra",@"Nokia",@"1111111111"];
+    NSLog(@"-->>Hash generation Post Param = %@",postData);
+    //set request content type we MUST set this value.
+    [theRequest setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    //set post data of request
+    [theRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    NSOperationQueue *networkQueue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:networkQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError *errorJson = nil;
+        _hashDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&errorJson];
+        if(_hashDict)
+        {
+            paymentOptionsVC.allHashDict = _hashDict;
+        }
+        serverResponseForHashGenerationCallback(response, data,connectionError);
+    }];
+}
+
+-(void) withoutUserDefinedModeBtnClick{
+    
+    PayUPaymentOptionsViewController *paymentOptionsVC = nil;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        if(result.height == 480)
+        {
+            paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"AllPaymentOprionsView" bundle:nil];
+        }
+        else
+        {
+            paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"PayUPaymentOptionsViewController" bundle:nil];
+        }
+    }
+    
+    if(totalAmount<0.2) {
+        double subtotal = 0;
+        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
+        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        }
+        
+        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
+        totalAmount =  grandTotal;
+    }
+//    [self.totalPriceLbl setText:[NSString stringWithFormat:@"$%.2f", grandTotal]];
+    
+    
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      @"Nokia",@"productinfo",
+                                      @"Ram",@"firstname",
+                                      [NSString stringWithFormat:@"100"],@"amount",
+                                      @"email@testsdk1.com",@"email",
+                                      @"1111111111", @"phone",
+                                      @"https://payu.herokuapp.com/ios_success",@"surl",
+                                      @"https://payu.herokuapp.com/ios_failure",@"furl",
+                                      self.txnID,@"txnid",
+                                      @"ra:ra",@"user_credentials",
+                                      self.offerKey,@"offer_key",
+                                      @"u1",@"udf1",
+                                      @"u2",@"udf2",
+                                      @"u3",@"udf3",
+                                      @"u4",@"udf4",
+                                      @"u5",@"udf5"
+                                      ,nil];
+    paymentOptionsVC.parameterDict = paramDict;
+    paymentOptionsVC.callBackDelegate = self;
+    paymentOptionsVC.totalAmount  = 100;//[totalAmount floatValue];
+    paymentOptionsVC.appTitle     = @"CrocerMax Payment";
+    if(_hashDict)
+        paymentOptionsVC.allHashDict = _hashDict;
+    [self.navigationController pushViewController:paymentOptionsVC animated:YES];
+}
 @end

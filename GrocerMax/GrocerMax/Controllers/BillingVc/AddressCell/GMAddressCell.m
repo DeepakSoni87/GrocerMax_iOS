@@ -39,11 +39,6 @@
     self.selectUnSelectBtn.addressModal = addressModalData;
     self.editAddressBtn.addressModal = addressModalData;
     
-    if(addressModalData.isSelected)
-        self.selectUnSelectBtn.selected = YES;
-    else
-        self.selectUnSelectBtn.selected = NO;
-    
     NSString *mainStrign= @"";
     NSString *str1 = @"";
     

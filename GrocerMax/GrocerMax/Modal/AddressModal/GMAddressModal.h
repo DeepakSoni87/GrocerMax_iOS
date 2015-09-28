@@ -61,7 +61,9 @@
 
 @property (nonatomic, strong) NSString *closestLandmark;
 
-@property(nonatomic) BOOL isSelected;
+@property(nonatomic) BOOL isShippingSelected;
+
+@property(nonatomic) BOOL isBillingSelected;
 
 - (instancetype)initWithUserModal:(GMUserModal *)userModal;
 
