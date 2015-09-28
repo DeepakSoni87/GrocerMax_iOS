@@ -14,7 +14,9 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
 @interface GMShopByDealCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *categoryCollectionView;
+
 @property (nonatomic) NSIndexPath* tblIndexPath;
+
 @property (nonatomic) NSArray* hotDealsArray;
 
 @end
