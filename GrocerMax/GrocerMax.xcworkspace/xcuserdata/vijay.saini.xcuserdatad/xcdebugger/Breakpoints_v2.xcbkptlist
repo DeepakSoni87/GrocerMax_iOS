@@ -558,7 +558,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "336"
             endingLineNumber = "336"
-            landmarkName = "-checkIsCategoryExpanded:"
+            landmarkName = "-getShopByCategoriesFromServer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -574,7 +574,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "338"
             endingLineNumber = "338"
-            landmarkName = "-checkIsCategoryExpanded:"
+            landmarkName = "-getShopByCategoriesFromServer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

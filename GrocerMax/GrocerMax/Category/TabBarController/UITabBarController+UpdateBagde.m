@@ -11,7 +11,7 @@
 
 @implementation UITabBarController (UpdateBagde)
 
-- (void)updateBadgeValueOnCartTab{
+- (void)updateBadgeValueOnCartTab {
     
     GMCartModal *cartModal = [GMCartModal loadCart];
     

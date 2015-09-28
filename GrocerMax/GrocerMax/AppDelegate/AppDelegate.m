@@ -14,7 +14,7 @@
 #import "GMTabBarVC.h"
 #import "GMHomeVC.h"
 #import "GMLeftMenuVC.h"
-
+#import "GMHotDealVC.h"
 
 @interface AppDelegate ()
 
@@ -141,6 +141,29 @@
             break;
         }
     }
+}
+
+- (void)setTopVCOnHotDealsController:(UIViewController*)topVC {
+    
+    GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+    [tabBarVC setSelectedIndex:2];
+    UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+    for (UIViewController *vc in [centerNavVC viewControllers]) {// pop to dashboard
+        
+        if ( [NSStringFromClass([vc class]) isEqualToString:NSStringFromClass([GMHotDealVC class])]) {
+            [centerNavVC popToViewController:vc animated:NO];
+            break;
+        }
+    }
+    if ([NSStringFromClass([topVC class]) isEqualToString:NSStringFromClass([GMHotDealVC class])]) {
+        // for dashboard
+        
+    }
+    else {
+        //other
+        [centerNavVC pushViewController:topVC animated:NO];
+    }
+    [self.drawerController closeDrawerAnimated:YES completion:nil];
 }
 
 @end

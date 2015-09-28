@@ -65,11 +65,11 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+   
     GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
     GMHotDealCollectionViewCell *hotDealCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdentifierHotDealCollectionCell forIndexPath:indexPath];
     [hotDealCollectionViewCell configureCellWithData:hotDealModal];
     return hotDealCollectionViewCell;
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,14 +95,11 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self removeProgress];
-
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
-#pragma warning Rahul do your work here i provided you the array with All at top
-        
         if (dealCategoryArray.count == 0) {
             return ;
         }
-        
+
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
