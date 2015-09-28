@@ -30,6 +30,7 @@
 #import "GMProductModal.h"
 #import "GMOrderDeatilBaseModal.h"
 #import "GMCartDetailModal.h"
+#import "GMSearchResultModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -595,8 +596,9 @@ static GMOperationalHandler *sharedHandler;
                 
                 NSError *mtlError = nil;
                 
-                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
                 
+                GMSearchResultModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMSearchResultModal class] fromJSONDictionary:responseObject error:&mtlError];
+
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(productListingModal); }
             }

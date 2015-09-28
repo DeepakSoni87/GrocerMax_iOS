@@ -45,11 +45,8 @@
             GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
             proListVC.catMdl = self.modelPageData[index];
             proListVC.rootPageAPIController = self.rootPageAPIController;
-
             proListVC.parentVC = self.rootPageViewController;
-
             proListVC.productListingType = GMProductListingFromTypeCategory;
-            
 
             return proListVC;
         }
@@ -59,7 +56,8 @@
             GMOffersVC *offersVC = [[GMOffersVC alloc] initWithNibName:@"GMOffersVC" bundle:nil];
             offersVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
             offersVC.data = self.modelPageData[index];
-            
+            offersVC.parentVC = self.rootPageViewController;
+
             return offersVC;
         }
             break;
@@ -69,12 +67,11 @@
             GMOffersVC *offersVC = [[GMOffersVC alloc] initWithNibName:@"GMOffersVC" bundle:nil];
             offersVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
             offersVC.data = self.modelPageData[index];
+            offersVC.parentVC = self.rootPageViewController;
             
             return offersVC;
         }
             break;
-            
-            
         default:
             break;
     }

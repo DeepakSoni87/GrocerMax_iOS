@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GMProductModal.h"
+#import "GMRootPageViewController.h"
 
 @interface GMProductDescriptionVC : UIViewController
 
 @property (strong, nonatomic) GMProductModal *modal;
+@property (nonatomic, strong) GMRootPageViewController *parentVC;
 
 @end
