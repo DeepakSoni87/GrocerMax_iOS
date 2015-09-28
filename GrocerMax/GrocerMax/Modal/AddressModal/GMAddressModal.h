@@ -64,4 +64,6 @@
 @property(nonatomic) BOOL isSelected;
 
 - (instancetype)initWithUserModal:(GMUserModal *)userModal;
+
+- (void)updateHouseNoLocalityAndLandmarkWithStreet:(NSString *)street;
 @end

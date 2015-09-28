@@ -47,6 +47,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 @implementation GMCartVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.checkOutModal = [[GMCheckOutModal alloc]init];
@@ -230,10 +231,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
-    if(self.cartModal && self.cartModal.cartItems.count>0) {
-        GMShipppingAddressVC *shipppingAddressVC = [GMShipppingAddressVC new];
+    
+    if(self.cartDetailModal.productItemsArray.count) {
+        
+        GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
         self.checkOutModal.cartDetailModal = self.cartDetailModal;
-        self.checkOutModal.cartModal = self.cartModal;
         shipppingAddressVC.checkOutModal = self.checkOutModal;
         [self.navigationController pushViewController:shipppingAddressVC animated:YES];
     } else {
@@ -252,7 +254,8 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             
             [self removeProgress];
             
-            if(cartDetailModal.productItemsArray.count>0) {
+            if(cartDetailModal.productItemsArray.count > 0) {
+                
                 self.cartDetailModal = cartDetailModal;
                 self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
                 [self.cartModal archiveCart];
@@ -261,6 +264,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.updateOrderButton setHidden:YES];
                 [self configureAmountView];
             } else {
+                
                 [self.totalView setHidden:YES];
                 [self.placeOrderButton setHidden:YES];
                 messageString = @"No item in your cart, Please add item.";
@@ -285,12 +289,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (BOOL)checkWhetherUpdateRequestNeeded {
-    if(self.cartDetailModal.deletedProductItemsArray != nil) {
-        
-        [self.cartDetailModal.deletedProductItemsArray removeAllObjects];
-    }
     
-//    BOOL updateStatus = YES;
+    BOOL updateStatus = YES;
+    
+    if(self.cartDetailModal.deletedProductItemsArray.count)
+        return updateStatus;
+    
     for (GMProductModal *productModal in self.cartDetailModal.productItemsArray) {
         
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", productModal.productid];
@@ -299,25 +303,17 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         if([productModal.productQuantity isEqualToString:cartProductModal.productQuantity]) {
             
             //            [productModal setIsProductUpdated:NO];
-//            updateStatus = updateStatus && NO;
-//            updateStatus = NO;
+            updateStatus = updateStatus && NO;
         }
         else {
             
             //            [productModal setIsProductUpdated:YES];
-//            updateStatus = updateStatus && YES;
-//            updateStatus =  YES;
-            if(self.cartDetailModal.deletedProductItemsArray == nil) {
-                self.cartDetailModal.deletedProductItemsArray = [[NSMutableArray alloc]init];
-            }
-            [self.cartDetailModal.deletedProductItemsArray addObject:productModal];
-//            break;
+            updateStatus = updateStatus && YES;
+            break;
         }
     }
-    if(self.cartDetailModal.deletedProductItemsArray.count>0) {
-        return YES;
-    }
-    return NO;
-//    return updateStatus;
+    
+    return updateStatus;
 }
+
 @end

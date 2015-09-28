@@ -61,5 +61,7 @@
     return [UIColor colorWithRGBValue:233.0 green:233.0 blue:233.0];
 }
 
-
++ (UIColor *)grayBackgroundColor {
+    return [UIColor colorWithRGBValue:244.0 green:244.0 blue:244.0];
+}
 @end

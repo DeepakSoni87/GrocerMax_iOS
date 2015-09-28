@@ -31,6 +31,7 @@
 @property (nonatomic, strong) PBPickerVC* valuePickerVC;
 
 @property (nonatomic, assign) BOOL isDefaultShippingAddress;
+
 @end
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
@@ -49,8 +50,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
-    if(self.isProgress) {
-    }
+    
     [self fetchLocalitiesFromServer];
 }
 
@@ -538,7 +538,8 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             [[GMOperationalHandler handler] editAddress:requestDict withSuccessBlock:^(BOOL success) {
                 
                 [self removeProgress];
-                if(self.isProgress) {
+                if(self.isComeFromShipping) {
+                    
                     if([self.delegate respondsToSelector:@selector(removeFromSupperView)]) {
                         [self.delegate removeFromSupperView];
                     }

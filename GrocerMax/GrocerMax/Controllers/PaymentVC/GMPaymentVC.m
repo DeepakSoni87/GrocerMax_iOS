@@ -90,7 +90,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     
     NSMutableDictionary *checkOutDic = [[NSMutableDictionary alloc]init];
     
-    GMUserModal *userModal = self.checkOutModal.userModal;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     GMTimeSloteModal *timeSloteModal = self.checkOutModal.timeSloteModal;
     GMAddressModalData *shippingAddressModal = self.checkOutModal.shippingAddressModal;
     GMAddressModalData *billingAddressModal = self.checkOutModal.billingAddressModal;
@@ -234,6 +234,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 
     
 }
+
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     if(!NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
@@ -242,7 +243,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     }
     
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
-    GMUserModal *userModal = self.checkOutModal.userModal;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     if(NSSTRING_HAS_DATA(userModal.userId)) {
         [userDic setObject:userModal.userId forKey:kEY_userid];
     }
