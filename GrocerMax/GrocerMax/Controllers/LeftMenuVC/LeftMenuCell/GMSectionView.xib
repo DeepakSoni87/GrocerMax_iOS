@@ -23,9 +23,17 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5l-qC-ZMz">
+                    <rect key="frame" x="0.0" y="39" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.23529411764705882" green="0.22352941176470589" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="RZ0-M7-Ng0"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="h5l-qC-ZMz" secondAttribute="trailing" id="44v-uG-YAq"/>
                 <constraint firstAttribute="trailing" secondItem="QmL-cm-QoT" secondAttribute="trailing" id="6RS-kY-bfb"/>
                 <constraint firstAttribute="trailing" secondItem="4Yi-0C-byC" secondAttribute="trailing" constant="15" id="8lh-Dn-C4o"/>
                 <constraint firstItem="QmL-cm-QoT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vhm-Rp-8QA"/>
@@ -33,6 +41,8 @@
                 <constraint firstAttribute="bottom" secondItem="QmL-cm-QoT" secondAttribute="bottom" id="ivz-Zo-xLD"/>
                 <constraint firstItem="4Yi-0C-byC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jek-9M-BnG"/>
                 <constraint firstItem="4Yi-0C-byC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="lSt-Q2-rS4"/>
+                <constraint firstAttribute="bottom" secondItem="h5l-qC-ZMz" secondAttribute="bottom" id="pbt-S6-ZK6"/>
+                <constraint firstItem="h5l-qC-ZMz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qUT-Tc-j32"/>
                 <constraint firstItem="QmL-cm-QoT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tOI-Ne-O2I"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

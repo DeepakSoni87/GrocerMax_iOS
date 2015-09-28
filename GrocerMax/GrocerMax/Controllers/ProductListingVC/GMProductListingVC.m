@@ -12,7 +12,7 @@
 
 NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
-@interface GMProductListingVC ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,GMRootPageAPIControllerDelegate>
+@interface GMProductListingVC ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,GMRootPageAPIControllerDelegate, GMProductListCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *tblFooterLoadMoreView;
 @property (weak, nonatomic) IBOutlet UITableView *productListTblView;
@@ -26,9 +26,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 @implementation GMProductListingVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    GMCartModal *cartModal = self.parentVC.cartModal;
+    [super viewDidLoad];
     
     [self registerCellsForTableView];
     [self configureUI];
@@ -77,8 +76,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     
     GMProductModal *productModal = [self.productBaseModal.productsListArray objectAtIndex:indexPath.row];
     GMProductListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGMProductListTableViewCell];
-    [cell.addBtn addTarget:self action:@selector(addButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [cell configureCellWithProductModal:productModal];
+    cell.delegate = self;
+    [cell configureCellWithProductModal:productModal andCartModal:self.parentVC.cartModal];
     return cell;
 }
 
@@ -158,21 +157,21 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 #pragma mark - IBAction methods
 
-- (void)addButtonTapped:(GMButton *)sender {
+- (void)addProductModalInCart:(GMProductModal *)productModal {
     
     if (![[GMSharedClass sharedClass] isInternetAvailable]) {
         
         [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"no_internet_connection")];
         return;
     }
-    
-    GMProductModal *productModal = sender.produtModal;
-    [self.parentVC.cartModal.cartItems addObject:productModal];
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:productModal];
+    GMProductModal *productCartModal = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+    [self.parentVC.cartModal.cartItems addObject:productCartModal];
     [self.parentVC.cartModal archiveCart];
     
-    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
+    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productCartModal];
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
-
+    
     // first save the modal with there updated quantity then reset the quantity value to 1
     [productModal setProductQuantity:@"1"];
     [self.productListTblView reloadData];

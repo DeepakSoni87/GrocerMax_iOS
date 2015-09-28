@@ -95,7 +95,8 @@ static GMOperationalHandler *sharedHandler;
         
         NSError *mtlError = nil;
         
-        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:responseObject[kCategoryKey] error:&mtlError];
+        NSDictionary *categoryDict = responseObject[kCategoryKey];
+        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
         
         if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
         else            { if (successBlock) successBlock(rootCategoryModal); }
@@ -824,8 +825,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 

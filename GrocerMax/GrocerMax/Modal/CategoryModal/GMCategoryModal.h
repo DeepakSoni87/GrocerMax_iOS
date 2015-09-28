@@ -12,7 +12,7 @@
 
 @property (nonatomic, readonly, strong) NSString *categoryId;
 
-@property (nonatomic, readonly, assign) NSInteger parentId;
+@property (nonatomic, readonly, strong) NSString *parentId;
 
 @property (nonatomic, readonly, strong) NSString *categoryName;
 
@@ -38,7 +38,7 @@
 
 - (void)setCategoryId:(NSString *)categoryId;
 
-- (void)setParentId:(NSInteger)parentId;
+- (void)setParentId:(NSString *)parentId;
 
 - (void)setCategoryName:(NSString *)categoryName;
 
