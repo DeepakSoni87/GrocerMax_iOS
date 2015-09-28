@@ -436,8 +436,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 
@@ -459,6 +457,10 @@ static GMOperationalHandler *sharedHandler;
             
             GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
+            for (GMAddressModalData *addressModal in timeSlotBaseModal.addressesArray) {
+                [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+            }
+            
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
             else            { if (successBlock) successBlock(timeSlotBaseModal); }
             
@@ -470,10 +472,7 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
-
 
 - (void)category:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     

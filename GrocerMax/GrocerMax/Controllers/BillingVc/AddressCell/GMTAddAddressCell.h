@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface GMTAddAddressCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *addAddressBtn;
-@property (weak, nonatomic) IBOutlet UIView *cellBgView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addAddressBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *cellBgView;
 @end

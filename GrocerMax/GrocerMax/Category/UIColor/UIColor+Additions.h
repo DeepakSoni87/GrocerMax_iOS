@@ -19,4 +19,6 @@
 + (UIColor *) colorFromHexString:(NSString *)hexString;
 
 + (UIColor *)inputTextFieldDisableColor;
+
++ (UIColor *)grayBackgroundColor;
 @end

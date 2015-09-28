@@ -69,6 +69,25 @@
              };
 }
 
+- (void)updateHouseNoLocalityAndLandmarkWithStreet:(NSString *)street {
+    
+    if(NSSTRING_HAS_DATA(street)) {
+        
+        NSArray *partitionArr = [street componentsSeparatedByString:@"\n"];
+        if(partitionArr.count) {
+            
+            if(partitionArr.count > 0)
+                self.houseNo = [partitionArr objectAtIndex:0];
+            
+            if(partitionArr.count > 1)
+                self.locality = [partitionArr objectAtIndex:1];
+            
+            if(partitionArr.count > 2)
+                self.closestLandmark = [partitionArr objectAtIndex:2];
+        }
+    }
+}
+
 - (instancetype)initWithUserModal:(GMUserModal *)userModal {
     
     if(self = [super init]) {

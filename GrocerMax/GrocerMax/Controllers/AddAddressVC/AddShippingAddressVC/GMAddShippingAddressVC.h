@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class GMAddressModalData;
-@protocol AddAShippingddressDelegate ;
+
+@protocol AddAShippingddressDelegate <NSObject>
+
+- (void)removeFromSupperView;
+
+@end
 
 @interface GMAddShippingAddressVC : UIViewController
 
@@ -17,12 +22,6 @@
 
 @property (nonatomic, strong) id<AddAShippingddressDelegate> delegate;
 
-@property (nonatomic) BOOL isProgress;
-
-@end
-
-@protocol AddAShippingddressDelegate <NSObject>
-
-- (void)removeFromSupperView;
+@property (nonatomic) BOOL isComeFromShipping;
 
 @end
