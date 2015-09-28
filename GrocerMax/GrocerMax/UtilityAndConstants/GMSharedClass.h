@@ -14,6 +14,7 @@
 
 @interface GMSharedClass : NSObject
 
+
 + (instancetype)sharedClass;
 
 - (void)showErrorMessage:(NSString*)message;
@@ -42,5 +43,6 @@
 
 - (void)saveSelectedLocationData:(NSData *)userData;
 
+- (BOOL)isInternetAvailable;
 
 @end

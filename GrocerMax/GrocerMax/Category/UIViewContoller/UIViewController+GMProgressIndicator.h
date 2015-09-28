@@ -17,4 +17,10 @@
 - (void)addLeftMenuButton;
 - (void)addLogImageInNavBar;
 - (void)menuButtonPressed:(UIBarButtonItem*)button;
+
+#pragma mark - Search icon on Right nav bar
+
+-(void)showSearchIconOnRightNavBarWithNavTitle:(NSString*)titleStr;
+-(void)showSearchIconOnRightNavBarWithNavImage:(UIImage*)navImage;
+
 @end

@@ -9,9 +9,16 @@
 #import "GMSharedClass.h"
 #import "GMUserModal.h"
 #import "GMStateBaseModal.h"
+#import "Reachability.h"
 
 
 #define kAlertTitle @"GrocerMax"
+
+@interface GMSharedClass ()
+
+@property (nonatomic) Reachability* reachability;
+
+@end
 
 @implementation GMSharedClass
 
@@ -29,6 +36,7 @@ CGFloat const kMATabBarHeight = 49.0f;
     
     if(!sharedHandler) {
         sharedHandler  = [[[self class] alloc] init];
+        [sharedHandler setupReachability];
     }
     return sharedHandler;
 }
@@ -59,6 +67,8 @@ CGFloat const kMATabBarHeight = 49.0f;
     [RZErrorMessenger displayError:strongError withStrength:kRZMessageStrengthStrongAutoDismiss level:kRZErrorMessengerLevelInfo animated:YES];
 }
 
+#pragma mark -
+
 + (BOOL)validateEmail:(NSString*)emailString {
     
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -77,6 +87,8 @@ CGFloat const kMATabBarHeight = 49.0f;
     BOOL isValid = [phoneTest evaluateWithObject:mobile];
     return isValid;
 }
+
+#pragma mark -
 
 - (BOOL)getUserLoggedStatus {
     
@@ -144,5 +156,59 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults synchronize];
 }
 
+#pragma mark - Network Reachbility Test
+
+-(void)setupReachability
+{
+    // Here we set up a NSNotification observer. The Reachability that caused the notification
+    // is passed in the object parameter
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(reachabilityChanged:)
+    //                                                 name:kReachabilityChangedNotification
+    //                                               object:nil];
+    
+    
+    // Allocate a reachability object
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    
+    
+    //    [self reachabilityChanged:nil];// force full call
+    //    [self.internetReachable startNotifier];
+}
+
+//-(void) reachabilityChanged:(NSNotification *)notice
+//{
+//    // !!!!! Important!!! called after network status changes
+//    NetworkStatus internetStatus = [self.internetReachable currentReachabilityStatus];
+//    switch (internetStatus)
+//    {
+//        case NotReachable:
+//        {
+//            NSLog(@"The internet is down.");
+//            self.internetActive = NO;
+//
+//            break;
+//        }
+//        case ReachableViaWiFi:
+//        {
+//            NSLog(@"The internet is working via WIFI.");
+//            self.internetActive = YES;
+//
+//            break;
+//        }
+//        case ReachableViaWWAN:
+//        {
+//            NSLog(@"The internet is working via WWAN.");
+//            self.internetActive = YES;
+//
+//            break;
+//        }
+//    }
+//}
+
+- (BOOL)isInternetAvailable {
+    
+    return [self.reachability isReachable];
+}
 
 @end

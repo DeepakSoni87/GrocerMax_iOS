@@ -10,10 +10,12 @@
 #import "GMRootPageAPIController.h"
 #import "GMProductModal.h"
 #import "GMCategoryModal.h"
+#import "GMRootPageViewController.h"
 
 @interface GMOffersVC : UIViewController
 
 @property (strong, nonatomic) id data;
 @property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
+@property (nonatomic, strong) GMRootPageViewController *parentVC;
 
 @end
