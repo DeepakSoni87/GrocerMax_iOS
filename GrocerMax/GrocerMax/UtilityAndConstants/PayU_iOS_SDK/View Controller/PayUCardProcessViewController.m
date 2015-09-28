@@ -189,7 +189,7 @@
 
 - (void) viewDidAppear:(BOOL)animated{
     if([[[SharedDataManager sharedDataManager] allInfoDict] valueForKey:PARAM_USER_CREDENTIALS] || _storeThisCard){
-        [self displayStoreCardOption];
+//        [self displayStoreCardOption];
         if(_storeThisCard){
             [self checkboxSelected:nil];
         }
@@ -710,7 +710,6 @@
 }
 
 -(void) displayStoreCardOption{
-    
     CGSize result = [[UIScreen mainScreen] bounds].size;
     CGRect checkBoxFrame = CGRectZero;
     CGRect lblBoxFrame = CGRectZero;

@@ -45,6 +45,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [super viewWillAppear:animated];
     if(isHitOnServer)
         [self getBillingAddress];
+    self.title = @"Billing Address";
 }
 
 - (void)registerCellsForTableView {

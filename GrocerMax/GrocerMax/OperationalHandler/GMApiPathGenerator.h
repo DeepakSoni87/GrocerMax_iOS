@@ -10,7 +10,7 @@
 
 @interface GMApiPathGenerator : NSObject
 
-+ (NSString *)userLoginPath;
+//+ (NSString *)userLoginPath;
 
 
 /**

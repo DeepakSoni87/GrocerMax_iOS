@@ -55,6 +55,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    self.title = @"Shipping Address";
 }
 
 - (void)didReceiveMemoryWarning {

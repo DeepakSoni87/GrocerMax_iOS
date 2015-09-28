@@ -164,18 +164,18 @@ typedef enum : NSUInteger {
 -(void) loadCCDCView:(int)cardFlag {
     
     PayUCardProcessViewController *cardProcessCV = nil;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height == IPHONE_3_5)
-        {
-            cardProcessCV = [[PayUCardProcessViewController alloc] initWithNibName:@"CardProcessView" bundle:nil];
-        }
-        else
-        {
+//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+//    {
+//        CGSize result = [[UIScreen mainScreen] bounds].size;
+//        if(result.height == IPHONE_3_5)
+//        {
+//            cardProcessCV = [[PayUCardProcessViewController alloc] initWithNibName:@"CardProcessView" bundle:nil];
+//        }
+//        else
+//        {
             cardProcessCV = [[PayUCardProcessViewController alloc] initWithNibName:@"PayUCardProcessViewController" bundle:nil];
-        }
-    }
+//        }
+//    }
     cardProcessCV.appTitle = _appTitle;
     cardProcessCV.CCDCFlag = cardFlag;
     [self.navigationController pushViewController:cardProcessCV animated:YES];
