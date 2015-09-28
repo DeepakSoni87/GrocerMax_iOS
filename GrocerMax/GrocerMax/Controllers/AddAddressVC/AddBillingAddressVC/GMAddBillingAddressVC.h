@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^NewBillingAddressHandler)(GMAddressModalData *address, BOOL edited);
+
 @interface GMAddBillingAddressVC : UIViewController
 
 @property (nonatomic, strong) GMAddressModalData *editAddressModal;
 
+@property (nonatomic, strong) NewBillingAddressHandler newBillingAddressHandler;
 @end

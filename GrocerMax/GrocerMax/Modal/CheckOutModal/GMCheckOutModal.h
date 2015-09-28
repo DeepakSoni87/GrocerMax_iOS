@@ -18,12 +18,6 @@
 
 @property(strong, nonatomic) GMTimeSloteModal *timeSloteModal;
 
-@property (nonatomic, strong) GMUserModal *userModal;
-
-@property (nonatomic, strong) GMCartModal *cartModal;
-
 @property (nonatomic, strong) GMCartDetailModal *cartDetailModal;
-
-
 
 @end

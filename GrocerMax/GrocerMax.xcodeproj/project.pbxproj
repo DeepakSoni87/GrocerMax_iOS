@@ -12,6 +12,11 @@
 		3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */; };
 		3B670CC51BA0BC7600B5EB9D /* GMRequestParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */; };
 		3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B670CCB1BA0BF2400B5EB9D /* Messages.strings */; };
+		3B9025141BB8158E00603403 /* GMSearchResultModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025131BB8158E00603403 /* GMSearchResultModal.m */; };
+		3B9025251BB8395100603403 /* GMSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025231BB8395100603403 /* GMSearchBarView.m */; };
+		3B9025261BB8395200603403 /* GMSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9025241BB8395100603403 /* GMSearchBarView.xib */; };
+		3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */; };
+		3B90252E1BB8916F00603403 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90252D1BB8916F00603403 /* Reachability.m */; };
 		766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */; };
 		820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */; };
 		820C4FF91BB1CC5C00DCCF39 /* GMAddressModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4F011BB1CC5C00DCCF39 /* GMAddressModal.m */; };
@@ -148,6 +153,8 @@
 		82B1B2B41B9F5E60001550FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B1B2B31B9F5E60001550FC /* Images.xcassets */; };
 		82B1B2C31B9F5E60001550FC /* GrocerMaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2C21B9F5E60001550FC /* GrocerMaxTests.m */; };
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
+		82D01A391BB931B500D5CC2D /* GMOrderSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */; };
+		82D01A3A1BB931B500D5CC2D /* GMOrderSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
 		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
 		E8326C781BB6DB76008ACC8B /* GMPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */; };
@@ -190,6 +197,15 @@
 		3B670CC31BA0BC7600B5EB9D /* GMRequestParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMRequestParams.h; sourceTree = "<group>"; };
 		3B670CC41BA0BC7600B5EB9D /* GMRequestParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMRequestParams.m; sourceTree = "<group>"; };
 		3B670CCB1BA0BF2400B5EB9D /* Messages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Messages.strings; sourceTree = "<group>"; };
+		3B9025121BB8158E00603403 /* GMSearchResultModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSearchResultModal.h; sourceTree = "<group>"; };
+		3B9025131BB8158E00603403 /* GMSearchResultModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSearchResultModal.m; sourceTree = "<group>"; };
+		3B9025221BB8395100603403 /* GMSearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSearchBarView.h; sourceTree = "<group>"; };
+		3B9025231BB8395100603403 /* GMSearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSearchBarView.m; sourceTree = "<group>"; };
+		3B9025241BB8395100603403 /* GMSearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSearchBarView.xib; sourceTree = "<group>"; };
+		3B9025281BB87F1500603403 /* UITabBarController+UpdateBagde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+UpdateBagde.h"; sourceTree = "<group>"; };
+		3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+UpdateBagde.m"; sourceTree = "<group>"; };
+		3B90252C1BB8916F00603403 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		3B90252D1BB8916F00603403 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.debug.xcconfig"; sourceTree = "<group>"; };
 		594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GrocerMax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSharedClass.h; sourceTree = "<group>"; };
@@ -418,6 +434,9 @@
 		82B1B2CE1B9F60D0001550FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82B1B2EA1B9F6143001550FC /* GMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMConstants.h; sourceTree = "<group>"; };
 		82B1B2F11B9F64EB001550FC /* GMPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrefixHeader.pch; sourceTree = "<group>"; };
+		82D01A361BB931B500D5CC2D /* GMOrderSuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderSuccessVC.h; sourceTree = "<group>"; };
+		82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderSuccessVC.m; sourceTree = "<group>"; };
+		82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderSuccessVC.xib; sourceTree = "<group>"; };
 		E8326C701BB6B760008ACC8B /* GMCheckOutModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCheckOutModal.h; sourceTree = "<group>"; };
 		E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCheckOutModal.m; sourceTree = "<group>"; };
 		E8326C741BB6DB76008ACC8B /* GMPaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentVC.h; sourceTree = "<group>"; };
@@ -478,9 +497,54 @@
 			path = OffersByDealTypeModal;
 			sourceTree = "<group>";
 		};
+		3B9025111BB8153700603403 /* SearchModal */ = {
+			isa = PBXGroup;
+			children = (
+				3B9025121BB8158E00603403 /* GMSearchResultModal.h */,
+				3B9025131BB8158E00603403 /* GMSearchResultModal.m */,
+			);
+			path = SearchModal;
+			sourceTree = "<group>";
+		};
+		3B9025151BB81DA000603403 /* SearchBarVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchBarVC;
+			sourceTree = "<group>";
+		};
+		3B9025211BB8395100603403 /* NavSearchBarView */ = {
+			isa = PBXGroup;
+			children = (
+				3B9025221BB8395100603403 /* GMSearchBarView.h */,
+				3B9025231BB8395100603403 /* GMSearchBarView.m */,
+				3B9025241BB8395100603403 /* GMSearchBarView.xib */,
+			);
+			path = NavSearchBarView;
+			sourceTree = "<group>";
+		};
+		3B9025271BB87EAE00603403 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				3B9025281BB87F1500603403 /* UITabBarController+UpdateBagde.h */,
+				3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		3B90252B1BB8916F00603403 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				3B90252C1BB8916F00603403 /* Reachability.h */,
+				3B90252D1BB8916F00603403 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				3B9025111BB8153700603403 /* SearchModal */,
 				E8326C6F1BB6B742008ACC8B /* CheckOutModal */,
 				824AF9AF1BB5CF54001652B9 /* CartDetailModal */,
 				824AF9A21BB53C04001652B9 /* CartModal */,
@@ -590,6 +654,7 @@
 		820C4F1E1BB1CC5C00DCCF39 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3B9025271BB87EAE00603403 /* TabBarController */,
 				820C4F1F1BB1CC5C00DCCF39 /* NSString+Extensions */,
 				820C4F221BB1CC5C00DCCF39 /* UIColor */,
 				820C4F251BB1CC5C00DCCF39 /* UIImage */,
@@ -647,6 +712,8 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				82D01A351BB9319500D5CC2D /* OrderSuccess */,
+				3B9025151BB81DA000603403 /* SearchBarVC */,
 				E8326C731BB6DB5D008ACC8B /* PaymentVC */,
 				E85310DF1BB47F42005A008B /* OrderHistoryDetailVC */,
 				82A52A9F1BB28EE3009A4235 /* CityVC */,
@@ -1121,6 +1188,7 @@
 		820C4FEA1BB1CC5C00DCCF39 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3B9025211BB8395100603403 /* NavSearchBarView */,
 				820C4FEB1BB1CC5C00DCCF39 /* GMButton */,
 				820C4FEE1BB1CC5C00DCCF39 /* Navigation */,
 				820C4FF11BB1CC5C00DCCF39 /* PBDatePIcker */,
@@ -1345,6 +1413,7 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				3B90252B1BB8916F00603403 /* Reachability */,
 				82A52AAF1BB3362D009A4235 /* Sequencer */,
 				820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */,
 				820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */,
@@ -1363,6 +1432,16 @@
 				82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		82D01A351BB9319500D5CC2D /* OrderSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				82D01A361BB931B500D5CC2D /* GMOrderSuccessVC.h */,
+				82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */,
+				82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */,
+			);
+			path = OrderSuccess;
 			sourceTree = "<group>";
 		};
 		B9BF57FEB8C9D49E7397393D /* Frameworks */ = {
@@ -1549,9 +1628,11 @@
 				820C50651BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.xib in Resources */,
 				820C50391BB1CC5C00DCCF39 /* GMSectionView.xib in Resources */,
 				820C50271BB1CC5C00DCCF39 /* GMHomeVC.xib in Resources */,
+				82D01A3A1BB931B500D5CC2D /* GMOrderSuccessVC.xib in Resources */,
 				E85310FB1BB4A286005A008B /* GMOrderItemCell.xib in Resources */,
 				E8560EB61BB732C100C87B2C /* GMPaymentOrderSummryCell.xib in Resources */,
 				820C505F1BB1CC5C00DCCF39 /* GMShipppingAddressVC.xib in Resources */,
+				3B9025261BB8395200603403 /* GMSearchBarView.xib in Resources */,
 				E8560EB11BB71B2900C87B2C /* GMPaymentCell.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */,
@@ -1672,6 +1753,7 @@
 				824AF9AD1BB5BE67001652B9 /* GMCartCell.m in Sources */,
 				3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */,
 				82A52AA91BB28EE3009A4235 /* GMCityVC.m in Sources */,
+				3B90252E1BB8916F00603403 /* Reachability.m in Sources */,
 				820C50461BB1CC5C00DCCF39 /* GMOrderHistryVC.m in Sources */,
 				820C50601BB1CC5C00DCCF39 /* GMSubCategoryVC.m in Sources */,
 				820C4FFC1BB1CC5C00DCCF39 /* GMTimeSlotBaseModal.m in Sources */,
@@ -1700,6 +1782,7 @@
 				820C503A1BB1CC5C00DCCF39 /* GMLoginVC.m in Sources */,
 				820C503C1BB1CC5C00DCCF39 /* GMMyAddressesVC.m in Sources */,
 				820C4FFA1BB1CC5C00DCCF39 /* GMCategoryModal.m in Sources */,
+				82D01A391BB931B500D5CC2D /* GMOrderSuccessVC.m in Sources */,
 				820C50051BB1CC5C00DCCF39 /* UIColor+Additions.m in Sources */,
 				E85310F01BB489CF005A008B /* GMOrderDetailHeaderView.m in Sources */,
 				820C4FFF1BB1CC5C00DCCF39 /* GMProductModal.m in Sources */,
@@ -1718,6 +1801,7 @@
 				820C50021BB1CC5C00DCCF39 /* GMStateBaseModal.m in Sources */,
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
 				824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */,
+				3B9025251BB8395100603403 /* GMSearchBarView.m in Sources */,
 				820C504D1BB1CC5C00DCCF39 /* GMRootPageModelController.m in Sources */,
 				E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */,
 				E8560EB51BB732C100C87B2C /* GMPaymentOrderSummryCell.m in Sources */,
@@ -1726,6 +1810,7 @@
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				820C506B1BB1CC5C00DCCF39 /* PBDatePickerVC.m in Sources */,
 				820C4FF91BB1CC5C00DCCF39 /* GMAddressModal.m in Sources */,
+				3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */,
 				820C50421BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.m in Sources */,
 				820C505A1BB1CC5C00DCCF39 /* GMGenderCell.m in Sources */,
 				820C50171BB1CC5C00DCCF39 /* GMCreateAddressVC.m in Sources */,
@@ -1744,6 +1829,7 @@
 				E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */,
 				820C500B1BB1CC5C00DCCF39 /* GMAddShippingAddressVC.m in Sources */,
 				820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */,
+				3B9025141BB8158E00603403 /* GMSearchResultModal.m in Sources */,
 				820C4FFE1BB1CC5C00DCCF39 /* GMBaseOrderHistoryModal.m in Sources */,
 				82A52AAE1BB28F19009A4235 /* GMProductDetailModal.m in Sources */,
 				820C50091BB1CC5C00DCCF39 /* GMAddBillingAddressVC.m in Sources */,

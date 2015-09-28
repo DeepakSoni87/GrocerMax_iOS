@@ -15,4 +15,11 @@
 + (UIImage *)inValidInputFieldImage;
 
 + (UIImage *)forwardArrowImage;
+
++ (UIImage *)searchIconImage;
+
++ (UIImage *)logoImage;
+
++ (UIImage *)menuBtnImage;
+
 @end

@@ -75,8 +75,10 @@
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
 
-
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController];
+    
+    // update Tab bar bagdge
+    [self updateBadgeValueOnCartTab];
 }
 
 @end

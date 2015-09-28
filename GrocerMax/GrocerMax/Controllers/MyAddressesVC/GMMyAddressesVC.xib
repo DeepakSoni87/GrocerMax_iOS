@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMMyAddressesVC">
             <connections>
+                <outlet property="footerView" destination="wra-1U-Dqi" id="92D-Vp-AiG"/>
                 <outlet property="myAddressTableView" destination="ve3-g2-SI9" id="xjJ-8n-w8k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,43 +17,69 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-g2-SI9">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="upe-Au-u6o"/>
                         <outlet property="delegate" destination="-1" id="lHp-0F-a3F"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGE-OO-Uet">
-                    <rect key="frame" x="0.0" y="413" width="320" height="42"/>
-                    <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="zVF-B6-j5z"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="ADD NEW ADDRESS">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addNewAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="U4H-uE-xO9"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="eGE-OO-Uet" secondAttribute="bottom" id="2vK-r7-IoW"/>
-                <constraint firstItem="eGE-OO-Uet" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6aq-ZG-nu1"/>
-                <constraint firstItem="eGE-OO-Uet" firstAttribute="top" secondItem="ve3-g2-SI9" secondAttribute="bottom" id="9RA-iU-iKd"/>
-                <constraint firstAttribute="trailing" secondItem="ve3-g2-SI9" secondAttribute="trailing" id="Fda-Xb-dAT"/>
-                <constraint firstItem="ve3-g2-SI9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TWJ-Fk-ena"/>
-                <constraint firstItem="ve3-g2-SI9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gpt-Mn-IIm"/>
-                <constraint firstAttribute="trailing" secondItem="eGE-OO-Uet" secondAttribute="trailing" id="ztU-E2-lA8"/>
+                <constraint firstAttribute="bottom" secondItem="ve3-g2-SI9" secondAttribute="bottom" id="ei0-h0-Cct"/>
+                <constraint firstAttribute="trailing" secondItem="ve3-g2-SI9" secondAttribute="trailing" id="oh3-io-tyJ"/>
+                <constraint firstItem="ve3-g2-SI9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pCq-wy-Udk"/>
+                <constraint firstItem="ve3-g2-SI9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="stJ-qW-KWO"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="98" y="256"/>
         </view>
+        <view contentMode="scaleToFill" id="wra-1U-Dqi">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwi-96-Spm">
+                    <rect key="frame" x="7" y="8" width="306" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stl-Mw-VjI">
+                            <rect key="frame" x="0.0" y="0.0" width="306" height="44"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="-184" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="276" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Add new address" image="left_plus">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="addNewAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="hIP-CI-eMr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="stl-Mw-VjI" secondAttribute="trailing" id="HBH-rb-FhS"/>
+                        <constraint firstItem="stl-Mw-VjI" firstAttribute="leading" secondItem="Cwi-96-Spm" secondAttribute="leading" id="Tlw-5a-AtH"/>
+                        <constraint firstAttribute="bottom" secondItem="stl-Mw-VjI" secondAttribute="bottom" id="VWf-RA-Q36"/>
+                        <constraint firstItem="stl-Mw-VjI" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" id="j60-S2-sQt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Cwi-96-Spm" secondAttribute="bottom" constant="8" id="CQB-fM-7aJ"/>
+                <constraint firstAttribute="trailing" secondItem="Cwi-96-Spm" secondAttribute="trailing" constant="7" id="O9H-Nz-vBV"/>
+                <constraint firstItem="Cwi-96-Spm" firstAttribute="top" secondItem="wra-1U-Dqi" secondAttribute="top" constant="8" id="fYh-oB-Pqm"/>
+                <constraint firstItem="Cwi-96-Spm" firstAttribute="leading" secondItem="wra-1U-Dqi" secondAttribute="leading" constant="7" id="kw5-Hs-IU1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="98" y="627"/>
+        </view>
     </objects>
+    <resources>
+        <image name="left_plus" width="9" height="9"/>
+    </resources>
 </document>

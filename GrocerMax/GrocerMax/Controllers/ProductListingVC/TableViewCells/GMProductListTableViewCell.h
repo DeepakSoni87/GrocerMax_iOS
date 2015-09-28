@@ -9,12 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class GMProductModal;
+@class GMCartModal;
+
+@protocol GMProductListCellDelegate <NSObject>
+
+- (void)addProductModalInCart:(GMProductModal *)productModal;
+
+@end
 
 @interface GMProductListTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet GMButton *addBtn;
 
-- (void)configureCellWithProductModal:(GMProductModal *)productModal;
+@property (nonatomic, strong) id <GMProductListCellDelegate> delegate;
+
+- (void)configureCellWithProductModal:(GMProductModal *)productModal andCartModal:(GMCartModal *)cartModal;
 
 + (CGFloat)cellHeightForNonPromotionalLabel;
 

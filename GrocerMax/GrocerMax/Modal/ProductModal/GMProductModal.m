@@ -52,9 +52,15 @@ static NSString * const kProductQuantityKey                     = @"productQuant
              @"p_name"             : @"p_name",
              @"p_pack"             : @"p_pack",
              @"sale_price"         : @"sale_price",
-             @"Status"             : @"Status",
+             @"Status"             : @"Status"
+//             @"categoryidArray"    : @"categoryid"
              };
 }
+
+//+ (NSValueTransformer *)categoryidArrayJSONTransformer {
+//    
+//    return [MTLJSONAdapter arrayTransformerWithModelClass:[NSString class]];
+//}
 
 - (instancetype)initWithProductItemDict:(NSDictionary *)productDict {
     

@@ -18,6 +18,9 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *myAddressTableView;
 
+@property (strong, nonatomic) IBOutlet UIView *footerView;
+
+
 @property (strong, nonatomic) NSMutableArray *addressArray;
 
 @property (nonatomic, strong) GMUserModal *userModal;
@@ -32,6 +35,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     // Do any additional setup after loading the view from its nib.
 //    [self getMyAddress];
     [self registerCellsForTableView];
+    [self.myAddressTableView setTableFooterView:self.footerView];
 }
 
 - (void)didReceiveMemoryWarning {

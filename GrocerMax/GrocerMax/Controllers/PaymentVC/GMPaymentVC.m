@@ -12,6 +12,8 @@
 #import "GMPaymentCell.h"
 #import "GMPaymentOrderSummryCell.h"
 #import "GMCartDetailModal.h"
+#import "GMOrderSuccessVC.h"
+#import "GMCartRequestParam.h"
 
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
 static NSString *kIdentifierPaymentSummuryCell = @"paymentSummeryIdentifierCell";
@@ -72,15 +74,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     self.bottomView.layer.borderColor = [UIColor colorWithRGBValue:236 green:236 blue:236].CGColor;
     self.bottomView.layer.cornerRadius = 2.0;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - Action Methods
 - (IBAction)actionPaymentCash:(id)sender {
     
@@ -88,152 +82,23 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
         return;
     }
     
-    NSMutableDictionary *checkOutDic = [[NSMutableDictionary alloc]init];
-    
-    GMUserModal *userModal = self.checkOutModal.userModal;
-    GMTimeSloteModal *timeSloteModal = self.checkOutModal.timeSloteModal;
-    GMAddressModalData *shippingAddressModal = self.checkOutModal.shippingAddressModal;
-    GMAddressModalData *billingAddressModal = self.checkOutModal.billingAddressModal;
-    
-    GMCityModal *cityModal = [GMCityModal selectedLocation];
-    
-    if(NSSTRING_HAS_DATA(userModal.userId)) {
-        [checkOutDic setObject:userModal.userId forKey:kEY_userid];
-    }
-    if(NSSTRING_HAS_DATA(userModal.quoteId)) {
-        [checkOutDic setObject:userModal.quoteId forKey:kEY_quote_id];
-    }
-    
-    if(NSSTRING_HAS_DATA(timeSloteModal.firstTimeSlote)) {
-        [checkOutDic setObject:timeSloteModal.firstTimeSlote forKey:kEY_timeslot];
-    }
-    if(NSSTRING_HAS_DATA(timeSloteModal.deliveryDate)) {
-        [checkOutDic setObject:timeSloteModal.deliveryDate forKey:kEY_date];
-    }
-    if(NSSTRING_HAS_DATA(timeSloteModal.deliveryDate)) {
-        [checkOutDic setObject:timeSloteModal.deliveryDate forKey:kEY_date];
-    }
-    
-    [checkOutDic setObject:@"cashondelivery" forKey:kEY_payment_method];
-    [checkOutDic setObject:@"tablerate_bestway" forKey:kEY_shipping_method];
-    
-    NSMutableDictionary *shippingAddress = [[NSMutableDictionary alloc]init];
-    if(NSSTRING_HAS_DATA(shippingAddressModal.customer_address_id)) {
-        [shippingAddress setObject:shippingAddressModal.customer_address_id forKey:kEY_addressid];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.firstName)) {
-        [shippingAddress setObject:shippingAddressModal.firstName forKey:kEY_fname];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.lastName)) {
-        [shippingAddress setObject:shippingAddressModal.lastName forKey:kEY_lname];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.firstName)) {
-        [shippingAddress setObject:shippingAddressModal.firstName forKey:kEY_fname];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.houseNo)) {
-        [shippingAddress setObject:shippingAddressModal.houseNo forKey:kEY_addressline1];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.locality)) {
-        [shippingAddress setObject:shippingAddressModal.locality forKey:kEY_addressline2];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.closestLandmark)) {
-        [shippingAddress setObject:shippingAddressModal.closestLandmark forKey:kEY_addressline3];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.city)) {
-        [shippingAddress setObject:shippingAddressModal.city forKey:kEY_city];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.region)) {
-        [shippingAddress setObject:shippingAddressModal.region forKey:kEY_state];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.pincode)) {
-        [shippingAddress setObject:shippingAddressModal.pincode forKey:kEY_postcode];
-    }
-    if(NSSTRING_HAS_DATA(cityModal.cityId)) {
-        [shippingAddress setObject:cityModal.cityId forKey:kEY_cityId];
-    }
-    if(NSSTRING_HAS_DATA(shippingAddressModal.telephone)) {
-        [shippingAddress setObject:shippingAddressModal.telephone forKey:kEY_telephone];
-    }
-    if([shippingAddressModal.is_default_billing intValue]== 1) {
-        [shippingAddress setObject:@"1" forKey:kEY_default_billing];
-    }else {
-        [shippingAddress setObject:@"0" forKey:kEY_default_billing];
-    }
-    if([shippingAddressModal.is_default_shipping intValue] == 1) {
-        [shippingAddress setObject:@"1" forKey:kEY_default_shipping];
-    } else {
-        [shippingAddress setObject:@"0" forKey:kEY_default_shipping];
-    }
-    
-    
-    NSMutableDictionary *billingAddress = [[NSMutableDictionary alloc]init];
-    if(NSSTRING_HAS_DATA(billingAddressModal.customer_address_id)) {
-        [billingAddress setObject:billingAddressModal.customer_address_id forKey:kEY_addressid];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.firstName)) {
-        [billingAddress setObject:billingAddressModal.firstName forKey:kEY_fname];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.lastName)) {
-        [billingAddress setObject:billingAddressModal.lastName forKey:kEY_lname];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.firstName)) {
-        [billingAddress setObject:billingAddressModal.firstName forKey:kEY_fname];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.houseNo)) {
-        [billingAddress setObject:billingAddressModal.houseNo forKey:kEY_addressline1];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.locality)) {
-        [billingAddress setObject:billingAddressModal.locality forKey:kEY_addressline2];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.closestLandmark)) {
-        [billingAddress setObject:billingAddressModal.closestLandmark forKey:kEY_addressline3];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.city)) {
-        [billingAddress setObject:billingAddressModal.city forKey:kEY_city];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.region)) {
-        [billingAddress setObject:billingAddressModal.region forKey:kEY_state];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.pincode)) {
-        [billingAddress setObject:billingAddressModal.pincode forKey:kEY_postcode];
-    }
-    if(NSSTRING_HAS_DATA(cityModal.cityId)) {
-        [billingAddress setObject:cityModal.cityId forKey:kEY_cityId];
-    }
-    if(NSSTRING_HAS_DATA(billingAddressModal.telephone)) {
-        [billingAddress setObject:billingAddressModal.telephone forKey:kEY_telephone];
-    }
-    if([billingAddressModal.is_default_billing intValue]== 1) {
-        [billingAddress setObject:@"1" forKey:kEY_default_billing];
-    }else {
-        [billingAddress setObject:@"0" forKey:kEY_default_billing];
-    }
-    if([billingAddressModal.is_default_shipping intValue] == 1) {
-        [billingAddress setObject:@"1" forKey:kEY_default_shipping];
-    } else {
-        [billingAddress setObject:@"0" forKey:kEY_default_shipping];
-    }
-   
-//    [checkOutDic setObject:shippingAddress forKey:kEY_shipping];
-//    [checkOutDic setObject:billingAddress forKey:kEY_billing];
-    
-    [checkOutDic setObject:[NSString getJsonStringFromObject:shippingAddress] forKey:kEY_shipping];
-    [checkOutDic setObject:[NSString getJsonStringFromObject:billingAddress] forKey:kEY_billing];
-    
-    
+    NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
     [self showProgress];
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(id responceData) {
         
         [self removeProgress];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        [self.navigationController pushViewController:successVC animated:YES];
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
         
         [self removeProgress];
     }];
-
+    
     
 }
+
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     if(!NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
@@ -242,7 +107,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     }
     
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
-    GMUserModal *userModal = self.checkOutModal.userModal;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     if(NSSTRING_HAS_DATA(userModal.userId)) {
         [userDic setObject:userModal.userId forKey:kEY_userid];
     }
@@ -266,7 +131,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     
 }
 
-- (void) actionCheckedBtnClicked:(GMButton *)sender {
+- (void)actionCheckedBtnClicked:(GMButton *)sender {
     
     if(sender.selected) {
         sender.selected = FALSE;
@@ -289,13 +154,15 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     
     [self.view endEditing:YES];
 }
+
 #pragma mark - TableView DataSource and Delegate Methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-        return 2;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
+    
     if(section == 0){
         return self.paymentOptionArray.count;
     }
@@ -334,9 +201,9 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         return 45.0;
-//        [GMPaymentCell cellHeight];
+        //        [GMPaymentCell cellHeight];
     } else if(indexPath.section == 1) {
-//        [GMPaymentOrderSummryCell cellHeight];
+        //        [GMPaymentOrderSummryCell cellHeight];
         return 161;
     }
     return 0.0;
@@ -360,29 +227,28 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-        if(section == 0 || section == 1) {
-            UIView *headerView;
-            GMOrderDetailHeaderView *header  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kIdentifierPaymentHeader];
-            if (!header) {
-                header = [[GMOrderDetailHeaderView alloc] initWithReuseIdentifier:kIdentifierPaymentHeader];
-            }
-            [header.headerBgView setBackgroundColor:[UIColor clearColor]];
-            if(section == 0 ) {
-                [header congigerHeaderData:@"SELECT MODE OF PAYMENT"];
-            } else if(section == 1 ) {
-                [header congigerHeaderData:@"ORDER SUMMERY"];
-            } else {
-                [header congigerHeaderData:@""];
-            }
-            headerView = header;
-            
-            return headerView;
+    if(section == 0 || section == 1) {
+        UIView *headerView;
+        GMOrderDetailHeaderView *header  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kIdentifierPaymentHeader];
+        if (!header) {
+            header = [[GMOrderDetailHeaderView alloc] initWithReuseIdentifier:kIdentifierPaymentHeader];
         }
-        else {
-            
-            return nil;
+        [header.headerBgView setBackgroundColor:[UIColor clearColor]];
+        if(section == 0 ) {
+            [header congigerHeaderData:@"SELECT MODE OF PAYMENT"];
+        } else if(section == 1 ) {
+            [header congigerHeaderData:@"ORDER SUMMERY"];
+        } else {
+            [header congigerHeaderData:@""];
         }
-    
+        headerView = header;
+        
+        return headerView;
+    }
+    else {
+        
+        return nil;
+    }
 }
 
 @end

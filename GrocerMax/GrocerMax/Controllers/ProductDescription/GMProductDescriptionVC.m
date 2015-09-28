@@ -14,16 +14,20 @@
 @interface GMProductDescriptionVC ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImgView;
+
 @property (weak, nonatomic) IBOutlet UILabel *producInfo;
+
 @property (weak, nonatomic) IBOutlet UILabel *productCostLbl;
+
 @property (weak, nonatomic) IBOutlet UILabel *productQuantityLbl;
+
 @property (weak, nonatomic) IBOutlet UILabel *producDescriptionLbl;
+
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 
-
 @property (assign, nonatomic) NSInteger productQuantity;
-@property (strong, nonatomic) GMProductDetailModal *proDetailModal;
 
+@property (strong, nonatomic) GMProductDetailModal *proDetailModal;
 @end
 
 @implementation GMProductDescriptionVC
@@ -64,6 +68,7 @@
        GMProductDetailBaseModal* baseMdl = (GMProductDetailBaseModal*)responceData;
         self.proDetailModal = baseMdl.productDetailArray.firstObject;
         [self updateProductDescription];
+        [self updateProductQuantity];
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -80,6 +85,7 @@
         [self updateProductQuantity];
     }
 }
+
 - (IBAction)pluseBtnPressed:(UIButton *)sender {
     
     if (self.productQuantity < kMAX_Quantity) {
@@ -88,18 +94,42 @@
     }
 }
 
+- (IBAction)addToCartBtnPressed:(UIButton *)sender {
+    
+    if (![[GMSharedClass sharedClass] isInternetAvailable]) {
+        
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"no_internet_connection")];
+        return;
+    }
+    
+    [self.modal setProductQuantity:[NSString stringWithFormat:@"%ld",self.productQuantity]];
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:self.modal];
+    GMProductModal *productCartModal = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+    [self.parentVC.cartModal.cartItems addObject:productCartModal];
+    [self.parentVC.cartModal archiveCart];
+    
+    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productCartModal];
+    [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
+    
+    // first save the modal with there updated quantity then reset the quantity value to 1
+    [self.modal setProductQuantity:@"1"];
+    self.productQuantity = 1;
+    [self updateProductQuantity];
+    [self.tabBarController updateBadgeValueOnCartTab];
+}
+
 #pragma mark - Update Cost and quantity lbl
 
 - (void)updateProductDescription {
     
-    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@ | ",self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}];
+    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@ | ",self.proDetailModal.currencycode,self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}];
     
-    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
+    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",self.proDetailModal.currencycode,self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
     
     self.productCostLbl.attributedText = attStringPrice;
 
     NSMutableAttributedString *attStringDes = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_brand] attributes:@{
-NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
+    NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
     
     [attStringDes appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}]];
     
@@ -111,7 +141,8 @@ NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor red
     [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
 
 }
--(void)updateProductQuantity{
+
+- (void)updateProductQuantity {
 
     self.productQuantityLbl.text = [NSString stringWithFormat:@"%li",(long)self.productQuantity];
 }

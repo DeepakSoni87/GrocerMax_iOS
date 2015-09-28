@@ -94,7 +94,8 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     proListVC.catMdl = tempCategoryModal;
     proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
     proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
-
+    proListVC.parentVC = self.parentVC;
+    
     [self.navigationController pushViewController:proListVC animated:YES];
 }
 

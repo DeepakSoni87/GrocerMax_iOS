@@ -30,6 +30,7 @@
 #import "GMProductModal.h"
 #import "GMOrderDeatilBaseModal.h"
 #import "GMCartDetailModal.h"
+#import "GMSearchResultModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -94,7 +95,8 @@ static GMOperationalHandler *sharedHandler;
         
         NSError *mtlError = nil;
         
-        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:responseObject[kCategoryKey] error:&mtlError];
+        NSDictionary *categoryDict = responseObject[kCategoryKey];
+        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
         
         if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
         else            { if (successBlock) successBlock(rootCategoryModal); }
@@ -435,8 +437,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 
@@ -458,6 +458,10 @@ static GMOperationalHandler *sharedHandler;
             
             GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
             
+            for (GMAddressModalData *addressModal in timeSlotBaseModal.addressesArray) {
+                [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+            }
+            
             if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
             else            { if (successBlock) successBlock(timeSlotBaseModal); }
             
@@ -469,10 +473,7 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
-
 
 - (void)category:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
@@ -596,8 +597,9 @@ static GMOperationalHandler *sharedHandler;
                 
                 NSError *mtlError = nil;
                 
-                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
                 
+                GMSearchResultModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMSearchResultModal class] fromJSONDictionary:responseObject error:&mtlError];
+
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(productListingModal); }
             }
@@ -823,8 +825,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 

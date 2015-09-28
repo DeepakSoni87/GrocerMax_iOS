@@ -17,3 +17,9 @@
 "plzEnterEmail" = "Please enter email!";
 "plzEnterValidEmail" = "Please enter a valid email!";
 "plzEnterPassword" = "Please enter password!";
+
+
+// Search bar
+
+"plzEnterKeyword" = "Please enter some keyword for searching!";
+"noResultFound" = "No result found!";
