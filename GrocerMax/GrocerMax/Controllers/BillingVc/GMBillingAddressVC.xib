@@ -45,7 +45,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDN-1A-DnQ">
                     <rect key="frame" x="0.0" y="466" width="320" height="38"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-YR-5GO">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-YR-5GO">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                             <state key="normal" title="PROCEED">
@@ -59,6 +59,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.11372549019607843" green="0.40784313725490196" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aqW-YR-5GO" secondAttribute="bottom" id="5Tj-pi-sRw"/>
+                        <constraint firstItem="aqW-YR-5GO" firstAttribute="leading" secondItem="xDN-1A-DnQ" secondAttribute="leading" id="CFZ-Ab-Hed"/>
+                        <constraint firstAttribute="trailing" secondItem="aqW-YR-5GO" secondAttribute="trailing" id="PCI-EY-1H8"/>
+                        <constraint firstItem="aqW-YR-5GO" firstAttribute="top" secondItem="xDN-1A-DnQ" secondAttribute="top" id="fST-Ip-SxJ"/>
                         <constraint firstAttribute="height" constant="38" id="gyd-gh-F2N"/>
                     </constraints>
                 </view>

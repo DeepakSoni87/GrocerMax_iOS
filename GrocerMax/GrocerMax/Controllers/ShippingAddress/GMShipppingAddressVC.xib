@@ -42,10 +42,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udC-WG-P8E">
                     <rect key="frame" x="7" y="410" width="306" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPu-lM-8xr">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPu-lM-8xr">
                             <rect key="frame" x="8" y="8" width="298" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="nml-0z-vDe"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="270" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Use Shipping address as Billing Address">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,8 +61,12 @@
                                 <action selector="actionShippingAsBilling:" destination="-1" eventType="touchUpInside" id="0dI-gu-3Fr"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frK-aQ-THa">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frK-aQ-THa">
                             <rect key="frame" x="275" y="7" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="KTx-6Q-jyd"/>
+                                <constraint firstAttribute="width" constant="30" id="cfp-Za-fmS"/>
+                            </constraints>
                             <state key="normal" image="checkBox">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -71,13 +78,18 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="frK-aQ-THa" firstAttribute="top" secondItem="udC-WG-P8E" secondAttribute="top" constant="7" id="8Xy-rQ-LCV"/>
+                        <constraint firstItem="LPu-lM-8xr" firstAttribute="leading" secondItem="udC-WG-P8E" secondAttribute="leading" constant="8" id="OcV-kv-vY1"/>
                         <constraint firstAttribute="height" constant="44" id="WXZ-i3-dgw"/>
+                        <constraint firstAttribute="trailing" secondItem="frK-aQ-THa" secondAttribute="trailing" constant="1" id="XSk-BP-Yna"/>
+                        <constraint firstAttribute="trailing" secondItem="LPu-lM-8xr" secondAttribute="trailing" id="bh5-3K-K6h"/>
+                        <constraint firstItem="LPu-lM-8xr" firstAttribute="top" secondItem="udC-WG-P8E" secondAttribute="top" constant="8" id="uXc-4V-pK4"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ih-x0-YXA" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="466" width="320" height="38"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-9P-8UB">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-9P-8UB">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                             <state key="normal" title="PROCEED">
@@ -91,6 +103,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="jNa-9P-8UB" firstAttribute="leading" secondItem="6ih-x0-YXA" secondAttribute="leading" id="8G0-tg-2mQ"/>
+                        <constraint firstAttribute="trailing" secondItem="jNa-9P-8UB" secondAttribute="trailing" id="9ni-J7-cBh"/>
+                        <constraint firstItem="jNa-9P-8UB" firstAttribute="top" secondItem="6ih-x0-YXA" secondAttribute="top" id="Dg4-9W-A9P"/>
+                        <constraint firstAttribute="bottom" secondItem="jNa-9P-8UB" secondAttribute="bottom" id="jPw-t6-R9U"/>
                         <constraint firstAttribute="height" constant="38" id="uLb-ql-oWg"/>
                     </constraints>
                 </view>

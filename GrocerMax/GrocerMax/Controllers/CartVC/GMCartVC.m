@@ -50,7 +50,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.checkOutModal = [[GMCheckOutModal alloc]init];
+    
     messageString = @"Fetching your cart items from server.";
     [self.totalView setHidden:YES];
     [self.placeOrderButton setHidden:YES];
@@ -66,7 +66,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
-    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     messageString = @"Fetching your cart items from server.";
     self.cartModal = [GMCartModal loadCart];
     //    if(self.cartModal)
@@ -230,8 +230,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
     
+    
     if(self.cartDetailModal.productItemsArray.count) {
-        
+        if(self.checkOutModal) {
+            self.checkOutModal = nil;
+        }
+        self.checkOutModal = [[GMCheckOutModal alloc]init];
         GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
         self.checkOutModal.cartDetailModal = self.cartDetailModal;
         shipppingAddressVC.checkOutModal = self.checkOutModal;
@@ -283,6 +287,8 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (IBAction)backButtonTapped:(id)sender {
     
+//    self.navigationController.navigationBarHidden = NO;
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self.tabBarController setSelectedIndex:0];
 }
 
