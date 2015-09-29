@@ -156,6 +156,12 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults synchronize];
 }
 
+- (void) logout {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:signedInUserKey];
+    [defaults synchronize];
+
+}
 #pragma mark - Network Reachbility Test
 
 -(void)setupReachability

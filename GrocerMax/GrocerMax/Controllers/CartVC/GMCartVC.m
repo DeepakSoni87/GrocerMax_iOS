@@ -11,6 +11,7 @@
 #import "GMCartDetailModal.h"
 #import "GMCartCell.h"
 #import "GMShipppingAddressVC.h"
+#import "GMLoginVC.h"
 
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
@@ -235,11 +236,18 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         if(self.checkOutModal) {
             self.checkOutModal = nil;
         }
-        self.checkOutModal = [[GMCheckOutModal alloc]init];
-        GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
-        self.checkOutModal.cartDetailModal = self.cartDetailModal;
-        shipppingAddressVC.checkOutModal = self.checkOutModal;
-        [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        if([[GMSharedClass sharedClass] getLoggedInUser]) {
+            
+//            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+//            [self.navigationController pushViewController:loginVC animated:YES];
+        }
+        else {
+            self.checkOutModal = [[GMCheckOutModal alloc]init];
+            GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
+            self.checkOutModal.cartDetailModal = self.cartDetailModal;
+            shipppingAddressVC.checkOutModal = self.checkOutModal;
+            [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        }
     } else {
         [[GMSharedClass sharedClass] showErrorMessage:@"No any item in your cart"];
     }
