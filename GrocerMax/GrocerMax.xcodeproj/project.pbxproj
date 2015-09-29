@@ -251,6 +251,8 @@
 		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
 		E8916C151BBB073300DA75BE /* GMCoupanCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */; };
 		E8916C161BBB073300DA75BE /* GMCoupanCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */; };
+		E8916C1A1BBB173A00DA75BE /* GMGenralModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C191BBB173A00DA75BE /* GMGenralModal.m */; };
+		E8916C1D1BBB307600DA75BE /* GMCoupanCartDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
@@ -649,6 +651,10 @@
 		E8916C121BBB073300DA75BE /* GMCoupanCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCoupanCodeCell.h; sourceTree = "<group>"; };
 		E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCoupanCodeCell.m; sourceTree = "<group>"; };
 		E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCoupanCodeCell.xib; sourceTree = "<group>"; };
+		E8916C181BBB173A00DA75BE /* GMGenralModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGenralModal.h; sourceTree = "<group>"; };
+		E8916C191BBB173A00DA75BE /* GMGenralModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGenralModal.m; sourceTree = "<group>"; };
+		E8916C1B1BBB307600DA75BE /* GMCoupanCartDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCoupanCartDetail.h; sourceTree = "<group>"; };
+		E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCoupanCartDetail.m; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -739,6 +745,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				E8916C171BBB171F00DA75BE /* GenralModal */,
 				3B9025111BB8153700603403 /* SearchModal */,
 				E8326C6F1BB6B742008ACC8B /* CheckOutModal */,
 				824AF9AF1BB5CF54001652B9 /* CartDetailModal */,
@@ -1879,6 +1886,17 @@
 			path = "WebViewJavascript Bridge";
 			sourceTree = "<group>";
 		};
+		E8916C171BBB171F00DA75BE /* GenralModal */ = {
+			isa = PBXGroup;
+			children = (
+				E8916C181BBB173A00DA75BE /* GMGenralModal.h */,
+				E8916C191BBB173A00DA75BE /* GMGenralModal.m */,
+				E8916C1B1BBB307600DA75BE /* GMCoupanCartDetail.h */,
+				E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */,
+			);
+			path = GenralModal;
+			sourceTree = "<group>";
+		};
 		E8B2C18B1BB29A08000F70EB /* HotDealModal */ = {
 			isa = PBXGroup;
 			children = (
@@ -2218,7 +2236,9 @@
 				82A52AB21BB3362D009A4235 /* Sequencer.m in Sources */,
 				820C50301BB1CC5C00DCCF39 /* GMShopByDealCell.m in Sources */,
 				820C501D1BB1CC5C00DCCF39 /* GMDeliveryDetailCell.m in Sources */,
+				E8916C1D1BBB307600DA75BE /* GMCoupanCartDetail.m in Sources */,
 				820C50281BB1CC5C00DCCF39 /* GMShopByCategoryCollectionViewCell.m in Sources */,
+				E8916C1A1BBB173A00DA75BE /* GMGenralModal.m in Sources */,
 				820C50021BB1CC5C00DCCF39 /* GMStateBaseModal.m in Sources */,
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
 				824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */,
