@@ -103,26 +103,29 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
 }
 - (IBAction)actionSaveBtnClicked:(id)sender {
     
-    GMCityModal *cityModal = [[GMCityModal alloc]init];
-    if(self.delhiBtn.selected){
-        cityModal.cityId = @"2";
-        cityModal.cityName = @"Delhi";
-        cityModal.stateId = @"485";
-        cityModal.stateName = @"Delhi";
+    if(self.cityModal == nil) {
+        GMCityModal *cityModal = [[GMCityModal alloc]init];
+        if(self.delhiBtn.selected){
+            cityModal.cityId = @"2";
+            cityModal.cityName = @"Delhi";
+            cityModal.stateId = @"485";
+            cityModal.stateName = @"Delhi";
+        }
+        else if(self.gurgaonBtn.selected){
+            cityModal.cityId = @"1";
+            cityModal.cityName = @"Gurgaon";
+            cityModal.stateId = @"487";
+            cityModal.stateName = @"Haryana";
+        }
+        else {
+            cityModal.cityId = @"3";
+            cityModal.cityName = @"Noida";
+            cityModal.stateId = @"486";
+            cityModal.stateName = @"Uttar Pradesh";
+        }
+        self.cityModal = cityModal;
     }
-    else if(self.gurgaonBtn.selected){
-        cityModal.cityId = @"1";
-        cityModal.cityName = @"Gurgaon";
-        cityModal.stateId = @"487";
-        cityModal.stateName = @"Haryana";
-    }
-    else {
-        cityModal.cityId = @"3";
-        cityModal.cityName = @"Noida";
-        cityModal.stateId = @"486";
-        cityModal.stateName = @"Uttar Pradesh";
-    }
-    [cityModal persistLocation];
+    [self.cityModal persistLocation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
