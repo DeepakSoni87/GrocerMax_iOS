@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GMLoginVC : UIViewController
-
+@property BOOL isPresent;
 @end
