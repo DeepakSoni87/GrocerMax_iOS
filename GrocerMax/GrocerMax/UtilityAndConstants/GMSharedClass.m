@@ -158,7 +158,13 @@ CGFloat const kMATabBarHeight = 49.0f;
 
 - (void) logout {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *encodedObject = [defaults objectForKey:signedInUserKey];
+    GMUserModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    archivedUser = nil;
+    
     [defaults removeObjectForKey:signedInUserKey];
+    [defaults setObject:@(NO) forKey:loggedInUserKey];
     [defaults synchronize];
 
 }
