@@ -253,6 +253,8 @@
 		E8916C161BBB073300DA75BE /* GMCoupanCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */; };
 		E8916C1A1BBB173A00DA75BE /* GMGenralModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C191BBB173A00DA75BE /* GMGenralModal.m */; };
 		E8916C1D1BBB307600DA75BE /* GMCoupanCartDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */; };
+		E8916C221BBB407900DA75BE /* GMParentController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C201BBB407900DA75BE /* GMParentController.m */; };
+		E8916C231BBB407900DA75BE /* GMParentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C211BBB407900DA75BE /* GMParentController.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
@@ -655,6 +657,9 @@
 		E8916C191BBB173A00DA75BE /* GMGenralModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGenralModal.m; sourceTree = "<group>"; };
 		E8916C1B1BBB307600DA75BE /* GMCoupanCartDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCoupanCartDetail.h; sourceTree = "<group>"; };
 		E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCoupanCartDetail.m; sourceTree = "<group>"; };
+		E8916C1F1BBB407900DA75BE /* GMParentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMParentController.h; sourceTree = "<group>"; };
+		E8916C201BBB407900DA75BE /* GMParentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMParentController.m; sourceTree = "<group>"; };
+		E8916C211BBB407900DA75BE /* GMParentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMParentController.xib; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -914,6 +919,7 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8916C1E1BBB405E00DA75BE /* ParentConroller */,
 				3BD49B021BB9E0D9009BE425 /* ProvideMobileInfoVC */,
 				82D01A351BB9319500D5CC2D /* OrderSuccess */,
 				3B9025151BB81DA000603403 /* SearchBarVC */,
@@ -1897,6 +1903,16 @@
 			path = GenralModal;
 			sourceTree = "<group>";
 		};
+		E8916C1E1BBB405E00DA75BE /* ParentConroller */ = {
+			isa = PBXGroup;
+			children = (
+				E8916C1F1BBB407900DA75BE /* GMParentController.h */,
+				E8916C201BBB407900DA75BE /* GMParentController.m */,
+				E8916C211BBB407900DA75BE /* GMParentController.xib */,
+			);
+			path = ParentConroller;
+			sourceTree = "<group>";
+		};
 		E8B2C18B1BB29A08000F70EB /* HotDealModal */ = {
 			isa = PBXGroup;
 			children = (
@@ -2035,6 +2051,7 @@
 				820C50551BB1CC5C00DCCF39 /* GMProductListTableViewCell.xib in Resources */,
 				E86D141E1BB99D4E00D3EAD8 /* amex.png in Resources */,
 				E86D144B1BB99D4E00D3EAD8 /* PayUPaymentResultViewController.xib in Resources */,
+				E8916C231BBB407900DA75BE /* GMParentController.xib in Resources */,
 				820C50181BB1CC5C00DCCF39 /* GMCreateAddressVC.xib in Resources */,
 				E86D142F1BB99D4E00D3EAD8 /* lock2.png in Resources */,
 				E86D14381BB99D4E00D3EAD8 /* unchecked.png in Resources */,
@@ -2241,6 +2258,7 @@
 				E8916C1A1BBB173A00DA75BE /* GMGenralModal.m in Sources */,
 				820C50021BB1CC5C00DCCF39 /* GMStateBaseModal.m in Sources */,
 				820C50111BB1CC5C00DCCF39 /* GMBillingAddressVC.m in Sources */,
+				E8916C221BBB407900DA75BE /* GMParentController.m in Sources */,
 				824AF9A51BB53C46001652B9 /* GMCartModal.m in Sources */,
 				E86D14481BB99D4E00D3EAD8 /* PayUPaymentOptionsViewController.m in Sources */,
 				3B9025251BB8395100603403 /* GMSearchBarView.m in Sources */,
