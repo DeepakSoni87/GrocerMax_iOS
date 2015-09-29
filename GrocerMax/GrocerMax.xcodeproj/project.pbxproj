@@ -249,6 +249,8 @@
 		E86D14551BB99E5E00D3EAD8 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E86D14541BB99E5E00D3EAD8 /* ReachabilityManager.m */; };
 		E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */; };
 		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
+		E8916C151BBB073300DA75BE /* GMCoupanCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */; };
+		E8916C161BBB073300DA75BE /* GMCoupanCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 /* End PBXBuildFile section */
 
@@ -644,6 +646,9 @@
 		E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailLastHeaderView.h; sourceTree = "<group>"; };
 		E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailLastHeaderView.m; sourceTree = "<group>"; };
 		E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailLastHeaderView.xib; sourceTree = "<group>"; };
+		E8916C121BBB073300DA75BE /* GMCoupanCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCoupanCodeCell.h; sourceTree = "<group>"; };
+		E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCoupanCodeCell.m; sourceTree = "<group>"; };
+		E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCoupanCodeCell.xib; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1713,6 +1718,9 @@
 				E8560EB21BB732C100C87B2C /* GMPaymentOrderSummryCell.h */,
 				E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */,
 				E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */,
+				E8916C121BBB073300DA75BE /* GMCoupanCodeCell.h */,
+				E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */,
+				E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */,
 			);
 			path = CashCell;
 			sourceTree = "<group>";
@@ -2024,6 +2032,7 @@
 				E86D14251BB99D4E00D3EAD8 /* coin.png in Resources */,
 				820C50231BB1CC5C00DCCF39 /* GMEditProfileVC.xib in Resources */,
 				820C500C1BB1CC5C00DCCF39 /* GMAddShippingAddressVC.xib in Resources */,
+				E8916C161BBB073300DA75BE /* GMCoupanCodeCell.xib in Resources */,
 				E86D14401BB99D4E00D3EAD8 /* EMIOption5.xib in Resources */,
 				E86D14391BB99D4E00D3EAD8 /* unchecked@2x.png in Resources */,
 				E86D142C1BB99D4E00D3EAD8 /* jcb.png in Resources */,
@@ -2169,6 +2178,7 @@
 				820C506D1BB1CC5C00DCCF39 /* PBPickerVC.m in Sources */,
 				820C501B1BB1CC5C00DCCF39 /* GMHotDealVC.m in Sources */,
 				E86D14111BB99D4E00D3EAD8 /* PayU_iOS_SDK.m in Sources */,
+				E8916C151BBB073300DA75BE /* GMCoupanCodeCell.m in Sources */,
 				E86D141A1BB99D4E00D3EAD8 /* PayUStoredCardViewController.m in Sources */,
 				E86D14121BB99D4E00D3EAD8 /* PayUConnectionHandlerController.m in Sources */,
 				E86D14421BB99D4E00D3EAD8 /* PayUCardProcessViewController.m in Sources */,
