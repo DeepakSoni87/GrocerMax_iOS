@@ -26,8 +26,8 @@
 - (void)configerViewData:(NSString *)paymentName {
     self.bottomHorizentalSepretorLbl.hidden = TRUE;
     [self.checkBoxBtn setExclusiveTouch:YES];
-    
-    if([paymentName isEqualToString:@"payU"]) {
+//    Arvind : PayU
+    if([paymentName isEqualToString:@"payTM"]) {
         self.paymentImage.hidden = FALSE;
         self.paymentLbl.hidden = TRUE;
         [self.paymentImage setImage:[UIImage imageNamed:@"payU"]];

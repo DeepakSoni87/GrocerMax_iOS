@@ -54,7 +54,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
-    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    self.title = @"Shipping Address";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,17 +86,17 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddressModalData *addressModalData = sender.addressModal;
     
-    self.selectedAddressModalData.isSelected = FALSE;
-    if(addressModalData.isSelected) {
+    self.selectedAddressModalData.isShippingSelected = FALSE;
+    if(addressModalData.isShippingSelected) {
         sender.selected = FALSE;
-        addressModalData.isSelected = FALSE;
+        addressModalData.isShippingSelected = FALSE;
     }
     else {
         sender.selected = TRUE;
-        addressModalData.isSelected = TRUE;
+        addressModalData.isShippingSelected = TRUE;
     }
     
-    self.checkOutModal.shippingAddressModal = addressModalData;
+    self.checkOutModal.shippingAddressModal = [addressModalData copy];
     self.selectedAddressModalData = addressModalData;
     [self.shippingAddressTableView reloadData];
 }
@@ -125,7 +126,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         if(self.shippingAsBillingBtn.selected) {
             
             GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
-            self.checkOutModal.billingAddressModal = self.selectedAddressModalData;
+            self.checkOutModal.billingAddressModal = [self.selectedAddressModalData copy];
             deliveryDetailVC.checkOutModal = self.checkOutModal;
             deliveryDetailVC.timeSlotBaseModal = self.timeSlotBaseModal;
             [self.navigationController pushViewController:deliveryDetailVC animated:YES];
@@ -173,6 +174,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     else {
         self.shippingAsBillingBtn.selected = TRUE;
     }
+    self.checkOutModal.billingAddressModal = nil;
 }
 
 #pragma mark - TableView DataSource and Delegate Methods
@@ -195,6 +197,10 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddressModalData *addressModalData = [self.addressArray objectAtIndex:indexPath.row];
     [addressCell configerViewWithData:addressModalData];
+    if(addressModalData.isShippingSelected)
+        addressCell.selectUnSelectBtn.selected = YES;
+    else
+        addressCell.selectUnSelectBtn.selected = NO;
     [addressCell.selectUnSelectBtn addTarget:self action:@selector(selectUnselectBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [addressCell.editAddressBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     return addressCell;

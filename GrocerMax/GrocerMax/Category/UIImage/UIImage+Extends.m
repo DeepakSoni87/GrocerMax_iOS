@@ -8,6 +8,7 @@
 
 #import "UIImage+Extends.h"
 
+static NSString * const kPlaceHolderImage                = @"";
 static NSString * const kValidInputImage                 = @"check";
 static NSString * const kInValidInputImage               = @"error";
 static NSString * const kForwardArrowImage               = @"forward_caret";
@@ -19,6 +20,11 @@ static NSString * const kmenuBtnImage                    = @"menuBtn";
 @implementation UIImage (Extends)
 
 #pragma mark - RegistrationVC Image
+
++ (UIImage *)placeHolderImage {
+    
+    return [[UIImage imageNamed:kPlaceHolderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
 
 + (UIImage *)validInputFieldImage {
     
