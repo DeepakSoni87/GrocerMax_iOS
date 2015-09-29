@@ -18,6 +18,14 @@
 
 #pragma mark - Login Req Param
 
+/**
+ * Function for Fb Register New User ( facebook and gmail)
+ * @param GET Var uemail, password, fname, lname, number
+ * @output JSON string
+ */
+
++ (NSMutableDictionary *)getUserFBLoginRequestParamsWith:(NSDictionary*)parameterDic;
+
 - (NSMutableDictionary *)getUserLoginRequestParamsWith:(NSString *)userName password:(NSString *)password;
 
 /**

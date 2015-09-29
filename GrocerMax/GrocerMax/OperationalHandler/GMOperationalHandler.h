@@ -28,7 +28,7 @@
 
 #pragma mark - Login
 
-- (void)login:(NSDictionary *)param withSuccessBlock:(void(^)(GMUserModal *userModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)fgLoginRequestParamsWith:(NSDictionary *)param withSuccessBlock:(void(^)(id data))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 
 - (void)fetchCategoriesFromServerWithSuccessBlock:(void(^)(GMCategoryModal *rootCategoryModal))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
@@ -37,7 +37,7 @@
  * Function for Check User Login
  * @param
  **/
-- (void)userLogin:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)login:(NSDictionary *)param withSuccessBlock:(void (^)(GMUserModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock ;
 
 /**
  * Function for Create New User

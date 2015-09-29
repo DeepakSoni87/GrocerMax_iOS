@@ -10,6 +10,8 @@
 
 @interface UIImage (Extends)
 
++ (UIImage *)placeHolderImage;
+
 + (UIImage *)validInputFieldImage;
 
 + (UIImage *)inValidInputFieldImage;

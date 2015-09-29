@@ -13,6 +13,7 @@
 #import "GMRegisterVC.h"
 #import "GMForgotVC.h"
 #import "GMProfileVC.h"
+#import "GMProvideMobileInfoVC.h"
 
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
@@ -65,10 +66,29 @@
                 
                 if ([FBSDKAccessToken currentAccessToken])
                 {
-                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+                    
+                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                          if (!error) {
                              NSLog(@"fetched user:%@", result);
+                             
+                             NSDictionary *resultDic = result;
+
+                             if(resultDic != nil) {
+                                 if ([result objectForKey:@"email"]) {
+                                     
+                                     GMUserModal *userModal = [GMUserModal new];
+                                     [userModal setEmail:[result objectForKey:@"email"]];
+                                     [userModal setFirstName:[result objectForKey:@"first_name"]];
+                                     [userModal setLastName:[result objectForKey:@"last_name"]];
+                                     [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
+
+                                     GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                                     vc.userModal = userModal;
+                                     [self.navigationController pushViewController:vc animated:YES];
+                                 }
+                             }
+                             
                          }
                      }];
                 }

@@ -63,6 +63,28 @@ static GMOperationalHandler *sharedHandler;
 
 //http://dev.grocermax.com/webservice/new_services/login?uemail=kundan@sakshay.in&password=sakshay
 
+- (void)fgLoginRequestParamsWith:(NSDictionary *)param withSuccessBlock:(void(^)(id data))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator fbregisterPath]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:[GMRequestParams getUserFBLoginRequestParamsWith:param] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *mtlError = nil;
+        
+//        GMUserModal *userModal = [MTLJSONAdapter modelOfClass:[GMUserModal class] fromJSONDictionary:responseObject error:&mtlError];
+//        
+//        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+//        else            { if (successBlock) successBlock(userModal); }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
 - (void)login:(NSDictionary *)param withSuccessBlock:(void (^)(GMUserModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator userLoginPath]];

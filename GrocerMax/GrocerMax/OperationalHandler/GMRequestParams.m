@@ -28,6 +28,19 @@ static GMRequestParams *sharedClass;
 
 #pragma mark -Create Customer
 
++ (NSMutableDictionary *)getUserFBLoginRequestParamsWith:(NSDictionary*)parameterDic{
+    
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
+
+    [paramDict setObject:parameterDic[kEY_uemail] forKey:kEY_uemail];
+    [paramDict setObject:parameterDic[kEY_quote_id] forKey:kEY_quote_id];
+    [paramDict setObject:parameterDic[kEY_fname] forKey:kEY_fname];
+    [paramDict setObject:parameterDic[kEY_lname] forKey:kEY_lname];
+    [paramDict setObject:parameterDic[kEY_number] forKey:kEY_number];
+
+    return paramDict;
+}
+
 - (NSMutableDictionary *)getUserLoginRequestParamsWith:(NSString *)userName password:(NSString *)password{
     
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
