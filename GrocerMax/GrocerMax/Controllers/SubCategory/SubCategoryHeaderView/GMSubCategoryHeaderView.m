@@ -19,7 +19,7 @@
 */
 
 
--(void)configerViewWithData:(id)modal {
+- (void)configerViewWithData:(id)modal {
     
     
     self.cellBgView.layer.borderColor = [UIColor colorFromHexString:@"BEBEBE"].CGColor;
@@ -29,27 +29,20 @@
     [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     
     GMCategoryModal *subCategoryModal = (GMCategoryModal *)modal;
-    
-    if(subCategoryModal.isExpand)
-    {
+    [self.subcategoryImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"sub-%@", subCategoryModal.categoryId]]];
+    if(subCategoryModal.isExpand) {
+        
         self.stripView.layer.borderColor = [UIColor blackColor].CGColor;
         self.stripView.layer.borderWidth = 0.40;
         self.stripView.hidden = FALSE;
     }
     else
-    {
         self.stripView.hidden = TRUE;
-    }
     
     if(NSSTRING_HAS_DATA(subCategoryModal.categoryName))
-    {
         self.titleLbl.text = subCategoryModal.categoryName;
-    }
     else
-    {
         self.titleLbl.text = @"";
-    }
-    
 }
 
 @end

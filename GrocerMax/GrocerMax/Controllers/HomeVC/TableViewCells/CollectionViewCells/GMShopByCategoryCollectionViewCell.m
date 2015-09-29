@@ -29,9 +29,10 @@
 
 #pragma mark - Configure Cell
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
+- (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
     
     GMCategoryModal *mdl = data;
+    [self.bgImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"cat-%@", mdl.categoryId]]];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
 

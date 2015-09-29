@@ -392,14 +392,8 @@ static GMOperationalHandler *sharedHandler;
             
             GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
             
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);}
             else            { if (successBlock) successBlock(addressModal);}
-                
-
-            
-            
-            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -407,8 +401,6 @@ static GMOperationalHandler *sharedHandler;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
-    
-    
 }
 
 

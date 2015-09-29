@@ -265,7 +265,7 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
-        [APP_DELEGATE setTopVCOnCenterOfDrawerController:rootVC];
+        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         
     } failureBlock:^(NSError *error) {
         

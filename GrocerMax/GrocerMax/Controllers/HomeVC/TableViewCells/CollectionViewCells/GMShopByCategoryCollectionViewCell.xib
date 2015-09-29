@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,11 +12,12 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="215" height="130"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="STAPLES" translatesAutoresizingMaskIntoConstraints="NO" id="P0Z-PJ-7dj">
-                        <rect key="frame" x="10" y="0.0" width="195" height="106"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P0Z-PJ-7dj">
+                        <rect key="frame" x="15" y="0.0" width="185" height="105"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tou-iS-mkt">
-                        <rect key="frame" x="10" y="106" width="195" height="23"/>
+                        <rect key="frame" x="15" y="106" width="185" height="23"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="xS3-aa-MyU"/>
                         </constraints>
@@ -26,7 +27,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUD-lZ-U9u">
-                        <rect key="frame" x="15" y="65" width="185" height="36"/>
+                        <rect key="frame" x="20" y="65" width="175" height="36"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="ckg-Zf-nTC"/>
@@ -41,15 +42,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="P0Z-PJ-7dj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BsP-eL-L8b"/>
-                <constraint firstItem="Tou-iS-mkt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="JpL-gb-gp8"/>
+                <constraint firstItem="Tou-iS-mkt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="JpL-gb-gp8"/>
                 <constraint firstItem="Tou-iS-mkt" firstAttribute="top" secondItem="aUD-lZ-U9u" secondAttribute="bottom" constant="5" id="OHG-8E-VZn"/>
-                <constraint firstItem="aUD-lZ-U9u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="QXY-Mj-7mG"/>
-                <constraint firstItem="P0Z-PJ-7dj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="UgW-WI-SdU"/>
+                <constraint firstItem="aUD-lZ-U9u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="QXY-Mj-7mG"/>
+                <constraint firstItem="P0Z-PJ-7dj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="UgW-WI-SdU"/>
                 <constraint firstAttribute="bottom" secondItem="Tou-iS-mkt" secondAttribute="bottom" constant="1" id="YpO-Hu-4kr"/>
-                <constraint firstAttribute="trailing" secondItem="P0Z-PJ-7dj" secondAttribute="trailing" constant="10" id="dVl-V5-0eV"/>
-                <constraint firstAttribute="trailing" secondItem="aUD-lZ-U9u" secondAttribute="trailing" constant="15" id="nyQ-K1-TT3"/>
-                <constraint firstAttribute="bottom" secondItem="P0Z-PJ-7dj" secondAttribute="bottom" constant="24" id="sJ3-O7-AsW"/>
-                <constraint firstAttribute="trailing" secondItem="Tou-iS-mkt" secondAttribute="trailing" constant="10" id="tq7-hW-ZYY"/>
+                <constraint firstAttribute="trailing" secondItem="P0Z-PJ-7dj" secondAttribute="trailing" constant="15" id="dVl-V5-0eV"/>
+                <constraint firstAttribute="trailing" secondItem="aUD-lZ-U9u" secondAttribute="trailing" constant="20" id="nyQ-K1-TT3"/>
+                <constraint firstAttribute="bottom" secondItem="P0Z-PJ-7dj" secondAttribute="bottom" constant="25" id="sJ3-O7-AsW"/>
+                <constraint firstAttribute="trailing" secondItem="Tou-iS-mkt" secondAttribute="trailing" constant="15" id="tq7-hW-ZYY"/>
             </constraints>
             <size key="customSize" width="209" height="130"/>
             <connections>
@@ -60,7 +61,4 @@
             <point key="canvasLocation" x="-17.5" y="213"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="STAPLES" width="576" height="576"/>
-    </resources>
 </document>

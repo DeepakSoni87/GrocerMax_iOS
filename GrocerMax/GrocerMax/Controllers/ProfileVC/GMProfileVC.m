@@ -68,7 +68,9 @@ static NSString * const kEditProfileCell                    =  @"Edit My Informa
 static NSString * const kInviteFriendsCell                  =  @"Invite Friends";
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
-static NSString * const kChangePasswordCell                      =  @"Change Password";
+static NSString * const kChangePasswordCell                 =  @"Change Password";
+
+static NSString * const customerCareNumber = @"8010500700";
 
 @implementation GMProfileVC
 
@@ -188,14 +190,13 @@ static CGFloat const kProfileCellHeight = 44.0f;
         [self.navigationController pushViewController:biilingVC animated:YES];
     }
     else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
-        
-        GMAddShippingAddressVC *biilingVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
-        [self.navigationController pushViewController:biilingVC animated:YES];
+        [self call];
     }
     else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
         
     }
-    else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]){
+    else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]) {
+        
         GMChangePasswordVC *changePasswordVC  = [GMChangePasswordVC new];
         [self.navigationController pushViewController:changePasswordVC animated:YES];
     }
@@ -223,6 +224,18 @@ static CGFloat const kProfileCellHeight = 44.0f;
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+- (void)call {
+    
+    NSString *callString = [NSString stringWithFormat:@"tel:%@", customerCareNumber];
+    NSURL *phoneURL = [NSURL URLWithString:callString];
+    static UIWebView *webView = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        webView = [UIWebView new];
+    });
+    [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
 }
 
 @end
