@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
+@property (weak, nonatomic) IBOutlet UIButton *defaultShippingAddress;
 @property (nonatomic, strong) NSMutableArray *cellArray;
 
 @property (nonatomic, strong) NSMutableArray *localityArray;
@@ -31,6 +32,8 @@
 @property (nonatomic, strong) PBPickerVC* valuePickerVC;
 
 @property (nonatomic, assign) BOOL isDefaultShippingAddress;
+
+@property (nonatomic, assign) BOOL isDefaultBillingAddress;
 
 @end
 
@@ -50,7 +53,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
-    
+    [self configureDefaultShippinOptions];
     [self fetchLocalitiesFromServer];
 }
 
@@ -63,6 +66,22 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Shipping Address";
+}
+
+- (void)configureDefaultShippinOptions {
+    
+    if(self.isComeFromShipping) {
+        
+        self.isDefaultShippingAddress = YES;
+        [self.defaultShippingAddress setSelected:YES];
+        [self.defaultShippingAddress setEnabled:NO];
+    }
+    else {
+        
+        self.isDefaultShippingAddress = NO;
+        [self.defaultShippingAddress setSelected:NO];
+        [self.defaultShippingAddress setEnabled:YES];
+    }
 }
 
 - (void)registerCellsForTableView {
@@ -529,6 +548,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     if([self performValidations]) {
         
         [self.addressModal setIs_default_shipping:[NSNumber numberWithBool:self.isDefaultShippingAddress]];
+        [self.addressModal setIs_default_billing:[NSNumber numberWithBool:self.isDefaultBillingAddress]];
         GMRequestParams *requestParam = [GMRequestParams sharedClass];
         NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:self.editAddressModal ? NO : YES];
         [self showProgress];
@@ -571,9 +591,10 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     self.isDefaultShippingAddress = !self.isDefaultShippingAddress;
 }
 
-- (IBAction)defaultBillingAddressButtonTapped:(id)sender {
+- (IBAction)defaultBillingAddressButtonTapped:(UIButton *)sender {
     
-    
+    sender.selected = !sender.selected;
+    self.isDefaultBillingAddress = !self.isDefaultBillingAddress;
 }
 
 @end
