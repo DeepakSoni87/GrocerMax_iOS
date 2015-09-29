@@ -65,6 +65,17 @@
 #define kEY_number                         @"number"
 #define kEY_otp                            @"otp"
 
+// Key : fbRegister
+
+#define kEY_QuoteId                         @"QuoteId"
+#define kEY_Result                          @"Result"
+#define kEY_TotalItem                       @"TotalItem"
+#define kEY_UserID                          @"UserID"
+#define kEY_flag                            @"flag"
+
+
+
+
 //key : userdetail
 
 #define kEY_userid                         @"userid"

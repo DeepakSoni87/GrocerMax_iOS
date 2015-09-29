@@ -23,4 +23,8 @@
 -(void)showSearchIconOnRightNavBarWithNavTitle:(NSString*)titleStr;
 -(void)showSearchIconOnRightNavBarWithNavImage:(UIImage*)navImage;
 
+#pragma mark - Set 2nd tab as profile VC
+
+- (void)setSecondTabAsProfile;
+    
 @end
