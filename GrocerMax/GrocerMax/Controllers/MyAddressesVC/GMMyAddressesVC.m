@@ -97,6 +97,10 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
         
         [self removeProgress];
         self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
+        
+        for (GMAddressModalData *addressModal in self.addressArray) {
+            [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+        }
         if(!self.addressArray.count) {
             
 //            [self addNewAddressButtonTapped:nil];

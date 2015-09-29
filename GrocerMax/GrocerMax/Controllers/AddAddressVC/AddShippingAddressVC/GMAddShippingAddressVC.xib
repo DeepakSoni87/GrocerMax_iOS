@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMAddShippingAddressVC">
             <connections>
+                <outlet property="defaultShippingAddress" destination="pwc-Ui-K3z" id="4EG-HI-B19"/>
                 <outlet property="footerView" destination="DhC-pU-Jrr" id="jUs-0a-Fc1"/>
                 <outlet property="shippingAddressTableView" destination="gfA-d3-IUI" id="9c5-8M-aLH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -66,8 +67,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3o-2k-18y" userLabel="Inner View">
                             <rect key="frame" x="13" y="0.0" width="294" height="90"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-Ui-K3z">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-Ui-K3z">
                                     <rect key="frame" x="0.0" y="7" width="35" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="35" id="G9V-j5-ib9"/>
+                                        <constraint firstAttribute="width" constant="35" id="jGq-we-B8C"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="checkBox">
@@ -79,20 +84,30 @@
                                         <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="Zji-Ba-9je"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
                                     <rect key="frame" x="40" y="12" width="254" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="26" id="Pgr-ut-lIA"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make it my default billing address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-jZ-zRs">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make it my default billing address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-jZ-zRs">
                                     <rect key="frame" x="40" y="55" width="254" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="26" id="41d-s6-MrX"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwF-8Y-Xo7">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwF-8Y-Xo7">
                                     <rect key="frame" x="0.0" y="50" width="35" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="35" id="Rv8-eF-sPB"/>
+                                        <constraint firstAttribute="width" constant="35" id="jyy-8F-oec"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="checkBox">
@@ -107,6 +122,18 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="pwc-Ui-K3z" firstAttribute="leading" secondItem="X3o-2k-18y" secondAttribute="leading" id="6sw-A8-9QK"/>
+                                <constraint firstItem="VLf-44-3ij" firstAttribute="top" secondItem="X3o-2k-18y" secondAttribute="top" constant="12" id="A7Q-zm-vlm"/>
+                                <constraint firstItem="wdq-jZ-zRs" firstAttribute="leading" secondItem="gwF-8Y-Xo7" secondAttribute="trailing" constant="5" id="Caa-kY-C2V"/>
+                                <constraint firstItem="gwF-8Y-Xo7" firstAttribute="leading" secondItem="X3o-2k-18y" secondAttribute="leading" id="Fkx-hJ-bcT"/>
+                                <constraint firstAttribute="trailing" secondItem="VLf-44-3ij" secondAttribute="trailing" id="LT1-AF-ROD"/>
+                                <constraint firstItem="pwc-Ui-K3z" firstAttribute="top" secondItem="X3o-2k-18y" secondAttribute="top" constant="7" id="Ole-me-iOP"/>
+                                <constraint firstItem="wdq-jZ-zRs" firstAttribute="top" secondItem="VLf-44-3ij" secondAttribute="bottom" constant="17" id="PAz-LS-eON"/>
+                                <constraint firstAttribute="trailing" secondItem="wdq-jZ-zRs" secondAttribute="trailing" id="QhA-4K-Z1F"/>
+                                <constraint firstItem="gwF-8Y-Xo7" firstAttribute="top" secondItem="pwc-Ui-K3z" secondAttribute="bottom" constant="8" id="QjC-m4-ts5"/>
+                                <constraint firstItem="VLf-44-3ij" firstAttribute="leading" secondItem="pwc-Ui-K3z" secondAttribute="trailing" constant="5" id="bxi-DJ-jh9"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -13,6 +13,8 @@
 #import "GMLeftMenuDetailVC.h"
 #import "GMOtpVC.h"
 #import "GMHotDealBaseModal.h"
+#import "GMRootPageViewController.h"
+#import "GMDealCategoryBaseModal.h"
 
 #pragma mark - Interface/Implementation SectionModal
 
@@ -202,9 +204,15 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         leftMenuDetailVC.subCategoryModal = categoryModal;
         [self.navigationController pushViewController:leftMenuDetailVC animated:YES];
     }
+    else if ([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection]) {
+        
+        GMHotDealModal *hotDealModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
+        [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
     for (GMLeftMenuCell *cell in self.leftMenuTableView.visibleCells) {
         
         CGFloat hiddenFrameHeight = scrollView.contentOffset.y + [GMLeftMenuCell cellHeight] - cell.frame.origin.y;
@@ -241,5 +249,37 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
+#pragma nark - Fetching Hot Deals Methods
+
+- (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+        
+        [self removeProgress];
+        NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
+        if (dealCategoryArray.count == 0) {
+            return ;
+        }
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = dealCategoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
+        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
+}
+
+- (NSMutableArray *)createCategoryDealsArrayWith:(GMDealCategoryBaseModal *)dealCategoryBaseModal {
+    
+    NSMutableArray *dealCategoryArray = [NSMutableArray arrayWithArray:dealCategoryBaseModal.dealCategories];
+    GMDealCategoryModal *allModal = [[GMDealCategoryModal alloc] initWithCategoryId:@"" images:@"" categoryName:@"All" isActive:@"1" andDeals:dealCategoryBaseModal.allDealCategory];
+    [dealCategoryArray insertObject:allModal atIndex:0];
+    return dealCategoryArray;
+}
 
 @end

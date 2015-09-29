@@ -16,6 +16,7 @@ static NSString const *baseUrl = @"http://staging.grocermax.com/webservice/new_s
 //static NSString const *baseUrl = @"http://dev.grocermax.com/webservice/new_services/"; 
 
 
+static NSString const *fbregisterMethodName = @"fbregister";
 static NSString const *loginMethodName = @"login";
 static NSString const *createuserMethodName = @"createuser";
 static NSString const *userDetailMethodName = @"userdetail";
@@ -60,6 +61,10 @@ static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
 
 @implementation GMApiPathGenerator
 
++ (NSString *)fbregisterPath{
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, fbregisterMethodName];
+}
 
 + (NSString *)userLoginPath{
     

@@ -24,6 +24,8 @@
 
 - (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC;
 
+- (void)setTopVCOnHotDealsController:(UIViewController*)topVC;
+
 - (void)popToCenterViewController;
 @end
 

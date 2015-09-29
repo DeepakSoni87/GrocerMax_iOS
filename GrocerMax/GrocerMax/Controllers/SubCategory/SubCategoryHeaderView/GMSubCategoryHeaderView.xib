@@ -14,7 +14,7 @@
                     <rect key="frame" x="5" y="5" width="310" height="105"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subCategory" translatesAutoresizingMaskIntoConstraints="NO" id="Dtk-hF-iMn">
-                            <rect key="frame" x="2" y="2" width="306" height="101"/>
+                            <rect key="frame" x="5" y="2" width="300" height="101"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oil &amp; Ghee" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXv-UF-ElM">
                             <rect key="frame" x="22" y="32" width="121" height="38"/>
@@ -51,12 +51,12 @@
                         <constraint firstItem="Dtk-hF-iMn" firstAttribute="top" secondItem="9d4-3y-amU" secondAttribute="top" constant="2" id="L1g-4n-bpK"/>
                         <constraint firstAttribute="bottom" secondItem="Dtk-hF-iMn" secondAttribute="bottom" constant="2" id="NqN-KV-I1B"/>
                         <constraint firstAttribute="trailing" secondItem="4W9-v6-G0R" secondAttribute="trailing" constant="2" id="NwK-4G-lSV"/>
-                        <constraint firstAttribute="trailing" secondItem="Dtk-hF-iMn" secondAttribute="trailing" constant="2" id="cIZ-zx-YBl"/>
+                        <constraint firstAttribute="trailing" secondItem="Dtk-hF-iMn" secondAttribute="trailing" constant="5" id="cIZ-zx-YBl"/>
                         <constraint firstItem="MXv-UF-ElM" firstAttribute="top" secondItem="9d4-3y-amU" secondAttribute="top" constant="32" id="fIA-0p-ZKh"/>
                         <constraint firstItem="4W9-v6-G0R" firstAttribute="leading" secondItem="9d4-3y-amU" secondAttribute="leading" constant="2" id="fX9-e0-GQS"/>
                         <constraint firstAttribute="trailing" secondItem="MXv-UF-ElM" secondAttribute="trailing" constant="167" id="lJH-KW-flT"/>
                         <constraint firstItem="MXv-UF-ElM" firstAttribute="leading" secondItem="9d4-3y-amU" secondAttribute="leading" constant="22" id="pwx-LA-TAx"/>
-                        <constraint firstItem="Dtk-hF-iMn" firstAttribute="leading" secondItem="9d4-3y-amU" secondAttribute="leading" constant="2" id="rGP-Ji-Igg"/>
+                        <constraint firstItem="Dtk-hF-iMn" firstAttribute="leading" secondItem="9d4-3y-amU" secondAttribute="leading" constant="5" id="rGP-Ji-Igg"/>
                         <constraint firstAttribute="bottom" secondItem="4W9-v6-G0R" secondAttribute="bottom" constant="2" id="vN0-dk-Zcp"/>
                     </constraints>
                 </view>
