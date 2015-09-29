@@ -63,5 +63,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>key</key>
+	<string>0MQaQP</string>
+	<key>var1</key>
+	<string>default</string>
+	<key>command</key>
+	<string>payment_related_details_for_mobile_sdk</string>
 </dict>
 </plist>

@@ -45,6 +45,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [super viewWillAppear:animated];
     if(isHitOnServer)
         [self getBillingAddress];
+    self.title = @"Billing Address";
 }
 
 - (void)registerCellsForTableView {
@@ -64,17 +65,17 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddressModalData *addressModalData = sender.addressModal;
     
-    self.selectedAddressModalData.isSelected = FALSE;
+    self.selectedAddressModalData.isBillingSelected = FALSE;
     
     self.selectedAddressModalData = addressModalData;
     
-    if(addressModalData.isSelected) {
+    if(addressModalData.isBillingSelected) {
         sender.selected = FALSE;
-        addressModalData.isSelected = FALSE;
+        addressModalData.isBillingSelected = FALSE;
     }
     else {
         sender.selected = TRUE;
-        addressModalData.isSelected = TRUE;
+        addressModalData.isBillingSelected = TRUE;
     }
     self.checkOutModal.billingAddressModal = addressModalData;
     [self.billingAddressTableView reloadData];
@@ -138,6 +139,10 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     GMAddressCell *addressCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierBillingAddressCell];
     GMAddressModalData *addressModalData = [self.billingAddressArray objectAtIndex:indexPath.row];
     [addressCell configerViewWithData:addressModalData];
+    if(addressModalData.isBillingSelected)
+        addressCell.selectUnSelectBtn.selected = YES;
+    else
+        addressCell.selectUnSelectBtn.selected = NO;
     [addressCell.selectUnSelectBtn addTarget:self action:@selector(selectUnselectBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [addressCell.editAddressBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     return addressCell;
