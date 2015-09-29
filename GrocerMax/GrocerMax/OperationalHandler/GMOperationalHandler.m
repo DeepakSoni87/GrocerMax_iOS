@@ -31,6 +31,8 @@
 #import "GMOrderDeatilBaseModal.h"
 #import "GMCartDetailModal.h"
 #import "GMSearchResultModal.h"
+#import "GMGenralModal.h"
+#import "GMCoupanCartDetail.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -842,7 +844,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)checkout:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)checkout:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator checkoutPath]];
     
@@ -858,7 +860,11 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                 NSError *mtlError = nil;
+                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(genralModal); }
             }
         }else {
             
@@ -872,7 +878,7 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)addCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)addCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(GMCoupanCartDetail *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addCouponPath]];
     
@@ -888,7 +894,11 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                if(responseObject[@"flag"] && [responseObject[@"flag"] intValue] == 1) {
+                GMCoupanCartDetail *coupanCartDetail = [[GMCoupanCartDetail alloc] initWithCartDetailDictionary:responseObject];
+                    if(successBlock) successBlock(coupanCartDetail);            } else {
+                        if(failureBlock) failureBlock(nil);
+                    }
             }
         }else {
             
@@ -932,9 +942,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)success:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)success:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal* responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator successPath],[GMRequestParams paymentSuccessOrfailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator successPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -946,9 +956,15 @@ static GMOperationalHandler *sharedHandler;
             NSLog(@"URL = %@",operation.request.URL.absoluteString);
             NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
             
+            
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSError *mtlError = nil;
+                
+                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(genralModal); }
             }
         }else {
             
@@ -962,9 +978,9 @@ static GMOperationalHandler *sharedHandler;
 }
 
 
-- (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+- (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator failPath],[GMRequestParams paymentSuccessOrfailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator failPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -978,7 +994,12 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                if(successBlock) successBlock(responseObject);
+                NSError *mtlError = nil;
+                
+                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(genralModal); }
             }
         }else {
             
