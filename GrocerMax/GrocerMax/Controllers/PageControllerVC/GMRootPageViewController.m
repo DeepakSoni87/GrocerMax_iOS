@@ -33,7 +33,8 @@ CGFloat btnHeight = 40.0; //same as scrollview
     self.modelController.modelPageData = self.pageData;
     self.modelController.rootControllerType = self.rootControllerType;
     self.modelController.rootPageViewController = self;
-    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
+//    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
+    self.title = self.navigationTitleString;
     
     self.cartModal = [GMCartModal loadCart];
     if(!self.cartModal)
