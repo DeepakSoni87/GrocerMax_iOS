@@ -254,7 +254,7 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
 - (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
     
     [self showProgress];
-    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self removeProgress];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
@@ -264,6 +264,7 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
+        rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
         [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         

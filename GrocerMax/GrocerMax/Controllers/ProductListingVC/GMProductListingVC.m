@@ -145,7 +145,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
             break;
         case GMProductListingFromTypeOffer_OR_Deal:
         {
-            [self showProgress];
+//            [self showProgress];
             [self.rootPageAPIController fetchDealProductListingDataForOffersORDeals:self.productRequestID];
         }
             break;

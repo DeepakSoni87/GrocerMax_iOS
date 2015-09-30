@@ -27,7 +27,7 @@
 #import "UIViewController+GMProgressIndicator.h"
 #import "UIColor+Additions.h"
 #import "UIImage+Extends.h"
-#import "UIImageView+AFNetworking.h"
+#import <UIImageView+AFNetworking.h>
 
 #import "GMEnums.h"
 #import "XHDrawerController.h"
