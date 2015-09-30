@@ -20,7 +20,8 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
     return @{@"dealCategories"   : @"category",
-             @"allDealCategory"  : @"all"
+             @"allDealCategory"  : @"all",
+             @"dealNameArray"    : @"name"
              };
 }
 
@@ -96,9 +97,14 @@
     
     return @{@"dealId"          : @"id",
              @"categoryId"      : @"category_id",
-             @"dealName"        : @"dealName",
-             @"img"             : @"img"
+             @"dealName"        : @"name",
+             @"img"             : @"image"
              };
+//    return @{@"dealId"          : @"promo_id",
+//             @"categoryId"      : @"category_id",
+//             @"dealName"        : @"title",
+//             @"img"             : @"deal_image"
+//             };
 }
 
 @end

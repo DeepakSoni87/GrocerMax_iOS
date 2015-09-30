@@ -69,7 +69,10 @@
     double totalPrice = self.productModal.sale_price.doubleValue * self.productModal.productQuantity.integerValue;
     [self.priceLbl setText:[NSString stringWithFormat:@"₹%.2f", totalPrice]];
     
-    if(self.productModal.Price.integerValue == 0) {
+    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
+    [self.priceWithOfferLbl setText:priceQuantityStr];
+    
+    if(self.productModal.sale_price.integerValue == 0) {
         
         [self.addSubstractView setHidden:YES];
         [self.deleteButton setHidden:YES];

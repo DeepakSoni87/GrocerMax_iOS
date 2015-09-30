@@ -166,5 +166,6 @@
 #define kEY_offercount                     @"offercount"
 
 
-
+#define kEY_device                           @"device"
+#define kEY_iOS                              @"ios"
 

@@ -13,6 +13,8 @@
 @property (nonatomic, readonly, strong) NSArray *dealCategories;
 
 @property (nonatomic, readonly, strong) NSArray *allDealCategory;
+
+@property (nonatomic, readonly, strong) NSArray *dealNameArray;
 @end
 
 @interface GMDealCategoryModal : MTLModel <MTLJSONSerializing>

@@ -449,7 +449,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     }
     // Specify that it will be a POST request
     theRequest.HTTPMethod = @"POST";
-    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"email@testsdk1.com",@"2",@"Ram",self.txnID,@"ra:ra",@"Nokia",@"1111111111"];
+    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"deepaksoni01@gmail.com",@"2",@"Ram",self.txnID,@"yPnUG6:test",@"GrocerMax Product Info",@"8585990093"];
     NSLog(@"-->>Hash generation Post Param = %@",postData);
     //set request content type we MUST set this value.
     [theRequest setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];

@@ -20,7 +20,7 @@
     NSString *messageString;
 }
 
-@property (strong, nonatomic) UINavigationController *loginNavigationController;
+@property (strong, nonatomic) GMNavigationController *loginNavigationController;
 
 @property (weak, nonatomic) IBOutlet UITableView *cartDetailTableView;
 
@@ -101,6 +101,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             self.cartModal = nil;
             self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
             [self.cartModal archiveCart];
+            [self.tabBarController updateBadgeValueOnCartTab];
             [self.totalView setHidden:NO];
             [self.placeOrderButton setHidden:NO];
             [self.updateOrderButton setHidden:YES];
@@ -268,7 +269,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             loginVC.isPresent = YES;
             
             // Do any additional setup after loading the view from its nib.
-            self.loginNavigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            self.loginNavigationController = [[GMNavigationController alloc]initWithRootViewController:loginVC];
             //    [self presentViewController:loginVC animated:YES completion:nil];// addSubview:self.loginNavigationController]
             
             self.loginNavigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -308,6 +309,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 self.cartDetailModal = cartDetailModal;
                 self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
                 [self.cartModal archiveCart];
+                [self.tabBarController updateBadgeValueOnCartTab];
                 [self.totalView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
