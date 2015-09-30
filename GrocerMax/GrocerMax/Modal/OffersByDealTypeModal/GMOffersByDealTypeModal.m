@@ -52,5 +52,15 @@
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMDealModal class]];
 }
 
-
+- (instancetype)initWithDealType:(NSString *)dealType dealId:(NSString *)dealId dealImageUrl:(NSString *)imageUrl andDealsArray:(NSArray *)dealsArray {
+    
+    if(self = [super init]) {
+        
+        _dealType = dealType;
+        _ID = dealId;
+        _img = imageUrl;
+        _dealsArray = dealsArray;
+    }
+    return self;
+}
 @end

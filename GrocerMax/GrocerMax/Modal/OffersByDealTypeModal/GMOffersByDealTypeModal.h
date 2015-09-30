@@ -23,4 +23,8 @@
 @property (strong, nonatomic) NSString *img;
 @property (nonatomic, strong) NSArray *dealsArray;
 
+- (instancetype)initWithDealType:(NSString *)dealType
+                          dealId:(NSString *)dealId
+                    dealImageUrl:(NSString *)imageUrl
+                   andDealsArray:(NSArray *)dealsArray;
 @end
