@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMProductDescriptionVC">
             <connections>
                 <outlet property="addBtn" destination="B99-Dh-fsW" id="ts8-zQ-oDx"/>
+                <outlet property="cartView" destination="qH6-jl-jQj" id="CyR-Mq-VzY"/>
+                <outlet property="itemsInCartLabel" destination="JKY-Wo-s9P" id="C1T-ZO-8eT"/>
                 <outlet property="producDescriptionLbl" destination="wis-bU-t19" id="iWE-of-voh"/>
                 <outlet property="producInfo" destination="o4u-2a-Deb" id="T52-cO-mej"/>
                 <outlet property="productCostLbl" destination="H79-T8-8Pt" id="XP1-C5-Myn"/>
@@ -31,6 +33,31 @@
                                 <constraint firstAttribute="width" secondItem="W6P-5e-t9M" secondAttribute="height" multiplier="320:209" id="bVT-4Z-C9P"/>
                             </constraints>
                         </imageView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qH6-jl-jQj" userLabel="Cart View">
+                            <rect key="frame" x="280" y="20" width="30" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKY-Wo-s9P">
+                                    <rect key="frame" x="8" y="0.0" width="20" height="20"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="9"/>
+                                    <color key="textColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuH-rw-VY2">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="product_cart">
+                                        <color key="titleColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="mhP-au-aC6"/>
+                                <constraint firstAttribute="height" constant="30" id="qxm-NV-vVy"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-2a-Deb">
                             <rect key="frame" x="15" y="229" width="290" height="45"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -90,7 +117,7 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B99-Dh-fsW">
                             <rect key="frame" x="255" y="314" width="50" height="32"/>
-                            <color key="backgroundColor" red="0.086274509799999996" green="0.38823529410000002" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="3fM-bl-YHg"/>
                                 <constraint firstAttribute="height" constant="32" id="8Tu-sc-I4G"/>
@@ -141,6 +168,8 @@
                         <constraint firstItem="WD2-Mw-qSS" firstAttribute="top" secondItem="H79-T8-8Pt" secondAttribute="bottom" constant="10" id="2XL-2O-ypA"/>
                         <constraint firstItem="Kjt-rX-0aQ" firstAttribute="top" secondItem="PrB-Sq-pd8" secondAttribute="bottom" constant="5" id="2zg-pz-ddc"/>
                         <constraint firstItem="W6P-5e-t9M" firstAttribute="width" secondItem="Fgy-0D-OM2" secondAttribute="width" id="3T2-G9-5iB"/>
+                        <constraint firstItem="qH6-jl-jQj" firstAttribute="top" secondItem="Fgy-0D-OM2" secondAttribute="top" constant="20" id="3cv-kt-nBg"/>
+                        <constraint firstAttribute="trailing" secondItem="qH6-jl-jQj" secondAttribute="trailing" constant="10" id="6dr-Lo-Z9i"/>
                         <constraint firstItem="W6P-5e-t9M" firstAttribute="top" secondItem="Fgy-0D-OM2" secondAttribute="top" constant="10" id="Ale-30-Vhr"/>
                         <constraint firstItem="YR1-xA-Zqm" firstAttribute="leading" secondItem="Fgy-0D-OM2" secondAttribute="leading" constant="15" id="EUj-2g-689"/>
                         <constraint firstItem="YR1-xA-Zqm" firstAttribute="top" secondItem="Kjt-rX-0aQ" secondAttribute="bottom" constant="5" id="FTv-Tk-U7Y"/>
@@ -192,5 +221,6 @@
     </objects>
     <resources>
         <image name="add-subtract" width="100" height="32"/>
+        <image name="product_cart" width="16" height="11"/>
     </resources>
 </document>
