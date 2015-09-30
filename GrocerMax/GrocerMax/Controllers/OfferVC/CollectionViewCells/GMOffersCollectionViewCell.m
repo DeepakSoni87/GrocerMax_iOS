@@ -30,7 +30,7 @@
     self.itemImgView.layer.borderWidth = 3.0;
 }
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
+- (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
     
     NSString *titleName = @"";
     
@@ -38,8 +38,8 @@
             
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-            GMOffersByDealTypeModal *mdl = data;
-            titleName = mdl.dealType;
+            GMDealModal *mdl = data;
+            titleName = mdl.dealName;
         }
             break;
             

@@ -359,6 +359,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:catID forKey:kEY_cat_id];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
 
     [self showProgress];
     [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
@@ -387,7 +388,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 - (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
     
     [self showProgress];
-    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self removeProgress];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];

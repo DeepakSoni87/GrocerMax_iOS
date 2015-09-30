@@ -7,6 +7,7 @@
 //
 
 #import "GMOffersByDealTypeModal.h"
+#import "GMDealCategoryBaseModal.h"
 
 @implementation GMOffersByDealTypeBaseModal
 
@@ -25,7 +26,7 @@
 
 + (NSValueTransformer *)allArrayJSONTransformer {
     
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMOffersByDealTypeModal class]];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMDealModal class]];
 }
 
 + (NSValueTransformer *)deal_categoryArrayJSONTransformer {
@@ -41,8 +42,14 @@
     
     return @{@"dealType"                  : @"dealType",
              @"ID"                        : @"id",
-             @"img"                       : @"img"
+             @"img"                       : @"img",
+             @"dealsArray"                : @"deals"
              };
+}
+
++ (NSValueTransformer *)dealsArrayJSONTransformer {
+    
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[GMDealModal class]];
 }
 
 
