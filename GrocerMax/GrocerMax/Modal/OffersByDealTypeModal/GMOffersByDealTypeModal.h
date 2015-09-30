@@ -21,6 +21,6 @@
 @property (strong, nonatomic) NSString *dealType;
 @property (strong, nonatomic) NSString *ID;
 @property (strong, nonatomic) NSString *img;
-
+@property (nonatomic, strong) NSArray *dealsArray;
 
 @end

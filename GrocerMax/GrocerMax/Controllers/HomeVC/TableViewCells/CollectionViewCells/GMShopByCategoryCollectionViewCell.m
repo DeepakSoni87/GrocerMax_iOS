@@ -27,6 +27,12 @@
     self.offerBtn.layer.borderColor = [self.offerBtn.titleLabel.textColor colorWithAlphaComponent:0.3].CGColor;
 }
 
+- (void)setTitleLbl:(UILabel *)titleLbl {
+    
+    _titleLbl = titleLbl;
+    [_titleLbl setHidden:YES];
+}
+
 #pragma mark - Configure Cell
 
 - (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{

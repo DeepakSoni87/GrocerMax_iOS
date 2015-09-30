@@ -96,8 +96,8 @@ static NSString * const kImageUrlKey                     = @"imageURL";
     
     return @{@"dealTypeId"                : @"id",
              @"dealType"                  : @"dealType",
-             @"imageName"                 : @"img",
-             @"imageURL"                  : @"img_url"
+             @"imageName"                 : @"img_url",
+             @"imageURL"                  : @"img"
              };
 }
 
