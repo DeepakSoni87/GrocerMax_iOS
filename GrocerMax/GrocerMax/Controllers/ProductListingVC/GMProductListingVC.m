@@ -37,14 +37,14 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     
     self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.productRequestID];
     
-//    if (self.productBaseModal.productsListArray.count == 0) {
-//        [self getProducListFromServer];
-//    }
-    
     if (self.productBaseModal.productsListArray.count == 0) {
         self.productBaseModal = [[GMProductListingBaseModal alloc] init];
         self.productBaseModal.productsListArray = self.catMdl.productListArray;
         [self.rootPageAPIController.modalDic setObject:self.productBaseModal forKey:self.productRequestID];
+    }
+    
+    if (self.productBaseModal.productsListArray.count == 0) {
+        [self getProducListFromServer];
     }
     
     [self.productListTblView reloadData];
