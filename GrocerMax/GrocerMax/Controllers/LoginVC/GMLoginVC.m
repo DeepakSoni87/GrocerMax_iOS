@@ -45,6 +45,7 @@
     
     [GIDSignIn sharedInstance].uiDelegate = self;
     [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
 }
 
 #pragma mark - Button Action
@@ -67,7 +68,7 @@
                 if ([FBSDKAccessToken currentAccessToken])
                 {
                     
-                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
+                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                          if (!error) {
                              NSLog(@"fetched user:%@", result);
@@ -78,6 +79,7 @@
                                  if ([result objectForKey:@"email"]) {
                                      
                                      GMUserModal *userModal = [GMUserModal new];
+                                     [userModal setFbId:[result objectForKey:@"id"]];
                                      [userModal setEmail:[result objectForKey:@"email"]];
                                      [userModal setFirstName:[result objectForKey:@"first_name"]];
                                      [userModal setLastName:[result objectForKey:@"last_name"]];
@@ -125,7 +127,7 @@
             
             // set 2nd tab as profile VC after login success
             [self setSecondTabAsProfile];
-            
+    
             [self.navigationController popToRootViewControllerAnimated:YES];
 
         } failureBlock:^(NSError *error) {
@@ -174,6 +176,20 @@ didSignInForUser:(GIDGoogleUser *)user
     // ...
     
     NSLog(@"Google login Success = %@",user.profile.email);
+    
+    if (user.profile.email) {
+    
+        GMUserModal *userModal = [GMUserModal new];
+        [userModal setGoogleId:user.userID];
+        [userModal setEmail:user.profile.email];
+        [userModal setFirstName:user.profile.name];
+        [userModal setLastName:@""];
+        [userModal setGender:GMGenderTypeMale];// suppose it defaul
+        
+        GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+        vc.userModal = userModal;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
@@ -197,18 +213,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
         [self.navigationController pushViewController:controller animated:YES];
     
     [UIView commitAnimations];
-}
-
-#pragma mark - Set 2nd tab as profile VC
-
-- (void)setSecondTabAsProfile{
-    
-    GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
-    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
-    
-    [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
 }
 
 
