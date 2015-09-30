@@ -372,8 +372,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             return ;
         }
         
+        NSMutableArray *offersByDealTypeArray = [self createOffersByDealTypeModalFrom:baseMdl];
+        
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-        rootVC.pageData = @[@{@"All" : baseMdl.allArray}, @{@"Deal Category" : baseMdl.deal_categoryArray}];
+        rootVC.pageData = offersByDealTypeArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
         [self.navigationController pushViewController:rootVC animated:YES];
 
@@ -381,6 +383,15 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     } failureBlock:^(NSError *error) {
         [self removeProgress];
     }];
+}
+
+- (NSMutableArray *)createOffersByDealTypeModalFrom:(GMOffersByDealTypeBaseModal *)baseModal {
+    
+    NSMutableArray *offersByDealTypeArray = [NSMutableArray array];
+    GMOffersByDealTypeModal *allModal = [[GMOffersByDealTypeModal alloc] initWithDealType:@"All" dealId:@"" dealImageUrl:@"" andDealsArray:baseModal.allArray];
+    [offersByDealTypeArray addObject:allModal];
+    [offersByDealTypeArray addObjectsFromArray:baseModal.deal_categoryArray];
+    return offersByDealTypeArray;
 }
 
 #pragma nark - Fetching Hot Deals Methods

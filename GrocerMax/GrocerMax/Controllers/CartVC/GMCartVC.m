@@ -259,29 +259,21 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         }
         if([[GMSharedClass sharedClass] getUserLoggedStatus] == NO) {
             
-//            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
-//            [self.navigationController pushViewController:loginVC animated:YES];
-            
-//            GMParentController *parentController = [GMParentController new];
-//            [self.navigationController pushViewController:parentController animated:YES];
+
             
             GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
             loginVC.isPresent = YES;
             
             // Do any additional setup after loading the view from its nib.
             self.loginNavigationController = [[GMNavigationController alloc]initWithRootViewController:loginVC];
-            //    [self presentViewController:loginVC animated:YES completion:nil];// addSubview:self.loginNavigationController]
-            
             self.loginNavigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             self.loginNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
             self.loginNavigationController.navigationBarHidden = YES;
             self.navigationController.hidesBottomBarWhenPushed = YES;
-//            self.navigationController.topb = YES;
-//            [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
-            
             [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
         }
         else {
+            
             self.checkOutModal = [[GMCheckOutModal alloc]init];
             GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
             self.checkOutModal.cartDetailModal = self.cartDetailModal;
@@ -327,6 +319,13 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self removeProgress];
             [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         }];
+        
+        if(self.cartDetailModal.productItemsArray.count == 0) {
+            
+            GMUserModal *userModal = [GMUserModal loggedInUser];
+            [userModal setQuoteId:@""];
+            [userModal persistUser];
+        }
     }
     else {
         

@@ -46,7 +46,7 @@
                                                 <constraint firstAttribute="height" constant="31" id="6NV-4B-3yv"/>
                                                 <constraint firstAttribute="width" constant="81" id="Ftj-Dn-0fh"/>
                                             </constraints>
-                                            <state key="normal" title="Close" image="back">
+                                            <state key="normal" image="back">
                                                 <color key="titleColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>

@@ -30,6 +30,10 @@
 @property (assign, nonatomic) NSInteger productQuantity;
 
 @property (strong, nonatomic) GMProductDetailModal *proDetailModal;
+
+@property (weak, nonatomic) IBOutlet UIView *cartView;
+
+@property (weak, nonatomic) IBOutlet UILabel *itemsInCartLabel;
 @end
 
 @implementation GMProductDescriptionVC
@@ -122,7 +126,26 @@
     [self updateProductQuantity];
     [self.tabBarController updateBadgeValueOnCartTab];
 }
-
+//
+//- (BOOL)isProductAddedIntoCart {
+//    
+//    NSUInteger totalQuantity = self.quantityValue;
+//    totalQuantity += self.totalProductsInCart;
+//    [self.cartView setHidden:NO];
+//    [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%ld", totalQuantity]];
+//    self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",totalQuantity];
+//    self.totalProductsInCart = totalQuantity;
+//    
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", self.modal.productid];
+//    NSArray *totalProducts = [self.parentVC.cartModal.cartItems filteredArrayUsingPredicate:pred];
+//    if(totalProducts.count) {
+//        
+//        GMProductModal *cartProductModal = [totalProducts firstObject];
+//        [cartProductModal setProductQuantity:[NSString stringWithFormat:@"%ld", totalQuantity]];
+//        return NO;
+//    }
+//    return YES;
+//}
 #pragma mark - Update Cost and quantity lbl
 
 - (void)updateProductDescription {

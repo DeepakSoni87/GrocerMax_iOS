@@ -12,6 +12,7 @@
 #import "GMProductListingVC.h"
 #import "GMOffersVC.h"
 #import "GMDealCategoryBaseModal.h"
+#import "GMOffersByDealTypeModal.h"
 
 @interface GMRootPageModelController ()
 
@@ -122,8 +123,8 @@
             break;
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-            NSDictionary *dic = mdl;
-            return dic.allKeys[0];
+            GMOffersByDealTypeModal *offersDealTypeModal = mdl;
+            return offersDealTypeModal.dealType;
         }
             break;
         case GMRootPageViewControllerTypeDealCategoryTypeListing:
