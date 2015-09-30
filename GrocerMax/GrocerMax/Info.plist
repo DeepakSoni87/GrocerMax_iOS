@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.1</string>
 	<key>FacebookAppID</key>
 	<string>1073685632661628</string>
 	<key>FacebookDisplayName</key>
@@ -63,11 +63,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>command</key>
+	<string>payment_related_details_for_mobile_sdk</string>
 	<key>key</key>
 	<string>0MQaQP</string>
 	<key>var1</key>
 	<string>default</string>
-	<key>command</key>
-	<string>payment_related_details_for_mobile_sdk</string>
 </dict>
 </plist>

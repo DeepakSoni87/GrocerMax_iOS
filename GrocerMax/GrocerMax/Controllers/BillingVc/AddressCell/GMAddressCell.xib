@@ -93,7 +93,7 @@
                     <constraint firstItem="RAU-0U-I4D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="toC-nI-L0j"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="addressLbl" destination="Oau-1J-eJx" id="x0s-5L-3jV"/>
                 <outlet property="cellBgView" destination="RAU-0U-I4D" id="JRi-qP-5it"/>
