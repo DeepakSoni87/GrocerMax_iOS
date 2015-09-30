@@ -24,5 +24,6 @@
 
 + (CGFloat) cellHeight;
 
-- (void) configerViewData:(GMCartDetailModal *)cartDetailModal;
+- (void) configerViewData:(GMCartDetailModal *)cartDetailModal coupanCartDetail:(GMCoupanCartDetail *)coupanCartDetail;
+
 @end

@@ -14,25 +14,34 @@
 #import "GMCartDetailModal.h"
 #import "GMOrderSuccessVC.h"
 #import "GMCartRequestParam.h"
+#import "GMCoupanCodeCell.h"
+#import "TPKeyboardAvoidingTableView.h"
+#import "GMGenralModal.h"
+#import "GMCoupanCartDetail.h"
 
 #import "PayU_iOS_SDK.h"
 
 
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
 static NSString *kIdentifierPaymentSummuryCell = @"paymentSummeryIdentifierCell";
+static NSString *kIdentifierCoupanCodeCell = @"coupanCodeIdentifierCell";
 static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 
-@interface GMPaymentVC ()
+@interface GMPaymentVC ()<UITextFieldDelegate>
 {
     NSInteger selectedIndex;
     float totalAmount;
+    NSString *coupanCode;
+    NSString *orderID;
 }
-@property (weak, nonatomic) IBOutlet UITableView *paymentTableView;
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @property (weak, nonatomic) IBOutlet UITextField *couponCodeTextField;
 @property (strong, nonatomic) NSMutableArray *paymentOptionArray;
 @property (strong, nonatomic) GMButton *checkedBtn;
+@property (strong, nonatomic) GMGenralModal *genralModal;
+@property (strong, nonatomic) GMCoupanCartDetail *coupanCartDetail;
 
 ///
 @property (nonatomic, strong) NSString *txnID;
@@ -51,6 +60,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     // Do any additional setup after loading the view from its nib.
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
     self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"payU", nil];
+    coupanCode = @"";
     [self registerCellsForTableView];
     selectedIndex = -1;
     [self configerView];
@@ -81,6 +91,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [self.paymentTableView registerNib:nib forCellReuseIdentifier:kIdentifierPaymentCell];
     nib = [UINib nibWithNibName:@"GMPaymentOrderSummryCell" bundle:[NSBundle mainBundle]];
     [self.paymentTableView registerNib:nib forCellReuseIdentifier:kIdentifierPaymentSummuryCell];
+    
+    nib = [UINib nibWithNibName:@"GMCoupanCodeCell" bundle:[NSBundle mainBundle]];
+    [self.paymentTableView registerNib:nib forCellReuseIdentifier:kIdentifierCoupanCodeCell];
     
     
     nib = [UINib nibWithNibName:@"GMOrderDetailHeaderView" bundle:[NSBundle mainBundle]];
@@ -114,18 +127,23 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(selectedIndex == 1)
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
     [self showProgress];
-    [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(id responceData) {
+    [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
+        self.genralModal = responceData;
         [self removeProgress];
-        if(selectedIndex == 0) {
-            GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-            [self.navigationController pushViewController:successVC animated:YES];
-        } else if(selectedIndex == 1) {
-            //[self initilizedpayUdata];
-            self.txnID = [self randomStringWithLength:17];
-            [self createHeashKey];
+        if(responceData.flag == 1) {
+            if(selectedIndex == 0) {
+                GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+                successVC.orderId = responceData.orderID;
+                [self.navigationController pushViewController:successVC animated:YES];
+            } else if(selectedIndex == 1) {
+                //[self initilizedpayUdata];
+                self.txnID = [self randomStringWithLength:17];
+                [self createHeashKey];
+            }
+        } else {
+            [[GMSharedClass sharedClass] showErrorMessage:responceData.result];
         }
-        
         
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
@@ -138,7 +156,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (IBAction)actionApplyCoponCode:(id)sender {
     
-    if(!NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
+    [self.view endEditing:YES];
+    if(!NSSTRING_HAS_DATA(coupanCode)) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
         return;
     }
@@ -151,18 +170,18 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(NSSTRING_HAS_DATA(userModal.quoteId)) {
         [userDic setObject:userModal.quoteId forKey:kEY_quote_id];
     }
-    if(NSSTRING_HAS_DATA(self.couponCodeTextField.text)) {
-        [userDic setObject:self.couponCodeTextField.text forKey:kEY_couponcode];
+    if(NSSTRING_HAS_DATA(coupanCode)) {
+        [userDic setObject:coupanCode forKey:kEY_couponcode];
     }
     
     [self showProgress];
-    [[GMOperationalHandler handler] addCoupon:userDic  withSuccessBlock:^(id responceData) {
-        
+    [[GMOperationalHandler handler] addCoupon:userDic  withSuccessBlock:^(GMCoupanCartDetail *responceData) {
+        self.coupanCartDetail = responceData;
+        [self.paymentTableView reloadData];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
-        [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
-        
+        [[GMSharedClass sharedClass] showErrorMessage:@"Coupon is not valid."];
         [self removeProgress];
     }];
     
@@ -192,10 +211,14 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [self.view endEditing:YES];
 }
 
+#pragma mark - UITextField Delegate Methods
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    coupanCode = textField.text;
+}
 #pragma mark - TableView DataSource and Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -204,6 +227,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         return self.paymentOptionArray.count;
     }
     else if(section == 1) {
+        return 1;
+    } else if(section == 2) {
         return 1;
     }
     return 0;
@@ -226,8 +251,17 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         GMPaymentOrderSummryCell *paymentOrderSummryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierPaymentSummuryCell];
         
         paymentOrderSummryCell.tag = indexPath.row;
-        [paymentOrderSummryCell configerViewData:self.checkOutModal.cartDetailModal];
+        [paymentOrderSummryCell configerViewData:self.checkOutModal.cartDetailModal coupanCartDetail:self.coupanCartDetail];
         return paymentOrderSummryCell;
+    }
+    else if(indexPath.section == 2) {
+        GMCoupanCodeCell *coupanCodeCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierCoupanCodeCell];
+        coupanCodeCell.tag = indexPath.row;
+        coupanCodeCell.coupanCodeTextField.delegate = self;
+        [coupanCodeCell.applyCodeBtn addTarget:self action:@selector(actionApplyCoponCode:) forControlEvents:UIControlEventTouchUpInside];
+        [coupanCodeCell.applyCodeBtn setExclusiveTouch:YES];
+        
+        return coupanCodeCell;
     }
     return nil;
     
@@ -242,6 +276,10 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     } else if(indexPath.section == 1) {
         //        [GMPaymentOrderSummryCell cellHeight];
         return 161;
+    }
+    else if(indexPath.section == 2) {
+//        [GMCoupanCodeCell cellHeight];
+        return 48;
     }
     return 0.0;
 }
@@ -309,27 +347,60 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 -(void)dataReceived:(NSNotification *)noti
 {
     NSLog(@"dataReceived from surl/furl:%@", noti.object);
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToViewController:self animated:YES];
+    
+   
 }
 
 - (void) success:(NSDictionary *)info{
-    NSLog(@"Sucess Dict: %@",info);
     
-    #warning hit here to sucess payment
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.genralModal.orderID;
+        [self.navigationController pushViewController:successVC animated:YES];
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.genralModal.orderID;
+        [self.navigationController pushViewController:successVC animated:YES];
+
+        [self removeProgress];
+    }];
+    
 }
 - (void) failure:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
     
-#warning hit here to fail
-    [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self.navigationController popToViewController:self animated:NO];
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+    }];
     
 }
 - (void) cancel:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
-//    [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController popToViewController:self animated:YES];
 }
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -355,7 +426,6 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         NSLog(@"-->>Hash has been created = %@",_hashDict);
     }];
 }
-
 - (void) generateHashFromServer:(NSDictionary *) paramDict withCompletionBlock:(urlRequestCompletionBlock)completionBlock{
     void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *data, NSError *error) = completionBlock;
     _hashDict=nil;
@@ -365,7 +435,9 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:restURL
                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                         timeoutInterval:60.0];
-    if(totalAmount<0.2) {
+    if(self.coupanCartDetail) {
+        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
+    } else {
         double subtotal = 0;
         GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
         for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
@@ -377,7 +449,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     }
     // Specify that it will be a POST request
     theRequest.HTTPMethod = @"POST";
-    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"email@testsdk1.com",[NSString stringWithFormat:@"%.5f", totalAmount],@"Ram",self.txnID,@"ra:ra",@"Nokia",@"1111111111"];
+    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"email@testsdk1.com",@"2",@"Ram",self.txnID,@"ra:ra",@"Nokia",@"1111111111"];
     NSLog(@"-->>Hash generation Post Param = %@",postData);
     //set request content type we MUST set this value.
     [theRequest setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -395,23 +467,14 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     }];
 }
 
+
 -(void) withoutUserDefinedModeBtnClick{
     
-    PayUPaymentOptionsViewController *paymentOptionsVC = nil;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height == 480)
-        {
-            paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"AllPaymentOprionsView" bundle:nil];
-        }
-        else
-        {
-            paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"PayUPaymentOptionsViewController" bundle:nil];
-        }
-    }
+    PayUPaymentOptionsViewController *paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"PayUPaymentOptionsViewController" bundle:nil];
     
-    if(totalAmount<0.2) {
+    if(self.coupanCartDetail) {
+        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
+    } else {
         double subtotal = 0;
         GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
         for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
@@ -427,7 +490,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       @"Nokia",@"productinfo",
                                       @"Ram",@"firstname",
-                                      [NSString stringWithFormat:@"%.5f", totalAmount],@"amount",
+                                      @"2",@"amount",
                                       @"email@testsdk1.com",@"email",
                                       @"1111111111", @"phone",
                                       @"https://payu.herokuapp.com/ios_success",@"surl",
@@ -443,7 +506,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
                                       ,nil];
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
-    paymentOptionsVC.totalAmount  = totalAmount;//[totalAmount floatValue];
+    paymentOptionsVC.totalAmount  = 2;//totalAmount;//[totalAmount floatValue];
     paymentOptionsVC.appTitle     = @"CrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;

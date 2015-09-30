@@ -88,9 +88,14 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
 
 #pragma mark - Button Action Methods
 - (IBAction)actionProceed:(id)sender {
-    GMPaymentVC *paymentVC = [GMPaymentVC new];
-    paymentVC.checkOutModal = self.checkOutModal;
-    [self.navigationController pushViewController:paymentVC animated:YES];
+    
+    if(self.checkOutModal.timeSloteModal) {
+        GMPaymentVC *paymentVC = [GMPaymentVC new];
+        paymentVC.checkOutModal = self.checkOutModal;
+        [self.navigationController pushViewController:paymentVC animated:YES];
+    } else {
+                    [[GMSharedClass sharedClass] showErrorMessage:@"Select Time sloat."];
+    }
     
     //
 }
@@ -111,6 +116,9 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
             self.selectedTimeSlotModal = timeSloteModal;
             self.checkOutModal.timeSloteModal = timeSloteModal;
+            self.timeLbl.text = timeSloteModal.firstTimeSlote;
+        } else {
+            self.checkOutModal.timeSloteModal = nil;
         }
         
         selectedDateIndex = selectedDateIndex-1;
@@ -132,6 +140,9 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             self.selectedTimeSlotModal = timeSloteModal;
             timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
             self.checkOutModal.timeSloteModal = timeSloteModal;
+            self.timeLbl.text = timeSloteModal.firstTimeSlote;
+        } else {
+            self.checkOutModal.timeSloteModal = nil;
         }
         selectedDateIndex = selectedDateIndex+1;
         
@@ -210,6 +221,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             [deliveryDateTimeSlotModal.timeSlotModalArray addObject:timeSloteModal];
         }
     }
+    
     if(self.dateTimeSloteModalArray.count>0) {
         GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:0];
         selectedDateIndex = 0;
@@ -221,7 +233,15 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             GMTimeSloteModal *timeSloteModal =[arry objectAtIndex:0];
             self.selectedTimeSlotModal = timeSloteModal;
             timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
-            self.checkOutModal.timeSloteModal = timeSloteModal;
+            GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:0];
+            GMTimeSloteModal *checkSloatTimeSloteModal = [deliveryDateTimeSlotModal.timeSlotModalArray objectAtIndex:0];
+            
+            if([timeSloteModal.firstTimeSlote isEqualToString:checkSloatTimeSloteModal.firstTimeSlote]) {
+                self.checkOutModal.timeSloteModal = timeSloteModal;
+            } else {
+                self.checkOutModal.timeSloteModal = nil;
+            }
+            
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
         }
     }

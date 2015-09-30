@@ -11,12 +11,16 @@
 #import "GMCartDetailModal.h"
 #import "GMCartCell.h"
 #import "GMShipppingAddressVC.h"
+#import "GMLoginVC.h"
+#import "GMParentController.h"
 
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
 {
     NSString *messageString;
 }
+
+@property (strong, nonatomic) UINavigationController *loginNavigationController;
 
 @property (weak, nonatomic) IBOutlet UITableView *cartDetailTableView;
 
@@ -252,11 +256,37 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         if(self.checkOutModal) {
             self.checkOutModal = nil;
         }
-        self.checkOutModal = [[GMCheckOutModal alloc]init];
-        GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
-        self.checkOutModal.cartDetailModal = self.cartDetailModal;
-        shipppingAddressVC.checkOutModal = self.checkOutModal;
-        [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == NO) {
+            
+//            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+//            [self.navigationController pushViewController:loginVC animated:YES];
+            
+//            GMParentController *parentController = [GMParentController new];
+//            [self.navigationController pushViewController:parentController animated:YES];
+            
+            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+            loginVC.isPresent = YES;
+            
+            // Do any additional setup after loading the view from its nib.
+            self.loginNavigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            //    [self presentViewController:loginVC animated:YES completion:nil];// addSubview:self.loginNavigationController]
+            
+            self.loginNavigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            self.loginNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            self.loginNavigationController.navigationBarHidden = YES;
+            self.navigationController.hidesBottomBarWhenPushed = YES;
+//            self.navigationController.topb = YES;
+//            [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
+            
+            [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
+        }
+        else {
+            self.checkOutModal = [[GMCheckOutModal alloc]init];
+            GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
+            self.checkOutModal.cartDetailModal = self.cartDetailModal;
+            shipppingAddressVC.checkOutModal = self.checkOutModal;
+            [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        }
     } else {
         [[GMSharedClass sharedClass] showErrorMessage:@"No any item in your cart"];
     }
