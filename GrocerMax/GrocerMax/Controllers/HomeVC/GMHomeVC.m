@@ -225,7 +225,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
 
-    [self getOffersDealFromServerWithCatID:catModal.categoryId];
+    [self getOffersDealFromServerWithCategoryModal:catModal];
 }
 
 #pragma mark - Deal cell Delegate
@@ -355,10 +355,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 #pragma mark - offersByDeal
 
-- (void)getOffersDealFromServerWithCatID:(NSString*)catID {
+- (void)getOffersDealFromServerWithCategoryModal:(GMCategoryModal*)categoryModal {
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
-    [localDic setObject:catID forKey:kEY_cat_id];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
     [localDic setObject:kEY_iOS forKey:kEY_device];
 
     [self showProgress];
@@ -376,6 +376,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = offersByDealTypeArray;
+        rootVC.navigationTitleString = categoryModal.categoryName;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
         [self.navigationController pushViewController:rootVC animated:YES];
 
@@ -391,6 +392,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     GMOffersByDealTypeModal *allModal = [[GMOffersByDealTypeModal alloc] initWithDealType:@"All" dealId:@"" dealImageUrl:@"" andDealsArray:baseModal.allArray];
     [offersByDealTypeArray addObject:allModal];
     [offersByDealTypeArray addObjectsFromArray:baseModal.deal_categoryArray];
+//    [offersByDealTypeArray removeLastObject];
     return offersByDealTypeArray;
 }
 
@@ -409,6 +411,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
+        rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
         [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         

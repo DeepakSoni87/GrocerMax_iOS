@@ -25,6 +25,7 @@
 - (void)configureCellWithData:(id)data {
     
     GMHotDealModal *hotDealModal = (GMHotDealModal *)data;
+    [self.dealImage setImageWithURL:[NSURL URLWithString:hotDealModal.imageURL] placeholderImage:nil];
     NSLog(@"%@",hotDealModal.imageName);
 }
 @end
