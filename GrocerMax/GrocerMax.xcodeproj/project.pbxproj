@@ -2433,9 +2433,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "44c4b89c-ae83-4ecf-b44e-776900868982";
+				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
 			};
 			name = Debug;
 		};
@@ -2448,9 +2449,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "44c4b89c-ae83-4ecf-b44e-776900868982";
+				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
 			};
 			name = Release;
 		};
@@ -2470,7 +2472,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "44c4b89c-ae83-4ecf-b44e-776900868982";
+				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2487,7 +2489,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "44c4b89c-ae83-4ecf-b44e-776900868982";
+				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

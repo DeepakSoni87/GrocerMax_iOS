@@ -96,8 +96,21 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
         
         [self removeProgress];
-        self.addressArray = (NSMutableArray *)responceData.shippingAddressArray;
         
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
+            
+            int isShippingValue = evaluatedObject.is_default_shipping.intValue;
+            int isBillingValue = evaluatedObject.is_default_billing.intValue;
+            
+            if((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) {
+                return YES;
+            }
+            else
+                return NO;
+        }];
+        
+        NSArray *shippingAddressArray = [responceData.addressArray filteredArrayUsingPredicate:predicate];
+        self.addressArray = (NSMutableArray *)shippingAddressArray;
         for (GMAddressModalData *addressModal in self.addressArray) {
             [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
         }

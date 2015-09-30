@@ -34,6 +34,9 @@
 
 @property (nonatomic, readonly, strong) NSString *conformPassword;
 
+@property (nonatomic, readonly, strong) NSString *fbId;
+
+@property (nonatomic, readonly, strong) NSString *googleId;
 
 - (void)setFirstName:(NSString *)firstName;
 
@@ -58,6 +61,10 @@
 - (void)setNewpassword:(NSString *)newpassword;
 
 - (void)setConformPassword:(NSString *)conformPassword;
+
+- (void)setFbId:(NSString *)fbId;
+
+- (void)setGoogleId:(NSString *)googleId;
 
 + (instancetype)loggedInUser;
 

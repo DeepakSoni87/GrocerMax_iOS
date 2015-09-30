@@ -15,6 +15,9 @@
 @property (nonatomic, assign) NSUInteger quantityValue;
 
 @property (weak, nonatomic) IBOutlet UILabel *promotionLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *zeroPriceLabel;
+
 @end
 
 
@@ -42,27 +45,54 @@
 
 - (void)configureViewWithProductModal:(GMProductModal *)productModal {
     
+    self.deleteButton.produtModal = productModal;
     self.productModal = productModal;
     [self.productListImageView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
     [self.titleLbl setText:self.productModal.p_brand];
     [self.subTitleLbl setText:self.productModal.p_name];
     [self.quantityLbl setText:self.productModal.p_pack];
-    [self.priceLbl setText:[NSString stringWithFormat:@"%ld", (long)self.productModal.sale_price.integerValue]];
+//    [self.priceLbl setText:[NSString stringWithFormat:@"%ld", (long)self.productModal.sale_price.integerValue]];
     NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
     [self.priceWithOfferLbl setText:priceQuantityStr];
     [self.addSubstractLbl setText:self.productModal.productQuantity];
     self.quantityValue = self.productModal.productQuantity.integerValue;
     [self.promotionLabel setText:self.productModal.promotion_level];
+    if(NSSTRING_HAS_DATA(self.productModal.promotion_level))
+        [self.promotionLabel setHidden:NO];
+    else
+        [self.promotionLabel setHidden:YES];
+    [self updatePriceLabel];
+}
+
+- (void)updatePriceLabel {
+    
+    double totalPrice = self.productModal.sale_price.doubleValue * self.productModal.productQuantity.integerValue;
+    [self.priceLbl setText:[NSString stringWithFormat:@"₹%.2f", totalPrice]];
+    
+    if(self.productModal.Price.integerValue == 0) {
+        
+        [self.addSubstractView setHidden:YES];
+        [self.deleteButton setHidden:YES];
+        [self.zeroPriceLabel setHidden:NO];
+        [self.zeroPriceLabel setText:self.productModal.productQuantity];
+    }
+    else {
+        
+        [self.addSubstractView setHidden:NO];
+        [self.deleteButton setHidden:NO];
+        [self.zeroPriceLabel setHidden:YES];
+    }
 }
 
 - (IBAction)actionSubstractProduct:(UIButton *)sender {
     
-    if(self.quantityValue > 0) {
+    if(self.quantityValue > 1) {
         
         self.quantityValue --;
         NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
         [self.addSubstractLbl setText:productQuantity];
         [self.productModal setProductQuantity:productQuantity];
+        [self updatePriceLabel];
         if([self.delegate respondsToSelector:@selector(productQuantityValueChanged)])
             [self.delegate productQuantityValueChanged];
     }
@@ -74,6 +104,7 @@
     NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
     [self.addSubstractLbl setText:productQuantity];
     [self.productModal setProductQuantity:productQuantity];
+    [self updatePriceLabel];
     if([self.delegate respondsToSelector:@selector(productQuantityValueChanged)])
         [self.delegate productQuantityValueChanged];
 }

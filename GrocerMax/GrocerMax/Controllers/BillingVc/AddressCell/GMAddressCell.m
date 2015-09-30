@@ -15,8 +15,6 @@
     self.cellBgView.layer.borderColor = [UIColor colorWithRed:216.0/256.0 green:216.0/256.0 blue:216.0/256.0 alpha:1].CGColor;
     self.cellBgView.layer.borderWidth = 2.0;
     self.cellBgView.layer.cornerRadius = 4.0;
-    
-    [self setBackgroundColor:[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1]];
 }
 
 #pragma mark - GETTER/SETTER Methods

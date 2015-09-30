@@ -33,6 +33,10 @@
 
 @property (nonatomic, readwrite, strong) NSString *conformPassword;
 
+@property (nonatomic, readwrite, strong) NSString *fbId;
+
+@property (nonatomic, readwrite, strong) NSString *googleId;
+
 @end
 
 static NSString * const kFirstNameKey                       = @"firstName";
@@ -43,6 +47,8 @@ static NSString * const kPasswordKey                        = @"password";
 static NSString * const kUserIdKey                          = @"userId";
 static NSString * const kQuoteIdKey                         = @"quoteId";
 static NSString * const kTotalItemsKey                      = @"totalItems";
+static NSString * const kFBIdKey                            = @"fbId";
+static NSString * const kGoogleIdKey                        = @"googleId";
 
 static GMUserModal *loggedInUser;
 
@@ -87,6 +93,9 @@ static GMUserModal *loggedInUser;
     [aCoder encodeObject:self.userId forKey:kUserIdKey];
     [aCoder encodeObject:self.quoteId forKey:kQuoteIdKey];
     [aCoder encodeObject:self.totalItem forKey:kTotalItemsKey];
+    [aCoder encodeObject:self.fbId forKey:kFBIdKey];
+    [aCoder encodeObject:self.googleId forKey:kGoogleIdKey];
+
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -101,6 +110,10 @@ static GMUserModal *loggedInUser;
         self.userId = [aDecoder decodeObjectForKey:kUserIdKey];
         self.quoteId = [aDecoder decodeObjectForKey:kQuoteIdKey];
         self.totalItem = [aDecoder decodeObjectForKey:kTotalItemsKey];
+        self.fbId = [aDecoder decodeObjectForKey:kFBIdKey];
+        self.googleId = [aDecoder decodeObjectForKey:kGoogleIdKey];
+
+
     }
     return self;
 }

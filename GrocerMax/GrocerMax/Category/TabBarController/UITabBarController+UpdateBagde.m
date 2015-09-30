@@ -13,10 +13,16 @@
 
 - (void)updateBadgeValueOnCartTab {
     
+    int totalItems = 0;
     GMCartModal *cartModal = [GMCartModal loadCart];
     
+    for (GMProductModal *productModal in cartModal.cartItems) {
+        
+        totalItems += productModal.productQuantity.intValue;
+    }
+    
     if (cartModal.cartItems.count)
-        [[[self viewControllers][3] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%ld",cartModal.cartItems.count]];
+        [[[self viewControllers][3] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%d",totalItems]];
     else
         [[[self viewControllers][3] tabBarItem] setBadgeValue:nil];
 }

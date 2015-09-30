@@ -335,12 +335,12 @@ static CGFloat const RZErrorWindowBlackoutAnimationInterval = 0.5f;
     return [topViewController shouldAutorotate];
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    UIViewController *topViewController = [RZRootMessagingViewController topViewController];
-    
-    return [topViewController supportedInterfaceOrientations];
-}
+//- (NSUInteger)supportedInterfaceOrientations
+//{
+//    UIViewController *topViewController = [RZRootMessagingViewController topViewController];
+//    
+//    return [topViewController supportedInterfaceOrientations];
+//}
 
 #pragma mark - Helper class methods
 
