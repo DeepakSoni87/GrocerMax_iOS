@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CC7D8524B008E05BF256932"
+               BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
                BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
                BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
+            BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
+            BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
+            BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
+            BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7CAB56B13ECAF8B344586E64"
-               BuildableName = "libPods-GrocerMax-AFNetworking.a"
-               BlueprintName = "Pods-GrocerMax-AFNetworking"
+               BlueprintIdentifier = "5202EC954D51354D8DD80110"
+               BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
+               BlueprintName = "Pods-GrocerMax-SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7CAB56B13ECAF8B344586E64"
-            BuildableName = "libPods-GrocerMax-AFNetworking.a"
-            BlueprintName = "Pods-GrocerMax-AFNetworking"
+            BlueprintIdentifier = "5202EC954D51354D8DD80110"
+            BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
+            BlueprintName = "Pods-GrocerMax-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7CAB56B13ECAF8B344586E64"
-            BuildableName = "libPods-GrocerMax-AFNetworking.a"
-            BlueprintName = "Pods-GrocerMax-AFNetworking"
+            BlueprintIdentifier = "5202EC954D51354D8DD80110"
+            BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
+            BlueprintName = "Pods-GrocerMax-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

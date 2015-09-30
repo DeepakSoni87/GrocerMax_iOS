@@ -6,133 +6,113 @@
 	<dict>
 		<key>Pods-GrocerMax-AFNetworking.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-GrocerMax-Bolts.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-GrocerMax-FBSDKCoreKit.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-GrocerMax-FBSDKLoginKit.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-GrocerMax-Google.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-GrocerMax-GoogleSignIn.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-GrocerMax-HockeySDK-HockeySDKResources.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-GrocerMax-MMDrawerController.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-GrocerMax-Mantle.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods-GrocerMax-RaisinToast.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-GrocerMax-SVProgressHUD.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Pods-GrocerMax-TPKeyboardAvoiding.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>Pods-GrocerMax.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2CC7D8524B008E05BF256932</key>
+		<key>01C2C5110C279593023B7D81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>468485CB73B789A379EF9D8D</key>
+		<key>0F2646326BAE41F31A0B569E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5202EC954D51354D8DD80110</key>
+		<key>10A23AA5D4BC65112C0F5C67</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B97A1FB344C237660915942</key>
+		<key>1CF6158B1D9C358A6F88D7C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6380F19FA1C1A44B4FA439A2</key>
+		<key>3289550E1E5D33607B9543F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6774785FD26DA92F992E8EB3</key>
+		<key>46EB71D45908FD3844BC80C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>678E423EFEAE743ABCEDADAB</key>
+		<key>7CAB56B13ECAF8B344586E64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C2EACBF87EC5AFD07F466A7</key>
+		<key>8AD7F151EE4E71EADA749381</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C039CC347F95160BBD7472C</key>
+		<key>92FFAE454C7F44667A953028</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94D7CAB6DB65773E5D535F22</key>
+		<key>B321A573577BD9A6B9118FA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>973F9010A50825CF2CBEA00C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ADF721B6353BC580EFC8D298</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D9EBA4B6C7E9C1E4EF974F09</key>
+		<key>EBB71C839E798F0A6859E5C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
