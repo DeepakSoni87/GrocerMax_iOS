@@ -101,15 +101,15 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 
 #pragma mark - Fill DataSource Array
 
--(void)fillDataSourceArray {
+- (void)fillDataSourceArray {
     
     switch (self.rootControllerType) {
             
             
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-            NSDictionary *dic = self.data;
-            self.dataSource = dic[dic.allKeys[0]];
+            GMOffersByDealTypeModal *offersTypeDealModal = self.data;
+            self.dataSource = offersTypeDealModal.dealsArray;
         }
             break;
         case GMRootPageViewControllerTypeDealCategoryTypeListing:
