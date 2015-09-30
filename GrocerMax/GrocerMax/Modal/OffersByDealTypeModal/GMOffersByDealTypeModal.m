@@ -14,7 +14,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
     return @{@"allArray"            : @"dealcategorylisting.all",
-            @"deal_categoryArray"  : @"dealcategorylisting.deal_category",
+            @"deal_categoryArray"  : @"dealcategorylisting.dealsCategory",
             @"flag"                : @"flag"
             };//
 //    return @{@"allArray"            : @"dealcategorylisting.all",

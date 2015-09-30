@@ -10,7 +10,7 @@
 #import "GMProductModal.h"
 #import "GMCartModal.h"
 
-#define kMAX_Quantity 500
+#define kMAX_Quantity 1000
 
 @interface GMProductListTableViewCell ()
 
@@ -41,16 +41,18 @@
 @property (nonatomic, strong) GMCartModal *cartModal;
 
 @property (nonatomic, assign) NSUInteger totalProductsInCart;
+
+@property (nonatomic, assign) NSUInteger quantityValue;
 @end
 
 @implementation GMProductListTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-
+    
     self.addBtn.layer.cornerRadius = 5.0;
     self.addBtn.layer.masksToBounds = YES;
-
+    
     self.bgVeiw.layer.cornerRadius = 5.0;
     self.bgVeiw.layer.masksToBounds = YES;
     
@@ -60,7 +62,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -87,46 +89,58 @@
     [self.productOfferLabel setText:[NSString stringWithFormat:@"₹%@ | ₹%@", self.productModal.sale_price, self.productModal.Price]];
     
     self.promotionalLbl.text = self.productModal.promotion_level;
-    if ([self.productModal.productQuantity integerValue] == 0)
-        self.productModal.productQuantity = @"1";
-        self.productQuantityLbl.text = self.productModal.productQuantity;
+    self.quantityValue = self.productModal.productQuantity.integerValue > 0 ? self.productModal.productQuantity.integerValue : 1;
+    self.productQuantityLbl.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
     [self updateTotalProductItemsInCart];
 }
-    
+
 #pragma mark - stepper (+/-) Button Action
 
 - (IBAction)minusBtnPressed:(UIButton *)sender {
     
-    NSInteger quant = [self.productModal.productQuantity integerValue];
-    
-    if (quant > 1) {
-        quant -= 1;
-        self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",quant];
-        self.productQuantityLbl.text = self.productModal.productQuantity;
+    if(self.quantityValue > 1) {
+        
+        self.quantityValue --;
+        NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
+        [self.productQuantityLbl setText:productQuantity];
+        [self.productModal setProductQuantity:productQuantity];
     }
 }
 
 - (IBAction)pluseBtnPressed:(UIButton *)sender {
     
-    NSInteger quant = [self.productModal.productQuantity integerValue];
-
-    if (quant < kMAX_Quantity) {
-        quant += 1;
-        self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",quant];
-        self.productQuantityLbl.text = self.productModal.productQuantity;
-    }
+    self.quantityValue ++;
+    NSString *productQuantity = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
+    [self.productQuantityLbl setText:productQuantity];
+    [self.productModal setProductQuantity:productQuantity];
 }
 
 - (IBAction)addButtonTapped:(id)sender {
     
     if ([[GMSharedClass sharedClass] isInternetAvailable]) {
         
-        self.totalProductsInCart ++;
-        [self.cartView setHidden:NO];
-        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)self.totalProductsInCart]];
+        if([self isProductAddedIntoCart]) {
+            
+            NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:self.productModal];
+            GMProductModal *productCartModal = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+            [self.cartModal.cartItems addObject:productCartModal];
+            [self.cartModal archiveCart];
+            if([self.delegate respondsToSelector:@selector(addProductModalInCart:)])
+                [self.delegate addProductModalInCart:self.productModal];
+        }
+        else {
+            
+            [self.cartModal archiveCart];
+            if([self.delegate respondsToSelector:@selector(addProductModalInCart:)])
+                [self.delegate addProductModalInCart:self.productModal];
+        }
+        self.productModal.productQuantity = nil;
+        self.quantityValue = 1;
+        self.productQuantityLbl.text = @"1";
     }
-    if([self.delegate respondsToSelector:@selector(addProductModalInCart:)])
-        [self.delegate addProductModalInCart:self.productModal];
+    else
+        if([self.delegate respondsToSelector:@selector(addProductModalInCart:)])
+            [self.delegate addProductModalInCart:self.productModal];
 }
 
 - (void)updateTotalProductItemsInCart {
@@ -135,7 +149,8 @@
     NSArray *totalProducts = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
     if(totalProducts.count ) {
         
-        self.totalProductsInCart = totalProducts.count;
+        GMProductModal *cartProductModal = [totalProducts firstObject];
+        self.totalProductsInCart = cartProductModal.productQuantity.integerValue;
         [self.cartView setHidden:NO];
         [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)self.totalProductsInCart]];
     }
@@ -144,6 +159,26 @@
         self.totalProductsInCart = 0;
         [self.cartView setHidden:YES];
     }
+}
+
+- (BOOL)isProductAddedIntoCart {
+    
+    NSUInteger totalQuantity = self.quantityValue;
+    totalQuantity += self.totalProductsInCart;
+    [self.cartView setHidden:NO];
+    [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%ld", totalQuantity]];
+    self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",totalQuantity];
+    self.totalProductsInCart = totalQuantity;
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", self.productModal.productid];
+    NSArray *totalProducts = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
+    if(totalProducts.count) {
+        
+        GMProductModal *cartProductModal = [totalProducts firstObject];
+        [cartProductModal setProductQuantity:[NSString stringWithFormat:@"%ld", totalQuantity]];
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Cell height

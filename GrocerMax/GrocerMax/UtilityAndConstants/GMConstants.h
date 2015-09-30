@@ -26,7 +26,7 @@
 
 #define NSSTRING_HAS_DATA(_x) (((_x) != nil) && ( [(_x) length] > 0 ))
 
-#define HAS_DATA(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]) && ([[_x objectForKey:_y] length] > 0))
+#define HAS_DATA(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]) && ([[NSString stringWithFormat:@"%@", [_x objectForKey:_y]] length] > 0))
 
 #define GMLocalizedString(key) [[NSBundle mainBundle]localizedStringForKey:(key) value:@"" table:@"Messages"]
 

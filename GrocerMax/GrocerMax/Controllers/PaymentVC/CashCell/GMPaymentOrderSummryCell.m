@@ -8,6 +8,7 @@
 
 #import "GMPaymentOrderSummryCell.h"
 #import "GMCartModal.h"
+#import "GMCoupanCartDetail.h"
 
 @implementation GMPaymentOrderSummryCell
 
@@ -29,7 +30,7 @@
 }
 
 
-- (void) configerViewData:(GMCartDetailModal *)cartDetailModal {
+- (void) configerViewData:(GMCartDetailModal *)cartDetailModal coupanCartDetail:(GMCoupanCartDetail *)coupanCartDetail {
     
     if(cartDetailModal.productItemsArray.count>0) {
         if(cartDetailModal.productItemsArray.count == 1) {
@@ -42,27 +43,58 @@
         self.totalItemLbl.text = @"";
     }
     
-    
-    self.shippingPriceLbl.text = [NSString stringWithFormat:@"$%.2f",cartDetailModal.shippingAmount.doubleValue];
-    
-    double saving = 0;
-    double subtotal = 0;
-    double couponDiscount = 0;
-    for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+    if(coupanCartDetail) {
+        if(NSSTRING_HAS_DATA(coupanCartDetail.ShippingCharge)) {
+            self.shippingPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.ShippingCharge.doubleValue];
+        } else {
+            self.shippingPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
+        }
         
-        saving += productModal.productQuantity.doubleValue * (productModal.Price.doubleValue - productModal.sale_price.doubleValue);
-        subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        if(NSSTRING_HAS_DATA(coupanCartDetail.subtotal)) {
+            self.subTotalPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.subtotal.doubleValue];
+        } else {
+            self.subTotalPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
+        }
+        if(NSSTRING_HAS_DATA(coupanCartDetail.you_save)) {
+            self.youSavedLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.you_save.doubleValue];
+        } else {
+            self.youSavedLbl.text = [NSString stringWithFormat:@"₹0.00"];
+        }
+        
+        if(NSSTRING_HAS_DATA(coupanCartDetail.grand_total)) {
+            self.totalPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.grand_total.doubleValue];
+        } else {
+            self.totalPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
+        }
+        if(NSSTRING_HAS_DATA(coupanCartDetail.subtotal_with_discount)) {
+            self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.subtotal_with_discount.doubleValue];
+        } else {
+            self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹0.00"];
+        }
+        
+    } else {
+        self.shippingPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",cartDetailModal.shippingAmount.doubleValue];
+        
+        double saving = 0;
+        double subtotal = 0;
+        double couponDiscount = 0;
+        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+            
+            saving += productModal.productQuantity.doubleValue * (productModal.Price.doubleValue - productModal.sale_price.doubleValue);
+            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        }
+        if(NSSTRING_HAS_DATA(cartDetailModal.discountAmount)) {
+            saving = saving - cartDetailModal.discountAmount.doubleValue;
+            couponDiscount = cartDetailModal.discountAmount.doubleValue;;
+        }
+        [self.subTotalPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", subtotal]];
+        [self.youSavedLbl setText:[NSString stringWithFormat:@"₹%.2f", saving]];
+        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
+        [self.totalPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
+        
+        [self.couponDiscountLbl setText:[NSString stringWithFormat:@"₹%.2f", couponDiscount]];
     }
-    if(NSSTRING_HAS_DATA(cartDetailModal.discountAmount)) {
-        saving = saving - cartDetailModal.discountAmount.doubleValue;
-        couponDiscount = cartDetailModal.discountAmount.doubleValue;;
-    }
-    [self.subTotalPriceLbl setText:[NSString stringWithFormat:@"$%.2f", subtotal]];
-    [self.youSavedLbl setText:[NSString stringWithFormat:@"$%.2f", saving]];
-    double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
-    [self.totalPriceLbl setText:[NSString stringWithFormat:@"$%.2f", grandTotal]];
-    
-    [self.couponDiscountLbl setText:[NSString stringWithFormat:@"$%.2f", couponDiscount]];
     
 }
+
 @end

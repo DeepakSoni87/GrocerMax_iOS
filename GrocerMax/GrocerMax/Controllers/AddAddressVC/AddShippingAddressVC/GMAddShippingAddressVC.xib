@@ -80,9 +80,6 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" image="checkBoxSelected"/>
-                                    <connections>
-                                        <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="Zji-Ba-9je"/>
-                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
                                     <rect key="frame" x="40" y="12" width="254" height="26"/>
@@ -115,10 +112,6 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" image="checkBoxSelected"/>
-                                    <connections>
-                                        <action selector="defaultBillingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="wQe-MT-lg4"/>
-                                        <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="gIQ-ah-5aQ"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

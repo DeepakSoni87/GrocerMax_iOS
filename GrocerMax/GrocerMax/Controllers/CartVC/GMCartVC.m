@@ -11,12 +11,16 @@
 #import "GMCartDetailModal.h"
 #import "GMCartCell.h"
 #import "GMShipppingAddressVC.h"
+#import "GMLoginVC.h"
+#import "GMParentController.h"
 
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
 {
     NSString *messageString;
 }
+
+@property (strong, nonatomic) UINavigationController *loginNavigationController;
 
 @property (weak, nonatomic) IBOutlet UITableView *cartDetailTableView;
 
@@ -91,8 +95,10 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [[GMOperationalHandler handler] cartDetail:requestDict withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
         
         [self removeProgress];
-        if(cartDetailModal.productItemsArray.count>0) {
+        if(cartDetailModal.productItemsArray.count > 0) {
+            
             self.cartDetailModal = cartDetailModal;
+            self.cartModal = nil;
             self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
             [self.cartModal archiveCart];
             [self.totalView setHidden:NO];
@@ -224,8 +230,23 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     GMProductModal *deletedProductModal = [[GMProductModal alloc] initWithProductModal:sender.produtModal];
     [self.cartDetailModal.deletedProductItemsArray addObject:deletedProductModal];
     [self.cartDetailModal.productItemsArray removeObject:sender.produtModal];
+    [self productQuantityValueChanged];
+    [self removeObjectFromCartArrayWithModal:sender.produtModal];
+    if(self.cartDetailModal.productItemsArray.count == 0) {
+        [self backButtonTapped:nil];
+    }
     [self.cartDetailTableView reloadData];
-    [self updateAmountViewWhenQuantityChanged];
+}
+
+- (void)removeObjectFromCartArrayWithModal:(GMProductModal *)productModal {
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", productModal.productid];
+    NSArray *filteredArr = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
+    GMProductModal *deleteProductModal = filteredArr.firstObject;
+    if(deleteProductModal)
+        [self.cartModal.cartItems removeObject:deleteProductModal];
+    [self.cartModal archiveCart];
+    [self.tabBarController updateBadgeValueOnCartTab];
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
@@ -235,11 +256,37 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         if(self.checkOutModal) {
             self.checkOutModal = nil;
         }
-        self.checkOutModal = [[GMCheckOutModal alloc]init];
-        GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
-        self.checkOutModal.cartDetailModal = self.cartDetailModal;
-        shipppingAddressVC.checkOutModal = self.checkOutModal;
-        [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == NO) {
+            
+//            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+//            [self.navigationController pushViewController:loginVC animated:YES];
+            
+//            GMParentController *parentController = [GMParentController new];
+//            [self.navigationController pushViewController:parentController animated:YES];
+            
+            GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+            loginVC.isPresent = YES;
+            
+            // Do any additional setup after loading the view from its nib.
+            self.loginNavigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            //    [self presentViewController:loginVC animated:YES completion:nil];// addSubview:self.loginNavigationController]
+            
+            self.loginNavigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            self.loginNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            self.loginNavigationController.navigationBarHidden = YES;
+            self.navigationController.hidesBottomBarWhenPushed = YES;
+//            self.navigationController.topb = YES;
+//            [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
+            
+            [self.navigationController presentViewController:self.loginNavigationController  animated:YES completion:nil];
+        }
+        else {
+            self.checkOutModal = [[GMCheckOutModal alloc]init];
+            GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
+            self.checkOutModal.cartDetailModal = self.cartDetailModal;
+            shipppingAddressVC.checkOutModal = self.checkOutModal;
+            [self.navigationController pushViewController:shipppingAddressVC animated:YES];
+        }
     } else {
         [[GMSharedClass sharedClass] showErrorMessage:@"No any item in your cart"];
     }
@@ -267,21 +314,22 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self configureAmountView];
             } else {
                 
-                [self.totalView setHidden:YES];
-                [self.placeOrderButton setHidden:YES];
+                [self.totalView setHidden:NO];
+                [self.placeOrderButton setHidden:NO];
+                [self.updateOrderButton setHidden:YES];
                 messageString = @"No item in your cart, Please add item.";
             }
-            
-            //            self.cartDetailModal = cartDetailModal;
-            //            [self.cartDetailTableView reloadData];
-            //            [self.placeOrderButton setHidden:NO];
-            //            [self.updateOrderButton setHidden:YES];
-            //            [self configureAmountView];
+            [self.cartDetailTableView reloadData];
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];
             [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         }];
+    }
+    else {
+        
+        [self.placeOrderButton setHidden:NO];
+        [self.updateOrderButton setHidden:YES];
     }
 }
 
@@ -312,7 +360,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         else {
             
             //            [productModal setIsProductUpdated:YES];
-            updateStatus = updateStatus && YES;
+            updateStatus = YES;
             break;
         }
     }

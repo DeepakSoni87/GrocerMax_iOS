@@ -112,6 +112,11 @@ CGFloat const kMATabBarHeight = 49.0f;
 
 - (void)setTabBarVisible:(BOOL)visible ForController:(UIViewController *)controller animated:(BOOL)animated {
     
+    if(visible)
+        controller.tabBarController.tabBar.translucent = NO;
+    else
+        controller.tabBarController.tabBar.translucent = YES;
+    
     if ([self tabBarIsVisible:controller] == visible) return;
     
     CGRect frame = controller.tabBarController.tabBar.frame;
@@ -156,6 +161,18 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults synchronize];
 }
 
+- (void) logout {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *encodedObject = [defaults objectForKey:signedInUserKey];
+    GMUserModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    archivedUser = nil;
+    
+    [defaults removeObjectForKey:signedInUserKey];
+    [defaults setObject:@(NO) forKey:loggedInUserKey];
+    [defaults synchronize];
+
+}
 #pragma mark - Network Reachbility Test
 
 -(void)setupReachability
