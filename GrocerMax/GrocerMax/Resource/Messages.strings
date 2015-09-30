@@ -23,5 +23,5 @@
 
 // Search bar
 
-"plzEnterKeyword" = "Please enter some keyword for searching!";
+"plzEnterKeyword" = "Please enter at least 3 char's keyword for searching!";
 "noResultFound" = "No result found!";
