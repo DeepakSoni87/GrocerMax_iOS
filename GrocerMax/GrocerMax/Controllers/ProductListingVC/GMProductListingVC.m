@@ -164,18 +164,14 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
         [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"no_internet_connection")];
         return;
     }
-    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:productModal];
-    GMProductModal *productCartModal = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
-    [self.parentVC.cartModal.cartItems addObject:productCartModal];
-    [self.parentVC.cartModal archiveCart];
     
-    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productCartModal];
+    NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
-    
-    // first save the modal with there updated quantity then reset the quantity value to 1
-    [productModal setProductQuantity:@"1"];
-    [self.productListTblView reloadData];
+    self.parentVC.cartModal = [GMCartModal loadCart];
     [self.tabBarController updateBadgeValueOnCartTab];
 }
 
+- (void)updateProductQuantity {
+    
+}
 @end

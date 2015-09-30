@@ -91,8 +91,10 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [[GMOperationalHandler handler] cartDetail:requestDict withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
         
         [self removeProgress];
-        if(cartDetailModal.productItemsArray.count>0) {
+        if(cartDetailModal.productItemsArray.count > 0) {
+            
             self.cartDetailModal = cartDetailModal;
+            self.cartModal = nil;
             self.cartModal = [[GMCartModal alloc] initWithCartDetailModal:cartDetailModal];
             [self.cartModal archiveCart];
             [self.totalView setHidden:NO];
@@ -224,8 +226,23 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     GMProductModal *deletedProductModal = [[GMProductModal alloc] initWithProductModal:sender.produtModal];
     [self.cartDetailModal.deletedProductItemsArray addObject:deletedProductModal];
     [self.cartDetailModal.productItemsArray removeObject:sender.produtModal];
+    [self productQuantityValueChanged];
+    [self removeObjectFromCartArrayWithModal:sender.produtModal];
+    if(self.cartDetailModal.productItemsArray.count == 0) {
+        [self backButtonTapped:nil];
+    }
     [self.cartDetailTableView reloadData];
-    [self updateAmountViewWhenQuantityChanged];
+}
+
+- (void)removeObjectFromCartArrayWithModal:(GMProductModal *)productModal {
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", productModal.productid];
+    NSArray *filteredArr = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
+    GMProductModal *deleteProductModal = filteredArr.firstObject;
+    if(deleteProductModal)
+        [self.cartModal.cartItems removeObject:deleteProductModal];
+    [self.cartModal archiveCart];
+    [self.tabBarController updateBadgeValueOnCartTab];
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
@@ -267,21 +284,22 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self configureAmountView];
             } else {
                 
-                [self.totalView setHidden:YES];
-                [self.placeOrderButton setHidden:YES];
+                [self.totalView setHidden:NO];
+                [self.placeOrderButton setHidden:NO];
+                [self.updateOrderButton setHidden:YES];
                 messageString = @"No item in your cart, Please add item.";
             }
-            
-            //            self.cartDetailModal = cartDetailModal;
-            //            [self.cartDetailTableView reloadData];
-            //            [self.placeOrderButton setHidden:NO];
-            //            [self.updateOrderButton setHidden:YES];
-            //            [self configureAmountView];
+            [self.cartDetailTableView reloadData];
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];
             [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         }];
+    }
+    else {
+        
+        [self.placeOrderButton setHidden:NO];
+        [self.updateOrderButton setHidden:YES];
     }
 }
 
@@ -312,7 +330,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         else {
             
             //            [productModal setIsProductUpdated:YES];
-            updateStatus = updateStatus && YES;
+            updateStatus = YES;
             break;
         }
     }

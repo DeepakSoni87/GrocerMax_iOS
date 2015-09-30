@@ -28,12 +28,6 @@
         }
         _deletedProductItemsArray = [NSMutableArray array];
         
-        if(HAS_DATA(responseDict, @"grand_total"))
-            _grandTotal = responseDict[@"grand_total"];
-        
-        if(HAS_DATA(responseDict, @"subtotal"))
-            _subTotal = responseDict[@"subtotal"];
-        
         if(HAS_DATA(responseDict, @"coupon_code"))
             _couponCode = responseDict[@"coupon_code"];
         
@@ -47,6 +41,12 @@
         
         if(HAS_DATA(shippingDict, @"discount_amount"))
             _discountAmount = shippingDict[@"discount_amount"];
+        
+        if(HAS_DATA(shippingDict, @"grand_total"))
+            _grandTotal = shippingDict[@"grand_total"];
+        
+        if(HAS_DATA(shippingDict, @"subtotal"))
+            _subTotal = shippingDict[@"subtotal"];
     }
     return self;
 }
