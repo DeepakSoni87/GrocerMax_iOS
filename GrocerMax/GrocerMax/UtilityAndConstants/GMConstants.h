@@ -26,7 +26,7 @@
 
 #define NSSTRING_HAS_DATA(_x) (((_x) != nil) && ( [(_x) length] > 0 ))
 
-#define HAS_DATA(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]) && ([[_x objectForKey:_y] length] > 0))
+#define HAS_DATA(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]) && ([[NSString stringWithFormat:@"%@", [_x objectForKey:_y]] length] > 0))
 
 #define GMLocalizedString(key) [[NSBundle mainBundle]localizedStringForKey:(key) value:@"" table:@"Messages"]
 
@@ -64,6 +64,17 @@
 #define kEY_lname                          @"lname"
 #define kEY_number                         @"number"
 #define kEY_otp                            @"otp"
+
+// Key : fbRegister
+
+#define kEY_QuoteId                         @"QuoteId"
+#define kEY_Result                          @"Result"
+#define kEY_TotalItem                       @"TotalItem"
+#define kEY_UserID                          @"UserID"
+#define kEY_flag                            @"flag"
+
+
+
 
 //key : userdetail
 

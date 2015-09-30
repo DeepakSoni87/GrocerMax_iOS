@@ -27,9 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *promotionalLbl;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionalLblHeightConstraints;
-
-
 @property (assign, nonatomic) NSInteger productQuantity;
 
 @property (strong, nonatomic) GMProductDetailModal *proDetailModal;
@@ -56,7 +53,7 @@
     
     self.productQuantity = 1;
     
-    self.promotionalLbl.layer.cornerRadius = 5.0;
+    self.promotionalLbl.layer.cornerRadius = 2.0;
     self.promotionalLbl.layer.masksToBounds = YES;
 
     self.addBtn.layer.cornerRadius = 5.0;
@@ -148,13 +145,9 @@
 
     [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage placeHolderImage]];
     
-    self.promotionalLbl.text = [NSString stringWithFormat:@"\n%@\n",self.modal.promotion_level];
-
-//    if (self.modal.promotion_level.length > 1) {
-//        self.promotionalLblHeightConstraints.constant = 25.0;
-//    }else{
-//        self.promotionalLblHeightConstraints.constant = 0.0;
-//    }
+    if (self.modal.promotion_level.length > 1) {
+        self.promotionalLbl.text = [NSString stringWithFormat:@"%@",self.modal.promotion_level];
+    }
 }
 
 - (void)updateProductQuantity {

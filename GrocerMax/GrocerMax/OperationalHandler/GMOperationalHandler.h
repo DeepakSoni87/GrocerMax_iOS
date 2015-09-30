@@ -21,6 +21,8 @@
 @class GMHotDealBaseModal;
 @class GMDealCategoryBaseModal;
 @class GMCartDetailModal;
+@class GMGenralModal;
+@class GMCoupanCartDetail;
 
 @interface GMOperationalHandler : NSObject
 
@@ -176,13 +178,13 @@
  * Function for Final Order Checkout
  * @param
  **/
-- (void)checkout:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)checkout:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Apply Coupon on cart
  * @param
  **/
-- (void)addCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)addCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(GMCoupanCartDetail *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Remove Coupon on cart
@@ -194,13 +196,13 @@
  * Function for Successful Payment
  * @param
  **/
-- (void)success:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)success:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Fail Payment
  * @param
  **/
-- (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for Add to Cart

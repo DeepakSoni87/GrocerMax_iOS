@@ -44,6 +44,14 @@
 				<string>fb1073685632661628</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.gogetspeedy.speedy</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.1</string>
@@ -63,8 +71,16 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+
 	<key>command</key>
 	<string>payment_related_details_for_mobile_sdk</string>
+
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+
 	<key>key</key>
 	<string>0MQaQP</string>
 	<key>var1</key>

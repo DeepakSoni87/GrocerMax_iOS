@@ -8,8 +8,10 @@
 
 #import "GMProvideMobileInfoVC.h"
 #import "GMOtpVC.h"
+#import "GMProfileVC.h"
 
 @interface GMProvideMobileInfoVC ()
+
 @property (weak, nonatomic) IBOutlet UILabel *manualTextLbl;
 @property (weak, nonatomic) IBOutlet UIView *txtBGView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
@@ -123,7 +125,7 @@
     [paramDict setObject:self.userModal.email forKey:kEY_uemail];
     [paramDict setObject:@"" forKey:kEY_quote_id];
     [paramDict setObject:self.userModal.firstName ? self.userModal.firstName : @"" forKey:kEY_fname];
-    [paramDict setObject:self.userModal.firstName ? self.userModal.firstName : @"" forKey:kEY_lname];
+    [paramDict setObject:self.userModal.lastName ? self.userModal.lastName : @"" forKey:kEY_lname];
     [paramDict setObject:self.userModal.mobile forKey:kEY_number];
 
     [self showProgress];
@@ -138,17 +140,18 @@
 //        }
         
         [self removeProgress];
+        NSDictionary *resDic = data;
         
-        if (self.userModal.email.length > 1) {// for phone
-            [self.userModal setMobile:self.txtField.text];
-        }else{// for email
-            [self.userModal setEmail:self.txtField.text];
+        if ([resDic objectForKey:kEY_UserID]) {
+            [self.userModal setQuoteId:resDic[kEY_QuoteId]];
+            [self.userModal setUserId:resDic[kEY_UserID]];
+            [self.userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
+            
+            [self.userModal persistUser];// save user modal in memory
+            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
         }
-        
-        GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
-        otpVC.userModal = self.userModal;
-        [self.navigationController pushViewController:otpVC animated:YES];
-        
+                
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];

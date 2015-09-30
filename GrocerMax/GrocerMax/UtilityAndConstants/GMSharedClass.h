@@ -41,6 +41,8 @@
 
 - (GMCityModal *)getSavedLocation;
 
+- (void) logout;
+
 - (void)saveSelectedLocationData:(NSData *)userData;
 
 - (BOOL)isInternetAvailable;

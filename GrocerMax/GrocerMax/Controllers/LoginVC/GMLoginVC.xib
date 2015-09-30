@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMLoginVC">
             <connections>
+                <outlet property="closeBtn" destination="6Pf-bf-eLW" id="T7E-18-cOn"/>
                 <outlet property="txt_email" destination="8fo-k6-PyV" id="0jr-sk-LHU"/>
                 <outlet property="txt_password" destination="8Dk-ny-87a" id="xMT-kf-Au7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -38,8 +39,26 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCl-cd-0LF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <subviews>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pf-bf-eLW">
+                                            <rect key="frame" x="8" y="9" width="81" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="6NV-4B-3yv"/>
+                                                <constraint firstAttribute="width" constant="81" id="Ftj-Dn-0fh"/>
+                                            </constraints>
+                                            <state key="normal" title="Close" image="back">
+                                                <color key="titleColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="closeBtnPressed:" destination="-1" eventType="touchUpInside" id="AUh-S4-F6a"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="6Pf-bf-eLW" firstAttribute="top" secondItem="HCl-cd-0LF" secondAttribute="top" constant="9" id="GoG-5M-rsE"/>
+                                        <constraint firstItem="6Pf-bf-eLW" firstAttribute="leading" secondItem="HCl-cd-0LF" secondAttribute="leading" constant="8" id="Rf7-E2-AX0"/>
                                         <constraint firstAttribute="width" secondItem="HCl-cd-0LF" secondAttribute="height" multiplier="64:17" id="pxb-37-TZN"/>
                                     </constraints>
                                 </view>
@@ -340,6 +359,7 @@ Hx8fT1I
         </view>
     </objects>
     <resources>
+        <image name="back" width="15" height="14"/>
         <image name="facebook" width="136" height="39"/>
         <image name="google" width="136" height="39"/>
         <image name="login-screen_bg" width="320" height="568"/>

@@ -10,6 +10,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "GMSearchBarView.h"
+#import "GMProfileVC.h"
 
 @implementation UIViewController (GMProgressIndicator)
 
@@ -102,5 +103,18 @@
     AppDelegate *appdel = APP_DELEGATE;
     [appdel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
+
+#pragma mark - Set 2nd tab as profile VC
+
+- (void)setSecondTabAsProfile{
+    
+    GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
+    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
+    
+    [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
+}
+
 
 @end

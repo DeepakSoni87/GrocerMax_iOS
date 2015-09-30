@@ -69,6 +69,7 @@ static NSString * const kInviteFriendsCell                  =  @"Invite Friends"
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
 static NSString * const kChangePasswordCell                 =  @"Change Password";
+static NSString * const kLogOutCell                         =  @"Log out";
 
 static NSString * const customerCareNumber = @"8010500700";
 
@@ -113,6 +114,8 @@ static NSString * const customerCareNumber = @"8010500700";
     GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@""];
     [self.cellArray addObject:changePassword];
     
+    GMProfileModal *logout = [[GMProfileModal alloc] initWithCellText:kLogOutCell andClassName:@""];
+    [self.cellArray addObject:logout];
     
     [self.profileTableView reloadData];
 }
@@ -199,6 +202,10 @@ static CGFloat const kProfileCellHeight = 44.0f;
         
         GMChangePasswordVC *changePasswordVC  = [GMChangePasswordVC new];
         [self.navigationController pushViewController:changePasswordVC animated:YES];
+    } else if([profileModal.displayCellText isEqualToString:kLogOutCell]) {
+        
+        [[GMSharedClass sharedClass] logout];
+        [self setSecondTabAsLogIn];
     }
     else {
         
@@ -236,6 +243,18 @@ static CGFloat const kProfileCellHeight = 44.0f;
         webView = [UIWebView new];
     });
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
+
+
+#pragma mark - Set 2nd tab as login VC
+- (void)setSecondTabAsLogIn{
+    
+    GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
+    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    loginVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
+    
+    [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[loginVC] animated:YES];
 }
 
 @end
