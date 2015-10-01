@@ -280,5 +280,13 @@
 
 + (NSString *)offerByDealTypePath;
 
+/**
+ * Function for product List All
+ * @param GET Var page, cat_id
+ * @output productListAll
+ */
+
++ (NSString *)productListAllPath;
+
 
 @end

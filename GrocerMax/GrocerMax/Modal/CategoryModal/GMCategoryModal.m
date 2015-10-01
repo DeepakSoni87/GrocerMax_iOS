@@ -29,6 +29,9 @@
 @property (nonatomic, readwrite, assign) NSUInteger indentationLevel;
 
 @property (nonatomic, readwrite, assign) BOOL isSelected;
+
+@property (nonatomic, readwrite, strong) NSArray *productListArray;
+
 @end
 
 static GMCategoryModal *rootCategoryModal;
@@ -113,5 +116,36 @@ static NSString * const kIsExpandKey                        = @"isExpand";
     }
     return self;
 }
+
+#pragma mark - 
+
+- (instancetype)initWithProductListDictionary:(NSDictionary *)responseDict {
+    
+    if(self = [super init]) {
+        
+        if(HAS_KEY(responseDict, @"product")) {
+            
+            NSMutableArray *productItemsArr = [NSMutableArray array];
+            NSArray *items = responseDict[@"product"];
+            for (NSDictionary *productDict in items) {
+                
+                NSError *mtlError = nil;
+                GMProductModal *productModal = [MTLJSONAdapter modelOfClass:[GMProductModal class] fromJSONDictionary:productDict error:&mtlError];
+
+                [productItemsArr addObject:productModal];
+            }
+            _productListArray = productItemsArr;
+        }
+        
+        if(HAS_DATA(responseDict, @"category_id"))
+            _categoryId = responseDict[@"category_id"];
+        
+        if(HAS_DATA(responseDict, @"category_name"))
+            _categoryName = responseDict[@"category_name"];
+        
+    }
+    return self;
+}
+
 
 @end

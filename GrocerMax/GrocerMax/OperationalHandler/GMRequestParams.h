@@ -262,4 +262,12 @@
  **/
 + (NSString *)offerByDealTypeParameter:(NSDictionary *)parameterDic;
 
+/**
+ * Function for all product list
+ * @param parameter dictionary
+ * @Return get parameter for product List All
+ **/
++ (NSString *)productListAllParameter:(NSDictionary *)parameterDic;
+
+    
 @end

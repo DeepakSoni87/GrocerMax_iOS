@@ -821,6 +821,23 @@ static GMRequestParams *sharedClass;
     }
 }
 
++ (NSString *)productListAllParameter:(NSDictionary *)parameterDic{
+    
+    NSString *parameter = @"?";
+    if(parameterDic == nil || parameterDic.count==0)
+    {
+        return @"";
+    }
+    else
+    {
+        if([parameterDic objectForKey:kEY_cat_id])
+        {
+            parameter = [NSString stringWithFormat:@"%@%@=%@",parameter,kEY_cat_id, [parameterDic objectForKey:kEY_cat_id]];
+        }
+        return parameter;
+    }
+}
+
 #pragma mark - Helper Methods
 
 - (NSString *)getValidStringObjectFromString:(NSString *)strInput {

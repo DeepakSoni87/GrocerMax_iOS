@@ -13,6 +13,7 @@
 #import "GMHotDealVC.h"
 #import "GMCartVC.h"
 #import "GMLoginVC.h"
+#import "GMSearchVC.h"
 
 @interface GMTabBarVC ()
 
@@ -75,7 +76,13 @@
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
 
-    self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController];
+    GMSearchVC *searchVC = [[GMSearchVC alloc] initWithNibName:@"GMSearchVC" bundle:nil];
+    UIImage *searchVCTabImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *searchVCTabSelectedImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:searchVCTabImg selectedImage:searchVCTabSelectedImg];
+    GMNavigationController *searchVCNavController = [[GMNavigationController alloc] initWithRootViewController:searchVC];
+    
+    self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController,searchVCNavController];
     
     // update Tab bar bagdge
     [self updateBadgeValueOnCartTab];

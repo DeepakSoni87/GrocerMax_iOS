@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yIu-YV-TNu">
-                        <rect key="frame" x="10" y="10" width="300" height="140"/>
+                        <rect key="frame" x="15" y="10" width="290" height="140"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="q15-Rj-2H4">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,11 +31,11 @@
                     </pageControl>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yIu-YV-TNu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="53O-3h-jjf"/>
+                    <constraint firstItem="yIu-YV-TNu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="53O-3h-jjf"/>
                     <constraint firstAttribute="bottom" secondItem="gIp-hy-xdY" secondAttribute="bottom" id="7D9-vp-P1m"/>
                     <constraint firstAttribute="bottom" secondItem="yIu-YV-TNu" secondAttribute="bottom" constant="9" id="WRz-17-hta"/>
                     <constraint firstAttribute="centerX" secondItem="gIp-hy-xdY" secondAttribute="centerX" id="mBK-Nw-fov"/>
-                    <constraint firstAttribute="trailing" secondItem="yIu-YV-TNu" secondAttribute="trailing" constant="10" id="pcM-f8-09C"/>
+                    <constraint firstAttribute="trailing" secondItem="yIu-YV-TNu" secondAttribute="trailing" constant="15" id="pcM-f8-09C"/>
                     <constraint firstItem="yIu-YV-TNu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ufr-W8-LIk"/>
                 </constraints>
             </tableViewCellContentView>

@@ -55,6 +55,7 @@ static NSString const *shopByDealTypeMethodName = @"shopbydealtype";
 static NSString const *dealsbydealtypeMethodName = @"dealsbydealtype";
 static NSString const *dealProductListingMethodName = @"dealproductlisting";
 static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
+static NSString const *productlistallMethodName = @"productlistall";
 
 
 
@@ -255,6 +256,12 @@ static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, offerbydealtypeMethodName];
 }
+
++ (NSString *)productListAllPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, productlistallMethodName];
+}
+
 
 @end
 

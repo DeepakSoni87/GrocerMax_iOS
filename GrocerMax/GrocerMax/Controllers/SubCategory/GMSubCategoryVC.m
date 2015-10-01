@@ -143,6 +143,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     return headerView;
 }
 
+#pragma mark -
+
 -(void)actionHeaderBtnClicked:(UIButton *)sender {
     
     NSInteger btnTag = sender.tag;
@@ -161,14 +163,15 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     {
         //Rahut put your code here
         
-        NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal.subCategories];
-        [arr insertObject:categoryModal atIndex:0];
+//        NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal.subCategories];
+//        [arr insertObject:categoryModal atIndex:0];
+//        
+//        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+//        rootVC.pageData = arr;
+//        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+//        [self.navigationController pushViewController:rootVC animated:YES];
         
-        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-        rootVC.pageData = arr;
-        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
-        [self.navigationController pushViewController:rootVC animated:YES];
-        
+        [self fetchProductListingDataForCategory:categoryModal];
     }
 }
 
@@ -180,14 +183,56 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     GMCategoryModal *categoryModal1 = [categoryModal.subCategories objectAtIndex:btnTag];
     //Rahut put your code here
     
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal1.subCategories];
-    [arr insertObject:categoryModal1 atIndex:0];
+//    NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal1.subCategories];
+//    [arr insertObject:categoryModal1 atIndex:0];
+//    
+//    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+//    rootVC.pageData = arr;
+//    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+//    [self.navigationController pushViewController:rootVC animated:YES];
     
-    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-    rootVC.pageData = arr;
-    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
-    [self.navigationController pushViewController:rootVC animated:YES];
+    [self fetchProductListingDataForCategory:categoryModal1];
+
 }
 
+#pragma mark - fetchProductListingDataForCategory
+
+- (void)fetchProductListingDataForCategory:(GMCategoryModal*)categoryModal {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] productListAll:localDic withSuccessBlock:^(id productListingBaseModal) {
+        [self removeProgress];
+        
+        GMProductListingBaseModal *productListingBaseMdl = productListingBaseModal;
+        
+        // All Cat list side by ALL Tab
+        NSMutableArray *categoryArray = [NSMutableArray arrayWithArray:productListingBaseMdl.hotProductListArray];
+        [categoryArray addObjectsFromArray:productListingBaseMdl.productsListArray];
+        
+        // All products, for ALL Tab category
+        NSMutableArray *allCatProductListArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.productsListArray) {
+            [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
+        }
+        
+        // set all product list in ALL tab category mdl
+        categoryModal.productListArray = allCatProductListArray;
+        
+        // set this cat modal as ALL tab
+        [categoryArray insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = categoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        [self.navigationController pushViewController:rootVC animated:YES];
+
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
 
 @end
