@@ -87,7 +87,7 @@ static NSString * const customerCareNumber = @"8010500700";
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.title = @"My Profile";
+    self.navigationItem.title = @"My Profile";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     

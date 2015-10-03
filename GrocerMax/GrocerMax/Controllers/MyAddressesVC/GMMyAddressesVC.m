@@ -20,6 +20,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addNewAddressBtn;
 
 @property (strong, nonatomic) NSMutableArray *addressArray;
 
@@ -36,6 +37,8 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 //    [self getMyAddress];
     [self registerCellsForTableView];
     [self.myAddressTableView setTableFooterView:self.footerView];
+    self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
+
 }
 
 - (void)didReceiveMemoryWarning {

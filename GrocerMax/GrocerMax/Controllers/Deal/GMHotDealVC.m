@@ -29,6 +29,12 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForCollectionView];
     [self fetchHotDealsDataFronDB];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"Home"
+                                              style:UIBarButtonItemStylePlain
+                                              target:self
+                                              action:@selector(homeButtonPressed:)];
 }
 
 - (void)registerCellsForCollectionView {
@@ -45,7 +51,14 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.title = @"Hot Offers";
+    self.navigationItem.title = @"Hot Offers";
+}
+
+#pragma mark - Button action
+
+- (void)homeButtonPressed:(UIBarButtonItem*)sender {
+    
+    [self.tabBarController setSelectedIndex:0];
 }
 
 #pragma mark - WebService Handler

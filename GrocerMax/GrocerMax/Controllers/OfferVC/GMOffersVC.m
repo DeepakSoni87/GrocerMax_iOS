@@ -74,8 +74,8 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
             
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-            GMOffersByDealTypeModal *mdl = self.dataSource[indexPath.row];
-            tempCategoryModal.categoryId = mdl.ID;
+            GMDealModal *mdl = self.dataSource[indexPath.row];
+            tempCategoryModal.categoryId = mdl.dealId;
         }
             break;
             

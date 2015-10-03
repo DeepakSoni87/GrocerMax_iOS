@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Search";
+    self.navigationItem.title = @"Search";
     self.searchBarView.delegate = self;
 //    self.searchBarView.barTintColor = [UIColor clearColor];
 //    self.searchBarView.backgroundImage = [UIImage new];
