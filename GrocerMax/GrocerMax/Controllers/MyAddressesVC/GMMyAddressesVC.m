@@ -55,6 +55,7 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.title = @"Shipping Addresses";
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self getMyAddress];
 }
 

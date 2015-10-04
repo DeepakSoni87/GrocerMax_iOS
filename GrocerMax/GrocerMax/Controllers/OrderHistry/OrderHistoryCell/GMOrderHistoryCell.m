@@ -15,8 +15,8 @@
 #define ORDER_STATUS @"Status: "
 #define ORDER_ITEMS @"Items: "
 
-#define FIRST_FONTSIZE 13.0
-#define TITLE_FONTSIZE 12.0
+#define FIRST_FONTSIZE 14.0
+#define TITLE_FONTSIZE 14.0
 
 @implementation GMOrderHistoryCell
 
