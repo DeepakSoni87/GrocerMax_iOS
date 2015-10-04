@@ -94,8 +94,8 @@ static NSString * const kProductQuantityKey                     = @"productQuant
              @"p_name"             : @"p_name",
              @"p_pack"             : @"p_pack",
              @"sale_price"         : @"sale_price",
-             @"Status"             : @"Status"
-//             @"categoryidArray"    : @"categoryid"
+             @"Status"             : @"Status",
+             @"categoryIdArray"    : @"categoryid"
              };
 }
 

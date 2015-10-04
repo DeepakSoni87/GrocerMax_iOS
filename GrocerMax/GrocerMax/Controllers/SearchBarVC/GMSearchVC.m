@@ -53,9 +53,14 @@
     [self.searchBarView resignFirstResponder];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:YES];
+}
+
 #pragma mark - API Task
 
--(void)performSearchOnServer {
+- (void)performSearchOnServer {
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:self.searchBarView.text forKey:kEY_keyword];
@@ -66,6 +71,8 @@
         [self removeProgress];
         
         GMSearchResultModal *searchResultModal = responceData;
+        [self createCategoryModalFromSearchResult:searchResultModal];
+        
         
         if (searchResultModal.categorysListArray.count == 0) {
             [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"noResultFound")];
@@ -74,7 +81,9 @@
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = searchResultModal.categorysListArray;
+        rootVC.navigationTitleString = @"Search Results";
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        rootVC.isFromSearch = YES;
         [self.navigationController pushViewController:rootVC animated:YES];
         
     } failureBlock:^(NSError *error) {
@@ -83,4 +92,23 @@
     }];
 }
 
+- (void)createCategoryModalFromSearchResult:(GMSearchResultModal *)searchModal {
+    
+    
+    for (GMCategoryModal *catModal in searchModal.categorysListArray) {
+        
+        NSString *categoryId = catModal.categoryId;
+        NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(GMProductModal *evaluatedObject, NSDictionary *bindings) {
+            
+            NSArray *categoriesIdArr = evaluatedObject.categoryIdArray;
+            if([categoriesIdArr containsObject:categoryId])
+                return YES;
+            else
+                return NO;
+        }];
+        NSArray *productListArr = [searchModal.productsListArray filteredArrayUsingPredicate:pred];
+        catModal.productListArray = productListArr;
+        catModal.totalCount = productListArr.count;
+    }
+}
 @end
