@@ -18,4 +18,6 @@
 @property (nonatomic, strong) GMCartModal *cartModal;
 
 @property (nonatomic, strong) NSString *navigationTitleString;
+
+@property (nonatomic, assign) BOOL isFromSearch;
 @end

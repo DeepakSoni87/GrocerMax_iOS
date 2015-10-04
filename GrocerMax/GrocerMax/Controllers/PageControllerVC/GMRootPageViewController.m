@@ -102,7 +102,9 @@ CGFloat btnHeight = 40.0; //same as scrollview
     for(int i = 0 ;i<self.pageData.count;i++)
     {
         NSString *title = @"All";
-
+        if(self.isFromSearch)
+            title = [self.modelController titleNameFormModal:self.pageData[i]];
+        
         if (i != 0 )
             title = [self.modelController titleNameFormModal:self.pageData[i]];
         

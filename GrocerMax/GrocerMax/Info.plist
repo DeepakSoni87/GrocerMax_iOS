@@ -54,13 +54,18 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>FacebookAppID</key>
 	<string>1073685632661628</string>
 	<key>FacebookDisplayName</key>
 	<string>TestDeisplayName</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -73,11 +78,6 @@
 	</array>
 	<key>command</key>
 	<string>payment_related_details_for_mobile_sdk</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>key</key>
 	<string>yPnUG6</string>
 	<key>var1</key>

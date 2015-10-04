@@ -228,6 +228,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = categoryArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        rootVC.navigationTitleString = categoryModal.categoryName;
         [self.navigationController pushViewController:rootVC animated:YES];
 
     } failureBlock:^(NSError *error) {
