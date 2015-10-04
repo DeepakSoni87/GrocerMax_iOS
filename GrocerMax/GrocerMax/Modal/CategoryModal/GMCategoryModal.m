@@ -32,6 +32,8 @@
 
 @property (nonatomic, readwrite, strong) NSArray *productListArray;
 
+@property (nonatomic, readwrite, assign) NSUInteger totalCount;
+
 @end
 
 static GMCategoryModal *rootCategoryModal;

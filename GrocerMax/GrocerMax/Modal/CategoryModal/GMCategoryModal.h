@@ -34,6 +34,8 @@
 
 @property (nonatomic, readonly, strong) NSArray *productListArray;
 
+@property (nonatomic, readonly, assign) NSUInteger totalCount;
+
 + (instancetype)loadRootCategory;
 
 - (void)archiveRootCategory;
@@ -61,6 +63,8 @@
 -(void)setOffercount:(NSString *)offercount;
 
 - (void)setProductListArray:(NSArray *)productListArray;
+
+- (void)setTotalCount:(NSUInteger)totalCount;
 
 #pragma mark - 
 
