@@ -31,7 +31,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [self fetchHotDealsDataFronDB];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Home"
+                                              initWithImage:[UIImage backBtnImage]
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(homeButtonPressed:)];
