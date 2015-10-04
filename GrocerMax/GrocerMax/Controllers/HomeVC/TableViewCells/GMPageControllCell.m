@@ -7,12 +7,13 @@
 //
 
 #import "GMPageControllCell.h"
+#import "GMHomeBannerModal.h"
 
 @interface GMPageControllCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *itemsCollectionView;
 @property(nonatomic,weak)IBOutlet UIPageControl *pageControl;
-
+@property (nonatomic, strong) NSArray *bannersListArray;
 @property (nonatomic) NSIndexPath* tblIndexPath;
 
 @end
@@ -39,24 +40,25 @@
 -(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
     
     self.tblIndexPath = indexPath;
-    
+    self.bannersListArray = (NSArray*)data;
     [self.itemsCollectionView reloadData];
-    self.pageControl.numberOfPages = 10;
+    self.pageControl.numberOfPages = self.bannersListArray.count;
 }
 
 #pragma mark - UICollectionView Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.bannersListArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
+    GMHomeBannerModal *mdl = self.bannersListArray[indexPath.item];
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:@"STAPLES"];
+    [imageView setImageWithURL:[NSURL URLWithString:mdl.imageUrl] placeholderImage:[UIImage placeHolderImage]];
     imageView.contentMode = UIViewContentModeScaleToFill;
     cell.backgroundView = imageView;
     

@@ -29,6 +29,7 @@
 #import "GMOrderDetailVC.h"
 #import "GMSearchResultModal.h"
 #import "GMDealCategoryBaseModal.h"
+#import "GMHomeBannerModal.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -39,6 +40,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 @property (nonatomic,weak) IBOutlet UITableView *tblView;
 @property (nonatomic,strong) NSArray *categoriesArray;
 @property (nonatomic,strong) NSArray *hotDealsArray;
+@property (nonatomic,strong) NSArray *bannerListArray;
+
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
 
 @end
@@ -181,7 +184,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(GMPageControllCell*)pageControllCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath{
     
     GMPageControllCell *cell = [tableView dequeueReusableCellWithIdentifier:pageControllCell];
-    [cell configureCellWithData:nil cellIndexPath:indexPath];
+    [cell configureCellWithData:self.bannerListArray cellIndexPath:indexPath];
     cell.delegate = self;
     return cell;
 }
@@ -281,12 +284,27 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     }];
     
     [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        
+        [[GMOperationalHandler handler] homeBannerList:nil withSuccessBlock:^(id responesModal) {
+            
+            GMHomeBannerBaseModal *baseMdl = responesModal;
+            self.bannerListArray = baseMdl.bannerListArray;
+            [self.tblView reloadData];
+            completion (nil);
+        } failureBlock:^(NSError *error) {
+            
+            completion (nil);
+        }];
+    }];
+
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
         // get shop by categories
         [self getShopByCategoriesFromServer];
         
         completion (nil);
     }];
 
+    
     [sequencer run];
 }
 
