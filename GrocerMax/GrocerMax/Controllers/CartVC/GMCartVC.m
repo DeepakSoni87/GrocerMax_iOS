@@ -193,9 +193,9 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     if(self.cartDetailModal.productItemsArray.count>0) {
         return nil;
     }
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, CGRectGetHeight(tableView.frame))];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, CGRectGetHeight(tableView.bounds))];
     [headerView setBackgroundColor:[UIColor clearColor]];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 300, CGRectGetHeight(tableView.frame))];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, CGRectGetHeight(tableView.bounds))];
     [headerLabel setTextColor:[UIColor darkTextColor]];
     [headerLabel setFont:[UIFont systemFontOfSize:16.0f]];
     [headerLabel setTextAlignment:NSTextAlignmentCenter];

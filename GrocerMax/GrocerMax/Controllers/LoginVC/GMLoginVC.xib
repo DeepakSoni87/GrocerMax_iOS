@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -65,7 +65,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56g-ua-Xyd">
                                     <rect key="frame" x="23" y="85" width="274" height="390"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO AGAIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8O-AE-FVw">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Using" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8O-AE-FVw">
                                             <rect key="frame" x="0.0" y="0.0" width="274" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="zTI-yL-eON"/>
@@ -143,7 +143,7 @@
 Hx8fT1I
 </string>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
-                                                    <color key="textColor" red="0.62352941176470589" green="0.34901960784313724" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSd-Eo-P2K">
@@ -157,6 +157,7 @@ Hx8fT1I
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="lSd-Eo-P2K" firstAttribute="leading" secondItem="dtV-8F-fSr" secondAttribute="leading" constant="157" id="03Q-W1-Ud8"/>
+                                                <constraint firstItem="dZm-ZT-JQT" firstAttribute="leading" secondItem="5Gs-dy-HBh" secondAttribute="trailing" constant="10" id="DF8-r1-elp"/>
                                                 <constraint firstAttribute="trailing" secondItem="lSd-Eo-P2K" secondAttribute="trailing" id="DW1-AA-TPe"/>
                                                 <constraint firstItem="5Gs-dy-HBh" firstAttribute="top" secondItem="dtV-8F-fSr" secondAttribute="top" constant="10" id="SBQ-x8-7ji"/>
                                                 <constraint firstAttribute="centerX" secondItem="dZm-ZT-JQT" secondAttribute="centerX" id="dxN-Sh-bNG"/>
@@ -164,8 +165,15 @@ Hx8fT1I
                                                 <constraint firstAttribute="trailing" secondItem="5Gs-dy-HBh" secondAttribute="trailing" constant="157" id="jUm-qe-wK2"/>
                                                 <constraint firstAttribute="height" constant="20" id="nlN-84-PBx"/>
                                                 <constraint firstItem="5Gs-dy-HBh" firstAttribute="leading" secondItem="dtV-8F-fSr" secondAttribute="leading" id="rgK-hB-NGU"/>
+                                                <constraint firstItem="lSd-Eo-P2K" firstAttribute="leading" secondItem="dZm-ZT-JQT" secondAttribute="trailing" constant="10" id="tGB-FR-Ztx"/>
                                                 <constraint firstItem="dZm-ZT-JQT" firstAttribute="top" secondItem="dtV-8F-fSr" secondAttribute="top" id="wSV-bX-jff"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="jUm-qe-wK2"/>
+                                                    <exclude reference="03Q-W1-Ud8"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xz5-gO-azx">
                                             <rect key="frame" x="0.0" y="130" width="274" height="85"/>
