@@ -182,12 +182,14 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         GMCategoryModal *categoryModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
         GMLeftMenuCell *leftMenuCell = (GMLeftMenuCell *)[tableView dequeueReusableCellWithIdentifier:kLeftMenuCellIdentifier];
         [leftMenuCell configureWithCategoryName:categoryModal.categoryName];
+        [leftMenuCell setIdentationLevelOfCustomCell:1];
         return leftMenuCell;
         
     }else if([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection]){
         
         GMHotDealModal *hotDealModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
         GMLeftMenuCell *leftMenuCell = (GMLeftMenuCell *)[tableView dequeueReusableCellWithIdentifier:kLeftMenuCellIdentifier];
+        [leftMenuCell setIdentationLevelOfCustomCell:1];
         [leftMenuCell configureWithCategoryName:hotDealModal.dealType];// confuse to use new func OR same
         return leftMenuCell;
     }

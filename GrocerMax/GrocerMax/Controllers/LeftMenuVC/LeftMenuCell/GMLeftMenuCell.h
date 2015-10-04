@@ -20,5 +20,7 @@
 
 - (void)maskCellFromTop:(CGFloat)margin;
 
+- (void)setIdentationLevelOfCustomCell:(NSUInteger)level;
+
 + (CGFloat)cellHeight;
 @end
