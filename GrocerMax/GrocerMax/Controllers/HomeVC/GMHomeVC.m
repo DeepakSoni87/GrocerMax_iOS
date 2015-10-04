@@ -51,7 +51,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self addLeftMenuButton];
 //    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
-    self.title = @"Home";
+    self.navigationItem.title = @"Home";
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];

@@ -24,6 +24,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addNewAddressBtn;
+
 @property (weak, nonatomic) IBOutlet UIView *addAddressView;
 
 @property (strong, nonatomic) NSMutableArray *addressArray;
@@ -48,6 +50,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [self getShippingAddress];
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
+    self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
