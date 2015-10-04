@@ -148,15 +148,15 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     switch (indexPath.row) {
         case 0:
         {
-            return 160;
+            return 140;
         }
             break;
         case 1:
-            return 180;
+            return 215;
             break;
             
         default:
-            return 180;
+            return 205;
             break;
     }
 }
