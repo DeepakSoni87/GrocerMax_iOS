@@ -17,6 +17,7 @@
 		3B9025261BB8395200603403 /* GMSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9025241BB8395100603403 /* GMSearchBarView.xib */; };
 		3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */; };
 		3B90252E1BB8916F00603403 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90252D1BB8916F00603403 /* Reachability.m */; };
+		3B9872BB1BC1154500E2499C /* GMHomeBannerModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */; };
 		3BD49B061BB9E112009BE425 /* GMProvideMobileInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */; };
 		3BD49B071BB9E112009BE425 /* GMProvideMobileInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */; };
 		3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */; };
@@ -290,6 +291,8 @@
 		3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+UpdateBagde.m"; sourceTree = "<group>"; };
 		3B90252C1BB8916F00603403 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3B90252D1BB8916F00603403 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3B9872B91BC1154500E2499C /* GMHomeBannerModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeBannerModal.h; sourceTree = "<group>"; };
+		3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeBannerModal.m; sourceTree = "<group>"; };
 		3BD49B031BB9E112009BE425 /* GMProvideMobileInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProvideMobileInfoVC.h; sourceTree = "<group>"; };
 		3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProvideMobileInfoVC.m; sourceTree = "<group>"; };
 		3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMProvideMobileInfoVC.xib; sourceTree = "<group>"; };
@@ -745,6 +748,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		3B9872B81BC1151900E2499C /* HomeBanner */ = {
+			isa = PBXGroup;
+			children = (
+				3B9872B91BC1154500E2499C /* GMHomeBannerModal.h */,
+				3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */,
+			);
+			path = HomeBanner;
+			sourceTree = "<group>";
+		};
 		3BD49B021BB9E0D9009BE425 /* ProvideMobileInfoVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +770,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				3B9872B81BC1151900E2499C /* HomeBanner */,
 				E8916C171BBB171F00DA75BE /* GenralModal */,
 				3B9025111BB8153700603403 /* SearchModal */,
 				E8326C6F1BB6B742008ACC8B /* CheckOutModal */,
@@ -2243,6 +2256,7 @@
 				820C502E1BB1CC5C00DCCF39 /* GMShopByCategoryCell.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
 				824AF9B21BB5CF6E001652B9 /* GMCartDetailModal.m in Sources */,
+				3B9872BB1BC1154500E2499C /* GMHomeBannerModal.m in Sources */,
 				E86D14501BB99D4E00D3EAD8 /* WebViewJavascriptBridgeBase.m in Sources */,
 				820C503A1BB1CC5C00DCCF39 /* GMLoginVC.m in Sources */,
 				820C503C1BB1CC5C00DCCF39 /* GMMyAddressesVC.m in Sources */,
