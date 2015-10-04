@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginConstraint;
 
+@property (weak, nonatomic) IBOutlet UIImageView *dividerLineImaegView;
+
 @end
 
 NSUInteger const leftMargin = 15;
@@ -27,6 +29,7 @@ NSUInteger const leftMargin = 15;
     [self.categoryNameLabel setText:categoryName];
     [self.expandButton setHidden:YES];
     [self.arrowImageView setHidden:NO];
+    [self.dividerLineImaegView setHidden:YES];
 }
 
 - (void)configureCellWith:(GMCategoryModal *)categoryModal {
@@ -35,10 +38,16 @@ NSUInteger const leftMargin = 15;
     [self.categoryNameLabel setText:categoryModal.categoryName];
     [self.expandButton setSelected:!categoryModal.isExpand];
     [self setIdentationLevelOfCustomCell:categoryModal.indentationLevel];
-    if(categoryModal.isExpand)
+    if(categoryModal.isExpand) {
+        
+        [self.dividerLineImaegView setHidden:NO];
         [self.expandButton setHidden:NO];
-    else
+    }
+    else {
+        
+        [self.dividerLineImaegView setHidden:YES];
         [self.expandButton setHidden:YES];
+    }
 }
 
 - (void)setIdentationLevelOfCustomCell:(NSUInteger)level {

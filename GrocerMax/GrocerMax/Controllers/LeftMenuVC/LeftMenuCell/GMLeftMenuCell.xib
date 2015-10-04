@@ -37,22 +37,33 @@
                         </state>
                         <state key="selected" image="left_minus"/>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fly-bf-dl7">
+                        <rect key="frame" x="0.0" y="38" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.22352941179999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="LWA-v4-PVW"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5C7-da-3AW"/>
+                    <constraint firstAttribute="bottom" secondItem="Fly-bf-dl7" secondAttribute="bottom" id="CpQ-ag-XeR"/>
                     <constraint firstItem="RyZ-9N-py7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ko6-c2-Iuv"/>
                     <constraint firstItem="RyZ-9N-py7" firstAttribute="leading" secondItem="xrl-dR-bLo" secondAttribute="trailing" constant="15" id="MKA-LH-rV2"/>
+                    <constraint firstAttribute="trailing" secondItem="Fly-bf-dl7" secondAttribute="trailing" id="RUK-Ye-vOV"/>
                     <constraint firstAttribute="trailing" secondItem="SuO-Hm-xuF" secondAttribute="trailing" constant="15" id="aN6-KJ-1EH"/>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hti-sr-zvP"/>
                     <constraint firstAttribute="trailing" secondItem="RyZ-9N-py7" secondAttribute="trailing" constant="15" id="jka-8f-MYB"/>
                     <constraint firstItem="SuO-Hm-xuF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="wIQ-fU-vJg"/>
                     <constraint firstAttribute="bottom" secondItem="xrl-dR-bLo" secondAttribute="bottom" id="xBM-AF-zhe"/>
+                    <constraint firstItem="Fly-bf-dl7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ygn-zV-sC3"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="arrowImageView" destination="RyZ-9N-py7" id="Ol2-Tm-cr2"/>
                 <outlet property="categoryNameLabel" destination="xrl-dR-bLo" id="elT-4m-i5c"/>
+                <outlet property="dividerLineImaegView" destination="Fly-bf-dl7" id="bG7-9i-Y04"/>
                 <outlet property="expandButton" destination="SuO-Hm-xuF" id="Pgu-AA-wQY"/>
                 <outlet property="leftMarginConstraint" destination="5C7-da-3AW" id="7yk-ZG-a08"/>
             </connections>

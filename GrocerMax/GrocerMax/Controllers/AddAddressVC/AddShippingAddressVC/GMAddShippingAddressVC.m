@@ -66,6 +66,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Shipping Address";
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 - (void)configureDefaultShippinOptions {
@@ -196,13 +197,13 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kCityCell]) {
         
         inputCell.inputTextField.enabled = NO;
-        [inputCell.inputTextField setBackgroundColor:[UIColor inputTextFieldDisableColor]];
+//        [inputCell.inputTextField setBackgroundColor:[UIColor inputTextFieldDisableColor]];
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.city) ? self.addressModal.city : @"";
     }
     else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kStateCell]) {
         
         inputCell.inputTextField.enabled = NO;
-        [inputCell.inputTextField setBackgroundColor:[UIColor inputTextFieldDisableColor]];
+//        [inputCell.inputTextField setBackgroundColor:[UIColor inputTextFieldDisableColor]];
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.region) ? self.addressModal.region : @"";
     }
     else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kPincodeCell]) {

@@ -64,6 +64,18 @@
     [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
 }
 
+- (void)setTxt_email:(UITextField *)txt_email {
+    
+    _txt_email = txt_email;
+    _txt_email.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email Address" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
+}
+
+- (void)setTxt_password:(UITextField *)txt_password {
+    
+    _txt_password = txt_password;
+    _txt_password.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
+}
+
 #pragma mark - Button Action
 - (IBAction)closeBtnPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

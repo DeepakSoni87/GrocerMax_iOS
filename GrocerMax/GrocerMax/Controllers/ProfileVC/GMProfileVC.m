@@ -63,7 +63,7 @@
 static NSString * const kprofileCellIdentifier              = @"profileCellIdentifier";
 
 static NSString * const kOrderHistoryCell                   =  @"Order History";
-static NSString * const kMyAddressCell                      =  @"My Addresses";
+static NSString * const kMyAddressCell                      =  @"Shipping Addresses";
 static NSString * const kEditProfileCell                    =  @"Edit My Information";
 static NSString * const kInviteFriendsCell                  =  @"Invite Friends";
 static NSString * const kCallUsCell                         =  @"Call Us";
@@ -180,7 +180,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage forwardArrowImage]];
     cell.textLabel.text = profileModal.displayCellText;
     cell.textLabel.textColor = [UIColor colorFromHexString:@"#1d1d1d"];
-    cell.textLabel.font = FONT_REGULAR(11);
+    cell.textLabel.font = FONT_REGULAR(14);
     return cell;
 }
 

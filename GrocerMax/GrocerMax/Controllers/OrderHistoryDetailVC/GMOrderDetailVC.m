@@ -218,7 +218,7 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
         if(section == 0) {
             [header congigerHeaderData:[NSString stringWithFormat:@"Order ID:%@",self.orderHistoryModal.orderId]];
         } else {
-             [header congigerHeaderData:@"YOUE ORDER"];
+             [header congigerHeaderData:@"YOUR ORDER"];
         }
         headerView = header;
         return headerView;
