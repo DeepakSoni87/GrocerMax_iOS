@@ -43,10 +43,11 @@ static GMRequestParams *sharedClass;
 
 - (NSMutableDictionary *)getUserLoginRequestParamsWith:(NSString *)userName password:(NSString *)password{
     
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
     [paramDict setObject:userName forKey:kEY_uemail];
     [paramDict setObject:password forKey:kEY_password];
-    
+    [paramDict setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kEY_quote_id];
     return paramDict;
 }
 

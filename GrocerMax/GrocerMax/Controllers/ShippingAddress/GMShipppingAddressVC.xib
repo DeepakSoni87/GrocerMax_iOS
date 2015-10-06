@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMShipppingAddressVC">
@@ -25,8 +25,10 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="progress-bar-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qwf-sq-TbV">
                             <rect key="frame" x="100" y="8" width="120" height="12"/>
+                            <animations/>
                         </imageView>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="9d2-Pf-iNP"/>
@@ -34,6 +36,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bJc-No-v7t">
                     <rect key="frame" x="0.0" y="28" width="320" height="362"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="FJh-Zp-Hll"/>
@@ -45,6 +48,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPu-lM-8xr">
                             <rect key="frame" x="8" y="8" width="298" height="28"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="nml-0z-vDe"/>
                             </constraints>
@@ -64,6 +68,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frK-aQ-THa">
                             <rect key="frame" x="275" y="7" width="30" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="KTx-6Q-jyd"/>
                                 <constraint firstAttribute="width" constant="30" id="cfp-Za-fmS"/>
@@ -77,6 +82,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="frK-aQ-THa" firstAttribute="top" secondItem="udC-WG-P8E" secondAttribute="top" constant="7" id="8Xy-rQ-LCV"/>
@@ -92,6 +98,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-9P-8UB">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+                            <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                             <state key="normal" title="PROCEED">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,6 +109,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="jNa-9P-8UB" firstAttribute="leading" secondItem="6ih-x0-YXA" secondAttribute="leading" id="8G0-tg-2mQ"/>
@@ -113,9 +121,11 @@
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-zb-cZf">
                     <rect key="frame" x="0.0" y="28" width="320" height="476"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="bJc-No-v7t" secondAttribute="trailing" id="1FA-nn-rHQ"/>
@@ -150,6 +160,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdH-1i-bdu">
                             <rect key="frame" x="0.0" y="0.0" width="306" height="44"/>
+                            <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="276" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -162,6 +173,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="tdH-1i-bdu" firstAttribute="leading" secondItem="eJh-rX-Fwb" secondAttribute="leading" id="dss-1t-v3q"/>
@@ -171,6 +183,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="eJh-rX-Fwb" secondAttribute="trailing" constant="7" id="HXr-8l-N4Z"/>

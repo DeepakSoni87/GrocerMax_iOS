@@ -88,6 +88,18 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.cartDetailTableView registerNib:[UINib nibWithNibName:@"GMCartCell" bundle:nil] forCellReuseIdentifier:kCartCellIdentifier];
 }
 
+#pragma mark - GETTER/SETTER Methods
+
+- (void)setTotalView:(UIView *)totalView {
+    
+    _totalView = totalView;
+    _totalView.layer.cornerRadius = 5.0;
+    _totalView.layer.masksToBounds = YES;
+    _totalView.layer.borderWidth = 0.8;
+    _totalView.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
+}
+
+#pragma mark - Server handling Method
 - (void)fetchCartDetailFromServer {
     
     NSDictionary *requestDict = [[GMCartRequestParam sharedCartRequest] cartDetailRequestParameter];

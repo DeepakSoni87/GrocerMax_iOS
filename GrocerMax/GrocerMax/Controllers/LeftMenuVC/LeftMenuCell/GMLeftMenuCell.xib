@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,17 +11,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrl-dR-bLo">
                         <rect key="frame" x="15" y="0.0" width="270" height="39"/>
+                        <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                         <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-9N-py7">
                         <rect key="frame" x="300" y="16" width="5" height="8"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="5" id="KjE-Ni-9qQ"/>
                             <constraint firstAttribute="height" constant="8" id="g6b-84-xX8"/>
@@ -28,6 +31,7 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuO-Hm-xuF">
                         <rect key="frame" x="290" y="12" width="15" height="15"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="SMX-AA-Y52"/>
                             <constraint firstAttribute="height" constant="15" id="xFh-TH-lSR"/>
@@ -39,12 +43,14 @@
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fly-bf-dl7">
                         <rect key="frame" x="0.0" y="38" width="320" height="1"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.22352941179999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="LWA-v4-PVW"/>
                         </constraints>
                     </imageView>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5C7-da-3AW"/>
                     <constraint firstAttribute="bottom" secondItem="Fly-bf-dl7" secondAttribute="bottom" id="CpQ-ag-XeR"/>
@@ -59,6 +65,7 @@
                     <constraint firstItem="Fly-bf-dl7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ygn-zV-sC3"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="arrowImageView" destination="RyZ-9N-py7" id="Ol2-Tm-cr2"/>
