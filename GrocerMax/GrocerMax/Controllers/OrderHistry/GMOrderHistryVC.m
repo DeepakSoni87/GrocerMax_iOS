@@ -103,7 +103,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 131.0;
+    return [GMOrderHistoryCell getCellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

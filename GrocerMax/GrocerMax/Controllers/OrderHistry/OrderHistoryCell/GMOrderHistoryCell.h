@@ -10,8 +10,9 @@
 
 @interface GMOrderHistoryCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
-@property (strong, nonatomic) IBOutlet UILabel *titleLbl;
+//@property (strong, nonatomic) IBOutlet UILabel *titleLbl;
 
 -(void)configerViewWithData:(id)modal;
++ (CGFloat) getCellHeight;
 
 @end
