@@ -37,6 +37,13 @@
 
 #define grocerMaxDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
+//border color and Width, cornerRadius
+
+#define BORDER_COLOR [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor
+#define BORDER_WIDTH 0.80
+#define CORNER_RADIUS 5.00
+
+//End border color, Width, cornerRadius
 
 // fonts
 

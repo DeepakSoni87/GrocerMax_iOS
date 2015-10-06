@@ -52,6 +52,7 @@
     
     self.addBtn.layer.cornerRadius = 5.0;
     self.addBtn.layer.masksToBounds = YES;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
