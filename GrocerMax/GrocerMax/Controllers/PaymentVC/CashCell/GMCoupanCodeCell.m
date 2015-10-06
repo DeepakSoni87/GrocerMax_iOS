@@ -12,10 +12,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.textfeildBgView.layer.borderWidth = 0.8;
-    self.textfeildBgView.layer.cornerRadius = 3.0;
-    self.textfeildBgView.layer.borderColor = [UIColor colorWithRGBValue:224 green:224 blue:224].CGColor;
-    self.applyCodeBtn.layer.cornerRadius = 3.0;
+    self.textfeildBgView.layer.borderWidth = BORDER_WIDTH;
+    self.textfeildBgView.layer.cornerRadius = CORNER_RADIUS;
+    self.textfeildBgView.layer.borderColor = BORDER_COLOR;
+    self.applyCodeBtn.layer.cornerRadius = CORNER_RADIUS;
     [self.applyCodeBtn setClipsToBounds:YES];
 }
 

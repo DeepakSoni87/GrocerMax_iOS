@@ -33,7 +33,8 @@
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
 
-    [self popViewControllerAnimated:YES];
+//    [self popViewControllerAnimated:YES];
+//    return NO;
 	if([self.viewControllers count] < [navigationBar.items count]) {
 		return YES;
 	}
