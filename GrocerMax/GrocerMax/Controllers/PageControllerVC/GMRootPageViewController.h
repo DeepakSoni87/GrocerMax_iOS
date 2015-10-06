@@ -12,7 +12,12 @@
 @interface GMRootPageViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *pageData;
+
 @property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
 
 @property (nonatomic, strong) GMCartModal *cartModal;
+
+@property (nonatomic, strong) NSString *navigationTitleString;
+
+@property (nonatomic, assign) BOOL isFromSearch;
 @end

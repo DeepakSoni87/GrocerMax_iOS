@@ -33,7 +33,8 @@ CGFloat btnHeight = 40.0; //same as scrollview
     self.modelController.modelPageData = self.pageData;
     self.modelController.rootControllerType = self.rootControllerType;
     self.modelController.rootPageViewController = self;
-    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
+//    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
+    self.title = self.navigationTitleString;
     
     self.cartModal = [GMCartModal loadCart];
     if(!self.cartModal)
@@ -101,7 +102,9 @@ CGFloat btnHeight = 40.0; //same as scrollview
     for(int i = 0 ;i<self.pageData.count;i++)
     {
         NSString *title = @"All";
-
+        if(self.isFromSearch)
+            title = [self.modelController titleNameFormModal:self.pageData[i]];
+        
         if (i != 0 )
             title = [self.modelController titleNameFormModal:self.pageData[i]];
         
@@ -121,21 +124,23 @@ CGFloat btnHeight = 40.0; //same as scrollview
         originX += width;
     }
     
-    if (originX < kScreenWidth) {
-        
-        CGFloat extraPaddingInEachBtn = (kScreenWidth - originX)/self.pageData.count;
-        
-        originX = 0;
-        
-        for (UIButton *btn in self.btnsArray) {
-            CGRect oldFrm = btn.frame;
-            oldFrm.origin.x = originX;
-            oldFrm.size.width += extraPaddingInEachBtn;
-            btn.frame = oldFrm;
-            
-            originX += oldFrm.size.width;
-        }
-    }
+    // 4/10/2015
+//    if (originX < kScreenWidth) {
+//        
+//        CGFloat extraPaddingInEachBtn = (kScreenWidth - originX)/self.pageData.count;
+//        
+//        originX = 0;
+//        
+//        for (UIButton *btn in self.btnsArray) {
+//            CGRect oldFrm = btn.frame;
+//            oldFrm.origin.x = originX;
+//            oldFrm.size.width += extraPaddingInEachBtn;
+//            btn.frame = oldFrm;
+//            
+//            originX += oldFrm.size.width;
+//        }
+//    }
+    
     self.topScrollView.delegate = self;
     [self.topScrollView setContentSize:CGSizeMake(originX, self.topScrollView.frame.size.height)];
     self.automaticallyAdjustsScrollViewInsets = NO;

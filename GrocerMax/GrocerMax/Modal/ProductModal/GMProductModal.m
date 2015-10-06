@@ -36,6 +36,48 @@ static NSString * const kProductQuantityKey                     = @"productQuant
     return [MTLJSONAdapter arrayTransformerWithModelClass:[GMProductModal class]];
 }
 
+#pragma mark -
+
+- (instancetype)initWithResponseDict:(NSDictionary *)responseDict {
+    
+    if(self = [super init]) {
+        
+        if(HAS_KEY(responseDict, @"hotproduct")) {
+            
+            NSMutableArray *productItemsArr = [NSMutableArray array];
+            NSArray *items = responseDict[@"hotproduct"];
+            
+            for (NSDictionary *productDict in items) {
+                GMCategoryModal *productModal = [[GMCategoryModal alloc] initWithProductListDictionary:productDict];
+                [productItemsArr addObject:productModal];
+            }
+            _hotProductListArray = productItemsArr;
+        }
+        
+        if(HAS_KEY(responseDict, @"ProductList")) {
+            
+            NSMutableArray *productItemsArr = [NSMutableArray array];
+            NSArray *items = responseDict[@"ProductList"];
+            
+            for (NSDictionary *productDict in items) {
+                GMCategoryModal *productModal = [[GMCategoryModal alloc] initWithProductListDictionary:productDict];
+                [productItemsArr addObject:productModal];
+            }
+            _productsListArray = productItemsArr;
+        }
+        
+        if(HAS_DATA(responseDict, @"Totalcount"))
+            _totalcount = [responseDict[@"Totalcount"] integerValue];
+        
+        if(HAS_DATA(responseDict, @"flag"))
+            _flag = [responseDict[@"flag"] boolValue];
+        
+    }
+    
+    return self;
+}
+
+
 @end
 
 @implementation GMProductModal
@@ -52,8 +94,8 @@ static NSString * const kProductQuantityKey                     = @"productQuant
              @"p_name"             : @"p_name",
              @"p_pack"             : @"p_pack",
              @"sale_price"         : @"sale_price",
-             @"Status"             : @"Status"
-//             @"categoryidArray"    : @"categoryid"
+             @"Status"             : @"Status",
+             @"categoryIdArray"    : @"categoryid"
              };
 }
 

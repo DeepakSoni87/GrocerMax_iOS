@@ -7,58 +7,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GMShopByCategoryCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="215" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="215" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="215" height="130"/>
+                <rect key="frame" x="0.0" y="0.0" width="215" height="135"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P0Z-PJ-7dj">
                         <rect key="frame" x="15" y="0.0" width="185" height="105"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tou-iS-mkt">
-                        <rect key="frame" x="15" y="106" width="185" height="23"/>
+                        <rect key="frame" x="15" y="105" width="185" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="23" id="xS3-aa-MyU"/>
+                            <constraint firstAttribute="height" constant="29" id="tZb-sK-kqu"/>
                         </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" red="1" green="0.41960784309999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUD-lZ-U9u">
-                        <rect key="frame" x="20" y="65" width="175" height="36"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="36" id="ckg-Zf-nTC"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Tou-iS-mkt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="6Xd-XJ-RJ9"/>
                 <constraint firstItem="P0Z-PJ-7dj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BsP-eL-L8b"/>
-                <constraint firstItem="Tou-iS-mkt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="JpL-gb-gp8"/>
-                <constraint firstItem="Tou-iS-mkt" firstAttribute="top" secondItem="aUD-lZ-U9u" secondAttribute="bottom" constant="5" id="OHG-8E-VZn"/>
-                <constraint firstItem="aUD-lZ-U9u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="QXY-Mj-7mG"/>
+                <constraint firstItem="Tou-iS-mkt" firstAttribute="top" secondItem="P0Z-PJ-7dj" secondAttribute="bottom" id="Kh3-pP-Urt"/>
                 <constraint firstItem="P0Z-PJ-7dj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="UgW-WI-SdU"/>
-                <constraint firstAttribute="bottom" secondItem="Tou-iS-mkt" secondAttribute="bottom" constant="1" id="YpO-Hu-4kr"/>
+                <constraint firstAttribute="trailing" secondItem="Tou-iS-mkt" secondAttribute="trailing" constant="15" id="b2h-TY-beH"/>
                 <constraint firstAttribute="trailing" secondItem="P0Z-PJ-7dj" secondAttribute="trailing" constant="15" id="dVl-V5-0eV"/>
-                <constraint firstAttribute="trailing" secondItem="aUD-lZ-U9u" secondAttribute="trailing" constant="20" id="nyQ-K1-TT3"/>
-                <constraint firstAttribute="bottom" secondItem="P0Z-PJ-7dj" secondAttribute="bottom" constant="25" id="sJ3-O7-AsW"/>
-                <constraint firstAttribute="trailing" secondItem="Tou-iS-mkt" secondAttribute="trailing" constant="15" id="tq7-hW-ZYY"/>
+                <constraint firstAttribute="bottom" secondItem="P0Z-PJ-7dj" secondAttribute="bottom" constant="30" id="sJ3-O7-AsW"/>
             </constraints>
             <size key="customSize" width="209" height="130"/>
             <connections>
                 <outlet property="bgImgView" destination="P0Z-PJ-7dj" id="O8c-L4-yan"/>
                 <outlet property="offerBtn" destination="Tou-iS-mkt" id="aF6-RI-kcR"/>
-                <outlet property="titleLbl" destination="aUD-lZ-U9u" id="s5p-Nb-YRP"/>
             </connections>
-            <point key="canvasLocation" x="-17.5" y="213"/>
+            <point key="canvasLocation" x="-262.5" y="177.5"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -63,7 +63,7 @@
 static NSString * const kprofileCellIdentifier              = @"profileCellIdentifier";
 
 static NSString * const kOrderHistoryCell                   =  @"Order History";
-static NSString * const kMyAddressCell                      =  @"My Addresses";
+static NSString * const kMyAddressCell                      =  @"Shipping Addresses";
 static NSString * const kEditProfileCell                    =  @"Edit My Information";
 static NSString * const kInviteFriendsCell                  =  @"Invite Friends";
 static NSString * const kCallUsCell                         =  @"Call Us";
@@ -87,7 +87,7 @@ static NSString * const customerCareNumber = @"8010500700";
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.title = @"My Profile";
+    self.navigationItem.title = @"My Profile";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     
@@ -180,7 +180,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage forwardArrowImage]];
     cell.textLabel.text = profileModal.displayCellText;
     cell.textLabel.textColor = [UIColor colorFromHexString:@"#1d1d1d"];
-    cell.textLabel.font = FONT_REGULAR(11);
+    cell.textLabel.font = FONT_REGULAR(14);
     return cell;
 }
 

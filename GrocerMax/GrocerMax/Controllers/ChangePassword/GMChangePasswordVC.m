@@ -17,9 +17,9 @@
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
 
-static NSString * const kOldPasswordCell                         =  @"Old password";
-static NSString * const kNewPasswordCell                          =  @"New password";
-static NSString * const kConformPasswordCell                       =  @"Conform password";
+static NSString * const kOldPasswordCell                     =  @"Old Password";
+static NSString * const kNewPasswordCell                     =  @"New Password";
+static NSString * const kConformPasswordCell                 =  @"Confirm Password";
 
 
 @interface GMChangePasswordVC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>

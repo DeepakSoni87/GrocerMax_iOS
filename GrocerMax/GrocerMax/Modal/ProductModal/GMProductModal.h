@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface GMProductListingBaseModal : MTLModel <MTLJSONSerializing>
 
 @property (strong, nonatomic) NSArray *productsListArray;
+@property (strong, nonatomic) NSArray *hotProductListArray;
 @property (assign, nonatomic) NSInteger totalcount;
 @property (assign, nonatomic) BOOL flag;
+
+- (instancetype)initWithResponseDict:(NSDictionary *)responseDict;
 
 @end
 
@@ -32,7 +36,7 @@
 @property (strong, nonatomic) NSString *productQuantity;
 @property (strong, nonatomic) NSString *sku;
 @property (strong, nonatomic) NSString *noDiscount;
-//@property (strong, nonatomic) NSArray *categoryidArray;
+@property (strong, nonatomic) NSArray *categoryIdArray;
 
 @property (nonatomic, assign) BOOL isProductUpdated;
 

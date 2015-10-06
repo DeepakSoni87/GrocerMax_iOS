@@ -8,7 +8,6 @@
 
 #import "GMOffersCollectionViewCell.h"
 #import "GMProductModal.h"
-#import "UIImageView+AFNetworking.h"
 #import "GMOffersByDealTypeModal.h"
 #import "GMDealCategoryBaseModal.h"
 
@@ -30,16 +29,17 @@
     self.itemImgView.layer.borderWidth = 3.0;
 }
 
--(void) configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
+- (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
     
     NSString *titleName = @"";
-    
+    NSURL *imageUrl ;
     switch (rootType) {
             
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
-            GMOffersByDealTypeModal *mdl = data;
-            titleName = mdl.dealType;
+            GMDealModal *mdl = data;
+            titleName = mdl.dealName;
+            imageUrl = [NSURL URLWithString:mdl.img];
         }
             break;
             
@@ -47,6 +47,7 @@
         {
             GMDealModal *mdl = data;
             titleName = mdl.dealName;
+            imageUrl = [NSURL URLWithString:mdl.img];
         }
             break;
             
@@ -72,6 +73,7 @@
 //    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
     
     self.itemName.attributedText = attString1;
+    [self.itemImgView setImageWithURL:imageUrl placeholderImage:nil];
 }
 
 @end

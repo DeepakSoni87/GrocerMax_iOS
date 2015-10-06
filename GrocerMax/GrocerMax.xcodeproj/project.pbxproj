@@ -17,8 +17,11 @@
 		3B9025261BB8395200603403 /* GMSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9025241BB8395100603403 /* GMSearchBarView.xib */; };
 		3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */; };
 		3B90252E1BB8916F00603403 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90252D1BB8916F00603403 /* Reachability.m */; };
+		3B9872BB1BC1154500E2499C /* GMHomeBannerModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */; };
 		3BD49B061BB9E112009BE425 /* GMProvideMobileInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */; };
 		3BD49B071BB9E112009BE425 /* GMProvideMobileInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */; };
+		3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */; };
+		3BF64CC21BBC98DC00E16DA5 /* GMSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF64CC01BBC98DC00E16DA5 /* GMSearchVC.xib */; };
 		766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */; };
 		820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4EBD1BAF3D3900DCCF39 /* GMSharedClass.m */; };
 		820C4FF91BB1CC5C00DCCF39 /* GMAddressModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 820C4F011BB1CC5C00DCCF39 /* GMAddressModal.m */; };
@@ -288,9 +291,14 @@
 		3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+UpdateBagde.m"; sourceTree = "<group>"; };
 		3B90252C1BB8916F00603403 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3B90252D1BB8916F00603403 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3B9872B91BC1154500E2499C /* GMHomeBannerModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeBannerModal.h; sourceTree = "<group>"; };
+		3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeBannerModal.m; sourceTree = "<group>"; };
 		3BD49B031BB9E112009BE425 /* GMProvideMobileInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProvideMobileInfoVC.h; sourceTree = "<group>"; };
 		3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProvideMobileInfoVC.m; sourceTree = "<group>"; };
 		3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMProvideMobileInfoVC.xib; sourceTree = "<group>"; };
+		3BF64CBE1BBC98DC00E16DA5 /* GMSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSearchVC.h; sourceTree = "<group>"; };
+		3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSearchVC.m; sourceTree = "<group>"; };
+		3BF64CC01BBC98DC00E16DA5 /* GMSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSearchVC.xib; sourceTree = "<group>"; };
 		43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.debug.xcconfig"; sourceTree = "<group>"; };
 		594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GrocerMax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		820C4EBC1BAF3D3900DCCF39 /* GMSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSharedClass.h; sourceTree = "<group>"; };
@@ -705,6 +713,9 @@
 		3B9025151BB81DA000603403 /* SearchBarVC */ = {
 			isa = PBXGroup;
 			children = (
+				3BF64CBE1BBC98DC00E16DA5 /* GMSearchVC.h */,
+				3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */,
+				3BF64CC01BBC98DC00E16DA5 /* GMSearchVC.xib */,
 			);
 			path = SearchBarVC;
 			sourceTree = "<group>";
@@ -737,6 +748,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		3B9872B81BC1151900E2499C /* HomeBanner */ = {
+			isa = PBXGroup;
+			children = (
+				3B9872B91BC1154500E2499C /* GMHomeBannerModal.h */,
+				3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */,
+			);
+			path = HomeBanner;
+			sourceTree = "<group>";
+		};
 		3BD49B021BB9E0D9009BE425 /* ProvideMobileInfoVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +770,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				3B9872B81BC1151900E2499C /* HomeBanner */,
 				E8916C171BBB171F00DA75BE /* GenralModal */,
 				3B9025111BB8153700603403 /* SearchModal */,
 				E8326C6F1BB6B742008ACC8B /* CheckOutModal */,
@@ -2044,6 +2065,7 @@
 				820C50101BB1CC5C00DCCF39 /* GMTAddAddressCell.xib in Resources */,
 				820C502D1BB1CC5C00DCCF39 /* GMPageControllCell.xib in Resources */,
 				820C506C1BB1CC5C00DCCF39 /* PBDatePickerVC.xib in Resources */,
+				3BF64CC21BBC98DC00E16DA5 /* GMSearchVC.xib in Resources */,
 				820C50531BB1CC5C00DCCF39 /* GMProductListingVC.xib in Resources */,
 				820C502B1BB1CC5C00DCCF39 /* GMShopByDealCollectionViewCell.xib in Resources */,
 				E86D14491BB99D4E00D3EAD8 /* PayUPaymentOptionsViewController.xib in Resources */,
@@ -2185,6 +2207,7 @@
 				820C500D1BB1CC5C00DCCF39 /* GMAddressCell.m in Sources */,
 				820C50031BB1CC5C00DCCF39 /* GMUserModal.m in Sources */,
 				3BD49B061BB9E112009BE425 /* GMProvideMobileInfoVC.m in Sources */,
+				3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */,
 				820C50341BB1CC5C00DCCF39 /* GMLeftMenuVC.m in Sources */,
 				820C50641BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.m in Sources */,
 				E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */,
@@ -2233,6 +2256,7 @@
 				820C502E1BB1CC5C00DCCF39 /* GMShopByCategoryCell.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
 				824AF9B21BB5CF6E001652B9 /* GMCartDetailModal.m in Sources */,
+				3B9872BB1BC1154500E2499C /* GMHomeBannerModal.m in Sources */,
 				E86D14501BB99D4E00D3EAD8 /* WebViewJavascriptBridgeBase.m in Sources */,
 				820C503A1BB1CC5C00DCCF39 /* GMLoginVC.m in Sources */,
 				820C503C1BB1CC5C00DCCF39 /* GMMyAddressesVC.m in Sources */,
@@ -2436,7 +2460,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
+				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
 			};
 			name = Debug;
 		};
@@ -2452,7 +2476,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
+				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
 			};
 			name = Release;
 		};
@@ -2472,7 +2496,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
+				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2489,7 +2513,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d26df69-db0e-4708-848d-f607915a77a3";
+				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

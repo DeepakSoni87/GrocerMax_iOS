@@ -39,8 +39,8 @@
 - (void)setProductListImageView:(UIImageView *)productListImageView {
     
     _productListImageView = productListImageView;
-    [_productListImageView.layer setBorderColor:[UIColor grayColor].CGColor];
-    [_productListImageView.layer setBorderWidth:1.0];
+//    [_productListImageView.layer setBorderColor:[UIColor grayColor].CGColor];
+//    [_productListImageView.layer setBorderWidth:1.0];
 }
 
 - (void)configureViewWithProductModal:(GMProductModal *)productModal {
@@ -52,8 +52,26 @@
     [self.subTitleLbl setText:self.productModal.p_name];
     [self.quantityLbl setText:self.productModal.p_pack];
 //    [self.priceLbl setText:[NSString stringWithFormat:@"%ld", (long)self.productModal.sale_price.integerValue]];
-    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
-    [self.priceWithOfferLbl setText:priceQuantityStr];
+    
+    
+//    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
+    
+    NSDictionary* style1 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             };
+    
+    NSDictionary* style2 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSStrikethroughStyleAttributeName : @1
+                             };
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ x ₹%ld | ", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue] attributes:style1];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%ld", (long)self.productModal.Price.integerValue] attributes:style2]];
+    
+    [self.priceWithOfferLbl setAttributedText:attString];
+    
     [self.addSubstractLbl setText:self.productModal.productQuantity];
     self.quantityValue = self.productModal.productQuantity.integerValue;
     [self.promotionLabel setText:self.productModal.promotion_level];
@@ -69,7 +87,26 @@
     double totalPrice = self.productModal.sale_price.doubleValue * self.productModal.productQuantity.integerValue;
     [self.priceLbl setText:[NSString stringWithFormat:@"₹%.2f", totalPrice]];
     
-    if(self.productModal.Price.integerValue == 0) {
+//    NSString *priceQuantityStr = [NSString stringWithFormat:@"%@ x ₹%ld | ₹%ld", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue, (long)self.productModal.Price.integerValue];
+//    [self.priceWithOfferLbl setText:priceQuantityStr];
+    
+    NSDictionary* style1 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             };
+    
+    NSDictionary* style2 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSStrikethroughStyleAttributeName : @1
+                             };
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ x ₹%ld | ", self.productModal.productQuantity, (long)self.productModal.sale_price.integerValue] attributes:style1];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%ld", (long)self.productModal.Price.integerValue] attributes:style2]];
+    
+    [self.priceWithOfferLbl setAttributedText:attString];
+
+    if(self.productModal.sale_price.integerValue == 0) {
         
         [self.addSubstractView setHidden:YES];
         [self.deleteButton setHidden:YES];

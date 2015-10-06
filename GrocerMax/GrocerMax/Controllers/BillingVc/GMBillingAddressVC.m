@@ -24,6 +24,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addNewAddressBtn;
+
 @property (nonatomic, strong) GMUserModal *userModal;
 
 @property (nonatomic, strong) GMAddressModalData *selectedAddressModalData;
@@ -39,6 +41,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
+    self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

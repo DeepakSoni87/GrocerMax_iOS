@@ -21,6 +21,10 @@
 @property (strong, nonatomic) NSString *dealType;
 @property (strong, nonatomic) NSString *ID;
 @property (strong, nonatomic) NSString *img;
+@property (nonatomic, strong) NSArray *dealsArray;
 
-
+- (instancetype)initWithDealType:(NSString *)dealType
+                          dealId:(NSString *)dealId
+                    dealImageUrl:(NSString *)imageUrl
+                   andDealsArray:(NSArray *)dealsArray;
 @end

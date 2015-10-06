@@ -81,12 +81,30 @@
     self.productModal = productModal;
     self.cartModal = cartModal;
     self.addBtn.produtModal = productModal;
+    self.imgBtn.produtModal = productModal;
     
     [self.productImgView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
-    [self.productBrandLabel setText:self.productModal.p_brand];
+    [self.productBrandLabel setText:self.productModal.p_brand.uppercaseString];
     [self.productNameLabel setText:self.productModal.p_name];
     [self.productPackLabel setText:self.productModal.p_pack];
-    [self.productOfferLabel setText:[NSString stringWithFormat:@"₹%@ | ₹%@", self.productModal.sale_price, self.productModal.Price]];
+    
+    NSDictionary* style1 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             };
+    
+    NSDictionary* style2 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSStrikethroughStyleAttributeName : @1
+                             };
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@ | ",self.productModal.sale_price] attributes:style1];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@", self.productModal.Price] attributes:style2]];
+
+    [self.productOfferLabel setAttributedText:attString];
+    
+//    [self.productOfferLabel setText:[NSString stringWithFormat:@"₹%@ | ₹%@", self.productModal.sale_price, self.productModal.Price]];
     
     self.promotionalLbl.text = self.productModal.promotion_level;
     self.quantityValue = self.productModal.productQuantity.integerValue > 0 ? self.productModal.productQuantity.integerValue : 1;

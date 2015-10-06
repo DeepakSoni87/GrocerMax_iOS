@@ -29,16 +29,19 @@
 #import "GMOrderDetailVC.h"
 #import "GMSearchResultModal.h"
 #import "GMDealCategoryBaseModal.h"
+#import "GMHomeBannerModal.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
 NSString *const shopByDealCell = @"GMShopByDealCell";
 
-@interface GMHomeVC ()<UITableViewDataSource,UITableViewDelegate,GMPageControllCellDelegate,GMShopByCategoryCellDelegate,GMShopByDealCellDelegate,GMSearchBarViewDelegate>
+@interface GMHomeVC ()<UITableViewDataSource,UITableViewDelegate,GMPageControllCellDelegate,GMShopByCategoryCellDelegate,GMShopByDealCellDelegate>
 
 @property (nonatomic,weak) IBOutlet UITableView *tblView;
 @property (nonatomic,strong) NSArray *categoriesArray;
 @property (nonatomic,strong) NSArray *hotDealsArray;
+@property (nonatomic,strong) NSArray *bannerListArray;
+
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
 
 @end
@@ -50,7 +53,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
-    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+//    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+    self.navigationItem.title = @"Home";
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
@@ -144,15 +148,15 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     switch (indexPath.row) {
         case 0:
         {
-            return 160;
+            return 140;
         }
             break;
         case 1:
-            return 180;
+            return 215;
             break;
             
         default:
-            return 180;
+            return 205;
             break;
     }
 }
@@ -180,7 +184,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(GMPageControllCell*)pageControllCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath{
     
     GMPageControllCell *cell = [tableView dequeueReusableCellWithIdentifier:pageControllCell];
-    [cell configureCellWithData:nil cellIndexPath:indexPath];
+    [cell configureCellWithData:self.bannerListArray cellIndexPath:indexPath];
     cell.delegate = self;
     return cell;
 }
@@ -225,7 +229,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
 
-    [self getOffersDealFromServerWithCatID:catModal.categoryId];
+    [self getOffersDealFromServerWithCategoryModal:catModal];
 }
 
 #pragma mark - Deal cell Delegate
@@ -280,12 +284,27 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     }];
     
     [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        
+        [[GMOperationalHandler handler] homeBannerList:nil withSuccessBlock:^(id responesModal) {
+            
+            GMHomeBannerBaseModal *baseMdl = responesModal;
+            self.bannerListArray = baseMdl.bannerListArray;
+            [self.tblView reloadData];
+            completion (nil);
+        } failureBlock:^(NSError *error) {
+            
+            completion (nil);
+        }];
+    }];
+
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
         // get shop by categories
         [self getShopByCategoriesFromServer];
         
         completion (nil);
     }];
 
+    
     [sequencer run];
 }
 
@@ -355,10 +374,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 #pragma mark - offersByDeal
 
-- (void)getOffersDealFromServerWithCatID:(NSString*)catID {
+- (void)getOffersDealFromServerWithCategoryModal:(GMCategoryModal*)categoryModal {
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
-    [localDic setObject:catID forKey:kEY_cat_id];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
 
     [self showProgress];
     [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
@@ -371,8 +391,11 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             return ;
         }
         
+        NSMutableArray *offersByDealTypeArray = [self createOffersByDealTypeModalFrom:baseMdl];
+        
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-        rootVC.pageData = @[@{@"All" : baseMdl.allArray}, @{@"Deal Category" : baseMdl.deal_categoryArray}];
+        rootVC.pageData = offersByDealTypeArray;
+        rootVC.navigationTitleString = categoryModal.categoryName;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
         [self.navigationController pushViewController:rootVC animated:YES];
 
@@ -382,12 +405,22 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     }];
 }
 
+- (NSMutableArray *)createOffersByDealTypeModalFrom:(GMOffersByDealTypeBaseModal *)baseModal {
+    
+    NSMutableArray *offersByDealTypeArray = [NSMutableArray array];
+    GMOffersByDealTypeModal *allModal = [[GMOffersByDealTypeModal alloc] initWithDealType:@"All" dealId:@"" dealImageUrl:@"" andDealsArray:baseModal.allArray];
+    [offersByDealTypeArray addObject:allModal];
+    [offersByDealTypeArray addObjectsFromArray:baseModal.deal_categoryArray];
+//    [offersByDealTypeArray removeLastObject];
+    return offersByDealTypeArray;
+}
+
 #pragma nark - Fetching Hot Deals Methods
 
 - (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
     
     [self showProgress];
-    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self removeProgress];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
@@ -397,6 +430,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
+        rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
         [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         
@@ -413,34 +447,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     GMDealCategoryModal *allModal = [[GMDealCategoryModal alloc] initWithCategoryId:@"" images:@"" categoryName:@"All" isActive:@"1" andDeals:dealCategoryBaseModal.allDealCategory];
     [dealCategoryArray insertObject:allModal atIndex:0];
     return dealCategoryArray;
-}
-
-#pragma mark - Search Bar Search Delegate
-
-- (void)searchBarDidCancelSearching:(GMSearchBarView*)searchView{
-    // set old title OR title view
-    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
-}
-- (void)searchBarDidFinishSearching:(GMSearchBarView*)searchView withSearchResult:(id)data{
-    
-    GMSearchResultModal *searchResultModal = data;
-
-    if (searchResultModal.categorysListArray.count == 0) {
-        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"noResultFound")];
-        return;
-    }
-    // set old title OR title view
-    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
-
-    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-    rootVC.pageData = searchResultModal.categorysListArray;
-    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
-    [self.navigationController pushViewController:rootVC animated:YES];
-}
-
-- (void)searchBarDidFailSearching:(GMSearchBarView*)searchView{
-    // set old title OR title view
-    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
 }
 
 

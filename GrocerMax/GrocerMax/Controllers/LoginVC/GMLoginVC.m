@@ -18,7 +18,9 @@
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txt_email;
+
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
+
 @property (weak, nonatomic) IBOutlet UITextField *txt_password;
 @end
 
@@ -29,12 +31,10 @@
     // Do any additional setup after loading the view from its nib.
     
     [self configureView];
-    if(self.isPresent) {
-        self.closeBtn.hidden = FALSE;
-    } else {
-        self.closeBtn.hidden = TRUE;
-    }
-    
+    if(self.isPresent)
+        self.closeBtn.hidden = NO;
+    else
+        self.closeBtn.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,13 +47,13 @@
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if(self.isPresent) {
-        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
+        
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES)
             [self dismissViewControllerAnimated:YES completion:nil];
-        }
     } else {
-        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
+        
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES)
             [self setSecondTabAsProfile];
-        }
     }
 }
 
@@ -62,6 +62,18 @@
     [GIDSignIn sharedInstance].uiDelegate = self;
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
+}
+
+- (void)setTxt_email:(UITextField *)txt_email {
+    
+    _txt_email = txt_email;
+    _txt_email.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email Address" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
+}
+
+- (void)setTxt_password:(UITextField *)txt_password {
+    
+    _txt_password = txt_password;
+    _txt_password.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
 }
 
 #pragma mark - Button Action
@@ -117,6 +129,7 @@
         }
     }];
 }
+
 - (IBAction)googleLoginButtonPressed:(UIButton *)sender {
    
     [[GIDSignIn sharedInstance] signIn];
@@ -143,18 +156,11 @@
             [userModal setEmail:self.txt_email.text];
             [userModal persistUser];
             [[GMSharedClass sharedClass] setUserLoggedStatus:YES];
-            
-            // set 2nd tab as profile VC after login success
-
-            [self setSecondTabAsProfile];
-    
-            [self.navigationController popToRootViewControllerAnimated:YES];
-
             if(self.isPresent) {
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
-                [self setSecondTabAsProfile];
                 
+                [self setSecondTabAsProfile];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
 

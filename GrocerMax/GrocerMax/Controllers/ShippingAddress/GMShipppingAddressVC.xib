@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMShipppingAddressVC">
             <connections>
                 <outlet property="addAddressView" destination="vwG-zb-cZf" id="WqE-te-kak"/>
+                <outlet property="addNewAddressBtn" destination="tdH-1i-bdu" id="Vdk-lE-eJz"/>
                 <outlet property="footerView" destination="0hP-d3-NBR" id="lcV-uu-DUq"/>
                 <outlet property="lastAddressView" destination="udC-WG-P8E" id="4Kr-go-NNQ"/>
                 <outlet property="shippingAddressTableView" destination="bJc-No-v7t" id="tdd-gd-whM"/>
@@ -138,7 +139,7 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="388" y="303"/>
+            <point key="canvasLocation" x="388" y="302"/>
         </view>
         <view contentMode="scaleToFill" id="0hP-d3-NBR">
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -147,10 +148,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJh-rX-Fwb">
                     <rect key="frame" x="7" y="8" width="306" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdH-1i-bdu">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdH-1i-bdu">
                             <rect key="frame" x="0.0" y="0.0" width="306" height="44"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="-184" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="276" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Add new address" image="left_plus">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

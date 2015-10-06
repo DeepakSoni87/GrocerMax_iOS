@@ -32,6 +32,10 @@
 
 @property (nonatomic, strong) NSString *offercount;
 
+@property (nonatomic, readonly, strong) NSArray *productListArray;
+
+@property (nonatomic, readonly, assign) NSUInteger totalCount;
+
 + (instancetype)loadRootCategory;
 
 - (void)archiveRootCategory;
@@ -57,5 +61,14 @@
 - (void)setIsSelected:(BOOL)isSelected;
 
 -(void)setOffercount:(NSString *)offercount;
+
+- (void)setProductListArray:(NSArray *)productListArray;
+
+- (void)setTotalCount:(NSUInteger)totalCount;
+
+#pragma mark - 
+
+- (instancetype)initWithProductListDictionary:(NSDictionary *)responseDict;
+
 
 @end

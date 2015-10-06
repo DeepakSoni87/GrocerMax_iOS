@@ -29,6 +29,12 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForCollectionView];
     [self fetchHotDealsDataFronDB];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithImage:[UIImage backBtnImage]
+                                              style:UIBarButtonItemStylePlain
+                                              target:self
+                                              action:@selector(homeButtonPressed:)];
 }
 
 - (void)registerCellsForCollectionView {
@@ -45,7 +51,14 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.title = @"Hot Offers";
+    self.navigationItem.title = @"Hot Offers";
+}
+
+#pragma mark - Button action
+
+- (void)homeButtonPressed:(UIBarButtonItem*)sender {
+    
+    [self.tabBarController setSelectedIndex:0];
 }
 
 #pragma mark - WebService Handler
@@ -92,7 +105,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 - (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
     
     [self showProgress];
-    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self removeProgress];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
@@ -102,6 +115,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
+        rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
         [self.navigationController pushViewController:rootVC animated:YES];
         

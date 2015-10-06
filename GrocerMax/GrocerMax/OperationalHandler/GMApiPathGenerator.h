@@ -280,5 +280,23 @@
 
 + (NSString *)offerByDealTypePath;
 
+/**
+ * Function for product List All
+ * @param GET Var page, cat_id
+ * @output productListAll
+ */
+
++ (NSString *)productListAllPath;
+
+/**
+ This api  use for home page banner
+ * Function for home page banner
+ * return name,imageurl , linkurl
+ * mandatory no
+ * @output JSON string
+ */
+
++ (NSString *)homeBannerPath;
+
 
 @end

@@ -33,6 +33,7 @@
 #import "GMSearchResultModal.h"
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
+#import "GMHomeBannerModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -1224,7 +1225,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)dealProductListing:(NSDictionary *)param withSuccessBlock:(void (^)(id data))successBlock failureBlock:(void (^)(NSError *))failureBlock{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator dealProductListingPath],[GMRequestParams dealProductListingParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator dealProductListingPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -1280,5 +1281,69 @@ static GMOperationalHandler *sharedHandler;
         if(failureBlock) failureBlock(error);
     }];
 }
+
+
+- (void)productListAll:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator productListAllPath],[GMRequestParams productListAllParameter:param]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                GMProductListingBaseModal *productListingBaseModal = [[GMProductListingBaseModal alloc] initWithResponseDict:responseObject];
+                if (successBlock) successBlock(productListingBaseModal);
+                
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+- (void)homeBannerList:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator homeBannerPath]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                NSError *mtlError = nil;
+                
+                GMHomeBannerBaseModal *bannerBaseModal = [MTLJSONAdapter modelOfClass:[GMHomeBannerBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(bannerBaseModal); }
+                
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
 
 @end

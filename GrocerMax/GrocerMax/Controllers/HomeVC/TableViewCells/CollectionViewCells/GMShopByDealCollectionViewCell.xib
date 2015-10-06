@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,13 +12,13 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="215" height="130"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="STAPLES" translatesAutoresizingMaskIntoConstraints="NO" id="Xjh-fx-L6i">
-                        <rect key="frame" x="10" y="0.0" width="195" height="120"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xjh-fx-L6i">
+                        <rect key="frame" x="15" y="0.0" width="185" height="120"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-Kf-aA8" userLabel="testLbl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-Kf-aA8" userLabel="testLbl">
                         <rect key="frame" x="15" y="0.0" width="185" height="120"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy 1  Buy 2  Buy 3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUY-Q7-Qt6">
@@ -62,7 +62,7 @@
                 <constraint firstAttribute="bottom" secondItem="UUY-Q7-Qt6" secondAttribute="bottom" id="JsK-aV-TMc"/>
                 <constraint firstItem="7SE-Kf-aA8" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="NL5-Wf-Yds"/>
                 <constraint firstItem="UUY-Q7-Qt6" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="9" id="POF-Sy-vEd"/>
-                <constraint firstAttribute="trailing" secondItem="Xjh-fx-L6i" secondAttribute="trailing" constant="10" id="SN7-ER-Dyl"/>
+                <constraint firstAttribute="trailing" secondItem="Xjh-fx-L6i" secondAttribute="trailing" constant="15" id="SN7-ER-Dyl"/>
                 <constraint firstItem="RqA-Py-RGW" firstAttribute="leading" secondItem="UUY-Q7-Qt6" secondAttribute="trailing" constant="2" id="Wxq-V6-yjN"/>
                 <constraint firstItem="xVr-rI-4wx" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="XXt-la-dJj"/>
                 <constraint firstAttribute="trailing" secondItem="xVr-rI-4wx" secondAttribute="trailing" constant="10" id="Zut-He-ae6"/>
@@ -72,7 +72,7 @@
                 <constraint firstItem="xVr-rI-4wx" firstAttribute="leading" secondItem="RqA-Py-RGW" secondAttribute="trailing" constant="2" id="gOd-4U-mDh"/>
                 <constraint firstAttribute="trailing" secondItem="7SE-Kf-aA8" secondAttribute="trailing" constant="15" id="pt0-UO-vSQ"/>
                 <constraint firstAttribute="bottom" secondItem="xVr-rI-4wx" secondAttribute="bottom" id="tRN-D0-xyS"/>
-                <constraint firstItem="Xjh-fx-L6i" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="10" id="ueL-vq-NaF"/>
+                <constraint firstItem="Xjh-fx-L6i" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="15" id="ueL-vq-NaF"/>
                 <constraint firstItem="RqA-Py-RGW" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" constant="20" id="vmX-2j-ZDW"/>
             </constraints>
             <size key="customSize" width="209" height="130"/>
@@ -85,7 +85,4 @@
             <point key="canvasLocation" x="529.5" y="425"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="STAPLES" width="576" height="576"/>
-    </resources>
 </document>

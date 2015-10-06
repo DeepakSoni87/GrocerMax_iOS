@@ -15,6 +15,7 @@ static NSString * const kForwardArrowImage               = @"forward_caret";
 static NSString * const kSearch_iconImage                = @"search_icon";
 static NSString * const kLogoImage                       = @"logo";
 static NSString * const kmenuBtnImage                    = @"menuBtn";
+static NSString * const kbackBtnImage                    = @"back";
 
 
 @implementation UIImage (Extends)
@@ -54,6 +55,11 @@ static NSString * const kmenuBtnImage                    = @"menuBtn";
 + (UIImage *)menuBtnImage{
     
     return [[UIImage imageNamed:kmenuBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)backBtnImage {
+    
+    return [[UIImage imageNamed:kbackBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 @end

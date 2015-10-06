@@ -80,22 +80,25 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" image="checkBoxSelected"/>
+                                    <connections>
+                                        <action selector="defaultShippingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="Dlg-80-8Wt"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make it my default shipping address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLf-44-3ij">
-                                    <rect key="frame" x="40" y="12" width="254" height="26"/>
+                                    <rect key="frame" x="35" y="12" width="259" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="Pgr-ut-lIA"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make it my default billing address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-jZ-zRs">
-                                    <rect key="frame" x="40" y="55" width="254" height="26"/>
+                                    <rect key="frame" x="35" y="55" width="259" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="41d-s6-MrX"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -112,20 +115,23 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" image="checkBoxSelected"/>
+                                    <connections>
+                                        <action selector="defaultBillingAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="XPg-0x-kVl"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="pwc-Ui-K3z" firstAttribute="leading" secondItem="X3o-2k-18y" secondAttribute="leading" id="6sw-A8-9QK"/>
                                 <constraint firstItem="VLf-44-3ij" firstAttribute="top" secondItem="X3o-2k-18y" secondAttribute="top" constant="12" id="A7Q-zm-vlm"/>
-                                <constraint firstItem="wdq-jZ-zRs" firstAttribute="leading" secondItem="gwF-8Y-Xo7" secondAttribute="trailing" constant="5" id="Caa-kY-C2V"/>
+                                <constraint firstItem="wdq-jZ-zRs" firstAttribute="leading" secondItem="gwF-8Y-Xo7" secondAttribute="trailing" id="Caa-kY-C2V"/>
                                 <constraint firstItem="gwF-8Y-Xo7" firstAttribute="leading" secondItem="X3o-2k-18y" secondAttribute="leading" id="Fkx-hJ-bcT"/>
                                 <constraint firstAttribute="trailing" secondItem="VLf-44-3ij" secondAttribute="trailing" id="LT1-AF-ROD"/>
                                 <constraint firstItem="pwc-Ui-K3z" firstAttribute="top" secondItem="X3o-2k-18y" secondAttribute="top" constant="7" id="Ole-me-iOP"/>
                                 <constraint firstItem="wdq-jZ-zRs" firstAttribute="top" secondItem="VLf-44-3ij" secondAttribute="bottom" constant="17" id="PAz-LS-eON"/>
                                 <constraint firstAttribute="trailing" secondItem="wdq-jZ-zRs" secondAttribute="trailing" id="QhA-4K-Z1F"/>
                                 <constraint firstItem="gwF-8Y-Xo7" firstAttribute="top" secondItem="pwc-Ui-K3z" secondAttribute="bottom" constant="8" id="QjC-m4-ts5"/>
-                                <constraint firstItem="VLf-44-3ij" firstAttribute="leading" secondItem="pwc-Ui-K3z" secondAttribute="trailing" constant="5" id="bxi-DJ-jh9"/>
+                                <constraint firstItem="VLf-44-3ij" firstAttribute="leading" secondItem="pwc-Ui-K3z" secondAttribute="trailing" id="bxi-DJ-jh9"/>
                             </constraints>
                         </view>
                     </subviews>

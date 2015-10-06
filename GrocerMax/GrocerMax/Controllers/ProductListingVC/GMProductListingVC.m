@@ -38,6 +38,12 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.productRequestID];
     
     if (self.productBaseModal.productsListArray.count == 0) {
+        self.productBaseModal = [[GMProductListingBaseModal alloc] init];
+        self.productBaseModal.productsListArray = self.catMdl.productListArray;
+        [self.rootPageAPIController.modalDic setObject:self.productBaseModal forKey:self.productRequestID];
+    }
+    
+    if (self.productBaseModal.productsListArray.count == 0) {
         [self getProducListFromServer];
     }
     
@@ -78,6 +84,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     GMProductListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGMProductListTableViewCell];
     cell.delegate = self;
     [cell configureCellWithProductModal:productModal andCartModal:self.parentVC.cartModal];
+    [cell.imgBtn addTarget:self action:@selector(imgbtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -94,10 +101,10 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
-    vc.modal = self.productBaseModal.productsListArray[indexPath.row];
-    vc.parentVC = self.parentVC;
-    [self.navigationController pushViewController:vc animated:YES];
+//    GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+//    vc.modal = self.productBaseModal.productsListArray[indexPath.row];
+//    vc.parentVC = self.parentVC;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - scrollView Delegate
@@ -145,7 +152,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
             break;
         case GMProductListingFromTypeOffer_OR_Deal:
         {
-            [self showProgress];
+//            [self showProgress];
             [self.rootPageAPIController fetchDealProductListingDataForOffersORDeals:self.productRequestID];
         }
             break;
@@ -156,6 +163,14 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 }
 
 #pragma mark - IBAction methods
+
+- (void)imgbtnPressed:(GMButton*)sender {
+    
+    GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+    vc.modal = sender.produtModal;
+    vc.parentVC = self.parentVC;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)addProductModalInCart:(GMProductModal *)productModal {
     
