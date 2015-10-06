@@ -21,4 +21,10 @@
 + (UIColor *)inputTextFieldDisableColor;
 
 + (UIColor *)grayBackgroundColor;
+
++ (UIColor *)gmRedColor;
+
++ (UIColor *)gmBlackColor;
+
++ (UIColor *)gmGrayColor;
 @end

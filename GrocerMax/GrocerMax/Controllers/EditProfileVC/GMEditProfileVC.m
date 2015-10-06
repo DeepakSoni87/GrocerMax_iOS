@@ -21,7 +21,9 @@ static NSString * const kLastNameCell                       =  @"Last Name";
 static NSString * const kMobileCell                         =  @"Mobile No";
 
 @interface GMEditProfileVC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *editProfileTableView;
+
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
 @property (nonatomic, strong) NSMutableArray *cellArray;
@@ -51,6 +53,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
 - (void)viewWillAppear:(BOOL)animated {
     
     self.title = @"Edit Profile";
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 #pragma mark - IBAction Methods
@@ -366,9 +369,4 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     }
     return resultedBool;
 }
-
-
-
-
-
 @end

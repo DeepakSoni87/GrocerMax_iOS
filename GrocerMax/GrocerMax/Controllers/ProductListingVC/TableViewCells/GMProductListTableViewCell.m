@@ -52,12 +52,6 @@
     
     self.addBtn.layer.cornerRadius = 5.0;
     self.addBtn.layer.masksToBounds = YES;
-    
-    self.bgVeiw.layer.cornerRadius = 5.0;
-    self.bgVeiw.layer.masksToBounds = YES;
-    
-    self.bgVeiw.layer.borderWidth = 0.80;
-    self.bgVeiw.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -72,6 +66,15 @@
     
     _cartView = cartView;
     [_cartView setHidden:YES];
+}
+
+- (void)setBgVeiw:(UIView *)bgVeiw {
+    
+    _bgVeiw = bgVeiw;
+    _bgVeiw.layer.cornerRadius = 5.0;
+    _bgVeiw.layer.masksToBounds = YES;
+    _bgVeiw.layer.borderWidth = 0.8;
+    _bgVeiw.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
 }
 
 #pragma mark - Configure Cell
@@ -90,12 +93,12 @@
     
     NSDictionary* style1 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             NSForegroundColorAttributeName : [UIColor gmRedColor]
                              };
     
     NSDictionary* style2 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSForegroundColorAttributeName : [UIColor gmBlackColor],
                              NSStrikethroughStyleAttributeName : @1
                              };
     

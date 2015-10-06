@@ -60,6 +60,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Billing Address";
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 - (void)registerCellsForTableView {

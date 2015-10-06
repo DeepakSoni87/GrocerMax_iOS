@@ -10,14 +10,16 @@
 
 @implementation GMAddressCell
 
-- (void)awakeFromNib {
-    // Initialization code
-    self.cellBgView.layer.borderColor = [UIColor colorWithRed:216.0/256.0 green:216.0/256.0 blue:216.0/256.0 alpha:1].CGColor;
-    self.cellBgView.layer.borderWidth = 2.0;
-    self.cellBgView.layer.cornerRadius = 4.0;
-}
-
 #pragma mark - GETTER/SETTER Methods
+
+- (void)setCellBgView:(UIView *)cellBgView {
+    
+    _cellBgView = cellBgView;
+    _cellBgView.layer.cornerRadius = 5.0;
+    _cellBgView.layer.masksToBounds = YES;
+    _cellBgView.layer.borderWidth = 0.8;
+    _cellBgView.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
+}
 
 - (void)setEditAddressBtn:(GMButton *)editAddressBtn {
     

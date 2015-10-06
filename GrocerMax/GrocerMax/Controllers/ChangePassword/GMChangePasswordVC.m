@@ -53,6 +53,7 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
 - (void)viewWillAppear:(BOOL)animated {
     
     self.title = @"Change Password";
+    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 - (IBAction)actionSaveBtn:(id)sender {
@@ -89,20 +90,18 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
 }
 
 
--(void) uiChange
-{
-    self.saveBtn.layer.cornerRadius = 4.0;
-    [self.saveBtn setClipsToBounds:YES];
+-(void) uiChange {
+    
     UIView *footer =
     [[UIView alloc] initWithFrame:CGRectZero];
     self.changePasswordTableView.tableFooterView = footer;
     footer = nil;
 }
+
 - (void)registerCellsForTableView {
     
     [self.changePasswordTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];
 }
-
 
 #pragma mark - GETTER/SETTER Methods
 
