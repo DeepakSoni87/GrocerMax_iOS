@@ -22,9 +22,9 @@
     }
     
     if (cartModal.cartItems.count)
-        [[[self viewControllers][3] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%d",totalItems]];
+        [[[self viewControllers][4] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%d",totalItems]];
     else
-        [[[self viewControllers][3] tabBarItem] setBadgeValue:nil];
+        [[[self viewControllers][4] tabBarItem] setBadgeValue:nil];
 }
 
 @end

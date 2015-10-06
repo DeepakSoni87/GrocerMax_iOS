@@ -81,6 +81,7 @@
     self.productModal = productModal;
     self.cartModal = cartModal;
     self.addBtn.produtModal = productModal;
+    self.imgBtn.produtModal = productModal;
     
     [self.productImgView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
     [self.productBrandLabel setText:self.productModal.p_brand.uppercaseString];

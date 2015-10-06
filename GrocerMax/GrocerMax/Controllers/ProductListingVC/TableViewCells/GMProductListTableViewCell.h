@@ -20,6 +20,7 @@
 @interface GMProductListTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet GMButton *addBtn;
+@property (weak, nonatomic) IBOutlet GMButton *imgBtn;
 
 @property (nonatomic, strong) id <GMProductListCellDelegate> delegate;
 
