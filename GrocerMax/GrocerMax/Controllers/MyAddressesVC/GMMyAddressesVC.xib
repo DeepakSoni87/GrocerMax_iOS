@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMMyAddressesVC">
             <connections>
                 <outlet property="addNewAddressBtn" destination="stl-Mw-VjI" id="9R6-GR-SEZ"/>
+                <outlet property="addNewAddressView" destination="Cwi-96-Spm" id="bg1-jO-jcU"/>
                 <outlet property="footerView" destination="wra-1U-Dqi" id="92D-Vp-AiG"/>
                 <outlet property="myAddressTableView" destination="ve3-g2-SI9" id="xjJ-8n-w8k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,6 +20,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-g2-SI9">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="upe-Au-u6o"/>
@@ -26,6 +28,7 @@
                     </connections>
                 </tableView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ve3-g2-SI9" secondAttribute="bottom" id="ei0-h0-Cct"/>
@@ -43,14 +46,33 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwi-96-Spm">
-                    <rect key="frame" x="7" y="8" width="306" height="44"/>
+                    <rect key="frame" x="8" y="8" width="304" height="44"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5d-en-5Of">
+                            <rect key="frame" x="8" y="12" width="200" height="20"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Prx-kV-kmY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_plus" translatesAutoresizingMaskIntoConstraints="NO" id="bun-5Q-Bvn">
+                            <rect key="frame" x="284" y="17" width="9" height="9"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="9" id="dsD-1o-xaB"/>
+                                <constraint firstAttribute="height" constant="9" id="if9-Gb-UWT"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stl-Mw-VjI">
-                            <rect key="frame" x="0.0" y="0.0" width="306" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
+                            <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="276" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Add new address" image="left_plus">
+                            <inset key="imageEdgeInsets" minX="284" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal">
                                 <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -59,21 +81,28 @@
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="h5d-en-5Of" firstAttribute="leading" secondItem="Cwi-96-Spm" secondAttribute="leading" constant="8" id="46T-6n-pnn"/>
                         <constraint firstAttribute="trailing" secondItem="stl-Mw-VjI" secondAttribute="trailing" id="HBH-rb-FhS"/>
+                        <constraint firstItem="h5d-en-5Of" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" constant="12" id="I14-N6-lDO"/>
+                        <constraint firstAttribute="trailing" secondItem="bun-5Q-Bvn" secondAttribute="trailing" constant="11" id="N6x-Jn-jwA"/>
                         <constraint firstItem="stl-Mw-VjI" firstAttribute="leading" secondItem="Cwi-96-Spm" secondAttribute="leading" id="Tlw-5a-AtH"/>
                         <constraint firstAttribute="bottom" secondItem="stl-Mw-VjI" secondAttribute="bottom" id="VWf-RA-Q36"/>
                         <constraint firstItem="stl-Mw-VjI" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" id="j60-S2-sQt"/>
+                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="leading" secondItem="h5d-en-5Of" secondAttribute="trailing" constant="76" id="m5n-fU-Qtx"/>
+                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" constant="17" id="yEv-oS-S94"/>
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Cwi-96-Spm" secondAttribute="bottom" constant="8" id="CQB-fM-7aJ"/>
-                <constraint firstAttribute="trailing" secondItem="Cwi-96-Spm" secondAttribute="trailing" constant="7" id="O9H-Nz-vBV"/>
+                <constraint firstAttribute="trailing" secondItem="Cwi-96-Spm" secondAttribute="trailing" constant="8" id="O9H-Nz-vBV"/>
                 <constraint firstItem="Cwi-96-Spm" firstAttribute="top" secondItem="wra-1U-Dqi" secondAttribute="top" constant="8" id="fYh-oB-Pqm"/>
-                <constraint firstItem="Cwi-96-Spm" firstAttribute="leading" secondItem="wra-1U-Dqi" secondAttribute="leading" constant="7" id="kw5-Hs-IU1"/>
+                <constraint firstItem="Cwi-96-Spm" firstAttribute="leading" secondItem="wra-1U-Dqi" secondAttribute="leading" constant="8" id="kw5-Hs-IU1"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

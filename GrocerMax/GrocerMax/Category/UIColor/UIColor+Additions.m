@@ -64,4 +64,16 @@
 + (UIColor *)grayBackgroundColor {
     return [UIColor colorWithRGBValue:244.0 green:244.0 blue:244.0];
 }
+
++ (UIColor *)gmRedColor {
+    return [UIColor colorFromHexString:@"#EE2D09"];
+}
+
++ (UIColor *)gmBlackColor {
+    return [UIColor colorFromHexString:@"#1D1D1D"];
+}
+
++ (UIColor *)gmGrayColor {
+    return [UIColor colorFromHexString:@"#7D7D7D"];
+}
 @end
