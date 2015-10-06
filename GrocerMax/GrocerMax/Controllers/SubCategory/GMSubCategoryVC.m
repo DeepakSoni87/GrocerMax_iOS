@@ -209,14 +209,23 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
         GMProductListingBaseModal *productListingBaseMdl = productListingBaseModal;
         
         // All Cat list side by ALL Tab
-        NSMutableArray *categoryArray = [NSMutableArray arrayWithArray:productListingBaseMdl.hotProductListArray];
-        [categoryArray addObjectsFromArray:productListingBaseMdl.productsListArray];
+        NSMutableArray *categoryArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.hotProductListArray) {
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
         
         // All products, for ALL Tab category
         NSMutableArray *allCatProductListArray = [NSMutableArray new];
         
         for (GMCategoryModal *catMdl in productListingBaseMdl.productsListArray) {
             [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
+            
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
         }
         
         // set all product list in ALL tab category mdl

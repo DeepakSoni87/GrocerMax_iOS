@@ -24,4 +24,6 @@
 
 + (UIImage *)menuBtnImage;
 
++ (UIImage *)backBtnImage;
+
 @end

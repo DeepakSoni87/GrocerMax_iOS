@@ -70,19 +70,20 @@
     hotDealVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:hotDealVCTabImg selectedImage:hotDealVCSelectedImg];
     GMNavigationController *hotDealVCNavController = [[GMNavigationController alloc] initWithRootViewController:hotDealVC];
     
-    GMCartVC *cartVC = [[GMCartVC alloc] initWithNibName:@"GMCartVC" bundle:nil];
-    UIImage *cartVCTabImg = [[UIImage imageNamed:@"cart_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
-    GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
-
     GMSearchVC *searchVC = [[GMSearchVC alloc] initWithNibName:@"GMSearchVC" bundle:nil];
     UIImage *searchVCTabImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *searchVCTabSelectedImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:searchVCTabImg selectedImage:searchVCTabSelectedImg];
     GMNavigationController *searchVCNavController = [[GMNavigationController alloc] initWithRootViewController:searchVC];
     
-    self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,cartVCNavController,searchVCNavController];
+    GMCartVC *cartVC = [[GMCartVC alloc] initWithNibName:@"GMCartVC" bundle:nil];
+    UIImage *cartVCTabImg = [[UIImage imageNamed:@"cart_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
+    GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
+
+    
+    self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,searchVCNavController,cartVCNavController];
     
     // update Tab bar bagdge
     [self updateBadgeValueOnCartTab];

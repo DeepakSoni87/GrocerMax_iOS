@@ -124,21 +124,23 @@ CGFloat btnHeight = 40.0; //same as scrollview
         originX += width;
     }
     
-    if (originX < kScreenWidth) {
-        
-        CGFloat extraPaddingInEachBtn = (kScreenWidth - originX)/self.pageData.count;
-        
-        originX = 0;
-        
-        for (UIButton *btn in self.btnsArray) {
-            CGRect oldFrm = btn.frame;
-            oldFrm.origin.x = originX;
-            oldFrm.size.width += extraPaddingInEachBtn;
-            btn.frame = oldFrm;
-            
-            originX += oldFrm.size.width;
-        }
-    }
+    // 4/10/2015
+//    if (originX < kScreenWidth) {
+//        
+//        CGFloat extraPaddingInEachBtn = (kScreenWidth - originX)/self.pageData.count;
+//        
+//        originX = 0;
+//        
+//        for (UIButton *btn in self.btnsArray) {
+//            CGRect oldFrm = btn.frame;
+//            oldFrm.origin.x = originX;
+//            oldFrm.size.width += extraPaddingInEachBtn;
+//            btn.frame = oldFrm;
+//            
+//            originX += oldFrm.size.width;
+//        }
+//    }
+    
     self.topScrollView.delegate = self;
     [self.topScrollView setContentSize:CGSizeMake(originX, self.topScrollView.frame.size.height)];
     self.automaticallyAdjustsScrollViewInsets = NO;
