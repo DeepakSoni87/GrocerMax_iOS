@@ -25,19 +25,20 @@
 
 
 -(void)configerViewWithData:(id)modal {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     NSMutableArray *subcategoryArray = (NSMutableArray *)modal;
     
     
     NSInteger cellTag = self.tag *3;
-    self.subCategoryBtn1.layer.borderColor = [UIColor colorWithRGBValue:216 green:216 blue:216].CGColor;
-    self.subCategoryBtn1.layer.borderWidth = 1.0;
+    self.subCategoryBtn1.layer.borderColor = BORDER_COLOR;
+    self.subCategoryBtn1.layer.borderWidth = BORDER_WIDTH;
     
-    self.subCategoryBtn2.layer.borderColor = [UIColor colorWithRGBValue:216 green:216 blue:216].CGColor;
-    self.subCategoryBtn2.layer.borderWidth = 1.0;
+    self.subCategoryBtn2.layer.borderColor = BORDER_COLOR;
+    self.subCategoryBtn2.layer.borderWidth = BORDER_WIDTH;
     
-    self.subCategoryBtn3.layer.borderColor = [UIColor colorWithRGBValue:216 green:216 blue:216].CGColor;
-    self.subCategoryBtn3.layer.borderWidth = 1.0;
+    self.subCategoryBtn3.layer.borderColor = BORDER_COLOR;
+    self.subCategoryBtn3.layer.borderWidth = BORDER_WIDTH;
     
     if(subcategoryArray.count >= cellTag+3 )
     {
