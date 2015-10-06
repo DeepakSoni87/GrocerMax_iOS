@@ -25,6 +25,11 @@
     self.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationBar setBarTintColor:[UIColor colorFromHexString:@"#EE2D09"]];
     
+    //*** for removing black line at bottom of navigation bar
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    //** End
+    
     [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
                                                 FONT_REGULAR(17), NSFontAttributeName, nil]];

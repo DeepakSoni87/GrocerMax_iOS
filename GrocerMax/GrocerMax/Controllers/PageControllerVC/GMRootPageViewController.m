@@ -97,7 +97,8 @@ CGFloat btnHeight = 40.0; //same as scrollview
     
     CGFloat originX = 0;
     
-    UIColor *rdColor = [UIColor colorFromHexString:@"#EE2D09"];
+    UIColor *rdColor = [UIColor clearColor];//[UIColor colorFromHexString:@"#EE2D09"];
+    self.topScrollView.backgroundColor = [UIColor colorFromHexString:@"#EE2D09"];
     
     for(int i = 0 ;i<self.pageData.count;i++)
     {
@@ -263,7 +264,15 @@ CGFloat btnHeight = 40.0; //same as scrollview
     
     [btn addSubview:self.selectedStripView];
     
-    [self.topScrollView scrollRectToVisible:btn.frame animated:YES];
+    CGRect visibleFrm = btn.frame;
+    
+//    visibleFrm.origin.x = visibleFrm.origin.x - (kScreenWidth - visibleFrm.size.width)/2;
+//    visibleFrm.size.width = visibleFrm.size.width + (kScreenWidth - visibleFrm.size.width)/2;
+    
+//    CGFloat offX = visibleFrm.origin.x + (kScreenWidth - visibleFrm.size.width)/2;
+//    [self.topScrollView setContentOffset:CGPointMake(offX, 0) animated:YES];
+
+    [self.topScrollView scrollRectToVisible:visibleFrm animated:YES];
 }
 
 @end

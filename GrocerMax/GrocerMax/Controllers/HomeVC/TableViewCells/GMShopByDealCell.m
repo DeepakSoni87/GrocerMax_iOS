@@ -14,6 +14,7 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
 @interface GMShopByDealCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *categoryCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_shopByDeal;
 
 @property (nonatomic) NSIndexPath* tblIndexPath;
 
@@ -31,6 +32,16 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
     
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
+    
+    NSString *string = @"SHOP BY DEALS";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    float spacing = 3.0f;
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(spacing)
+                             range:NSMakeRange(0, [string length])];
+    
+    self.lbl_shopByDeal.attributedText = attributedString;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

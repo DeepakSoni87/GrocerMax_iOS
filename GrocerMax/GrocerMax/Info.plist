@@ -66,6 +66,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-BlaIta.ttf</string>
+		<string>Lato-Bla.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -82,11 +87,5 @@
 	<string>0MQaQP</string>
 	<key>var1</key>
 	<string>default</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Lato-Bol.ttf</string>
-		<string>Lato-Reg.ttf</string>
-		<string>Lato-Lig.ttf</string>
-	</array>
 </dict>
 </plist>

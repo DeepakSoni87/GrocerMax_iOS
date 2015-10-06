@@ -14,28 +14,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJk-eM-dxS">
-                        <rect key="frame" x="46" y="28" width="35" height="1"/>
+                        <rect key="frame" x="12" y="28" width="25" height="1"/>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="qE5-BO-cbY"/>
+                            <constraint firstAttribute="width" constant="25" id="qE5-BO-cbY"/>
                             <constraint firstAttribute="height" constant="1" id="qMA-1t-BWt"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHOP BY DEALS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REt-IV-Im5">
-                        <rect key="frame" x="89" y="18" width="142" height="21"/>
+                        <rect key="frame" x="45" y="18" width="230" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="142" id="th4-qx-nLg"/>
+                            <constraint firstAttribute="width" constant="230" id="th4-qx-nLg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D5u-fa-yUk">
-                        <rect key="frame" x="239" y="28" width="35" height="1"/>
+                        <rect key="frame" x="283" y="28" width="25" height="1"/>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="5k5-7E-WpM"/>
+                            <constraint firstAttribute="width" constant="25" id="5k5-7E-WpM"/>
                             <constraint firstAttribute="height" constant="1" id="C9L-CG-RI6"/>
                         </constraints>
                     </imageView>
@@ -53,29 +53,20 @@
                 <constraints>
                     <constraint firstAttribute="centerX" secondItem="REt-IV-Im5" secondAttribute="centerX" id="2ie-Uk-23p"/>
                     <constraint firstAttribute="trailing" secondItem="KzD-yC-sPZ" secondAttribute="trailing" id="53X-Tm-kAx"/>
-                    <constraint firstItem="KzD-yC-sPZ" firstAttribute="leading" secondItem="hJk-eM-dxS" secondAttribute="trailing" constant="-81" id="66t-Ld-VdX"/>
-                    <constraint firstItem="REt-IV-Im5" firstAttribute="leading" secondItem="zde-7Q-vzg" secondAttribute="leading" constant="10" id="AzU-BU-z7K"/>
                     <constraint firstItem="KzD-yC-sPZ" firstAttribute="top" secondItem="REt-IV-Im5" secondAttribute="bottom" constant="20" id="IK8-Wb-MJe"/>
                     <constraint firstItem="REt-IV-Im5" firstAttribute="top" secondItem="hJk-eM-dxS" secondAttribute="bottom" constant="-11" id="JL7-hu-2sl"/>
                     <constraint firstItem="KzD-yC-sPZ" firstAttribute="leading" secondItem="zde-7Q-vzg" secondAttribute="leading" id="LmW-cl-mxG"/>
                     <constraint firstItem="D5u-fa-yUk" firstAttribute="leading" secondItem="REt-IV-Im5" secondAttribute="trailing" constant="8" id="OIp-uN-7qE"/>
                     <constraint firstItem="D5u-fa-yUk" firstAttribute="top" secondItem="REt-IV-Im5" secondAttribute="bottom" constant="-11" id="Ukl-am-g5u"/>
-                    <constraint firstAttribute="trailing" secondItem="REt-IV-Im5" secondAttribute="trailing" constant="10" id="Yhf-lC-i6N"/>
                     <constraint firstItem="REt-IV-Im5" firstAttribute="top" secondItem="zde-7Q-vzg" secondAttribute="top" constant="18" id="b6f-jf-OFQ"/>
                     <constraint firstItem="REt-IV-Im5" firstAttribute="leading" secondItem="hJk-eM-dxS" secondAttribute="trailing" constant="8" id="rA1-Ey-mCQ"/>
                     <constraint firstAttribute="bottom" secondItem="KzD-yC-sPZ" secondAttribute="bottom" constant="10" id="wdT-uD-XXJ"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="66t-Ld-VdX"/>
-                        <exclude reference="AzU-BU-z7K"/>
-                        <exclude reference="Yhf-lC-i6N"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="categoryCollectionView" destination="KzD-yC-sPZ" id="HUD-9h-L0Y"/>
+                <outlet property="lbl_shopByDeal" destination="REt-IV-Im5" id="ddY-BJ-L1M"/>
             </connections>
             <point key="canvasLocation" x="285" y="278.5"/>
         </tableViewCell>
