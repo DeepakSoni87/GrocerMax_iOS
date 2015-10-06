@@ -26,12 +26,17 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    self.cellBgView.layer.borderColor = [UIColor colorFromHexString:@"BEBEBE"].CGColor;
-    self.cellBgView.layer.borderWidth = 1.0;
-    self.cellBgView.layer.cornerRadius = 2.0;
-    
     [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     
+}
+
+- (void)setCellBgView:(UIView *)cellBgView {
+    
+    _cellBgView = cellBgView;
+    _cellBgView.layer.cornerRadius = 5.0;
+    _cellBgView.layer.masksToBounds = YES;
+    _cellBgView.layer.borderWidth = 0.8;
+    _cellBgView.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
 }
 
 #pragma mark - GETTER/SETTER Methods
@@ -48,7 +53,7 @@
     self.deleteButton.produtModal = productModal;
     self.productModal = productModal;
     [self.productListImageView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
-    [self.titleLbl setText:self.productModal.p_brand];
+    [self.titleLbl setText:self.productModal.p_brand.uppercaseString];
     [self.subTitleLbl setText:self.productModal.p_name];
     [self.quantityLbl setText:self.productModal.p_pack];
 //    [self.priceLbl setText:[NSString stringWithFormat:@"%ld", (long)self.productModal.sale_price.integerValue]];
@@ -58,12 +63,12 @@
     
     NSDictionary* style1 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             NSForegroundColorAttributeName : [UIColor gmRedColor]
                              };
     
     NSDictionary* style2 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSForegroundColorAttributeName : [UIColor gmGrayColor],
                              NSStrikethroughStyleAttributeName : @1
                              };
     

@@ -22,6 +22,8 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 @property (weak, nonatomic) IBOutlet UIButton *addNewAddressBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *addNewAddressView;
+
 @property (strong, nonatomic) NSMutableArray *addressArray;
 
 @property (nonatomic, strong) GMUserModal *userModal;
@@ -75,6 +77,15 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
         [_addressShippingVC.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
     }
     return _addressShippingVC;
+}
+
+- (void)setAddNewAddressView:(UIView *)addNewAddressView {
+    
+    _addNewAddressView = addNewAddressView;
+    _addNewAddressView.layer.cornerRadius = 5.0;
+    _addNewAddressView.layer.masksToBounds = YES;
+    _addNewAddressView.layer.borderWidth = 0.8;
+    _addNewAddressView.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
 }
 
 #pragma mark - Request Methods
