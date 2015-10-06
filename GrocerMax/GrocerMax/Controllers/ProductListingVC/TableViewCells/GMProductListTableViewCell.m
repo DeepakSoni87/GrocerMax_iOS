@@ -56,8 +56,8 @@
     self.bgVeiw.layer.cornerRadius = 5.0;
     self.bgVeiw.layer.masksToBounds = YES;
     
-    self.bgVeiw.layer.borderWidth = 0.80;
-    self.bgVeiw.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor;
+    self.bgVeiw.layer.borderWidth = BORDER_WIDTH;
+    self.bgVeiw.layer.borderColor = BORDER_COLOR;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
