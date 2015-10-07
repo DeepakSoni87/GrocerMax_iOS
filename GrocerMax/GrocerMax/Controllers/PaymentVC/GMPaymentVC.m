@@ -18,8 +18,9 @@
 #import "TPKeyboardAvoidingTableView.h"
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
-
 #import "PayU_iOS_SDK.h"
+#define PayU_Cridentail   @"ra:ra"
+#define PayU_Product_Info @"GrocerMax Product Info"
 
 
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
@@ -124,8 +125,13 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     }
 //
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
-    if(selectedIndex == 1)
+    if(selectedIndex == 1) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
+        if(self.genralModal) {
+            [self createHeashKey];
+            return;
+        }
+    }
     [self showProgress];
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
@@ -138,7 +144,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
                 [self.navigationController pushViewController:successVC animated:YES];
             } else if(selectedIndex == 1) {
                 //[self initilizedpayUdata];
+                if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+                   self.txnID = self.genralModal.orderID;
+                } else {
                 self.txnID = [self randomStringWithLength:17];
+                }
                 [self createHeashKey];
             }
         } else {
@@ -420,7 +430,11 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [self showProgress];
     [self generateHashFromServer:nil withCompletionBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self withoutUserDefinedModeBtnClick];
+            if(connectionError == nil) {
+                [self withoutUserDefinedModeBtnClick];
+            } else {
+                
+            }
             [self removeProgress];
         });
         NSLog(@"-->>Hash has been created = %@",_hashDict);
@@ -448,8 +462,25 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         totalAmount =  grandTotal;
     }
     // Specify that it will be a POST request
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSString *emailId = @"deepaksoni01@gmail.com";
+    NSString *mobileNo = @"8585990093";
+    NSString *name = @"deepaksoni";
+    if(NSSTRING_HAS_DATA(userModal.email)) {
+        emailId = userModal.email;
+    }
+    if(NSSTRING_HAS_DATA(userModal.mobile)) {
+        mobileNo = userModal.mobile;
+    }
+    if(NSSTRING_HAS_DATA(userModal.firstName)) {
+        name = userModal.firstName;
+    }
+    
+    
     theRequest.HTTPMethod = @"POST";
-    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",@"deepaksoni01@gmail.com",@"2",@"Ram",self.txnID,@"0MQaQP:test",@"GrocerMax Product Info",@"8585990093"];
+
+    NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",emailId,@"2",name,self.txnID,PayU_Cridentail,PayU_Product_Info,mobileNo];
+
     NSLog(@"-->>Hash generation Post Param = %@",postData);
     //set request content type we MUST set this value.
     [theRequest setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -457,11 +488,16 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [theRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     NSOperationQueue *networkQueue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:theRequest queue:networkQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSError *errorJson = nil;
-        _hashDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&errorJson];
-        if(_hashDict)
-        {
-            paymentOptionsVC.allHashDict = _hashDict;
+        if(connectionError == nil) {
+            NSError *errorJson = nil;
+            _hashDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&errorJson];
+            if(_hashDict)
+            {
+                paymentOptionsVC.allHashDict = _hashDict;
+            }
+            
+        } else {
+            
         }
         serverResponseForHashGenerationCallback(response, data,connectionError);
     }];
@@ -485,18 +521,31 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         totalAmount =  grandTotal;
     }
 //    [self.totalPriceLbl setText:[NSString stringWithFormat:@"$%.2f", grandTotal]];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSString *emailId = @"deepaksoni01@gmail.com";
+    NSString *mobileNo = @"8585990093";
+    NSString *name = @"deepaksoni";
+    if(NSSTRING_HAS_DATA(userModal.email)) {
+        emailId = userModal.email;
+    }
+    if(NSSTRING_HAS_DATA(userModal.mobile)) {
+        mobileNo = userModal.mobile;
+    }
+    if(NSSTRING_HAS_DATA(userModal.firstName)) {
+        name = userModal.firstName;
+    }
     
-    
-    NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"GrocerMax Product Info",@"productinfo",
-                                      @"Ram",@"firstname",
+
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
+                                      name,@"firstname",
                                       @"2",@"amount",
-                                      @"dedeepaksoni01@gmail.com",@"email",
-                                      @"8585990093", @"phone",
+                                      emailId,@"email",
+                                      mobileNo, @"phone",
                                       @"https://payu.herokuapp.com/ios_success",@"surl",
                                       @"https://payu.herokuapp.com/ios_failure",@"furl",
                                       self.txnID,@"txnid",
-                                      @"0MQaQP:test",@"user_credentials",
+                                     PayU_Cridentail,@"user_credentials",
+
                                       self.offerKey,@"offer_key",
                                       @"u1",@"udf1",
                                       @"u2",@"udf2",

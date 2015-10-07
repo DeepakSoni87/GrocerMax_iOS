@@ -95,10 +95,10 @@
     {
 //        mainStrign = [NSString stringWithFormat:@"%@\n%@%@",mainStrign,ORDER_AMOUNT_PAID,orderHistryModal.paidAmount];
         
-        NSString *orderPaidAmountStrign = [NSString stringWithFormat:@"%@%@",ORDER_AMOUNT_PAID,orderHistryModal.paidAmount];
+        NSString *orderPaidAmountStrign = [NSString stringWithFormat:@"%@₹%.2f",ORDER_AMOUNT_PAID,orderHistryModal.paidAmount.floatValue];
         NSMutableAttributedString *orderPaidAmountAttString = [[NSMutableAttributedString alloc] initWithString:orderPaidAmountStrign];
-        [orderPaidAmountAttString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[orderPaidAmountStrign rangeOfString:orderHistryModal.paidAmount]];
-        [orderPaidAmountAttString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[orderPaidAmountStrign rangeOfString:orderHistryModal.paidAmount]];
+        [orderPaidAmountAttString addAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} range:[orderPaidAmountStrign rangeOfString:[NSString stringWithFormat:@"₹%.2f", orderHistryModal.paidAmount.floatValue]]];
+        [orderPaidAmountAttString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:FIRST_FONTSIZE]} range:[orderPaidAmountStrign rangeOfString:[NSString stringWithFormat:@"₹%.2f", orderHistryModal.paidAmount.floatValue]]];
         
         [orderPaidAmountAttString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} range:[orderPaidAmountStrign rangeOfString:ORDER_AMOUNT_PAID]];
         [orderPaidAmountAttString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:FIRST_FONTSIZE]} range:[orderPaidAmountStrign rangeOfString:ORDER_AMOUNT_PAID]];

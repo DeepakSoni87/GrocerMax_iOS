@@ -235,7 +235,8 @@
 }
 -(void)navigateToRootViewController{
     NSLog(@"");
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)reachabilityDidChange:(NSNotification *)notification {
     Reachability *reach = [notification object];
