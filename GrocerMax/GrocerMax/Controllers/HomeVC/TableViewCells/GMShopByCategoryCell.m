@@ -15,6 +15,7 @@ NSString *const shopByCategoryCollectionViewCell = @"GMShopByCategoryCollectionV
 @interface GMShopByCategoryCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,weak)IBOutlet UICollectionView *categoryCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_shopByCategory;
 @property (nonatomic) NSIndexPath* tblIndexPath;
 @property (nonatomic) NSArray* categoriesArray;
 
@@ -30,6 +31,16 @@ NSString *const shopByCategoryCollectionViewCell = @"GMShopByCategoryCollectionV
 
     self.categoryCollectionView.delegate = self;
     self.categoryCollectionView.dataSource = self;
+    
+    NSString *string = @"SHOP BY CATEGORIES";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    float spacing = 3.0f;
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(spacing)
+                             range:NSMakeRange(0, [string length])];
+    
+    self.lbl_shopByCategory.attributedText = attributedString;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -38,8 +38,11 @@
 
 - (IBAction)continueShoppingButtonTapped:(id)sender {
     
-    [self.navigationController popViewControllerAnimated:NO];
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self.tabBarController setSelectedIndex:0];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+//    [self.tabBarController setSelectedIndex:0];
 }
 
 @end

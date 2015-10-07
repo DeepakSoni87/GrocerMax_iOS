@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wof-g0-C0K">
-                        <rect key="frame" x="10" y="0.0" width="300" height="51"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="51"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLOT FULL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNl-Mn-uRM">
                                 <rect key="frame" x="0.0" y="3" width="150" height="10"/>
@@ -27,21 +26,8 @@
                                 <color key="textColor" red="0.80392156862745101" green="0.19215686274509802" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efa-9S-qZ8" customClass="GMButton">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="51"/>
-                                <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="08: am - 11:00 am">
-                                    <color key="titleColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLOT FULL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBY-Cw-InP">
-                                <rect key="frame" x="151" y="3" width="150" height="10"/>
+                                <rect key="frame" x="139" y="3" width="150" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="RFh-Pa-XB6"/>
                                     <constraint firstAttribute="width" constant="150" id="c3m-7I-Scn"/>
@@ -51,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaH-fW-DrJ" customClass="GMButton">
-                                <rect key="frame" x="151" y="0.0" width="150" height="51"/>
+                                <rect key="frame" x="144" y="0.0" width="144" height="51"/>
                                 <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -64,41 +50,54 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKb-gt-GeU">
-                                <rect key="frame" x="150" y="0.0" width="1" height="51"/>
+                                <rect key="frame" x="144" y="0.0" width="1" height="51"/>
                                 <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="Md1-Ur-PCn"/>
+                                    <constraint firstAttribute="width" constant="1" id="UCM-3R-uqc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efa-9S-qZ8" customClass="GMButton">
+                                <rect key="frame" x="0.0" y="0.0" width="144" height="51"/>
+                                <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="08: am - 11:00 am">
+                                    <color key="titleColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="efa-9S-qZ8" secondAttribute="bottom" id="3yv-4k-K6z"/>
+                            <constraint firstItem="efa-9S-qZ8" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="9Kf-kY-UGv"/>
                             <constraint firstItem="mNl-Mn-uRM" firstAttribute="leading" secondItem="Wof-g0-C0K" secondAttribute="leading" id="Bas-Iz-bhY"/>
-                            <constraint firstItem="RaH-fW-DrJ" firstAttribute="width" secondItem="Wof-g0-C0K" secondAttribute="width" multiplier="0.5" id="F90-2L-9dh"/>
-                            <constraint firstItem="efa-9S-qZ8" firstAttribute="leading" secondItem="Wof-g0-C0K" secondAttribute="leading" id="ICQ-ha-aWr"/>
-                            <constraint firstItem="efa-9S-qZ8" firstAttribute="width" secondItem="Wof-g0-C0K" secondAttribute="width" multiplier="0.5" id="TBg-Z9-heg"/>
-                            <constraint firstItem="RaH-fW-DrJ" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="bc2-V3-yqJ"/>
-                            <constraint firstAttribute="bottom" secondItem="tKb-gt-GeU" secondAttribute="bottom" id="bnN-qe-29Q"/>
-                            <constraint firstItem="efa-9S-qZ8" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="gAh-lJ-S4f"/>
+                            <constraint firstItem="tKb-gt-GeU" firstAttribute="leading" secondItem="efa-9S-qZ8" secondAttribute="trailing" id="C7j-tn-vqh"/>
+                            <constraint firstAttribute="bottom" secondItem="RaH-fW-DrJ" secondAttribute="bottom" id="GaC-4y-S5k"/>
+                            <constraint firstItem="efa-9S-qZ8" firstAttribute="leading" secondItem="Wof-g0-C0K" secondAttribute="leading" id="KdP-xY-M1z"/>
+                            <constraint firstItem="RaH-fW-DrJ" firstAttribute="leading" secondItem="efa-9S-qZ8" secondAttribute="trailing" id="OAY-ZR-XXe"/>
+                            <constraint firstAttribute="bottom" secondItem="tKb-gt-GeU" secondAttribute="bottom" id="OjW-na-qJ4"/>
+                            <constraint firstItem="RaH-fW-DrJ" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="T67-hM-XpK"/>
+                            <constraint firstAttribute="trailing" secondItem="RaH-fW-DrJ" secondAttribute="trailing" id="fw2-Qy-P7D"/>
                             <constraint firstItem="eBY-Cw-InP" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" constant="3" id="gWT-em-hxc"/>
-                            <constraint firstAttribute="bottom" secondItem="efa-9S-qZ8" secondAttribute="bottom" id="gba-Y3-b1l"/>
-                            <constraint firstAttribute="trailing" secondItem="RaH-fW-DrJ" secondAttribute="trailing" constant="-1" id="kej-VW-P4d"/>
-                            <constraint firstAttribute="bottom" secondItem="RaH-fW-DrJ" secondAttribute="bottom" id="oWA-kB-BJ9"/>
-                            <constraint firstAttribute="centerX" secondItem="tKb-gt-GeU" secondAttribute="centerX" id="okH-3l-PA2"/>
+                            <constraint firstItem="tKb-gt-GeU" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="kb1-FW-eYZ"/>
                             <constraint firstAttribute="trailing" secondItem="eBY-Cw-InP" secondAttribute="trailing" constant="-1" id="q6p-5U-YRz"/>
                             <constraint firstItem="mNl-Mn-uRM" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" constant="3" id="xL0-pk-fy1"/>
-                            <constraint firstItem="tKb-gt-GeU" firstAttribute="top" secondItem="Wof-g0-C0K" secondAttribute="top" id="zP0-50-WeK"/>
+                            <constraint firstAttribute="centerX" secondItem="tKb-gt-GeU" secondAttribute="centerX" id="yJY-3p-Nen"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Wof-g0-C0K" secondAttribute="bottom" id="FEq-Yq-P3a"/>
                     <constraint firstItem="Wof-g0-C0K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Jhw-XG-WB3"/>
-                    <constraint firstItem="Wof-g0-C0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="au1-xT-Nli"/>
-                    <constraint firstAttribute="trailing" secondItem="Wof-g0-C0K" secondAttribute="trailing" constant="10" id="kub-nh-cZ8"/>
+                    <constraint firstItem="Wof-g0-C0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="au1-xT-Nli"/>
+                    <constraint firstAttribute="trailing" secondItem="Wof-g0-C0K" secondAttribute="trailing" constant="16" id="kub-nh-cZ8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

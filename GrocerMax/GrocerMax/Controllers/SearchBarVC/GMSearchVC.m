@@ -23,15 +23,24 @@
 
     self.navigationItem.title = @"Search";
     self.searchBarView.delegate = self;
-//    self.searchBarView.barTintColor = [UIColor clearColor];
-//    self.searchBarView.backgroundImage = [UIImage new];
-//    self.searchBarView.backgroundColor = [UIColor clearColor];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithImage:[UIImage backBtnImage]
+                                             style:UIBarButtonItemStylePlain
+                                             target:self
+                                             action:@selector(homeButtonPressed:)];
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Button action
+
+- (void)homeButtonPressed:(UIBarButtonItem*)sender {
+    
+    [self.tabBarController setSelectedIndex:0];
 }
 
 #pragma mark - Search bar Delegate
