@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V5i-hC-t3v">
-                        <rect key="frame" x="30" y="38" width="25" height="1"/>
+                        <rect key="frame" x="2" y="38" width="25" height="1"/>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="0vU-uP-3vO"/>
@@ -22,17 +22,17 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHOP BY CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVv-bL-YsE">
-                        <rect key="frame" x="63" y="28" width="194" height="21"/>
+                        <rect key="frame" x="35" y="28" width="250" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="194" id="85K-6z-DST"/>
+                            <constraint firstAttribute="width" constant="250" id="85K-6z-DST"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vHl-LP-jYH">
-                        <rect key="frame" x="265" y="38" width="25" height="1"/>
+                        <rect key="frame" x="293" y="38" width="25" height="1"/>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="5lR-Vr-nsJ"/>
@@ -66,6 +66,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="categoryCollectionView" destination="fG5-mx-cqF" id="ecD-kb-VKc"/>
+                <outlet property="lbl_shopByCategory" destination="nVv-bL-YsE" id="5vW-lr-deX"/>
             </connections>
             <point key="canvasLocation" x="285" y="293.5"/>
         </tableViewCell>
