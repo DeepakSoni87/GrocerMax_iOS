@@ -18,7 +18,6 @@
 #import "TPKeyboardAvoidingTableView.h"
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
-
 #import "PayU_iOS_SDK.h"
 #define PayU_Cridentail   @"ra:ra"
 #define PayU_Product_Info @"GrocerMax Product Info"
@@ -479,7 +478,9 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     
     
     theRequest.HTTPMethod = @"POST";
+
     NSString *postData = [NSString stringWithFormat:@"offer_key=%@&key=%@&hash=%@&email=%@&amount=%@&firstname=%@&txnid=%@&user_credentials=%@&udf1=u1&udf2=u2&udf3=u3&udf4=u4&udf5=u5&productinfo=%@&phone=%@",self.offerKey,self.myKey,@"hash",emailId,@"2",name,self.txnID,PayU_Cridentail,PayU_Product_Info,mobileNo];
+
     NSLog(@"-->>Hash generation Post Param = %@",postData);
     //set request content type we MUST set this value.
     [theRequest setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -534,6 +535,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         name = userModal.firstName;
     }
     
+
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
                                       name,@"firstname",
                                       @"2",@"amount",
@@ -543,6 +545,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
                                       @"https://payu.herokuapp.com/ios_failure",@"furl",
                                       self.txnID,@"txnid",
                                      PayU_Cridentail,@"user_credentials",
+
                                       self.offerKey,@"offer_key",
                                       @"u1",@"udf1",
                                       @"u2",@"udf2",
@@ -550,6 +553,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
                                       @"u4",@"udf4",
                                       @"u5",@"udf5"
                                       ,nil];
+    
+//    yPnUG6:test
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
     paymentOptionsVC.totalAmount  = 2;//totalAmount;//[totalAmount floatValue];
