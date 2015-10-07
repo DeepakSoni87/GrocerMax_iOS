@@ -30,6 +30,7 @@
 #import "GMSearchResultModal.h"
 #import "GMDealCategoryBaseModal.h"
 #import "GMHomeBannerModal.h"
+#import "GMPaymentVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -237,6 +238,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
+    GMPaymentVC *paymentVC = [GMPaymentVC new];
+    [self.navigationController pushViewController:paymentVC animated:YES];
+    return;
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
