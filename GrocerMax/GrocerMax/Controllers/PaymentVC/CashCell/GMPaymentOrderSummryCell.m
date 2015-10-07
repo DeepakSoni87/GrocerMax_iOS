@@ -14,9 +14,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.cellBgView.layer.borderWidth = 0.5;
-    self.cellBgView.layer.borderColor = [UIColor colorWithRGBValue:236 green:236 blue:236].CGColor;
-    self.cellBgView.layer.cornerRadius = 2.0;
+    self.cellBgView.layer.borderWidth = BORDER_WIDTH;
+    self.cellBgView.layer.borderColor = BORDER_COLOR;
+    self.cellBgView.layer.cornerRadius = CORNER_RADIUS;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

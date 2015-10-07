@@ -22,18 +22,20 @@
                 </webView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CyC-ZY-qB5">
                     <rect key="frame" x="177" y="292" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="eVl-uG-JFi"/>
+                    </constraints>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="CyC-ZY-qB5" secondAttribute="bottom" constant="291" id="7kf-Sx-Cdu"/>
-                <constraint firstAttribute="trailing" secondItem="bVp-yn-agl" secondAttribute="trailing" id="DyI-Qs-15h"/>
-                <constraint firstItem="bVp-yn-agl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="REz-EP-3Ss"/>
-                <constraint firstItem="CyC-ZY-qB5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="177" id="SLU-Hc-SKN"/>
-                <constraint firstAttribute="trailing" secondItem="CyC-ZY-qB5" secondAttribute="trailing" constant="178" id="Tlc-T1-8wt"/>
-                <constraint firstItem="bVp-yn-agl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Z6Q-Fv-kdn"/>
-                <constraint firstAttribute="bottom" secondItem="bVp-yn-agl" secondAttribute="bottom" id="eaP-ZO-m8u"/>
-                <constraint firstItem="CyC-ZY-qB5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="292" id="g1h-sW-QuA"/>
+                <constraint firstAttribute="trailing" secondItem="CyC-ZY-qB5" secondAttribute="trailing" constant="178" id="03f-ZV-GJy"/>
+                <constraint firstItem="bVp-yn-agl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="47p-fq-Ul1"/>
+                <constraint firstItem="CyC-ZY-qB5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="177" id="9hd-ar-N2U"/>
+                <constraint firstAttribute="trailing" secondItem="bVp-yn-agl" secondAttribute="trailing" id="Q0N-uk-YJR"/>
+                <constraint firstItem="bVp-yn-agl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wf1-eD-Akj"/>
+                <constraint firstItem="CyC-ZY-qB5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="292" id="a5C-lR-lm6"/>
+                <constraint firstAttribute="bottom" secondItem="bVp-yn-agl" secondAttribute="bottom" id="hPk-z7-oAm"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
