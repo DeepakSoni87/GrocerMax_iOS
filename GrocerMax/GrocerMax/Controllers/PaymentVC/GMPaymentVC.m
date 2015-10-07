@@ -451,13 +451,14 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 - (void) generateHashFromServer:(NSDictionary *) paramDict withCompletionBlock:(urlRequestCompletionBlock)completionBlock{
     void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *data, NSError *error) = completionBlock;
     _hashDict=nil;
-    PayUPaymentOptionsViewController *paymentOptionsVC = nil;
+//    PayUPaymentOptionsViewController *paymentOptionsVC = nil;
     
     
     [[GMOperationalHandler handler] getMobileHash:[self payUHashParameterDictionary] withSuccessBlock:^(id responceData) {
         if(responceData != nil) {
             
-                paymentOptionsVC.allHashDict = responceData;
+//                paymentOptionsVC.allHashDict = responceData;
+            _hashDict = responceData;
             serverResponseForHashGenerationCallback(responceData, responceData,nil);
             
         } else {
@@ -639,6 +640,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [payUParameterDic setObject:PayU_Furl forKey:kEY_PayU_Furl];
     [payUParameterDic setObject:PayU_Surl forKey:kEY_PayU_Surl];
     [payUParameterDic setObject:@"2" forKey:kEY_PayU_Amount];
+     [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     
     
     return payUParameterDic;
