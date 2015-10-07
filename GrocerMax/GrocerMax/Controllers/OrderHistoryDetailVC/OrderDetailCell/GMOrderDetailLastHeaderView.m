@@ -24,19 +24,19 @@
 
 - (void) configerViewData:(GMOrderDeatilBaseModal *)orderDeatilBaseModal {
         if(NSSTRING_HAS_DATA(orderDeatilBaseModal.subTotal)) {
-            self.subTotalLbl.text = [NSString stringWithFormat:@"$%@", orderDeatilBaseModal.subTotal];;
+            self.subTotalLbl.text = [NSString stringWithFormat:@"₹%.2f", orderDeatilBaseModal.subTotal.floatValue];;
         } else {
             self.subTotalLbl.text = @"";
         }
     
         if(NSSTRING_HAS_DATA(orderDeatilBaseModal.deliveryCharge)) {
-            self.deliveryChargeLbl.text = [NSString stringWithFormat:@"$%@", orderDeatilBaseModal.deliveryCharge];
+            self.deliveryChargeLbl.text = [NSString stringWithFormat:@"₹%.2f", orderDeatilBaseModal.deliveryCharge.floatValue];
         } else {
             self.deliveryChargeLbl.text = @"";
         }
     
     if(NSSTRING_HAS_DATA(orderDeatilBaseModal.totalPrice)) {
-        self.totalCharge.text = [NSString stringWithFormat:@"$%@", orderDeatilBaseModal.totalPrice];
+        self.totalCharge.text = [NSString stringWithFormat:@"₹%.2f", orderDeatilBaseModal.totalPrice.floatValue];
     } else {
         self.deliveryChargeLbl.text = @"";
     }

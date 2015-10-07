@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -14,10 +14,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNe-9x-axX">
-                        <rect key="frame" x="10" y="0.0" width="310" height="71"/>
+                        <rect key="frame" x="10" y="0.0" width="300" height="71"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jivo Canolla Oil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnL-dI-B1i">
-                                <rect key="frame" x="0.0" y="6" width="230" height="18"/>
+                                <rect key="frame" x="0.0" y="6" width="220" height="18"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="e1R-gb-cGK"/>
                                 </constraints>
@@ -26,7 +27,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 liter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoN-41-Tnv">
-                                <rect key="frame" x="0.0" y="25" width="190" height="20"/>
+                                <rect key="frame" x="0.0" y="25" width="180" height="20"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="BO0-xw-Akr"/>
                                 </constraints>
@@ -35,7 +37,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity: 1X$17.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYV-7T-8ux">
-                                <rect key="frame" x="0.0" y="46" width="280" height="20"/>
+                                <rect key="frame" x="0.0" y="46" width="270" height="20"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="qCh-Qi-kbj"/>
                                 </constraints>
@@ -43,8 +46,9 @@
                                 <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$17.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-uK-ozu">
-                                <rect key="frame" x="230" y="6" width="80" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$17.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-uK-ozu">
+                                <rect key="frame" x="220" y="6" width="80" height="18"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="6vA-Xn-SEP"/>
                                     <constraint firstAttribute="width" constant="80" id="yrv-F0-5VX"/>
@@ -54,6 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="71" id="3Bi-Sf-T8S"/>
@@ -71,12 +76,14 @@
                         </constraints>
                     </view>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="HNe-9x-axX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6qZ-Pz-6Oa"/>
-                    <constraint firstAttribute="trailing" secondItem="HNe-9x-axX" secondAttribute="trailing" id="aR5-HO-cWo"/>
+                    <constraint firstAttribute="trailing" secondItem="HNe-9x-axX" secondAttribute="trailing" constant="10" id="aR5-HO-cWo"/>
                     <constraint firstItem="HNe-9x-axX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rpP-RU-xGR"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="orderItemNameLbl" destination="LnL-dI-B1i" id="Nai-O0-JZA"/>
                 <outlet property="orderQuantityLbl" destination="VoN-41-Tnv" id="P6h-gM-kZM"/>
