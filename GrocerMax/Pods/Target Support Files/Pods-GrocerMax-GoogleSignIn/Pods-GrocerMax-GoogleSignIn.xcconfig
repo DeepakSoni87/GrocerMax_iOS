@@ -1,2 +1,0 @@
-PODS_GROCERMAX_GOOGLESIGNIN_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleSignIn/Libraries" "$(PODS_ROOT)/GoogleSignIn/Libraries"
-PODS_GROCERMAX_GOOGLESIGNIN_OTHER_LDFLAGS = -l"GIDExShared" -l"SignIn" -framework "CoreText" -framework "Security" -framework "StoreKit"

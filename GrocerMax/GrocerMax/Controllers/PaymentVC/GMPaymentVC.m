@@ -22,6 +22,7 @@
 #import "PayU_iOS_SDK.h"
 
 #define PayU_Cridentail   @"yPnUG6:test"
+
 #define PayU_Key   @"yPnUG6"
 #define PayU_Salt   @"jJ0mWFKl"
 
@@ -175,9 +176,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     [self.view endEditing:YES];
-//    self.txnID = [self randomStringWithLength:17];
-//    [self createHeashKey];
-//    return;
+    self.txnID = [self randomStringWithLength:17];
+    [self createHeashKey];
+    return;
     if(!NSSTRING_HAS_DATA(coupanCode)) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
         return;
@@ -554,7 +555,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
     NSString *emailId = @"deepaksoni01@gmail.com";
-    NSString *mobileNo = @"8585990093";
+    NSString *mobileNo = @"9999999999";
     NSString *name = @"deepaksoni";
     if(NSSTRING_HAS_DATA(userModal.userId)) {
         userId = userModal.userId;
@@ -568,8 +569,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(userModal.firstName)) {
         name = userModal.firstName;
     }
-    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
-    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
+    NSString *sucessString = [NSString stringWithFormat:@"%@.php?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
+    NSString *failString = [NSString stringWithFormat:@"%@.php?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
 
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
@@ -620,7 +621,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
     NSString *emailId = @"deepaksoni01@gmail.com";
-    NSString *mobileNo = @"8585990093";
+    NSString *mobileNo = @"9999999999";
     NSString *name = @"deepaksoni";
     
     if(NSSTRING_HAS_DATA(userModal.userId)) {
@@ -635,8 +636,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(userModal.firstName)) {
         name = userModal.firstName;
     }
-    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
-    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
+    NSString *sucessString = [NSString stringWithFormat:@"%@.php?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
+    NSString *failString = [NSString stringWithFormat:@"%@.php?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
     [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
     [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];
@@ -647,8 +648,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
     [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
     [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-//    [payUParameterDic setObject:@"2" forKey:kEY_PayU_Amount];
-     [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
+    [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
     
     
     return payUParameterDic;
@@ -688,18 +688,18 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(userModal.firstName)) {
         name = userModal.firstName;
     }
-//    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
-//    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
+    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
+    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
-//    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
+    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
     [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];
     [payUParameterDic setObject:name forKey:kEY_PayU_Fname];
-//    [payUParameterDic setObject:mobileNo forKey:kEY_PayU_Phone];
+    [payUParameterDic setObject:mobileNo forKey:kEY_PayU_Phone];
     [payUParameterDic setObject:self.txnID forKey:kEY_PayU_Txnid];
-//    [payUParameterDic setObject:PayU_Product_Info forKey:kEY_PayU_Productinfo];
-//    [payUParameterDic setObject:[NSString stringWithFormat:PayU_Cridentail,userId] forKey:kEY_PayU_User_Credentials];
-//    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
-//    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
+    [payUParameterDic setObject:PayU_Product_Info forKey:kEY_PayU_Productinfo];
+    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
+    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
+    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
     [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
 //    [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     

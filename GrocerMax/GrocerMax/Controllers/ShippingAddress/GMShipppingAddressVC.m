@@ -23,6 +23,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 @property (weak, nonatomic) IBOutlet UITableView *shippingAddressTableView;
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIView *footerBgView;
 
 @property (weak, nonatomic) IBOutlet UIButton *addNewAddressBtn;
 
@@ -51,7 +52,6 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
     self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,6 +60,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     self.title = @"Shipping Address";
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,11 +80,19 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 - (void)setLastAddressView:(UIView *)lastAddressView {
     
     _lastAddressView = lastAddressView;
-    _lastAddressView.layer.borderColor = [UIColor grayBackgroundColor].CGColor;
-    _lastAddressView.layer.borderWidth = 2.0;
-    _lastAddressView.layer.cornerRadius = 4.0;
+    _lastAddressView.layer.borderColor = BORDER_COLOR;
+    _lastAddressView.layer.borderWidth = BORDER_WIDTH;
+    _lastAddressView.layer.cornerRadius = CORNER_RADIUS;
+    
 }
 
+- (void)setFooterBgView:(UIView *)footerBgView {
+    
+    _footerBgView = footerBgView;
+    _footerBgView.layer.borderColor = BORDER_COLOR;
+    _footerBgView.layer.borderWidth = BORDER_WIDTH;
+    _footerBgView.layer.cornerRadius = CORNER_RADIUS;
+}
 #pragma mark - IBAction Methods
 
 - (void)selectUnselectBtnClicked:(GMButton *)sender {
