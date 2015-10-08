@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5B8D1144E872916DF0A5B0FA"
-               BuildableName = "libPods-GrocerMax.a"
-               BlueprintName = "Pods-GrocerMax"
+               BlueprintIdentifier = "E6C9DFF44F2C7A2C71DF77A6"
+               BuildableName = "libTPKeyboardAvoiding.a"
+               BlueprintName = "TPKeyboardAvoiding"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5B8D1144E872916DF0A5B0FA"
-               BuildableName = "libPods-GrocerMax.a"
-               BlueprintName = "Pods-GrocerMax"
+               BlueprintIdentifier = "11A77293E44D937E4B8204DB"
+               BuildableName = "libMantle.a"
+               BlueprintName = "Mantle"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

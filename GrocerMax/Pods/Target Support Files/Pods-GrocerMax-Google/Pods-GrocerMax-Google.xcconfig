@@ -1,2 +1,0 @@
-PODS_GROCERMAX_GOOGLE_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Google/Libraries" "$(PODS_ROOT)/Google/Libraries"
-PODS_GROCERMAX_GOOGLE_OTHER_LDFLAGS = -l"GGLCore" -l"GGLSignIn" -framework "AddressBook" -framework "SystemConfiguration"

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5B8D1144E872916DF0A5B0FA"
-               BuildableName = "libPods-GrocerMax.a"
-               BlueprintName = "Pods-GrocerMax"
+               BlueprintIdentifier = "17AE57742B875D3F6C0911BA"
+               BuildableName = "libSVProgressHUD.a"
+               BlueprintName = "SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
