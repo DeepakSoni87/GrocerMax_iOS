@@ -17,6 +17,17 @@ static NSString * const kLogoImage                       = @"logo";
 static NSString * const kmenuBtnImage                    = @"menuBtn";
 static NSString * const kbackBtnImage                    = @"back";
 
+static NSString * const khome_unselectedImage                    = @"home_unselected";
+static NSString * const khome_selectedImage                    = @"home_selected";
+static NSString * const kprofile_unselectedImage                    = @"profile_unselected";
+static NSString * const kprofile_selectedImage                    = @"profile_selected";
+static NSString * const koffer_unselectedImage                    = @"offer_unselected";
+static NSString * const koffer_selectedImage                    = @"offer_selected";
+static NSString * const ksearch_unselectedImage                    = @"search_unselected";
+static NSString * const ksearch_selectedImage                    = @"search_selected";
+static NSString * const kcart_unselectedImage                    = @"cart_unselected";
+static NSString * const kcart_selectedImage                    = @"cart_selected";
+
 
 @implementation UIImage (Extends)
 
@@ -61,5 +72,59 @@ static NSString * const kbackBtnImage                    = @"back";
     
     return [[UIImage imageNamed:kbackBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
+
+#pragma mark - Tab bar Images
+
++ (UIImage *)home_unselectedImage {
+    
+    return [[UIImage imageNamed:khome_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)home_selectedImage {
+    
+    return [[UIImage imageNamed:khome_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)profile_unselectedImage {
+    
+    return [[UIImage imageNamed:kprofile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)profile_selectedImage {
+    
+    return [[UIImage imageNamed:kprofile_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)offer_unselectedImage {
+    
+    return [[UIImage imageNamed:koffer_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)offer_selectedImage {
+    
+    return [[UIImage imageNamed:koffer_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)search_unselectedImage {
+    
+    return [[UIImage imageNamed:ksearch_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)search_selectedImage {
+    
+    return [[UIImage imageNamed:ksearch_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)cart_unselectedImage {
+    
+    return [[UIImage imageNamed:kcart_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)cart_selectedImage {
+    
+    return [[UIImage imageNamed:kcart_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
+
 
 @end

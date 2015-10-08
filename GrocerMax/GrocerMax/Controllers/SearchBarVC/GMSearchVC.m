@@ -55,7 +55,10 @@
         return;
     }
     
-    [self performSearchOnServer];
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:self.searchBarView.text forKey:kEY_keyword];
+    
+    [self performSearchOnServerWithParam:localDic];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -69,13 +72,10 @@
 
 #pragma mark - API Task
 
-- (void)performSearchOnServer {
-    
-    NSMutableDictionary *localDic = [NSMutableDictionary new];
-    [localDic setObject:self.searchBarView.text forKey:kEY_keyword];
+- (void)performSearchOnServerWithParam:(NSDictionary*)param {
     
     [self showProgress];
-    [[GMOperationalHandler handler] search:localDic withSuccessBlock:^(id responceData) {
+    [[GMOperationalHandler handler] search:param withSuccessBlock:^(id responceData) {
         
         [self removeProgress];
         

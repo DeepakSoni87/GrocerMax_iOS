@@ -44,8 +44,8 @@
     [self.tabBar setTranslucent:NO];
     
     GMHomeVC *homeVC = [[GMHomeVC alloc] initWithNibName:@"GMHomeVC" bundle:nil];
-    UIImage *homeVCTabImg = [[UIImage imageNamed:@"home_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *homeVCTabSelectedImg = [[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *homeVCTabImg = [[UIImage home_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *homeVCTabSelectedImg = [[UIImage home_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:homeVCTabImg selectedImage:homeVCTabSelectedImg];
     GMNavigationController *homeVCNavController = [[GMNavigationController alloc] initWithRootViewController:homeVC];
 
@@ -58,27 +58,26 @@
         viewController = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
     }
     
-    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabImg = [[UIImage profile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabSelectedImg = [[UIImage profile_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
     GMNavigationController *profileVCNavController = [[GMNavigationController alloc] initWithRootViewController:viewController];
 
-    
     GMHotDealVC *hotDealVC = [[GMHotDealVC alloc] initWithNibName:@"GMHotDealVC" bundle:nil];
-    UIImage *hotDealVCTabImg = [[UIImage imageNamed:@"offer_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *hotDealVCSelectedImg = [[UIImage imageNamed:@"offer_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *hotDealVCTabImg = [[UIImage offer_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *hotDealVCSelectedImg = [[UIImage offer_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     hotDealVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:hotDealVCTabImg selectedImage:hotDealVCSelectedImg];
     GMNavigationController *hotDealVCNavController = [[GMNavigationController alloc] initWithRootViewController:hotDealVC];
     
     GMSearchVC *searchVC = [[GMSearchVC alloc] initWithNibName:@"GMSearchVC" bundle:nil];
-    UIImage *searchVCTabImg = [[UIImage imageNamed:@"search_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *searchVCTabSelectedImg = [[UIImage imageNamed:@"search_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *searchVCTabImg = [[UIImage search_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *searchVCTabSelectedImg = [[UIImage search_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:searchVCTabImg selectedImage:searchVCTabSelectedImg];
     GMNavigationController *searchVCNavController = [[GMNavigationController alloc] initWithRootViewController:searchVC];
     
     GMCartVC *cartVC = [[GMCartVC alloc] initWithNibName:@"GMCartVC" bundle:nil];
-    UIImage *cartVCTabImg = [[UIImage imageNamed:@"cart_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *cartVCTabSelectedImg = [[UIImage imageNamed:@"cart_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *cartVCTabImg = [[UIImage cart_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *cartVCTabSelectedImg = [[UIImage cart_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     cartVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:cartVCTabImg selectedImage:cartVCTabSelectedImg];
     GMNavigationController *cartVCNavController = [[GMNavigationController alloc] initWithRootViewController:cartVC];
 

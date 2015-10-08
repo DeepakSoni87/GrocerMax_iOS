@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMBillingAddressVC">
             <connections>
                 <outlet property="addNewAddressBtn" destination="zla-Q9-WIU" id="1GS-7n-fMj"/>
                 <outlet property="billingAddressTableView" destination="4iN-M4-ch7" id="Jcp-k0-RvS"/>
+                <outlet property="footerBgView" destination="nYt-7f-utM" id="3Nz-DJ-BIa"/>
                 <outlet property="footerView" destination="ZBR-Ua-TeV" id="VNK-qn-YYh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -90,14 +91,21 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYt-7f-utM">
-                    <rect key="frame" x="7" y="8" width="306" height="44"/>
+                    <rect key="frame" x="8" y="8" width="304" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Q9-WIU">
-                            <rect key="frame" x="0.0" y="0.0" width="306" height="44"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_plus" translatesAutoresizingMaskIntoConstraints="NO" id="nii-0c-yxk">
+                            <rect key="frame" x="282" y="15" width="14" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="Eo3-Nn-9Nf"/>
+                                <constraint firstAttribute="width" constant="14" id="fqH-nD-lhH"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Q9-WIU">
+                            <rect key="frame" x="8" y="0.0" width="296" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="-184" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="276" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Add new address" image="left_plus">
+                            <state key="normal" title="Add new address">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -108,18 +116,20 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="zla-Q9-WIU" firstAttribute="leading" secondItem="nYt-7f-utM" secondAttribute="leading" id="K36-6l-WcT"/>
-                        <constraint firstItem="zla-Q9-WIU" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" id="OPk-Nv-DoO"/>
-                        <constraint firstAttribute="bottom" secondItem="zla-Q9-WIU" secondAttribute="bottom" id="SJ4-rN-jw8"/>
-                        <constraint firstAttribute="trailing" secondItem="zla-Q9-WIU" secondAttribute="trailing" id="xIL-LU-N5P"/>
+                        <constraint firstAttribute="bottom" secondItem="zla-Q9-WIU" secondAttribute="bottom" id="5ab-zS-ezr"/>
+                        <constraint firstItem="nii-0c-yxk" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" constant="15" id="nDh-rU-lYP"/>
+                        <constraint firstAttribute="trailing" secondItem="nii-0c-yxk" secondAttribute="trailing" constant="8" id="rDd-Md-81T"/>
+                        <constraint firstItem="zla-Q9-WIU" firstAttribute="leading" secondItem="nYt-7f-utM" secondAttribute="leading" constant="8" id="uSy-h7-U2R"/>
+                        <constraint firstItem="zla-Q9-WIU" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" id="vBm-om-5Ag"/>
+                        <constraint firstAttribute="trailing" secondItem="zla-Q9-WIU" secondAttribute="trailing" id="zPz-Rp-eX9"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="nYt-7f-utM" firstAttribute="leading" secondItem="ZBR-Ua-TeV" secondAttribute="leading" constant="7" id="DG5-XX-j8W"/>
+                <constraint firstItem="nYt-7f-utM" firstAttribute="leading" secondItem="ZBR-Ua-TeV" secondAttribute="leading" constant="8" id="DG5-XX-j8W"/>
                 <constraint firstItem="nYt-7f-utM" firstAttribute="top" secondItem="ZBR-Ua-TeV" secondAttribute="top" constant="8" id="HNB-eG-0pB"/>
-                <constraint firstAttribute="trailing" secondItem="nYt-7f-utM" secondAttribute="trailing" constant="7" id="knm-o0-Hi6"/>
+                <constraint firstAttribute="trailing" secondItem="nYt-7f-utM" secondAttribute="trailing" constant="8" id="knm-o0-Hi6"/>
                 <constraint firstAttribute="bottom" secondItem="nYt-7f-utM" secondAttribute="bottom" constant="8" id="pPf-Qv-gCx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

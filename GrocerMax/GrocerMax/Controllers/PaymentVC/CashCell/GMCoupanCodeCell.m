@@ -17,6 +17,7 @@
     self.textfeildBgView.layer.borderColor = BORDER_COLOR;
     self.applyCodeBtn.layer.cornerRadius = CORNER_RADIUS;
     [self.applyCodeBtn setClipsToBounds:YES];
+    [self.applyCodeBtn setBackgroundColor:[UIColor gmRedColor]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
