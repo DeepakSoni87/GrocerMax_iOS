@@ -19,7 +19,8 @@
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
 #import "PayU_iOS_SDK.h"
-#define PayU_Cridentail   @"ra:ra"
+
+#define PayU_Cridentail   @"yPnUG6:test"
 #define PayU_Product_Info @"GrocerMax Product Info"
 
 
@@ -444,7 +445,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *data, NSError *error) = completionBlock;
     _hashDict=nil;
     PayUPaymentOptionsViewController *paymentOptionsVC = nil;
-    NSURL *restURL = [NSURL URLWithString:@"https://payu.herokuapp.com/get_hash"];
+//    NSURL *restURL = [NSURL URLWithString:@"https://payu.herokuapp.com/get_hash"];
+    NSURL *restURL = [NSURL URLWithString:@"http://staging.grocermax.com/api/getmobilehash"];
     // create the request
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:restURL
                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -558,7 +560,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
     paymentOptionsVC.totalAmount  = 2;//totalAmount;//[totalAmount floatValue];
-    paymentOptionsVC.appTitle     = @"CrocerMax Payment";
+    paymentOptionsVC.appTitle     = @"GrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
     [self.navigationController pushViewController:paymentOptionsVC animated:YES];
