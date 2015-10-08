@@ -172,9 +172,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     [self.view endEditing:YES];
-    self.txnID = [self randomStringWithLength:17];
-    [self createHeashKey];
-    return;
+//    self.txnID = [self randomStringWithLength:17];
+//    [self createHeashKey];
+//    return;
     if(!NSSTRING_HAS_DATA(coupanCode)) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
         return;
@@ -586,7 +586,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
     paymentOptionsVC.totalAmount  = 2;//totalAmount;//[totalAmount floatValue];
-    paymentOptionsVC.appTitle     = @"CrocerMax Payment";
+    paymentOptionsVC.appTitle     = @"GrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
     [self.navigationController pushViewController:paymentOptionsVC animated:YES];
