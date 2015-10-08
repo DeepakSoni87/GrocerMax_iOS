@@ -10,6 +10,7 @@
 #import "GMNavigationController.h"
 
 @class GMTabBarVC;
+@class GMSearchVC;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -27,5 +28,8 @@
 - (void)setTopVCOnHotDealsController:(UIViewController*)topVC;
 
 - (void)popToCenterViewController;
+
+-(GMSearchVC*) rootSearchVCFromFourthTab;
+
 @end
 

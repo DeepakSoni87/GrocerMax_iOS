@@ -26,4 +26,17 @@
 
 + (UIImage *)backBtnImage;
 
+#pragma mark - Tab bar Images
+
++ (UIImage *)home_unselectedImage ;
++ (UIImage *)home_selectedImage ;
++ (UIImage *)profile_unselectedImage;
++ (UIImage *)profile_selectedImage;
++ (UIImage *)offer_unselectedImage ;
++ (UIImage *)offer_selectedImage ;
++ (UIImage *)search_unselectedImage;
++ (UIImage *)search_selectedImage;
++ (UIImage *)cart_unselectedImage;
++ (UIImage *)cart_selectedImage ;
+
 @end

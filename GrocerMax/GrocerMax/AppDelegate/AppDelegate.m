@@ -15,6 +15,7 @@
 #import "GMHomeVC.h"
 #import "GMLeftMenuVC.h"
 #import "GMHotDealVC.h"
+#import "GMSearchVC.h"
 
 @interface AppDelegate ()
 
@@ -169,6 +170,26 @@
         [centerNavVC pushViewController:topVC animated:NO];
     }
     [self.drawerController closeDrawerAnimated:YES completion:nil];
+}
+
+-(GMSearchVC*) rootSearchVCFromFourthTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *searchNavVC = [tabBarVC.viewControllers objectAtIndex:3];
+        
+        GMSearchVC *searchVC = [searchNavVC viewControllers][0];
+        return searchVC;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+    return nil;
 }
 
 @end

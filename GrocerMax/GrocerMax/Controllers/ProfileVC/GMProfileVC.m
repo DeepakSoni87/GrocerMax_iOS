@@ -14,8 +14,9 @@
 
 #import "GMAddBillingAddressVC.h"
 #import "GMAddShippingAddressVC.h"
-
+#import "MGSocialMedia.h"
 #import "GMChangePasswordVC.h"
+#import <MessageUI/MessageUI.h>
 
 
 @interface GMProfileModal : NSObject
@@ -41,7 +42,7 @@
 
 @end
 
-@interface GMProfileVC () <UITableViewDataSource, UITableViewDelegate>
+@interface GMProfileVC () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *profileTableView;
 
@@ -189,14 +190,13 @@ static CGFloat const kProfileCellHeight = 44.0f;
     GMProfileModal *profileModal = [self.cellArray objectAtIndex:indexPath.row];
     if([profileModal.displayCellText isEqualToString:kInviteFriendsCell]) {
         
-        GMAddBillingAddressVC *biilingVC = [[GMAddBillingAddressVC alloc] initWithNibName:@"GMAddBillingAddressVC" bundle:nil];
-        [self.navigationController pushViewController:biilingVC animated:YES];
+        [self shareExperience];
     }
     else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
         [self call];
     }
     else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
-        
+        [self openMailComposerVC];
     }
     else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]) {
         
@@ -233,6 +233,13 @@ static CGFloat const kProfileCellHeight = 44.0f;
     }
 }
 
+- (void)shareExperience{
+    
+    MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
+    [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
+    
+}
+
 - (void)call {
     
     NSString *callString = [NSString stringWithFormat:@"tel:%@", customerCareNumber];
@@ -245,13 +252,56 @@ static CGFloat const kProfileCellHeight = 44.0f;
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
 }
 
+- (void)openMailComposerVC {
+    
+    // Email Subject
+    NSString *emailTitle = @"Customer Support Request";
+    // Email Content
+    NSString *messageBody = @"Hi";
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:@"care@grocermax.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 #pragma mark - Set 2nd tab as login VC
 - (void)setSecondTabAsLogIn{
     
     GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
-    UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabImg = [[UIImage profile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *profileVCTabSelectedImg = [[UIImage profile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     loginVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
     
     [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[loginVC] animated:YES];

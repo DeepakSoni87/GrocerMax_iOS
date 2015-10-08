@@ -30,6 +30,8 @@
 #import "GMSearchResultModal.h"
 #import "GMDealCategoryBaseModal.h"
 #import "GMHomeBannerModal.h"
+#import "GMSearchVC.h"
+#import "GMHomeBannerModal.h"
 //#import "GMPaymentVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
@@ -211,6 +213,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 -(void)didSelectItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
+    
+    [self handleBannerAction:self.bannerListArray[collectionIndexpath.item]];
 }
 
 #pragma mark - Categories cell Delegate
@@ -453,5 +457,41 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     return dealCategoryArray;
 }
 
+
+-(void)handleBannerAction:(GMHomeBannerModal*)bannerMdl {
+    
+//    Screen 3:(Deals by category id)
+//    offerbydealtype?cat_id=2402
+//    
+//    Screen 2(Shop by deals)
+//    shopbydealtype
+//    
+//    Screen -4(Shop by dealtype)
+//    dealsbydealtype?deal_type_id=1
+//    
+//Search:
+//    search?keyword=mangatram
+//    
+//    Category listing:
+//    productlistall?cat_id=2402
+    
+    if ([bannerMdl.linkUrl containsString:@"search?keyword="]) {
+        
+        NSString *keyword = [bannerMdl.linkUrl substringFromIndex:@"search?keyword=".length];
+        
+        if (keyword.length == 0) {
+            keyword = @"";
+        }
+        NSMutableDictionary *localDic = [NSMutableDictionary new];
+        [localDic setObject:keyword forKey:kEY_keyword];
+        
+        [self.tabBarController setSelectedIndex:3];
+        GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
+        if (searchVC == nil)
+            return;
+        [searchVC performSearchOnServerWithParam:localDic];
+    }
+   
+}
 
 @end
