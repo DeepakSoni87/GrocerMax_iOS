@@ -37,6 +37,8 @@
 
 @property (nonatomic, readwrite, strong) NSString *googleId;
 
+@property (nonatomic, readwrite, assign) BOOL isShowTapped;
+
 @end
 
 static NSString * const kFirstNameKey                       = @"firstName";

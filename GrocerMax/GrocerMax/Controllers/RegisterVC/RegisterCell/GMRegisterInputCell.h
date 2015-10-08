@@ -19,5 +19,7 @@
 
 @property (nonatomic, assign) StatusType statusType;
 
+@property (nonatomic, assign) BOOL isShowTapped;
+
 + (CGFloat)cellHeight;
 @end

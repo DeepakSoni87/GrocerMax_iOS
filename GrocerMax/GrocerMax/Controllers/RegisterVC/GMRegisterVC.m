@@ -124,6 +124,7 @@ static NSString * const kGenderCell                         =  @"Gender";
         GMRegisterInputCell *inputFieldCell = (GMRegisterInputCell *)[tableView dequeueReusableCellWithIdentifier:kInputFieldCellIdentifier];
         inputFieldCell.selectionStyle = UITableViewCellSelectionStyleNone;
         inputFieldCell.inputTextField.delegate = self;
+        [inputFieldCell.showButton addTarget:self action:@selector(showButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self configureInputFieldCell:inputFieldCell withIndex:indexPath.row];
         return inputFieldCell;
     }
@@ -162,8 +163,33 @@ static NSString * const kGenderCell                         =  @"Gender";
     else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kPasswordCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.password : @"";
-        inputCell.inputTextField.secureTextEntry = YES;
+        if(self.userModal.isShowTapped) {
+            
+            [inputCell.showButton setTitle:@"Hide" forState:UIControlStateNormal];
+            inputCell.inputTextField.secureTextEntry = NO;
+        }
+        else {
+            
+            [inputCell.showButton setTitle:@"Show" forState:UIControlStateNormal];
+            inputCell.inputTextField.secureTextEntry = YES;
+        }
         [inputCell.showButton setHidden:NO];
+    }
+}
+
+- (void)showButtonTapped:(UIButton *)sender {
+    
+    GMRegisterInputCell *cell = (GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    self.userModal.isShowTapped = !self.userModal.isShowTapped;
+    if(self.userModal.isShowTapped) {
+        
+        [cell.showButton setTitle:@"Hide" forState:UIControlStateNormal];
+        cell.inputTextField.secureTextEntry = NO;
+    }
+    else {
+        
+        [cell.showButton setTitle:@"Show" forState:UIControlStateNormal];
+        cell.inputTextField.secureTextEntry = YES;
     }
 }
 
