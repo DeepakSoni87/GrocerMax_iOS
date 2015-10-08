@@ -124,7 +124,8 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [productDict setObject:[self getValidStringObjectFromString:productModal.productQuantity] forKey:kQuantityKey];
     
     NSArray *productArray = [NSArray arrayWithObject:productDict];
-    [cartGuestDictionary setObject:[NSString getJsonStringFromObject:productArray] forKey:kProductsKey];
+//    [cartGuestDictionary setObject:[NSString getJsonStringFromObject:productArray] forKey:kProductsKey];
+    [cartGuestDictionary setObject:productArray forKey:kProductsKey];
     return cartGuestDictionary;
 }
 
@@ -135,7 +136,7 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [requestParam setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
     [requestParam setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
     [requestParam setObject:[self deletedProductIds:cartModal.deletedProductItems] forKey:kProductIdKey];
-    [requestParam setObject:[self jsonStringOfProductItems:cartModal.cartItems] forKey:kUpdateIdKey];
+    [requestParam setObject:[self getproductParameteArrayFromProductItems:cartModal.cartItems] forKey:kUpdateIdKey];
     return requestParam;
 }
 
@@ -146,7 +147,7 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [requestParam setObject:[self getValidStringObjectFromString:userModal.userId] forKey:kEY_userid];
     [requestParam setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
     [requestParam setObject:[self deletedProductIds:cartModal.deletedProductItemsArray] forKey:kProductIdKey];
-    [requestParam setObject:[self jsonStringOfProductItems:cartModal.productItemsArray] forKey:kUpdateIdKey];
+    [requestParam setObject:[self getproductParameteArrayFromProductItems:cartModal.productItemsArray] forKey:kUpdateIdKey];
     return requestParam;
 }
 
@@ -169,14 +170,42 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     return [NSString getJsonStringFromObject:productItemsArray];
 }
 
-- (NSString *)deletedProductIds:(NSMutableArray *)deletedProductItems {
+- (NSMutableArray *)getproductParameteArrayFromProductItems:(NSMutableArray *)productItems {
+    
+    //    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isProductUpdated == YES"];
+    //    NSArray *updatedProductsArr = [productItems filteredArrayUsingPredicate:pred];
+    //    if(!updatedProductsArr.count)
+    //        return @"";
+    
+    NSMutableArray *productItemsArray = [NSMutableArray array];
+    
+    for (GMProductModal *productModal in productItems) {
+        
+        NSMutableDictionary *productDict = [NSMutableDictionary dictionary];
+        [productDict setObject:[self getValidStringObjectFromString:productModal.productid] forKey:kProductIdKey];
+        [productDict setObject:[self getValidStringObjectFromString:productModal.productQuantity] forKey:kQuantityKey];
+        [productItemsArray addObject:productDict];
+    }
+    return productItemsArray;
+}
+
+//- (NSString *)deletedProductIds:(NSMutableArray *)deletedProductItems {
+//    
+//    if(!deletedProductItems.count)
+//        return @"";
+//    
+//    NSArray *productIdArr = [deletedProductItems valueForKeyPath:@"@distinctUnionOfObjects.productid"];
+//    NSString *resultedStr = [productIdArr componentsJoinedByString:@","];
+//    return resultedStr;
+//}
+
+- (NSArray *)deletedProductIds:(NSMutableArray *)deletedProductItems {
     
     if(!deletedProductItems.count)
-        return @"";
+        return @[];
     
     NSArray *productIdArr = [deletedProductItems valueForKeyPath:@"@distinctUnionOfObjects.productid"];
-    NSString *resultedStr = [productIdArr componentsJoinedByString:@","];
-    return resultedStr;
+    return productIdArr;
 }
 
 - (NSDictionary *)cartDetailRequestParameter {
@@ -202,8 +231,8 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [checkOutDic setObject:[self getValidStringObjectFromString:timeSloteModal.deliveryDate] forKey:kEY_date];
     [checkOutDic setObject:@"cashondelivery" forKey:kEY_payment_method];
     [checkOutDic setObject:@"tablerate_bestway" forKey:kEY_shipping_method];
-    [checkOutDic setObject:[self getJsonStringFromAddressModal:checkoutModal.shippingAddressModal] forKey:kEY_shipping];
-    [checkOutDic setObject:[self getJsonStringFromAddressModal:checkoutModal.billingAddressModal] forKey:kEY_billing];
+    [checkOutDic setObject:[self getShippingAddressParameterFromModal:checkoutModal.shippingAddressModal] forKey:kEY_shipping];
+    [checkOutDic setObject:[self getShippingAddressParameterFromModal:checkoutModal.billingAddressModal] forKey:kEY_billing];
     return checkOutDic;
 }
 
@@ -234,6 +263,33 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     return [NSString getJsonStringFromObject:shippingAddress];
 }
 
+- (NSMutableDictionary *)getShippingAddressParameterFromModal:(GMAddressModalData *)shippingAddressModal {
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    NSMutableDictionary *shippingAddress = [[NSMutableDictionary alloc]init];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.customer_address_id] forKey:kEY_addressid];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.firstName] forKey:kEY_fname];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.lastName] forKey:kEY_lname];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.houseNo] forKey:kEY_addressline1];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.locality] forKey:kEY_addressline2];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.closestLandmark] forKey:kEY_addressline3];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.city] forKey:kEY_city];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.region] forKey:kEY_state];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.pincode] forKey:kEY_postcode];
+    [shippingAddress setObject:[self getValidStringObjectFromString:cityModal.cityId] forKey:kEY_cityId];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.telephone] forKey:kEY_telephone];
+    if([shippingAddressModal.is_default_billing intValue] == 1)
+        [shippingAddress setObject:@"1" forKey:kEY_default_billing];
+    else
+        [shippingAddress setObject:@"0" forKey:kEY_default_billing];
+    
+    if([shippingAddressModal.is_default_shipping intValue] == 1)
+        [shippingAddress setObject:@"1" forKey:kEY_default_shipping];
+    else
+        [shippingAddress setObject:@"0" forKey:kEY_default_shipping];
+    return shippingAddress;
+}
+
 #pragma mark - Helper Methods
 
 - (NSString *)getValidStringObjectFromString:(NSString *)strInput {
@@ -243,4 +299,6 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     else
         return @"";
 }
+
+
 @end

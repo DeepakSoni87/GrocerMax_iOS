@@ -73,7 +73,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:[GMRequestParams getUserFBLoginRequestParamsWith:param] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:[GMRequestParams getUserFBLoginRequestParamsWith:param] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -101,7 +101,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
         
@@ -174,7 +174,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
         
@@ -249,12 +249,12 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)forgotPassword:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator forgotPasswordPath],[GMRequestParams forgotPasswordParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator forgotPasswordPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -278,12 +278,12 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)changePassword:(NSDictionary *)param withSuccessBlock:(void(^)(GMRegistrationResponseModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator changePasswordPath],[GMRequestParams changePasswordParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator changePasswordPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -314,7 +314,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -348,7 +348,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -382,7 +382,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -735,12 +735,12 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)addToCart:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator addToCartPath],[GMRequestParams addToCartParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addToCartPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -799,7 +799,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -856,7 +856,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -954,7 +954,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -990,7 +990,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -1026,7 +1026,7 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             
@@ -1345,5 +1345,34 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
+
+- (void)getMobileHash:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator hashGenreatePath]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            NSLog(@"URL = %@",operation.request.URL.absoluteString);
+            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            if([responseObject objectForKey:@"Result"]) {
+                if (successBlock) successBlock([responseObject objectForKey:@"Result"]);
+            } else {
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
+            
+            
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
 
 @end

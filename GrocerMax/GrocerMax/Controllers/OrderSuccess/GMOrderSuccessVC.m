@@ -7,6 +7,7 @@
 //
 
 #import "GMOrderSuccessVC.h"
+#import "GMCartModal.h"
 
 @interface GMOrderSuccessVC ()
 
@@ -19,6 +20,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id: %@", self.orderId]];
+    GMCartModal *cartModal = [GMCartModal loadCart];
+    [cartModal.cartItems removeAllObjects];
+    [cartModal.deletedProductItems removeAllObjects];
+    [cartModal archiveCart];
 }
 
 - (void)didReceiveMemoryWarning {

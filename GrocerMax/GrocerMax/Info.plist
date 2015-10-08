@@ -54,7 +54,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>1.4</string>
 	<key>FacebookAppID</key>
 	<string>1073685632661628</string>
 	<key>FacebookDisplayName</key>
@@ -84,7 +84,7 @@
 	<key>command</key>
 	<string>payment_related_details_for_mobile_sdk</string>
 	<key>key</key>
-	<string>0MQaQP</string>
+	<string>yPnUG6</string>
 	<key>var1</key>
 	<string>default</string>
 </dict>
