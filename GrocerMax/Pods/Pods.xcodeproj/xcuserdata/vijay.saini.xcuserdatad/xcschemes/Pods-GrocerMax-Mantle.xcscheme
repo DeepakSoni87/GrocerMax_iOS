@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3289550E1E5D33607B9543F6"
+               BlueprintIdentifier = "678E423EFEAE743ABCEDADAB"
                BuildableName = "libPods-GrocerMax-Mantle.a"
                BlueprintName = "Pods-GrocerMax-Mantle"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3289550E1E5D33607B9543F6"
+            BlueprintIdentifier = "678E423EFEAE743ABCEDADAB"
             BuildableName = "libPods-GrocerMax-Mantle.a"
             BlueprintName = "Pods-GrocerMax-Mantle"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3289550E1E5D33607B9543F6"
+            BlueprintIdentifier = "678E423EFEAE743ABCEDADAB"
             BuildableName = "libPods-GrocerMax-Mantle.a"
             BlueprintName = "Pods-GrocerMax-Mantle"
             ReferencedContainer = "container:Pods.xcodeproj">
