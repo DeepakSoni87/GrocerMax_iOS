@@ -38,6 +38,8 @@
 
 @property (nonatomic, readonly, strong) NSString *googleId;
 
+@property (nonatomic, readonly, assign) BOOL isShowTapped;
+
 - (void)setFirstName:(NSString *)firstName;
 
 - (void)setLastName:(NSString *)lastName;
@@ -65,6 +67,8 @@
 - (void)setFbId:(NSString *)fbId;
 
 - (void)setGoogleId:(NSString *)googleId;
+
+- (void)setIsShowTapped:(BOOL)isShowTapped;
 
 + (instancetype)loggedInUser;
 

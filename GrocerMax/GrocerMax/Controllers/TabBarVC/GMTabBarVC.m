@@ -71,8 +71,8 @@
     GMNavigationController *hotDealVCNavController = [[GMNavigationController alloc] initWithRootViewController:hotDealVC];
     
     GMSearchVC *searchVC = [[GMSearchVC alloc] initWithNibName:@"GMSearchVC" bundle:nil];
-    UIImage *searchVCTabImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    UIImage *searchVCTabSelectedImg = [[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *searchVCTabImg = [[UIImage imageNamed:@"search_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    UIImage *searchVCTabSelectedImg = [[UIImage imageNamed:@"search_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:searchVCTabImg selectedImage:searchVCTabSelectedImg];
     GMNavigationController *searchVCNavController = [[GMNavigationController alloc] initWithRootViewController:searchVC];
     
