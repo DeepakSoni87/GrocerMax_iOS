@@ -15,6 +15,7 @@
 #import "GMHotDealBaseModal.h"
 #import "GMRootPageViewController.h"
 #import "GMDealCategoryBaseModal.h"
+#import "MGSocialMedia.h"
 
 #pragma mark - Interface/Implementation SectionModal
 
@@ -230,7 +231,9 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     
     SectionModal *sectionModal = [self.sectionArray objectAtIndex:sender.tag];
     if ([sectionModal.sectionDisplayName isEqualToString:kGetInTouchSection]) {
-        
+        AppDelegate *appDel = APP_DELEGATE;
+        [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        [self shareExperience];
     }
     else if ([sectionModal.sectionDisplayName isEqualToString:kPaymentSection]) {
         
@@ -283,6 +286,13 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
     GMDealCategoryModal *allModal = [[GMDealCategoryModal alloc] initWithCategoryId:@"" images:@"" categoryName:@"All" isActive:@"1" andDeals:dealCategoryBaseModal.allDealCategory];
     [dealCategoryArray insertObject:allModal atIndex:0];
     return dealCategoryArray;
+}
+
+- (void)shareExperience{
+    
+    MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
+    [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
+    
 }
 
 @end

@@ -18,6 +18,8 @@
 		3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9025291BB87F1500603403 /* UITabBarController+UpdateBagde.m */; };
 		3B90252E1BB8916F00603403 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90252D1BB8916F00603403 /* Reachability.m */; };
 		3B9872BB1BC1154500E2499C /* GMHomeBannerModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */; };
+		3BBC6C401BC6FED700EFBCFB /* ActivityViewCustomActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBC6C3D1BC6FED700EFBCFB /* ActivityViewCustomActivity.m */; };
+		3BBC6C411BC6FED700EFBCFB /* MGSocialMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBC6C3F1BC6FED700EFBCFB /* MGSocialMedia.m */; };
 		3BD49B061BB9E112009BE425 /* GMProvideMobileInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */; };
 		3BD49B071BB9E112009BE425 /* GMProvideMobileInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */; };
 		3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */; };
@@ -293,6 +295,10 @@
 		3B90252D1BB8916F00603403 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3B9872B91BC1154500E2499C /* GMHomeBannerModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeBannerModal.h; sourceTree = "<group>"; };
 		3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeBannerModal.m; sourceTree = "<group>"; };
+		3BBC6C3C1BC6FED700EFBCFB /* ActivityViewCustomActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewCustomActivity.h; sourceTree = "<group>"; };
+		3BBC6C3D1BC6FED700EFBCFB /* ActivityViewCustomActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewCustomActivity.m; sourceTree = "<group>"; };
+		3BBC6C3E1BC6FED700EFBCFB /* MGSocialMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSocialMedia.h; sourceTree = "<group>"; };
+		3BBC6C3F1BC6FED700EFBCFB /* MGSocialMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSocialMedia.m; sourceTree = "<group>"; };
 		3BD49B031BB9E112009BE425 /* GMProvideMobileInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMProvideMobileInfoVC.h; sourceTree = "<group>"; };
 		3BD49B041BB9E112009BE425 /* GMProvideMobileInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMProvideMobileInfoVC.m; sourceTree = "<group>"; };
 		3BD49B051BB9E112009BE425 /* GMProvideMobileInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMProvideMobileInfoVC.xib; sourceTree = "<group>"; };
@@ -755,6 +761,17 @@
 				3B9872BA1BC1154500E2499C /* GMHomeBannerModal.m */,
 			);
 			path = HomeBanner;
+			sourceTree = "<group>";
+		};
+		3BBC6C3B1BC6FED700EFBCFB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				3BBC6C3C1BC6FED700EFBCFB /* ActivityViewCustomActivity.h */,
+				3BBC6C3D1BC6FED700EFBCFB /* ActivityViewCustomActivity.m */,
+				3BBC6C3E1BC6FED700EFBCFB /* MGSocialMedia.h */,
+				3BBC6C3F1BC6FED700EFBCFB /* MGSocialMedia.m */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		3BD49B021BB9E0D9009BE425 /* ProvideMobileInfoVC */ = {
@@ -1418,6 +1435,7 @@
 		820C4FEA1BB1CC5C00DCCF39 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3BBC6C3B1BC6FED700EFBCFB /* Share */,
 				3B9025211BB8395100603403 /* NavSearchBarView */,
 				820C4FEB1BB1CC5C00DCCF39 /* GMButton */,
 				820C4FEE1BB1CC5C00DCCF39 /* Navigation */,
@@ -2252,6 +2270,7 @@
 				820C50001BB1CC5C00DCCF39 /* GMRegistrationResponseModal.m in Sources */,
 				820C50501BB1CC5C00DCCF39 /* GMProductDescriptionVC.m in Sources */,
 				3B2A83F71BB352AC0066DA7A /* GMOffersByDealTypeModal.m in Sources */,
+				3BBC6C411BC6FED700EFBCFB /* MGSocialMedia.m in Sources */,
 				E86D14551BB99E5E00D3EAD8 /* ReachabilityManager.m in Sources */,
 				820C502E1BB1CC5C00DCCF39 /* GMShopByCategoryCell.m in Sources */,
 				824047041BAB22F6008686C2 /* XHDrawerController.m in Sources */,
@@ -2296,6 +2315,7 @@
 				E86D14091BB99D4E00D3EAD8 /* CardValidation.m in Sources */,
 				820C4FF91BB1CC5C00DCCF39 /* GMAddressModal.m in Sources */,
 				3B90252A1BB87F1500603403 /* UITabBarController+UpdateBagde.m in Sources */,
+				3BBC6C401BC6FED700EFBCFB /* ActivityViewCustomActivity.m in Sources */,
 				E86D14441BB99D4E00D3EAD8 /* PayUCashCardViewController.m in Sources */,
 				820C50421BB1CC5C00DCCF39 /* GMOffersCollectionViewCell.m in Sources */,
 				820C505A1BB1CC5C00DCCF39 /* GMGenderCell.m in Sources */,
