@@ -848,4 +848,5 @@ static GMRequestParams *sharedClass;
     else
         return @"";
 }
+
 @end
