@@ -66,6 +66,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     
     _dateLbl = dateLbl;
     [_dateLbl.layer setCornerRadius:10.0];
+    [_dateLbl setBackgroundColor:[UIColor gmRedColor]];
     [_dateLbl setClipsToBounds:YES];
 }
 
@@ -73,6 +74,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     
     _timeLbl = timeLbl;
     [_timeLbl.layer setCornerRadius:10.0];
+    [_timeLbl setBackgroundColor:[UIColor gmRedColor]];
     [_timeLbl setClipsToBounds:YES];
 }
 
