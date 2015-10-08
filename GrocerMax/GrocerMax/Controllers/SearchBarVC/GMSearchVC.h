@@ -10,4 +10,6 @@
 
 @interface GMSearchVC : UIViewController
 
+- (void)performSearchOnServerWithParam:(NSDictionary*)param;
+
 @end
