@@ -997,11 +997,64 @@ void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *
     
     return theRequest;
 }
+#pragma mark - PayU Hash Paramter
 
+- (NSDictionary *)payUHashParameterDictionary:(NSDictionary *) paramDict {
+    
+    NSMutableDictionary *payUParameterDic = [[NSMutableDictionary alloc]init];
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSString *userId = @"test";
+    NSString *emailId = @"deepaksoni01@gmail.com";
+    NSString *mobileNo = @"8585990093";
+    NSString *name = @"deepaksoni";
+    
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        userId = userModal.userId;
+    }
+    if(NSSTRING_HAS_DATA(userModal.email)) {
+        emailId = userModal.email;
+    }
+    if(NSSTRING_HAS_DATA(userModal.mobile)) {
+        mobileNo = userModal.mobile;
+    }
+    if(NSSTRING_HAS_DATA(userModal.firstName)) {
+        name = userModal.firstName;
+    }
+    
+    [payUParameterDic setObject:[paramDict objectForKey:PARAM_KEY] forKey:kEY_PayU_Key];
+    [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];
+    [payUParameterDic setObject:name forKey:kEY_PayU_Fname];
+    [payUParameterDic setObject:mobileNo forKey:kEY_PayU_Phone];
+    [payUParameterDic setObject:[paramDict objectForKey:PARAM_TXID] forKey:kEY_PayU_Txnid];
+    [payUParameterDic setObject:[paramDict objectForKey:PARAM_PRODUCT_INFO] forKey:kEY_PayU_Productinfo];
+    [payUParameterDic setObject:[paramDict objectForKey:PARAM_USER_CREDENTIALS] forKey:kEY_PayU_User_Credentials];
+    [payUParameterDic setObject:PayU_Furl forKey:kEY_PayU_Furl];
+    [payUParameterDic setObject:PayU_Surl forKey:kEY_PayU_Surl];
+    [payUParameterDic setObject:[paramDict objectForKey:PARAM_TOTAL_AMOUNT] forKey:kEY_PayU_Amount];
+    
+    
+    return payUParameterDic;
+}
 + (void) generateHashFromServer:(NSDictionary *) paramDict withCompletionBlock:(urlRequestCompletionBlock)completionBlock{
     
     void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *data, NSError *error) = completionBlock;
  
+    
+    [[GMOperationalHandler handler] getMobileHash:nil withSuccessBlock:^(id responceData) {
+        if(responceData != nil) {
+            [[SharedDataManager sharedDataManager] setHashDict:responceData];
+            serverResponseForHashGenerationCallback(responceData, responceData,nil);
+            
+        } else {
+            serverResponseForHashGenerationCallback(nil, nil,nil);
+        }
+        
+    } failureBlock:^(NSError *error) {
+        serverResponseForHashGenerationCallback(nil, nil,error);
+    }];
+    
+    return;
     NSURL *restURL = [NSURL URLWithString:PAYU_PAYMENT_ALL_AVAILABLE_PAYMENT_OPTION];
     
     // create the request
@@ -1014,7 +1067,6 @@ void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *
      Sending value of user_credentials as var1 according to new UI
      */
     NSString *postData = [NSString stringWithFormat:@"command=%@&key=%@&var1=%@&var2=%@&var3=%@&var4=%@&hash=%@",PARAM_SERVER_HASH_GENERATION_COMMAND,[paramDict objectForKey:PARAM_KEY],[paramDict objectForKey:PARAM_TXID],[paramDict objectForKey:PARAM_TOTAL_AMOUNT],[paramDict objectForKey:PARAM_PRODUCT_INFO],[paramDict objectForKey:PARAM_USER_CREDENTIALS],@"PAYU"];
-    
     NSLog(@"Hash generation Post Param %@",postData);
     
     //set request content type we MUST set this value.

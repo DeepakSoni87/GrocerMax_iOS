@@ -84,8 +84,10 @@
 	<key>command</key>
 	<string>payment_related_details_for_mobile_sdk</string>
 	<key>key</key>
-	<string>0MQaQP</string>
+	<string>yPnUG6</string>
 	<key>var1</key>
 	<string>default</string>
+	<key>salt</key>
+	<string>jJ0mWFKl</string>
 </dict>
 </plist>

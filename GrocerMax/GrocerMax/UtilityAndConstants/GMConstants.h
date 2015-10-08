@@ -176,3 +176,36 @@
 #define kEY_device                           @"device"
 #define kEY_iOS                              @"ios"
 
+// Key : PayU
+
+#define kEY_PayU_Amount                   @"amount"
+#define kEY_PayU_Surl                     @"surl"
+#define kEY_PayU_Furl                     @"furl"
+#define kEY_PayU_User_Credentials         @"user_credentials"
+#define kEY_PayU_Key                      @"key"
+#define kEY_PayU_Txnid                    @"txnid"
+#define kEY_PayU_Fname                    @"fname"
+#define kEY_PayU_Email                    @"email"
+#define kEY_PayU_Phone                    @"phone"
+#define kEY_PayU_Productinfo              @"productinfo"
+
+#define PayU_Surl @"https://payu.herokuapp.com/ios_success"
+#define PayU_Furl @"https://payu.herokuapp.com/ios_failure"
+
+/*
+
+params.put("surl",UrlsConstants.CHANGE_ORDER_STATUS+"success.php?orderid="+orderid);
+params.put("furl",UrlsConstants.CHANGE_ORDER_STATUS+"fail.php?orderid="+orderid);
+params.put("user_credentials","yPnUG6:test");
+params.put("key","yPnUG6");
+params.put("txnid",orderid);
+params.put("firstname",MySharedPrefs.INSTANCE.getFirstName()+" "+MySharedPrefs.INSTANCE.getLastName());
+params.put("email",MySharedPrefs.INSTANCE.getUserEmail());
+//            params.put("phone", "9999999999");
+params.put("phone",MySharedPrefs.INSTANCE.getMobileNo());
+params.put("productinfo","GrocerMax Product Info");
+
+params.remove("amount");
+[07/10/15, 3:17:51 PM] Abhi Yadav: getmobilehash?
+[07/10/15, 3:17:56 PM] Abhi Yadav: HttpGet httpGet = new HttpGet(UrlsConstants.GET_MOBILE_HASH + "txnid=" + orderid + "&amount=" + String.valueOf(finalAmount) + "&email=" + MySharedPrefs.INSTANCE.getUserEmail() + "&fname=" + MySharedPrefs.INSTANCE.getFirstName()); */
+

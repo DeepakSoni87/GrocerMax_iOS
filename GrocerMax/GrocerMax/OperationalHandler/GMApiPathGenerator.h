@@ -299,4 +299,13 @@
 + (NSString *)homeBannerPath;
 
 
+/**
+ This api  use for genrate hash url
+ * Function for payU hash genrate
+ * return hash path URL
+ * mandatory no
+ * @output JSON string
+ */
+
++ (NSString *)hashGenreatePath;
 @end
