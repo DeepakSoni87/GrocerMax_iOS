@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EBB71C839E798F0A6859E5C2"
+               BlueprintIdentifier = "8C039CC347F95160BBD7472C"
                BuildableName = "libPods-GrocerMax-RaisinToast.a"
                BlueprintName = "Pods-GrocerMax-RaisinToast"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EBB71C839E798F0A6859E5C2"
+            BlueprintIdentifier = "8C039CC347F95160BBD7472C"
             BuildableName = "libPods-GrocerMax-RaisinToast.a"
             BlueprintName = "Pods-GrocerMax-RaisinToast"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EBB71C839E798F0A6859E5C2"
+            BlueprintIdentifier = "8C039CC347F95160BBD7472C"
             BuildableName = "libPods-GrocerMax-RaisinToast.a"
             BlueprintName = "Pods-GrocerMax-RaisinToast"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
+               BlueprintIdentifier = "2CC7D8524B008E05BF256932"
                BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
                BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
+            BlueprintIdentifier = "2CC7D8524B008E05BF256932"
             BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
             BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46EB71D45908FD3844BC80C2"
+            BlueprintIdentifier = "2CC7D8524B008E05BF256932"
             BuildableName = "libPods-GrocerMax-TPKeyboardAvoiding.a"
             BlueprintName = "Pods-GrocerMax-TPKeyboardAvoiding"
             ReferencedContainer = "container:Pods.xcodeproj">
