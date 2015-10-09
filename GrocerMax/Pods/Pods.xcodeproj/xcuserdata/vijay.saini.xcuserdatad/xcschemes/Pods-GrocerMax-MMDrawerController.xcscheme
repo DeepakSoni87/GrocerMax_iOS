@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8AD7F151EE4E71EADA749381"
+               BlueprintIdentifier = "5B97A1FB344C237660915942"
                BuildableName = "libPods-GrocerMax-MMDrawerController.a"
                BlueprintName = "Pods-GrocerMax-MMDrawerController"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8AD7F151EE4E71EADA749381"
+            BlueprintIdentifier = "5B97A1FB344C237660915942"
             BuildableName = "libPods-GrocerMax-MMDrawerController.a"
             BlueprintName = "Pods-GrocerMax-MMDrawerController"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8AD7F151EE4E71EADA749381"
+            BlueprintIdentifier = "5B97A1FB344C237660915942"
             BuildableName = "libPods-GrocerMax-MMDrawerController.a"
             BlueprintName = "Pods-GrocerMax-MMDrawerController"
             ReferencedContainer = "container:Pods.xcodeproj">

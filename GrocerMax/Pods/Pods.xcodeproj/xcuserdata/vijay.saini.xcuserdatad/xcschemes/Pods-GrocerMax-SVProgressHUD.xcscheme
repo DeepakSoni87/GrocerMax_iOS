@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "10A23AA5D4BC65112C0F5C67"
+               BlueprintIdentifier = "5202EC954D51354D8DD80110"
                BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
                BlueprintName = "Pods-GrocerMax-SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "10A23AA5D4BC65112C0F5C67"
+            BlueprintIdentifier = "5202EC954D51354D8DD80110"
             BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
             BlueprintName = "Pods-GrocerMax-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "10A23AA5D4BC65112C0F5C67"
+            BlueprintIdentifier = "5202EC954D51354D8DD80110"
             BuildableName = "libPods-GrocerMax-SVProgressHUD.a"
             BlueprintName = "Pods-GrocerMax-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
