@@ -574,7 +574,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     
 
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
-                                      name,@"firstname",
+                                      emailId,@"firstname",
                                       @"3",@"amount",
                                       emailId,@"email",
                                       mobileNo, @"phone",
@@ -582,12 +582,13 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
                                       failString,@"furl",
                                       self.txnID,@"txnid",PayU_Cridentail
                                     ,@"user_credentials",
-                                      @"u1",@"udf1",
-                                      @"u2",@"udf2",
-                                      @"u3",@"udf3",
-                                      @"u4",@"udf4",
-                                      @"u5",@"udf5"
-                                      ,nil];
+//                                      @"u1",@"udf1",
+//                                      @"u2",@"udf2",
+//                                      @"u3",@"udf3",
+//                                      @"u4",@"udf4",
+//                                      @"u5",@"udf5",
+                                      PayU_Key,kEY_PayU_Key,
+                                      nil];
     
 //    yPnUG6:test
     paymentOptionsVC.parameterDict = paramDict;
@@ -691,15 +692,15 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
     NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
-    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
+//    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
     [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];
-    [payUParameterDic setObject:name forKey:kEY_PayU_Fname];
-    [payUParameterDic setObject:mobileNo forKey:kEY_PayU_Phone];
+    [payUParameterDic setObject:emailId forKey:kEY_PayU_Fname];
+//    [payUParameterDic setObject:mobileNo forKey:kEY_PayU_Phone];
     [payUParameterDic setObject:self.txnID forKey:kEY_PayU_Txnid];
-    [payUParameterDic setObject:PayU_Product_Info forKey:kEY_PayU_Productinfo];
-    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
-    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
-    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
+//    [payUParameterDic setObject:PayU_Product_Info forKey:kEY_PayU_Productinfo];
+//    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
+//    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
+//    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
     [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
 //    [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     

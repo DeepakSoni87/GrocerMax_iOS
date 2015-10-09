@@ -384,6 +384,8 @@
         }
     }
     
+    NSLog(@"%@",postData);
+    
     [postData appendFormat:@"%@=%@",PARAM_HASH,checkSum];
     //sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
     NSLog(@"POST DATA = %@",postData);
