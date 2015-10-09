@@ -458,7 +458,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 }
 
 
--(void)handleBannerAction:(GMHomeBannerModal*)bannerMdl {
+- (void)handleBannerAction:(GMHomeBannerModal*)bannerMdl {
     
 //    Screen 3:(Deals by category id)
 //    offerbydealtype?cat_id=2402
