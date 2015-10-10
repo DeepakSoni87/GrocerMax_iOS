@@ -176,9 +176,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 - (IBAction)actionApplyCoponCode:(id)sender {
     
     [self.view endEditing:YES];
-    self.txnID = [self randomStringWithLength:17];
-    [self createHeashKey];
-    return;
+//    self.txnID = [self randomStringWithLength:17];
+//    [self createHeashKey];
+//    return;
     if(!NSSTRING_HAS_DATA(coupanCode)) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
         return;
@@ -575,7 +575,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
                                       emailId,@"firstname",
-                                      @"3",@"amount",
+                                      [NSString stringWithFormat:@"%.2f",totalAmount],@"amount",
                                       emailId,@"email",
                                       mobileNo, @"phone",
                                       sucessString,@"surl",
@@ -593,7 +593,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    yPnUG6:test
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
-    paymentOptionsVC.totalAmount  = 3;//totalAmount;//[totalAmount floatValue];
+    paymentOptionsVC.totalAmount  = totalAmount;//[totalAmount floatValue];
     paymentOptionsVC.appTitle     = @"GrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
@@ -649,7 +649,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
     [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
     [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
     
     
     return payUParameterDic;
@@ -701,7 +701,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
 //    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
 //    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
 //    [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     
     
