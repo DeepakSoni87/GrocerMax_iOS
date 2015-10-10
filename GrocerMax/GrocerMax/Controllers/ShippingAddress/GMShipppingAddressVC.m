@@ -113,6 +113,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.checkOutModal.shippingAddressModal = [addressModalData copy];
     self.selectedAddressModalData = addressModalData;
     [self.shippingAddressTableView reloadData];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ExistingShippingSelect withCategory:@"" label:addressModalData.street value:nil];
 }
 
 - (void)editBtnClicked:(GMButton *)sender {
@@ -126,6 +127,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
     if(sender == nil) {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_NewShippingSelect withCategory:@"" label:nil value:nil];
         addShippingAddressVC.isComeFromShipping = TRUE;
         [self.navigationController pushViewController:addShippingAddressVC animated:NO];
     } else {
@@ -139,6 +141,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         
         if(self.shippingAsBillingBtn.selected) {
             
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ProceedShippingBilling withCategory:@"" label:nil value:nil];
             GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
             self.checkOutModal.billingAddressModal = [self.selectedAddressModalData copy];
             deliveryDetailVC.checkOutModal = self.checkOutModal;
@@ -173,6 +176,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
                 billingAddressVC.billingAddressArray = billingAddressArray;
             }
         }
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ProceedShipping withCategory:@"" label:nil value:nil];
         [self.navigationController pushViewController:billingAddressVC animated:YES];
     } else {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please select shipping address."];

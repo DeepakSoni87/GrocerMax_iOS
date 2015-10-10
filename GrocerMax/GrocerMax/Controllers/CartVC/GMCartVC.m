@@ -228,6 +228,9 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return cartCell;
 }
 
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartScroller withCategory:@"" label:nil value:nil];
+}
 #pragma mark - GMCartCellDelegate Methods
 
 - (void)productQuantityValueChanged {
@@ -266,6 +269,8 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (IBAction)placeOrderButtonTapped:(id)sender {
     
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartPlaceOrder withCategory:@"" label:nil value:nil];
+    
     if(self.cartDetailModal.productItemsArray.count) {
         if(self.checkOutModal) {
             self.checkOutModal = nil;
@@ -301,6 +306,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (IBAction)updateOrderButtonTapped:(id)sender {
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartUpdate withCategory:@"" label:nil value:nil];
     if([self checkWhetherUpdateRequestNeeded]) {
         
         NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] updateDeleteRequestParameterFromCartDetailModal:self.cartDetailModal];

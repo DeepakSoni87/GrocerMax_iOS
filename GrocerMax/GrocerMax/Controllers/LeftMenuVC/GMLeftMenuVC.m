@@ -206,11 +206,13 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         GMCategoryModal *categoryModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
         GMLeftMenuDetailVC *leftMenuDetailVC = [[GMLeftMenuDetailVC alloc] initWithNibName:@"GMLeftMenuDetailVC" bundle:nil];
         leftMenuDetailVC.subCategoryModal = categoryModal;
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:categoryModal.categoryName value:nil];
         [self.navigationController pushViewController:leftMenuDetailVC animated:YES];
     }
     else if ([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection]) {
         
         GMHotDealModal *hotDealModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:hotDealModal.dealTypeId value:nil];
         [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
     }
 }
@@ -225,22 +227,28 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
         }
     }
 }
-
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerScroller withCategory:@"" label:nil value:nil];
+}
 #pragma mark - IBAction Methods
 
 - (void)sectionButtonTapped:(UIButton *)sender {
     
     SectionModal *sectionModal = [self.sectionArray objectAtIndex:sender.tag];
     if ([sectionModal.sectionDisplayName isEqualToString:kGetInTouchSection]) {
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kGetInTouchSection value:nil];
+        
         AppDelegate *appDel = APP_DELEGATE;
         [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
         [self shareExperience];
     }
     else if ([sectionModal.sectionDisplayName isEqualToString:kPaymentSection]) {
-        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kPaymentSection value:nil];
     }
     else {
         
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:nil value:nil];
         for (SectionModal *mdl in self.sectionArray) {
             mdl.isExpanded = NO;
         }

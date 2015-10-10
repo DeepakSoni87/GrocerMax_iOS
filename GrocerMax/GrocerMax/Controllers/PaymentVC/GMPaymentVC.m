@@ -134,6 +134,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         return;
     }
 //
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PlaceOrder withCategory:@"" label:nil value:nil];
+    
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
     if(selectedIndex == 1) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
@@ -174,7 +177,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     
 }
 
-- (IBAction)actionApplyCoponCode:(id)sender {
+- (void)actionApplyCoponCode:(id)sender {
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CodeApplied withCategory:@"" label:coupanCode value:nil];
     
     [self.view endEditing:YES];
 //    self.txnID = [self randomStringWithLength:17];
@@ -222,6 +227,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         }
         sender.selected = YES;
         selectedIndex = sender.tag;
+        if(selectedIndex == 0) {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_CashOnDelivery value:nil];
+        } else {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
+        }
     }
     self.checkedBtn = sender;
     

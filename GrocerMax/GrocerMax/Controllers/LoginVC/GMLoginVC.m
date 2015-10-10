@@ -88,6 +88,7 @@
 
 - (IBAction)fbLoginButtonPressed:(UIButton *)sender {
 
+    
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logInWithReadPermissions:@[@"email",@"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         
@@ -113,6 +114,7 @@
 
                              if(resultDic != nil) {
                                  if ([result objectForKey:@"email"]) {
+                                     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_FacebookLogin withCategory:@"" label:nil value:nil];
                                      
                                      GMUserModal *userModal = [GMUserModal new];
                                      [userModal setFbId:[result objectForKey:@"id"]];
@@ -157,6 +159,7 @@
         [self showProgress];
         [[GMOperationalHandler handler] login:param withSuccessBlock:^(GMUserModal *userModal) {
             
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_EmailLogin withCategory:@"" label:nil value:nil];
             [self removeProgress];
             [userModal setEmail:self.txt_email.text];
             [userModal persistUser];
@@ -217,7 +220,7 @@ didSignInForUser:(GIDGoogleUser *)user
     NSLog(@"Google login Success = %@",user.profile.email);
     
     if (user.profile.email) {
-    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
         GMUserModal *userModal = [GMUserModal new];
         [userModal setGoogleId:user.userID];
         [userModal setEmail:user.profile.email];

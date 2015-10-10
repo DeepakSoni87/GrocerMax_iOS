@@ -93,12 +93,14 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
 - (IBAction)actionProceed:(id)sender {
     
     if(self.checkOutModal.timeSloteModal) {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ProceedPaymentMethod withCategory:@"" label:nil value:nil];
         GMPaymentVC *paymentVC = [GMPaymentVC new];
         paymentVC.checkOutModal = self.checkOutModal;
         [self.navigationController pushViewController:paymentVC animated:YES];
     } else {
                     [[GMSharedClass sharedClass] showErrorMessage:@"Select Time sloat."];
     }
+    
     
     //
 }
@@ -120,10 +122,12 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             self.selectedTimeSlotModal = timeSloteModal;
             self.checkOutModal.timeSloteModal = timeSloteModal;
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SlotSelect withCategory:@"" label:timeSloteModal.firstTimeSlote value:nil];
         } else {
             self.checkOutModal.timeSloteModal = nil;
         }
         
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DateSelect withCategory:@"" label:deliveryDateTimeSlotModal.deliveryDate value:nil];
         selectedDateIndex = selectedDateIndex-1;
         [self.timeSloteTableView reloadData];
     }
@@ -144,10 +148,14 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
             self.checkOutModal.timeSloteModal = timeSloteModal;
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SlotSelect withCategory:@"" label:timeSloteModal.firstTimeSlote value:nil];
         } else {
             self.checkOutModal.timeSloteModal = nil;
         }
         selectedDateIndex = selectedDateIndex+1;
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DateSelect withCategory:@"" label:deliveryDateTimeSlotModal.deliveryDate value:nil];
+        
         
         [self.timeSloteTableView reloadData];
     }
@@ -168,6 +176,8 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     self.selectedTimeSlotModal = timeSloteModal;
     self.timeLbl.text = timeSloteModal.firstTimeSlote;
     [self.timeSloteTableView reloadData];
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SlotSelect withCategory:@"" label:timeSloteModal.firstTimeSlote value:nil];
     
 }
 
@@ -246,6 +256,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             }
             
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
+            
         }
     }
 }

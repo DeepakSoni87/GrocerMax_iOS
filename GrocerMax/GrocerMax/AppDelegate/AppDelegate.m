@@ -210,7 +210,7 @@ static int const kGaDispatchPeriod = 20;
     
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     
     // Optional: configure GAI options.
     GAI *gai = [GAI sharedInstance];

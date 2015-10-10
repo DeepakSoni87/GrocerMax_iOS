@@ -28,6 +28,7 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(homeButtonPressed:)];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenSearch withCategory:@"" label:nil value:nil];
 
 }
 - (void) viewWillAppear:(BOOL)animated {
@@ -76,6 +77,8 @@
 #pragma mark - API Task
 
 - (void)performSearchOnServerWithParam:(NSDictionary*)param {
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SearchQuery withCategory:@"" label:[param  objectForKey:kEY_keyword] value:nil];
     
     [self showProgress];
     [[GMOperationalHandler handler] search:param withSuccessBlock:^(id responceData) {

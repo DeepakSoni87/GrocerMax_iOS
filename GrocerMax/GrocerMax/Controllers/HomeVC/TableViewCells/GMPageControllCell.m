@@ -81,6 +81,7 @@
 {
     CGFloat pageWidth = self.itemsCollectionView.frame.size.width;
     self.pageControl.currentPage = (self.itemsCollectionView.contentOffset.x + pageWidth / 2) / pageWidth;
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerScroller withCategory:@"" label:nil value:nil];
 }
 
 @end

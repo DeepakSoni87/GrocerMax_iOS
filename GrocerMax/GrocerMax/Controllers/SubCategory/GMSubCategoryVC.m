@@ -144,6 +144,9 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     return headerView;
 }
 
+-(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SubcategoryScroller withCategory:@"" label:nil value:nil];
+}
 #pragma mark -
 
 -(void)actionHeaderBtnClicked:(UIButton *)sender {
@@ -151,7 +154,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     NSInteger btnTag = sender.tag;
     
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:btnTag];
-    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SubCategorySelection withCategory:@"" label:categoryModal.categoryName value:nil];
     if(categoryModal.isExpand)
     {
         if(self.expandedIndex != btnTag)
@@ -191,6 +194,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 //    rootVC.pageData = arr;
 //    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
 //    [self.navigationController pushViewController:rootVC animated:YES];
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SubCategoryNext withCategory:@"" label:categoryModal1.categoryName value:nil];
     
     [self fetchProductListingDataForCategory:categoryModal1];
 

@@ -24,6 +24,7 @@
     [cartModal.cartItems removeAllObjects];
     [cartModal.deletedProductItems removeAllObjects];
     [cartModal archiveCart];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OrderSuccess withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {

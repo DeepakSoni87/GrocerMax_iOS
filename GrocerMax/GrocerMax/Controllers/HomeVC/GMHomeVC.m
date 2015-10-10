@@ -226,6 +226,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
     categoryVC.rootCategoryModal = catModal;
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self.navigationController pushViewController:categoryVC animated:YES];
     
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
@@ -235,7 +236,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
-
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OfferCategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self getOffersDealFromServerWithCategoryModal:catModal];
 }
 
@@ -250,6 +251,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealSelection withCategory:@"" label:hotDealModal.dealTypeId value:nil];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
 }
 
@@ -481,6 +483,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     if ([bannerMdl.linkUrl containsString:@"search?keyword="]) {
         
         NSString *keyword = [bannerMdl.linkUrl substringFromIndex:@"search?keyword=".length];
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:@"" label:keyword value:nil];
         
         if (keyword.length == 0) {
             keyword = @"";
