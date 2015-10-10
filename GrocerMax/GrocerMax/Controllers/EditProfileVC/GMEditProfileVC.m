@@ -51,9 +51,10 @@ static NSString * const kMobileCell                         =  @"Mobile No";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.title = @"Edit Profile";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_EditProfile_Screen];
 }
 
 #pragma mark - IBAction Methods

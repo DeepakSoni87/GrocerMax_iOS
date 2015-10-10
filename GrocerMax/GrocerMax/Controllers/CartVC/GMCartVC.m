@@ -75,6 +75,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     self.cartModal = [GMCartModal loadCart];
     //    if(self.cartModal)
     [self fetchCartDetailFromServer];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -40,6 +40,7 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"DELIVERY INFO";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_OrderDetail_Screen];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

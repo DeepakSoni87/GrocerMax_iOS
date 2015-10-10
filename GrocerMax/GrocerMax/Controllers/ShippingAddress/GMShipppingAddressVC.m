@@ -60,6 +60,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     self.title = @"Shipping Address";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Shipping_Screen];
 
 }
 

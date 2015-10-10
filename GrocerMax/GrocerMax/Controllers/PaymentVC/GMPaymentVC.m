@@ -81,6 +81,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     self.title = @"Payment Method";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartPaymentMethod_Screen];
 }
 
 //- (void)viewDidDisappear:(BOOL)animated {
@@ -689,8 +690,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(userModal.firstName)) {
         name = userModal.firstName;
     }
-    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
-    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
+//    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
+//    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
 //    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
     [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];

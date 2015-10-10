@@ -10,7 +10,7 @@
 #import "GMUserModal.h"
 #import "GMStateBaseModal.h"
 #import "Reachability.h"
-
+#import <Google/Analytics.h>
 
 #define kAlertTitle @"GrocerMax"
 
@@ -228,4 +228,23 @@ CGFloat const kMATabBarHeight = 49.0f;
     return [self.reachability isReachable];
 }
 
+- (void)trakScreenWithScreenName:(NSString *)scrrenName {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:scrrenName];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+- (void) trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    if(!NSSTRING_HAS_DATA(category)) {
+        category = @"Action";
+    }
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:category
+                                            action:eventName
+                                             label:label
+                                             value:value] build];
+    [tracker send:event];
+}
 @end

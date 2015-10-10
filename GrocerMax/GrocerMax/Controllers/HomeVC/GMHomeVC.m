@@ -73,6 +73,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     if (mdl != nil) {
         [self getShopByCategoriesFromServer];
     }
+    
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Home_Screen];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

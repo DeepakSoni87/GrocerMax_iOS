@@ -57,10 +57,11 @@ static NSString * const kGenderCell                         =  @"Gender";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Register";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Register_Screen];
 }
 
 - (void)registerCellsForTableView {

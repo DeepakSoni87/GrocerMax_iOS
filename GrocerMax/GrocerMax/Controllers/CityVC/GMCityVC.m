@@ -40,6 +40,7 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configerView];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_City_Screen];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

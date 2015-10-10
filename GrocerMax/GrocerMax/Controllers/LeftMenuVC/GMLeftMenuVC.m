@@ -74,9 +74,10 @@ static NSString * const kPaymentSection                             =  @"PAYMENT
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [self createSectionArray];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_HamburgerMain_Screen];
 }
 
 - (void)didReceiveMemoryWarning {

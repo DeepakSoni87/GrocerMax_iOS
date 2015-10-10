@@ -47,6 +47,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"DELIVERY DETAIL";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartDeliveryDetail_Screen];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

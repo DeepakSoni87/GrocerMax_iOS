@@ -54,6 +54,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     if(isHitOnServer)
         [self getBillingAddress];
     self.title = @"Billing Address";
+    
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartBilling_Screen];
 }
 
 - (void)registerCellsForTableView {

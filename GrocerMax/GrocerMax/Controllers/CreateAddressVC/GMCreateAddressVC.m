@@ -13,7 +13,7 @@
 
 
 
-@interface GMCreateAddressVC ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface GMCreateAddressVC ()
 
 @property (weak, nonatomic) IBOutlet UITableView *addressTableView;
 

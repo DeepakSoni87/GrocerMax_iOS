@@ -51,7 +51,9 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
     self.navigationItem.title = @"Hot Offers";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_HotDeal_Screen];
 }
 
 #pragma mark - Button action

@@ -192,20 +192,62 @@
 #define PayU_Surl @"https://payu.herokuapp.com/ios_success"
 #define PayU_Furl @"https://payu.herokuapp.com/ios_failure"
 
-/*
 
-params.put("surl",UrlsConstants.CHANGE_ORDER_STATUS+"success.php?orderid="+orderid);
-params.put("furl",UrlsConstants.CHANGE_ORDER_STATUS+"fail.php?orderid="+orderid);
-params.put("user_credentials","yPnUG6:test");
-params.put("key","yPnUG6");
-params.put("txnid",orderid);
-params.put("firstname",MySharedPrefs.INSTANCE.getFirstName()+" "+MySharedPrefs.INSTANCE.getLastName());
-params.put("email",MySharedPrefs.INSTANCE.getUserEmail());
-//            params.put("phone", "9999999999");
-params.put("phone",MySharedPrefs.INSTANCE.getMobileNo());
-params.put("productinfo","GrocerMax Product Info");
 
-params.remove("amount");
-[07/10/15, 3:17:51 PM] Abhi Yadav: getmobilehash?
-[07/10/15, 3:17:56 PM] Abhi Yadav: HttpGet httpGet = new HttpGet(UrlsConstants.GET_MOBILE_HASH + "txnid=" + orderid + "&amount=" + String.valueOf(finalAmount) + "&email=" + MySharedPrefs.INSTANCE.getUserEmail() + "&fname=" + MySharedPrefs.INSTANCE.getFirstName()); */
 
+
+
+
+//Start Google Analytic screenName and event name
+#define kEY_GA_Splash_Screen                 @"SplashScreen"
+#define kEY_GA_City_Screen                   @"CityScreen"
+#define kEY_GA_Home_Screen                   @"HomeScreen"
+
+
+
+#define kEY_GA_LogIn_Screen                  @"LogInScreen"
+#define kEY_GA_Register_Screen               @"RegisterScreen"
+#define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
+#define kEY_GA_OTP_Screen                    @"OTPScreen"
+#define kEY_GA_Profile_Screen                @"ProfileScreen"
+#define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
+
+#define kEY_GA_OrderHistory_Screen           @"OrderHistoryListScreen"
+#define kEY_GA_OrderDetail_Screen            @"OrderDetailScreen"
+#define kEY_GA_Shipping_Screen               @"ShippingAddressScreen"
+#define kEY_GA_AddShipping_Screen            @"AddShippingAddressScreen"
+#define kEY_GA_EditProfile_Screen            @"EditProfileScreen"
+#define kEY_GA_InviteFriend_Screen           @"InviteFriendScreen"
+#define kEY_GA_ChangePassword_Screen         @"ChangePasswordScreen"
+
+#define kEY_GA_Search_Screen                 @"SearchScreen"
+
+#define kEY_GA_SubCategory_Screen            @"SubCategoryScreen"
+
+#define kEY_GA_ProducList_Screen             @"ProductListScreen"
+#define kEY_GA_ProducDetail_Screen           @"ProductDetailScreen"
+#define kEY_GA_ProducList_Screen             @"ProductListScreen"
+
+#define kEY_GA_HotDeal_Screen                @"HotDealScreen"
+#define kEY_GA_DealList_Screen               @"DealListScreen"
+#define kEY_GA_DealDetail_Screen             @"DealDetailScreen"
+
+
+#define kEY_GA_Cart_Screen                   @"CartScreen"
+#define kEY_GA_CartShipping_Screen           @"CartShippingScreen"
+#define kEY_GA_CartBilling_Screen            @"CartBillingScreen"
+#define kEY_GA_AddBilling_Screen             @"AddBillingScreen"
+#define kEY_GA_CartDeliveryDetail_Screen     @"CartDeliveryDetailScreen"
+#define kEY_GA_CartPaymentMethod_Screen      @"CartPaymentMethodScreen"
+#define kEY_GA_CartPaymentSucess_Screen      @"CartPaymentSucessScreen"
+
+#define kEY_GA_HamburgerMain_Screen          @"HambergerMainScreen"
+#define kEY_GA_HamburgerSubcategory_Screen   @"HambergerSubcategoryScreen"
+
+#define kEY_GA_ProvideMobileInfo_Screen      @"ProvideMobileInfoScreen"
+
+#define kEY_GA_Offer_Screen                  @"OfferScreen"
+#define kEY_GA_OfferList_Screen              @"OfferListScreen"
+#define kEY_GA_MyAddress_Screen              @"MyAddressScreen"
+
+// End Google Analytic screenName and event name

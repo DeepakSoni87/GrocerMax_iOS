@@ -45,6 +45,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     if(NSSTRING_HAS_DATA(self.rootCategoryModal.categoryName)) {
         self.title = self.rootCategoryModal.categoryName;
     }
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_SubCategory_Screen];
 }
 
 - (void)didReceiveMemoryWarning {

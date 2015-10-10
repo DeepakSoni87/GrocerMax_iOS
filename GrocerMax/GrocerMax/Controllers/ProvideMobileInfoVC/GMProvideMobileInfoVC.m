@@ -36,6 +36,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden = NO;
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProvideMobileInfo_Screen];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

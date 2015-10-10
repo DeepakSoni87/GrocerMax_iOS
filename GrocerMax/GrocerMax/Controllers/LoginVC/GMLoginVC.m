@@ -44,6 +44,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if(self.isPresent) {
@@ -52,9 +53,13 @@
             [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         
-        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES)
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
             [self setSecondTabAsProfile];
+        } else {
+            [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_LogIn_Screen];
+        }
     }
+    
 }
 
 - (void)configureView{
