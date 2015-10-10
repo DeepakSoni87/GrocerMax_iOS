@@ -475,23 +475,108 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 //    Category listing:
 //    productlistall?cat_id=2402
     
-    if ([bannerMdl.linkUrl containsString:@"search?keyword="]) {
+#define   KEY_Banner_search @"search"
+#define   KEY_Banner_offerbydealtype @"offerbydealtype"
+#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
+#define   KEY_Banner_productlistall @"productlistall"
+
+    if (!NSSTRING_HAS_DATA(bannerMdl.linkUrl)) {
+        return;
+    }
+    
+    NSArray *typeStringArr = [bannerMdl.linkUrl componentsSeparatedByString:@"?"];
+    NSString *typeStr = typeStringArr.firstObject;
+    NSArray *valueStringArr = [bannerMdl.linkUrl componentsSeparatedByString:@"="];
+    NSString *value = valueStringArr.lastObject;
+    
+    if (!(NSSTRING_HAS_DATA(typeStr) && NSSTRING_HAS_DATA(value))) {
+        return;
+    }
+    
+    if ([typeStr isEqualToString:KEY_Banner_search]) {
         
-        NSString *keyword = [bannerMdl.linkUrl substringFromIndex:@"search?keyword=".length];
-        
-        if (keyword.length == 0) {
-            keyword = @"";
-        }
         NSMutableDictionary *localDic = [NSMutableDictionary new];
-        [localDic setObject:keyword forKey:kEY_keyword];
+        [localDic setObject:value forKey:kEY_keyword];
         
         [self.tabBarController setSelectedIndex:3];
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
         if (searchVC == nil)
             return;
         [searchVC performSearchOnServerWithParam:localDic];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_offerbydealtype]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+
+        [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_dealsbydealtype]) {
+        
+        [self fetchDealCategoriesFromServerWithDealTypeId:value];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_productlistall]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [self fetchProductListingDataForCategory:bannerCatMdl];
     }
-   
 }
+
+#pragma mark -
+
+#pragma mark - fetchProductListingDataForCategory
+
+- (void)fetchProductListingDataForCategory:(GMCategoryModal*)categoryModal {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] productListAll:localDic withSuccessBlock:^(id productListingBaseModal) {
+        [self removeProgress];
+        
+        GMProductListingBaseModal *productListingBaseMdl = productListingBaseModal;
+        
+        // All Cat list side by ALL Tab
+        NSMutableArray *categoryArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.hotProductListArray) {
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // All products, for ALL Tab category
+        NSMutableArray *allCatProductListArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.productsListArray) {
+            [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
+            
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // set all product list in ALL tab category mdl
+        categoryModal.productListArray = allCatProductListArray;
+        
+        // set this cat modal as ALL tab
+        [categoryArray insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = categoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        rootVC.navigationTitleString = categoryModal.categoryName;
+        [self.navigationController pushViewController:rootVC animated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
+
 
 @end
