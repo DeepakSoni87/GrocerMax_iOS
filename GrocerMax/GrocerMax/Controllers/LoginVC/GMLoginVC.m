@@ -35,6 +35,8 @@
         self.closeBtn.hidden = NO;
     else
         self.closeBtn.hidden = YES;
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabProfile withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {

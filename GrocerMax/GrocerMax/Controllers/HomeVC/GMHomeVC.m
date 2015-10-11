@@ -62,6 +62,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self registerCellsForTableView];
     [self configureUI];
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabHome withCategory:@"" label:nil value:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

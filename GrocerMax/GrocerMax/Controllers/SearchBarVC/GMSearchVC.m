@@ -28,6 +28,7 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(homeButtonPressed:)];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabSearch withCategory:@"" label:nil value:nil];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenSearch withCategory:@"" label:nil value:nil];
 
 }

@@ -59,6 +59,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.totalView setHidden:YES];
     [self.placeOrderButton setHidden:YES];
     [self registerCellsForTableView];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabCart withCategory:@"" label:nil value:nil];
     
 }
 

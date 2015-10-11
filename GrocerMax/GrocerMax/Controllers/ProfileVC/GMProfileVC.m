@@ -79,6 +79,7 @@ static NSString * const customerCareNumber = @"8010500700";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabProfile withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -35,6 +35,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(homeButtonPressed:)];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabDeal withCategory:@"" label:nil value:nil];
 }
 
 - (void)registerCellsForCollectionView {
