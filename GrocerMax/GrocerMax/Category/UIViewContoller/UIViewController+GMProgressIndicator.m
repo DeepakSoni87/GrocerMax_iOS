@@ -25,9 +25,11 @@
     //    [SVProgressHUD setRingThickness:1.0f];
     [SVProgressHUD setFont:FONT_REGULAR(13)];
     [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeClear];
+    [self.view setUserInteractionEnabled:NO];// added by R
 }
 
 - (void)removeProgress {
+    [self.view setUserInteractionEnabled:YES];// added by R
     [SVProgressHUD dismiss];
 }
 
