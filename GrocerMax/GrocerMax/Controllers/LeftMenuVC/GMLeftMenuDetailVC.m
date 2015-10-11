@@ -31,7 +31,10 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
     [self registerCellsForTableView];
     self.categoryDetailTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_HamburgerSubcategory_Screen];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

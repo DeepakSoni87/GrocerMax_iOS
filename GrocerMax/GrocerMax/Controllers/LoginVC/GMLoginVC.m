@@ -35,6 +35,8 @@
         self.closeBtn.hidden = NO;
     else
         self.closeBtn.hidden = YES;
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabProfile withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +46,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if(self.isPresent) {
@@ -52,9 +55,13 @@
             [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         
-        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES)
+        if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
             [self setSecondTabAsProfile];
+        } else {
+            [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_LogIn_Screen];
+        }
     }
+    
 }
 
 - (void)configureView{
@@ -83,6 +90,7 @@
 
 - (IBAction)fbLoginButtonPressed:(UIButton *)sender {
 
+    
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logInWithReadPermissions:@[@"email",@"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         
@@ -108,6 +116,7 @@
 
                              if(resultDic != nil) {
                                  if ([result objectForKey:@"email"]) {
+                                     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_FacebookLogin withCategory:@"" label:nil value:nil];
                                      
                                      GMUserModal *userModal = [GMUserModal new];
                                      [userModal setFbId:[result objectForKey:@"id"]];
@@ -152,6 +161,7 @@
         [self showProgress];
         [[GMOperationalHandler handler] login:param withSuccessBlock:^(GMUserModal *userModal) {
             
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_EmailLogin withCategory:@"" label:nil value:nil];
             [self removeProgress];
             [userModal setEmail:self.txt_email.text];
             [userModal persistUser];
@@ -212,7 +222,7 @@ didSignInForUser:(GIDGoogleUser *)user
     NSLog(@"Google login Success = %@",user.profile.email);
     
     if (user.profile.email) {
-    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
         GMUserModal *userModal = [GMUserModal new];
         [userModal setGoogleId:user.userID];
         [userModal setEmail:user.profile.email];

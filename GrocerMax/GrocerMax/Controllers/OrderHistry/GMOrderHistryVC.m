@@ -32,6 +32,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Order History";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_OrderHistory_Screen];
 }
 
 #pragma mark - WebService Handler

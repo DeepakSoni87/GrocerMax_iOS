@@ -90,7 +90,7 @@
     self.navigationItem.rightBarButtonItem = nil;
     
     GMSearchBarView *searchBarview = [GMSearchBarView searchBarObj];
-    searchBarview.delegate = self;
+//    searchBarview.delegate = self;
 
     self.navigationItem.titleView = searchBarview;
 }
@@ -101,6 +101,13 @@
     
     [self.view endEditing:YES];
     AppDelegate *appdel = APP_DELEGATE;
+    
+    if(appdel.drawerController.openSide == MMDrawerSideNone) {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenDrawer withCategory:@"" label:nil value:nil];
+    } else {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CloseDrawer withCategory:@"" label:nil value:nil];
+    }
+    
     [appdel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 

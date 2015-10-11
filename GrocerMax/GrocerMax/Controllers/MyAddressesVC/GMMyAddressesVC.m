@@ -55,10 +55,11 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.title = @"Shipping Addresses";
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self getMyAddress];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_MyAddress_Screen];
 }
 
 #pragma mark - GETTER/SETTER Methods

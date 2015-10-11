@@ -17,6 +17,13 @@
 #import "GMHotDealVC.h"
 #import "GMSearchVC.h"
 
+#import <Google/Analytics.h>
+
+static NSString *const kGaPropertyId = @"UA-64944093-2";
+static NSString *const kTrackingPreferenceKey = @"allowTracking";
+static BOOL const kGaDryRun = NO;
+static int const kGaDispatchPeriod = 20;
+
 @interface AppDelegate ()
 
 //@property (nonatomic, strong) XHDrawerController *drawerController;
@@ -32,6 +39,7 @@
 //    [self fetchAllCategories];
     
     //https://developers.google.com/identity/sign-in/ios/offline-access
+    [self initializeGoogleAnalytics];
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];
     if (configureError != nil) {
@@ -192,4 +200,23 @@
     return nil;
 }
 
+
+- (void) initializeGoogleAnalytics {
+    
+    
+    [[GAI sharedInstance] setDispatchInterval:kGaDispatchPeriod];
+    [[GAI sharedInstance] setDryRun:kGaDryRun];
+    [[GAI sharedInstance] trackerWithTrackingId:kGaPropertyId];
+    
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+    gai.logger.logLevel = kGAILogLevelVerbose;//Remove in release
+    
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Splash_Screen];
+}
 @end

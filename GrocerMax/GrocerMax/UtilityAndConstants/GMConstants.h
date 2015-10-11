@@ -192,20 +192,144 @@
 #define PayU_Surl @"https://payu.herokuapp.com/ios_success"
 #define PayU_Furl @"https://payu.herokuapp.com/ios_failure"
 
-/*
 
-params.put("surl",UrlsConstants.CHANGE_ORDER_STATUS+"success.php?orderid="+orderid);
-params.put("furl",UrlsConstants.CHANGE_ORDER_STATUS+"fail.php?orderid="+orderid);
-params.put("user_credentials","yPnUG6:test");
-params.put("key","yPnUG6");
-params.put("txnid",orderid);
-params.put("firstname",MySharedPrefs.INSTANCE.getFirstName()+" "+MySharedPrefs.INSTANCE.getLastName());
-params.put("email",MySharedPrefs.INSTANCE.getUserEmail());
-//            params.put("phone", "9999999999");
-params.put("phone",MySharedPrefs.INSTANCE.getMobileNo());
-params.put("productinfo","GrocerMax Product Info");
 
-params.remove("amount");
-[07/10/15, 3:17:51 PM] Abhi Yadav: getmobilehash?
-[07/10/15, 3:17:56 PM] Abhi Yadav: HttpGet httpGet = new HttpGet(UrlsConstants.GET_MOBILE_HASH + "txnid=" + orderid + "&amount=" + String.valueOf(finalAmount) + "&email=" + MySharedPrefs.INSTANCE.getUserEmail() + "&fname=" + MySharedPrefs.INSTANCE.getFirstName()); */
 
+
+
+
+//Start Google Analytic screenName and event name
+#define kEY_GA_Splash_Screen                 @"SplashScreen"
+#define kEY_GA_City_Screen                   @"CityScreen"
+#define kEY_GA_Home_Screen                   @"HomeScreen"
+
+
+
+#define kEY_GA_LogIn_Screen                  @"LogInScreen"
+#define kEY_GA_Register_Screen               @"RegisterScreen"
+#define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
+#define kEY_GA_OTP_Screen                    @"OTPScreen"
+#define kEY_GA_Profile_Screen                @"ProfileScreen"
+#define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
+
+#define kEY_GA_OrderHistory_Screen           @"OrderHistoryListScreen"
+#define kEY_GA_OrderDetail_Screen            @"OrderDetailScreen"
+#define kEY_GA_Shipping_Screen               @"ShippingAddressScreen"
+#define kEY_GA_AddShipping_Screen            @"AddShippingAddressScreen"
+#define kEY_GA_EditProfile_Screen            @"EditProfileScreen"
+#define kEY_GA_InviteFriend_Screen           @"InviteFriendScreen"
+#define kEY_GA_ChangePassword_Screen         @"ChangePasswordScreen"
+
+#define kEY_GA_Search_Screen                 @"SearchScreen"
+
+#define kEY_GA_SubCategory_Screen            @"SubCategoryScreen"
+
+#define kEY_GA_ProducList_Screen             @"ProductListScreen"
+#define kEY_GA_ProducDetail_Screen           @"ProductDetailScreen"
+#define kEY_GA_ProducList_Screen             @"ProductListScreen"
+
+#define kEY_GA_HotDeal_Screen                @"HotDealScreen"
+#define kEY_GA_DealList_Screen               @"DealListScreen"
+#define kEY_GA_DealDetail_Screen             @"DealDetailScreen"
+
+
+#define kEY_GA_Cart_Screen                   @"CartScreen"
+#define kEY_GA_CartShipping_Screen           @"CartShippingScreen"
+#define kEY_GA_CartBilling_Screen            @"CartBillingScreen"
+#define kEY_GA_AddBilling_Screen             @"AddBillingScreen"
+#define kEY_GA_CartDeliveryDetail_Screen     @"CartDeliveryDetailScreen"
+#define kEY_GA_CartPaymentMethod_Screen      @"CartPaymentMethodScreen"
+#define kEY_GA_CartPaymentSucess_Screen      @"CartPaymentSucessScreen"
+
+#define kEY_GA_HamburgerMain_Screen          @"HambergerMainScreen"
+#define kEY_GA_HamburgerSubcategory_Screen   @"HambergerSubcategoryScreen"
+
+#define kEY_GA_ProvideMobileInfo_Screen      @"ProvideMobileInfoScreen"
+
+#define kEY_GA_Offer_Screen                  @"OfferScreen"
+#define kEY_GA_OfferList_Screen              @"OfferListScreen"
+#define kEY_GA_MyAddress_Screen              @"MyAddressScreen"
+
+//End Screen
+
+//Start Event
+
+#define kEY_GA_Event_CitySelection           @"Track the button for city selection"
+#define kEY_GA_Event_SaveCity                @"Save selected City"
+
+#define kEY_GA_Event_BannerScroller          @"Banner scroll"
+#define kEY_GA_Event_BannerSelection         @"Banner Selection"
+
+#define kEY_GA_Event_OpenDrawer              @"open Drawer"
+#define kEY_GA_Event_CloseDrawer             @"Close Drawer"
+#define kEY_GA_Event_DrawerScroller          @"Drawer Scroll"
+#define kEY_GA_Event_DrawerOptionSelect      @"Drawer Options Selected"
+
+#define kEY_GA_Event_TabHome                 @"Bottom Home Button Pressed"
+#define kEY_GA_Event_TabProfile              @"Bottom Profile Button Pressed"
+#define kEY_GA_Event_TabDeal                 @"Bottom Deal Button Pressed"
+#define kEY_GA_Event_TabSearch               @"Bottom Search Button Pressed"
+#define kEY_GA_Event_TabCart                 @"Bottom Cart Button Pressed"
+
+#define kEY_GA_Event_CategoryScroller        @"Category Scroll"
+#define kEY_GA_Event_CategorySelection       @"Category Selection"
+#define kEY_GA_Event_OfferCategorySelection  @"Offer In Category Selection"
+
+#define kEY_GA_Event_DealScroller            @"Deal Scroll"
+#define kEY_GA_Event_DealSelection           @"Deal Selection"
+
+#define kEY_GA_Event_SubCategoryScroller     @"Deal Scroll"
+
+#define kEY_GA_Event_SubcategoryScroller     @"Subcategory Scroll"
+#define kEY_GA_Event_SubCategorySelection    @"Category Selection"
+#define kEY_GA_Event_SubCategoryNext         @"next level of subcategory"
+
+
+//Rahul code
+
+
+
+
+
+#define kEY_GA_Event_OpenSearch              @"Opening of the search option"
+#define kEY_GA_Event_SearchQuery             @"Tracking of the Search query"
+#define kEY_GA_Event_SearchAddToCart         @"Add to cart event from the search result"
+
+#define kEY_GA_Event_FacebookLogin           @"Login By Facebook"
+#define kEY_GA_Event_GoogleLogin             @"Login By Google"
+#define kEY_GA_Event_EmailLogin              @"Login By Email"
+
+#define kEY_GA_Event_FacebookRegister        @"Register By Facebook"
+#define kEY_GA_Event_GoogleRegister          @"Register By Google"
+#define kEY_GA_Event_EmailRegister           @"Register By Email"
+
+#define kEY_GA_Event_CartScroller            @"Scrolling behavior"
+#define kEY_GA_Event_CartUpdate              @"Cart Update behavior"
+#define kEY_GA_Event_CartPlaceOrder          @"Place order button pressed"
+
+#define kEY_GA_Event_ExistingShippingSelect  @"Existing Shipping Address Selected"
+#define kEY_GA_Event_NewShippingSelect       @"New Shipping Address Selected"
+#define kEY_GA_Event_ProceedShippingBilling  @"Proceed to billing address selection button selection"
+#define kEY_GA_Event_ProceedShipping         @"Proceed to billing address button selection"
+
+
+#define kEY_GA_Event_ExistingBillingSelect   @"Existing Billing Address Selected"
+#define kEY_GA_Event_NewBillingSelect        @"New Billing Address Selected"
+#define kEY_GA_Event_ProceedBilling          @"Proceed to delivery details button selection"
+
+#define kEY_GA_Event_DateSelect              @"Date selection"
+#define kEY_GA_Event_SlotSelect              @"Slot selection"
+#define kEY_GA_Event_ProceedPaymentMethod    @"Proceed to payment method button selection"
+
+#define kEY_GA_Event_PaymentModeSelect       @"Payment mode selected"
+#define kEY_GA_Event_CashOnDelivery          @"Cash on delivery"
+#define kEY_GA_Event_PayU                    @"PayU"
+#define kEY_GA_Event_CodeApplied             @"Code applied"
+#define kEY_GA_Event_PlaceOrder              @"Place Order button selected"
+
+#define kEY_GA_Event_OrderSuccess            @"Order success screen displayed"
+
+//End Event
+
+
+// End Google Analytic screenName and event name

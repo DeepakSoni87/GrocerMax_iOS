@@ -87,6 +87,11 @@ NSString *const shopByCategoryCollectionViewCell = @"GMShopByCategoryCollectionV
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CategoryScroller withCategory:@"" label:nil value:nil];
+}
+
 #pragma mark - Button Action
 
 -(void)offerBtnPressed:(UIButton*)sender {

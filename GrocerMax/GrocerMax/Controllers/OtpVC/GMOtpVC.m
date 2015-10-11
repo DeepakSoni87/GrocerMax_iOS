@@ -29,8 +29,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_OTP_Screen];
 }
 
 #pragma mark - GETTER/SETTER Methods

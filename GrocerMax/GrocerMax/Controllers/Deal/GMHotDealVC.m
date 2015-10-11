@@ -35,6 +35,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(homeButtonPressed:)];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabDeal withCategory:@"" label:nil value:nil];
 }
 
 - (void)registerCellsForCollectionView {
@@ -51,7 +52,9 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
     self.navigationItem.title = @"Hot Offers";
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_HotDeal_Screen];
 }
 
 #pragma mark - Button action

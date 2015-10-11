@@ -57,10 +57,11 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Billing Address";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_AddBilling_Screen];
 }
 
 - (void)registerCellsForTableView {
