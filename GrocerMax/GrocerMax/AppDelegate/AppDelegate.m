@@ -19,7 +19,7 @@
 
 #import <Google/Analytics.h>
 
-static NSString *const kGaPropertyId = @"UA-64944093-2";
+static NSString *const kGaPropertyId = @"UA-64820863-1";
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
 static BOOL const kGaDryRun = NO;
 static int const kGaDispatchPeriod = 20;
