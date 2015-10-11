@@ -61,14 +61,14 @@
         
         _y = 64;
         NSLog(@"UI SHould be according to 3_5 inch");
-        [self.view removeConstraints:self.view.constraints];
-        [_resultWebView removeConstraints:_resultWebView.constraints];
-        _resultWebView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-        _resultWebView.translatesAutoresizingMaskIntoConstraints = YES;
-        CGRect frame = [[UIScreen mainScreen] bounds];
-        frame.origin.y = _y;
-        frame.size.height = frame.size.height - _y;
-        _resultWebView.frame = frame;
+//        [self.view removeConstraints:self.view.constraints];
+//        [_resultWebView removeConstraints:_resultWebView.constraints];
+//        _resultWebView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+//        _resultWebView.translatesAutoresizingMaskIntoConstraints = YES;
+//        CGRect frame = [[UIScreen mainScreen] bounds];
+//        frame.origin.y = _y;
+//        frame.size.height = frame.size.height - _y;
+//        _resultWebView.frame = frame;
         
     }
     CGRect frame = [[ UIScreen mainScreen] bounds];
@@ -88,7 +88,7 @@
     _resultWebView.scalesPageToFit = NO;
     _resultWebView.opaque = NO;
     _resultWebView.backgroundColor = [UIColor clearColor];
-    [[_resultWebView scrollView] setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    [[_resultWebView scrollView] setContentInset:UIEdgeInsetsMake(5, 0, 0, 0)];
 }
 - (void)dealloc {
 }

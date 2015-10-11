@@ -32,7 +32,7 @@
 #import "GMHomeBannerModal.h"
 #import "GMSearchVC.h"
 #import "GMHomeBannerModal.h"
-//#import "GMPaymentVC.h"
+#import "GMPaymentVC.h"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
@@ -62,6 +62,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self registerCellsForTableView];
     [self configureUI];
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabHome withCategory:@"" label:nil value:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -73,6 +75,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     if (mdl != nil) {
         [self getShopByCategoriesFromServer];
     }
+    
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Home_Screen];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -224,6 +228,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
     categoryVC.rootCategoryModal = catModal;
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self.navigationController pushViewController:categoryVC animated:YES];
     
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
@@ -233,7 +238,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
-
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OfferCategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self getOffersDealFromServerWithCategoryModal:catModal];
 }
 
@@ -245,8 +250,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 //    GMPaymentVC *paymentVC = [GMPaymentVC new];
 //    [self.navigationController pushViewController:paymentVC animated:YES];
 //    return;
+    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealSelection withCategory:@"" label:hotDealModal.dealTypeId value:nil];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
 }
 
@@ -475,23 +482,115 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 //    Category listing:
 //    productlistall?cat_id=2402
     
-    if ([bannerMdl.linkUrl containsString:@"search?keyword="]) {
+#define   KEY_Banner_search @"search"
+#define   KEY_Banner_offerbydealtype @"offerbydealtype"
+#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
+#define   KEY_Banner_productlistall @"productlistall"
+
+    if (!NSSTRING_HAS_DATA(bannerMdl.linkUrl)) {
+        return;
+    }
+    
+    NSArray *typeStringArr = [bannerMdl.linkUrl componentsSeparatedByString:@"?"];
+    NSString *typeStr = typeStringArr.firstObject;
+    NSArray *valueStringArr = [bannerMdl.linkUrl componentsSeparatedByString:@"="];
+    NSString *value = valueStringArr.lastObject;
+    
+    if (!(NSSTRING_HAS_DATA(typeStr) && NSSTRING_HAS_DATA(value))) {
+        return;
+    }
+    
+    if ([typeStr isEqualToString:KEY_Banner_search]) {
         
-        NSString *keyword = [bannerMdl.linkUrl substringFromIndex:@"search?keyword=".length];
+
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:@"" label:keyword value:nil];
         
         if (keyword.length == 0) {
             keyword = @"";
         }
+
         NSMutableDictionary *localDic = [NSMutableDictionary new];
-        [localDic setObject:keyword forKey:kEY_keyword];
+        [localDic setObject:value forKey:kEY_keyword];
         
         [self.tabBarController setSelectedIndex:3];
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
         if (searchVC == nil)
             return;
         [searchVC performSearchOnServerWithParam:localDic];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_offerbydealtype]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+
+        [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_dealsbydealtype]) {
+        
+        [self fetchDealCategoriesFromServerWithDealTypeId:value];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_productlistall]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [self fetchProductListingDataForCategory:bannerCatMdl];
     }
-   
 }
+
+#pragma mark -
+
+#pragma mark - fetchProductListingDataForCategory
+
+- (void)fetchProductListingDataForCategory:(GMCategoryModal*)categoryModal {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] productListAll:localDic withSuccessBlock:^(id productListingBaseModal) {
+        [self removeProgress];
+        
+        GMProductListingBaseModal *productListingBaseMdl = productListingBaseModal;
+        
+        // All Cat list side by ALL Tab
+        NSMutableArray *categoryArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.hotProductListArray) {
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // All products, for ALL Tab category
+        NSMutableArray *allCatProductListArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.productsListArray) {
+            [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
+            
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // set all product list in ALL tab category mdl
+        categoryModal.productListArray = allCatProductListArray;
+        
+        // set this cat modal as ALL tab
+        [categoryArray insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = categoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        rootVC.navigationTitleString = categoryModal.categoryName;
+        [self.navigationController pushViewController:rootVC animated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
+
 
 @end

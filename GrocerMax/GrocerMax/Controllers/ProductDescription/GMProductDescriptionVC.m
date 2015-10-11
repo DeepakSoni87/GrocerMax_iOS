@@ -44,7 +44,10 @@
     [self configureView];
     [self getDataFromServer];
 }
-
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProducDetail_Screen];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

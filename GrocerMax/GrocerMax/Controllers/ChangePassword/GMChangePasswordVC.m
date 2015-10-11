@@ -54,6 +54,7 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
     
     self.title = @"Change Password";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ChangePassword_Screen];
 }
 
 - (IBAction)actionSaveBtn:(id)sender {

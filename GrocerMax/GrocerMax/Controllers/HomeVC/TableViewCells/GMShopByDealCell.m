@@ -87,4 +87,9 @@ NSString *const shopByDealCollectionViewCell = @"GMShopByDealCollectionViewCell"
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealScroller withCategory:@"" label:nil value:nil];
+}
+
 @end

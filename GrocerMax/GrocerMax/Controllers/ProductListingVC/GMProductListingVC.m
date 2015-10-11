@@ -50,6 +50,10 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self.productListTblView reloadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProducList_Screen];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

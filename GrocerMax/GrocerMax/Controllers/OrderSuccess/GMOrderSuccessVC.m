@@ -24,6 +24,7 @@
     [cartModal.cartItems removeAllObjects];
     [cartModal.deletedProductItems removeAllObjects];
     [cartModal archiveCart];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OrderSuccess withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,8 +33,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartPaymentSucess_Screen];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

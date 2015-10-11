@@ -40,6 +40,7 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configerView];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_City_Screen];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -98,6 +99,7 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     [self.cityModal setIsSelected:NO];
     self.cityModal = tempCityModal;
     [self.cityTableView reloadData];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CitySelection withCategory:@"" label:tempCityModal.cityName value:nil];
     
     
 }
@@ -125,7 +127,10 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
         }
         self.cityModal = cityModal;
     }
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SaveCity withCategory:@"" label:self.cityModal.cityName value:nil];
     [self.cityModal persistLocation];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

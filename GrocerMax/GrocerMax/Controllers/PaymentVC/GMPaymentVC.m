@@ -81,6 +81,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     self.title = @"Payment Method";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartPaymentMethod_Screen];
 }
 
 //- (void)viewDidDisappear:(BOOL)animated {
@@ -133,6 +134,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         return;
     }
 //
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PlaceOrder withCategory:@"" label:nil value:nil];
+    
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
     if(selectedIndex == 1) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
@@ -173,12 +177,14 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     
 }
 
-- (IBAction)actionApplyCoponCode:(id)sender {
+- (void)actionApplyCoponCode:(id)sender {
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CodeApplied withCategory:@"" label:coupanCode value:nil];
     
     [self.view endEditing:YES];
-    self.txnID = [self randomStringWithLength:17];
-    [self createHeashKey];
-    return;
+//    self.txnID = [self randomStringWithLength:17];
+//    [self createHeashKey];
+//    return;
     if(!NSSTRING_HAS_DATA(coupanCode)) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please enter coupon code."];
         return;
@@ -221,6 +227,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         }
         sender.selected = YES;
         selectedIndex = sender.tag;
+        if(selectedIndex == 0) {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_CashOnDelivery value:nil];
+        } else {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
+        }
     }
     self.checkedBtn = sender;
     
@@ -575,7 +586,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
                                       emailId,@"firstname",
-                                      @"3",@"amount",
+                                      [NSString stringWithFormat:@"%.2f",totalAmount],@"amount",
                                       emailId,@"email",
                                       mobileNo, @"phone",
                                       sucessString,@"surl",
@@ -593,7 +604,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    yPnUG6:test
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
-    paymentOptionsVC.totalAmount  = 3;//totalAmount;//[totalAmount floatValue];
+    paymentOptionsVC.totalAmount  = totalAmount;//[totalAmount floatValue];
     paymentOptionsVC.appTitle     = @"GrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
@@ -649,7 +660,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
     [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
     [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
     
     
     return payUParameterDic;
@@ -689,8 +700,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(userModal.firstName)) {
         name = userModal.firstName;
     }
-    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
-    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
+//    NSString *sucessString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator successPath],self.txnID];
+//    NSString *failString = [NSString stringWithFormat:@"%@?orderid=%@",[GMApiPathGenerator failPath],self.txnID];
     
 //    [payUParameterDic setObject:PayU_Key forKey:kEY_PayU_Key];
     [payUParameterDic setObject:emailId forKey:kEY_PayU_Email];
@@ -701,7 +712,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
 //    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
 //    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:@"3" forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
 //    [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     
     

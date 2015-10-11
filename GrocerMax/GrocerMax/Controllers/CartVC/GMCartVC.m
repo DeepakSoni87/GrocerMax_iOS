@@ -59,6 +59,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.totalView setHidden:YES];
     [self.placeOrderButton setHidden:YES];
     [self registerCellsForTableView];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabCart withCategory:@"" label:nil value:nil];
     
 }
 
@@ -75,6 +76,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     self.cartModal = [GMCartModal loadCart];
     //    if(self.cartModal)
     [self fetchCartDetailFromServer];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -227,6 +229,9 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return cartCell;
 }
 
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartScroller withCategory:@"" label:nil value:nil];
+}
 #pragma mark - GMCartCellDelegate Methods
 
 - (void)productQuantityValueChanged {
@@ -265,6 +270,8 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (IBAction)placeOrderButtonTapped:(id)sender {
     
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartPlaceOrder withCategory:@"" label:nil value:nil];
+    
     if(self.cartDetailModal.productItemsArray.count) {
         if(self.checkOutModal) {
             self.checkOutModal = nil;
@@ -300,6 +307,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (IBAction)updateOrderButtonTapped:(id)sender {
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartUpdate withCategory:@"" label:nil value:nil];
     if([self checkWhetherUpdateRequestNeeded]) {
         
         NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] updateDeleteRequestParameterFromCartDetailModal:self.cartDetailModal];

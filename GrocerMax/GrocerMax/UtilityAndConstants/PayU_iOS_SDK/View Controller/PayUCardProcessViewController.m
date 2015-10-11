@@ -12,7 +12,7 @@
 #import "SharedDataManager.h"
 #import "Utils.h"
 #import "PayUPaymentResultViewController.h"
-
+#import "TPKeyboardAvoidingScrollView.h"
 
 #define DEBIT_CARD   @"Enter your card details"
 #define CREDIT_CARD  @"Enter your card details"
@@ -30,6 +30,7 @@
     
     CGRect payBtnFrame;
 }
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *paymentOptionScrollView;
 
 @property (retain, nonatomic) UIButton *checkbox;
 @property (assign, nonatomic) BOOL checkBoxSelected;
@@ -151,7 +152,7 @@
         if(result.height == IPHONE_3_5)
         {
             _payNowBtn.layer.cornerRadius = 7.0f;
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
         }
         else
         {
@@ -1120,9 +1121,9 @@
     [_downTimeMsgLbl removeFromSuperview];
     
     CGSize result = [[UIScreen mainScreen] bounds].size;
-    if((![textField isEqual:_cardNumber]) || (result.height == IPHONE_3_5))
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    
+//    if((![textField isEqual:_cardNumber]) || (result.height == IPHONE_3_5))
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//    
     /// add toolbar for keyboard.
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleDefault];
@@ -1185,7 +1186,7 @@
 
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     return YES;
 }
@@ -1261,59 +1262,61 @@
 
 
 #pragma mark - UIView movement on KB appearance
-- (void)keyboardDidShow:(NSNotification *)notification
-{
-    __block float sizeToDiscreaseFromCenter = 0.0;
-    CGSize result = [[UIScreen mainScreen] bounds].size;
-    if(result.height == IPHONE_3_5)
-    {
-        if([_cardNameToStore isEqual:_firstResponderTextField]){
-            sizeToDiscreaseFromCenter = 200.0f;
-        }
-        else{
-            sizeToDiscreaseFromCenter = 140.0f;
-        }
-    }
-    else if(IPHONE_4 == result.height)
-    {
-        if([_cardNameToStore isEqual:_firstResponderTextField]){
-            sizeToDiscreaseFromCenter = 200.0f;
-            NSLog(@"Its IPHONE 5 device");
-        }
-        else{
-            sizeToDiscreaseFromCenter = 170.0f;
-        }
-    }
-    else if(IPHONE_4_7 == result.height){
-        sizeToDiscreaseFromCenter = 100.0f;
-    }
-    else{
-        sizeToDiscreaseFromCenter = 80.0f;
-    }
-    // Assign new center to your view
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.view.center = CGPointMake(_originalCenter.x, _originalCenter.y - sizeToDiscreaseFromCenter);
-                     }
-                     completion:^(BOOL finished) {
-                         sizeToDiscreaseFromCenter = 0.0f;
-                     }];
-    
-}
-
--(void)keyboardDidHide:(NSNotification *)notification
-{
-    // Assign original center to your view
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.view.center = _originalCenter;
-                     }
-                     completion:nil];
-}
+//- (void)keyboardDidShow:(NSNotification *)notification
+//{
+//    return;
+//    __block float sizeToDiscreaseFromCenter = 0.0;
+//    CGSize result = [[UIScreen mainScreen] bounds].size;
+//    if(result.height == IPHONE_3_5)
+//    {
+//        if([_cardNameToStore isEqual:_firstResponderTextField]){
+//            sizeToDiscreaseFromCenter = 200.0f;
+//        }
+//        else{
+//            sizeToDiscreaseFromCenter = 140.0f;
+//        }
+//    }
+//    else if(IPHONE_4 == result.height)
+//    {
+//        if([_cardNameToStore isEqual:_firstResponderTextField]){
+//            sizeToDiscreaseFromCenter = 200.0f;
+//            NSLog(@"Its IPHONE 5 device");
+//        }
+//        else{
+//            sizeToDiscreaseFromCenter = 170.0f;
+//        }
+//    }
+//    else if(IPHONE_4_7 == result.height){
+//        sizeToDiscreaseFromCenter = 100.0f;
+//    }
+//    else{
+//        sizeToDiscreaseFromCenter = 80.0f;
+//    }
+//    // Assign new center to your view
+//    [UIView animateWithDuration:0.2
+//                          delay:0
+//                        options: UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         self.view.center = CGPointMake(_originalCenter.x, _originalCenter.y - sizeToDiscreaseFromCenter);
+//                     }
+//                     completion:^(BOOL finished) {
+//                         sizeToDiscreaseFromCenter = 0.0f;
+//                     }];
+//    
+//}
+//
+//-(void)keyboardDidHide:(NSNotification *)notification
+//{
+//    return;
+//    // Assign original center to your view
+//    [UIView animateWithDuration:0.2
+//                          delay:0
+//                        options: UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         self.view.center = _originalCenter;
+//                     }
+//                     completion:nil];
+//}
 
 - (void) resignKeyboard :(UITextField *) textField{
     [self.view endEditing:YES];

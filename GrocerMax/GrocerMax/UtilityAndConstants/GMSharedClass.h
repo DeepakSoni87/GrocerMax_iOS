@@ -47,4 +47,8 @@
 
 - (BOOL)isInternetAvailable;
 
+- (void)trakScreenWithScreenName:(NSString *)scrrenName ;
+
+- (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value;
+
 @end
