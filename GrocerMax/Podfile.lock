@@ -37,6 +37,9 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.6.0):
     - FBSDKCoreKit
+  - Google/Analytics (1.0.7):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
   - Google/Core (1.0.7):
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
@@ -44,6 +47,7 @@ PODS:
   - Google/SignIn (1.0.7):
     - Google/Core
     - GoogleSignIn (~> 2.0)
+  - GoogleAnalytics (3.13.0)
   - GoogleAppUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleAuthUtilities (1.0.1):
@@ -85,6 +89,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - FBSDKCoreKit
   - FBSDKLoginKit
+  - Google/Analytics (~> 1.0.0)
   - Google/SignIn (~> 1.0.0)
   - HockeySDK (~> 3.6)
   - Mantle (~> 2.0)
@@ -99,6 +104,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 9954492d90c5fd65ae831395697a1660360d61f1
   FBSDKLoginKit: 3d07febbfa884b9878cacba54f705bb41f07d4b6
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c

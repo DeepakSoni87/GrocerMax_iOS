@@ -54,6 +54,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     if(isHitOnServer)
         [self getBillingAddress];
     self.title = @"Billing Address";
+    
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartBilling_Screen];
 }
 
 - (void)registerCellsForTableView {
@@ -87,6 +89,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     }
     self.checkOutModal.billingAddressModal = addressModalData;
     [self.billingAddressTableView reloadData];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ExistingBillingSelect withCategory:@"" label:addressModalData.street value:nil];
     
 }
 
@@ -100,6 +103,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
 
 - (IBAction)addAddressBtnClicked:(UIButton *)sender {
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_NewBillingSelect withCategory:@"" label:nil value:nil];
     isHitOnServer = TRUE;
     GMAddBillingAddressVC *addShippingAddressVC = [GMAddBillingAddressVC new];
     [self.navigationController pushViewController:addShippingAddressVC animated:YES];
@@ -109,6 +113,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     isHitOnServer = FALSE;
     if(self.checkOutModal.billingAddressModal) {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ProceedBilling withCategory:@"" label:nil value:nil];
         GMDeliveryDetailVC *deliveryDetailVC = [GMDeliveryDetailVC new];
         deliveryDetailVC.checkOutModal = self.checkOutModal;
         deliveryDetailVC.timeSlotBaseModal = self.timeSlotBaseModal;

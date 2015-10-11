@@ -574,6 +574,9 @@ typedef enum : NSUInteger {
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     ALog(@"didFailWithError");
+    [[GMSharedClass sharedClass] showErrorMessage:@"Please check your internet connection."];
+    _activityIndicator.hidden = YES;
+    [_activityIndicator stopAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

@@ -28,9 +28,14 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(homeButtonPressed:)];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabSearch withCategory:@"" label:nil value:nil];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenSearch withCategory:@"" label:nil value:nil];
 
 }
-
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Search_Screen];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -73,6 +78,8 @@
 #pragma mark - API Task
 
 - (void)performSearchOnServerWithParam:(NSDictionary*)param {
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SearchQuery withCategory:@"" label:[param  objectForKey:kEY_keyword] value:nil];
     
     [self showProgress];
     [[GMOperationalHandler handler] search:param withSuccessBlock:^(id responceData) {

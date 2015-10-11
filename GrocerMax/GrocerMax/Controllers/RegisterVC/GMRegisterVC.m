@@ -57,10 +57,11 @@ static NSString * const kGenderCell                         =  @"Gender";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Register";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Register_Screen];
 }
 
 - (void)registerCellsForTableView {
@@ -482,6 +483,7 @@ static NSString * const kGenderCell                         =  @"Gender";
         [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
             if([registrationResponse.flag isEqualToString:@"1"]) {
+                [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_EmailRegister withCategory:@"" label:nil value:nil];
                 [self.userModal setOtp:[NSString stringWithFormat:@"%@", registrationResponse.otp]];
                 GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
                 otpVC.userModal = self.userModal;

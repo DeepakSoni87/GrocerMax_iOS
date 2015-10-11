@@ -79,6 +79,7 @@ static NSString * const customerCareNumber = @"8010500700";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabProfile withCategory:@"" label:nil value:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,13 +88,14 @@ static NSString * const customerCareNumber = @"8010500700";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
     self.navigationItem.title = @"My Profile";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     
     [self createCellArray];
-    [self configureTableHeaderView];    
+    [self configureTableHeaderView];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Profile_Screen];
 }
 
 - (void)createCellArray {

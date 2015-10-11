@@ -30,6 +30,10 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     [self fillDataSourceArray];
     [self configureUI];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Offer_Screen];
+}
 
 -(void)configureUI {
     
