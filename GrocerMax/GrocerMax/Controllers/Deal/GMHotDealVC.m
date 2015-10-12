@@ -101,6 +101,8 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     
     GMHotDealModal *hotDealModal = [self.hotdealArray objectAtIndex:indexPath.row];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealCategoryOpened withCategory:@"" label:hotDealModal.dealTypeId value:nil];
+
 }
 
 #pragma mark - Server handling Methods
