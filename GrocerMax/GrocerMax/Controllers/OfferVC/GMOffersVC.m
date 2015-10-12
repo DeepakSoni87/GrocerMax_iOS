@@ -94,6 +94,8 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
             break;
     }
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealCategoryOpened withCategory:@"" label:tempCategoryModal.categoryId value:nil];
+    
     GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
     proListVC.catMdl = tempCategoryModal;
     proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
