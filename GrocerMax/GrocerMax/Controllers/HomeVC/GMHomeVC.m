@@ -34,6 +34,11 @@
 #import "GMHomeBannerModal.h"
 #import "GMPaymentVC.h"
 
+#define   KEY_Banner_search @"search"
+#define   KEY_Banner_offerbydealtype @"offerbydealtype"
+#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
+#define   KEY_Banner_productlistall @"productlistall"
+
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
 NSString *const shopByDealCell = @"GMShopByDealCell";
@@ -247,15 +252,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
-//    GMPaymentVC *paymentVC = [GMPaymentVC new];
-//    [self.navigationController pushViewController:paymentVC animated:YES];
-//    return;
-    
     NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealSelection withCategory:@"" label:hotDealModal.dealTypeId value:nil];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
 }
+
+#pragma mark -
 
 - (void)fetchAllCategoriesAndDeals {
     
@@ -467,26 +470,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (void)handleBannerAction:(GMHomeBannerModal*)bannerMdl {
     
-//    Screen 3:(Deals by category id)
-//    offerbydealtype?cat_id=2402
-//    
-//    Screen 2(Shop by deals)
-//    shopbydealtype
-//    
-//    Screen -4(Shop by dealtype)
-//    dealsbydealtype?deal_type_id=1
-//    
-//Search:
-//    search?keyword=mangatram
-//    
-//    Category listing:
-//    productlistall?cat_id=2402
-    
-#define   KEY_Banner_search @"search"
-#define   KEY_Banner_offerbydealtype @"offerbydealtype"
-#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
-#define   KEY_Banner_productlistall @"productlistall"
-
     if (!NSSTRING_HAS_DATA(bannerMdl.linkUrl)) {
         return;
     }
@@ -500,15 +483,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         return;
     }
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:bannerMdl.linkUrl label:value value:nil];
+
     if ([typeStr isEqualToString:KEY_Banner_search]) {
         
-
-        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:@"" label:keyword value:nil];
-        
-        if (keyword.length == 0) {
-            keyword = @"";
-        }
-
         NSMutableDictionary *localDic = [NSMutableDictionary new];
         [localDic setObject:value forKey:kEY_keyword];
         

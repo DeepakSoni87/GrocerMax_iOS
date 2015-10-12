@@ -287,8 +287,20 @@
 
 //Rahul code
 
+#define kEY_GA_Event_CategoryOpend         @"Category opened"
+#define kEY_GA_Event_CategoryScroller      @"Category Scroll"
+#define kEY_GA_Event_CategorySelection     @"Category Selection"
+#define kEY_GA_Event_AddCartitems          @"Item added in cart"
 
+#define kEY_GA_Event_DealScroller          @"Deal Scroll"
+#define kEY_GA_Event_ProductHavingOffer    @"Product having Offers"
 
+#define kEY_GA_Event_DealCategoryOpened    @"Deal category opened"
+
+#define kEY_GA_Event_ScrollingThroughBroCat @"Scrolling through browse categories"
+#define kEY_GA_Event_SelectionOfDealCat     @"Selection of deal category"
+
+// end Rahul
 
 
 #define kEY_GA_Event_OpenSearch              @"Opening of the search option"

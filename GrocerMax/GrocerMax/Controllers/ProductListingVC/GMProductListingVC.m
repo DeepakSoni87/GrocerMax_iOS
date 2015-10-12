@@ -184,6 +184,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
         return;
     }
     
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_AddCartitems withCategory:@"" label:productModal.productid value:nil];
+
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];
     self.parentVC.cartModal = [GMCartModal loadCart];
