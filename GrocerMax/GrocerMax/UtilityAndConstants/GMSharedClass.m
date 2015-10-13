@@ -10,8 +10,13 @@
 #import "GMUserModal.h"
 #import "GMStateBaseModal.h"
 #import "Reachability.h"
+
+#import <GoogleAnalytics/GAITracker.h>
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 #import "GMCartModal.h"
-#import <Google/Analytics.h>
+
 
 #define kAlertTitle @"GrocerMax"
 
@@ -230,6 +235,7 @@ CGFloat const kMATabBarHeight = 49.0f;
 }
 
 - (void)trakScreenWithScreenName:(NSString *)scrrenName {
+    
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:scrrenName];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
