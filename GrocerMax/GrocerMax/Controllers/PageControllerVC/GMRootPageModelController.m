@@ -48,6 +48,7 @@
             proListVC.rootPageAPIController = self.rootPageAPIController;
             proListVC.parentVC = self.rootPageViewController;
             proListVC.productListingType = GMProductListingFromTypeCategory;
+            proListVC.gaTrackingEventText = kEY_GA_Event_ProductListingThroughSubCategories;
 
             return proListVC;
         }
@@ -58,7 +59,8 @@
             offersVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
             offersVC.data = self.modelPageData[index];
             offersVC.parentVC = self.rootPageViewController;
-
+            offersVC.gaTrackingEventText = kEY_GA_Event_OffersThroughOffersDealsCategory;
+            
             return offersVC;
         }
             break;
@@ -69,7 +71,8 @@
             offersVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
             offersVC.data = self.modelPageData[index];
             offersVC.parentVC = self.rootPageViewController;
-            
+            offersVC.gaTrackingEventText = kEY_GA_Event_OffersThroughDealCategory;
+
             return offersVC;
         }
             break;

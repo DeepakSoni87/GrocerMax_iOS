@@ -21,4 +21,7 @@
 @property (assign, nonatomic) GMProductListingFromType productListingType;
 
 @property (nonatomic, strong) GMRootPageViewController *parentVC;
+
+@property (nonatomic, strong) NSString *gaTrackingEventText; //14/10/2015
+
 @end

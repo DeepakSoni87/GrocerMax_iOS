@@ -300,6 +300,16 @@
 #define kEY_GA_Event_ScrollingThroughBroCat @"Scrolling through browse categories"
 #define kEY_GA_Event_SelectionOfDealCat     @"Selection of deal category"
 
+#define kEY_GA_Event_ProductListingThroughOffers            @"Productlistng through Offers"
+#define kEY_GA_Event_ProductListingThroughSubCategories     @"Productlistng through Subcategories"
+
+#define kEY_GA_Event_ProductListScrolling                   @"Product list scrolling"
+
+#define kEY_GA_Event_OffersThroughOffersDealsCategory       @"Offers through  Deal Category"
+#define kEY_GA_Event_OffersThroughDealCategory              @"Offers through Deal Type Listing"
+
+#define kEY_GA_Event_OffersListScrolling     @"Offers list scrolling"
+
 // end Rahul
 
 
