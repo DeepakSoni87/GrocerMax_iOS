@@ -163,6 +163,12 @@
             
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_EmailLogin withCategory:@"" label:nil value:nil];
             [self removeProgress];
+            
+            GMUserModal *saveUserModal = [GMUserModal loggedInUser];
+            if(!NSSTRING_HAS_DATA(userModal.quoteId) && NSSTRING_HAS_DATA(saveUserModal.quoteId)) {
+                userModal.quoteId = saveUserModal.quoteId;
+            }
+            
             [userModal setEmail:self.txt_email.text];
             [userModal persistUser];
             [[GMSharedClass sharedClass] setUserLoggedStatus:YES];

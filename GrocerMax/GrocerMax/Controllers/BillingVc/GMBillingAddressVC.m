@@ -46,6 +46,8 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.footerBgView.layer.borderColor = BORDER_COLOR;
     self.footerBgView.layer.borderWidth = BORDER_WIDTH;
     self.footerBgView.layer.cornerRadius = CORNER_RADIUS;
+    [self.billingAddressTableView setTableFooterView:self.footerView];
+    self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
 
 }
 

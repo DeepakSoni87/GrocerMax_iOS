@@ -51,4 +51,5 @@
 
 - (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value;
 
+- (void) clearCart;
 @end

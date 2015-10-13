@@ -16,6 +16,8 @@ static NSString * const kSearch_iconImage                = @"search_icon";
 static NSString * const kLogoImage                       = @"logo";
 static NSString * const kmenuBtnImage                    = @"menuBtn";
 static NSString * const kbackBtnImage                    = @"back";
+static NSString * const knewBackBtnImage                    = @"newBack";
+
 
 static NSString * const khome_unselectedImage                    = @"home_unselected";
 static NSString * const khome_selectedImage                    = @"home_selected";
@@ -70,7 +72,7 @@ static NSString * const kcart_selectedImage                    = @"cart_selected
 
 + (UIImage *)backBtnImage {
     
-    return [[UIImage imageNamed:kbackBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    return [[UIImage imageNamed:knewBackBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 #pragma mark - Tab bar Images

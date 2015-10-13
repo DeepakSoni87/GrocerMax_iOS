@@ -10,10 +10,13 @@
 #import "GMUserModal.h"
 #import "GMStateBaseModal.h"
 #import "Reachability.h"
+
 #import <GoogleAnalytics/GAITracker.h>
 #import <GoogleAnalytics/GAI.h>
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics/GAIFields.h>
+#import "GMCartModal.h"
+
 
 #define kAlertTitle @"GrocerMax"
 
@@ -250,5 +253,14 @@ CGFloat const kMATabBarHeight = 49.0f;
                                              label:label
                                              value:value] build];
     [tracker send:event];
+}
+
+- (void) clearCart {
+    
+    GMCartModal *cartModal = [GMCartModal loadCart];
+    [cartModal.cartItems removeAllObjects];
+    [cartModal.deletedProductItems removeAllObjects];
+    [cartModal archiveCart];
+    
 }
 @end
