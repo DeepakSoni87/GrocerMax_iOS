@@ -14,7 +14,19 @@
 #import "GMOtpVC.h"
 #import "GMRegistrationResponseModal.h"
 
-@interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate>
+#import <Google/SignIn.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "GMRegisterVC.h"
+#import "GMForgotVC.h"
+#import "GMProfileVC.h"
+#import "GMProvideMobileInfoVC.h"
+
+#import <Google/SignIn.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
+@interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate, GIDSignInUIDelegate,GIDSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *registerTableView;
 
@@ -49,6 +61,11 @@ static NSString * const kGenderCell                         =  @"Gender";
     [self registerCellsForTableView];
     [self.registerTableView setTableHeaderView:self.registerHeaderView];
     [self.registerTableView setTableFooterView:self.footerView];
+    
+    // google login
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -498,6 +515,91 @@ static NSString * const kGenderCell                         =  @"Gender";
             [self removeProgress];
         }];
     }
+}
+
+- (IBAction)fbLoginButtonPressed:(UIButton *)sender {
+    
+    
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login logInWithReadPermissions:@[@"email",@"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        
+        if (error) {
+            // Process error
+        } else if (result.isCancelled) {
+            // Handle cancellations
+        } else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if ([result.grantedPermissions containsObject:@"email"]) {
+                // Do work
+                
+                if ([FBSDKAccessToken currentAccessToken])
+                {
+                    
+                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
+                     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                         if (!error) {
+                             NSLog(@"fetched user:%@", result);
+                             
+                             NSDictionary *resultDic = result;
+                             
+                             if(resultDic != nil) {
+                                 if ([result objectForKey:@"email"]) {
+                                     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_FacebookLogin withCategory:@"" label:nil value:nil];
+                                     
+                                     GMUserModal *userModal = [GMUserModal new];
+                                     [userModal setFbId:[result objectForKey:@"id"]];
+                                     [userModal setEmail:[result objectForKey:@"email"]];
+                                     [userModal setFirstName:[result objectForKey:@"first_name"]];
+                                     [userModal setLastName:[result objectForKey:@"last_name"]];
+                                     [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
+                                     
+                                     GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                                     vc.userModal = userModal;
+                                     [self.navigationController pushViewController:vc animated:YES];
+                                 }
+                             }
+                             
+                         }
+                     }];
+                }
+            }
+        }
+    }];
+}
+
+- (IBAction)googleLoginButtonPressed:(UIButton *)sender {
+    
+    [[GIDSignIn sharedInstance] signIn];
+}
+
+#pragma mark - Google Login Delegate
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    // ...
+    
+    NSLog(@"Google login Success = %@",user.profile.email);
+    
+    if (user.profile.email) {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
+        GMUserModal *userModal = [GMUserModal new];
+        [userModal setGoogleId:user.userID];
+        [userModal setEmail:user.profile.email];
+        [userModal setFirstName:user.profile.name];
+        [userModal setLastName:@""];
+        [userModal setGender:GMGenderTypeMale];// suppose it defaul
+        
+        GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+        vc.userModal = userModal;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    // ...
 }
 
 #pragma mark - GenderCell Delegate Method

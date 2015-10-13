@@ -35,7 +35,7 @@ NSString *const shopByCategoryCollectionViewCell = @"GMShopByCategoryCollectionV
     NSString *string = @"SHOP BY CATEGORIES";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     
-    float spacing = 3.0f;
+    float spacing = 2.5f;
     [attributedString addAttribute:NSKernAttributeName
                              value:@(spacing)
                              range:NSMakeRange(0, [string length])];

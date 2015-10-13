@@ -145,6 +145,10 @@ static NSString * const kIsExpandKey                        = @"isExpand";
         if(HAS_DATA(responseDict, @"category_name"))
             _categoryName = responseDict[@"category_name"];
         
+        if(HAS_DATA(responseDict, @"Totalcount"))//14/10/2015
+            _totalCount = [responseDict[@"Totalcount"] integerValue];
+
+        
     }
     return self;
 }
