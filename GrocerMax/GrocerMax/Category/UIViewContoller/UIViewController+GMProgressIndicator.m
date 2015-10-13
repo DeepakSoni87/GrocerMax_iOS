@@ -24,12 +24,17 @@
     [SVProgressHUD setForegroundColor:[UIColor colorFromHexString:@"#FFA800"]];
     //    [SVProgressHUD setRingThickness:1.0f];
     [SVProgressHUD setFont:FONT_REGULAR(13)];
-    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeClear];
-    [self.view setUserInteractionEnabled:NO];// added by R
+    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeGradient];
+    //    [self.view setUserInteractionEnabled:NO];// added by R
+    if (![[UIApplication sharedApplication] isIgnoringInteractionEvents])
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 }
 
 - (void)removeProgress {
-    [self.view setUserInteractionEnabled:YES];// added by R
+    
+    if ([[UIApplication sharedApplication] isIgnoringInteractionEvents])
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    //    [self.view setUserInteractionEnabled:YES];// added by R
     [SVProgressHUD dismiss];
 }
 
@@ -40,10 +45,10 @@
     UIImage *image = [[UIImage menuBtnImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     if (self.navigationItem.leftBarButtonItem == nil){
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                                  initWithImage:image
-                                                  style:UIBarButtonItemStylePlain
-                                                  target:self
-                                                  action:@selector(menuButtonPressed:)];
+                                                 initWithImage:image
+                                                 style:UIBarButtonItemStylePlain
+                                                 target:self
+                                                 action:@selector(menuButtonPressed:)];
     }
 }
 
@@ -92,8 +97,8 @@
     self.navigationItem.rightBarButtonItem = nil;
     
     GMSearchBarView *searchBarview = [GMSearchBarView searchBarObj];
-//    searchBarview.delegate = self;
-
+    //    searchBarview.delegate = self;
+    
     self.navigationItem.titleView = searchBarview;
 }
 
@@ -105,7 +110,7 @@
     AppDelegate *appdel = APP_DELEGATE;
     
     if(appdel.drawerController.openSide == MMDrawerSideNone) {
-    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenDrawer withCategory:@"" label:nil value:nil];
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenDrawer withCategory:@"" label:nil value:nil];
     } else {
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CloseDrawer withCategory:@"" label:nil value:nil];
     }
