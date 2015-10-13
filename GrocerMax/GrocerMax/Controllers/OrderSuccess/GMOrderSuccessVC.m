@@ -20,10 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id: %@", self.orderId]];
-    GMCartModal *cartModal = [GMCartModal loadCart];
-    [cartModal.cartItems removeAllObjects];
-    [cartModal.deletedProductItems removeAllObjects];
-    [cartModal archiveCart];
+//    GMCartModal *cartModal = [GMCartModal loadCart];
+//    [cartModal.cartItems removeAllObjects];
+//    [cartModal.deletedProductItems removeAllObjects];
+//    [cartModal archiveCart];
+    [[GMSharedClass sharedClass] clearCart];
+    [self.tabBarController updateBadgeValueOnCartTab];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OrderSuccess withCategory:@"" label:nil value:nil];
 }
 

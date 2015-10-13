@@ -207,6 +207,8 @@ static CGFloat const kProfileCellHeight = 44.0f;
     } else if([profileModal.displayCellText isEqualToString:kLogOutCell]) {
         
         [[GMSharedClass sharedClass] logout];
+        [[GMSharedClass sharedClass] clearCart];
+        [self.tabBarController updateBadgeValueOnCartTab];
         [self setSecondTabAsLogIn];
     }
     else {

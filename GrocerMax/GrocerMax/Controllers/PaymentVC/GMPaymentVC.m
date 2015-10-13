@@ -151,6 +151,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         self.genralModal = responceData;
         [self removeProgress];
         if(responceData.flag == 1) {
+            [[GMSharedClass sharedClass] clearCart];
+            [self.tabBarController updateBadgeValueOnCartTab];
             if(selectedIndex == 0) {
                 GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
                 successVC.orderId = responceData.orderID;
@@ -345,7 +347,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         if(section == 0 ) {
             [header congigerHeaderData:@"SELECT MODE OF PAYMENT"];
         } else if(section == 1 ) {
-            [header congigerHeaderData:@"ORDER SUMMERY"];
+            [header congigerHeaderData:@"ORDER SUMMARY"];
         } else {
             [header congigerHeaderData:@""];
         }
