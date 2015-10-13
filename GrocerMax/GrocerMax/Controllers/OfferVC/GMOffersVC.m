@@ -33,6 +33,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Offer_Screen];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:self.gaTrackingEventText];
 }
 
 -(void)configureUI {
@@ -94,15 +95,23 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
             break;
     }
     
-    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealCategoryOpened withCategory:@"" label:tempCategoryModal.categoryId value:nil];
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealCategoryOpened withCategory:@"" label:tempCategoryModal.categoryName value:nil];
     
     GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
     proListVC.catMdl = tempCategoryModal;
     proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
     proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
     proListVC.parentVC = self.parentVC;
+    proListVC.gaTrackingEventText =  kEY_GA_Event_ProductListingThroughOffers;
     
     [self.navigationController pushViewController:proListVC animated:YES];
+}
+
+#pragma mark - scrollView Delegate
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OffersListScrolling withCategory:@"" label:nil value:nil];
 }
 
 #pragma mark - Fill DataSource Array

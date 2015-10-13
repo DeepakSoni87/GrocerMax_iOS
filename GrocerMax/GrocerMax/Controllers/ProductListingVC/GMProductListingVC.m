@@ -40,6 +40,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     if (self.productBaseModal.productsListArray.count == 0) {
         self.productBaseModal = [[GMProductListingBaseModal alloc] init];
         self.productBaseModal.productsListArray = self.catMdl.productListArray;
+        self.productBaseModal.totalcount = self.catMdl.totalCount;//14/10/2015
         [self.rootPageAPIController.modalDic setObject:self.productBaseModal forKey:self.productRequestID];
     }
     
@@ -53,6 +54,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProducList_Screen];
+    [[GMSharedClass sharedClass] trakScreenWithScreenName:self.gaTrackingEventText];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -115,6 +118,8 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_ProductListScrolling withCategory:@"" label:self.catMdl.categoryName value:nil];
+
     if(self.isLoading)
         return; // currently executing this method
     
@@ -129,6 +134,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
             [self getProducListFromServer];
         }
     }
+    
 }
 
 #pragma mark -
@@ -192,7 +198,4 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self.tabBarController updateBadgeValueOnCartTab];
 }
 
-- (void)updateProductQuantity {
-    
-}
 @end
