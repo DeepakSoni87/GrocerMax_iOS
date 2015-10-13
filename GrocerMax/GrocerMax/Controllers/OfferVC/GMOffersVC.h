@@ -17,5 +17,7 @@
 @property (strong, nonatomic) id data;
 @property (assign, nonatomic) GMRootPageViewControllerType rootControllerType;
 @property (nonatomic, strong) GMRootPageViewController *parentVC;
+@property (nonatomic, strong) NSString *gaTrackingEventText;
+
 
 @end
