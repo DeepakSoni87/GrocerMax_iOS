@@ -126,6 +126,8 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     NSArray *productArray = [NSArray arrayWithObject:productDict];
 //    [cartGuestDictionary setObject:[NSString getJsonStringFromObject:productArray] forKey:kProductsKey];
     [cartGuestDictionary setObject:productArray forKey:kProductsKey];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    [cartGuestDictionary setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
     return cartGuestDictionary;
 }
 
