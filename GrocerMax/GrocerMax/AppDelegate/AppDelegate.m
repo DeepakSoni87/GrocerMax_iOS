@@ -16,8 +16,7 @@
 #import "GMLeftMenuVC.h"
 #import "GMHotDealVC.h"
 #import "GMSearchVC.h"
-
-#import <Google/Analytics.h>
+#import <GoogleAnalytics/GAI.h>
 
 static NSString *const kGaPropertyId = @"UA-64820863-1";
 static NSString *const kTrackingPreferenceKey = @"allowTracking";

@@ -25,6 +25,7 @@
 
 
 #import "WebViewJavascriptBridge.h"
+#import "PayU_CB_SDK.h"
 
 
 @interface PayUPaymentResultViewController () <UIWebViewDelegate>
@@ -39,6 +40,8 @@
 @property (nonatomic,assign) BOOL isBankFound;
 @property (nonatomic,assign) BOOL isWebViewLoadFirstTime;
 @property (nonatomic,strong) UIAlertView *alertView;
+
+@property (strong, nonatomic) CBConnection *CBC;
 @end
 
 @implementation PayUPaymentResultViewController
@@ -89,6 +92,14 @@
     _resultWebView.opaque = NO;
     _resultWebView.backgroundColor = [UIColor clearColor];
     [[_resultWebView scrollView] setContentInset:UIEdgeInsetsMake(5, 0, 0, 0)];
+    
+    _CBC = [[CBConnection alloc]init:self.view webView:_resultWebView];
+    _CBC.isWKWebView = NO;
+    _CBC.cbServerID = CB_SERVER_ID;
+    // in case if you do not have activity indicator in your App call payUActivityIndicator
+    [_CBC payUActivityIndicator];
+    
+    [_CBC initialSetup];
 }
 - (void)dealloc {
 }
@@ -154,6 +165,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView;
 {
     
+    [_CBC payUwebViewDidFinishLoad:webView];
     NSLog(@"webViewDidFinishLoad zxc %@",webView.request.URL);
     NSCachedURLResponse *resp = [[NSURLCache sharedURLCache] cachedResponseForRequest:webView.request];
     NSLog(@"status code: %ld", (long)[(NSHTTPURLResponse*)resp.response statusCode]);
@@ -191,6 +203,8 @@
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)naavigationType {
+    
+     [_CBC payUwebView:webView shouldStartLoadWithRequest:request];
     NSLog(@"webViewshouldStartLoadWithRequest zxc");
     NSURL *url = request.URL;
     NSLog(@"finallyCalled = %@",url);
