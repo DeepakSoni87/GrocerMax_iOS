@@ -34,6 +34,8 @@
 // 0 if pointing to payu production server, 1 for test server
 #define TEST_SERVER 0
 
+#define CB_SERVER_ID 2
+
 #if  TEST_SERVER
 #define PAYU_PAYMENT_BASE_URL                          PAYU_PAYMENT_BASE_URL_TEST
 #define PAYU_PAYMENT_ALL_AVAILABLE_PAYMENT_OPTION      PAYU_PAYMENT_ALL_AVAILABLE_PAYMENT_OPTION_TEST
