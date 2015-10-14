@@ -41,22 +41,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/ProductListingVC/GMProductListingVC.m"
-            timestampString = "466457428.05946"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "@implementation GMProductListingVC"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GrocerMax/Controllers/RegisterVC/GMRegisterVC.m"
             timestampString = "466454394.073464"
             startingColumnNumber = "9223372036854775807"
@@ -249,13 +233,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/Deal/GMHotDealVC.m"
-            timestampString = "466191950.95473"
+            filePath = "GrocerMax/Controllers/OfferVC/GMOffersVC.m"
+            timestampString = "466541892.840567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-fetchDealCategoriesFromServerWithDealTypeId:"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-fetchDealProductListingDataForOffersORDeals:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GMOffersVC fetchDealProductListingDataForOffersORDeals:]"
+                  moduleName = "GrocerMax"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulchaudhary/Desktop/GrocerMax/GrocerMax/GrocerMax/Controllers/OfferVC/GMOffersVC.m"
+                  timestampString = "466542523.211769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "265">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__58-[GMOffersVC fetchDealProductListingDataForOffersORDeals:]_block_invoke"
+                  moduleName = "GrocerMax"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulchaudhary/Desktop/GrocerMax/GrocerMax/GrocerMax/Controllers/OfferVC/GMOffersVC.m"
+                  timestampString = "466542523.211923"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/OfferVC/GMOffersVC.m"
+            timestampString = "466541896.334174"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-fetchDealProductListingDataForOffersORDeals:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -265,13 +297,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/Deal/GMHotDealVC.m"
-            timestampString = "466191952.855956"
+            filePath = "GrocerMax/Controllers/OfferVC/GMOffersVC.m"
+            timestampString = "466541899.087026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-fetchDealCategoriesFromServerWithDealTypeId:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-fetchDealProductListingDataForOffersORDeals:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -281,61 +313,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/Deal/GMHotDealVC.m"
-            timestampString = "466191954.412284"
+            filePath = "GrocerMax/Controllers/ProductListingVC/GMProductListingVC.m"
+            timestampString = "466542522.827815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "-fetchDealCategoriesFromServerWithDealTypeId:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/SubCategory/GMSubCategoryVC.m"
-            timestampString = "466455019.891674"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "-fetchProductListingDataForCategory:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/SubCategory/GMSubCategoryVC.m"
-            timestampString = "466455116.439086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-fetchProductListingDataForCategory:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Modal/CategoryModal/GMCategoryModal.m"
-            timestampString = "466455582.490697"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-initWithProductListDictionary:"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-getProducListFromServer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
