@@ -129,6 +129,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];
+        messageString = @"Problem to fetch your cart.";
+        [self.totalView setHidden:YES];
+        [self.updateOrderButton setHidden:YES];
+        [self.placeOrderButton setHidden:YES];
+        [self.cartDetailTableView reloadData];
     }];
 }
 
