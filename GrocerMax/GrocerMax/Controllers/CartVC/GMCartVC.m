@@ -103,7 +103,17 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 #pragma mark - Server handling Method
 - (void)fetchCartDetailFromServer {
+    GMUserModal *userModal = [GMUserModal loggedInUser];
     
+    if(!NSSTRING_HAS_DATA(userModal.quoteId)) {
+        self.cartDetailModal = nil;
+        self.cartDetailModal = nil;
+        [self.totalView setHidden:YES];
+        [self.placeOrderButton setHidden:YES];
+        messageString = @"No item in your cart, Please add item.";
+        [self.cartDetailTableView reloadData];
+        return;
+    }
     NSDictionary *requestDict = [[GMCartRequestParam sharedCartRequest] cartDetailRequestParameter];
     [self showProgress];
     [[GMOperationalHandler handler] cartDetail:requestDict withSuccessBlock:^(GMCartDetailModal *cartDetailModal) {
@@ -121,6 +131,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self.updateOrderButton setHidden:YES];
             [self configureAmountView];
         } else {
+            self.cartDetailModal = nil;
             [self.totalView setHidden:YES];
             [self.placeOrderButton setHidden:YES];
             messageString = @"No item in your cart, Please add item.";
@@ -332,7 +343,6 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.updateOrderButton setHidden:YES];
                 [self configureAmountView];
             } else {
-                
                 [self.totalView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
