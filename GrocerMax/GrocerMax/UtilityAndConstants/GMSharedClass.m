@@ -167,18 +167,19 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults synchronize];
 }
 
-- (void) logout {
+- (void)logout {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *encodedObject = [defaults objectForKey:signedInUserKey];
     GMUserModal *archivedUser = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
     archivedUser = nil;
-    
+    [GMUserModal clearUserModal];
     [defaults removeObjectForKey:signedInUserKey];
     [defaults setObject:@(NO) forKey:loggedInUserKey];
     [defaults synchronize];
 
 }
+
 #pragma mark - Network Reachbility Test
 
 -(void)setupReachability
@@ -241,7 +242,7 @@ CGFloat const kMATabBarHeight = 49.0f;
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
-- (void) trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value{
+- (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value{
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     if(!NSSTRING_HAS_DATA(category)) {
@@ -255,12 +256,11 @@ CGFloat const kMATabBarHeight = 49.0f;
     [tracker send:event];
 }
 
-- (void) clearCart {
+- (void)clearCart {
     
     GMCartModal *cartModal = [GMCartModal loadCart];
     [cartModal.cartItems removeAllObjects];
     [cartModal.deletedProductItems removeAllObjects];
     [cartModal archiveCart];
-    
 }
 @end

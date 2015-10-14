@@ -72,5 +72,7 @@
 
 + (instancetype)loggedInUser;
 
++ (void)clearUserModal;
+
 - (void)persistUser;
 @end
