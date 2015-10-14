@@ -71,10 +71,10 @@
     if ([self.modalDic objectForKey:dealID]) {
         GMProductListingBaseModal *baseModal = [self.modalDic objectForKey:dealID];
         
-        if (baseModal.totalcount == baseModal.productsListArray.count) {
-            
-            return; // no more api hit
-        }
+//        if (baseModal.totalcount == baseModal.productsListArray.count) {
+//            
+//            return; // no more api hit
+//        }
         
         NSInteger pageNumber = (baseModal.productsListArray.count/10) + 1;
         [localDic setObject:@(pageNumber) forKey:kEY_page];

@@ -114,8 +114,6 @@ static GMUserModal *loggedInUser;
         self.totalItem = [aDecoder decodeObjectForKey:kTotalItemsKey];
         self.fbId = [aDecoder decodeObjectForKey:kFBIdKey];
         self.googleId = [aDecoder decodeObjectForKey:kGoogleIdKey];
-
-
     }
     return self;
 }
@@ -124,6 +122,11 @@ static GMUserModal *loggedInUser;
     
     NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self];
     [[GMSharedClass sharedClass] saveLoggedInUserWithData:encodedObject];
+    loggedInUser = nil;
+}
+
++ (void)clearUserModal {
+    
     loggedInUser = nil;
 }
 
