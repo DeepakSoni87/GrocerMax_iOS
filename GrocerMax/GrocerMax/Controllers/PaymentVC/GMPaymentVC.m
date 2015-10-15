@@ -130,7 +130,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    [self createHeashKey];
 //    return ;
     if(selectedIndex == -1) {
-        [[GMSharedClass sharedClass] showErrorMessage:@"Please select payment type."];
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please select mode of payment."];
         return;
     }
 //

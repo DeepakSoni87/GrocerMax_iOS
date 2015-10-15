@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1350"
             endingLineNumber = "1350"
-            landmarkName = "-getMobileHash:withSuccessBlock:failureBlock:"
+            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1358"
             endingLineNumber = "1358"
-            landmarkName = "-getMobileHash:withSuccessBlock:failureBlock:"
+            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1316"
             endingLineNumber = "1316"
-            landmarkName = "-homeBannerList:withSuccessBlock:failureBlock:"
+            landmarkName = "-getOfferByDeal:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1323"
             endingLineNumber = "1323"
-            landmarkName = "-homeBannerList:withSuccessBlock:failureBlock:"
+            landmarkName = "-getOfferByDeal:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +143,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1344"
             endingLineNumber = "1344"
-            landmarkName = "-homeBannerList:withSuccessBlock:failureBlock:"
+            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -223,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1227"
             endingLineNumber = "1227"
-            landmarkName = "-dealProductListing:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopByDealType:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -239,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1234"
             endingLineNumber = "1234"
-            landmarkName = "-dealProductListing:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopByDealType:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -255,7 +255,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1248"
             endingLineNumber = "1248"
-            landmarkName = "-dealProductListing:withSuccessBlock:failureBlock:"
+            landmarkName = "-dealsByDealType:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1287"
             endingLineNumber = "1287"
-            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
+            landmarkName = "-dealProductListing:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -287,7 +287,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1295"
             endingLineNumber = "1295"
-            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
+            landmarkName = "-dealProductListing:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1311"
             endingLineNumber = "1311"
-            landmarkName = "-productListAll:withSuccessBlock:failureBlock:"
+            landmarkName = "-getOfferByDeal:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "767"
             endingLineNumber = "767"
-            landmarkName = "-cartDetail:withSuccessBlock:failureBlock:"
+            landmarkName = "-addToCart:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -335,7 +335,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "774"
             endingLineNumber = "774"
-            landmarkName = "-cartDetail:withSuccessBlock:failureBlock:"
+            landmarkName = "-addToCart:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1201"
             endingLineNumber = "1201"
-            landmarkName = "-dealsByDealType:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopbyCategory:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -479,7 +479,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1209"
             endingLineNumber = "1209"
-            landmarkName = "-dealsByDealType:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopbyCategory:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -543,7 +543,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1222"
             endingLineNumber = "1222"
-            landmarkName = "-dealsByDealType:withSuccessBlock:failureBlock:"
+            landmarkName = "-shopByDealType:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -575,7 +575,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1031"
             endingLineNumber = "1031"
-            landmarkName = "-addTocartGust:withSuccessBlock:failureBlock:"
+            landmarkName = "-fail:withSuccessBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
