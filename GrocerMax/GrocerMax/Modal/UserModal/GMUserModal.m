@@ -126,8 +126,7 @@ static GMUserModal *loggedInUser;
 }
 
 + (void)clearUserModal {
-    
-    loggedInUser = nil;
+        loggedInUser = nil;
 }
 
 @end

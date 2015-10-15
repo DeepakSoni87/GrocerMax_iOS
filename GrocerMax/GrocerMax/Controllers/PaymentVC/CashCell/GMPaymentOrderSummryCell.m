@@ -63,8 +63,10 @@
         
         if(NSSTRING_HAS_DATA(coupanCartDetail.grand_total)) {
             self.totalPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.grand_total.doubleValue];
+            [self.totalItemPriceLbl setText:[NSString stringWithFormat:@"₹%.2f",coupanCartDetail.grand_total.doubleValue]];
         } else {
             self.totalPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
+            [self.totalItemPriceLbl setText:[NSString stringWithFormat:@"₹0.00"]];
         }
         if(NSSTRING_HAS_DATA(coupanCartDetail.subtotal_with_discount)) {
             self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.subtotal_with_discount.doubleValue];
@@ -91,7 +93,7 @@
         [self.youSavedLbl setText:[NSString stringWithFormat:@"₹%.2f", saving]];
         double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
         [self.totalPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
-        
+        [self.totalItemPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
         [self.couponDiscountLbl setText:[NSString stringWithFormat:@"₹%.2f", couponDiscount]];
     }
     
