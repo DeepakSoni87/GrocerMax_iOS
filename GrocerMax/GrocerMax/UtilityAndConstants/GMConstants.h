@@ -45,6 +45,11 @@
 
 //End border color, Width, cornerRadius
 
+#define kAppVersion       @"1.0"
+#define keyAppVersion     @"version"
+#define key_TitleMessage  @"GrocerMax"
+
+
 // fonts
 
 #define FONT_REGULAR(s) [UIFont fontWithName:@"HelveticaNeue-Regular" size:s]

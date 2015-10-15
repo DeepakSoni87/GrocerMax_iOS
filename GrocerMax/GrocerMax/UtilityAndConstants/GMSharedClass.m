@@ -51,8 +51,12 @@ CGFloat const kMATabBarHeight = 49.0f;
 
 - (void) showErrorMessage:(NSString*)message{
     
-    NSError *strongError = [RZErrorMessenger errorWithDisplayTitle:kAlertTitle detail:message error:nil];
-    [RZErrorMessenger displayError:strongError withStrength:kRZMessageStrengthStrongAutoDismiss level:kRZErrorMessengerLevelError animated:YES];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:key_TitleMessage message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    alert = nil;
+    
+//    NSError *strongError = [RZErrorMessenger errorWithDisplayTitle:kAlertTitle detail:message error:nil];
+//    [RZErrorMessenger displayError:strongError withStrength:kRZMessageStrengthStrongAutoDismiss level:kRZErrorMessengerLevelError animated:YES];
 }
 
 - (void) showSuccessMessage:(NSString*)message{
@@ -265,5 +269,13 @@ CGFloat const kMATabBarHeight = 49.0f;
     GMUserModal *userModal = [self getLoggedInUser];
     userModal.quoteId = @"";
     [userModal persistUser];
+}
+
+-(NSMutableURLRequest *)requestHeader:(NSMutableURLRequest *)webRequest
+{
+    [webRequest setValue:kAppVersion forHTTPHeaderField:keyAppVersion];
+    [webRequest setValue:kEY_iOS forHTTPHeaderField:kEY_device];
+    return webRequest;
+
 }
 @end
