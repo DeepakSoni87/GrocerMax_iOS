@@ -279,8 +279,26 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     GMProductModal *deleteProductModal = filteredArr.firstObject;
     if(deleteProductModal)
         [self.cartModal.cartItems removeObject:deleteProductModal];
+    [self removeFreeItemsFromCartWhenAllCartPricedItemDeleted];
     [self.cartModal archiveCart];
     [self.tabBarController updateBadgeValueOnCartTab];
+}
+
+- (void)removeFreeItemsFromCartWhenAllCartPricedItemDeleted {
+    
+    NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(GMProductModal *evaluatedObject, NSDictionary *bindings) {
+        
+        if(evaluatedObject.sale_price.integerValue == 0)
+            return YES;
+        else
+            return NO;
+    }];
+    NSArray *freeItemsArray = [self.cartDetailModal.productItemsArray filteredArrayUsingPredicate:pred];
+    if(self.cartDetailModal.productItemsArray.count == freeItemsArray.count) {
+        
+        [self.cartDetailModal.productItemsArray removeAllObjects];
+        [self.cartModal.cartItems removeAllObjects];
+    }
 }
 
 - (IBAction)placeOrderButtonTapped:(id)sender {
@@ -374,11 +392,16 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 //    self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self.tabBarController setSelectedIndex:0];
+//    AppDelegate *appdel = APP_DELEGATE;
+//    [appdel goToHomeWithAnimation:NO];
 }
 
 - (BOOL)checkWhetherUpdateRequestNeeded {
     
     BOOL updateStatus = YES;
+    
+    if(!self.cartDetailModal)
+        return NO;
     
     if(self.cartDetailModal.deletedProductItemsArray.count)
         return updateStatus;

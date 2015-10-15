@@ -31,5 +31,6 @@
 
 -(GMSearchVC*) rootSearchVCFromFourthTab;
 
+- (void)goToHomeWithAnimation:(BOOL)animation;
 @end
 
