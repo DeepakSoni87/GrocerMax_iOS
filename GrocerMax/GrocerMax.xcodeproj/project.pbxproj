@@ -2807,7 +2807,8 @@
 			baseConfigurationReference = 43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
@@ -2818,7 +2819,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
+				PROVISIONING_PROFILE = "d3f9ffb1-8ddd-440d-acb0-7ca43df607bb";
 			};
 			name = Debug;
 		};
@@ -2827,7 +2828,8 @@
 			baseConfigurationReference = 313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
@@ -2838,7 +2840,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
+				PROVISIONING_PROFILE = "d3f9ffb1-8ddd-440d-acb0-7ca43df607bb";
 			};
 			name = Release;
 		};
@@ -2846,7 +2848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2858,7 +2860,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
+				PROVISIONING_PROFILE = "d3f9ffb1-8ddd-440d-acb0-7ca43df607bb";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2867,7 +2869,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rahul Agarwal (694L4484HN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2875,7 +2877,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "759ec263-6bac-4016-b32d-85254858c21d";
+				PROVISIONING_PROFILE = "d3f9ffb1-8ddd-440d-acb0-7ca43df607bb";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

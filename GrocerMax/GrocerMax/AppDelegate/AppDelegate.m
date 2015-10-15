@@ -199,6 +199,13 @@ static int const kGaDispatchPeriod = 20;
     return nil;
 }
 
+- (void)goToHomeWithAnimation:(BOOL)animation {
+    
+    [self.window.layer removeAllAnimations];
+    UINavigationController *navController = [self.tabBarVC.viewControllers firstObject];
+    [self.tabBarVC setSelectedIndex:0];
+    [navController popToRootViewControllerAnimated:animation];
+}
 
 - (void) initializeGoogleAnalytics {
     
