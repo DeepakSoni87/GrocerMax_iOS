@@ -36,9 +36,9 @@ CGFloat btnHeight = 40.0; //same as scrollview
 //    self.title = [self.modelController titleNameFormModal:self.pageData[0]];// title of VC
     self.title = self.navigationTitleString;
     
-    self.cartModal = [GMCartModal loadCart];
-    if(!self.cartModal)
-        self.cartModal = [[GMCartModal alloc] initWithCartItems:[NSMutableArray array]];
+//    self.cartModal = [GMCartModal loadCart];
+//    if(!self.cartModal)
+//        self.cartModal = [[GMCartModal alloc] initWithCartItems:[NSMutableArray array]];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5* NSEC_PER_SEC), dispatch_get_main_queue(), ^{
        
@@ -54,9 +54,12 @@ CGFloat btnHeight = 40.0; //same as scrollview
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
+    self.cartModal = [GMCartModal loadCart];
+    if(!self.cartModal)
+        self.cartModal = [[GMCartModal alloc] initWithCartItems:[NSMutableArray array]];
 }
 
 - (void)viewDidLayoutSubviews {
