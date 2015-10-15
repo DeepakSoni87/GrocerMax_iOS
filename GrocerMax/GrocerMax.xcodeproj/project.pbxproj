@@ -47,7 +47,6 @@
 		8209F70B1BCD25BC005B7D08 /* citi.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C11BCD25BC005B7D08 /* citi.png */; };
 		8209F70C1BCD25BC005B7D08 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C21BCD25BC005B7D08 /* coin.png */; };
 		8209F70D1BCD25BC005B7D08 /* diner.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C31BCD25BC005B7D08 /* diner.png */; };
-		8209F70E1BCD25BC005B7D08 /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C41BCD25BC005B7D08 /* discover.png */; };
 		8209F70F1BCD25BC005B7D08 /* error_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C51BCD25BC005B7D08 /* error_icon.png */; };
 		8209F7101BCD25BC005B7D08 /* error_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C61BCD25BC005B7D08 /* error_large.png */; };
 		8209F7111BCD25BC005B7D08 /* hdfc.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6C81BCD25BC005B7D08 /* hdfc.png */; };
@@ -335,6 +334,7 @@
 		E8916C221BBB407900DA75BE /* GMParentController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C201BBB407900DA75BE /* GMParentController.m */; };
 		E8916C231BBB407900DA75BE /* GMParentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C211BBB407900DA75BE /* GMParentController.xib */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
+		E8D389091BCED64D0069A37F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = E8D389081BCED64D0069A37F /* iTunesArtwork */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,7 +411,6 @@
 		8209F6C11BCD25BC005B7D08 /* citi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citi.png; sourceTree = "<group>"; };
 		8209F6C21BCD25BC005B7D08 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
 		8209F6C31BCD25BC005B7D08 /* diner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diner.png; sourceTree = "<group>"; };
-		8209F6C41BCD25BC005B7D08 /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
 		8209F6C51BCD25BC005B7D08 /* error_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_icon.png; sourceTree = "<group>"; };
 		8209F6C61BCD25BC005B7D08 /* error_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_large.png; sourceTree = "<group>"; };
 		8209F6C71BCD25BC005B7D08 /* GZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZip.h; sourceTree = "<group>"; };
@@ -835,6 +834,7 @@
 		E8916C211BBB407900DA75BE /* GMParentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMParentController.xib; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
+		E8D389081BCED64D0069A37F /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -987,7 +987,6 @@
 				8209F6C11BCD25BC005B7D08 /* citi.png */,
 				8209F6C21BCD25BC005B7D08 /* coin.png */,
 				8209F6C31BCD25BC005B7D08 /* diner.png */,
-				8209F6C41BCD25BC005B7D08 /* discover.png */,
 				8209F6C51BCD25BC005B7D08 /* error_icon.png */,
 				8209F6C61BCD25BC005B7D08 /* error_large.png */,
 				8209F6C71BCD25BC005B7D08 /* GZip.h */,
@@ -1937,6 +1936,7 @@
 		82B1B2E91B9F60FA001550FC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E8D389081BCED64D0069A37F /* iTunesArtwork */,
 				3B670CCB1BA0BF2400B5EB9D /* Messages.strings */,
 				82B1B2B31B9F5E60001550FC /* Images.xcassets */,
 				82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */,
@@ -2316,7 +2316,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8209F70E1BCD25BC005B7D08 /* discover.png in Resources */,
 				8209F7021BCD25BC005B7D08 /* CBAllPaymentOption_iPhone6.xib in Resources */,
 				820C50651BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.xib in Resources */,
 				E86D14281BB99D4E00D3EAD8 /* dropdown.png in Resources */,
@@ -2351,6 +2350,7 @@
 				8209F73B1BCD25BC005B7D08 /* trusticon.png in Resources */,
 				E86D14241BB99D4E00D3EAD8 /* checkbox@2x.png in Resources */,
 				E86D143D1BB99D4E00D3EAD8 /* StoredCard.xib in Resources */,
+				E8D389091BCED64D0069A37F /* iTunesArtwork in Resources */,
 				8209F7051BCD25BC005B7D08 /* CBApproveView_iPhone6p.xib in Resources */,
 				E86D14071BB99D4E00D3EAD8 /* AllPaymentOprionsView.xib in Resources */,
 				820C50611BB1CC5C00DCCF39 /* GMSubCategoryVC.xib in Resources */,
