@@ -262,5 +262,8 @@ CGFloat const kMATabBarHeight = 49.0f;
     [cartModal.cartItems removeAllObjects];
     [cartModal.deletedProductItems removeAllObjects];
     [cartModal archiveCart];
+    GMUserModal *userModal = [self getLoggedInUser];
+    userModal.quoteId = @"";
+    [userModal persistUser];
 }
 @end

@@ -20,7 +20,7 @@
 
 static NSString *const kGaPropertyId = @"UA-64820863-1";
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
-static BOOL const kGaDryRun = NO;
+static BOOL const kGaDryRun = YES;
 static int const kGaDispatchPeriod = 20;
 
 @interface AppDelegate ()
