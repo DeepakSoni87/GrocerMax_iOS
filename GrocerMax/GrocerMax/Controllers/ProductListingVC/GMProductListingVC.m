@@ -66,6 +66,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
 - (void) configureUI {
     
+    self.navigationItem.title = @"Product List";
     self.productListTblView.delegate = self;
     self.productListTblView.dataSource = self;
     self.productListTblView.tableFooterView = [UIView new];

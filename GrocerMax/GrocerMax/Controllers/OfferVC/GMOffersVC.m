@@ -97,14 +97,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealCategoryOpened withCategory:@"" label:tempCategoryModal.categoryName value:nil];
     
-    GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
-    proListVC.catMdl = tempCategoryModal;
-    proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
-    proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
-    proListVC.parentVC = self.parentVC;
-    proListVC.gaTrackingEventText =  kEY_GA_Event_ProductListingThroughOffers;
-    
-    [self.navigationController pushViewController:proListVC animated:YES];
+    [self fetchDealProductListingDataForOffersORDeals:tempCategoryModal];
 }
 
 #pragma mark - scrollView Delegate
@@ -138,6 +131,38 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     }
     
     [self.offersCollectionView reloadData];
+}
+
+#pragma mark - fetchProductListingDataFor Offers OR Deals for 1 first page
+
+- (void)fetchDealProductListingDataForOffersORDeals:(GMCategoryModal*)catMdl {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:catMdl.categoryId forKey:kEY_deal_id];
+    [localDic setObject:@"1" forKey:kEY_page];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] dealProductListing:localDic withSuccessBlock:^(id responceData) {
+        
+        [self removeProgress];
+        
+        GMProductListingBaseModal *newModal = responceData;
+      
+        catMdl.productListArray = newModal.productsListArray;
+        catMdl.totalCount = newModal.totalcount;
+        
+        GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
+        proListVC.catMdl = catMdl;
+        proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
+        proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
+        proListVC.parentVC = self.parentVC;
+        proListVC.gaTrackingEventText =  kEY_GA_Event_ProductListingThroughOffers;
+        
+        [self.navigationController pushViewController:proListVC animated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
 }
 
 @end
