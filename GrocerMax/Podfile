@@ -2,7 +2,7 @@
 # platform :ios, '7.0'
 
 target 'GrocerMax' do
-    pod 'AFNetworking', '~> 2.5'
+    pod 'AFNetworking', '~> 2.6'
     pod 'TPKeyboardAvoiding', '~> 1.2'
     pod 'HockeySDK', '~> 3.6'
     pod 'SVProgressHUD', '~> 1.1'
