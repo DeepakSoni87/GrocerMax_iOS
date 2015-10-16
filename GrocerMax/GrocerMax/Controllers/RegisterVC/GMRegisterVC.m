@@ -539,7 +539,6 @@ static NSString * const kGenderCell                         =  @"Gender";
                     [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                          if (!error) {
-                             NSLog(@"fetched user:%@", result);
                              
                              NSDictionary *resultDic = result;
                              
@@ -578,8 +577,6 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations on signed in user here.
     // ...
-    
-    NSLog(@"Google login Success = %@",user.profile.email);
     
     if (user.profile.email) {
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];

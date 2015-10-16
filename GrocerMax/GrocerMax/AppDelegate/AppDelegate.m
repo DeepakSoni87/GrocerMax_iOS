@@ -42,7 +42,7 @@ static int const kGaDispatchPeriod = 20;
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];
     if (configureError != nil) {
-        NSLog(@"Error configuring the Google context: %@", configureError);
+//        NSLog(@"Error configuring the Google context: %@", configureError);
     }
     
     [GIDSignIn sharedInstance].clientID = @"38746701051-1bi2gqs9obckcf9b6a7fffdmlvfmpr1a.apps.googleusercontent.com";
