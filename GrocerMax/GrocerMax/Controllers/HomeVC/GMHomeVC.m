@@ -67,13 +67,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
     [self registerCellsForTableView];
     [self configureUI];
-    
+    [self userSelectLocation];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabHome withCategory:@"" label:nil value:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass]setTabBarVisible:YES ForController:self animated:YES];
-    [self userSelectLocation];
+    
     
     // if categoies exist in memory
     GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
@@ -99,10 +99,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     
 }
 - (void)userSelectLocation {
-    if([GMCityModal selectedLocation] == nil) {
+//    if([GMCityModal selectedLocation] == nil) {
         GMCityVC * cityVC  = [GMCityVC new];
         [self.navigationController pushViewController:cityVC animated:NO];
-    }
+//    }
 }
 
 #pragma mark - Register Cells

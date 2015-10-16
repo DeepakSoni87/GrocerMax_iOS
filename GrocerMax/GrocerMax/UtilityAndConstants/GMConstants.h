@@ -50,6 +50,12 @@
 #define key_TitleMessage  @"GrocerMax"
 
 
+#define PayU_Cridentail   @"yPnUG6:test"
+
+#define PayU_Key   @"yPnUG6"
+#define PayU_Salt   @"jJ0mWFKl"
+#define PayU_Product_Info @"GrocerMax Product Info"
+
 // fonts
 
 #define FONT_REGULAR(s) [UIFont fontWithName:@"HelveticaNeue-Regular" size:s]
@@ -245,6 +251,7 @@
 #define kEY_GA_CartDeliveryDetail_Screen     @"CartDeliveryDetailScreen"
 #define kEY_GA_CartPaymentMethod_Screen      @"CartPaymentMethodScreen"
 #define kEY_GA_CartPaymentSucess_Screen      @"CartPaymentSucessScreen"
+#define kEY_GA_CartPaymentFail_Screen      @"CartPaymentFailScreen"
 
 #define kEY_GA_HamburgerMain_Screen          @"HambergerMainScreen"
 #define kEY_GA_HamburgerSubcategory_Screen   @"HambergerSubcategoryScreen"
