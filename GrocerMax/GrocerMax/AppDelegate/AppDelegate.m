@@ -221,7 +221,7 @@ static int const kGaDispatchPeriod = 20;
     // Optional: configure GAI options.
     GAI *gai = [GAI sharedInstance];
     gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelVerbose;//Remove in release
+//    gai.logger.logLevel = kGAILogLevelVerbose;//Remove in release
     
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Splash_Screen];
 }

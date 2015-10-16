@@ -61,7 +61,8 @@
             [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_LogIn_Screen];
         }
     }
-    
+    // google login
+    [self configureView];
 }
 
 - (void)configureView{
