@@ -58,7 +58,7 @@
  * Function for User Logout
  * @param
  **/
-+ (void)logOut:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+- (void)logOut:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
  * Function for User Forgot Password

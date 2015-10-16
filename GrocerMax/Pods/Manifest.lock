@@ -86,7 +86,7 @@ PODS:
   - TPKeyboardAvoiding (1.2.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5)
+  - AFNetworking (~> 2.6)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Google/Analytics
