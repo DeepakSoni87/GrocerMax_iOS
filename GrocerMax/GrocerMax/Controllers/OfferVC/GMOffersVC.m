@@ -69,9 +69,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     return CGSizeMake(width,width);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"didSelectItemAtIndexPath");
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     GMCategoryModal *tempCategoryModal = [[GMCategoryModal alloc] init];
 

@@ -379,9 +379,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    [self.activity setHidesWhenStopped:YES];
 }
 
--(void)dataReceived:(NSNotification *)noti
-{
-    NSLog(@"dataReceived from surl/furl:%@", noti.object);
+-(void)dataReceived:(NSNotification *)noti {
+    
 //    [self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController popToViewController:self animated:YES];
     

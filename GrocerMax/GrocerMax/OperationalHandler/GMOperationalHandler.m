@@ -78,8 +78,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -153,8 +152,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -206,8 +204,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -237,8 +234,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -266,8 +262,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -296,8 +291,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             NSError *mtlError = nil;
             
@@ -328,8 +322,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             NSError *mtlError = nil;
             
@@ -363,8 +356,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -398,8 +390,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -429,8 +420,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             NSError *mtlError = nil;
             
@@ -460,8 +450,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -489,8 +478,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             NSError *mtlError = nil;
             
@@ -525,8 +513,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -556,8 +543,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -594,8 +580,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -632,8 +617,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -669,8 +653,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -700,8 +683,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
 //
             
             NSError *mtlError = nil;
@@ -735,8 +717,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 GMOrderDeatilBaseModal *orderDeatilBaseModal = [[GMOrderDeatilBaseModal alloc]initWithDictionary:responseObject];
@@ -767,8 +748,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -798,8 +778,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -828,8 +807,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -858,8 +836,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -887,8 +864,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -922,8 +898,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -957,8 +932,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -988,8 +962,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -1025,8 +998,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -1051,7 +1023,6 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)addTocartGust:(NSDictionary *)param withSuccessBlock:(void (^)(NSString *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
     
-    NSLog(@"request initiate %@", param);
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator addTocartGustPath]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -1062,8 +1033,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -1112,8 +1082,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             NSError *mtlError = nil;
             
@@ -1196,8 +1165,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                                 
@@ -1306,8 +1274,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -1341,8 +1308,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -1371,8 +1337,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -1406,8 +1371,7 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            NSLog(@"URL = %@",operation.request.URL.absoluteString);
-            NSLog(@"RESPONSE = %@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:kNilOptions error:nil] encoding:NSStringEncodingConversionExternalRepresentation]);
+            
             if([responseObject objectForKey:@"Result"]) {
                 if (successBlock) successBlock([responseObject objectForKey:@"Result"]);
             } else {
