@@ -41,6 +41,15 @@
                         </state>
                         <state key="selected" image="left_minus"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-my-XeB">
+                        <rect key="frame" x="290" y="12" width="15" height="15"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="Npf-9M-czb"/>
+                            <constraint firstAttribute="width" constant="15" id="pSJ-wX-JOn"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fly-bf-dl7">
                         <rect key="frame" x="0.0" y="38" width="320" height="1"/>
                         <animations/>
@@ -52,6 +61,7 @@
                 </subviews>
                 <animations/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="3bM-my-XeB" secondAttribute="trailing" constant="15" id="0ju-fB-IoS"/>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5C7-da-3AW"/>
                     <constraint firstAttribute="bottom" secondItem="Fly-bf-dl7" secondAttribute="bottom" id="CpQ-ag-XeR"/>
                     <constraint firstItem="RyZ-9N-py7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ko6-c2-Iuv"/>
@@ -60,6 +70,7 @@
                     <constraint firstAttribute="trailing" secondItem="SuO-Hm-xuF" secondAttribute="trailing" constant="15" id="aN6-KJ-1EH"/>
                     <constraint firstItem="xrl-dR-bLo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hti-sr-zvP"/>
                     <constraint firstAttribute="trailing" secondItem="RyZ-9N-py7" secondAttribute="trailing" constant="15" id="jka-8f-MYB"/>
+                    <constraint firstItem="3bM-my-XeB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="orS-8Q-Gxb"/>
                     <constraint firstItem="SuO-Hm-xuF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="wIQ-fU-vJg"/>
                     <constraint firstAttribute="bottom" secondItem="xrl-dR-bLo" secondAttribute="bottom" id="xBM-AF-zhe"/>
                     <constraint firstItem="Fly-bf-dl7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ygn-zV-sC3"/>
@@ -71,10 +82,10 @@
                 <outlet property="arrowImageView" destination="RyZ-9N-py7" id="Ol2-Tm-cr2"/>
                 <outlet property="categoryNameLabel" destination="xrl-dR-bLo" id="elT-4m-i5c"/>
                 <outlet property="dividerLineImaegView" destination="Fly-bf-dl7" id="bG7-9i-Y04"/>
-                <outlet property="expandButton" destination="SuO-Hm-xuF" id="Pgu-AA-wQY"/>
+                <outlet property="expandButton" destination="SuO-Hm-xuF" id="Phz-1q-Bp2"/>
                 <outlet property="leftMarginConstraint" destination="5C7-da-3AW" id="7yk-ZG-a08"/>
             </connections>
-            <point key="canvasLocation" x="290" y="248"/>
+            <point key="canvasLocation" x="166" y="199"/>
         </tableViewCell>
     </objects>
     <resources>

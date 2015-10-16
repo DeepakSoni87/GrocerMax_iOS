@@ -738,6 +738,7 @@ static GMRequestParams *sharedClass;
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.closestLandmark] forKey:kEY_addressline3];
     [addressDictionary setObject:@"IN" forKey:kEY_countrycode];
     [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
+    [addressDictionary setObject:addressModal.is_default_billing forKey:kEY_default_billing];
     [addressDictionary setObject:@"1" forKeyedSubscript:kEY_cityId];
     return addressDictionary;
 }
