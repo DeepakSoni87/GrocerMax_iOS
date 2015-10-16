@@ -34,9 +34,9 @@
     
     if(cartDetailModal.productItemsArray.count>0) {
         if(cartDetailModal.productItemsArray.count == 1) {
-            self.totalItemLbl.text = [NSString stringWithFormat:@"%ld item",cartDetailModal.productItemsArray.count];
+            self.totalItemLbl.text = [NSString stringWithFormat:@"%d item",cartDetailModal.productItemsArray.count];
         } else {
-            self.totalItemLbl.text = [NSString stringWithFormat:@"%ld items",cartDetailModal.productItemsArray.count];
+            self.totalItemLbl.text = [NSString stringWithFormat:@"%d items",cartDetailModal.productItemsArray.count];
         }
         
     } else {
@@ -56,7 +56,14 @@
             self.subTotalPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
         }
         if(NSSTRING_HAS_DATA(coupanCartDetail.you_save)) {
-            self.youSavedLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.you_save.doubleValue];
+            double saving = 0;
+            for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+                saving += productModal.productQuantity.doubleValue * (productModal.Price.doubleValue - productModal.sale_price.doubleValue);
+            }
+            if(NSSTRING_HAS_DATA(cartDetailModal.discountAmount)) {
+                saving = saving - cartDetailModal.discountAmount.doubleValue;
+            }
+            self.youSavedLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.you_save.doubleValue+saving];
         } else {
             self.youSavedLbl.text = [NSString stringWithFormat:@"₹0.00"];
         }

@@ -219,7 +219,9 @@ CGFloat btnHeight = 40.0; //same as scrollview
     __weak typeof(self) weakSelf = self;
 
     NSInteger tempIndex = self.currentPageIndex;
-    
+    if(button.tag == self.currentPageIndex) {
+        return;
+    }
     
     if (button.tag > tempIndex) {
         

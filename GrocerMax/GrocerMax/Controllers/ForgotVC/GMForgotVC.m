@@ -47,6 +47,44 @@
 
 - (IBAction)submitButtonTapped:(id)sender {
     
+    [self.view endEditing:YES];
     
+    if([GMSharedClass validateEmail:self.emailTextField.text]) {
+        
+        NSDictionary *dic = @{self.emailTextField.text : kEY_uemail};
+        [self showProgress];
+        [[GMOperationalHandler handler] forgotPassword:dic withSuccessBlock:^(NSDictionary *responceData) {
+            NSString *message = @"";
+            if([responceData objectForKey:@"Result"]) {
+                message = [responceData objectForKey:@"Result"];
+            }
+            if([[responceData objectForKey:@"flag"] intValue] == 1) {
+                if(!NSSTRING_HAS_DATA(message)) {
+                    message = @"Password send to your mail, please check your mail.";
+                }
+                [[GMSharedClass sharedClass] showErrorMessage:message];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else {
+                if(!NSSTRING_HAS_DATA(message)) {
+                    message = @"Invalid Email Id.";
+                }
+                [[GMSharedClass sharedClass] showErrorMessage:message];
+            }
+            [self removeProgress];
+            
+        } failureBlock:^(NSError *error) {
+            [[GMSharedClass sharedClass] showErrorMessage:@"Please check your internet."];
+            [self removeProgress];
+        }];
+        
+        
+    }
+    else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please provide your valid email address."];
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 @end

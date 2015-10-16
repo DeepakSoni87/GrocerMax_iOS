@@ -10,4 +10,7 @@
 
 @interface GMOrderFailVC : UIViewController
 
+@property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+@property (nonatomic) float totalAmount;
 @end

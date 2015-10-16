@@ -63,9 +63,7 @@ static NSString * const kGenderCell                         =  @"Gender";
     [self.registerTableView setTableFooterView:self.footerView];
     
     // google login
-    [GIDSignIn sharedInstance].uiDelegate = self;
-    [GIDSignIn sharedInstance].delegate = self;
-    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,8 +77,20 @@ static NSString * const kGenderCell                         =  @"Gender";
     self.title = @"Register";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Register_Screen];
+    
+//    [GIDSignIn sharedInstance].uiDelegate = self;
+//    [GIDSignIn sharedInstance].delegate = self;
+//    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
+    
+    [self configureView];
 }
 
+- (void)configureView{
+    
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
+}
 - (void)registerCellsForTableView {
     
     [self.registerTableView registerNib:[UINib nibWithNibName:@"GMRegisterInputCell" bundle:nil] forCellReuseIdentifier:kInputFieldCellIdentifier];

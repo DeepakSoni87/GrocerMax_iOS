@@ -19,15 +19,16 @@
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
 #import "GMApiPathGenerator.h"
+#import "GMOrderFailVC.h"
 #import "PayU_iOS_SDK.h"
 
-#define PayU_Cridentail   @"yPnUG6:test"
-
-#define PayU_Key   @"yPnUG6"
-#define PayU_Salt   @"jJ0mWFKl"
-
-
-#define PayU_Product_Info @"GrocerMax Product Info"
+//#define PayU_Cridentail   @"yPnUG6:test"
+//
+//#define PayU_Key   @"yPnUG6"
+//#define PayU_Salt   @"jJ0mWFKl"
+//
+//
+//#define PayU_Product_Info @"GrocerMax Product Info"
 
 
 
@@ -43,6 +44,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     float totalAmount;
     NSString *coupanCode;
     NSString *orderID;
+    BOOL isPaymentFail;
 }
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -82,6 +84,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartPaymentMethod_Screen];
+    
+    if(isPaymentFail) {
+        [self goToFailOrderScreen];
+    }
+    
 }
 
 //- (void)viewDidDisappear:(BOOL)animated {
@@ -361,6 +368,16 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     }
 }
 
+- (void) goToFailOrderScreen {
+    [self removeNotification];
+    if(isPaymentFail) {
+        isPaymentFail = FALSE;
+    GMOrderFailVC *orderFailVC = [GMOrderFailVC new];
+    orderFailVC.orderId = self.genralModal.orderID;
+    orderFailVC.totalAmount = totalAmount;
+    [self.navigationController pushViewController:orderFailVC animated:NO];
+    }
+}
 
 /**
  PayU Implementation
@@ -379,10 +396,18 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    [self.activity setHidesWhenStopped:YES];
 }
 
--(void)dataReceived:(NSNotification *)noti {
-    
+- (void)removeNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payment_success_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payment_failure_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payu_notifications" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"passData" object:nil];
+}
+
+-(void)dataReceived:(NSNotification *)noti
+{
+    NSLog(@"dataReceived from surl/furl:%@", noti.object);
 //    [self.navigationController popToRootViewControllerAnimated:YES];
-    [self.navigationController popToViewController:self animated:YES];
+//    [self.navigationController popToViewController:self animated:YES];
     
    
 }
@@ -414,7 +439,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 }
 - (void) failure:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
-    
+//    isPaymentFail = TRUE;
     NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
@@ -425,16 +450,20 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         
         [self removeProgress];
         
+        
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];
     }];
+    [self goToFailOrderScreen];
     
 }
 - (void) cancel:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
 //    [self.navigationController popToRootViewControllerAnimated:NO];
-    [self.navigationController popToViewController:self animated:YES];
+    
+    [self goToFailOrderScreen];
+    
 }
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -461,7 +490,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
             }
             [self removeProgress];
         });
-        NSLog(@"-->>Hash has been created = %@",_hashDict);
+//        NSLog(@"-->>Hash has been created = %@",_hashDict);
     }];
 }
 - (void) generateHashFromServer:(NSDictionary *) paramDict withCompletionBlock:(urlRequestCompletionBlock)completionBlock{
@@ -610,6 +639,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
     [self.navigationController pushViewController:paymentOptionsVC animated:YES];
+    isPaymentFail = TRUE;
 }
 
 

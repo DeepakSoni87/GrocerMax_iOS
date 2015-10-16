@@ -41,7 +41,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1073685632661628</string>
+				<string>fb951586228219659</string>
 			</array>
 		</dict>
 		<dict>
@@ -49,16 +49,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.gogetspeedy.speedy</string>
+				<string>com.grocermax.grocermax</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>3.0</string>
 	<key>FacebookAppID</key>
-	<string>1073685632661628</string>
+	<string>951586228219659</string>
 	<key>FacebookDisplayName</key>
-	<string>TestDeisplayName</string>
+	<string>GrocerMax</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
