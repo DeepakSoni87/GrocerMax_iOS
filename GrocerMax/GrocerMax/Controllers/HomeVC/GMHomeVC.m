@@ -220,9 +220,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 #pragma mark - paggin cell Delegate
 
 -(void)didSelectItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
-    
-    NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
-    
+
     [self handleBannerAction:self.bannerListArray[collectionIndexpath.item]];
 }
 
@@ -235,13 +233,10 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     categoryVC.rootCategoryModal = catModal;
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self.navigationController pushViewController:categoryVC animated:YES];
-    
-    NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
 }
 
 - (void)offerBtnPressedAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
-    NSLog(@"offer tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMCategoryModal *catModal = [self.categoriesArray objectAtIndex:collectionIndexpath.row];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OfferCategorySelection withCategory:@"" label:catModal.categoryName value:nil];
     [self getOffersDealFromServerWithCategoryModal:catModal];
@@ -252,7 +247,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (void)didSelectDealItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
     
-    NSLog(@"tbl Index = %li & Collection index = %li",(long)tblIndexPath.row,(long)collectionIndexpath.item);
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealSelection withCategory:@"" label:hotDealModal.dealTypeId value:nil];
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
@@ -272,7 +266,6 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             [self categoryLevelCategorization];
             [self.rootCategoryModal archiveRootCategory];
             GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-            NSLog(@"%@", mdl);
             
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
             GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
