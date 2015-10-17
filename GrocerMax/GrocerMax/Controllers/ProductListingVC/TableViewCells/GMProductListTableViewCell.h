@@ -28,6 +28,6 @@
 
 + (CGFloat)cellHeightForNonPromotionalLabel;
 
-+ (CGFloat)cellHeightForPromotionalLabel;
++ (CGFloat)cellHeightForPromotionalLabelWithText:(NSString*)str;
 
 @end

@@ -39,4 +39,7 @@
 + (UIImage *)cart_unselectedImage;
 + (UIImage *)cart_selectedImage ;
 
++ (UIImage *)freeImage;
++ (UIImage *)offerImage;
+
 @end

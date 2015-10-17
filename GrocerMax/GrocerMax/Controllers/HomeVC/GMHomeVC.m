@@ -23,7 +23,7 @@
 #import "GMStateBaseModal.h"
 #import "Sequencer.h"
 #import "GMHotDealBaseModal.h"
-
+#import "GMOurPromisesCell.h"
 #import "GMOffersByDealTypeModal.h"
 
 #import "GMOrderDetailVC.h"
@@ -42,6 +42,7 @@
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";
 NSString *const shopByDealCell = @"GMShopByDealCell";
+NSString *const ourPromisesCell = @"GMOurPromisesCell";
 
 @interface GMHomeVC ()<UITableViewDataSource,UITableViewDelegate,GMPageControllCellDelegate,GMShopByCategoryCellDelegate,GMShopByDealCellDelegate>
 
@@ -112,6 +113,8 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     [self.tblView registerNib:[UINib nibWithNibName:@"GMPageControllCell" bundle:nil] forCellReuseIdentifier:pageControllCell];
     [self.tblView registerNib:[UINib nibWithNibName:@"GMShopByCategoryCell" bundle:nil] forCellReuseIdentifier:shopByCategoryCell];
     [self.tblView registerNib:[UINib nibWithNibName:@"GMShopByDealCell" bundle:nil] forCellReuseIdentifier:shopByDealCell];
+    [self.tblView registerNib:[UINib nibWithNibName:@"GMOurPromisesCell" bundle:nil] forCellReuseIdentifier:ourPromisesCell];
+
 }
 
 #pragma mark - UITableviewDelegate/DataSource
@@ -123,7 +126,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,6 +142,9 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             break;
         case 2:
             return [self shopByDealCellForTableView:tableView indexPath:indexPath];
+            break;
+        case 3:
+            return [self ourPromisesCellForTableView:tableView indexPath:indexPath];
             break;
             
         default:
@@ -166,9 +172,14 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
         case 1:
             return 215;
             break;
-            
+        case 2:
+            return 175;
+            break;
+        case 3:
+            return 160;
+            break;
         default:
-            return 185;
+            return 0;
             break;
     }
 }
@@ -214,6 +225,13 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
     GMShopByDealCell *cell = [tableView dequeueReusableCellWithIdentifier:shopByDealCell];
     [cell configureCellWithData:self.hotDealsArray cellIndexPath:indexPath];
     cell.delegate = self;
+    return cell;
+}
+
+- (GMOurPromisesCell*)ourPromisesCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath{
+    
+    GMOurPromisesCell *cell = [tableView dequeueReusableCellWithIdentifier:ourPromisesCell];
+    [cell configureCellWithData:nil cellIndexPath:nil];
     return cell;
 }
 

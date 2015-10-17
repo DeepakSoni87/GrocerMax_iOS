@@ -18,8 +18,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *zeroPriceLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgViewSoldout;
+
+@property (weak, nonatomic) IBOutlet UIImageView *offerImg;
+
 @end
 
+NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Please remove from cart to proceed.";
 
 @implementation GMCartCell
 
@@ -84,6 +89,32 @@
         [self.promotionLabel setHidden:NO];
     else
         [self.promotionLabel setHidden:YES];
+    
+    if ([self.productModal.Status isEqualToString:@"0"]) {
+        self.imgViewSoldout.hidden = NO;
+        self.addSubstractView.hidden = YES;
+        [self.promotionLabel setText:kFreePromotionString];
+    }else{
+        self.imgViewSoldout.hidden = YES;
+        self.addSubstractView.hidden = NO;
+    }
+    
+    
+    if (self.productModal.promotion_level.length > 1 && self.productModal.sale_price.integerValue == 0) {
+        self.offerImg.hidden = NO;
+        [self.offerImg setImage:[UIImage freeImage]];
+    }
+    else if (self.productModal.promotion_level.length > 1 && self.productModal.sale_price.integerValue != 0) {
+        self.offerImg.hidden = NO;
+        [self.offerImg setImage:[UIImage offerImage]];
+    }
+    else if (self.productModal.sale_price.integerValue == 0 ) {
+        self.offerImg.hidden = NO;
+        [self.offerImg setImage:[UIImage freeImage]];
+    }
+    else {
+        self.offerImg.hidden = YES;
+    }
     [self updatePriceLabel];
 }
 
@@ -111,6 +142,7 @@
     
     [self.priceWithOfferLbl setAttributedText:attString];
 
+    
     if(self.productModal.sale_price.integerValue == 0) {
         
         [self.addSubstractView setHidden:YES];
@@ -156,8 +188,16 @@
     return 120.0;
 }
 
-+ (CGFloat)cellHeightWithPromotion {
++ (CGFloat)cellHeightForPromotionalLabelWithText:(NSString*)str {
     
-    return 145.0;
+    NSDictionary *attributes = @{NSFontAttributeName: FONT_LIGHT(15)};
+    
+    CGRect rect = [str boundingRectWithSize:CGSizeMake(kScreenWidth - 15, MAXFLOAT)
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                 attributes:attributes
+                                    context:nil];
+    
+    return 120 + rect.size.height + 5;
 }
+
 @end

@@ -44,7 +44,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgViewSoldout;
 
+@property (weak, nonatomic) IBOutlet UIImageView *offerImg;
+
 @property (nonatomic, assign) NSUInteger quantityValue;
+
 @end
 
 @implementation GMProductListTableViewCell
@@ -54,7 +57,6 @@
     
     self.addBtn.layer.cornerRadius = 5.0;
     self.addBtn.layer.masksToBounds = YES;
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -117,6 +119,12 @@
     self.productQuantityLbl.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
     [self updateTotalProductItemsInCart];
     
+    if (self.productModal.promotion_level.length > 1) {
+        self.offerImg.hidden = NO;
+    }else{
+        self.offerImg.hidden = YES;
+    }
+
     if ([self.productModal.Status isEqualToString:@"Sold Out"]) {
         self.imgViewSoldout.hidden = NO;
         self.addBtn.hidden = YES;
@@ -220,9 +228,18 @@
     return 143.0f;
 }
 
-+ (CGFloat)cellHeightForPromotionalLabel {
++ (CGFloat)cellHeightForPromotionalLabelWithText:(NSString*)str {
     
-    return 168.0f;
+    NSDictionary *attributes = @{NSFontAttributeName: FONT_LIGHT(15)};
+    
+    CGRect rect = [str boundingRectWithSize:CGSizeMake(kScreenWidth - 15, MAXFLOAT)
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                 attributes:attributes
+                                    context:nil];
+
+    return 143 + rect.size.height + 5;
 }
+
+
 
 @end
