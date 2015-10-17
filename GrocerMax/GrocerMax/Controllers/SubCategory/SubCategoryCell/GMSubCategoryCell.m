@@ -30,36 +30,36 @@
     NSMutableArray *subcategoryArray = (NSMutableArray *)modal;
     
     
-    NSInteger cellTag = self.tag *3;
-    self.subCategoryBtn1.layer.borderColor = BORDER_COLOR;
+    NSInteger cellTag = self.tag *2;
+    self.subCategoryBtn1.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     self.subCategoryBtn1.layer.borderWidth = BORDER_WIDTH;
     
-    self.subCategoryBtn2.layer.borderColor = BORDER_COLOR;
+    self.subCategoryBtn2.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     self.subCategoryBtn2.layer.borderWidth = BORDER_WIDTH;
     
-    self.subCategoryBtn3.layer.borderColor = BORDER_COLOR;
-    self.subCategoryBtn3.layer.borderWidth = BORDER_WIDTH;
+//    self.subCategoryBtn3.layer.borderColor = BORDER_COLOR;
+//    self.subCategoryBtn3.layer.borderWidth = BORDER_WIDTH;
     
-    if(subcategoryArray.count >= cellTag+3 )
+    if(subcategoryArray.count >= cellTag+2 )
     {
-        self.subCategoryBtn3 .hidden = FALSE;
+//        self.subCategoryBtn3 .hidden = FALSE;
         self.subCategoryBtn2 .hidden = FALSE;
         self.subCategoryBtn1 .hidden = FALSE;
         
-        self.subCategoryBtn3.tag = cellTag+2;
+//        self.subCategoryBtn3.tag = cellTag+2;
         self.subCategoryBtn2.tag = cellTag+1;
         self.subCategoryBtn1.tag = cellTag;
-        GMCategoryModal *categoryModal3 = [subcategoryArray objectAtIndex:cellTag+2];
+//        GMCategoryModal *categoryModal3 = [subcategoryArray objectAtIndex:cellTag+2];
         GMCategoryModal *categoryModal2 = [subcategoryArray objectAtIndex:cellTag+1];
         GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
         
-        [self.subCategoryBtn3 setTitle:categoryModal3.categoryName forState:UIControlStateNormal];
+//        [self.subCategoryBtn3 setTitle:categoryModal3.categoryName forState:UIControlStateNormal];
         [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
         [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
     }
-    else if(subcategoryArray.count >= cellTag+2)
+    else if(subcategoryArray.count >= cellTag+1)
     {
-        self.subCategoryBtn3 .hidden = TRUE;
+//        self.subCategoryBtn3 .hidden = TRUE;
         self.subCategoryBtn2 .hidden = FALSE;
         self.subCategoryBtn1 .hidden = FALSE;
         
@@ -73,21 +73,21 @@
         [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
         [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
     }
-    else if(subcategoryArray.count >= cellTag+1 )
-    {
-        self.subCategoryBtn3 .hidden = TRUE;
-        self.subCategoryBtn2 .hidden = TRUE;
-        self.subCategoryBtn1 .hidden = FALSE;
-        
-        self.subCategoryBtn1.tag = cellTag;
-        
-        GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
-        
-        [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
-    }
+//    else if(subcategoryArray.count >= cellTag+1 )
+//    {
+////        self.subCategoryBtn3 .hidden = TRUE;
+//        self.subCategoryBtn2 .hidden = TRUE;
+//        self.subCategoryBtn1 .hidden = FALSE;
+//        
+//        self.subCategoryBtn1.tag = cellTag;
+//        
+//        GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
+//        
+//        [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
+//    }
     else
     {
-        self.subCategoryBtn3 .hidden = TRUE;
+//        self.subCategoryBtn3 .hidden = TRUE;
         self.subCategoryBtn2 .hidden = TRUE;
         self.subCategoryBtn2 .hidden = TRUE;
     }

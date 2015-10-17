@@ -11,7 +11,7 @@
 @interface GMSubCategoryCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn1;
 @property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn2;
-@property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn3;
+//@property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn3;
 
 -(void)configerViewWithData:(id)modal;
 @end
