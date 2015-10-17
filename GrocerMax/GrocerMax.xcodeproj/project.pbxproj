@@ -2775,6 +2775,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2796,7 +2797,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2811,6 +2811,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2833,7 +2834,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 			};
 			name = Debug;
 		};
@@ -2854,7 +2855,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 			};
 			name = Release;
 		};
@@ -2874,7 +2875,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2891,7 +2892,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;
