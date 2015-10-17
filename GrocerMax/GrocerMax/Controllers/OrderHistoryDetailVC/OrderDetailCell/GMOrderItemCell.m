@@ -34,11 +34,11 @@
         self.orderItemNameLbl.text = @"";
     }
     
-    if(NSSTRING_HAS_DATA(orderItemDeatilModal.itemPrice)) {
-        self.oredrItemPriceLbl.text =[NSString stringWithFormat:@"₹%.2f",orderItemDeatilModal.itemPrice.floatValue];
-    } else {
-        self.oredrItemPriceLbl.text = @"";
-    }
+//    if(NSSTRING_HAS_DATA(orderItemDeatilModal.itemPrice)) {
+//        self.oredrItemPriceLbl.text =[NSString stringWithFormat:@"₹%.2f",orderItemDeatilModal.itemPrice.floatValue];
+//    } else {
+//        self.oredrItemPriceLbl.text = @"";
+//    }
     
     if(NSSTRING_HAS_DATA(orderItemDeatilModal.quantity)) {
         self.orderQuantityLbl.text =[NSString stringWithFormat:@"%d item(s)",orderItemDeatilModal.quantity.intValue];
@@ -47,9 +47,11 @@
     }
     
     if(NSSTRING_HAS_DATA(orderItemDeatilModal.itemPrice) && NSSTRING_HAS_DATA(orderItemDeatilModal.quantity)) {
-        self.totalOrderQuantityLbl.text =[NSString stringWithFormat:@"Quantity: %d x ₹%.2f",orderItemDeatilModal.quantity.intValue,orderItemDeatilModal.itemPrice.floatValue];
+        self.totalOrderQuantityLbl.text =[NSString stringWithFormat:@"Quantity: ₹%.2f",orderItemDeatilModal.quantity.intValue*orderItemDeatilModal.itemPrice.floatValue];
+        self.oredrItemPriceLbl.text =[NSString stringWithFormat:@"₹%.2f",orderItemDeatilModal.quantity.intValue*orderItemDeatilModal.itemPrice.floatValue];
     } else {
-        self.totalOrderQuantityLbl.text = @"";
+        self.totalOrderQuantityLbl.text = @"₹0.0";
+        self.oredrItemPriceLbl.text =@"₹0.0";;
     }
     
 }
