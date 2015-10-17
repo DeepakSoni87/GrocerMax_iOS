@@ -120,6 +120,10 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     
     GMAddShippingAddressVC *addShippingAddressVC = [GMAddShippingAddressVC new];
     addShippingAddressVC.editAddressModal = sender.addressModal;
+    addShippingAddressVC.newAddressHandler = ^(GMAddressModalData *addressModal, BOOL edited) {
+        
+        [self getShippingAddress];
+    };
     [self.navigationController pushViewController:addShippingAddressVC animated:YES];
 }
 
@@ -131,6 +135,11 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         addShippingAddressVC.isComeFromShipping = TRUE;
         [self.navigationController pushViewController:addShippingAddressVC animated:NO];
     } else {
+        
+        addShippingAddressVC.newAddressHandler = ^(GMAddressModalData *addressModal, BOOL edited) {
+            
+            [self getShippingAddress];
+        };
         [self.navigationController pushViewController:addShippingAddressVC animated:YES];
     }
 }

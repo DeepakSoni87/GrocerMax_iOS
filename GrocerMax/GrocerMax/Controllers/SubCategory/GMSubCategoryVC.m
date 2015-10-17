@@ -100,8 +100,8 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
     [subCategoryCell configerViewWithData:categoryModal.subCategories];
     
-    [subCategoryCell.subCategoryBtn3 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [subCategoryCell.subCategoryBtn3 setExclusiveTouch:YES];
+//    [subCategoryCell.subCategoryBtn3 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [subCategoryCell.subCategoryBtn3 setExclusiveTouch:YES];
     
     
     [subCategoryCell.subCategoryBtn2 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,7 +114,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return 62.0;
+        return 50.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

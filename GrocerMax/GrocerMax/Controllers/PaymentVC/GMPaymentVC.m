@@ -466,6 +466,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (void) success:(NSDictionary *)info{
     
+    isPaymentFail = FALSE;
     NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];

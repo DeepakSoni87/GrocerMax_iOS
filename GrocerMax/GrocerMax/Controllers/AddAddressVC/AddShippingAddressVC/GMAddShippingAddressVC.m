@@ -566,6 +566,8 @@ static NSString * const kPincodeCell                    =  @"Pincode";
                         [self.delegate removeFromSupperView];
                     }
                 } else {
+                    
+                    if(self.newAddressHandler) self.newAddressHandler(self.editAddressModal, YES);
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             } failureBlock:^(NSError *error) {
@@ -578,6 +580,8 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             
             [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
                 [self removeProgress];
+                
+                if(self.newAddressHandler) self.newAddressHandler(nil, NO);
                 [self.navigationController popViewControllerAnimated:YES];
             } failureBlock:^(NSError *error) {
                 [self removeProgress];
