@@ -46,8 +46,23 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     
     [self showProgress];
     
+    //2015-07-24 10:26:58
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
     [[GMOperationalHandler handler] orderHistory:userDic withSuccessBlock:^(NSArray *responceData) {
         [self.orderHistoryDataArray addObjectsFromArray:responceData];
+        
+        self.orderHistoryDataArray = [[self.orderHistoryDataArray sortedArrayUsingComparator:^NSComparisonResult(GMOrderHistoryModal* obj1, GMOrderHistoryModal *obj2) {
+            
+            NSDate *date1 = [dateFormatter dateFromString:obj1.orderDate];
+            NSDate *date2 = [dateFormatter dateFromString:obj2.orderDate];
+            
+            return [date1 compare:date2] == NSOrderedAscending;
+            
+        }] mutableCopy];
+        
+        
         [self.orderHistryTableView reloadData];
             [self removeProgress];
     } failureBlock:^(NSError *error) {

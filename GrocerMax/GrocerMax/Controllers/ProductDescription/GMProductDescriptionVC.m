@@ -31,6 +31,8 @@
 
 @property (strong, nonatomic) GMProductDetailModal *proDetailModal;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgViewSoldout;
+
 @property (weak, nonatomic) IBOutlet UIView *cartView;
 
 @property (weak, nonatomic) IBOutlet UILabel *itemsInCartLabel;
@@ -173,6 +175,14 @@
     
     if (self.modal.promotion_level.length > 1) {
         self.promotionalLbl.text = [NSString stringWithFormat:@"%@",self.modal.promotion_level];
+    }
+    
+    if ([self.modal.Status isEqualToString:@"Sold Out"]) {
+        self.imgViewSoldout.hidden = NO;
+        self.addBtn.hidden = YES;
+    }else{
+        self.imgViewSoldout.hidden = YES;
+        self.addBtn.hidden = NO;
     }
 }
 

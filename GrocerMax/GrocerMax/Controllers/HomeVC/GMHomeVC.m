@@ -168,7 +168,7 @@ NSString *const shopByDealCell = @"GMShopByDealCell";
             break;
             
         default:
-            return 205;
+            return 185;
             break;
     }
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -172,18 +173,27 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sold-out" translatesAutoresizingMaskIntoConstraints="NO" id="MTZ-oH-8Zk">
+                                <rect key="frame" x="240" y="103" width="56" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="oTL-t9-7K8"/>
+                                    <constraint firstAttribute="height" constant="16" id="xej-YP-PYJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V0D-8m-xkC" firstAttribute="top" secondItem="4oI-7n-0A5" secondAttribute="bottom" constant="8" id="1kl-Px-WaD"/>
                             <constraint firstItem="V0D-8m-xkC" firstAttribute="leading" secondItem="ye1-mf-dqa" secondAttribute="leading" id="3vf-Ok-12m"/>
+                            <constraint firstAttribute="trailing" secondItem="MTZ-oH-8Zk" secondAttribute="trailing" constant="10" id="9IM-DX-PUP"/>
                             <constraint firstItem="XJy-XS-7fC" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="24" id="Alh-AY-Y5e"/>
                             <constraint firstAttribute="trailing" secondItem="2KM-HW-uJx" secondAttribute="trailing" constant="5" id="DDc-tq-vP8"/>
                             <constraint firstItem="z5M-1Z-ihk" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="24" id="MQv-eK-xZK"/>
                             <constraint firstItem="jEL-2d-Or8" firstAttribute="top" secondItem="J7V-IV-lgx" secondAttribute="bottom" constant="10" id="Pqo-DP-GpE"/>
                             <constraint firstItem="J7V-IV-lgx" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="5" id="Puo-C3-f6N"/>
                             <constraint firstItem="2KM-HW-uJx" firstAttribute="top" secondItem="ye1-mf-dqa" secondAttribute="top" constant="5" id="Qru-y0-rs2"/>
+                            <constraint firstItem="MTZ-oH-8Zk" firstAttribute="top" secondItem="J7V-IV-lgx" secondAttribute="bottom" constant="18" id="ZBR-Jr-uAy"/>
                             <constraint firstAttribute="trailing" secondItem="J7V-IV-lgx" secondAttribute="trailing" id="deO-LV-oUP"/>
                             <constraint firstItem="4oI-7n-0A5" firstAttribute="top" secondItem="J7V-IV-lgx" secondAttribute="bottom" constant="10" id="dwa-a2-CYl"/>
                             <constraint firstItem="z5M-1Z-ihk" firstAttribute="leading" secondItem="ye1-mf-dqa" secondAttribute="leading" constant="8" id="fHH-oH-OPi"/>
@@ -210,6 +220,7 @@
                 <outlet property="bgVeiw" destination="ye1-mf-dqa" id="aol-BB-mE6"/>
                 <outlet property="cartView" destination="2KM-HW-uJx" id="JT8-1o-i6Z"/>
                 <outlet property="imgBtn" destination="XJy-XS-7fC" id="eWy-sK-GA7"/>
+                <outlet property="imgViewSoldout" destination="MTZ-oH-8Zk" id="UrY-Fh-rrg"/>
                 <outlet property="itemsNumberLabel" destination="dqa-W7-Cm4" id="ScA-xE-AeU"/>
                 <outlet property="productBrandLabel" destination="Hxz-r6-tWT" id="W5z-Bn-BZ3"/>
                 <outlet property="productImgView" destination="z5M-1Z-ihk" id="B3p-Ay-wNW"/>
@@ -225,5 +236,6 @@
     <resources>
         <image name="add-subtract" width="100" height="32"/>
         <image name="product_cart" width="16" height="11"/>
+        <image name="sold-out" width="54" height="16"/>
     </resources>
 </document>
