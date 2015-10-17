@@ -16,9 +16,6 @@
 
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
-{
-    NSString *messageString;
-}
 
 @property (strong, nonatomic) GMNavigationController *loginNavigationController;
 
@@ -43,8 +40,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
 @property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+
 @property (weak, nonatomic) IBOutlet UILabel *totalItemInCartLbl;
 
+@property (nonatomic, strong) NSString *messageString;
 @end
 
 static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
@@ -56,7 +55,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    messageString = @"Fetching your cart items from server.";
+    self.messageString = @"Fetching your cart items from server.";
     [self.totalView setHidden:YES];
     [self.placeOrderButton setHidden:YES];
     [self registerCellsForTableView];
@@ -73,12 +72,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     self.navigationController.navigationBarHidden = YES;
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
-    messageString = @"Fetching your cart items from server.";
+    self.messageString = @"Fetching your cart items from server.";
     self.cartModal = [GMCartModal loadCart];
     //    if(self.cartModal)
     [self fetchCartDetailFromServer];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
-    [self setTotalCount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -112,7 +110,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         self.cartDetailModal = nil;
         [self.totalView setHidden:YES];
         [self.placeOrderButton setHidden:YES];
-        messageString = @"No item in your cart, Please add item.";
+        self.messageString = @"No item in your cart, Please add item.";
         [self.cartDetailTableView reloadData];
         return;
     }
@@ -132,17 +130,22 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self.placeOrderButton setHidden:NO];
             [self.updateOrderButton setHidden:YES];
             [self configureAmountView];
+
+            [self setTotalCount];
+
+            [self checkIsAnyItemOutOfStock];
+
         } else {
             self.cartDetailModal = nil;
             [self.totalView setHidden:YES];
             [self.placeOrderButton setHidden:YES];
-            messageString = @"No item in your cart, Please add item.";
+            self.messageString = @"No item in your cart, Please add item.";
         }
         [self.cartDetailTableView reloadData];
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];
-        messageString = @"Problem to fetch your cart.";
+        self.messageString = @"Problem to fetch your cart.";
         [self.totalView setHidden:YES];
         [self.updateOrderButton setHidden:YES];
         [self.placeOrderButton setHidden:YES];
@@ -189,6 +192,17 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.totalLabel setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
 }
 
+- (void)checkIsAnyItemOutOfStock {
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.Status == %@", @"0"];
+    NSArray *filteredArr = [self.cartDetailModal.productItemsArray filteredArrayUsingPredicate:pred];
+    if(filteredArr.count) {
+        
+        [self.placeOrderButton setHidden:YES];
+        [self.updateOrderButton setHidden:NO];
+    }
+}
+
 #pragma mark - UITableView Delegates/Datasource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -205,7 +219,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
     if(NSSTRING_HAS_DATA(productModal.promotion_level))
-        return [GMCartCell cellHeightWithPromotion];
+        return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
     else
         return [GMCartCell cellHeightWithNoPromotion];
 }
@@ -232,7 +246,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [headerLabel setFont:[UIFont systemFontOfSize:16.0f]];
     [headerLabel setTextAlignment:NSTextAlignmentCenter];
     [headerView addSubview:headerLabel];
-    [headerLabel setText:messageString];
+    [headerLabel setText:self.messageString];
     
     return headerView;
 }
@@ -362,11 +376,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 [self configureAmountView];
+                [self checkIsAnyItemOutOfStock];
             } else {
                 [self.totalView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
-                messageString = @"No item in your cart, Please add item.";
+                self.messageString = @"No item in your cart, Please add item.";
             }
             [self setTotalCount];
             [self.cartDetailTableView reloadData];
@@ -431,18 +446,16 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 }
 
 - (void)setTotalCount {
-    int totalItems = 0;
-    GMCartModal *cartModal = [GMCartModal loadCart];
     
-    for (GMProductModal *productModal in cartModal.cartItems) {
+    int totalItems = 0;
+    for (GMProductModal *productModal in self.cartModal.cartItems) {
         
         totalItems += productModal.productQuantity.intValue;
     }
     
-    if(totalItems>0) {
+    if(totalItems > 0)
         self.totalItemInCartLbl.text = [NSString stringWithFormat:@"%d",totalItems];
-    } else {
+    else
         self.totalItemInCartLbl.text = [NSString stringWithFormat:@"0"];
-    }
 }
 @end

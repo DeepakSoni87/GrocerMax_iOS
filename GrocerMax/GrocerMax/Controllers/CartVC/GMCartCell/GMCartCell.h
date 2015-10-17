@@ -46,7 +46,7 @@
 
 + (CGFloat)cellHeightWithNoPromotion;
 
-+ (CGFloat)cellHeightWithPromotion;
++ (CGFloat)cellHeightForPromotionalLabelWithText:(NSString*)str;
 
 - (void)configureViewWithProductModal:(GMProductModal *)productModal;
 @end
