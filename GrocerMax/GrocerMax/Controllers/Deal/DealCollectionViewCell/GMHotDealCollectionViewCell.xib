@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
@@ -13,18 +14,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xH-Cm-9I0">
-                        <rect key="frame" x="5" y="5" width="150" height="150"/>
+                        <rect key="frame" x="8" y="8" width="144" height="152"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotdeal" translatesAutoresizingMaskIntoConstraints="NO" id="E7R-bG-tpu">
-                                <rect key="frame" x="3" y="3" width="144" height="144"/>
+                                <rect key="frame" x="0.0" y="0.0" width="144" height="152"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="E7R-bG-tpu" secondAttribute="trailing" constant="3" id="1hI-X2-0Qn"/>
-                            <constraint firstItem="E7R-bG-tpu" firstAttribute="leading" secondItem="1xH-Cm-9I0" secondAttribute="leading" constant="3" id="4yR-5M-b9N"/>
-                            <constraint firstAttribute="bottom" secondItem="E7R-bG-tpu" secondAttribute="bottom" constant="3" id="thl-0c-h2L"/>
-                            <constraint firstItem="E7R-bG-tpu" firstAttribute="top" secondItem="1xH-Cm-9I0" secondAttribute="top" constant="3" id="zku-kF-6nh"/>
+                            <constraint firstAttribute="trailing" secondItem="E7R-bG-tpu" secondAttribute="trailing" id="1hI-X2-0Qn"/>
+                            <constraint firstItem="E7R-bG-tpu" firstAttribute="leading" secondItem="1xH-Cm-9I0" secondAttribute="leading" id="4yR-5M-b9N"/>
+                            <constraint firstAttribute="bottom" secondItem="E7R-bG-tpu" secondAttribute="bottom" id="thl-0c-h2L"/>
+                            <constraint firstItem="E7R-bG-tpu" firstAttribute="top" secondItem="1xH-Cm-9I0" secondAttribute="top" id="zku-kF-6nh"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -32,10 +33,10 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="1xH-Cm-9I0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="0Se-hc-oYg"/>
-                <constraint firstAttribute="trailing" secondItem="1xH-Cm-9I0" secondAttribute="trailing" constant="5" id="aoW-S9-w9n"/>
-                <constraint firstAttribute="bottom" secondItem="1xH-Cm-9I0" secondAttribute="bottom" constant="5" id="eHh-ek-mjq"/>
-                <constraint firstItem="1xH-Cm-9I0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="xUT-rJ-n3R"/>
+                <constraint firstItem="1xH-Cm-9I0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="0Se-hc-oYg"/>
+                <constraint firstAttribute="trailing" secondItem="1xH-Cm-9I0" secondAttribute="trailing" constant="8" id="aoW-S9-w9n"/>
+                <constraint firstAttribute="bottom" secondItem="1xH-Cm-9I0" secondAttribute="bottom" id="eHh-ek-mjq"/>
+                <constraint firstItem="1xH-Cm-9I0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xUT-rJ-n3R"/>
             </constraints>
             <size key="customSize" width="50" height="56"/>
             <connections>

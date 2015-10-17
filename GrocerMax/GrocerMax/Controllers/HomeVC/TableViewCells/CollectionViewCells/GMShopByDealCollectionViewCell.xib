@@ -8,10 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="V2B-xt-bce" customClass="GMShopByDealCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="215" height="115"/>
+            <rect key="frame" x="0.0" y="0.0" width="215" height="105"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="215" height="115"/>
+                <rect key="frame" x="0.0" y="0.0" width="215" height="105"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xjh-fx-L6i">
                         <rect key="frame" x="15" y="0.0" width="185" height="105"/>
@@ -23,7 +23,7 @@
             <constraints>
                 <constraint firstItem="Xjh-fx-L6i" firstAttribute="top" secondItem="V2B-xt-bce" secondAttribute="top" id="CPn-oc-r7C"/>
                 <constraint firstAttribute="trailing" secondItem="Xjh-fx-L6i" secondAttribute="trailing" constant="15" id="SN7-ER-Dyl"/>
-                <constraint firstAttribute="bottom" secondItem="Xjh-fx-L6i" secondAttribute="bottom" constant="10" id="dOA-WM-Xo7"/>
+                <constraint firstAttribute="bottom" secondItem="Xjh-fx-L6i" secondAttribute="bottom" id="dOA-WM-Xo7"/>
                 <constraint firstItem="Xjh-fx-L6i" firstAttribute="leading" secondItem="V2B-xt-bce" secondAttribute="leading" constant="15" id="ueL-vq-NaF"/>
             </constraints>
             <size key="customSize" width="209" height="130"/>

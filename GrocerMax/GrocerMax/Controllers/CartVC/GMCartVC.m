@@ -132,6 +132,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self.placeOrderButton setHidden:NO];
             [self.updateOrderButton setHidden:YES];
             [self configureAmountView];
+            [self checkIsAnyItemOutOfStock];
         } else {
             self.cartDetailModal = nil;
             [self.totalView setHidden:YES];
@@ -189,6 +190,17 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.totalLabel setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
 }
 
+- (void)checkIsAnyItemOutOfStock {
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.Status == %@", @"0"];
+    NSArray *filteredArr = [self.cartDetailModal.productItemsArray filteredArrayUsingPredicate:pred];
+    if(filteredArr.count) {
+        
+        [self.placeOrderButton setHidden:YES];
+        [self.updateOrderButton setHidden:NO];
+    }
+}
+
 #pragma mark - UITableView Delegates/Datasource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -205,7 +217,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     
     GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
     if(NSSTRING_HAS_DATA(productModal.promotion_level))
-        return [GMCartCell cellHeightWithPromotion];
+        return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
     else
         return [GMCartCell cellHeightWithNoPromotion];
 }
@@ -362,6 +374,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 [self configureAmountView];
+                [self checkIsAnyItemOutOfStock];
             } else {
                 [self.totalView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];

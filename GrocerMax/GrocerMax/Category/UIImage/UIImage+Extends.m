@@ -29,6 +29,8 @@ static NSString * const ksearch_unselectedImage                    = @"search_un
 static NSString * const ksearch_selectedImage                    = @"search_selected";
 static NSString * const kcart_unselectedImage                    = @"cart_unselected";
 static NSString * const kcart_selectedImage                    = @"cart_selected";
+static NSString * const kOfferImage                    = @"offer-tag";
+static NSString * const kfreeImage                    = @"free";
 
 
 @implementation UIImage (Extends)
@@ -127,6 +129,14 @@ static NSString * const kcart_selectedImage                    = @"cart_selected
     return [[UIImage imageNamed:kcart_selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
++ (UIImage *)freeImage {
+    
+    return [[UIImage imageNamed:kfreeImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
 
++ (UIImage *)offerImage {
+    
+    return [[UIImage imageNamed:kOfferImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
 
 @end
