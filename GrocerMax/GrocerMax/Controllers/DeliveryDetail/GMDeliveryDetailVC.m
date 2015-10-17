@@ -247,13 +247,21 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
             self.selectedTimeSlotModal = timeSloteModal;
             timeSloteModal.deliveryDate = deliveryDateTimeSlotModal.deliveryDate;
             GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:0];
-            GMTimeSloteModal *checkSloatTimeSloteModal = [deliveryDateTimeSlotModal.timeSlotModalArray objectAtIndex:0];
             
-            if([timeSloteModal.firstTimeSlote isEqualToString:checkSloatTimeSloteModal.firstTimeSlote]) {
-                self.checkOutModal.timeSloteModal = timeSloteModal;
-            } else {
-                self.checkOutModal.timeSloteModal = nil;
+            
+            
+            for(int timeslotIndex = 0; timeslotIndex<deliveryDateTimeSlotModal.timeSlotModalArray.count; timeslotIndex++ ) {
+                GMTimeSloteModal *checkSloatTimeSloteModal = [deliveryDateTimeSlotModal.timeSlotModalArray objectAtIndex:timeslotIndex];
+                
+                if([timeSloteModal.firstTimeSlote isEqualToString:checkSloatTimeSloteModal.firstTimeSlote]) {
+                    self.checkOutModal.timeSloteModal = timeSloteModal;
+                    break;
+                } else {
+                    self.checkOutModal.timeSloteModal = nil;
+                }
             }
+            
+            
             
             self.timeLbl.text = timeSloteModal.firstTimeSlote;
             

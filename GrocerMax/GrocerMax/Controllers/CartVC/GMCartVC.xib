@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
@@ -11,6 +12,7 @@
                 <outlet property="savedLabel" destination="vH6-u6-qyC" id="716-pd-roy"/>
                 <outlet property="shippingChargeLabel" destination="8mR-65-ND6" id="26M-ZE-lR6"/>
                 <outlet property="subTotalLabel" destination="YC6-ms-lc3" id="oIg-iJ-5AX"/>
+                <outlet property="totalItemInCartLbl" destination="peb-57-vCh" id="5lg-HF-5Fm"/>
                 <outlet property="totalLabel" destination="6mM-CZ-dLC" id="VaI-kh-KUk"/>
                 <outlet property="totalView" destination="Tci-aA-2IP" id="1GG-C2-K0J"/>
                 <outlet property="updateOrderButton" destination="8Na-VN-rsj" id="cVU-f4-slM"/>
@@ -50,14 +52,35 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product_cart" translatesAutoresizingMaskIntoConstraints="NO" id="0KR-V7-WVR">
+                            <rect key="frame" x="278" y="31" width="25" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="Lls-wD-H0S"/>
+                                <constraint firstAttribute="height" constant="22" id="R0A-aR-eWT"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peb-57-vCh">
+                            <rect key="frame" x="285" y="24" width="20" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="LA4-9q-rl7"/>
+                                <constraint firstAttribute="width" constant="20" id="ccx-c9-YGV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.93333333330000001" green="0.1764705882" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="9eH-Ok-ilm" secondAttribute="centerX" id="2fI-We-k40"/>
                         <constraint firstItem="U59-xM-GvH" firstAttribute="top" secondItem="GN8-dB-zoB" secondAttribute="top" constant="20" id="LmY-QK-L2k"/>
+                        <constraint firstAttribute="bottom" secondItem="0KR-V7-WVR" secondAttribute="bottom" constant="11" id="bOK-UV-3QW"/>
+                        <constraint firstAttribute="trailing" secondItem="peb-57-vCh" secondAttribute="trailing" constant="15" id="bZb-l8-n8O"/>
                         <constraint firstItem="9eH-Ok-ilm" firstAttribute="top" secondItem="GN8-dB-zoB" secondAttribute="top" constant="20" id="beu-R3-NNj"/>
                         <constraint firstAttribute="height" constant="64" id="eb2-Yg-5cs"/>
+                        <constraint firstAttribute="trailing" secondItem="0KR-V7-WVR" secondAttribute="trailing" constant="17" id="hvw-it-WzG"/>
+                        <constraint firstAttribute="bottom" secondItem="peb-57-vCh" secondAttribute="bottom" constant="24" id="uag-Wn-N2r"/>
                         <constraint firstItem="U59-xM-GvH" firstAttribute="leading" secondItem="GN8-dB-zoB" secondAttribute="leading" id="y2Y-d7-myZ"/>
                     </constraints>
                 </view>
@@ -93,15 +116,6 @@
                         <action selector="placeOrderButtonTapped:" destination="-1" eventType="touchUpInside" id="bfZ-sL-CHz"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yY5-X7-13V">
-                    <rect key="frame" x="0.0" y="64" width="320" height="334"/>
-                    <animations/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="vJP-GR-K6A"/>
-                        <outlet property="delegate" destination="-1" id="GgB-oi-fuz"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tci-aA-2IP" userLabel="Total View">
                     <rect key="frame" x="7" y="406" width="306" height="112"/>
                     <subviews>
@@ -276,6 +290,15 @@
                         </mask>
                     </variation>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yY5-X7-13V">
+                    <rect key="frame" x="0.0" y="64" width="320" height="334"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="vJP-GR-K6A"/>
+                        <outlet property="delegate" destination="-1" id="GgB-oi-fuz"/>
+                    </connections>
+                </tableView>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
@@ -304,5 +327,6 @@
     </objects>
     <resources>
         <image name="back" width="15" height="14"/>
+        <image name="product_cart" width="16" height="11"/>
     </resources>
 </document>
