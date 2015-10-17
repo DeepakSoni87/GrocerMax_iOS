@@ -52,10 +52,11 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+   
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProducList_Screen];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:self.gaTrackingEventText];
-
+    [self.productListTblView reloadData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

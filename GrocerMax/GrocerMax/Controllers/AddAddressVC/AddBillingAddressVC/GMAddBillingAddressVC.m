@@ -48,6 +48,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     [self.billingAddressTableView setTableFooterView:self.footerView];
+    self.isDefaultBillingAddress = YES;
     [self fetchStatesFromServer];
 }
 
@@ -510,6 +511,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     if([self performValidations]) {
         
         [self.addressModal setIs_default_billing:[NSNumber numberWithBool:self.isDefaultBillingAddress]];
+        [self.addressModal setIs_default_shipping:[NSNumber numberWithBool:NO]];
         
         GMRequestParams *requestParam = [GMRequestParams sharedClass];
         NSDictionary *requestDict = [requestParam getAddAddressParameterDictionaryFrom:self.addressModal andIsNewAddres:self.editAddressModal ? NO : YES];
