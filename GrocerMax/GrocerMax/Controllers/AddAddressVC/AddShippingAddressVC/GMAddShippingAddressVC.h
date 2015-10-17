@@ -16,6 +16,8 @@
 
 @end
 
+typedef void (^NewAddressHandler)(GMAddressModalData *addressModal, BOOL edited);
+
 @interface GMAddShippingAddressVC : UIViewController
 
 @property (nonatomic, strong) GMAddressModalData *editAddressModal;
@@ -24,4 +26,5 @@
 
 @property (nonatomic) BOOL isComeFromShipping;
 
+@property (nonatomic, strong) NewAddressHandler newAddressHandler;
 @end

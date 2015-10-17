@@ -144,6 +144,8 @@ static NSString * const kProductQuantityKey                     = @"productQuant
         if(HAS_KEY(productDict, @"qty"))
             _productQuantity = [NSString stringWithFormat:@"%@", productDict[@"qty"]];
         
+        if(HAS_DATA(productDict, @"Status"))
+            _Status = productDict[@"Status"];
     }
     return self;
 }

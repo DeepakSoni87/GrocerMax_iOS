@@ -123,6 +123,8 @@
 #define kEY_default_shipping               @"default_shipping"
 #define kEY_cityId                         @"cityid"
 
+#define kEY_notification_token            @"notification_token"
+
 //key : category
 
 #define kEY_parentid                       @"parentid"
