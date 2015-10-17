@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
 @property (nonatomic, strong) GMCheckOutModal *checkOutModal;
+@property (weak, nonatomic) IBOutlet UILabel *totalItemInCartLbl;
 
 @end
 
@@ -77,6 +78,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     //    if(self.cartModal)
     [self fetchCartDetailFromServer];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
+    [self setTotalCount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -366,6 +368,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.updateOrderButton setHidden:YES];
                 messageString = @"No item in your cart, Please add item.";
             }
+            [self setTotalCount];
             [self.cartDetailTableView reloadData];
         } failureBlock:^(NSError *error) {
             
@@ -427,4 +430,19 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     return updateStatus;
 }
 
+- (void)setTotalCount {
+    int totalItems = 0;
+    GMCartModal *cartModal = [GMCartModal loadCart];
+    
+    for (GMProductModal *productModal in cartModal.cartItems) {
+        
+        totalItems += productModal.productQuantity.intValue;
+    }
+    
+    if(totalItems>0) {
+        self.totalItemInCartLbl.text = [NSString stringWithFormat:@"%d",totalItems];
+    } else {
+        self.totalItemInCartLbl.text = [NSString stringWithFormat:@"0"];
+    }
+}
 @end

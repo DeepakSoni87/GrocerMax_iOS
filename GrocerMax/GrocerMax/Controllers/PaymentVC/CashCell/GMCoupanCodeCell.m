@@ -31,5 +31,18 @@
     return 50.0f;
 }
 
+- (void)configerView:(id)modal {
+    if(modal == nil) {
+        [self.applyCodeBtn setTitle:@"APPLY CODE" forState:
+         UIControlStateNormal];
+        self.coupanCodeTextField.userInteractionEnabled = TRUE;
+        self.coupanCodeTextField.textColor = [UIColor blackColor];
+    } else {
+        [self.applyCodeBtn setTitle:@"REMOVE CODE" forState:UIControlStateNormal];
+        self.coupanCodeTextField.userInteractionEnabled = FALSE;
+        self.coupanCodeTextField.textColor = [UIColor lightGrayColor];
+    }
+}
+
 
 @end
