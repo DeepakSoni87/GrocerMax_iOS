@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *textfeildBgView;
 
 + (CGFloat) cellHeight;
+
+- (void)configerView:(id)modal;
 @end

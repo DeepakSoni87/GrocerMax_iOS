@@ -188,6 +188,12 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (void)actionApplyCoponCode:(id)sender {
     
+    if(self.coupanCartDetail) {
+        
+        [self removeCouponCode];
+        return;
+    }
+    
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CodeApplied withCategory:@"" label:coupanCode value:nil];
     
     [self.view endEditing:YES];
@@ -214,6 +220,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [self showProgress];
     [[GMOperationalHandler handler] addCoupon:userDic  withSuccessBlock:^(GMCoupanCartDetail *responceData) {
         self.coupanCartDetail = responceData;
+//        [[GMSharedClass sharedClass] showErrorMessage:@"Coupon is appyed."];
         [self.paymentTableView reloadData];
         [self removeProgress];
         
@@ -222,6 +229,51 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         [self removeProgress];
     }];
     
+}
+
+- (void)removeCouponCode {
+    
+    
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        [userDic setObject:userModal.userId forKey:kEY_userid];
+    }
+    if(NSSTRING_HAS_DATA(userModal.quoteId)) {
+        [userDic setObject:userModal.quoteId forKey:kEY_quote_id];
+    }
+    if(NSSTRING_HAS_DATA(coupanCode)) {
+        [userDic setObject:coupanCode forKey:kEY_couponcode];
+    }
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] removeCoupon:userDic  withSuccessBlock:^(NSDictionary *responceData) {
+        
+        
+        NSString *message = @"";
+        if([responceData objectForKey:@"Result"]) {
+            message = [responceData objectForKey:@"Result"];
+        }
+        if([[responceData objectForKey:@"flag"] intValue] == 1) {
+            if(!NSSTRING_HAS_DATA(message)) {
+                message = @"Coupon remove sucessfully.";
+            }
+            [[GMSharedClass sharedClass] showErrorMessage:message];
+            self.coupanCartDetail = nil;
+            [self.paymentTableView reloadData];
+        }else {
+            if(!NSSTRING_HAS_DATA(message)) {
+                message = @"Coupon is not valid.";
+            }
+            [[GMSharedClass sharedClass] showErrorMessage:message];
+        }
+        
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Coupon is not valid."];
+        [self removeProgress];
+    }];
 }
 
 - (void)actionCheckedBtnClicked:(GMButton *)sender {
@@ -302,7 +354,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         coupanCodeCell.coupanCodeTextField.delegate = self;
         [coupanCodeCell.applyCodeBtn addTarget:self action:@selector(actionApplyCoponCode:) forControlEvents:UIControlEventTouchUpInside];
         [coupanCodeCell.applyCodeBtn setExclusiveTouch:YES];
-        
+        [coupanCodeCell configerView:self.coupanCartDetail];
         return coupanCodeCell;
     }
     return nil;
