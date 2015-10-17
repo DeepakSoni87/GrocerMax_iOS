@@ -42,6 +42,8 @@
 
 @property (nonatomic, assign) NSUInteger totalProductsInCart;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgViewSoldout;
+
 @property (nonatomic, assign) NSUInteger quantityValue;
 @end
 
@@ -114,6 +116,14 @@
     self.quantityValue = self.productModal.productQuantity.integerValue > 0 ? self.productModal.productQuantity.integerValue : 1;
     self.productQuantityLbl.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.quantityValue];
     [self updateTotalProductItemsInCart];
+    
+    if ([self.productModal.Status isEqualToString:@"Sold Out"]) {
+        self.imgViewSoldout.hidden = NO;
+        self.addBtn.hidden = YES;
+    }else{
+        self.imgViewSoldout.hidden = YES;
+        self.addBtn.hidden = NO;
+    }
 }
 
 #pragma mark - stepper (+/-) Button Action

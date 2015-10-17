@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -9,6 +10,7 @@
             <connections>
                 <outlet property="addBtn" destination="B99-Dh-fsW" id="ts8-zQ-oDx"/>
                 <outlet property="cartView" destination="qH6-jl-jQj" id="CyR-Mq-VzY"/>
+                <outlet property="imgViewSoldout" destination="D3T-dx-AuV" id="iXn-nV-Z4M"/>
                 <outlet property="itemsInCartLabel" destination="JKY-Wo-s9P" id="C1T-ZO-8eT"/>
                 <outlet property="producDescriptionLbl" destination="wis-bU-t19" id="iWE-of-voh"/>
                 <outlet property="producInfo" destination="o4u-2a-Deb" id="T52-cO-mej"/>
@@ -131,6 +133,13 @@
                                 <action selector="addToCartBtnPressed:" destination="-1" eventType="touchUpInside" id="6Qh-lo-RXt"/>
                             </connections>
                         </button>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sold-out" translatesAutoresizingMaskIntoConstraints="NO" id="D3T-dx-AuV">
+                            <rect key="frame" x="249" y="322" width="56" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="56" id="IQ8-0K-sbc"/>
+                                <constraint firstAttribute="height" constant="16" id="hSm-aN-UIl"/>
+                            </constraints>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrB-Sq-pd8" userLabel="line1">
                             <rect key="frame" x="0.0" y="356" width="320" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,10 +179,12 @@
                         <constraint firstItem="W6P-5e-t9M" firstAttribute="width" secondItem="Fgy-0D-OM2" secondAttribute="width" id="3T2-G9-5iB"/>
                         <constraint firstItem="qH6-jl-jQj" firstAttribute="top" secondItem="Fgy-0D-OM2" secondAttribute="top" constant="20" id="3cv-kt-nBg"/>
                         <constraint firstAttribute="trailing" secondItem="qH6-jl-jQj" secondAttribute="trailing" constant="10" id="6dr-Lo-Z9i"/>
+                        <constraint firstItem="D3T-dx-AuV" firstAttribute="top" secondItem="H79-T8-8Pt" secondAttribute="bottom" constant="18" id="9yt-NR-afd"/>
                         <constraint firstItem="W6P-5e-t9M" firstAttribute="top" secondItem="Fgy-0D-OM2" secondAttribute="top" constant="10" id="Ale-30-Vhr"/>
                         <constraint firstItem="YR1-xA-Zqm" firstAttribute="leading" secondItem="Fgy-0D-OM2" secondAttribute="leading" constant="15" id="EUj-2g-689"/>
                         <constraint firstItem="YR1-xA-Zqm" firstAttribute="top" secondItem="Kjt-rX-0aQ" secondAttribute="bottom" constant="5" id="FTv-Tk-U7Y"/>
                         <constraint firstItem="o4u-2a-Deb" firstAttribute="top" secondItem="W6P-5e-t9M" secondAttribute="bottom" constant="10" id="HLb-tg-jr1"/>
+                        <constraint firstAttribute="trailing" secondItem="D3T-dx-AuV" secondAttribute="trailing" constant="15" id="J7g-OW-4Go"/>
                         <constraint firstItem="PrB-Sq-pd8" firstAttribute="top" secondItem="WD2-Mw-qSS" secondAttribute="bottom" constant="10" id="LjQ-Qn-rgT"/>
                         <constraint firstItem="B99-Dh-fsW" firstAttribute="top" secondItem="H79-T8-8Pt" secondAttribute="bottom" constant="10" id="MoJ-gf-3BW"/>
                         <constraint firstAttribute="trailing" secondItem="o4u-2a-Deb" secondAttribute="trailing" constant="15" id="OsB-JK-GWg"/>
@@ -222,5 +233,6 @@
     <resources>
         <image name="add-subtract" width="100" height="32"/>
         <image name="product_cart" width="16" height="11"/>
+        <image name="sold-out" width="54" height="16"/>
     </resources>
 </document>
