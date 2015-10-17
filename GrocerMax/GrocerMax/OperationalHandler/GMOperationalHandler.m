@@ -387,7 +387,7 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
             

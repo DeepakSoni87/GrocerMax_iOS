@@ -37,6 +37,18 @@ static int const kGaDispatchPeriod = 20;
     
 //    [self fetchAllCategories];
     
+    // for ios 8 and above
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else {
+        // for iOS 8 below
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+    
     //https://developers.google.com/identity/sign-in/ios/offline-access
     [self initializeGoogleAnalytics];
     NSError* configureError;
@@ -119,6 +131,31 @@ static int const kGaDispatchPeriod = 20;
                                sourceApplication:sourceApplication
                                       annotation:annotation];
 }
+
+#pragma mark - PushNotification Delgate
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
+    
+    NSLog(@"My Device token is: %@", deviceToken);
+    
+    NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceTokenString = [deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:kEY_notification_token];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error {
+    
+    NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+
+    
+}
+
 
 #pragma mark - Drawer Handling Methods
 
