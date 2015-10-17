@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0540351BD2843600820752 /* GMOurPromisesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0540331BD2843600820752 /* GMOurPromisesCell.m */; };
+		3B0540361BD2843600820752 /* GMOurPromisesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0540341BD2843600820752 /* GMOurPromisesCell.xib */; };
 		3B2A83F71BB352AC0066DA7A /* GMOffersByDealTypeModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A83F61BB352AC0066DA7A /* GMOffersByDealTypeModal.m */; };
 		3B670CBF1BA0BB4600B5EB9D /* GMOperationalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CBE1BA0BB4600B5EB9D /* GMOperationalHandler.m */; };
 		3B670CC21BA0BC1700B5EB9D /* GMApiPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B670CC11BA0BC1700B5EB9D /* GMApiPathGenerator.m */; };
@@ -350,6 +352,9 @@
 
 /* Begin PBXFileReference section */
 		313947666FC5D46690FB4831 /* Pods-GrocerMax.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.release.xcconfig"; sourceTree = "<group>"; };
+		3B0540321BD2843600820752 /* GMOurPromisesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOurPromisesCell.h; sourceTree = "<group>"; };
+		3B0540331BD2843600820752 /* GMOurPromisesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOurPromisesCell.m; sourceTree = "<group>"; };
+		3B0540341BD2843600820752 /* GMOurPromisesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOurPromisesCell.xib; sourceTree = "<group>"; };
 		3B2A83F51BB352AB0066DA7A /* GMOffersByDealTypeModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOffersByDealTypeModal.h; sourceTree = "<group>"; };
 		3B2A83F61BB352AC0066DA7A /* GMOffersByDealTypeModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOffersByDealTypeModal.m; sourceTree = "<group>"; };
 		3B670CBD1BA0BB4600B5EB9D /* GMOperationalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOperationalHandler.h; sourceTree = "<group>"; };
@@ -1428,6 +1433,9 @@
 				820C4F7B1BB1CC5C00DCCF39 /* GMShopByDealCell.h */,
 				820C4F7C1BB1CC5C00DCCF39 /* GMShopByDealCell.m */,
 				820C4F7D1BB1CC5C00DCCF39 /* GMShopByDealCell.xib */,
+				3B0540321BD2843600820752 /* GMOurPromisesCell.h */,
+				3B0540331BD2843600820752 /* GMOurPromisesCell.m */,
+				3B0540341BD2843600820752 /* GMOurPromisesCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -2379,6 +2387,7 @@
 				820C50531BB1CC5C00DCCF39 /* GMProductListingVC.xib in Resources */,
 				820C502B1BB1CC5C00DCCF39 /* GMShopByDealCollectionViewCell.xib in Resources */,
 				8209F71E1BCD25BC005B7D08 /* kotak.png in Resources */,
+				3B0540361BD2843600820752 /* GMOurPromisesCell.xib in Resources */,
 				E86D14491BB99D4E00D3EAD8 /* PayUPaymentOptionsViewController.xib in Resources */,
 				820C50511BB1CC5C00DCCF39 /* GMProductDescriptionVC.xib in Resources */,
 				820C50551BB1CC5C00DCCF39 /* GMProductListTableViewCell.xib in Resources */,
@@ -2686,6 +2695,7 @@
 				820C50441BB1CC5C00DCCF39 /* GMOffersVC.m in Sources */,
 				E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */,
 				E86D14181BB99D4E00D3EAD8 /* PayUPaymentDetails.m in Sources */,
+				3B0540351BD2843600820752 /* GMOurPromisesCell.m in Sources */,
 				E86D14461BB99D4E00D3EAD8 /* PayUInternetBankingViewController.m in Sources */,
 				820C500B1BB1CC5C00DCCF39 /* GMAddShippingAddressVC.m in Sources */,
 				820C4EBE1BAF3D3900DCCF39 /* GMSharedClass.m in Sources */,

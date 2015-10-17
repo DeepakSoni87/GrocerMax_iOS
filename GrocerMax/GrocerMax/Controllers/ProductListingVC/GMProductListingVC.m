@@ -102,8 +102,9 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     
     GMProductModal *productModal = [self.productBaseModal.productsListArray objectAtIndex:indexPath.row];
     
-    if (productModal.promotion_level.length > 1 )
-        return [GMProductListTableViewCell cellHeightForPromotionalLabel];
+    if (productModal.promotion_level.length > 1 ){
+        return [GMProductListTableViewCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
+    }
     
     return [GMProductListTableViewCell cellHeightForNonPromotionalLabel];
 }
