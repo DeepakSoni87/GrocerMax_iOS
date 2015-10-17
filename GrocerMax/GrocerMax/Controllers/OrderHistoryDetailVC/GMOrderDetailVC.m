@@ -165,7 +165,7 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
             return 0;
         }
     } else if(indexPath.section == 1){
-        return [GMOrderItemCell cellHeight];
+        return UITableViewAutomaticDimension;
     } else {
         return 0.01;
     }
@@ -180,7 +180,7 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
         }
     
     } else if(indexPath.section == 1){
-        return [GMOrderItemCell cellHeight];
+        return UITableViewAutomaticDimension;
     } else {
         return 1.0;
     }
