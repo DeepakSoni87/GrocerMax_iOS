@@ -124,10 +124,19 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
                 value = self.orderDeatilBaseModal.orderDate;
                 break;
             case 1:
-                value = self.orderDeatilBaseModal.shippingCharge;
+                if(NSSTRING_HAS_DATA(self.orderDeatilBaseModal.shippingCharge)) {
+                value =[NSString stringWithFormat:@"₹%.2f", [self.orderDeatilBaseModal.shippingCharge floatValue]];
+                } else {
+                    value = @"₹%0.00";
+                }
                 break;
             case 2:
+                if([self.orderDeatilBaseModal.paymentMethod isEqualToString:@"tablerate_bestway"]) {
+                    value = @"Credit Card/Debit Card/Net Banking";
+                    
+                } else {
                 value = self.orderDeatilBaseModal.paymentMethod;
+                }
                 break;
             case 3:
                 value = self.orderDeatilBaseModal.deliveryDate;
