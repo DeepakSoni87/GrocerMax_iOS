@@ -265,14 +265,19 @@ static CGFloat const kProfileCellHeight = 44.0f;
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:@"care@grocermax.com"];
     
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:mc animated:YES completion:NULL];
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];;
+        mc.mailComposeDelegate = self;
+        [mc setSubject:emailTitle];
+        [mc setMessageBody:messageBody isHTML:NO];
+        [mc setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self presentViewController:mc animated:YES completion:NULL];
+    }
+    else
+        NSLog(@"This device cannot send email");
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
