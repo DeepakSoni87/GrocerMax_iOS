@@ -16,6 +16,7 @@
 #import "GMLeftMenuVC.h"
 #import "GMHotDealVC.h"
 #import "GMSearchVC.h"
+#import "GMProfileVC.h"
 #import <GoogleAnalytics/GAI.h>
 
 static NSString *const kGaPropertyId = @"UA-64820863-1";
@@ -261,5 +262,24 @@ static int const kGaDispatchPeriod = 20;
 //    gai.logger.logLevel = kGAILogLevelVerbose;//Remove in release
     
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Splash_Screen];
+}
+
+-(GMProfileVC*) rootProfileVCFromFourthTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *profileNavVC = [tabBarVC.viewControllers objectAtIndex:1];
+        
+        GMProfileVC *profileVC = [profileNavVC viewControllers][0];
+        return profileVC;
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+        
+    }
+    
+    return nil;
 }
 @end
