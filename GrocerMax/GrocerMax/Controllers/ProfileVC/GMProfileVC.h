@@ -10,4 +10,6 @@
 
 @interface GMProfileVC : UIViewController
 
+- (void) goOrderHistoryList;
+
 @end
