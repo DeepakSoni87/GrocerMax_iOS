@@ -8,6 +8,7 @@
 
 #import "GMOrderSuccessVC.h"
 #import "GMCartModal.h"
+#import "GMProfileVC.h"
 
 @interface GMOrderSuccessVC ()
 
@@ -53,5 +54,14 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
 //    [self.tabBarController setSelectedIndex:0];
 }
+- (IBAction)actionOrderHistory:(id)sender {
+    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+    [self.tabBarController setSelectedIndex:1];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    GMProfileVC *profileVC = [APP_DELEGATE rootProfileVCFromFourthTab];
+    [profileVC goOrderHistoryList];
+}
+
+
 
 @end

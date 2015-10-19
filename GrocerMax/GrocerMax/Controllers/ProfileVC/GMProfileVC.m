@@ -311,4 +311,9 @@ static CGFloat const kProfileCellHeight = 44.0f;
     [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[loginVC] animated:YES];
 }
 
+
+- (void)goOrderHistoryList {
+    GMOrderHistryVC *orderHistryVC = [GMOrderHistryVC new];
+    [self.navigationController pushViewController:orderHistryVC animated:YES];
+}
 @end
