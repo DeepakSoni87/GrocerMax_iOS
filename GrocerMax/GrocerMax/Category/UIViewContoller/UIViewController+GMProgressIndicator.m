@@ -15,6 +15,8 @@
 @implementation UIViewController (GMProgressIndicator)
 
 - (void)showProgress {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self showProgressWithText:nil];
 }
 
@@ -32,6 +34,7 @@
 
 - (void)removeProgress {
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     if ([[UIApplication sharedApplication] isIgnoringInteractionEvents])
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     //    [self.view setUserInteractionEnabled:YES];// added by R

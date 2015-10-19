@@ -31,13 +31,13 @@ static GMRequestParams *sharedClass;
 + (NSMutableDictionary *)getUserFBLoginRequestParamsWith:(NSDictionary*)parameterDic{
     
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
-
+    
     [paramDict setObject:parameterDic[kEY_uemail] forKey:kEY_uemail];
     [paramDict setObject:parameterDic[kEY_quote_id] forKey:kEY_quote_id];
     [paramDict setObject:parameterDic[kEY_fname] forKey:kEY_fname];
     [paramDict setObject:parameterDic[kEY_lname] forKey:kEY_lname];
     [paramDict setObject:parameterDic[kEY_number] forKey:kEY_number];
-
+    
     return paramDict;
 }
 
@@ -726,7 +726,7 @@ static GMRequestParams *sharedClass;
     if(!isNewAddress)
         [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.customer_address_id] forKey:kEY_addressid];
     if(NSSTRING_HAS_DATA(userModal.userId))
-    [addressDictionary setObject:userModal.userId forKey:kEY_userid];
+        [addressDictionary setObject:userModal.userId forKey:kEY_userid];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.firstName] forKey:kEY_fname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.lastName] forKey:kEY_lname];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];
