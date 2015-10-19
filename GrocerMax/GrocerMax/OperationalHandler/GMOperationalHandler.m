@@ -380,7 +380,6 @@ static GMOperationalHandler *sharedHandler;
     
 }
 
-
 - (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
 
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getAddressPath]];

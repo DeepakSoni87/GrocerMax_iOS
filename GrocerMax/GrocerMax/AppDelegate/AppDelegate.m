@@ -60,7 +60,7 @@ static int const kGaDispatchPeriod = 20;
     [GIDSignIn sharedInstance].clientID = @"38746701051-1bi2gqs9obckcf9b6a7fffdmlvfmpr1a.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].serverClientID = @"38746701051-30a0ch5eogued2mq4hjq8uj25kr75mss.apps.googleusercontent.com";
     
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"d19e792d766ac6a0dc3b7e754145c00f"];
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"2d4f09907ae76f1bd55ad2572de185e3"];
     // Configure the SDK in here only!
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
