@@ -124,7 +124,7 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [productDict setObject:[self getValidStringObjectFromString:productModal.productQuantity] forKey:kQuantityKey];
     
     NSArray *productArray = [NSArray arrayWithObject:productDict];
-//    [cartGuestDictionary setObject:[NSString getJsonStringFromObject:productArray] forKey:kProductsKey];
+    //    [cartGuestDictionary setObject:[NSString getJsonStringFromObject:productArray] forKey:kProductsKey];
     [cartGuestDictionary setObject:productArray forKey:kProductsKey];
     GMUserModal *userModal = [GMUserModal loggedInUser];
     [cartGuestDictionary setObject:[self getValidStringObjectFromString:userModal.quoteId] forKey:kQuoteIdKey];
@@ -183,19 +183,22 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     
     for (GMProductModal *productModal in productItems) {
         
-        NSMutableDictionary *productDict = [NSMutableDictionary dictionary];
-        [productDict setObject:[self getValidStringObjectFromString:productModal.productid] forKey:kProductIdKey];
-        [productDict setObject:[self getValidStringObjectFromString:productModal.productQuantity] forKey:kQuantityKey];
-        [productItemsArray addObject:productDict];
+        if(productModal.sale_price.integerValue != 0) {
+            
+            NSMutableDictionary *productDict = [NSMutableDictionary dictionary];
+            [productDict setObject:[self getValidStringObjectFromString:productModal.productid] forKey:kProductIdKey];
+            [productDict setObject:[self getValidStringObjectFromString:productModal.productQuantity] forKey:kQuantityKey];
+            [productItemsArray addObject:productDict];
+        }
     }
     return productItemsArray;
 }
 
 //- (NSString *)deletedProductIds:(NSMutableArray *)deletedProductItems {
-//    
+//
 //    if(!deletedProductItems.count)
 //        return @"";
-//    
+//
 //    NSArray *productIdArr = [deletedProductItems valueForKeyPath:@"@distinctUnionOfObjects.productid"];
 //    NSString *resultedStr = [productIdArr componentsJoinedByString:@","];
 //    return resultedStr;
