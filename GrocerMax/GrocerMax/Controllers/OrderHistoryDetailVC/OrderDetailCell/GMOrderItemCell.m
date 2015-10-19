@@ -47,7 +47,7 @@
     }
     
     if(NSSTRING_HAS_DATA(orderItemDeatilModal.itemPrice) && NSSTRING_HAS_DATA(orderItemDeatilModal.quantity)) {
-        self.totalOrderQuantityLbl.text =[NSString stringWithFormat:@"Quantity: ₹%.2f",orderItemDeatilModal.quantity.intValue*orderItemDeatilModal.itemPrice.floatValue];
+        self.totalOrderQuantityLbl.text =[NSString stringWithFormat:@"Quantity: %@ x ₹%.2f",orderItemDeatilModal.quantity, orderItemDeatilModal.itemPrice.floatValue];
         self.oredrItemPriceLbl.text =[NSString stringWithFormat:@"₹%.2f",orderItemDeatilModal.quantity.intValue*orderItemDeatilModal.itemPrice.floatValue];
     } else {
         self.totalOrderQuantityLbl.text = @"₹0.0";
