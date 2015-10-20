@@ -35,5 +35,9 @@
 - (void)goToHomeWithAnimation:(BOOL)animation;
 
 -(GMProfileVC*) rootProfileVCFromFourthTab;
+
+-(void)ShowProcessingView;
+
+-(void)HideProcessingView;
 @end
 
