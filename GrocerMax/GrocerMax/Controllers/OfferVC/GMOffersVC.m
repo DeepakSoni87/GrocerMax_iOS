@@ -138,6 +138,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:catMdl.categoryId forKey:kEY_deal_id];
     [localDic setObject:@"1" forKey:kEY_page];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
     
     [self showProgress];
     [[GMOperationalHandler handler] dealProductListing:localDic withSuccessBlock:^(id responceData) {
