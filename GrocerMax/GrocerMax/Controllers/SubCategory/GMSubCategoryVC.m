@@ -123,11 +123,13 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-        return 115.0f;
+        return 114.0f;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1f;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView;
@@ -144,9 +146,10 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     return headerView;
 }
 
--(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SubcategoryScroller withCategory:@"" label:nil value:nil];
 }
+
 #pragma mark -
 
 -(void)actionHeaderBtnClicked:(UIButton *)sender {
@@ -179,22 +182,12 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     }
 }
 
--(void)actionSubCategoryBtnClicked:(UIButton *)sender {
+- (void)actionSubCategoryBtnClicked:(UIButton *)sender {
     
     NSInteger btnTag = sender.tag;
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:self.expandedIndex];;
     
     GMCategoryModal *categoryModal1 = [categoryModal.subCategories objectAtIndex:btnTag];
-    //Rahut put your code here
-    
-//    NSMutableArray *arr = [NSMutableArray arrayWithArray:categoryModal1.subCategories];
-//    [arr insertObject:categoryModal1 atIndex:0];
-//    
-//    GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
-//    rootVC.pageData = arr;
-//    rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
-//    [self.navigationController pushViewController:rootVC animated:YES];
-    
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SubCategoryNext withCategory:@"" label:categoryModal1.categoryName value:nil];
     
     [self fetchProductListingDataForCategory:categoryModal1];

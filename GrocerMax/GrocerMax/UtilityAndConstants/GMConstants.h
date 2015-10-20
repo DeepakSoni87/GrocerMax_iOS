@@ -62,6 +62,10 @@
 #define FONT_BOLD(s)    [UIFont fontWithName:@"HelveticaNeue-Bold" size:s]
 #define FONT_LIGHT(s)   [UIFont fontWithName:@"HelveticaNeue-Light" size:s]
 
+#define FONT_LATO_REGULAR(s) [UIFont fontWithName:@"Lato-Regular" size:s]
+#define FONT_LATO_BOLD(s)    [UIFont fontWithName:@"Lato-Bold" size:s]
+#define FONT_LATO_LIGHT(s)   [UIFont fontWithName:@"Lato-Light" size:s]
+
 
 //Resoponce Key
 #define kEY_Result                        @"Result"

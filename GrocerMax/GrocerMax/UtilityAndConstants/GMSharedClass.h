@@ -52,4 +52,8 @@
 - (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value;
 
 - (void) clearCart;
+
+- (NSString *)getCategoryImageBaseUrl;
+
+- (void)setCategoryImageBaseUrl:(NSString *)baseurl;
 @end

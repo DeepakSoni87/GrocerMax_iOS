@@ -142,6 +142,9 @@ static GMOperationalHandler *sharedHandler;
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
+        NSString *baseUrl = responseObject[@"urlImg"];
+        if(NSSTRING_HAS_DATA(baseUrl))
+           [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
         
         NSDictionary *categoryDict = responseObject[kCategoryKey];
         GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
