@@ -34,10 +34,10 @@
 #import "GMHomeBannerModal.h"
 #import "GMPaymentVC.h"
 
-#define   KEY_Banner_search @"search"
-#define   KEY_Banner_offerbydealtype @"offerbydealtype"
-#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
-#define   KEY_Banner_productlistall @"productlistall"
+//#define   KEY_Banner_search @"search"
+//#define   KEY_Banner_offerbydealtype @"offerbydealtype"
+//#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
+//#define   KEY_Banner_productlistall @"productlistall"
 
 NSString *const pageControllCell = @"GMPageControllCell";
 NSString *const shopByCategoryCell = @"GMShopByCategoryCell";

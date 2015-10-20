@@ -33,4 +33,20 @@
 }
 
 
+- (GMHomeBannerModal *) initWithDictionary:(NSDictionary *)notificationDetailDic {
+    
+    if([notificationDetailDic objectForKey:@"name"]) {
+        [self setName:[NSString stringWithFormat:@"%@",[notificationDetailDic objectForKey:@"name"]]];
+    }
+    if([notificationDetailDic objectForKey:@"linkurl"]) {
+        [self setLinkUrl:[NSString stringWithFormat:@"%@",[notificationDetailDic objectForKey:@"linkurl"]]];
+    }
+    if([notificationDetailDic objectForKey:@"imageurl"]) {
+        [self setImageUrl:[NSString stringWithFormat:@"%@",[notificationDetailDic objectForKey:@"imageurl"]]];
+    }
+    
+    return self;
+    
+}
+
 @end

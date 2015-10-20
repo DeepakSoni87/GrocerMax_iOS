@@ -66,6 +66,17 @@
 #define FONT_LATO_BOLD(s)    [UIFont fontWithName:@"Lato-Bold" size:s]
 #define FONT_LATO_LIGHT(s)   [UIFont fontWithName:@"Lato-Light" size:s]
 
+//Notification key
+#define Keyaps @"aps"
+#define Keyalert @"alert"
+#define KeyapnsType @"apnsType"
+#define Cancel_Text @"Cancel"
+
+#define   KEY_Banner_search @"search"
+#define   KEY_Banner_offerbydealtype @"offerbydealtype"
+#define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
+#define   KEY_Banner_productlistall @"productlistall"
+
 
 //Resoponce Key
 #define kEY_Result                        @"Result"
