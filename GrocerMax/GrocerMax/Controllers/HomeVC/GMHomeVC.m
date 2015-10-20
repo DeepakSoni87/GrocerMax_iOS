@@ -63,7 +63,12 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
     [self addLeftMenuButton];
 //    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
-    self.navigationItem.title = @"Home";
+//    self.navigationItem.title = @"Home";
+    self.navigationItem.title = @"";
+    UIImage *image = [UIImage imageNamed:@"logo"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.navigationController.navigationBar.topItem setTitleView:imageView];
+    
     [self fetchAllCategoriesAndDeals];
     
     [self registerCellsForTableView];
