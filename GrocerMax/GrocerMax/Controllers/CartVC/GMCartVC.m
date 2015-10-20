@@ -271,6 +271,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     [self.placeOrderButton setHidden:YES];
     [self.updateOrderButton setHidden:NO];
     [self updateAmountViewWhenQuantityChanged];
+    [self setTotalCount];
 }
 
 #pragma mark - IBAction Methods
@@ -448,7 +449,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (void)setTotalCount {
     
     int totalItems = 0;
-    for (GMProductModal *productModal in self.cartModal.cartItems) {
+    for (GMProductModal *productModal in self.cartDetailModal.productItemsArray) {
         
         totalItems += productModal.productQuantity.intValue;
     }

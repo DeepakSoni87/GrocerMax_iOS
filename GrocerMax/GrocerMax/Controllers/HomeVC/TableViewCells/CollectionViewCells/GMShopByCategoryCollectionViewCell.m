@@ -7,6 +7,7 @@
 //
 
 #import "GMShopByCategoryCollectionViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface GMShopByCategoryCollectionViewCell ()
 
@@ -38,6 +39,8 @@
 - (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath{
     
     GMCategoryModal *mdl = data;
+//    NSString *categoryImageUrlStr = [NSString stringWithFormat:@"%@%@.png", [[GMSharedClass sharedClass] getCategoryImageBaseUrl],mdl.categoryId];
+//    [self.bgImgView setImageWithURL:[NSURL URLWithString:categoryImageUrlStr] placeholderImage:nil];
     [self.bgImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"cat-%@", mdl.categoryId]]];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
@@ -64,7 +67,7 @@
     [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[strArr componentsJoinedByString:@","] attributes:style2]];
     
     self.titleLbl.attributedText = attString1;
-    [self.offerBtn setTitle:[NSString stringWithFormat:@"%li OFFERS >",(long)[mdl.offercount integerValue]] forState:UIControlStateNormal];
+    [self.offerBtn setTitle:[NSString stringWithFormat:@"%li OFFERS",(long)[mdl.offercount integerValue]] forState:UIControlStateNormal];
     self.offerBtn.tag = indexPath.item;
 }
 

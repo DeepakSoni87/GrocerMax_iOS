@@ -11,6 +11,7 @@
 
 @class GMTabBarVC;
 @class GMSearchVC;
+@class GMProfileVC;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -32,5 +33,11 @@
 -(GMSearchVC*) rootSearchVCFromFourthTab;
 
 - (void)goToHomeWithAnimation:(BOOL)animation;
+
+-(GMProfileVC*) rootProfileVCFromFourthTab;
+
+-(void)ShowProcessingView;
+
+-(void)HideProcessingView;
 @end
 

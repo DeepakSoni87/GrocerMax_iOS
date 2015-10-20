@@ -83,12 +83,14 @@ static GMHotDealBaseModal *hotDealArrayModal;
 
 @property (nonatomic, readwrite, strong) NSString *imageURL;
 
+@property (nonatomic, readwrite, strong) NSString *bigImageURL;
 @end
 
 static NSString * const kDealIdKey                       = @"dealId";
 static NSString * const kDealTypeKey                     = @"dealType";
 static NSString * const kImageNameKey                    = @"imageName";
 static NSString * const kImageUrlKey                     = @"imageURL";
+static NSString * const kBigImageUrlKey                  = @"bigImageURL";
 
 @implementation GMHotDealModal
 
@@ -97,7 +99,8 @@ static NSString * const kImageUrlKey                     = @"imageURL";
     return @{@"dealTypeId"                : @"id",
              @"dealType"                  : @"dealType",
              @"imageName"                 : @"img_url",
-             @"imageURL"                  : @"img"
+             @"imageURL"                  : @"img",
+             @"bigImageURL"               : @"big_img"
              };
 }
 
@@ -109,6 +112,7 @@ static NSString * const kImageUrlKey                     = @"imageURL";
     [aCoder encodeObject:self.dealType forKey:kDealTypeKey];
     [aCoder encodeObject:self.imageName forKey:kImageNameKey];
     [aCoder encodeObject:self.imageURL forKey:kImageUrlKey];
+    [aCoder encodeObject:self.bigImageURL forKey:kBigImageUrlKey];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -119,6 +123,7 @@ static NSString * const kImageUrlKey                     = @"imageURL";
         self.dealType = [aDecoder decodeObjectForKey:kDealTypeKey];
         self.imageName = [aDecoder decodeObjectForKey:kImageNameKey];
         self.imageURL = [aDecoder decodeObjectForKey:kImageUrlKey];
+        self.bigImageURL = [aDecoder decodeObjectForKey:kBigImageUrlKey];
     }
     return self;
 }

@@ -63,7 +63,7 @@
             if(NSSTRING_HAS_DATA(cartDetailModal.discountAmount)) {
                 saving = saving - cartDetailModal.discountAmount.doubleValue;
             }
-            self.youSavedLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.you_save.doubleValue+saving];
+            self.youSavedLbl.text = [NSString stringWithFormat:@"₹-%.2f",coupanCartDetail.you_save.doubleValue+saving];
         } else {
             self.youSavedLbl.text = [NSString stringWithFormat:@"₹0.00"];
         }
@@ -75,13 +75,14 @@
             self.totalPriceLbl.text = [NSString stringWithFormat:@"₹0.00"];
             [self.totalItemPriceLbl setText:[NSString stringWithFormat:@"₹0.00"]];
         }
-        if(NSSTRING_HAS_DATA(coupanCartDetail.subtotal_with_discount)) {
-            self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.subtotal_with_discount.doubleValue];
+        if(NSSTRING_HAS_DATA(coupanCartDetail.you_save)) {
+            self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹%.2f",coupanCartDetail.you_save.doubleValue];
         } else {
             self.couponDiscountLbl.text = [NSString stringWithFormat:@"₹0.00"];
         }
         
-    } else {
+    }
+    else {
         self.shippingPriceLbl.text = [NSString stringWithFormat:@"₹%.2f",cartDetailModal.shippingAmount.doubleValue];
         
         double saving = 0;

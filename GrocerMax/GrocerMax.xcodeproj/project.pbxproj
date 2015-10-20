@@ -27,6 +27,7 @@
 		3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF64CBF1BBC98DC00E16DA5 /* GMSearchVC.m */; };
 		3BF64CC21BBC98DC00E16DA5 /* GMSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF64CC01BBC98DC00E16DA5 /* GMSearchVC.xib */; };
 		766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */; };
+		820435491BD539E800193C86 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820435481BD539E800193C86 /* MessageUI.framework */; };
 		8209F6F91BCD25BC005B7D08 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6A71BCD25BC005B7D08 /* amex.png */; };
 		8209F6FA1BCD25BC005B7D08 /* amex_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6A81BCD25BC005B7D08 /* amex_logo.png */; };
 		8209F6FB1BCD25BC005B7D08 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209F6A91BCD25BC005B7D08 /* arrow.png */; };
@@ -236,11 +237,15 @@
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
 		82D01A391BB931B500D5CC2D /* GMOrderSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */; };
 		82D01A3A1BB931B500D5CC2D /* GMOrderSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */; };
+		82DC5A651BD6A360009DE39E /* Lato-Bol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A621BD6A360009DE39E /* Lato-Bol.ttf */; settings = {ASSET_TAGS = (); }; };
+		82DC5A661BD6A360009DE39E /* Lato-Lig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A631BD6A360009DE39E /* Lato-Lig.ttf */; settings = {ASSET_TAGS = (); }; };
+		82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */; settings = {ASSET_TAGS = (); }; };
 		82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */; };
 		82E6C8C01BD02EB300DD865C /* GMOrderFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
 		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
 		E8326C781BB6DB76008ACC8B /* GMPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */; };
+		E83C3BC91BD69D330065D764 /* spinningwheel-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = E83C3BC81BD69D330065D764 /* spinningwheel-3.gif */; };
 		E85310E61BB47F93005A008B /* GMOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310E41BB47F93005A008B /* GMOrderDetailVC.m */; };
 		E85310E71BB47F93005A008B /* GMOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */; };
 		E85310EC1BB482E9005A008B /* GMOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85310EA1BB482E9005A008B /* GMOrderDetailCell.m */; };
@@ -387,6 +392,7 @@
 		3BF64CC01BBC98DC00E16DA5 /* GMSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMSearchVC.xib; sourceTree = "<group>"; };
 		43B6BB15F42787D76D0673F4 /* Pods-GrocerMax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrocerMax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax.debug.xcconfig"; sourceTree = "<group>"; };
 		594349819C7E33B5EED0BA9F /* libPods-GrocerMax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GrocerMax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		820435481BD539E800193C86 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8209F6A71BCD25BC005B7D08 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
 		8209F6A81BCD25BC005B7D08 /* amex_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex_logo.png; sourceTree = "<group>"; };
 		8209F6A91BCD25BC005B7D08 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -699,6 +705,9 @@
 		82D01A361BB931B500D5CC2D /* GMOrderSuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderSuccessVC.h; sourceTree = "<group>"; };
 		82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderSuccessVC.m; sourceTree = "<group>"; };
 		82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderSuccessVC.xib; sourceTree = "<group>"; };
+		82DC5A621BD6A360009DE39E /* Lato-Bol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bol.ttf"; sourceTree = "<group>"; };
+		82DC5A631BD6A360009DE39E /* Lato-Lig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Lig.ttf"; sourceTree = "<group>"; };
+		82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Reg.ttf"; sourceTree = "<group>"; };
 		82E6C8BC1BD02EB200DD865C /* GMOrderFailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderFailVC.h; sourceTree = "<group>"; };
 		82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderFailVC.m; sourceTree = "<group>"; };
 		82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderFailVC.xib; sourceTree = "<group>"; };
@@ -707,6 +716,7 @@
 		E8326C741BB6DB76008ACC8B /* GMPaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentVC.h; sourceTree = "<group>"; };
 		E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentVC.m; sourceTree = "<group>"; };
 		E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentVC.xib; sourceTree = "<group>"; };
+		E83C3BC81BD69D330065D764 /* spinningwheel-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spinningwheel-3.gif"; sourceTree = "<group>"; };
 		E85310E31BB47F93005A008B /* GMOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailVC.h; sourceTree = "<group>"; };
 		E85310E41BB47F93005A008B /* GMOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailVC.m; sourceTree = "<group>"; };
 		E85310E51BB47F93005A008B /* GMOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailVC.xib; sourceTree = "<group>"; };
@@ -850,6 +860,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820435491BD539E800193C86 /* MessageUI.framework in Frameworks */,
 				8209F7431BCD29AF005B7D08 /* WebKit.framework in Frameworks */,
 				8209F7411BCD2881005B7D08 /* libz.dylib in Frameworks */,
 				E86D14521BB99E0000D3EAD8 /* SystemConfiguration.framework in Frameworks */,
@@ -1947,6 +1958,11 @@
 		82B1B2E91B9F60FA001550FC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+
+				82DC5A611BD6A360009DE39E /* Font */,
+
+				E83C3BC81BD69D330065D764 /* spinningwheel-3.gif */,
+
 				E8D389081BCED64D0069A37F /* iTunesArtwork */,
 				3B670CCB1BA0BF2400B5EB9D /* Messages.strings */,
 				82B1B2B31B9F5E60001550FC /* Images.xcassets */,
@@ -1965,6 +1981,16 @@
 			path = OrderSuccess;
 			sourceTree = "<group>";
 		};
+		82DC5A611BD6A360009DE39E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				82DC5A621BD6A360009DE39E /* Lato-Bol.ttf */,
+				82DC5A631BD6A360009DE39E /* Lato-Lig.ttf */,
+				82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		82E6C8BB1BD02EB200DD865C /* OrderFail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1978,6 +2004,7 @@
 		B9BF57FEB8C9D49E7397393D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				820435481BD539E800193C86 /* MessageUI.framework */,
 				8209F7421BCD29AF005B7D08 /* WebKit.framework */,
 				8209F7401BCD2881005B7D08 /* libz.dylib */,
 				E86D14511BB99E0000D3EAD8 /* SystemConfiguration.framework */,
@@ -2368,6 +2395,7 @@
 				8209F7071BCD25BC005B7D08 /* CBBankPageLoading_iPhone6.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */,
+				82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */,
 				8209F73B1BCD25BC005B7D08 /* trusticon.png in Resources */,
 				E86D14241BB99D4E00D3EAD8 /* checkbox@2x.png in Resources */,
 				E86D143D1BB99D4E00D3EAD8 /* StoredCard.xib in Resources */,
@@ -2463,6 +2491,7 @@
 				3BD49B071BB9E112009BE425 /* GMProvideMobileInfoVC.xib in Resources */,
 				820C50631BB1CC5C00DCCF39 /* GMSubCategoryCell.xib in Resources */,
 				8209F7361BCD25BC005B7D08 /* sbi.png in Resources */,
+				E83C3BC91BD69D330065D764 /* spinningwheel-3.gif in Resources */,
 				E86D140D1BB99D4E00D3EAD8 /* l_icon3.png in Resources */,
 				8209F70D1BCD25BC005B7D08 /* diner.png in Resources */,
 				8209F6FE1BCD25BC005B7D08 /* calendar.png in Resources */,
@@ -2506,10 +2535,12 @@
 				8209F7121BCD25BC005B7D08 /* hdfc_bank.png in Resources */,
 				E86D142A1BB99D4E00D3EAD8 /* error_icon.png in Resources */,
 				E85310ED1BB482E9005A008B /* GMOrderDetailCell.xib in Resources */,
+				82DC5A661BD6A360009DE39E /* Lato-Lig.ttf in Resources */,
 				8209F7211BCD25BC005B7D08 /* l_icon2.png in Resources */,
 				8209F7251BCD25BC005B7D08 /* lock.png in Resources */,
 				E86D141F1BB99D4E00D3EAD8 /* arrow.png in Resources */,
 				8209F7221BCD25BC005B7D08 /* l_icon3.png in Resources */,
+				82DC5A651BD6A360009DE39E /* Lato-Bol.ttf in Resources */,
 				8209F7101BCD25BC005B7D08 /* error_large.png in Resources */,
 				8209F7011BCD25BC005B7D08 /* CBAllPaymentOption.xib in Resources */,
 				8209F7271BCD25BC005B7D08 /* logo.png in Resources */,
@@ -2834,6 +2865,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
@@ -2844,7 +2876,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
+				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
 			};
 			name = Debug;
 		};
@@ -2855,6 +2887,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
 				INFOPLIST_FILE = GrocerMax/Info.plist;
@@ -2865,7 +2898,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
+				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
 			};
 			name = Release;
 		};
@@ -2874,6 +2907,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2885,7 +2919,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
+				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2895,6 +2929,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2902,7 +2937,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "587d07db-1105-4127-9b01-59ff66317194";
+				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

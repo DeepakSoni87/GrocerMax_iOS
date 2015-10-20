@@ -30,6 +30,7 @@
 
 static GMSharedClass *sharedHandler;
 
+static NSString *const categoryImageUrlKey = @"com.GrocerMax.categoryImageUrlKey";
 static NSString *const loggedInUserKey = @"com.GrocerMax.loggedInUserKey";
 static NSString *const signedInUserKey = @"com.GroxcerMax.signedInUserKey";
 static NSString *const userSelectedUserLocationKey = @"com.GroxcerMax.selectedUserLocation";
@@ -277,5 +278,18 @@ CGFloat const kMATabBarHeight = 49.0f;
     [webRequest setValue:kEY_iOS forHTTPHeaderField:kEY_device];
     return webRequest;
 
+}
+
+- (NSString *)getCategoryImageBaseUrl {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:categoryImageUrlKey];
+}
+
+- (void)setCategoryImageBaseUrl:(NSString *)baseurl {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:baseurl forKey:categoryImageUrlKey];
+    [defaults synchronize];
 }
 @end

@@ -15,7 +15,10 @@
 @implementation UIViewController (GMProgressIndicator)
 
 - (void)showProgress {
-    [self showProgressWithText:nil];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [self showProgressWithText:nil];
+    [APP_DELEGATE ShowProcessingView];
 }
 
 - (void)showProgressWithText:(NSString *)message {
@@ -32,10 +35,12 @@
 
 - (void)removeProgress {
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     if ([[UIApplication sharedApplication] isIgnoringInteractionEvents])
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     //    [self.view setUserInteractionEnabled:YES];// added by R
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
+    [APP_DELEGATE HideProcessingView];
 }
 
 #pragma mark - Add 3 Bar Menu Btn on Left Nav Bar

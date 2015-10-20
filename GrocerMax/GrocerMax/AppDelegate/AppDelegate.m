@@ -16,7 +16,10 @@
 #import "GMLeftMenuVC.h"
 #import "GMHotDealVC.h"
 #import "GMSearchVC.h"
+#import "GMProfileVC.h"
 #import <GoogleAnalytics/GAI.h>
+
+#define TAG_PROCESSING_INDECATOR 100090
 
 static NSString *const kGaPropertyId = @"UA-64820863-1";
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
@@ -34,7 +37,7 @@ static int const kGaDispatchPeriod = 20;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+  
 //    [self fetchAllCategories];
     
     // for ios 8 and above
@@ -60,7 +63,7 @@ static int const kGaDispatchPeriod = 20;
     [GIDSignIn sharedInstance].clientID = @"38746701051-1bi2gqs9obckcf9b6a7fffdmlvfmpr1a.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].serverClientID = @"38746701051-30a0ch5eogued2mq4hjq8uj25kr75mss.apps.googleusercontent.com";
     
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"d19e792d766ac6a0dc3b7e754145c00f"];
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"2d4f09907ae76f1bd55ad2572de185e3"];
     // Configure the SDK in here only!
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
@@ -261,5 +264,53 @@ static int const kGaDispatchPeriod = 20;
 //    gai.logger.logLevel = kGAILogLevelVerbose;//Remove in release
     
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Splash_Screen];
+}
+
+-(GMProfileVC*) rootProfileVCFromFourthTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *profileNavVC = [tabBarVC.viewControllers objectAtIndex:1];
+        
+        GMProfileVC *profileVC = [profileNavVC viewControllers][0];
+        return profileVC;
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
+#pragma mark activity indicator
+-(void)ShowProcessingView
+{
+    if([self.window viewWithTag:TAG_PROCESSING_INDECATOR])
+        [[self.window viewWithTag:TAG_PROCESSING_INDECATOR] removeFromSuperview];
+    
+    UIView *processingAlertView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height)];
+    [processingAlertView setTag:TAG_PROCESSING_INDECATOR];
+    UIActivityIndicatorView *indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    indicator.center=processingAlertView.center;
+    [indicator startAnimating];
+    [processingAlertView addSubview:indicator];
+    [processingAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
+    
+    [self.window addSubview:processingAlertView];
+    
+    // NSLog(@"Show------>");
+    
+}
+
+-(void)HideProcessingView
+{
+    UIView *processsingView = [self.window viewWithTag:TAG_PROCESSING_INDECATOR];
+    [processsingView removeFromSuperview];
+    
+    // NSLog(@"Hide------>");
+    
 }
 @end

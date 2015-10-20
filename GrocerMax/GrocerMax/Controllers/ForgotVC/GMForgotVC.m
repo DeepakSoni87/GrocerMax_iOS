@@ -51,7 +51,7 @@
     
     if([GMSharedClass validateEmail:self.emailTextField.text]) {
         
-        NSDictionary *dic = @{self.emailTextField.text : kEY_uemail};
+        NSDictionary *dic = @{kEY_uemail : self.emailTextField.text};
         [self showProgress];
         [[GMOperationalHandler handler] forgotPassword:dic withSuccessBlock:^(NSDictionary *responceData) {
             NSString *message = @"";

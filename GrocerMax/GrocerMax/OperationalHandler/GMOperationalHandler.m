@@ -38,6 +38,7 @@
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
 static NSString * const kQuoteId                    = @"QuoteId";
+static NSString * const kResultKey                    = @"Result";
 
 
 static GMOperationalHandler *sharedHandler;
@@ -62,6 +63,15 @@ static GMOperationalHandler *sharedHandler;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     return manager;
+}
+
+- (NSError *)getSuccessResponse:(NSDictionary *)responseObject {
+    
+    NSString *flag = responseObject[kFlagKey];
+    if(flag.boolValue)
+        return nil;
+    else
+        return [NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : responseObject[kResultKey]}];
 }
 
 #pragma mark - Login
@@ -108,11 +118,16 @@ static GMOperationalHandler *sharedHandler;
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
-        
-        GMUserModal *userModal = [MTLJSONAdapter modelOfClass:[GMUserModal class] fromJSONDictionary:responseObject error:&mtlError];
-        
-        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-        else            { if (successBlock) successBlock(userModal); }
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            
+            GMUserModal *userModal = [MTLJSONAdapter modelOfClass:[GMUserModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(userModal); }
+        }
+        else
+            if(failureBlock) failureBlock(error);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -127,6 +142,9 @@ static GMOperationalHandler *sharedHandler;
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
+        NSString *baseUrl = responseObject[@"urlImg"];
+        if(NSSTRING_HAS_DATA(baseUrl))
+           [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
         
         NSDictionary *categoryDict = responseObject[kCategoryKey];
         GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
@@ -380,9 +398,8 @@ static GMOperationalHandler *sharedHandler;
     
 }
 
-
 - (void)getAddress:(NSDictionary *)param withSuccessBlock:(void(^)(GMAddressModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
-
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator getAddressPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
@@ -545,7 +562,7 @@ static GMOperationalHandler *sharedHandler;
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(productListingModal); }
                 
-
+                
             }
         }else {
             
@@ -576,7 +593,7 @@ static GMOperationalHandler *sharedHandler;
                 
                 
                 GMSearchResultModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMSearchResultModal class] fromJSONDictionary:responseObject error:&mtlError];
-
+                
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(productListingModal); }
             }
@@ -629,7 +646,7 @@ static GMOperationalHandler *sharedHandler;
         if (responseObject) {
             
             
-//
+            //
             
             NSError *mtlError = nil;
             
@@ -795,7 +812,7 @@ static GMOperationalHandler *sharedHandler;
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
-                 NSError *mtlError = nil;
+                NSError *mtlError = nil;
                 GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
                 
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
@@ -827,7 +844,7 @@ static GMOperationalHandler *sharedHandler;
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
                 if(responseObject[@"flag"] && [responseObject[@"flag"] intValue] == 1) {
-                GMCoupanCartDetail *coupanCartDetail = [[GMCoupanCartDetail alloc] initWithCartDetailDictionary:responseObject];
+                    GMCoupanCartDetail *coupanCartDetail = [[GMCoupanCartDetail alloc] initWithCartDetailDictionary:responseObject];
                     if(successBlock) successBlock(coupanCartDetail);            } else {
                         if(failureBlock) failureBlock(nil);
                     }
@@ -1063,7 +1080,7 @@ static GMOperationalHandler *sharedHandler;
             
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
-                                
+                
                 if(successBlock) successBlock(responseObject[kEY_category]);
             }
         }else {
@@ -1166,7 +1183,7 @@ static GMOperationalHandler *sharedHandler;
                 
                 if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
                 else            { if (successBlock) successBlock(offersByDealTypeBaseModal); }
-            
+                
             }
         }else {
             
