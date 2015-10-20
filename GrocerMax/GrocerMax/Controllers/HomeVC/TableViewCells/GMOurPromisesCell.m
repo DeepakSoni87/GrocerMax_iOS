@@ -20,7 +20,7 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    NSString *string = @"OUR PROMISSES";
+    NSString *string = @"OUR PROMISES";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     
     float spacing = 3.0f;

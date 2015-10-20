@@ -16,10 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *subcategoryBtn;
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLbl;
-
-@property (strong, nonatomic) IBOutlet UIView *stripView;
-
 - (void)configerViewWithData:(id)modal;
 
 @end

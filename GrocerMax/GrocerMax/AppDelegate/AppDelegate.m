@@ -37,7 +37,7 @@ static int const kGaDispatchPeriod = 20;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+  
 //    [self fetchAllCategories];
     
     // for ios 8 and above

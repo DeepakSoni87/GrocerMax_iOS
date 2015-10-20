@@ -27,6 +27,8 @@
 
 @property (nonatomic, readonly, strong) NSString *imageURL;
 
+@property (nonatomic, readonly, strong) NSString *bigImageURL;
+
 - (void)setDealTypeId:(NSString *)dealTypeId;
 
 - (void) setDealType:(NSString *)dealType;
@@ -35,5 +37,5 @@
 
 - (void) setImageURL:(NSString *)imageURL;
 
-
+- (void)setBigImageURL:(NSString *)bigImageURL;
 @end

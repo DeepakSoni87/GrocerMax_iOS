@@ -10,15 +10,6 @@
 
 @implementation GMSubCategoryHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-
 - (void)configerViewWithData:(id)modal {
     
     
@@ -29,20 +20,9 @@
     [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     
     GMCategoryModal *subCategoryModal = (GMCategoryModal *)modal;
-    [self.subcategoryImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"sub-%@", subCategoryModal.categoryId]]];
-    if(subCategoryModal.isExpand) {
-        
-        self.stripView.layer.borderColor = [UIColor blackColor].CGColor;
-        self.stripView.layer.borderWidth = 0.40;
-        self.stripView.hidden = FALSE;
-    }
-    else
-        self.stripView.hidden = TRUE;
-    
-    if(NSSTRING_HAS_DATA(subCategoryModal.categoryName))
-        self.titleLbl.text = subCategoryModal.categoryName;
-    else
-        self.titleLbl.text = @"";
+       NSString *categoryImageUrlStr = [NSString stringWithFormat:@"%@%@.png", [[GMSharedClass sharedClass] getCategoryImageBaseUrl],subCategoryModal.categoryId];
+    [self.subcategoryImageView setImageWithURL:[NSURL URLWithString:categoryImageUrlStr] placeholderImage:nil];
+
 }
 
 @end

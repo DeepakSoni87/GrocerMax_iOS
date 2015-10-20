@@ -89,8 +89,8 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGSize retval =  CGSizeMake(160 + 160 *(SCREEN_SIZE.width-320)/320, 160);
-    CGSize retval =  CGSizeMake(SCREEN_SIZE.width, 115);
+
+    CGSize retval =  CGSizeMake(SCREEN_SIZE.width, 114);
     return retval;
 }
 
