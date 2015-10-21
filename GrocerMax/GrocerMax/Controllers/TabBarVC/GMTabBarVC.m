@@ -90,10 +90,10 @@
     
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,searchVCNavController,cartVCNavController];
 
-    UIColor* color_green = [UIColor colorFromHexString:@"e2e2e2"];
+    UIColor* sepretorColor = [UIColor colorFromHexString:@"e2e2e2"];
     self.tabBar.layer.borderWidth = 0.50;
-    self.tabBar.layer.borderColor = color_green.CGColor;
-    [[UITabBar appearance] setTintColor:color_green];
+    self.tabBar.layer.borderColor = sepretorColor.CGColor;
+    [[UITabBar appearance] setTintColor:sepretorColor];
     
     // update Tab bar bagdge
     [self updateBadgeValueOnCartTab];
