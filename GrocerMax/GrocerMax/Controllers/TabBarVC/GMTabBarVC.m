@@ -89,9 +89,11 @@
 
     
     self.viewControllers = @[homeVCNavController,profileVCNavController,hotDealVCNavController,searchVCNavController,cartVCNavController];
-    UILabel *lineLable = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_SIZE.height-49, SCREEN_SIZE.width, 1)];
-    lineLable.backgroundColor = [UIColor colorFromHexString:@"e2e2e2"];
-    [self.view addSubview:lineLable];
+
+    UIColor* sepretorColor = [UIColor colorFromHexString:@"e2e2e2"];
+    self.tabBar.layer.borderWidth = 0.50;
+    self.tabBar.layer.borderColor = sepretorColor.CGColor;
+    [[UITabBar appearance] setTintColor:sepretorColor];
     
     // update Tab bar bagdge
     [self updateBadgeValueOnCartTab];
