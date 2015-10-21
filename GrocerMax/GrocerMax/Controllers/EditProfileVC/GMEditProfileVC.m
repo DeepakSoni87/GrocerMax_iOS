@@ -43,6 +43,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
     self.editProfileTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.editProfileTableView setSeparatorColor:[UIColor colorFromHexString:@"e2e2e2"]];
 }
 
 - (void)didReceiveMemoryWarning {
