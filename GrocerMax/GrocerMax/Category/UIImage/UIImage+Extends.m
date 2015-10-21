@@ -16,21 +16,27 @@ static NSString * const kSearch_iconImage                = @"search_icon";
 static NSString * const kLogoImage                       = @"logo";
 static NSString * const kmenuBtnImage                    = @"menuBtn";
 static NSString * const kbackBtnImage                    = @"back";
-static NSString * const knewBackBtnImage                    = @"newBack";
+static NSString * const knewBackBtnImage                 = @"newBack";
 
 
-static NSString * const khome_unselectedImage                    = @"home_unselected";
-static NSString * const khome_selectedImage                    = @"home_selected";
-static NSString * const kprofile_unselectedImage                    = @"profile_unselected";
-static NSString * const kprofile_selectedImage                    = @"profile_selected";
-static NSString * const koffer_unselectedImage                    = @"offer_unselected";
-static NSString * const koffer_selectedImage                    = @"offer_selected";
+static NSString * const khome_unselectedImage                      = @"home_unselected";
+static NSString * const khome_selectedImage                        = @"home_selected";
+static NSString * const kprofile_unselectedImage                   = @"profile_unselected";
+static NSString * const kprofile_selectedImage                     = @"profile_selected";
+static NSString * const koffer_unselectedImage                     = @"offer_unselected";
+static NSString * const koffer_selectedImage                       = @"offer_selected";
 static NSString * const ksearch_unselectedImage                    = @"search_unselected";
-static NSString * const ksearch_selectedImage                    = @"search_selected";
-static NSString * const kcart_unselectedImage                    = @"cart_unselected";
-static NSString * const kcart_selectedImage                    = @"cart_selected";
-static NSString * const kOfferImage                    = @"offer-tag";
-static NSString * const kfreeImage                    = @"free";
+static NSString * const ksearch_selectedImage                      = @"search_selected";
+static NSString * const kcart_unselectedImage                      = @"cart_unselected";
+static NSString * const kcart_selectedImage                        = @"cart_selected";
+static NSString * const kOfferImage                                = @"offer-tag";
+static NSString * const kfreeImage                                 = @"free";
+
+static NSString * const kCategoryPlaceHolderImage                  = @"categoryPlaceHolder";
+static NSString * const kSubCategoryPlaceHolderImage               = @"subCategoryPlaceHolder";
+static NSString * const kProductPlaceHolderImage                   = @"productPlaceHolder";
+
+
 
 
 @implementation UIImage (Extends)
@@ -137,6 +143,21 @@ static NSString * const kfreeImage                    = @"free";
 + (UIImage *)offerImage {
     
     return [[UIImage imageNamed:kOfferImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)categoryPlaceHolderImage {
+    
+    return [[UIImage imageNamed:kCategoryPlaceHolderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)subCategoryPlaceHolderImage {
+    
+    return [[UIImage imageNamed:kSubCategoryPlaceHolderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
++ (UIImage *)productPlaceHolderImage {
+    
+    return [[UIImage imageNamed:kProductPlaceHolderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 @end

@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GMOffersCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="STAPLES" translatesAutoresizingMaskIntoConstraints="NO" id="Quz-Xr-MLk">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-Yv-lwR">
-                        <rect key="frame" x="10" y="138" width="160" height="42"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvb-Sn-gkR">
+                        <rect key="frame" x="8" y="8" width="304" height="106"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Quz-Xr-MLk">
+                                <rect key="frame" x="3" y="3" width="298" height="100"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="42" id="qZX-UI-UOC"/>
+                            <constraint firstItem="Quz-Xr-MLk" firstAttribute="top" secondItem="dvb-Sn-gkR" secondAttribute="top" constant="3" id="J5s-zi-GFZ"/>
+                            <constraint firstItem="Quz-Xr-MLk" firstAttribute="leading" secondItem="dvb-Sn-gkR" secondAttribute="leading" constant="3" id="VHv-0P-j0f"/>
+                            <constraint firstAttribute="trailing" secondItem="Quz-Xr-MLk" secondAttribute="trailing" constant="3" id="qf3-qo-KGi"/>
+                            <constraint firstAttribute="bottom" secondItem="Quz-Xr-MLk" secondAttribute="bottom" constant="3" id="sVc-nf-82c"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
+                <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Uqf-Yv-lwR" secondAttribute="bottom" id="EXb-9A-7YC"/>
-                <constraint firstItem="Uqf-Yv-lwR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="IRM-DP-T9d"/>
-                <constraint firstAttribute="bottom" secondItem="Quz-Xr-MLk" secondAttribute="bottom" id="JDH-U9-IbZ"/>
-                <constraint firstAttribute="trailing" secondItem="Quz-Xr-MLk" secondAttribute="trailing" id="Vth-x5-eCW"/>
-                <constraint firstAttribute="trailing" secondItem="Uqf-Yv-lwR" secondAttribute="trailing" constant="10" id="XyK-RV-wVQ"/>
-                <constraint firstItem="Quz-Xr-MLk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aXI-XK-qYD"/>
-                <constraint firstItem="Quz-Xr-MLk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="g1H-gz-W4u"/>
+                <constraint firstAttribute="trailing" secondItem="dvb-Sn-gkR" secondAttribute="trailing" constant="8" id="U71-o1-zAn"/>
+                <constraint firstItem="dvb-Sn-gkR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="chm-ka-Bwb"/>
+                <constraint firstItem="dvb-Sn-gkR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="m4f-Qt-q6T"/>
+                <constraint firstAttribute="bottom" secondItem="dvb-Sn-gkR" secondAttribute="bottom" id="wrK-IU-MG9"/>
             </constraints>
             <size key="customSize" width="173" height="176"/>
             <connections>
                 <outlet property="itemImgView" destination="Quz-Xr-MLk" id="uCP-zT-Szh"/>
-                <outlet property="itemName" destination="Uqf-Yv-lwR" id="o6x-8B-YEK"/>
             </connections>
-            <point key="canvasLocation" x="406" y="326"/>
+            <point key="canvasLocation" x="223" y="167"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="STAPLES" width="576" height="576"/>
-    </resources>
 </document>

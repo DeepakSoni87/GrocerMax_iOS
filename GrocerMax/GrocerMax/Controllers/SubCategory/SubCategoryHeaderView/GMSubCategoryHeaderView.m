@@ -21,7 +21,7 @@
     
     GMCategoryModal *subCategoryModal = (GMCategoryModal *)modal;
        NSString *categoryImageUrlStr = [NSString stringWithFormat:@"%@%@.png", [[GMSharedClass sharedClass] getCategoryImageBaseUrl],subCategoryModal.categoryId];
-    [self.subcategoryImageView setImageWithURL:[NSURL URLWithString:categoryImageUrlStr] placeholderImage:nil];
+    [self.subcategoryImageView setImageWithURL:[NSURL URLWithString:categoryImageUrlStr] placeholderImage:[UIImage subCategoryPlaceHolderImage]];
 
 }
 
