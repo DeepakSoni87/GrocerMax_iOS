@@ -55,7 +55,7 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    self.addBtn.layer.cornerRadius = 5.0;
+    self.addBtn.layer.cornerRadius = 3.0;
     self.addBtn.layer.masksToBounds = YES;
 }
 
@@ -91,7 +91,7 @@
     self.addBtn.produtModal = productModal;
     self.imgBtn.produtModal = productModal;
     
-    [self.productImgView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage imageNamed:@"STAPLE"]];
+    [self.productImgView setImageWithURL:[NSURL URLWithString:self.productModal.image] placeholderImage:[UIImage productPlaceHolderImage]];
     [self.productBrandLabel setText:self.productModal.p_brand.uppercaseString];
     [self.productNameLabel setText:self.productModal.p_name];
     [self.productPackLabel setText:self.productModal.p_pack];
@@ -107,7 +107,13 @@
                              NSStrikethroughStyleAttributeName : @1
                              };
     
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@ | ",self.productModal.sale_price] attributes:style1];
+    NSDictionary* style3 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor gmBlackColor]
+                             };
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",self.productModal.sale_price] attributes:style1];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@" | " attributes:style3]];
     [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@", self.productModal.Price] attributes:style2]];
 
     [self.productOfferLabel setAttributedText:attString];
@@ -206,8 +212,8 @@
     NSUInteger totalQuantity = self.quantityValue;
     totalQuantity += self.totalProductsInCart;
     [self.cartView setHidden:NO];
-    [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%ld", totalQuantity]];
-    self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",totalQuantity];
+    [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%ld", (unsigned long)totalQuantity]];
+    self.productModal.productQuantity = [NSString stringWithFormat:@"%ld",(unsigned long)totalQuantity];
     self.totalProductsInCart = totalQuantity;
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", self.productModal.productid];
@@ -215,7 +221,7 @@
     if(totalProducts.count) {
         
         GMProductModal *cartProductModal = [totalProducts firstObject];
-        [cartProductModal setProductQuantity:[NSString stringWithFormat:@"%ld", totalQuantity]];
+        [cartProductModal setProductQuantity:[NSString stringWithFormat:@"%ld", (unsigned long)totalQuantity]];
         return NO;
     }
     return YES;

@@ -308,4 +308,13 @@
  */
 
 + (NSString *)hashGenreatePath;
+
+/**
+ This api  use to send device token
+ * Function for send device token
+ * return device token path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)sendDeviceToken;
 @end

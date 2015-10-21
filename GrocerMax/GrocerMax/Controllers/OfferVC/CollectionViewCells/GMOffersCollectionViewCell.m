@@ -73,7 +73,7 @@
 //    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
     
     self.itemName.attributedText = attString1;
-    [self.itemImgView setImageWithURL:imageUrl placeholderImage:nil];
+    [self.itemImgView setImageWithURL:imageUrl placeholderImage:[UIImage subCategoryPlaceHolderImage]];
 }
 
 @end

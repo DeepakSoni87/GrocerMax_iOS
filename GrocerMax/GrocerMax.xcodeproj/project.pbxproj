@@ -237,9 +237,9 @@
 		82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B1B2CE1B9F60D0001550FC /* AppDelegate.m */; };
 		82D01A391BB931B500D5CC2D /* GMOrderSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D01A371BB931B500D5CC2D /* GMOrderSuccessVC.m */; };
 		82D01A3A1BB931B500D5CC2D /* GMOrderSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D01A381BB931B500D5CC2D /* GMOrderSuccessVC.xib */; };
-		82DC5A651BD6A360009DE39E /* Lato-Bol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A621BD6A360009DE39E /* Lato-Bol.ttf */; settings = {ASSET_TAGS = (); }; };
-		82DC5A661BD6A360009DE39E /* Lato-Lig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A631BD6A360009DE39E /* Lato-Lig.ttf */; settings = {ASSET_TAGS = (); }; };
-		82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */; settings = {ASSET_TAGS = (); }; };
+		82DC5A651BD6A360009DE39E /* Lato-Bol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A621BD6A360009DE39E /* Lato-Bol.ttf */; };
+		82DC5A661BD6A360009DE39E /* Lato-Lig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A631BD6A360009DE39E /* Lato-Lig.ttf */; };
+		82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */; };
 		82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */; };
 		82E6C8C01BD02EB300DD865C /* GMOrderFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
@@ -341,6 +341,7 @@
 		E8916C1D1BBB307600DA75BE /* GMCoupanCartDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C1C1BBB307600DA75BE /* GMCoupanCartDetail.m */; };
 		E8916C221BBB407900DA75BE /* GMParentController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C201BBB407900DA75BE /* GMParentController.m */; };
 		E8916C231BBB407900DA75BE /* GMParentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C211BBB407900DA75BE /* GMParentController.xib */; };
+		E8922E7A1BD81E4E00844766 /* UIGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8922E791BD81E4E00844766 /* UIGifImage.m */; };
 		E8B2C18E1BB29A19000F70EB /* GMHotDealBaseModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */; };
 		E8D389091BCED64D0069A37F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = E8D389081BCED64D0069A37F /* iTunesArtwork */; };
 /* End PBXBuildFile section */
@@ -850,6 +851,8 @@
 		E8916C1F1BBB407900DA75BE /* GMParentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMParentController.h; sourceTree = "<group>"; };
 		E8916C201BBB407900DA75BE /* GMParentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMParentController.m; sourceTree = "<group>"; };
 		E8916C211BBB407900DA75BE /* GMParentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMParentController.xib; sourceTree = "<group>"; };
+		E8922E781BD81E4E00844766 /* UIGifImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGifImage.h; sourceTree = "<group>"; };
+		E8922E791BD81E4E00844766 /* UIGifImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGifImage.m; sourceTree = "<group>"; };
 		E8B2C18C1BB29A19000F70EB /* GMHotDealBaseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHotDealBaseModal.h; sourceTree = "<group>"; };
 		E8B2C18D1BB29A19000F70EB /* GMHotDealBaseModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHotDealBaseModal.m; sourceTree = "<group>"; };
 		E8D389081BCED64D0069A37F /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -1207,6 +1210,8 @@
 		820C4F251BB1CC5C00DCCF39 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
+				E8922E781BD81E4E00844766 /* UIGifImage.h */,
+				E8922E791BD81E4E00844766 /* UIGifImage.m */,
 				820C4F261BB1CC5C00DCCF39 /* UIImage+Extends.h */,
 				820C4F271BB1CC5C00DCCF39 /* UIImage+Extends.m */,
 			);
@@ -1958,11 +1963,8 @@
 		82B1B2E91B9F60FA001550FC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-
 				82DC5A611BD6A360009DE39E /* Font */,
-
 				E83C3BC81BD69D330065D764 /* spinningwheel-3.gif */,
-
 				E8D389081BCED64D0069A37F /* iTunesArtwork */,
 				3B670CCB1BA0BF2400B5EB9D /* Messages.strings */,
 				82B1B2B31B9F5E60001550FC /* Images.xcassets */,
@@ -2610,6 +2612,7 @@
 				E85310E61BB47F93005A008B /* GMOrderDetailVC.m in Sources */,
 				820C502C1BB1CC5C00DCCF39 /* GMPageControllCell.m in Sources */,
 				820C500D1BB1CC5C00DCCF39 /* GMAddressCell.m in Sources */,
+				E8922E7A1BD81E4E00844766 /* UIGifImage.m in Sources */,
 				820C50031BB1CC5C00DCCF39 /* GMUserModal.m in Sources */,
 				3BD49B061BB9E112009BE425 /* GMProvideMobileInfoVC.m in Sources */,
 				3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */,

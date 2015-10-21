@@ -117,7 +117,9 @@ CGFloat btnHeight = 40.0; //same as scrollview
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(originX, originY, width, btnHeight);
         [button setTitle:title forState:UIControlStateNormal];
-        [button.titleLabel setFont:FONT_BOLD(16)];
+        [button setTitleColor:[UIColor colorFromHexString:@"#fab0a2"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [button.titleLabel setFont:FONT_REGULAR(16)];
         [button addTarget:self action:@selector(segmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i;
         button.backgroundColor = rdColor;
@@ -258,10 +260,14 @@ CGFloat btnHeight = 40.0; //same as scrollview
     }
 }
 
--(void)selectedSection:(NSInteger)index{
+- (void)selectedSection:(NSInteger)index {
+    
+    for (UIButton *btn in self.btnsArray) {
+        [btn setSelected:NO];
+    }
     
     UIButton *btn = self.btnsArray[index];
-    
+    [btn setSelected:YES];
     CGRect frm = btn.bounds;
     frm.origin.y = frm.size.height - 5;
     frm.size.height = 5;

@@ -6,13 +6,13 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "fruits-&-vegetables@2x.png"
+      "filename" : "fruits&veg@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "fruits-&-vegetables@3x.png"
+      "filename" : "fruits&veg@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

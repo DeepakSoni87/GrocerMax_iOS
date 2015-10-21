@@ -155,9 +155,11 @@
 
 - (void)updateProductDescription {
     
-    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@ | ",self.proDetailModal.currencycode,self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}];
+    NSMutableAttributedString *attStringPrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",self.proDetailModal.sale_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor gmRedColor]}];
     
-    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",self.proDetailModal.currencycode,self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor],NSStrikethroughStyleAttributeName : @1.0}]];
+    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@" | " attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor gmBlackColor]}]];
+    
+    [attStringPrice appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"₹%@",self.proDetailModal.product_price] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor gmBlackColor],NSStrikethroughStyleAttributeName : @1.0}]];
     
     self.productCostLbl.attributedText = attStringPrice;
 
@@ -171,7 +173,7 @@
     self.producInfo.attributedText = attStringDes;
     self.producDescriptionLbl.text = self.proDetailModal.product_description;
 
-    [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage placeHolderImage]];
+    [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage productPlaceHolderImage]];
     
     if (self.modal.promotion_level.length > 1) {
         self.promotionalLbl.text = [NSString stringWithFormat:@"%@",self.modal.promotion_level];
