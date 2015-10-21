@@ -18,6 +18,9 @@
 #define Key_Delivery_value @"value"
 #define Key_Sipping_Address @"shipping_address"
 #define Key_Sipping_Street @"street"
+#define Key_payment @"payment"
+#define Key_method @"method"
+
 
 #define Key_Subtotal @"subtotal"
 #define Key_Sipping_DeliveryCharge @"base_shipping_amount"
@@ -47,9 +50,12 @@
         if([dataDic objectForKey:Key_ShippingCharge] && NSSTRING_HAS_DATA([dataDic objectForKey:Key_ShippingCharge])) {
             [self setShippingCharge:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_ShippingCharge]]];
         }
-        if([dataDic objectForKey:Key_PaymentMethod]) {
-            [self setPaymentMethod:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_PaymentMethod]]];
+        if([dataDic objectForKey:Key_payment]) {
+            if([[dataDic objectForKey:Key_payment] objectForKey:Key_method]) {
+                [self setPaymentMethod:[NSString stringWithFormat:@"%@",[[dataDic objectForKey:Key_payment] objectForKey:Key_method]]];
+            }
         }
+        
         if([dataDic objectForKey:Key_Delivery_Date] && [[dataDic objectForKey:Key_Delivery_Date] isKindOfClass:[NSArray class]]) {
             NSArray *delviryDatetimeArray = [dataDic objectForKey:Key_Delivery_Date];
             if(delviryDatetimeArray.count>0) {
