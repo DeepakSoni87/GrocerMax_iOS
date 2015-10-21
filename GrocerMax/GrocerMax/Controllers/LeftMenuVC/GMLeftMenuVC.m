@@ -230,6 +230,7 @@ static NSString * const kGetInTouchSection                          =  @"GET IN 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerScroller withCategory:@"" label:nil value:nil];
 }
+
 #pragma mark - IBAction Methods
 
 - (void)sectionButtonTapped:(UIButton *)sender {
