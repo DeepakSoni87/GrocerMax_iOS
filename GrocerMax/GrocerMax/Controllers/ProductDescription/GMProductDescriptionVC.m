@@ -171,7 +171,7 @@
     self.producInfo.attributedText = attStringDes;
     self.producDescriptionLbl.text = self.proDetailModal.product_description;
 
-    [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage placeHolderImage]];
+    [self.productImgView setImageWithURL:[NSURL URLWithString:self.proDetailModal.product_thumbnail] placeholderImage:[UIImage productPlaceHolderImage]];
     
     if (self.modal.promotion_level.length > 1) {
         self.promotionalLbl.text = [NSString stringWithFormat:@"%@",self.modal.promotion_level];
