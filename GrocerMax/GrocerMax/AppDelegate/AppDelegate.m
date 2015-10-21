@@ -17,6 +17,10 @@
 #import "GMHotDealVC.h"
 #import "GMSearchVC.h"
 #import "GMProfileVC.h"
+#import "GMHomeBannerModal.h"
+#import "GMOffersByDealTypeModal.h"
+#import "GMDealCategoryBaseModal.h"
+#import "GMRootPageViewController.h"
 #import <GoogleAnalytics/GAI.h>
 
 #define TAG_PROCESSING_INDECATOR 100090
@@ -27,9 +31,14 @@ static BOOL const kGaDryRun = YES;
 static int const kGaDispatchPeriod = 20;
 
 @interface AppDelegate ()
+{
+    UIAlertView *alert;
+}
 
 //@property (nonatomic, strong) XHDrawerController *drawerController;
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
+@property (nonatomic, strong) GMHomeBannerModal *pushModal;
+
 @end
 
 @implementation AppDelegate
@@ -156,10 +165,235 @@ static int const kGaDispatchPeriod = 20;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
 
+    if([application applicationState] == UIApplicationStateActive)
+    {
+        if(alert)
+        {
+            [alert dismissWithClickedButtonIndex:-1 animated:YES];
+            alert = nil;
+        }
+        self.pushModal = nil;
+        [self makePushModal:userInfo];
+        NSString *alertMsg = @"Notification";
+        if( [[userInfo objectForKey:Keyaps] objectForKey:Keyalert] != NULL && [[[userInfo objectForKey:Keyaps] objectForKey:Keyalert] isKindOfClass:[NSString class]])
+            alertMsg = [[userInfo objectForKey:Keyaps] objectForKey:Keyalert];
+        
+        alert = [[UIAlertView alloc]initWithTitle:key_TitleMessage  message:alertMsg delegate:self cancelButtonTitle:Cancel_Text otherButtonTitles:@"GO",nil, nil];
+        [alert show];
+        
+    }
+    else if([application applicationState] == UIApplicationStateBackground)
+    {
+        self.pushModal = nil;
+        [self makePushModal:userInfo];
+        [self goFromNotifiedScreen];
+    }
+    else
+    {
+        self.pushModal = nil;
+        [self makePushModal:userInfo];
+        [self goFromNotifiedScreen];
+    }
+}
+#pragma mark - Push Modal maker Method
+
+- (void)makePushModal:(NSDictionary *)dataResultDec {
+    
+    if([dataResultDec objectForKey:@"data"] && [[dataResultDec objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+    {
+        NSDictionary *resultDec = [dataResultDec objectForKey:@"data"];
+        self.pushModal = [[GMHomeBannerModal alloc] initWithDictionary:resultDec];
+    }
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+        if(buttonIndex == 1)
+        {
+                [self performSelector:@selector(goFromNotifiedScreen) withObject:nil afterDelay:0];
+        }
+}
+
+#pragma mark - Notification Handle Method
+
+- (void) goFromNotifiedScreen {
+    
+    if (!NSSTRING_HAS_DATA(self.pushModal.linkUrl)) {
+        return;
+    }
+    
+    NSArray *typeStringArr = [self.pushModal.linkUrl componentsSeparatedByString:@"?"];
+    NSString *typeStr = typeStringArr.firstObject;
+    NSArray *valueStringArr = [self.pushModal.linkUrl componentsSeparatedByString:@"="];
+    NSString *value = valueStringArr.lastObject;
+    
+    if (!(NSSTRING_HAS_DATA(typeStr) && NSSTRING_HAS_DATA(value))) {
+        return;
+    }
+    
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:self.pushModal.linkUrl label:value value:nil];
+    
+    if ([typeStr isEqualToString:KEY_Banner_search]) {
+        
+        NSMutableDictionary *localDic = [NSMutableDictionary new];
+        [localDic setObject:value forKey:kEY_keyword];
+        
+        [self.tabBarVC  setSelectedIndex:3];
+        GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
+        if (searchVC == nil)
+            return;
+        [searchVC performSearchOnServerWithParam:localDic];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_offerbydealtype]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_dealsbydealtype]) {
+        
+        [self fetchDealCategoriesFromServerWithDealTypeId:value];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_productlistall]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [self fetchProductListingDataForCategory:bannerCatMdl];
+    }
+
     
 }
 
+#pragma mark - offersByDeal
 
+- (void)getOffersDealFromServerWithCategoryModal:(GMCategoryModal*)categoryModal {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
+    
+    [self ShowProcessingView];
+    [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
+        
+        [self HideProcessingView];
+        
+        GMOffersByDealTypeBaseModal *baseMdl = offersByDealTypeBaseModal;
+        
+        if (baseMdl.allArray.count == 0 || baseMdl.deal_categoryArray == 0) {
+            return ;
+        }
+        
+        NSMutableArray *offersByDealTypeArray = [self createOffersByDealTypeModalFrom:baseMdl];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = offersByDealTypeArray;
+        rootVC.navigationTitleString = categoryModal.categoryName;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
+        [self.navController pushViewController:rootVC animated:YES];
+        
+        
+    } failureBlock:^(NSError *error) {
+        [self HideProcessingView];
+    }];
+}
+
+- (NSMutableArray *)createOffersByDealTypeModalFrom:(GMOffersByDealTypeBaseModal *)baseModal {
+    
+    NSMutableArray *offersByDealTypeArray = [NSMutableArray array];
+    GMOffersByDealTypeModal *allModal = [[GMOffersByDealTypeModal alloc] initWithDealType:@"All" dealId:@"" dealImageUrl:@"" andDealsArray:baseModal.allArray];
+    [offersByDealTypeArray addObject:allModal];
+    [offersByDealTypeArray addObjectsFromArray:baseModal.deal_categoryArray];
+    return offersByDealTypeArray;
+}
+
+#pragma nark - Fetching Hot Deals Methods
+
+- (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
+    
+    [self ShowProcessingView];
+    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+        
+        [self HideProcessingView];
+        NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
+        if (dealCategoryArray.count == 0) {
+            return ;
+        }
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = dealCategoryArray;
+        rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
+        rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
+        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self HideProcessingView];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
+}
+
+- (NSMutableArray *)createCategoryDealsArrayWith:(GMDealCategoryBaseModal *)dealCategoryBaseModal {
+    
+    NSMutableArray *dealCategoryArray = [NSMutableArray arrayWithArray:dealCategoryBaseModal.dealCategories];
+    GMDealCategoryModal *allModal = [[GMDealCategoryModal alloc] initWithCategoryId:@"" images:@"" categoryName:@"All" isActive:@"1" andDeals:dealCategoryBaseModal.allDealCategory];
+    [dealCategoryArray insertObject:allModal atIndex:0];
+    return dealCategoryArray;
+}
+
+#pragma mark - fetchProductListingDataForCategory
+
+- (void)fetchProductListingDataForCategory:(GMCategoryModal*)categoryModal {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    
+    [self ShowProcessingView];
+    [[GMOperationalHandler handler] productListAll:localDic withSuccessBlock:^(id productListingBaseModal) {
+        [self HideProcessingView];
+        
+        GMProductListingBaseModal *productListingBaseMdl = productListingBaseModal;
+        
+        // All Cat list side by ALL Tab
+        NSMutableArray *categoryArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.hotProductListArray) {
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // All products, for ALL Tab category
+        NSMutableArray *allCatProductListArray = [NSMutableArray new];
+        
+        for (GMCategoryModal *catMdl in productListingBaseMdl.productsListArray) {
+            [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
+            
+            if (catMdl.productListArray.count >= 1) {
+                [categoryArray addObject:catMdl];
+            }
+        }
+        
+        // set all product list in ALL tab category mdl
+        categoryModal.productListArray = allCatProductListArray;
+        
+        // set this cat modal as ALL tab
+        [categoryArray insertObject:categoryModal atIndex:0];
+        
+        GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
+        rootVC.pageData = categoryArray;
+        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
+        rootVC.navigationTitleString = categoryModal.categoryName;
+        [self.navController pushViewController:rootVC animated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        [self HideProcessingView];
+    }];
+}
 #pragma mark - Drawer Handling Methods
 
 - (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC {
