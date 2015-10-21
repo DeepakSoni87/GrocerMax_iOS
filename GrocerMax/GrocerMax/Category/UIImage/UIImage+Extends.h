@@ -40,6 +40,12 @@
 + (UIImage *)cart_selectedImage ;
 
 + (UIImage *)freeImage;
+
 + (UIImage *)offerImage;
 
++ (UIImage *)categoryPlaceHolderImage;
+
++ (UIImage *)subCategoryPlaceHolderImage;
+
++ (UIImage *)productPlaceHolderImage;
 @end
