@@ -58,6 +58,7 @@ static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
 static NSString const *productlistallMethodName = @"productlistall";
 static NSString const *homeBannerMethodName = @"homebanner";
 static NSString const *hashMethodName = @"getmobilehash";
+static NSString const *deviceTokenMethodName = @"setdevicetoken";
 
 
 @implementation GMApiPathGenerator
@@ -271,6 +272,10 @@ static NSString const *hashMethodName = @"getmobilehash";
     return [NSString stringWithFormat:@"%@%@", baseUrl, hashMethodName];
 }
 
++ (NSString *)sendDeviceToken {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, deviceTokenMethodName];
+}
 
 @end
 

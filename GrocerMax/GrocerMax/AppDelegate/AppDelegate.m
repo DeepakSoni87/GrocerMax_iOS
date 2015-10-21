@@ -155,6 +155,8 @@ static int const kGaDispatchPeriod = 20;
     
     [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:kEY_notification_token];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self sendDeviceToken:deviceTokenString];
+    
     
 }
 
@@ -216,6 +218,24 @@ static int const kGaDispatchPeriod = 20;
 }
 
 #pragma mark - Notification Handle Method
+
+- (void)sendDeviceToken:(NSString*)deviceToken {
+    
+    NSMutableDictionary *deviceDic = [NSMutableDictionary new];
+    [deviceDic setObject:deviceToken forKey:@"deviceToken"];
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    if(userModal != nil && NSSTRING_HAS_DATA(userModal.userId)) {
+        [deviceDic setObject:userModal.userId forKey:kEY_userid];
+    }
+    
+    [[GMOperationalHandler handler] deviceToken:deviceDic withSuccessBlock:^(id responceData) {
+        
+        
+    } failureBlock:^(NSError *error) {
+
+    }];
+}
 
 - (void) goFromNotifiedScreen {
     
