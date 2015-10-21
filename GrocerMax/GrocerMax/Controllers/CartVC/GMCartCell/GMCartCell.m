@@ -128,12 +128,12 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
     
     NSDictionary* style1 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor grayColor]
+                             NSForegroundColorAttributeName : [UIColor gmGrayColor]
                              };
     
     NSDictionary* style2 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
-                             NSForegroundColorAttributeName : [UIColor redColor],
+                             NSForegroundColorAttributeName : [UIColor gmGrayColor],
                              NSStrikethroughStyleAttributeName : @1
                              };
     
