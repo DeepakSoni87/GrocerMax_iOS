@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMOrderSuccessVC">
@@ -18,9 +18,11 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-screen_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Eb9-SB-NBZ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <animations/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSf-cd-2ar">
                     <rect key="frame" x="80" y="175" width="160" height="30"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.93333333330000001" green="0.1764705882" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Gpz-gS-BCy"/>
@@ -36,6 +38,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Success" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFm-mx-nHw">
                     <rect key="frame" x="80" y="46" width="160" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="7rb-HD-icS"/>
                     </constraints>
@@ -45,6 +48,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Id:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHS-BJ-UJE">
                     <rect key="frame" x="0.0" y="105" width="320" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="paR-va-ei2"/>
                     </constraints>
@@ -54,6 +58,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQp-t4-3oA">
                     <rect key="frame" x="80" y="228" width="160" height="30"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.93333333330000001" green="0.1764705882" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="glC-2u-jua"/>
@@ -68,6 +73,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="RHS-BJ-UJE" firstAttribute="top" secondItem="gFm-mx-nHw" secondAttribute="bottom" constant="38" id="1OD-0R-pat"/>
