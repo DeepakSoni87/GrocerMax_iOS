@@ -105,10 +105,10 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
 }
 - (void)userSelectLocation {
-//    if([GMCityModal selectedLocation] == nil) {
+    if([GMCityModal selectedLocation] == nil) {
         GMCityVC * cityVC  = [GMCityVC new];
         [self.navigationController pushViewController:cityVC animated:NO];
-//    }
+    }
 }
 
 #pragma mark - Register Cells

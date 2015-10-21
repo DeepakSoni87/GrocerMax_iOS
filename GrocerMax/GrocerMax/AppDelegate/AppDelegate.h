@@ -12,6 +12,7 @@
 @class GMTabBarVC;
 @class GMSearchVC;
 @class GMProfileVC;
+@class GMHomeVC;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -31,6 +32,8 @@
 - (void)popToCenterViewController;
 
 -(GMSearchVC*) rootSearchVCFromFourthTab;
+
+-(GMHomeVC*) rootHomeVCFromFourthTab;
 
 - (void)goToHomeWithAnimation:(BOOL)animation;
 
