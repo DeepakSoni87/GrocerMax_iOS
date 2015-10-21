@@ -42,6 +42,7 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
     // Do any additional setup after loading the view from its nib.
     self.userModal = [GMUserModal loggedInUser];
     [self registerCellsForTableView];
+    [self.changePasswordTableView setSeparatorColor:[UIColor colorFromHexString:@"e2e2e2"]];
     [self uiChange];
 }
 
