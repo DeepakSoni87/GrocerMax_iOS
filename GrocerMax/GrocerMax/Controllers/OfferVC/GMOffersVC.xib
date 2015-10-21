@@ -39,7 +39,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="646" y="423"/>
+            <point key="canvasLocation" x="570" y="259"/>
         </view>
     </objects>
 </document>

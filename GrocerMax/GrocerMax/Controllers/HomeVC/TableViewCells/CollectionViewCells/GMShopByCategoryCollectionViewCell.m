@@ -25,7 +25,7 @@
     self.bgImgView.layer.masksToBounds = YES;
     
     self.offerBtn.layer.borderWidth = 0.50;
-    self.offerBtn.layer.borderColor = [self.offerBtn.titleLabel.textColor colorWithAlphaComponent:0.3].CGColor;
+    self.offerBtn.layer.borderColor = [UIColor colorWithRGBValue:249 green:224 blue:221].CGColor;
 }
 
 - (void)setTitleLbl:(UILabel *)titleLbl {

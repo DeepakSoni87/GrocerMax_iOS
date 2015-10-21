@@ -181,7 +181,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
             return 175;
             break;
         case 3:
-            return 160;
+            return 150;
             break;
         default:
             return 0;
