@@ -191,6 +191,7 @@
     
 }
 + (CGFloat) getCellHeight {
-    return 136.0;
+    
+    return 139.0;
 }
 @end

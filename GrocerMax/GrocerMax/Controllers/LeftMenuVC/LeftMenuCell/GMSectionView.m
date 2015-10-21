@@ -12,7 +12,15 @@
 
 - (void)configureWithSectionDisplayName:(NSString *)displayName {
     
-    [self.sectionNameLabel setText:displayName];
+//    [self.sectionNameLabel setText:displayName];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:displayName];
+    
+    float spacing = 2.0f;
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(spacing)
+                             range:NSMakeRange(0, [displayName length])];
+    
+    self.sectionNameLabel.attributedText = attributedString;
 }
 
 + (CGFloat)sectionHeight {

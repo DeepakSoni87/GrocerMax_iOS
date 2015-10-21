@@ -6,12 +6,13 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "pack@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "staples@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "staples@3x.png"
     }
   ],
   "info" : {

@@ -249,7 +249,6 @@ static NSString *kIdentifierLastDetailHeader = @"OrderDetailLastIdentifierHeader
         return nil;
     }
 }
-#pragma mark - Request Methods
 
 #pragma mark - Request Methods
 

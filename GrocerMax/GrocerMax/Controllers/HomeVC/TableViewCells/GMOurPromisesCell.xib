@@ -14,10 +14,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="190" id="KGk-i7-Jjw" customClass="GMOurPromisesCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-8x-kMd">
@@ -51,7 +51,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_footer" translatesAutoresizingMaskIntoConstraints="NO" id="tV5-lM-fvX">
-                        <rect key="frame" x="0.0" y="60" width="320" height="90"/>
+                        <rect key="frame" x="0.0" y="50" width="320" height="90"/>
                         <animations/>
                     </imageView>
                 </subviews>
@@ -64,7 +64,7 @@
                     <constraint firstAttribute="trailing" secondItem="tV5-lM-fvX" secondAttribute="trailing" id="UfR-aU-ztD"/>
                     <constraint firstAttribute="centerX" secondItem="nOr-v9-QHt" secondAttribute="centerX" id="ars-TL-Pna"/>
                     <constraint firstItem="nOr-v9-QHt" firstAttribute="leading" secondItem="6at-8x-kMd" secondAttribute="trailing" constant="8" id="tBx-Er-fde"/>
-                    <constraint firstItem="tV5-lM-fvX" firstAttribute="top" secondItem="nOr-v9-QHt" secondAttribute="bottom" constant="21" id="vcP-7w-Iql"/>
+                    <constraint firstItem="tV5-lM-fvX" firstAttribute="top" secondItem="nOr-v9-QHt" secondAttribute="bottom" constant="11" id="vcP-7w-Iql"/>
                     <constraint firstAttribute="bottom" secondItem="tV5-lM-fvX" secondAttribute="bottom" constant="9" id="xze-FW-m0b"/>
                     <constraint firstItem="nOr-v9-QHt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="zEI-Qx-dZ6"/>
                 </constraints>
