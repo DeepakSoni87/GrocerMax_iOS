@@ -151,6 +151,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
             [self createHeashKey];
             return;
         }
+    } else if(selectedIndex == 0) {
+        [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
     }
     [self showProgress];
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(GMGenralModal *responceData) {

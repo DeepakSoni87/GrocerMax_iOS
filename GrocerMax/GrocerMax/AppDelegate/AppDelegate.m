@@ -21,6 +21,7 @@
 #import "GMOffersByDealTypeModal.h"
 #import "GMDealCategoryBaseModal.h"
 #import "GMRootPageViewController.h"
+#import "UIGifImage.h"
 #import <GoogleAnalytics/GAI.h>
 
 #define TAG_PROCESSING_INDECATOR 100090
@@ -155,6 +156,8 @@ static int const kGaDispatchPeriod = 20;
     
     [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:kEY_notification_token];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self sendDeviceToken:deviceTokenString];
+    
     
 }
 
@@ -216,6 +219,24 @@ static int const kGaDispatchPeriod = 20;
 }
 
 #pragma mark - Notification Handle Method
+
+- (void)sendDeviceToken:(NSString*)deviceToken {
+    
+    NSMutableDictionary *deviceDic = [NSMutableDictionary new];
+    [deviceDic setObject:deviceToken forKey:@"deviceToken"];
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    if(userModal != nil && NSSTRING_HAS_DATA(userModal.userId)) {
+        [deviceDic setObject:userModal.userId forKey:kEY_userid];
+    }
+    
+    [[GMOperationalHandler handler] deviceToken:deviceDic withSuccessBlock:^(id responceData) {
+        
+        
+    } failureBlock:^(NSError *error) {
+
+    }];
+}
 
 - (void) goFromNotifiedScreen {
     
@@ -527,12 +548,22 @@ static int const kGaDispatchPeriod = 20;
     
     UIView *processingAlertView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height)];
     [processingAlertView setTag:TAG_PROCESSING_INDECATOR];
-    UIActivityIndicatorView *indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    indicator.center=processingAlertView.center;
-    [indicator startAnimating];
-    [processingAlertView addSubview:indicator];
+//    UIActivityIndicatorView *indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    indicator.center=processingAlertView.center;
+//    [indicator startAnimating];
+//    [processingAlertView addSubview:indicator];
     [processingAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
     
+    NSString *testGifPath = [[[NSBundle bundleForClass:self.class] resourcePath] stringByAppendingPathComponent:@"spinningwheel-3.gif"];
+    NSData *gifData = [NSData dataWithContentsOfFile:testGifPath];
+    
+    // test 1
+    
+    UIGifImage *gif = [[UIGifImage alloc] initWithData:gifData];
+    UIImageView *imageview = [[UIImageView alloc] initWithImage:gif];
+    imageview.frame = CGRectMake(0, 0, 100, 72);
+    imageview.center = processingAlertView.center;
+    [processingAlertView addSubview:imageview];
     [self.window addSubview:processingAlertView];
     
     // NSLog(@"Show------>");

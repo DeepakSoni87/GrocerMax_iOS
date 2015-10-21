@@ -1278,4 +1278,28 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
+
+- (void)deviceToken:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator sendDeviceToken]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                if (successBlock) successBlock(responseObject);
+            }
+                
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
 @end
