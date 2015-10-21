@@ -20,4 +20,6 @@
 @property (strong, nonatomic) NSString *linkUrl;
 @property (strong, nonatomic) NSString *imageUrl;
 
+- (GMHomeBannerModal *)initWithDictionary:(NSDictionary *)notificationDetailDic;
+
 @end
