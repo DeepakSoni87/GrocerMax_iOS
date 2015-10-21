@@ -73,7 +73,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
     [self registerCellsForTableView];
     [self configureUI];
-    [self userSelectLocation];
+//    [self userSelectLocation];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabHome withCategory:@"" label:nil value:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
