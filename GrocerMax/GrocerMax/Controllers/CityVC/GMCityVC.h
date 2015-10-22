@@ -10,4 +10,5 @@
 
 @interface GMCityVC : UIViewController
 
+@property (nonatomic) BOOL isCommimgFromHamberger;
 @end

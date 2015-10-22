@@ -16,6 +16,8 @@
 #import "GMRootPageViewController.h"
 #import "GMDealCategoryBaseModal.h"
 #import "MGSocialMedia.h"
+#import "GMCityVC.h"
+#import "GMHomeVC.h"
 
 #pragma mark - Interface/Implementation SectionModal
 
@@ -62,6 +64,7 @@ static NSString * const kShopByCategorySection                      =  @"SHOP BY
 static NSString * const kShopByDealSection                          =  @"SHOP BY DEALS";
 static NSString * const kGetInTouchSection                          =  @"GET IN TOUCH WITH US";
 //static NSString * const kPaymentSection                             =  @"PAYMENTS METHODS";
+static NSString * const kChangeCitySection                      =  @"PICK YOUR CITY";
 
 
 @implementation GMLeftMenuVC
@@ -104,6 +107,9 @@ static NSString * const kGetInTouchSection                          =  @"GET IN 
     [self.sectionArray addObject:getInTouch];
 //    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection rowArray:nil andIsExpand:NO];
 //    [self.sectionArray addObject:payment];
+    SectionModal *changeLocationInTouch = [[SectionModal alloc] initWithDisplayName:kChangeCitySection rowArray:nil andIsExpand:NO];
+    [self.sectionArray addObject:changeLocationInTouch];
+    
     [self.leftMenuTableView reloadData];
 }
 
@@ -247,6 +253,18 @@ static NSString * const kGetInTouchSection                          =  @"GET IN 
 //    else if ([sectionModal.sectionDisplayName isEqualToString:kPaymentSection]) {
 //        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kPaymentSection value:nil];
 //    }
+    else if ([sectionModal.sectionDisplayName isEqualToString:kChangeCitySection]) {
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kChangeCitySection value:nil];
+        AppDelegate *appDel = APP_DELEGATE;
+        [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        GMCityVC * cityVC  = [GMCityVC new];
+        GMHomeVC *homeVc = [appDel rootHomeVCFromFourthTab];
+        
+        cityVC.isCommimgFromHamberger = YES;
+        [homeVc.navigationController pushViewController:cityVC animated:NO];
+    }
+
+    
     else {
         
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:nil value:nil];
