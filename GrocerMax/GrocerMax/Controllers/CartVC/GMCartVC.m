@@ -43,6 +43,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *totalItemInCartLbl;
 
+@property (weak, nonatomic) IBOutlet UIImageView *dottedImageView;
+
 @property (nonatomic, strong) NSString *messageString;
 @end
 
@@ -109,6 +111,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         self.cartDetailModal = nil;
         self.cartDetailModal = nil;
         [self.totalView setHidden:YES];
+        [self.dottedImageView setHidden:YES];
         [self.placeOrderButton setHidden:YES];
         self.messageString = @"No item in your cart, Please add item.";
         [self.cartDetailTableView reloadData];
@@ -127,6 +130,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self.cartModal archiveCart];
             [self.tabBarController updateBadgeValueOnCartTab];
             [self.totalView setHidden:NO];
+            [self.dottedImageView setHidden:NO];
             [self.placeOrderButton setHidden:NO];
             [self.updateOrderButton setHidden:YES];
             [self configureAmountView];
@@ -139,6 +143,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             self.cartDetailModal = nil;
             [self.totalView setHidden:YES];
             [self.placeOrderButton setHidden:YES];
+            [self.dottedImageView setHidden:YES];
             self.messageString = @"No item in your cart, Please add item.";
         }
         [self.cartDetailTableView reloadData];
@@ -149,6 +154,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         [self.totalView setHidden:YES];
         [self.updateOrderButton setHidden:YES];
         [self.placeOrderButton setHidden:YES];
+        [self.dottedImageView setHidden:YES];
         [self.cartDetailTableView reloadData];
     }];
 }
@@ -374,6 +380,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
                 [self.cartModal archiveCart];
                 [self.tabBarController updateBadgeValueOnCartTab];
                 [self.totalView setHidden:NO];
+                [self.dottedImageView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 [self configureAmountView];
@@ -381,6 +388,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             } else {
                 [self.totalView setHidden:NO];
                 [self.placeOrderButton setHidden:NO];
+                [self.dottedImageView setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 self.messageString = @"No item in your cart, Please add item.";
             }
