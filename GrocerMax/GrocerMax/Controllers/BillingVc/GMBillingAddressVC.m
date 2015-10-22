@@ -142,13 +142,6 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     return [GMAddressCell cellHeight];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 7.0)];
-    [headerView setBackgroundColor:[UIColor grayBackgroundColor]];
-    return headerView;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GMAddressCell *addressCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierBillingAddressCell];

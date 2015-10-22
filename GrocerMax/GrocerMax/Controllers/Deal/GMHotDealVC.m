@@ -11,6 +11,7 @@
 #import "GMHotDealBaseModal.h"
 #import "GMDealCategoryBaseModal.h"
 #import "GMRootPageViewController.h"
+#import "GMProductListingVC.h"
 
 static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectionCell";
 
@@ -139,4 +140,42 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
     [dealCategoryArray insertObject:allModal atIndex:0];
     return dealCategoryArray;
 }
+
+#pragma mark - banner handling
+
+#pragma mark - fetchProductListingDataFor Offers OR Deals for 1 first page
+
+- (void)fetchDealProductListingDataForOffersORDeals:(GMCategoryModal*)catMdl {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:catMdl.categoryId forKey:kEY_deal_id];
+    [localDic setObject:@"1" forKey:kEY_page];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] dealProductListing:localDic withSuccessBlock:^(id responceData) {
+        
+        [self removeProgress];
+        
+        GMProductListingBaseModal *newModal = responceData;
+        
+        catMdl.productListArray = newModal.productsListArray;
+        catMdl.totalCount = newModal.totalcount;
+        
+        GMProductListingVC *proListVC = [[GMProductListingVC alloc] initWithNibName:@"GMProductListingVC" bundle:nil];
+        proListVC.catMdl = catMdl;
+        proListVC.rootPageAPIController = [[GMRootPageAPIController alloc] init];
+        proListVC.productListingType = GMProductListingFromTypeOffer_OR_Deal;
+        proListVC.parentVC = nil;// do your work, deepak
+        proListVC.gaTrackingEventText =  kEY_GA_Event_ProductListingThroughHomeBanner;
+        
+        [self.tabBarController setSelectedIndex:2];
+        [self.navigationController pushViewController:proListVC animated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
+}
+
+
 @end

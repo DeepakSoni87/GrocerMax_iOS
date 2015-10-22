@@ -76,6 +76,8 @@
 #define   KEY_Banner_offerbydealtype @"offerbydealtype"
 #define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
 #define   KEY_Banner_productlistall @"productlistall"
+#define   KEY_Banner_dealproductlisting @"dealproductlisting"
+#define   KEY_Banner_shopbydealtype @"shopbydealtype"
 
 
 //Resoponce Key
@@ -331,6 +333,7 @@
 
 #define kEY_GA_Event_ProductListingThroughOffers            @"Productlistng through Offers"
 #define kEY_GA_Event_ProductListingThroughSubCategories     @"Productlistng through Subcategories"
+#define kEY_GA_Event_ProductListingThroughHomeBanner     @"Productlistng through HomeBanner"
 
 #define kEY_GA_Event_ProductListScrolling                   @"Product list scrolling"
 

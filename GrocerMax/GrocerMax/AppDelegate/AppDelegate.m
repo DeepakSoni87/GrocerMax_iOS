@@ -23,6 +23,7 @@
 #import "GMRootPageViewController.h"
 #import "UIGifImage.h"
 #import <GoogleAnalytics/GAI.h>
+#import "GMHotDealVC.h"
 
 #define TAG_PROCESSING_INDECATOR 100090
 
@@ -483,6 +484,26 @@ static int const kGaDispatchPeriod = 20;
         
         GMSearchVC *searchVC = [searchNavVC viewControllers][0];
         return searchVC;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
+-(GMHotDealVC*) rootHotDealVCFromThirdTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *hotdealNavVC = [tabBarVC.viewControllers objectAtIndex:2];
+        
+        GMHotDealVC *hotDealVC = [hotdealNavVC viewControllers][0];
+        return hotDealVC;
     }
     @catch (NSException *exception) {
         
