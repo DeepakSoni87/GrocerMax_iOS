@@ -13,6 +13,11 @@
 @class GMSearchVC;
 @class GMProfileVC;
 
+@class GMHomeVC;
+
+@class GMHotDealVC;
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) RZMessagingWindow *errorWindow;
@@ -32,12 +37,17 @@
 
 -(GMSearchVC*) rootSearchVCFromFourthTab;
 
+-(GMHomeVC*) rootHomeVCFromFourthTab;
+
 - (void)goToHomeWithAnimation:(BOOL)animation;
 
 -(GMProfileVC*) rootProfileVCFromFourthTab;
 
+-(GMHotDealVC*) rootHotDealVCFromThirdTab;
+
 -(void)ShowProcessingView;
 
 -(void)HideProcessingView;
+
 @end
 

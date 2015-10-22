@@ -79,6 +79,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
         {
             GMDealModal *mdl = self.dataSource[indexPath.row];
             tempCategoryModal.categoryId = mdl.dealId;
+            tempCategoryModal.categoryName = mdl.dealName;
         }
             break;
             
@@ -86,6 +87,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
         {
             GMDealModal *mdl = self.dataSource[indexPath.row];
             tempCategoryModal.categoryId = mdl.dealId;
+            tempCategoryModal.categoryName = mdl.dealName;
         }
             break;
             

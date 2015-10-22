@@ -23,6 +23,7 @@
 #import "GMRootPageViewController.h"
 #import "UIGifImage.h"
 #import <GoogleAnalytics/GAI.h>
+#import "GMHotDealVC.h"
 
 #define TAG_PROCESSING_INDECATOR 100090
 
@@ -494,6 +495,26 @@ static int const kGaDispatchPeriod = 20;
     return nil;
 }
 
+-(GMHotDealVC*) rootHotDealVCFromThirdTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *hotdealNavVC = [tabBarVC.viewControllers objectAtIndex:2];
+        
+        GMHotDealVC *hotDealVC = [hotdealNavVC viewControllers][0];
+        return hotDealVC;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
 - (void)goToHomeWithAnimation:(BOOL)animation {
     
     [self.window.layer removeAllAnimations];
@@ -530,6 +551,25 @@ static int const kGaDispatchPeriod = 20;
         
         GMProfileVC *profileVC = [profileNavVC viewControllers][0];
         return profileVC;
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
+-(GMHomeVC*) rootHomeVCFromFourthTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *homeNavVC = [tabBarVC.viewControllers objectAtIndex:0];
+        
+        GMHomeVC *homeVC = [homeNavVC viewControllers][0];
+        return homeVC;
     }
     @catch (NSException *exception) {
     }

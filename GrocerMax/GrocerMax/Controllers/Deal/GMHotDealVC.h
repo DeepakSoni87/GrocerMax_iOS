@@ -10,4 +10,6 @@
 
 @interface GMHotDealVC : UIViewController
 
+- (void)fetchDealProductListingDataForOffersORDeals:(GMCategoryModal*)catMdl;
+
 @end
