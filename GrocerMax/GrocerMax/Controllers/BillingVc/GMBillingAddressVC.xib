@@ -69,10 +69,22 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="aqW-YR-5GO" secondAttribute="bottom" id="5Tj-pi-sRw"/>
                         <constraint firstItem="aqW-YR-5GO" firstAttribute="leading" secondItem="xDN-1A-DnQ" secondAttribute="leading" id="CFZ-Ab-Hed"/>
+                        <constraint firstItem="aqW-YR-5GO" firstAttribute="leading" secondItem="xDN-1A-DnQ" secondAttribute="leading" id="Ccb-01-A55"/>
+                        <constraint firstAttribute="trailing" secondItem="aqW-YR-5GO" secondAttribute="trailing" id="GN8-J4-j0w"/>
                         <constraint firstAttribute="trailing" secondItem="aqW-YR-5GO" secondAttribute="trailing" id="PCI-EY-1H8"/>
+                        <constraint firstAttribute="bottom" secondItem="aqW-YR-5GO" secondAttribute="bottom" id="VeM-HF-3Da"/>
+                        <constraint firstItem="aqW-YR-5GO" firstAttribute="top" secondItem="xDN-1A-DnQ" secondAttribute="top" id="akK-ld-XmI"/>
                         <constraint firstItem="aqW-YR-5GO" firstAttribute="top" secondItem="xDN-1A-DnQ" secondAttribute="top" id="fST-Ip-SxJ"/>
                         <constraint firstAttribute="height" constant="38" id="gyd-gh-F2N"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ccb-01-A55"/>
+                            <exclude reference="PCI-EY-1H8"/>
+                            <exclude reference="VeM-HF-3Da"/>
+                            <exclude reference="fST-Ip-SxJ"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <animations/>
@@ -100,12 +112,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYt-7f-utM">
                     <rect key="frame" x="8" y="8" width="304" height="44"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_plus" translatesAutoresizingMaskIntoConstraints="NO" id="nii-0c-yxk">
-                            <rect key="frame" x="282" y="15" width="14" height="14"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartPlus" translatesAutoresizingMaskIntoConstraints="NO" id="nii-0c-yxk">
+                            <rect key="frame" x="279" y="15" width="14" height="14"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="14" id="Eo3-Nn-9Nf"/>
-                                <constraint firstAttribute="width" constant="14" id="fqH-nD-lhH"/>
+                                <constraint firstAttribute="width" constant="14" id="1XZ-Gk-WYn"/>
+                                <constraint firstAttribute="height" constant="14" id="JN9-Tx-Frd"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Q9-WIU">
@@ -127,8 +139,8 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="zla-Q9-WIU" secondAttribute="bottom" id="5ab-zS-ezr"/>
-                        <constraint firstItem="nii-0c-yxk" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" constant="15" id="nDh-rU-lYP"/>
-                        <constraint firstAttribute="trailing" secondItem="nii-0c-yxk" secondAttribute="trailing" constant="8" id="rDd-Md-81T"/>
+                        <constraint firstItem="nii-0c-yxk" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" constant="15" id="6yw-dE-wiG"/>
+                        <constraint firstAttribute="trailing" secondItem="nii-0c-yxk" secondAttribute="trailing" constant="11" id="dsQ-es-Iyn"/>
                         <constraint firstItem="zla-Q9-WIU" firstAttribute="leading" secondItem="nYt-7f-utM" secondAttribute="leading" constant="8" id="uSy-h7-U2R"/>
                         <constraint firstItem="zla-Q9-WIU" firstAttribute="top" secondItem="nYt-7f-utM" secondAttribute="top" id="vBm-om-5Ag"/>
                         <constraint firstAttribute="trailing" secondItem="zla-Q9-WIU" secondAttribute="trailing" id="zPz-Rp-eX9"/>
@@ -149,7 +161,7 @@
         </view>
     </objects>
     <resources>
-        <image name="left_plus" width="9" height="9"/>
+        <image name="cartPlus" width="14" height="14"/>
         <image name="progress-bar-2" width="142" height="12"/>
     </resources>
 </document>
