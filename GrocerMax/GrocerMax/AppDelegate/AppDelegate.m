@@ -250,6 +250,14 @@ static int const kGaDispatchPeriod = 20;
     NSArray *valueStringArr = [self.pushModal.linkUrl componentsSeparatedByString:@"="];
     NSString *value = valueStringArr.lastObject;
     
+    if ([self.pushModal.linkUrl isEqualToString:KEY_Banner_shopbydealtype]) {
+            GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return;
+            [tabBarVC.viewControllers objectAtIndex:2];
+        return;
+    }
+    
     if (!(NSSTRING_HAS_DATA(typeStr) && NSSTRING_HAS_DATA(value))) {
         return;
     }
@@ -286,6 +294,17 @@ static int const kGaDispatchPeriod = 20;
         bannerCatMdl.categoryName = @"Banner Result";
         
         [self fetchProductListingDataForCategory:bannerCatMdl];
+    } else if ([typeStr isEqualToString:KEY_Banner_dealproductlisting]) {
+        
+        GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
+        if (hotDealVC == nil)
+            return;
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
     }
 
     
