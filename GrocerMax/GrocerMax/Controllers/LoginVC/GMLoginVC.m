@@ -30,7 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self configureView];
+//    [self configureView];
     if(self.isPresent)
         self.closeBtn.hidden = NO;
     else
