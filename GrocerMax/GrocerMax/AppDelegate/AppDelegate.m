@@ -561,6 +561,25 @@ static int const kGaDispatchPeriod = 20;
     return nil;
 }
 
+-(GMHomeVC*) rootHomeVCFromFourthTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *homeNavVC = [tabBarVC.viewControllers objectAtIndex:0];
+        
+        GMHomeVC *homeVC = [homeNavVC viewControllers][0];
+        return homeVC;
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
 #pragma mark activity indicator
 -(void)ShowProcessingView
 {
