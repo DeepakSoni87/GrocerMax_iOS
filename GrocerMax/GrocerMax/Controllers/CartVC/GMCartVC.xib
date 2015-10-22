@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GMCartVC">
             <connections>
                 <outlet property="cartDetailTableView" destination="yY5-X7-13V" id="eFa-F6-ibQ"/>
+                <outlet property="dottedImageView" destination="EsO-n0-29Y" id="aEx-5q-ghE"/>
                 <outlet property="placeOrderButton" destination="OPZ-x5-fJ5" id="mnd-cB-V8s"/>
                 <outlet property="savedLabel" destination="vH6-u6-qyC" id="716-pd-roy"/>
                 <outlet property="shippingChargeLabel" destination="8mR-65-ND6" id="26M-ZE-lR6"/>
@@ -52,7 +53,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product_cart" translatesAutoresizingMaskIntoConstraints="NO" id="0KR-V7-WVR">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkoutCart" translatesAutoresizingMaskIntoConstraints="NO" id="0KR-V7-WVR">
                             <rect key="frame" x="278" y="31" width="25" height="22"/>
                             <animations/>
                             <constraints>
@@ -215,7 +216,6 @@
                                         <constraint firstAttribute="height" constant="20" id="uSV-94-tW3"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -240,7 +240,7 @@
                                         <constraint firstAttribute="height" constant="20" id="mni-18-qGv"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vH6-u6-qyC">
@@ -339,7 +339,7 @@
     </objects>
     <resources>
         <image name="back" width="15" height="14"/>
+        <image name="checkoutCart" width="25" height="18"/>
         <image name="dottedLine" width="305" height="112"/>
-        <image name="product_cart" width="16" height="11"/>
     </resources>
 </document>

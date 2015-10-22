@@ -36,11 +36,17 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     [self registerCellsForTableView];
     [self getLocation];
     
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configerView];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_City_Screen];
+    if (self.isCommimgFromHamberger) {
+        self.navigationController.navigationBarHidden = NO;
+        self.navigationItem.title = @"Pick your city";
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -174,9 +180,33 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     [[GMOperationalHandler handler] getLocation:nil  withSuccessBlock:^(GMStateBaseModal *responceData) {
         self.cityArray = (NSMutableArray *)responceData.cityArray;
         if(self.cityArray.count>0) {
-            self.cityModal = [self.cityArray objectAtIndex:0];
-            [self.cityModal setIsSelected:YES];
-            [self.cityTableView reloadData];
+            if(self.isCommimgFromHamberger) {
+            GMCityModal *tempCityModal = [GMCityModal selectedLocation];
+                if(NSSTRING_HAS_DATA(tempCityModal.cityId))  {
+                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.cityId == %@", tempCityModal.cityId];
+                    NSArray *SelectedCityArray =  [[self.cityArray filteredArrayUsingPredicate:pred] mutableCopy];
+                    if(SelectedCityArray.count>0) {
+                        self.cityModal = [SelectedCityArray objectAtIndex:0];
+                        [self.cityModal setIsSelected:YES];
+                        [self.cityTableView reloadData];
+                    } else {
+                        self.cityModal = [self.cityArray objectAtIndex:0];
+                        [self.cityModal setIsSelected:YES];
+                        [self.cityTableView reloadData];
+                    }
+                } else {
+                    self.cityModal = [self.cityArray objectAtIndex:0];
+                    [self.cityModal setIsSelected:YES];
+                    [self.cityTableView reloadData];
+                }
+               
+                
+            } else {
+                self.cityModal = [self.cityArray objectAtIndex:0];
+                [self.cityModal setIsSelected:YES];
+                [self.cityTableView reloadData];
+            }
+            
         }
         else
         {

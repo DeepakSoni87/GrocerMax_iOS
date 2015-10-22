@@ -60,11 +60,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_plus" translatesAutoresizingMaskIntoConstraints="NO" id="bun-5Q-Bvn">
-                            <rect key="frame" x="284" y="17" width="9" height="9"/>
+                            <rect key="frame" x="279" y="15" width="14" height="14"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="9" id="dsD-1o-xaB"/>
-                                <constraint firstAttribute="height" constant="9" id="if9-Gb-UWT"/>
+                                <constraint firstAttribute="height" constant="14" id="S4M-Zx-1Jv"/>
+                                <constraint firstAttribute="width" constant="14" id="uGi-Z5-g2m"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stl-Mw-VjI">
@@ -86,14 +86,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="h5d-en-5Of" firstAttribute="leading" secondItem="Cwi-96-Spm" secondAttribute="leading" constant="8" id="46T-6n-pnn"/>
+                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" constant="15" id="BAC-f7-2pg"/>
                         <constraint firstAttribute="trailing" secondItem="stl-Mw-VjI" secondAttribute="trailing" id="HBH-rb-FhS"/>
                         <constraint firstItem="h5d-en-5Of" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" constant="12" id="I14-N6-lDO"/>
-                        <constraint firstAttribute="trailing" secondItem="bun-5Q-Bvn" secondAttribute="trailing" constant="11" id="N6x-Jn-jwA"/>
+                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="leading" secondItem="h5d-en-5Of" secondAttribute="trailing" constant="71" id="PdD-i8-keP"/>
                         <constraint firstItem="stl-Mw-VjI" firstAttribute="leading" secondItem="Cwi-96-Spm" secondAttribute="leading" id="Tlw-5a-AtH"/>
                         <constraint firstAttribute="bottom" secondItem="stl-Mw-VjI" secondAttribute="bottom" id="VWf-RA-Q36"/>
+                        <constraint firstAttribute="trailing" secondItem="bun-5Q-Bvn" secondAttribute="trailing" constant="11" id="XvW-qn-ter"/>
                         <constraint firstItem="stl-Mw-VjI" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" id="j60-S2-sQt"/>
-                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="leading" secondItem="h5d-en-5Of" secondAttribute="trailing" constant="76" id="m5n-fU-Qtx"/>
-                        <constraint firstItem="bun-5Q-Bvn" firstAttribute="top" secondItem="Cwi-96-Spm" secondAttribute="top" constant="17" id="yEv-oS-S94"/>
                     </constraints>
                 </view>
             </subviews>
