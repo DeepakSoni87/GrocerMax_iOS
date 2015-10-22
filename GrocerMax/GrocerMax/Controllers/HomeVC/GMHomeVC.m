@@ -33,6 +33,7 @@
 #import "GMSearchVC.h"
 #import "GMHomeBannerModal.h"
 #import "GMPaymentVC.h"
+#import "GMProductListingVC.h"
 
 //#define   KEY_Banner_search @"search"
 //#define   KEY_Banner_offerbydealtype @"offerbydealtype"
@@ -62,8 +63,8 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     // Do any additional setup after loading the view from its nib.
     
     [self addLeftMenuButton];
-//    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
-//    self.navigationItem.title = @"Home";
+    //    [self showSearchIconOnRightNavBarWithNavTitle:@"Home"];
+    //    self.navigationItem.title = @"Home";
     self.navigationItem.title = @"";
     UIImage *image = [UIImage imageNamed:@"logo"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -105,10 +106,10 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
 }
 - (void)userSelectLocation {
-//    if([GMCityModal selectedLocation] == nil) {
-        GMCityVC * cityVC  = [GMCityVC new];
-        [self.navigationController pushViewController:cityVC animated:NO];
-//    }
+    //    if([GMCityModal selectedLocation] == nil) {
+    GMCityVC * cityVC  = [GMCityVC new];
+    [self.navigationController pushViewController:cityVC animated:NO];
+    //    }
 }
 
 #pragma mark - Register Cells
@@ -119,7 +120,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     [self.tblView registerNib:[UINib nibWithNibName:@"GMShopByCategoryCell" bundle:nil] forCellReuseIdentifier:shopByCategoryCell];
     [self.tblView registerNib:[UINib nibWithNibName:@"GMShopByDealCell" bundle:nil] forCellReuseIdentifier:shopByDealCell];
     [self.tblView registerNib:[UINib nibWithNibName:@"GMOurPromisesCell" bundle:nil] forCellReuseIdentifier:ourPromisesCell];
-
+    
 }
 
 #pragma mark - UITableviewDelegate/DataSource
@@ -243,7 +244,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
 #pragma mark - paggin cell Delegate
 
 -(void)didSelectItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
-
+    
     [self handleBannerAction:self.bannerListArray[collectionIndexpath.item]];
 }
 
@@ -330,14 +331,14 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
             completion (nil);
         }];
     }];
-
+    
     [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
         // get shop by categories
         [self getShopByCategoriesFromServer];
         
         completion (nil);
     }];
-
+    
     
     [sequencer run];
 }
@@ -413,7 +414,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
     [localDic setObject:kEY_iOS forKey:kEY_device];
-
+    
     [self showProgress];
     [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
         
@@ -432,7 +433,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         rootVC.navigationTitleString = categoryModal.categoryName;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
         [self.navigationController pushViewController:rootVC animated:YES];
-
+        
         
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -445,7 +446,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     GMOffersByDealTypeModal *allModal = [[GMOffersByDealTypeModal alloc] initWithDealType:@"All" dealId:@"" dealImageUrl:@"" andDealsArray:baseModal.allArray];
     [offersByDealTypeArray addObject:allModal];
     [offersByDealTypeArray addObjectsFromArray:baseModal.deal_categoryArray];
-//    [offersByDealTypeArray removeLastObject];
+    //    [offersByDealTypeArray removeLastObject];
     return offersByDealTypeArray;
 }
 
@@ -495,18 +496,22 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     NSArray *valueStringArr = [bannerMdl.linkUrl componentsSeparatedByString:@"="];
     NSString *value = valueStringArr.lastObject;
     
+    if ([bannerMdl.linkUrl isEqualToString:KEY_Banner_shopbydealtype]) {
+        [self.tabBarController setSelectedIndex:2];
+        return;
+    }
+    
     if (!(NSSTRING_HAS_DATA(typeStr) && NSSTRING_HAS_DATA(value))) {
         return;
     }
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerSelection withCategory:bannerMdl.linkUrl label:value value:nil];
-
+    
     if ([typeStr isEqualToString:KEY_Banner_search]) {
         
         NSMutableDictionary *localDic = [NSMutableDictionary new];
         [localDic setObject:value forKey:kEY_keyword];
         
-        [self.tabBarController setSelectedIndex:3];
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
         if (searchVC == nil)
             return;
@@ -517,7 +522,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
         bannerCatMdl.categoryName = @"Banner Result";
-
+        
         [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
         
     }else if ([typeStr isEqualToString:KEY_Banner_dealsbydealtype]) {
@@ -531,6 +536,18 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         bannerCatMdl.categoryName = @"Banner Result";
         
         [self fetchProductListingDataForCategory:bannerCatMdl];
+        
+    }else if ([typeStr isEqualToString:KEY_Banner_dealproductlisting]) {
+        
+        GMHotDealVC *hotDealVC = [APP_DELEGATE rootHotDealVCFromThirdTab];
+        if (hotDealVC == nil)
+            return;
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        bannerCatMdl.categoryName = @"Banner Result";
+        
+        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
     }
 }
 
@@ -585,6 +602,5 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         [self removeProgress];
     }];
 }
-
 
 @end

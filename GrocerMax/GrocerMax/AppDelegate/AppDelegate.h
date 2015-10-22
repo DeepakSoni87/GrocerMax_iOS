@@ -12,6 +12,7 @@
 @class GMTabBarVC;
 @class GMSearchVC;
 @class GMProfileVC;
+@class GMHotDealVC;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -36,8 +37,11 @@
 
 -(GMProfileVC*) rootProfileVCFromFourthTab;
 
+-(GMHotDealVC*) rootHotDealVCFromThirdTab;
+
 -(void)ShowProcessingView;
 
 -(void)HideProcessingView;
+
 @end
 

@@ -95,13 +95,15 @@
             return;
         }
         
+        [self.tabBarController setSelectedIndex:3];
+
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = searchResultModal.categorysListArray;
-        rootVC.navigationTitleString = @"Search Results";
+        rootVC.navigationTitleString = self.searchBarView.text;
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
         rootVC.isFromSearch = YES;
         [self.navigationController pushViewController:rootVC animated:YES];
-        
+
     } failureBlock:^(NSError *error) {
         [self removeProgress];
         [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
