@@ -132,9 +132,12 @@
     UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
-    
+    [self adjustShareInsets:profileVC.tabBarItem];
     [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
 }
 
-
+-(void)adjustShareInsets:(UITabBarItem *)customTabBarItem {
+    [customTabBarItem setTitlePositionAdjustment:UIOffsetMake(0.0, 0.0)];
+    [customTabBarItem setImageInsets:UIEdgeInsetsMake(6, 0, -6, 0)];
+}
 @end
