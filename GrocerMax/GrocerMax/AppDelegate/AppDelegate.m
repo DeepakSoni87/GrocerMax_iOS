@@ -273,7 +273,7 @@ static int const kGaDispatchPeriod = 20;
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
         if (searchVC == nil)
             return;
-        [searchVC performSearchOnServerWithParam:localDic];
+        [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
         
     }else if ([typeStr isEqualToString:KEY_Banner_offerbydealtype]) {
         

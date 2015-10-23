@@ -55,7 +55,8 @@ static NSString * const kStateNameKey                  = @"stateName";
     
     return @{@"regionId"                  : @"region_id",
              @"stateName"                 : @"default_name",
-             @"cityArray"                 : @"city"
+             @"cityArray"                 : @"city",
+             @"storeId"                    : @"id"
              };
 }
 
@@ -74,6 +75,8 @@ static NSString * const kStateNameKey                  = @"stateName";
 @property (nonatomic, readwrite, strong) NSString *stateId;
 
 @property (nonatomic, readwrite, strong) NSString *stateName;
+
+@property (nonatomic, readwrite, strong) NSString *storeId;
 
 @property (nonatomic, readwrite) BOOL isSelected;
 
