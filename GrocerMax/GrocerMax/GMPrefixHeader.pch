@@ -44,5 +44,6 @@
 #import "GMCartRequestParam.h"
 #import "NSString+Extension.h"
 #import "UITabBarController+UpdateBagde.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #endif
