@@ -44,7 +44,7 @@
 
 + (NSDateFormatter *)dateFormatter_DD_MMM_YYYY {
     
-    [[self shareFormatter] setDateFormat:@"dd, MMM yyyy"];
+    [[self shareFormatter] setDateFormat:@"dd MMM, yyyy"];
     return [self shareFormatter];
 }
 @end
