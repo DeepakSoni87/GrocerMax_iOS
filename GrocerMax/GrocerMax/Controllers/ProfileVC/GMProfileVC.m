@@ -277,7 +277,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
         [self presentViewController:mc animated:YES completion:NULL];
     }
     else
-        NSLog(@"This device cannot send email");
+        [[GMSharedClass sharedClass] showErrorMessage:@"No email setup on your device go to device settings and configure it."];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

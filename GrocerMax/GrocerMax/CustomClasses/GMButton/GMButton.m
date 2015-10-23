@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self setAttributedTextWith:self.titleLabel.text];
+        [self setAttributedTextWith:self.titleLabel.text andAnyModal:NO];
     }
     return self;
 }
@@ -31,7 +31,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
 
-        [self setAttributedTextWith:self.titleLabel.text];
+        [self setAttributedTextWith:self.titleLabel.text andAnyModal:NO];
     }
     return self;
 }
@@ -39,13 +39,19 @@
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
     
     [super setTitle:title forState:state];
-    [self setAttributedTextWith:title];
+    [self setAttributedTextWith:title andAnyModal:[self isAnyModalPresent]];
 }
 
-- (void)setAttributedTextWith:(NSString *)title {
+- (void)setAttributedTextWith:(NSString *)title andAnyModal:(BOOL)isModal {
     
     if(!title)
         return;
+    
+    if(isModal) {
+        
+        [self.titleLabel setText:title];
+        return;
+    }
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title];
     
@@ -56,4 +62,33 @@
     [self.titleLabel setAttributedText:attributedString];
 }
 
+- (void)setProdutModal:(GMProductModal *)produtModal {
+    
+    _produtModal = produtModal;
+    [self setAttributedTextWith:self.titleLabel.text andAnyModal:YES];
+}
+
+- (void)setAddressModal:(GMAddressModalData *)addressModal {
+    
+    _addressModal = addressModal;
+    [self setAttributedTextWith:self.titleLabel.text andAnyModal:YES];
+}
+
+- (void)setTimeSlotModal:(GMTimeSloteModal *)timeSlotModal {
+    
+    _timeSlotModal = timeSlotModal;
+    [self setAttributedTextWith:self.titleLabel.text andAnyModal:YES];
+}
+
+- (BOOL)isAnyModalPresent {
+    
+    if(self.addressModal)
+        return YES;
+    if(self.timeSlotModal)
+        return YES;
+    if(self.produtModal)
+        return YES;
+    
+    return NO;
+}
 @end
