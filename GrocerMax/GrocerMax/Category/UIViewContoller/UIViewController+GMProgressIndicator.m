@@ -17,8 +17,8 @@
 - (void)showProgress {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-//    [self showProgressWithText:nil];
-    [APP_DELEGATE ShowProcessingView];
+    [self showProgressWithText:nil];
+//    [APP_DELEGATE ShowProcessingView];
 }
 
 - (void)showProgressWithText:(NSString *)message {
@@ -27,7 +27,8 @@
     [SVProgressHUD setForegroundColor:[UIColor colorFromHexString:@"#FFA800"]];
     //    [SVProgressHUD setRingThickness:1.0f];
     [SVProgressHUD setFont:FONT_REGULAR(13)];
-    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeGradient];
+//    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     //    [self.view setUserInteractionEnabled:NO];// added by R
     if (![[UIApplication sharedApplication] isIgnoringInteractionEvents])
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -39,8 +40,8 @@
     if ([[UIApplication sharedApplication] isIgnoringInteractionEvents])
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     //    [self.view setUserInteractionEnabled:YES];// added by R
-//    [SVProgressHUD dismiss];
-    [APP_DELEGATE HideProcessingView];
+    [SVProgressHUD dismiss];
+//    [APP_DELEGATE HideProcessingView];
 }
 
 #pragma mark - Add 3 Bar Menu Btn on Left Nav Bar
