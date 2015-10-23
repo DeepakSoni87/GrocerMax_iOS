@@ -185,8 +185,11 @@
     
     if ([[webView stringByEvaluatingJavaScriptFromString:@"document.readyState"] isEqualToString:@"complete"]) {
         NSLog(@"Pageloaded completely-------");
+        
         if([webView.request.URL.absoluteString rangeOfString:@"success.php" options:NSCaseInsensitiveSearch].location != NSNotFound) {
             [[NSNotificationCenter defaultCenter] postNotificationName:PAYMENT_SUCCESS_NOTIFICATION object:nil];
+        } else if([webView.request.URL.absoluteString rangeOfString:@"fail.php" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:PAYMENT_FAILURE_NOTIFICATION object:nil];
         }
         
         // UIWebView object has fully loaded.
