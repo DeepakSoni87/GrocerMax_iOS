@@ -44,10 +44,13 @@
                                         <outlet property="delegate" destination="-1" id="vDE-9c-9lo"/>
                                     </connections>
                                 </textField>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WY-r0-avO" userLabel="horizantalLine">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WY-r0-avO" userLabel="horizantalLine">
                                     <rect key="frame" x="0.0" y="40" width="272" height="1"/>
                                     <animations/>
                                     <color key="backgroundColor" red="0.90980392160000001" green="0.56470588239999997" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="34K-bo-6WE"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -56,7 +59,10 @@
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2WY-r0-avO" secondAttribute="trailing" id="JuA-VV-Qcy"/>
                                 <constraint firstAttribute="trailing" secondItem="Rx1-dA-yrW" secondAttribute="trailing" id="Ulc-kG-hQU"/>
+                                <constraint firstItem="2WY-r0-avO" firstAttribute="leading" secondItem="RYD-Bl-I20" secondAttribute="leading" id="asF-QC-LYG"/>
+                                <constraint firstItem="2WY-r0-avO" firstAttribute="top" secondItem="Rx1-dA-yrW" secondAttribute="bottom" constant="1" id="bYk-dM-yz8"/>
                                 <constraint firstItem="Rx1-dA-yrW" firstAttribute="leading" secondItem="RYD-Bl-I20" secondAttribute="leading" id="hO7-p1-XuF"/>
                                 <constraint firstAttribute="height" constant="48" id="lEQ-c8-f1j"/>
                                 <constraint firstAttribute="bottom" secondItem="Rx1-dA-yrW" secondAttribute="bottom" constant="9" id="tkK-Cp-IDJ"/>
