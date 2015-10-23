@@ -94,12 +94,17 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            } else {
+                if(failureBlock) failureBlock(error);
             }
+            
+            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -142,15 +147,21 @@ static GMOperationalHandler *sharedHandler;
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
-        NSString *baseUrl = responseObject[@"urlImg"];
-        if(NSSTRING_HAS_DATA(baseUrl))
-           [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            NSString *baseUrl = responseObject[@"urlImg"];
+            if(NSSTRING_HAS_DATA(baseUrl))
+                [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
+            
+            NSDictionary *categoryDict = responseObject[kCategoryKey];
+            GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(rootCategoryModal); }
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
         
-        NSDictionary *categoryDict = responseObject[kCategoryKey];
-        GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
-        
-        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-        else            { if (successBlock) successBlock(rootCategoryModal); }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -160,23 +171,27 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)userLogin:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator userLoginPath],[GMRequestParams userLoginParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator userLoginPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            if (responseObject) {
                 
-                if(successBlock) successBlock(responseObject);
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        } else {
+            if(failureBlock) failureBlock(error);
         }
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -192,11 +207,16 @@ static GMOperationalHandler *sharedHandler;
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *mtlError = nil;
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(registrationResponse); }
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
         
-        GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
-        
-        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-        else            { if (successBlock) successBlock(registrationResponse); }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -206,19 +226,23 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)userDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator userDetailPath],[GMRequestParams userDetailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator userDetailPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(successBlock) successBlock(responseObject);
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            } else {
+                if(failureBlock) failureBlock(error);
             }
+            
+            
         }else {
             
             if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
@@ -233,14 +257,12 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)logOut:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator logOutPath],[GMRequestParams logoutParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator logOutPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
-            
-            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 
@@ -264,7 +286,6 @@ static GMOperationalHandler *sharedHandler;
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
-            
             
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -426,7 +447,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)deleteAddress:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator deleteAddressPath],[GMRequestParams deleteAddressParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator deleteAddressPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -483,7 +504,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)category:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator categoryPath],[GMRequestParams categoryParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator categoryPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -544,7 +565,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)productDetail:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator productDetailPath],[GMRequestParams productDetailParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator productDetailPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -611,7 +632,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)activeOrder:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator activeOrderPath],[GMRequestParams activeOrderOrOrderHistryParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator activeOrderPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -638,7 +659,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)orderHistory:(NSDictionary *)param withSuccessBlock:(void(^)(NSArray *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator orderHistoryPath],[GMRequestParams activeOrderOrOrderHistryParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator orderHistoryPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -776,7 +797,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)asetStatus:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator asetStatusPath],[GMRequestParams setStatusParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator asetStatusPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -1070,7 +1091,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)shopbyCategory:(NSDictionary *)param withSuccessBlock:(void(^)(id catArray))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator shopbyCategoryPath],[GMRequestParams shopbyCategoryParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator shopbyCategoryPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -1197,7 +1218,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)productListAll:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator productListAllPath],[GMRequestParams productListAllParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator productListAllPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -1229,8 +1250,6 @@ static GMOperationalHandler *sharedHandler;
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (responseObject) {
-            
-            
             
             if([responseObject isKindOfClass:[NSDictionary class]]) {
                 

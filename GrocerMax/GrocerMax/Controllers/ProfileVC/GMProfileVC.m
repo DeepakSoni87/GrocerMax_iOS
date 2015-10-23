@@ -312,7 +312,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
     UIImage *profileVCTabImg = [[UIImage profile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage profile_unselectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     loginVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
-    
+    [self adjustShareInsets:loginVC.tabBarItem];
     [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[loginVC] animated:YES];
 }
 
@@ -321,4 +321,5 @@ static CGFloat const kProfileCellHeight = 44.0f;
     GMOrderHistryVC *orderHistryVC = [GMOrderHistryVC new];
     [self.navigationController pushViewController:orderHistryVC animated:YES];
 }
+
 @end
