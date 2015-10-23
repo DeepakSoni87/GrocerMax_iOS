@@ -18,4 +18,42 @@
 }
 */
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        [self setAttributedTextWith:self.titleLabel.text];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+
+        [self setAttributedTextWith:self.titleLabel.text];
+    }
+    return self;
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    
+    [super setTitle:title forState:state];
+    [self setAttributedTextWith:title];
+}
+
+- (void)setAttributedTextWith:(NSString *)title {
+    
+    if(!title)
+        return;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title];
+    
+    float spacing = 2.0f;
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(spacing)
+                             range:NSMakeRange(0, [title length])];
+    [self.titleLabel setAttributedText:attributedString];
+}
+
 @end

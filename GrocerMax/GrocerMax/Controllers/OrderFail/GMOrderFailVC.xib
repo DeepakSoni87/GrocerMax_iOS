@@ -57,7 +57,7 @@
                     <color key="textColor" red="0.17254901959999999" green="0.3411764706" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-QA-1L4">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-QA-1L4" customClass="GMButton">
                     <rect key="frame" x="8" y="274" width="304" height="37"/>
                     <animations/>
                     <color key="backgroundColor" red="0.59607843137254901" green="0.16862745098039217" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,7 +88,7 @@
                         <action selector="actionPayByCashOnDelivery:" destination="-1" eventType="touchUpInside" id="UFn-P4-kUz"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-M4-uwz">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-M4-uwz" customClass="GMButton">
                     <rect key="frame" x="8" y="331" width="304" height="37"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.6588235294117647" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
