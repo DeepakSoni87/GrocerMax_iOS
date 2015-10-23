@@ -27,7 +27,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Piw-gb-M9P"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -35,21 +35,29 @@
                             <rect key="frame" x="24" y="61" width="272" height="48"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="One time password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rx1-dA-yrW">
-                                    <rect key="frame" x="10" y="9" width="252" height="30"/>
+                                    <rect key="frame" x="0.0" y="9" width="272" height="30"/>
                                     <animations/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="vDE-9c-9lo"/>
                                     </connections>
                                 </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WY-r0-avO" userLabel="horizantalLine">
+                                    <rect key="frame" x="0.0" y="40" width="272" height="1"/>
+                                    <animations/>
+                                    <color key="backgroundColor" red="0.90980392160000001" green="0.56470588239999997" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="Rx1-dA-yrW" secondAttribute="trailing" constant="10" id="Ulc-kG-hQU"/>
-                                <constraint firstItem="Rx1-dA-yrW" firstAttribute="leading" secondItem="RYD-Bl-I20" secondAttribute="leading" constant="10" id="hO7-p1-XuF"/>
+                                <constraint firstAttribute="trailing" secondItem="Rx1-dA-yrW" secondAttribute="trailing" id="Ulc-kG-hQU"/>
+                                <constraint firstItem="Rx1-dA-yrW" firstAttribute="leading" secondItem="RYD-Bl-I20" secondAttribute="leading" id="hO7-p1-XuF"/>
                                 <constraint firstAttribute="height" constant="48" id="lEQ-c8-f1j"/>
                                 <constraint firstAttribute="bottom" secondItem="Rx1-dA-yrW" secondAttribute="bottom" constant="9" id="tkK-Cp-IDJ"/>
                                 <constraint firstItem="Rx1-dA-yrW" firstAttribute="top" secondItem="RYD-Bl-I20" secondAttribute="top" constant="9" id="v6R-sZ-hDB"/>

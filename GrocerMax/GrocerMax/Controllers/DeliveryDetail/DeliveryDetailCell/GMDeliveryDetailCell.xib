@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wof-g0-C0K">
-                        <rect key="frame" x="16" y="0.0" width="288" height="54"/>
+                        <rect key="frame" x="8" y="0.0" width="304" height="54"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLOT FULL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNl-Mn-uRM">
                                 <rect key="frame" x="0.0" y="5" width="150" height="10"/>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLOT FULL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBY-Cw-InP">
-                                <rect key="frame" x="139" y="5" width="150" height="10"/>
+                                <rect key="frame" x="155" y="5" width="150" height="10"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="RFh-Pa-XB6"/>
@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaH-fW-DrJ" customClass="GMButton">
-                                <rect key="frame" x="144" y="0.0" width="144" height="54"/>
+                                <rect key="frame" x="152" y="0.0" width="152" height="54"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -54,7 +54,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKb-gt-GeU">
-                                <rect key="frame" x="144" y="0.0" width="1" height="54"/>
+                                <rect key="frame" x="152" y="0.0" width="1" height="54"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -65,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efa-9S-qZ8" customClass="GMButton">
-                                <rect key="frame" x="0.0" y="0.0" width="144" height="54"/>
+                                <rect key="frame" x="0.0" y="0.0" width="152" height="54"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -104,8 +104,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Wof-g0-C0K" secondAttribute="bottom" id="FEq-Yq-P3a"/>
                     <constraint firstItem="Wof-g0-C0K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Jhw-XG-WB3"/>
-                    <constraint firstItem="Wof-g0-C0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="au1-xT-Nli"/>
-                    <constraint firstAttribute="trailing" secondItem="Wof-g0-C0K" secondAttribute="trailing" constant="16" id="kub-nh-cZ8"/>
+                    <constraint firstItem="Wof-g0-C0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="au1-xT-Nli"/>
+                    <constraint firstAttribute="trailing" secondItem="Wof-g0-C0K" secondAttribute="trailing" constant="8" id="kub-nh-cZ8"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>

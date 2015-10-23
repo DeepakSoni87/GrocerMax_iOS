@@ -12,7 +12,7 @@
 
 + (CGFloat)cellHeight {
     
-    return 57.0f;
+    return 64.0f;
 }
 
 #pragma mark - IBActionMethods

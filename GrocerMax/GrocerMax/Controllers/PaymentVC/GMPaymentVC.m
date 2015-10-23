@@ -71,7 +71,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
-    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"payU", nil];
+    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)", nil];
     coupanCode = @"";
     [self registerCellsForTableView];
     selectedIndex = -1;
