@@ -78,16 +78,24 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
         case GMRootPageViewControllerTypeOffersByDealTypeListing:
         {
             GMDealModal *mdl = self.dataSource[indexPath.row];
-            tempCategoryModal.categoryId = mdl.dealId;
-            tempCategoryModal.categoryName = mdl.dealName;
+            if(NSSTRING_HAS_DATA(mdl.dealId)) {
+                tempCategoryModal.categoryId = mdl.dealId;
+                tempCategoryModal.categoryName = mdl.dealName;
+            } else {
+                return;
+            }
         }
             break;
             
         case GMRootPageViewControllerTypeDealCategoryTypeListing:
         {
             GMDealModal *mdl = self.dataSource[indexPath.row];
-            tempCategoryModal.categoryId = mdl.dealId;
-            tempCategoryModal.categoryName = mdl.dealName;
+            if(NSSTRING_HAS_DATA(mdl.dealId)) {
+                tempCategoryModal.categoryId = mdl.dealId;
+                tempCategoryModal.categoryName = mdl.dealName;
+            } else {
+                return;
+            }
         }
             break;
             
