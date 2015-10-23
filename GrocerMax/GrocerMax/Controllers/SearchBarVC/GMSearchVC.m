@@ -63,7 +63,7 @@
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:self.searchBarView.text forKey:kEY_keyword];
     
-    [self performSearchOnServerWithParam:localDic];
+    [self performSearchOnServerWithParam:localDic isBanner:NO];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -77,9 +77,14 @@
 
 #pragma mark - API Task
 
-- (void)performSearchOnServerWithParam:(NSDictionary*)param {
+- (void)performSearchOnServerWithParam:(NSDictionary*)param isBanner:(BOOL)isBanner{
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SearchQuery withCategory:@"" label:[param  objectForKey:kEY_keyword] value:nil];
+    if(isBanner) {
+        if([param  objectForKey:kEY_keyword]) {
+            self.searchBarView.text = [param  objectForKey:kEY_keyword];
+        }
+    }
     
     [self showProgress];
     [[GMOperationalHandler handler] search:param withSuccessBlock:^(id responceData) {

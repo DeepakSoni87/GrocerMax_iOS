@@ -56,4 +56,6 @@
 - (NSString *)getCategoryImageBaseUrl;
 
 - (void)setCategoryImageBaseUrl:(NSString *)baseurl;
+
+- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest;
 @end
