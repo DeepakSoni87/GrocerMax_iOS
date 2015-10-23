@@ -63,7 +63,7 @@
                                 <constraint firstItem="Rx1-dA-yrW" firstAttribute="top" secondItem="RYD-Bl-I20" secondAttribute="top" constant="9" id="v6R-sZ-hDB"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRb-dc-iQ7">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRb-dc-iQ7" customClass="GMButton">
                             <rect key="frame" x="24" y="120" width="272" height="42"/>
                             <animations/>
                             <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
