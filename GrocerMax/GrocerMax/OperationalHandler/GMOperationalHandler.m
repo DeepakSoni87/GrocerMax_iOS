@@ -863,7 +863,7 @@ static GMOperationalHandler *sharedHandler;
 
 - (void)removeCoupon:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", [GMApiPathGenerator removeCouponPath],[GMRequestParams addOrRemoveCouponParameter:param]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator removeCouponPath]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {

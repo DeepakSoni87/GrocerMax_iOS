@@ -75,11 +75,11 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     if(categoryModal.isExpand)
     {
         if(section == self.expandedIndex) {
-            if(categoryModal.subCategories.count%3 == 0) {
-                return categoryModal.subCategories.count/3;
+            if(categoryModal.subCategories.count%2 == 0) {
+                return categoryModal.subCategories.count/2;
             }
             else {
-                return (categoryModal.subCategories.count/3) + 1;
+                return (categoryModal.subCategories.count/2) + 1;
             }
             
         }

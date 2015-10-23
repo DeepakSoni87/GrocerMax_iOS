@@ -190,7 +190,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (void)actionApplyCoponCode:(id)sender {
     
-    if(self.coupanCartDetail) {
+    if( NSSTRING_HAS_DATA(self.checkOutModal.cartDetailModal.couponCode) && !NSSTRING_HAS_DATA(coupanCode))  {
+        coupanCode = self.checkOutModal.cartDetailModal.couponCode;
+    }
+    
+    if(self.coupanCartDetail || NSSTRING_HAS_DATA(self.checkOutModal.cartDetailModal.couponCode)) {
         
         [self removeCouponCode];
         return;
@@ -262,6 +266,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
             }
             [[GMSharedClass sharedClass] showErrorMessage:message];
             self.coupanCartDetail = nil;
+            self.checkOutModal.cartDetailModal.couponCode = @"";
+            self.checkOutModal.cartDetailModal.discountAmount = @"0.0";
             [self.paymentTableView reloadData];
         }else {
             if(!NSSTRING_HAS_DATA(message)) {
@@ -356,7 +362,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         coupanCodeCell.coupanCodeTextField.delegate = self;
         [coupanCodeCell.applyCodeBtn addTarget:self action:@selector(actionApplyCoponCode:) forControlEvents:UIControlEventTouchUpInside];
         [coupanCodeCell.applyCodeBtn setExclusiveTouch:YES];
-        [coupanCodeCell configerView:self.coupanCartDetail];
+        [coupanCodeCell configerView:self.coupanCartDetail carDetail:self.checkOutModal.cartDetailModal];
         return coupanCodeCell;
     }
     return nil;

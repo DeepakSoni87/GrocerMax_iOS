@@ -63,15 +63,16 @@
         self.subCategoryBtn2 .hidden = FALSE;
         self.subCategoryBtn1 .hidden = FALSE;
         
-        self.subCategoryBtn2.tag = cellTag+1;
+        self.subCategoryBtn2.tag = cellTag;
         self.subCategoryBtn1.tag = cellTag;
         
         
-        GMCategoryModal *categoryModal2 = [subcategoryArray objectAtIndex:cellTag+1];
+//        GMCategoryModal *categoryModal2 = [subcategoryArray objectAtIndex:cellTag];
         GMCategoryModal *categoryModal1 = [subcategoryArray objectAtIndex:cellTag];
         
-        [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
+//        [self.subCategoryBtn2 setTitle:categoryModal2.categoryName forState:UIControlStateNormal];
         [self.subCategoryBtn1 setTitle:categoryModal1.categoryName forState:UIControlStateNormal];
+        self.subCategoryBtn2 .hidden = TRUE;
     }
 //    else if(subcategoryArray.count >= cellTag+1 )
 //    {
@@ -88,7 +89,7 @@
     else
     {
 //        self.subCategoryBtn3 .hidden = TRUE;
-        self.subCategoryBtn2 .hidden = TRUE;
+        self.subCategoryBtn1 .hidden = TRUE;
         self.subCategoryBtn2 .hidden = TRUE;
     }
     

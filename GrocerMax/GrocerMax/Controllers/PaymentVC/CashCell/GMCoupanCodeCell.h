@@ -15,5 +15,5 @@
 
 + (CGFloat) cellHeight;
 
-- (void)configerView:(id)modal;
+- (void)configerView:(id)modal carDetail:(GMCartDetailModal *)cartDetailModal;
 @end
