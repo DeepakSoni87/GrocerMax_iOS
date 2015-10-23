@@ -57,5 +57,5 @@
 
 - (void)setCategoryImageBaseUrl:(NSString *)baseurl;
 
-- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest;
+- (NSString *)getDate:(NSString *)myDateString withFormate:(NSString *)formate;
 @end

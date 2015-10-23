@@ -292,9 +292,22 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults setObject:baseurl forKey:categoryImageUrlKey];
     [defaults synchronize];
 }
-- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest {
-    [headerRequest setValue:kEY_iOS forKey:kEY_device];
-    [headerRequest setValue:kAppVersion forKey:keyAppVersion];
-    return headerRequest;
+//- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest {
+//    [headerRequest setValue:kEY_iOS forKey:kEY_device];
+//    [headerRequest setValue:kAppVersion forKey:keyAppVersion];
+//    return headerRequest;
+//}
+
+- (NSString *)getDate:(NSString *)myDateString withFormate:(NSString *)formate {
+    
+    if(NSSTRING_HAS_DATA(formate)){
+        formate =@"dd-MMM-yyyy";
+    }
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *yourDate = [dateFormatter dateFromString:myDateString];
+    dateFormatter.dateFormat = formate;
+    NSString *newDate = [dateFormatter stringFromDate:yourDate];
+    return newDate;
 }
 @end
