@@ -240,7 +240,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
 - (void)shareExperience{
     
     MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
-    [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
+    [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Check it out right now & get started with smart shopping."];
     
 }
 
@@ -259,9 +259,9 @@ static CGFloat const kProfileCellHeight = 44.0f;
 - (void)openMailComposerVC {
     
     // Email Subject
-    NSString *emailTitle = @"Customer Support Request";
+    NSString *emailTitle = @"Be a smart grocery shopper";
     // Email Content
-    NSString *messageBody = @"Hi";
+    NSString *messageBody = @"Hey, \nI cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Check it out right now & get started with smart shopping.";
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:@"care@grocermax.com"];
     

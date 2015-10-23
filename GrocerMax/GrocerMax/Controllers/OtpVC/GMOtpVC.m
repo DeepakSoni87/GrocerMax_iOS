@@ -30,19 +30,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.navigationItem.title = @"One Time Password";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_OTP_Screen];
 }
 
 #pragma mark - GETTER/SETTER Methods
 
-- (void)setOtpBgView:(UIView *)otpBgView {
-    
-    _otpBgView = otpBgView;
-    [_otpBgView.layer setCornerRadius:5.0];
-    [_otpBgView.layer setBorderWidth:1.0];
-    [_otpBgView.layer setBorderColor:[UIColor inputTextFieldColor].CGColor];
-}
+//- (void)setOtpBgView:(UIView *)otpBgView {
+//    
+//    _otpBgView = otpBgView;
+//    [_otpBgView.layer setCornerRadius:5.0];
+//    [_otpBgView.layer setBorderWidth:1.0];
+//    [_otpBgView.layer setBorderColor:[UIColor inputTextFieldColor].CGColor];
+//}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
