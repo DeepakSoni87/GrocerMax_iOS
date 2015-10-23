@@ -9,6 +9,7 @@
 #import "GMOrderSuccessVC.h"
 #import "GMCartModal.h"
 #import "GMProfileVC.h"
+#import "MGSocialMedia.h"
 
 @interface GMOrderSuccessVC ()
 
@@ -20,11 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id: %@", self.orderId]];
-//    GMCartModal *cartModal = [GMCartModal loadCart];
-//    [cartModal.cartItems removeAllObjects];
-//    [cartModal.deletedProductItems removeAllObjects];
-//    [cartModal archiveCart];
+    [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id is  %@", self.orderId]];
+    
+    NSDictionary* style1 = @{
+                             NSFontAttributeName : FONT_LIGHT(14),
+                             NSForegroundColorAttributeName : [UIColor gmRedColor]
+                             };
+    
+    NSDictionary* style2 = @{
+                             NSFontAttributeName : FONT_BOLD(18),
+                             NSForegroundColorAttributeName : [UIColor gmBlackColor],
+                             };
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:@"Order ID is " attributes:style1];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:self.orderId attributes:style2]];
+    [attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\nPlease check your mail for details" attributes:style1]];
+    
+    [self.orderIdlabel setAttributedText:attString];
+
     [[GMSharedClass sharedClass] clearCart];
     [self.tabBarController updateBadgeValueOnCartTab];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OrderSuccess withCategory:@"" label:nil value:nil];
@@ -62,6 +76,11 @@
     [profileVC goOrderHistoryList];
 }
 
+- (IBAction)shareBtnAction:(UIButton *)sender {
+
+    MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
+    [socalMedia showActivityView:@"Hey, Checkout this product!!!"];
+}
 
 
 @end
