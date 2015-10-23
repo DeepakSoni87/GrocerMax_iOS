@@ -482,14 +482,14 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [self showProgress];
     [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        //[self.navigationController popToRootViewControllerAnimated:NO];
         GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
         successVC.orderId = self.genralModal.orderID;
         [self.navigationController pushViewController:successVC animated:YES];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
-        [self.navigationController popToRootViewControllerAnimated:NO];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
         GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
         successVC.orderId = self.genralModal.orderID;
         [self.navigationController pushViewController:successVC animated:YES];
