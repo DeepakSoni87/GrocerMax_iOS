@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) IBOutlet GMButton *cityBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *locationImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
 -(void) configureCellWithData:(id)data ;
 
 + (CGFloat)cellHeight;
