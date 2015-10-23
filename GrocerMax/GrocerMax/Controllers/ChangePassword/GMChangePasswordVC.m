@@ -26,7 +26,7 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
 
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *changePasswordTableView;
 
-@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
+@property (weak, nonatomic) IBOutlet GMButton *saveBtn;
 
 @property (nonatomic, strong) NSMutableArray *cellArray;
 @property (nonatomic, strong) GMUserModal *userModal;
@@ -56,6 +56,12 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
     self.title = @"Change Password";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ChangePassword_Screen];
+}
+
+- (void)setSaveBtn:(GMButton *)saveBtn {
+    
+    _saveBtn = saveBtn;
+//    [_saveBtn setTitle:@"SAVE" forState:UIControlStateNormal];
 }
 
 - (IBAction)actionSaveBtn:(id)sender {

@@ -279,7 +279,12 @@ static int const kGaDispatchPeriod = 20;
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(self.pushModal.name)) {
+            bannerCatMdl.categoryName = self.pushModal.name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+//        bannerCatMdl.categoryName = @"Banner Result";
         
         [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
         
@@ -291,7 +296,12 @@ static int const kGaDispatchPeriod = 20;
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(self.pushModal.name)) {
+            bannerCatMdl.categoryName = self.pushModal.name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+//        bannerCatMdl.categoryName = @"Banner Result";
         
         [self fetchProductListingDataForCategory:bannerCatMdl];
     } else if ([typeStr isEqualToString:KEY_Banner_dealproductlisting]) {
@@ -302,7 +312,12 @@ static int const kGaDispatchPeriod = 20;
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+//        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(self.pushModal.name)) {
+            bannerCatMdl.categoryName = self.pushModal.name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
         
         [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
     }
@@ -335,7 +350,8 @@ static int const kGaDispatchPeriod = 20;
         rootVC.pageData = offersByDealTypeArray;
         rootVC.navigationTitleString = categoryModal.categoryName;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
-        [self.navController pushViewController:rootVC animated:YES];
+       GMHomeVC *homeVC  = [self rootHomeVCFromFourthTab];
+        [homeVC.navigationController pushViewController:rootVC animated:YES];
         
         
     } failureBlock:^(NSError *error) {
@@ -429,7 +445,8 @@ static int const kGaDispatchPeriod = 20;
         rootVC.pageData = categoryArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
         rootVC.navigationTitleString = categoryModal.categoryName;
-        [self.navController pushViewController:rootVC animated:YES];
+        GMHomeVC *homeVC  = [self rootHomeVCFromFourthTab];
+        [homeVC.navigationController pushViewController:rootVC animated:YES];
         
     } failureBlock:^(NSError *error) {
         [self HideProcessingView];

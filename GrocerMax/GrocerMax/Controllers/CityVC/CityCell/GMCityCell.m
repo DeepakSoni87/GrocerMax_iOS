@@ -22,19 +22,19 @@
 }
 
 -(void) configureCellWithData:(id)data {
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     GMCityModal *cityModal = (GMCityModal *)data;
     self.cityBtn.cityModal = cityModal;
     
     if(cityModal.isSelected) {
-        self.cityBtn.selected = YES;
+        self.locationImageView.highlighted = YES;
     }
     else {
-        self.cityBtn.selected = NO;
+        self.locationImageView.highlighted = NO;
     }
-    [self.cityBtn setTitle:cityModal.cityName forState:UIControlStateNormal];
-    [self.cityBtn setTitle:cityModal.cityName forState:UIControlStateNormal];
+    [self.locationLabel setText:cityModal.cityName];
     [self.cityBtn setExclusiveTouch:YES];
 }
 

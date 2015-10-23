@@ -468,7 +468,9 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         rootVC.pageData = dealCategoryArray;
         rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
-        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
+        [APP_DELEGATE rootHotDealVCFromThirdTab];
+        [self.navigationController pushViewController:rootVC animated:NO];
+//        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         
     } failureBlock:^(NSError *error) {
         
@@ -522,7 +524,12 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(bannerMdl.name)) {
+            bannerCatMdl.categoryName = bannerMdl.name;
+        } else {
+            bannerCatMdl.categoryName = @"Banner Result";
+        }
+        
         
         [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
         
@@ -534,7 +541,12 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(bannerMdl.name)) {
+            bannerCatMdl.categoryName = bannerMdl.name;
+        } else {
+            bannerCatMdl.categoryName = @"Banner Result";
+        }
+//        bannerCatMdl.categoryName = @"Banner Result";
         
         [self fetchProductListingDataForCategory:bannerCatMdl];
         
@@ -546,7 +558,12 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         
         GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
         bannerCatMdl.categoryId = value;
-        bannerCatMdl.categoryName = @"Banner Result";
+        if(NSSTRING_HAS_DATA(bannerMdl.name)) {
+            bannerCatMdl.categoryName = bannerMdl.name;
+        } else {
+            bannerCatMdl.categoryName = @"Banner Result";
+        }
+//        bannerCatMdl.categoryName = @"Banner Result";
         
         [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
     }

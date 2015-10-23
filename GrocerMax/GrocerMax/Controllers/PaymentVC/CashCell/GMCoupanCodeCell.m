@@ -7,6 +7,7 @@
 //
 
 #import "GMCoupanCodeCell.h"
+#import "GMCartDetailModal.h"
 
 @implementation GMCoupanCodeCell
 
@@ -31,12 +32,19 @@
     return 50.0f;
 }
 
-- (void)configerView:(id)modal {
+- (void)configerView:(id)modal carDetail:(GMCartDetailModal *)cartDetailModal {
     if(modal == nil) {
+        if(NSSTRING_HAS_DATA(cartDetailModal.couponCode)) {
+            [self.applyCodeBtn setTitle:@"REMOVE CODE" forState:UIControlStateNormal];
+            self.coupanCodeTextField.userInteractionEnabled = FALSE;
+            self.coupanCodeTextField.textColor = [UIColor lightGrayColor];
+            self.coupanCodeTextField.text = cartDetailModal.couponCode;
+        } else {
         [self.applyCodeBtn setTitle:@"APPLY CODE" forState:
          UIControlStateNormal];
         self.coupanCodeTextField.userInteractionEnabled = TRUE;
         self.coupanCodeTextField.textColor = [UIColor blackColor];
+        }
     } else {
         [self.applyCodeBtn setTitle:@"REMOVE CODE" forState:UIControlStateNormal];
         self.coupanCodeTextField.userInteractionEnabled = FALSE;

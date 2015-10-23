@@ -36,6 +36,7 @@ static NSString *kIdentifierHotDealCollectionCell = @"hotDealIdentifierCollectio
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(homeButtonPressed:)];
+     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabDeal withCategory:@"" label:nil value:nil];
 }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,19 +25,22 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gIp-hy-xdY">
-                        <rect key="frame" x="141" y="122" width="39" height="37"/>
+                    <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gIp-hy-xdY">
+                        <rect key="frame" x="141" y="111" width="39" height="37"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="37" id="8hD-S2-Rsb"/>
+                            <constraint firstAttribute="height" constant="37" id="uve-un-NYA"/>
                         </constraints>
+                        <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </pageControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yIu-YV-TNu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="53O-3h-jjf"/>
-                    <constraint firstAttribute="bottom" secondItem="gIp-hy-xdY" secondAttribute="bottom" id="7D9-vp-P1m"/>
                     <constraint firstAttribute="bottom" secondItem="yIu-YV-TNu" secondAttribute="bottom" id="WRz-17-hta"/>
-                    <constraint firstAttribute="centerX" secondItem="gIp-hy-xdY" secondAttribute="centerX" id="mBK-Nw-fov"/>
+                    <constraint firstItem="gIp-hy-xdY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="133" id="WzZ-0G-raP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gIp-hy-xdY" secondAttribute="trailing" constant="132" id="fNZ-Xq-fET"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gIp-hy-xdY" secondAttribute="bottom" constant="-17" id="jdv-jP-4qW"/>
                     <constraint firstAttribute="trailing" secondItem="yIu-YV-TNu" secondAttribute="trailing" id="pcM-f8-09C"/>
                     <constraint firstItem="yIu-YV-TNu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ufr-W8-LIk"/>
                 </constraints>

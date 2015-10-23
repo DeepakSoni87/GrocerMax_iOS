@@ -87,7 +87,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcH-ov-5LL">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcH-ov-5LL" customClass="GMButton">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <animations/>
                     <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,7 +104,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Ct-8D-zoT">
-                    <rect key="frame" x="0.0" y="105" width="320" height="374"/>
+                    <rect key="frame" x="0.0" y="98" width="320" height="381"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -125,7 +125,7 @@
                 <constraint firstItem="fpC-LG-i0p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HwB-ak-YBN"/>
                 <constraint firstItem="kn4-6R-Rsj" firstAttribute="top" secondItem="kcb-36-oOF" secondAttribute="bottom" constant="37" id="N6I-ux-XPJ"/>
                 <constraint firstAttribute="trailing" secondItem="3Ct-8D-zoT" secondAttribute="trailing" id="OuU-UQ-00T"/>
-                <constraint firstItem="3Ct-8D-zoT" firstAttribute="top" secondItem="kcb-36-oOF" secondAttribute="bottom" constant="27" id="Tm8-Ho-GFe"/>
+                <constraint firstItem="3Ct-8D-zoT" firstAttribute="top" secondItem="kcb-36-oOF" secondAttribute="bottom" constant="20" id="Tm8-Ho-GFe"/>
                 <constraint firstItem="LcH-ov-5LL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vfd-eG-wFX"/>
                 <constraint firstItem="LcH-ov-5LL" firstAttribute="top" secondItem="fpC-LG-i0p" secondAttribute="bottom" id="YgE-Pa-rdT"/>
                 <constraint firstItem="fpC-LG-i0p" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bZA-FN-t2w"/>

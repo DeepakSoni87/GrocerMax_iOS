@@ -66,7 +66,7 @@ NSString *const offersCollectionViewCell = @"GMOffersCollectionViewCell";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat width = kScreenWidth; //(kScreenWidth - 30)/2;
-    return CGSizeMake(width,114);
+    return CGSizeMake(width,160);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
