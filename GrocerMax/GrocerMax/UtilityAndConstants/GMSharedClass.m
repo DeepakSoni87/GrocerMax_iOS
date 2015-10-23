@@ -16,7 +16,7 @@
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics/GAIFields.h>
 #import "GMCartModal.h"
-
+#import "NSDateFormatter+Extend.h"
 
 #define kAlertTitle @"GrocerMax"
 
@@ -296,5 +296,12 @@ CGFloat const kMATabBarHeight = 49.0f;
     [headerRequest setValue:kEY_iOS forKey:kEY_device];
     [headerRequest setValue:kAppVersion forKey:keyAppVersion];
     return headerRequest;
+}
+
+- (NSString *)getDeliveryDate:(NSString *)deliveryStr {
+    
+    NSDate *deliveryDate = [[NSDateFormatter dateFormatter_yyyy_MM_dd] dateFromString:deliveryStr];
+    NSString *timeStr = [[NSDateFormatter dateFormatter_DD_MMM_YYYY] stringFromDate:deliveryDate];
+    return timeStr;
 }
 @end

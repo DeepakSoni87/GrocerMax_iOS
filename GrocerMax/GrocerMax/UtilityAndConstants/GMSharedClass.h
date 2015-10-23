@@ -58,4 +58,6 @@
 - (void)setCategoryImageBaseUrl:(NSString *)baseurl;
 
 - (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest;
+
+- (NSString *)getDeliveryDate:(NSString *)deliveryStr;
 @end

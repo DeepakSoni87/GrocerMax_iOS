@@ -242,6 +242,7 @@
 		82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */; };
 		82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */; };
 		82E6C8C01BD02EB300DD865C /* GMOrderFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */; };
+		82E80B161BDAAE3C007AAA03 /* NSDateFormatter+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */; settings = {ASSET_TAGS = (); }; };
 		82ECCBD11BD8724F000A10C9 /* grocerloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 82ECCBD01BD8724F000A10C9 /* grocerloader.gif */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
 		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
@@ -712,6 +713,8 @@
 		82E6C8BC1BD02EB200DD865C /* GMOrderFailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderFailVC.h; sourceTree = "<group>"; };
 		82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderFailVC.m; sourceTree = "<group>"; };
 		82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderFailVC.xib; sourceTree = "<group>"; };
+		82E80B141BDAAE3C007AAA03 /* NSDateFormatter+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extend.h"; sourceTree = "<group>"; };
+		82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extend.m"; sourceTree = "<group>"; };
 		82ECCBD01BD8724F000A10C9 /* grocerloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grocerloader.gif; sourceTree = "<group>"; };
 		E8326C701BB6B760008ACC8B /* GMCheckOutModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCheckOutModal.h; sourceTree = "<group>"; };
 		E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCheckOutModal.m; sourceTree = "<group>"; };
@@ -1179,6 +1182,7 @@
 		820C4F1E1BB1CC5C00DCCF39 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				82E80B131BDAAE3C007AAA03 /* NSDateFormatter+Extend */,
 				3B9025271BB87EAE00603403 /* TabBarController */,
 				820C4F1F1BB1CC5C00DCCF39 /* NSString+Extensions */,
 				820C4F221BB1CC5C00DCCF39 /* UIColor */,
@@ -2003,6 +2007,15 @@
 			path = OrderFail;
 			sourceTree = "<group>";
 		};
+		82E80B131BDAAE3C007AAA03 /* NSDateFormatter+Extend */ = {
+			isa = PBXGroup;
+			children = (
+				82E80B141BDAAE3C007AAA03 /* NSDateFormatter+Extend.h */,
+				82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */,
+			);
+			path = "NSDateFormatter+Extend";
+			sourceTree = "<group>";
+		};
 		B9BF57FEB8C9D49E7397393D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2680,6 +2693,7 @@
 				820C504A1BB1CC5C00DCCF39 /* GMOtpVC.m in Sources */,
 				820C50561BB1CC5C00DCCF39 /* GMProfileVC.m in Sources */,
 				820C50321BB1CC5C00DCCF39 /* GMLeftMenuDetailVC.m in Sources */,
+				82E80B161BDAAE3C007AAA03 /* NSDateFormatter+Extend.m in Sources */,
 				820C4FFB1BB1CC5C00DCCF39 /* GMDeliveryDateTimeSlotModal.m in Sources */,
 				820C50061BB1CC5C00DCCF39 /* UIImage+Extends.m in Sources */,
 				824047051BAB22F6008686C2 /* XHZoomDrawerView.m in Sources */,
