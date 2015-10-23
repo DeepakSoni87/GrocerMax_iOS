@@ -47,6 +47,9 @@
     if(!title)
         return;
     
+    if([title isEqualToString:@"ADD"])
+        return;
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title];
     
     float spacing = 2.0f;
