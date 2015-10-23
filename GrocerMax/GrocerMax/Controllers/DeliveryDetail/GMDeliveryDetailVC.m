@@ -12,12 +12,14 @@
 #import "GMTimeSlotBaseModal.h"
 #import "GMDeliveryDateTimeSlotModal.h"
 #import "GMPaymentVC.h"
+#import "NSDateFormatter+Extend.h"
 
 static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell";
 
 @interface GMDeliveryDetailVC ()
 {
     NSInteger selectedDateIndex;
+    NSString *selectedDate;
 }
 @property (strong, nonatomic) IBOutlet UILabel *dateLbl;
 @property (weak, nonatomic) IBOutlet UIButton *preSelectBtn;
@@ -110,8 +112,14 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     {
         GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:selectedDateIndex-1];
         
-        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
-        self.selectedDateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+//        NSDate *deliveryDate = [[NSDateFormatter dateFormatter_yyyy_MM_dd] dateFromString:deliveryDateTimeSlotModal.deliveryDate];
+//        NSString *timeStr = [[NSDateFormatter dateFormatter_DD_MMM_YYYY] stringFromDate:deliveryDate];
+        NSString *delecryDate = [[GMSharedClass sharedClass] getDeliveryDate:deliveryDateTimeSlotModal.deliveryDate];
+        self.dateLbl.text = delecryDate;//timeStr;
+        selectedDate = deliveryDateTimeSlotModal.deliveryDate;
+//        self.selectedDateLbl.text = timeStr;
+//        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+        self.selectedDateLbl.text = delecryDate;
         
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isSelected == YES"];
         NSArray *arry = [deliveryDateTimeSlotModal.timeSlotModalArray filteredArrayUsingPredicate:pred];
@@ -136,8 +144,12 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     if(selectedDateIndex < 6 && self.dateTimeSloteModalArray.count>0)
     {
         GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:selectedDateIndex+1];
-        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
-        self.selectedDateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+//        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+        
+        NSString *delecryDate = [[GMSharedClass sharedClass] getDeliveryDate:deliveryDateTimeSlotModal.deliveryDate];
+        self.dateLbl.text = delecryDate;
+        selectedDate = deliveryDateTimeSlotModal.deliveryDate;
+        self.selectedDateLbl.text = delecryDate;
         
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isSelected == YES"];
         NSArray *arry = [deliveryDateTimeSlotModal.timeSlotModalArray filteredArrayUsingPredicate:pred];
@@ -166,7 +178,7 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     GMTimeSloteModal *timeSloteModal = sender.timeSlotModal;
     if(timeSloteModal.isSloatFull || sender.selected)
         return;
-    timeSloteModal.deliveryDate= self.dateLbl.text;
+    timeSloteModal.deliveryDate= selectedDate;
     self.checkOutModal.timeSloteModal = timeSloteModal;
     
     if(self.selectedTimeSlotModal)
@@ -238,8 +250,11 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     if(self.dateTimeSloteModalArray.count>0) {
         GMDeliveryDateTimeSlotModal *deliveryDateTimeSlotModal = [self.dateTimeSloteModalArray objectAtIndex:0];
         selectedDateIndex = 0;
-        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
-        self.selectedDateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+//        self.dateLbl.text = deliveryDateTimeSlotModal.deliveryDate;
+        NSString *delecryDate = [[GMSharedClass sharedClass] getDeliveryDate:deliveryDateTimeSlotModal.deliveryDate];
+        self.dateLbl.text = delecryDate;
+        selectedDate = deliveryDateTimeSlotModal.deliveryDate;
+        self.selectedDateLbl.text = delecryDate;
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isSelected == YES"];
         NSArray *arry = [deliveryDateTimeSlotModal.timeSlotModalArray filteredArrayUsingPredicate:pred];
         if(arry.count>0) {

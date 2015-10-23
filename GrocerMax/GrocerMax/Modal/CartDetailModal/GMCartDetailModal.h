@@ -7,6 +7,7 @@
 //
 
 #import "MTLModel.h"
+#import "GMCartModal.h"
 
 @interface GMCartDetailModal : NSObject
 
@@ -27,4 +28,6 @@
 @property (nonatomic, strong) NSString *discountAmount;
 
 - (instancetype)initWithCartDetailDictionary:(NSDictionary *)responseDict;
+
+- (instancetype)initWithCartModal:(GMCartModal *)cartModal;
 @end
