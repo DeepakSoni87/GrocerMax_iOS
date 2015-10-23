@@ -134,6 +134,15 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
         self.cityModal = cityModal;
     }
     
+    if([GMCityModal selectedLocation]) {
+        
+        GMCityModal *tempCityModal = [GMCityModal selectedLocation];
+        if(![tempCityModal.cityId isEqualToString:self.cityModal.cityId]) {
+            [[GMSharedClass sharedClass] clearCart];
+            [self.tabBarController updateBadgeValueOnCartTab];
+        }
+    }
+    
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SaveCity withCategory:@"" label:self.cityModal.cityName value:nil];
     [self.cityModal persistLocation];
     

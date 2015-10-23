@@ -22,11 +22,11 @@
 - (void)awakeFromNib {
     // Initialization code
     self.clipsToBounds = YES;
-    
-    self.itemImgView.layer.cornerRadius = 5.0;
-    self.itemImgView.layer.masksToBounds = YES;
-    self.itemImgView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.itemImgView.layer.borderWidth = 3.0;
+//    
+//    self.itemImgView.layer.cornerRadius = 5.0;
+//    self.itemImgView.layer.masksToBounds = YES;
+//    self.itemImgView.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.itemImgView.layer.borderWidth = 3.0;
 }
 
 - (void)configureCellWithData:(id)data cellIndexPath:(NSIndexPath*)indexPath andPageContType:(GMRootPageViewControllerType)rootType{
@@ -66,8 +66,11 @@
     NSDictionary* style2 = @{
                              NSFontAttributeName:FONT_LIGHT(10),
                              NSForegroundColorAttributeName : [UIColor lightGrayColor]
+          
                              };
-    
+    if(!NSSTRING_HAS_DATA(titleName)) {
+        titleName = @"";
+    }
     NSMutableAttributedString *attString1 = [[NSMutableAttributedString alloc] initWithString:titleName attributes:style1];
     
 //    [attString1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:mdl.p_name attributes:style2]];
