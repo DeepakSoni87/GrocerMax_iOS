@@ -13,5 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn2;
 //@property (strong, nonatomic) IBOutlet UIButton *subCategoryBtn3;
 
+- (void)configerLastCell;
+
 -(void)configerViewWithData:(id)modal;
 @end

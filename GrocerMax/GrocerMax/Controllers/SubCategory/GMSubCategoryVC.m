@@ -14,6 +14,7 @@
 
 static NSString *kIdentifierSubCategoryHeader = @"subcategoryIdentifierHeader";
 static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
+//static NSString *kIdentifierSubCategoryLastCell = @"lastSubcategoryIdentifierCell";
 
 
 @interface GMSubCategoryVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -61,6 +62,9 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     nib = [UINib nibWithNibName:@"GMSubCategoryCell" bundle:[NSBundle mainBundle]];
     [self.subCategoryTableView registerNib:nib forCellReuseIdentifier:kIdentifierSubCategoryCell];
     
+    
+    
+    
 }
 
 #pragma mark TableView DataSource and Delegate Methods
@@ -76,10 +80,10 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     {
         if(section == self.expandedIndex) {
             if(categoryModal.subCategories.count%2 == 0) {
-                return categoryModal.subCategories.count/2;
+                return (categoryModal.subCategories.count/2)+1;
             }
             else {
-                return (categoryModal.subCategories.count/2) + 1;
+                return (categoryModal.subCategories.count/2) + 2;
             }
             
         }
@@ -95,25 +99,59 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GMSubCategoryCell *subCategoryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierSubCategoryCell];
-    subCategoryCell.tag = indexPath.row;
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
-    [subCategoryCell configerViewWithData:categoryModal.subCategories];
+    BOOL isLast = FALSE;
     
-//    [subCategoryCell.subCategoryBtn3 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [subCategoryCell.subCategoryBtn3 setExclusiveTouch:YES];
+    if(categoryModal.subCategories.count%2 == 0) {
+        if((categoryModal.subCategories.count/2) == indexPath.row) {
+            isLast = TRUE;
+        }
+    }
+    else {
+        if((categoryModal.subCategories.count/2)+1 == indexPath.row) {
+            isLast = TRUE;
+        }
+    }
+
+    if(isLast) {
+        GMSubCategoryCell *subCategoryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierSubCategoryCell];
+        [subCategoryCell configerLastCell];
+        return subCategoryCell;
+        
+    } else {
     
-    
-    [subCategoryCell.subCategoryBtn2 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [subCategoryCell.subCategoryBtn2 setExclusiveTouch:YES];
-    
-    [subCategoryCell.subCategoryBtn1 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [subCategoryCell.subCategoryBtn1 setExclusiveTouch:YES];
-    
-    return subCategoryCell;
+        GMSubCategoryCell *subCategoryCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierSubCategoryCell];
+        subCategoryCell.tag = indexPath.row;
+        [subCategoryCell configerViewWithData:categoryModal.subCategories];
+        
+        [subCategoryCell.subCategoryBtn2 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [subCategoryCell.subCategoryBtn2 setExclusiveTouch:YES];
+        
+        [subCategoryCell.subCategoryBtn1 addTarget:self action:@selector(actionSubCategoryBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [subCategoryCell.subCategoryBtn1 setExclusiveTouch:YES];
+        
+        return subCategoryCell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
+    NSLog(@"%ld",indexPath.row);
+    if(categoryModal.subCategories.count%2 == 0) {
+        if((categoryModal.subCategories.count/2) == indexPath.row) {
+            return 10;
+        } else {
+            return 50;
+        }
+        
+    }
+    else {
+        if((categoryModal.subCategories.count/2)+1 == indexPath.row) {
+            return 10;
+        } else {
+            return 50;
+        }
+    }
         return 50.0;
 }
 
@@ -164,6 +202,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
         {
             self.expandedIndex = btnTag;
             [self.subCategoryTableView reloadData];
+            [self.subCategoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:btnTag] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
     }
     else

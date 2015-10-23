@@ -292,4 +292,9 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults setObject:baseurl forKey:categoryImageUrlKey];
     [defaults synchronize];
 }
+- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest {
+    [headerRequest setValue:kEY_iOS forKey:kEY_device];
+    [headerRequest setValue:kAppVersion forKey:keyAppVersion];
+    return headerRequest;
+}
 @end

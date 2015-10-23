@@ -23,6 +23,10 @@
     // Configure the view for the selected state
 }
 
+-(void)configerLastCell {
+    self.subCategoryBtn1 .hidden = TRUE;
+    self.subCategoryBtn2 .hidden = TRUE;
+}
 
 -(void)configerViewWithData:(id)modal {
     self.selectionStyle = UITableViewCellSelectionStyleNone;

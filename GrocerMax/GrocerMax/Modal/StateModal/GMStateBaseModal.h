@@ -33,6 +33,8 @@
 
 @property (nonatomic, readonly, strong) NSString *stateName;
 
+@property (nonatomic, readonly, strong) NSString *storeId;
+
 @property (nonatomic, readonly) BOOL isSelected;
 
 - (void) setCityId:(NSString *)cityId;

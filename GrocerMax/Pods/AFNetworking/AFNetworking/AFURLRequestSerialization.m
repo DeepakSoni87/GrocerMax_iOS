@@ -378,7 +378,14 @@ forHTTPHeaderField:(NSString *)field
             [mutableRequest setValue:[self valueForKeyPath:keyPath] forKey:keyPath];
         }
     }
-
+    [mutableRequest setValue:@"ios" forHTTPHeaderField:@"device"];
+    [mutableRequest setValue:@"1.0" forHTTPHeaderField:@"version"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults objectForKey:@"storeId"]) {
+        [defaults setObject:[defaults objectForKey:@"storeId"] forKey:@"storeId"];
+    }
+    
     mutableRequest = [[self requestBySerializingRequest:mutableRequest withParameters:parameters error:error] mutableCopy];
 
 	return mutableRequest;
