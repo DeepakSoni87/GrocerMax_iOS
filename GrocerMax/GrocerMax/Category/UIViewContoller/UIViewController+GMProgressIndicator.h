@@ -26,5 +26,6 @@
 #pragma mark - Set 2nd tab as profile VC
 
 - (void)setSecondTabAsProfile;
-    
+
+-(void)adjustShareInsets:(UITabBarItem *)customTabBarItem;
 @end
