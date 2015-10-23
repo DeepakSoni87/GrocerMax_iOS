@@ -470,7 +470,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
         [APP_DELEGATE rootHotDealVCFromThirdTab];
         [self.navigationController pushViewController:rootVC animated:NO];
-        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
+//        [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         
     } failureBlock:^(NSError *error) {
         
