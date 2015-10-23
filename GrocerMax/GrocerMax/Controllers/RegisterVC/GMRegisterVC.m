@@ -135,6 +135,9 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:indexPath.row];
+    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kGenderCell])
+        return [GMGenderCell cellHeight];
     return [GMRegisterInputCell cellHeight];
 }
 
