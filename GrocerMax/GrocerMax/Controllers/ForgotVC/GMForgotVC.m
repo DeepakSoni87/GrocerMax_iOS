@@ -28,20 +28,22 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"Recover Password";
     self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ForgotPassword_Screen];
 }
 
 #pragma mark - GETTER/SETTER Methods
 
-- (void)setEmailBgView:(UIView *)emailBgView {
-    
-    _emailBgView = emailBgView;
-    [_emailBgView.layer setCornerRadius:5.0];
-    [_emailBgView.layer setBorderWidth:1.0];
-    [_emailBgView.layer setBorderColor:[UIColor inputTextFieldColor].CGColor];
-}
+//- (void)setEmailBgView:(UIView *)emailBgView {
+//    
+//    _emailBgView = emailBgView;
+//    [_emailBgView.layer setCornerRadius:5.0];
+//    [_emailBgView.layer setBorderWidth:1.0];
+//    [_emailBgView.layer setBorderColor:[UIColor inputTextFieldColor].CGColor];
+//}
 
 #pragma mark - IBAction Methods
 

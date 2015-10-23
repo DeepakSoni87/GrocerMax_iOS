@@ -613,14 +613,14 @@ static int const kGaDispatchPeriod = 20;
 //    [processingAlertView addSubview:indicator];
     [processingAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
     
-    NSString *testGifPath = [[[NSBundle bundleForClass:self.class] resourcePath] stringByAppendingPathComponent:@"spinningwheel-3.gif"];
+    NSString *testGifPath = [[[NSBundle bundleForClass:self.class] resourcePath] stringByAppendingPathComponent:@"grocerloader.gif"];
     NSData *gifData = [NSData dataWithContentsOfFile:testGifPath];
     
     // test 1
     
     UIGifImage *gif = [[UIGifImage alloc] initWithData:gifData];
     UIImageView *imageview = [[UIImageView alloc] initWithImage:gif];
-    imageview.frame = CGRectMake(0, 0, 100, 72);
+    imageview.frame = CGRectMake(0, 0, 85, 85);
     imageview.center = processingAlertView.center;
     [processingAlertView addSubview:imageview];
     [self.window addSubview:processingAlertView];

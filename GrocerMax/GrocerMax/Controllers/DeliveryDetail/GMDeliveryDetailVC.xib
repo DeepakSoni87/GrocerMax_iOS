@@ -40,8 +40,8 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="eYB-W0-PtM"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                    <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yb6-Lu-LDN">
@@ -69,7 +69,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dso-Ws-mis">
-                            <rect key="frame" x="16" y="53" width="288" height="50"/>
+                            <rect key="frame" x="8" y="53" width="304" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edQ-Ep-RlH">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -79,7 +79,7 @@
                                         <constraint firstAttribute="width" constant="50" id="95J-0z-QV7"/>
                                         <constraint firstAttribute="height" constant="50" id="EMb-rp-O5Z"/>
                                     </constraints>
-                                    <state key="normal" image="backward_caret">
+                                    <state key="normal" image="order_backward_arrow">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -87,14 +87,14 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-tX-IeB">
-                                    <rect key="frame" x="233" y="0.0" width="55" height="50"/>
+                                    <rect key="frame" x="249" y="0.0" width="55" height="50"/>
                                     <animations/>
                                     <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="55" id="ZYz-yu-NUI"/>
                                         <constraint firstAttribute="height" constant="50" id="zWx-V0-lMU"/>
                                     </constraints>
-                                    <state key="normal" image="forward_caret">
+                                    <state key="normal" image="order_forward_arrow">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -102,7 +102,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FI-gw-TWl">
-                                    <rect key="frame" x="55" y="5" width="172" height="40"/>
+                                    <rect key="frame" x="55" y="5" width="188" height="40"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" red="0.25882352941176473" green="0.25882352941176473" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -132,8 +132,8 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="QJA-td-J0G"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                    <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:00 pm - 07:00 pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5p-YS-EjO">
@@ -205,7 +205,7 @@
                         <constraint firstItem="vrC-ao-4pf" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" id="EzP-ff-d0I"/>
                         <constraint firstItem="dBS-I8-0k0" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" id="JJj-Sv-jxZ"/>
                         <constraint firstAttribute="trailing" secondItem="wK9-5b-MDt" secondAttribute="trailing" constant="10" id="Lx4-xS-s9s"/>
-                        <constraint firstAttribute="trailing" secondItem="dso-Ws-mis" secondAttribute="trailing" constant="16" id="NZn-NQ-cIv"/>
+                        <constraint firstAttribute="trailing" secondItem="dso-Ws-mis" secondAttribute="trailing" constant="8" id="NZn-NQ-cIv"/>
                         <constraint firstAttribute="bottom" secondItem="dBS-I8-0k0" secondAttribute="bottom" id="PSk-9j-7D2"/>
                         <constraint firstItem="Naw-9D-MIU" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" constant="8" id="Sla-B0-SEp"/>
                         <constraint firstItem="wK9-5b-MDt" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" constant="8" id="ZJk-lh-cAY"/>
@@ -215,7 +215,7 @@
                         <constraint firstItem="dBS-I8-0k0" firstAttribute="top" secondItem="vrC-ao-4pf" secondAttribute="bottom" id="hl8-rg-FwU"/>
                         <constraint firstItem="dso-Ws-mis" firstAttribute="top" secondItem="wK9-5b-MDt" secondAttribute="bottom" constant="8" id="pob-R8-hn1"/>
                         <constraint firstAttribute="trailing" secondItem="vrC-ao-4pf" secondAttribute="trailing" id="vMk-Ch-MmT"/>
-                        <constraint firstItem="dso-Ws-mis" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" constant="16" id="z1I-Fo-5zp"/>
+                        <constraint firstItem="dso-Ws-mis" firstAttribute="leading" secondItem="Ocg-na-r5a" secondAttribute="leading" constant="8" id="z1I-Fo-5zp"/>
                     </constraints>
                 </view>
             </subviews>
@@ -235,8 +235,8 @@
         </view>
     </objects>
     <resources>
-        <image name="backward_caret" width="8" height="14"/>
-        <image name="forward_caret" width="8" height="14"/>
+        <image name="order_backward_arrow" width="8" height="15"/>
+        <image name="order_forward_arrow" width="8" height="15"/>
         <image name="progress-bar-3" width="142" height="12"/>
     </resources>
 </document>

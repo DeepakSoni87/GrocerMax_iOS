@@ -21,13 +21,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdQ-S0-8Zq">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To reset your password, type full email address you use to sign in." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uH-MF-ZKj">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To reset your password, type email address you use to sign in." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uH-MF-ZKj">
                             <rect key="frame" x="24" y="30" width="272" height="40"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="omY-A3-WkC"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -35,7 +35,7 @@
                             <rect key="frame" x="24" y="80" width="272" height="48"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O4Q-ut-IE6">
-                                    <rect key="frame" x="10" y="9" width="252" height="30"/>
+                                    <rect key="frame" x="0.0" y="9" width="272" height="30"/>
                                     <animations/>
                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -44,15 +44,29 @@
                                         <outlet property="delegate" destination="-1" id="P8r-uZ-Rwe"/>
                                     </connections>
                                 </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivW-M6-KXd" userLabel="horizantalLine">
+                                    <rect key="frame" x="0.0" y="40" width="272" height="1"/>
+                                    <animations/>
+                                    <color key="backgroundColor" red="0.90980392160000001" green="0.56470588239999997" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="Xs6-WZ-mCX"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="O4Q-ut-IE6" secondAttribute="bottom" constant="9" id="6jI-el-OBC"/>
+                                <constraint firstItem="ivW-M6-KXd" firstAttribute="top" secondItem="O4Q-ut-IE6" secondAttribute="bottom" constant="1" id="9FM-AH-Zow"/>
                                 <constraint firstItem="O4Q-ut-IE6" firstAttribute="top" secondItem="cjS-Xn-ArO" secondAttribute="top" constant="9" id="DD1-K2-SZQ"/>
-                                <constraint firstAttribute="trailing" secondItem="O4Q-ut-IE6" secondAttribute="trailing" constant="10" id="paS-sJ-SHK"/>
+                                <constraint firstAttribute="trailing" secondItem="ivW-M6-KXd" secondAttribute="trailing" id="NR2-ZF-uwQ"/>
+                                <constraint firstItem="ivW-M6-KXd" firstAttribute="leading" secondItem="cjS-Xn-ArO" secondAttribute="leading" id="mlu-T6-zSD"/>
+                                <constraint firstAttribute="trailing" secondItem="O4Q-ut-IE6" secondAttribute="trailing" id="paS-sJ-SHK"/>
                                 <constraint firstAttribute="height" constant="48" id="s3k-b2-JjV"/>
-                                <constraint firstItem="O4Q-ut-IE6" firstAttribute="leading" secondItem="cjS-Xn-ArO" secondAttribute="leading" constant="10" id="yN4-fT-Fyq"/>
+                                <constraint firstItem="O4Q-ut-IE6" firstAttribute="leading" secondItem="cjS-Xn-ArO" secondAttribute="leading" id="yN4-fT-Fyq"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySA-O0-o2a">
@@ -98,6 +112,7 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="173" y="332"/>
         </view>
     </objects>
 </document>
