@@ -186,6 +186,12 @@
     if ([[webView stringByEvaluatingJavaScriptFromString:@"document.readyState"] isEqualToString:@"complete"]) {
         NSLog(@"Pageloaded completely-------");
         
+        if([webView.request.URL.absoluteString rangeOfString:@"success.php" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:PAYMENT_SUCCESS_NOTIFICATION object:nil];
+        } else if([webView.request.URL.absoluteString rangeOfString:@"fail.php" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:PAYMENT_FAILURE_NOTIFICATION object:nil];
+        }
+        
         // UIWebView object has fully loaded.
     }
     if (!webView.isLoading) {
@@ -213,7 +219,10 @@
         NSString *responseStr = [url  absoluteString];
         NSString *search = @"success";
         
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"test")];
         if([responseStr rangeOfString:search options:NSCaseInsensitiveSearch].location != NSNotFound){
+            [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"success")];
+            
             [self.alertView dismissWithClickedButtonIndex:0 animated:true];
             NSDictionary *InfoDict = [NSDictionary dictionaryWithObject:responseStr forKey:INFO_DICT_RESPONSE];
             [[NSNotificationCenter defaultCenter] postNotificationName:PAYMENT_SUCCESS_NOTIFICATION object:InfoDict];
@@ -237,6 +246,7 @@
         }
     }
     if([url.absoluteString rangeOfString:CB_RETRY_PAYMENT_OPTION_URL options:NSCaseInsensitiveSearch].location != NSNotFound){
+        [[GMSharedClass sharedClass] showErrorMessage:GMLocalizedString(@"success")];
         //        [_handler removeIntermidiateLoader];
         //        [_handler closeCB];
         //        [_customIndicator removeFromSuperview];
