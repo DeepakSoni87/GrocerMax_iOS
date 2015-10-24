@@ -103,9 +103,9 @@ static GMCityModal *cityModal;
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"cityId"                  : @"id",
+    return @{@"cityId"                  : @"region_id",
              @"cityName"                : @"city_name",
-             @"stateId"                 : @"region_id",
+             @"stateId"                 : @"id",
              @"stateName"               : @"default_name"
              };
 }

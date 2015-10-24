@@ -119,7 +119,7 @@
 
 #pragma mark - Send data on server
 
--(void)fbRegisterOnServer {
+- (void)fbRegisterOnServer {
     
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
     
@@ -131,14 +131,6 @@
 
     [self showProgress];
     [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {
-        
-//        {
-//            QuoteId = "";
-//            Result = "User Register Successfully";
-//            TotalItem = 0;
-//            UserID = 13817;
-//            flag = 1;
-//        }
         
         [self removeProgress];
         NSDictionary *resDic = data;

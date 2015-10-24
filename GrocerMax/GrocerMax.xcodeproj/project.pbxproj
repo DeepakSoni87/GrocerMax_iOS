@@ -242,7 +242,7 @@
 		82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DC5A641BD6A360009DE39E /* Lato-Reg.ttf */; };
 		82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */; };
 		82E6C8C01BD02EB300DD865C /* GMOrderFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */; };
-		82E80B161BDAAE3C007AAA03 /* NSDateFormatter+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */; settings = {ASSET_TAGS = (); }; };
+		82E80B161BDAAE3C007AAA03 /* NSDateFormatter+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */; };
 		82ECCBD11BD8724F000A10C9 /* grocerloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 82ECCBD01BD8724F000A10C9 /* grocerloader.gif */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
 		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
@@ -2893,7 +2893,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "f46baa41-0b71-477d-b18e-19dcf606518b";
 			};
 			name = Debug;
 		};
@@ -2915,7 +2915,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "f46baa41-0b71-477d-b18e-19dcf606518b";
 			};
 			name = Release;
 		};
@@ -2936,7 +2936,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "f46baa41-0b71-477d-b18e-19dcf606518b";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2954,7 +2954,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "72b60906-d753-4293-91bb-0b4ba5fb5c42";
+				PROVISIONING_PROFILE = "f46baa41-0b71-477d-b18e-19dcf606518b";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;
