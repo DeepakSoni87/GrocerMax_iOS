@@ -78,9 +78,9 @@ static NSString * const kGenderCell                         =  @"Gender";
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Register_Screen];
     
-//    [GIDSignIn sharedInstance].uiDelegate = self;
-//    [GIDSignIn sharedInstance].delegate = self;
-//    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
+    //    [GIDSignIn sharedInstance].uiDelegate = self;
+    //    [GIDSignIn sharedInstance].delegate = self;
+    //    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email", @"https://www.googleapis.com/auth/userinfo.profile"];
     
     [self configureView];
 }
@@ -566,9 +566,13 @@ static NSString * const kGenderCell                         =  @"Gender";
                                      [userModal setLastName:[result objectForKey:@"last_name"]];
                                      [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
                                      
-                                     GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-                                     vc.userModal = userModal;
-                                     [self.navigationController pushViewController:vc animated:YES];
+                                     if(NSSTRING_HAS_DATA(userModal.email))
+                                         [self fbRegisterOnServerWithUserModal:userModal];
+                                     else {
+                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                                         vc.userModal = userModal;
+                                         [self.navigationController pushViewController:vc animated:YES];
+                                     }
                                  }
                              }
                              
@@ -600,9 +604,13 @@ static NSString * const kGenderCell                         =  @"Gender";
         [userModal setLastName:@""];
         [userModal setGender:GMGenderTypeMale];// suppose it defaul
         
-        GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-        vc.userModal = userModal;
-        [self.navigationController pushViewController:vc animated:YES];
+        if(NSSTRING_HAS_DATA(userModal.email))
+            [self fbRegisterOnServerWithUserModal:userModal];
+        else {
+            GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+            vc.userModal = userModal;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 - (void)signIn:(GIDSignIn *)signIn
@@ -617,5 +625,41 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 - (void)genderSelectionWithType:(GMGenderType)genderType {
     
     [self.userModal setGender:genderType];
+}
+
+#pragma mark - Send data on server
+
+- (void)fbRegisterOnServerWithUserModal:(GMUserModal *)userModal {
+    
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    [paramDict setObject:userModal.email forKey:kEY_uemail];
+    [paramDict setObject:@"" forKey:kEY_quote_id];
+    [paramDict setObject:userModal.firstName ? userModal.firstName : @"" forKey:kEY_fname];
+    [paramDict setObject:userModal.lastName ? userModal.lastName : @"" forKey:kEY_lname];
+    [paramDict setObject:userModal.mobile forKey:kEY_number];
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {
+        
+        [self removeProgress];
+        NSDictionary *resDic = data;
+        
+        if ([resDic objectForKey:kEY_UserID]) {
+            [userModal setQuoteId:resDic[kEY_QuoteId]];
+            [userModal setUserId:resDic[kEY_UserID]];
+            [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
+            
+            [userModal persistUser];// save user modal in memory
+            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
 }
 @end
