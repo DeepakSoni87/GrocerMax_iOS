@@ -55,8 +55,7 @@ static NSString * const kStateNameKey                  = @"stateName";
     
     return @{@"regionId"                  : @"region_id",
              @"stateName"                 : @"default_name",
-             @"cityArray"                 : @"city",
-             @"storeId"                    : @"id"
+             @"cityArray"                 : @"city"
              };
 }
 
@@ -103,10 +102,17 @@ static GMCityModal *cityModal;
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"cityId"                  : @"region_id",
+//    return @{@"cityId"                  : @"region_id",
+//             @"cityName"                : @"city_name",
+//             @"stateId"                 : @"id",
+//             @"stateName"               : @"default_name",
+//             @"storeId"                 : @"id"
+//             };
+    return @{@"cityId"                  : @"id",
              @"cityName"                : @"city_name",
-             @"stateId"                 : @"id",
-             @"stateName"               : @"default_name"
+             @"stateId"                 : @"region_id",
+             @"stateName"               : @"default_name",
+             @"storeId"                 : @"Id"
              };
 }
 

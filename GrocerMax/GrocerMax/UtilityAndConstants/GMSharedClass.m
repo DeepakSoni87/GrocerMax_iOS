@@ -11,6 +11,9 @@
 #import "GMStateBaseModal.h"
 #import "Reachability.h"
 
+#import <Google/SignIn.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #import <GoogleAnalytics/GAITracker.h>
 #import <GoogleAnalytics/GAI.h>
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
@@ -182,7 +185,10 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults removeObjectForKey:signedInUserKey];
     [defaults setObject:@(NO) forKey:loggedInUserKey];
     [defaults synchronize];
-
+    
+//    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+//    [login logOut];
+    [[GIDSignIn sharedInstance] signOut];
 }
 
 #pragma mark - Network Reachbility Test
