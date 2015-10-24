@@ -141,6 +141,7 @@
             }
         }
     }];
+    
 }
 
 - (IBAction)googleLoginButtonPressed:(UIButton *)sender {
@@ -282,7 +283,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [paramDict setObject:@"" forKey:kEY_quote_id];
     [paramDict setObject:userModal.firstName ? userModal.firstName : @"" forKey:kEY_fname];
     [paramDict setObject:userModal.lastName ? userModal.lastName : @"" forKey:kEY_lname];
-    [paramDict setObject:userModal.mobile forKey:kEY_number];
+    [paramDict setObject:userModal.mobile ? userModal.mobile : @"" forKey:kEY_number];
     
     [self showProgress];
     [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {
