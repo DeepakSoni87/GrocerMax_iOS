@@ -58,13 +58,14 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
             NSDate *date1 = [dateFormatter dateFromString:obj1.orderDate];
             NSDate *date2 = [dateFormatter dateFromString:obj2.orderDate];
             
+            
+            
             return [date1 compare:date2] == NSOrderedAscending;
             
         }] mutableCopy];
-        
-        
+        [self removeProgress];
         [self.orderHistryTableView reloadData];
-            [self removeProgress];
+        
     } failureBlock:^(NSError *error) {
         [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
         [self removeProgress];
