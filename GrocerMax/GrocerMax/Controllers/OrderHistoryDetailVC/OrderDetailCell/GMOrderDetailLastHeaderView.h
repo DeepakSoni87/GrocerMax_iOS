@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *deliveryChargeLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalCharge;
+@property (weak, nonatomic) IBOutlet UILabel *couponcodeTextLbl;
+@property (weak, nonatomic) IBOutlet UILabel *couponCode;
 
 - (void) configerViewData:(GMOrderDeatilBaseModal *)orderDeatilBaseModal;
 

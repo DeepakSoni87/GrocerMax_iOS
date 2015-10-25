@@ -31,6 +31,7 @@
 #define Key_itemId @"item_id"
 #define Key_itemName @"name"
 #define Key_itemPrice @"price"
+#define Key_couponDiscount @"discount_amount"
 
 
 @implementation GMOrderDeatilBaseModal
@@ -49,6 +50,9 @@
         }
         if([dataDic objectForKey:Key_ShippingCharge] && NSSTRING_HAS_DATA([dataDic objectForKey:Key_ShippingCharge])) {
             [self setShippingCharge:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_ShippingCharge]]];
+        }
+        if([dataDic objectForKey:Key_couponDiscount]) {
+            [self setCouponDiscount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:Key_couponDiscount]]];
         }
         if([dataDic objectForKey:Key_payment]) {
             if([[dataDic objectForKey:Key_payment] objectForKey:Key_method]) {
