@@ -147,7 +147,7 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if(NSSTRING_HAS_DATA(self.cityModal.stateId)) {
+     if(NSSTRING_HAS_DATA(self.cityModal.stateId)) {
         [defaults setObject:self.cityModal.stateId forKey:@"storeId"];
     }
     [defaults synchronize];

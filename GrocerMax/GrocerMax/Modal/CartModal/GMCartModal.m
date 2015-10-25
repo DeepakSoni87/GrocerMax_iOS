@@ -61,6 +61,7 @@ static GMCartModal *cartModal;
     
     NSString *archivePath = [grocerMaxDirectory stringByAppendingPathComponent:@"cartModal"];
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:archivePath];
+    cartModal = nil;
     DLOG(@"archived : %d",success);
 }
 
