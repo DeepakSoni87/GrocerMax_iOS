@@ -141,7 +141,6 @@
             }
         }
     }];
-    
 }
 
 - (IBAction)googleLoginButtonPressed:(UIButton *)sender {
