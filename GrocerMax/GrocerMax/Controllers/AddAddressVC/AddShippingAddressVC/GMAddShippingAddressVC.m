@@ -581,8 +581,15 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             [[GMOperationalHandler handler] addAddress:requestDict withSuccessBlock:^(BOOL success) {
                 [self removeProgress];
                 
+                if(self.isComeFromShipping) {
+                    
+                    if([self.delegate respondsToSelector:@selector(removeFromSupperView)]) {
+                        [self.delegate removeFromSupperView];
+                    }
+                } else {
                 if(self.newAddressHandler) self.newAddressHandler(nil, NO);
                 [self.navigationController popViewControllerAnimated:YES];
+                }
             } failureBlock:^(NSError *error) {
                 [self removeProgress];
                 [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
