@@ -141,7 +141,6 @@
             }
         }
     }];
-    
 }
 
 - (IBAction)googleLoginButtonPressed:(UIButton *)sender {
@@ -285,6 +284,11 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [paramDict setObject:userModal.lastName ? userModal.lastName : @"" forKey:kEY_lname];
     [paramDict setObject:userModal.mobile ? userModal.mobile : @"" forKey:kEY_number];
     
+    GMUserModal *savedUserModal = [GMUserModal loggedInUser];
+    if(NSSTRING_HAS_DATA(savedUserModal.quoteId)) {
+    [paramDict setObject:savedUserModal.quoteId forKey:kEY_quote_id];
+    }
+    
     [self showProgress];
     [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {
         
@@ -298,8 +302,12 @@ didDisconnectWithUser:(GIDGoogleUser *)user
             
             [userModal persistUser];// save user modal in memory
             [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+            if(self.isPresent) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
             [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
             [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         }
         
     } failureBlock:^(NSError *error) {

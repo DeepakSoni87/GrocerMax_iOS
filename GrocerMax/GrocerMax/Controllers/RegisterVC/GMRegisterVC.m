@@ -102,13 +102,20 @@ static NSString * const kGenderCell                         =  @"Gender";
     
     if(!_cellArray) {
         
+//        _cellArray = [NSMutableArray arrayWithObjects:
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
+//                      nil];
         _cellArray = [NSMutableArray arrayWithObjects:
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
                       nil];
     }
     return _cellArray;
@@ -508,6 +515,11 @@ static NSString * const kGenderCell                         =  @"Gender";
             [userDic setObject:self.userModal.mobile forKey:kEY_number];
         if(NSSTRING_HAS_DATA(self.userModal.password))
             [userDic setObject:self.userModal.password forKey:kEY_password];
+        GMUserModal *savedUserModal = [GMUserModal loggedInUser];
+        if(NSSTRING_HAS_DATA(savedUserModal.quoteId)) {
+            [userDic setObject:savedUserModal.quoteId forKey:kEY_quote_id];
+        }
+        
         [userDic setObject:@"0" forKey:kEY_otp];
         [self showProgress];
         [[GMOperationalHandler handler] createUser:userDic withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
@@ -637,7 +649,12 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [paramDict setObject:@"" forKey:kEY_quote_id];
     [paramDict setObject:userModal.firstName ? userModal.firstName : @"" forKey:kEY_fname];
     [paramDict setObject:userModal.lastName ? userModal.lastName : @"" forKey:kEY_lname];
-    [paramDict setObject:userModal.mobile forKey:kEY_number];
+    [paramDict setObject:userModal.mobile ? userModal.mobile : @"" forKey:kEY_number];
+    
+    GMUserModal *savedUserModal = [GMUserModal loggedInUser];
+    if(NSSTRING_HAS_DATA(savedUserModal.quoteId)) {
+        [paramDict setObject:savedUserModal.quoteId forKey:kEY_quote_id];
+    }
     
     [self showProgress];
     [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {

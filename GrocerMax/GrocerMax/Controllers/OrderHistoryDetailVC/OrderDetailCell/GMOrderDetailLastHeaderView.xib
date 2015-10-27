@@ -113,8 +113,8 @@
                             <rect key="frame" x="200" y="99" width="100" height="20"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="CDb-de-CVq"/>
-                                <constraint firstAttribute="height" constant="20" id="el0-Qy-bez"/>
+                                <constraint firstAttribute="height" constant="20" id="RJn-Tu-XSy"/>
+                                <constraint firstAttribute="width" constant="100" id="hRZ-A2-AUU"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -132,13 +132,14 @@
                         <constraint firstAttribute="trailing" secondItem="c2Z-OK-kB6" secondAttribute="trailing" id="8k9-cO-nnj"/>
                         <constraint firstItem="cKj-vJ-p7c" firstAttribute="top" secondItem="wfv-1R-3zf" secondAttribute="bottom" constant="7" id="9b4-T3-tW9"/>
                         <constraint firstItem="1YT-Tx-g8M" firstAttribute="top" secondItem="9V9-F8-JFz" secondAttribute="bottom" constant="16" id="C0S-vH-tAe"/>
-                        <constraint firstItem="Ep9-Th-PNM" firstAttribute="leading" secondItem="1YT-Tx-g8M" secondAttribute="trailing" constant="81" id="EzS-rM-vcA"/>
                         <constraint firstItem="9V9-F8-JFz" firstAttribute="top" secondItem="atK-wg-CuV" secondAttribute="bottom" constant="5" id="FQ7-Ot-Wzs"/>
                         <constraint firstItem="atK-wg-CuV" firstAttribute="top" secondItem="bgY-0p-93O" secondAttribute="bottom" constant="5" id="NPe-XQ-1uA"/>
                         <constraint firstAttribute="trailing" secondItem="wfv-1R-3zf" secondAttribute="trailing" id="P8N-sc-O4o"/>
                         <constraint firstItem="2uW-e3-SaX" firstAttribute="top" secondItem="xGS-mU-3EV" secondAttribute="top" id="RH6-ri-x6c"/>
                         <constraint firstItem="bgY-0p-93O" firstAttribute="leading" secondItem="xGS-mU-3EV" secondAttribute="leading" id="Sc0-Qy-7Az"/>
+                        <constraint firstItem="Ep9-Th-PNM" firstAttribute="top" secondItem="9V9-F8-JFz" secondAttribute="bottom" constant="16" id="SmI-Br-Baq"/>
                         <constraint firstAttribute="trailing" secondItem="cKj-vJ-p7c" secondAttribute="trailing" id="VNC-tA-EaR"/>
+                        <constraint firstAttribute="trailing" secondItem="Ep9-Th-PNM" secondAttribute="trailing" id="ady-ih-uwB"/>
                         <constraint firstItem="wMw-xV-ZDp" firstAttribute="top" secondItem="2uW-e3-SaX" secondAttribute="bottom" constant="6" id="ccw-mA-EzL"/>
                         <constraint firstAttribute="trailing" secondItem="9V9-F8-JFz" secondAttribute="trailing" id="erK-FI-GGJ"/>
                         <constraint firstAttribute="trailing" secondItem="2uW-e3-SaX" secondAttribute="trailing" id="jyh-WX-ZO9"/>
@@ -146,7 +147,6 @@
                         <constraint firstItem="bgY-0p-93O" firstAttribute="top" secondItem="wMw-xV-ZDp" secondAttribute="bottom" constant="7" id="lHr-Xw-f5P"/>
                         <constraint firstItem="c2Z-OK-kB6" firstAttribute="top" secondItem="cKj-vJ-p7c" secondAttribute="bottom" constant="5" id="laB-Xn-z4M"/>
                         <constraint firstItem="1YT-Tx-g8M" firstAttribute="leading" secondItem="xGS-mU-3EV" secondAttribute="leading" id="w7Q-Ob-ifD"/>
-                        <constraint firstItem="Ep9-Th-PNM" firstAttribute="top" secondItem="9V9-F8-JFz" secondAttribute="bottom" constant="16" id="wWy-2b-Lmt"/>
                         <constraint firstItem="9V9-F8-JFz" firstAttribute="leading" secondItem="xGS-mU-3EV" secondAttribute="leading" id="x6s-EL-5Mi"/>
                     </constraints>
                 </view>
