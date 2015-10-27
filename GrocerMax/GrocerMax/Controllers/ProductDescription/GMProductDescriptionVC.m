@@ -36,6 +36,10 @@
 @property (weak, nonatomic) IBOutlet UIView *cartView;
 
 @property (weak, nonatomic) IBOutlet UILabel *itemsInCartLabel;
+@property (weak, nonatomic) IBOutlet UIView *productItemView;
+@property (weak, nonatomic) IBOutlet UILabel *ProductNumberLbl;
+
+
 @end
 
 @implementation GMProductDescriptionVC
@@ -61,7 +65,7 @@
 -(void)configureView {
     
     self.productQuantity = 1;
-    
+    self.productItemView.hidden = TRUE;
     self.promotionalLbl.layer.cornerRadius = 2.0;
     self.promotionalLbl.layer.masksToBounds = YES;
 
@@ -83,6 +87,7 @@
         self.proDetailModal = baseMdl.productDetailArray.firstObject;
         [self updateProductDescription];
         [self updateProductQuantity];
+        [self updateProctuctInCart];
         [self removeProgress];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
@@ -129,6 +134,7 @@
     [self.modal setProductQuantity:@"1"];
     self.productQuantity = 1;
     [self updateProductQuantity];
+    [self updateProctuctInCart];
     [self.tabBarController updateBadgeValueOnCartTab];
 }
 //
@@ -199,6 +205,31 @@
 - (void)updateProductQuantity {
 
     self.productQuantityLbl.text = [NSString stringWithFormat:@"%li",(long)self.productQuantity];
+    
+}
+
+- (void)updateProctuctInCart {
+    
+    
+    GMCartModal *cartModal = [GMCartModal loadCart];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.productid == %@", self.proDetailModal.product_id];
+    NSArray *totalProducts = [cartModal.cartItems filteredArrayUsingPredicate:pred];
+    if(totalProducts.count ) {
+        int totalItems = 0;
+        for (GMProductModal *productModal in cartModal.cartItems) {
+            
+            if([productModal.productid isEqualToString:self.proDetailModal.product_id]) {
+                totalItems += productModal.productQuantity.intValue;
+            }
+            
+        }
+        self.productItemView.hidden = FALSE;
+        self.ProductNumberLbl.text = [NSString stringWithFormat:@"%d",totalItems];
+    } else {
+        self.productItemView.hidden = TRUE;
+        self.ProductNumberLbl.text = @"";
+    }
 }
 
 @end

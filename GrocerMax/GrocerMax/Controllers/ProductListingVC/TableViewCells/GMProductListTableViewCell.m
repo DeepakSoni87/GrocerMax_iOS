@@ -195,16 +195,48 @@
     NSArray *totalProducts = [self.cartModal.cartItems filteredArrayUsingPredicate:pred];
     if(totalProducts.count ) {
         
-        GMProductModal *cartProductModal = [totalProducts firstObject];
-        self.totalProductsInCart = cartProductModal.productQuantity.integerValue;
+        
+        int totalItems = 0;
+        //    GMCartModal *cartModal = [GMCartModal loadCart];
+        
+        for (GMProductModal *productModal in totalProducts) {
+            
+            if([productModal.productid isEqualToString:self.productModal.productid]) {
+                totalItems += productModal.productQuantity.intValue;
+            }
+            
+        }
+        
+        self.totalProductsInCart = totalItems;
         [self.cartView setHidden:NO];
-        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)self.totalProductsInCart]];
+        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%d", totalItems]];
     }
     else {
         
         self.totalProductsInCart = 0;
         [self.cartView setHidden:YES];
     }
+    
+    
+//    int totalItems = 0;
+////    GMCartModal *cartModal = [GMCartModal loadCart];
+//    
+//    for (GMProductModal *productModal in self.cartModal.cartItems) {
+//        
+//        if([productModal.productid isEqualToString:self.productModal.productid]) {
+//            totalItems += productModal.productQuantity.intValue;
+//        }
+//        
+//    }
+//    if(totalItems>0){
+//        [self.cartView setHidden:NO];
+//        [self.itemsNumberLabel setText:[NSString stringWithFormat:@"%d", totalItems]];
+//        self.totalProductsInCart = totalItems;
+//    } else {
+//        self.totalProductsInCart = 0;
+//        [self.cartView setHidden:YES];
+//    }
+    
 }
 
 - (BOOL)isProductAddedIntoCart {
