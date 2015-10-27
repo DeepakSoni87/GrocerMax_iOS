@@ -9,7 +9,7 @@
 #import "GMOrderDeatilBaseModal.h"
 
 #define Key_OrderDetail @"OrderDetail"
-#define Key_OredrId @"oeder_id"
+#define Key_OredrId @"increment_id"
 #define Key_OredrDate @"created_at"
 #define Key_ShippingCharge @"base_shipping_amount"
 #define Key_PaymentMethod @"shipping_method"

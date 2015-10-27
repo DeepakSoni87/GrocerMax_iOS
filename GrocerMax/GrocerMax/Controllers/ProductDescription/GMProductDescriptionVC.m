@@ -163,12 +163,20 @@
     
     self.productCostLbl.attributedText = attStringPrice;
 
-    NSMutableAttributedString *attStringDes = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_brand] attributes:@{
+    NSString *brandString =  @"";
+    if(NSSTRING_HAS_DATA(self.proDetailModal.p_brand)) {
+        brandString = [NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_brand];
+        
+    }
+    NSMutableAttributedString *attStringDes = [[NSMutableAttributedString alloc] initWithString:brandString attributes:@{
     NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor redColor]}];
     
-    [attStringDes appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor blackColor]}]];
-    
-    [attStringDes appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_pack] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(14),NSForegroundColorAttributeName : [UIColor lightGrayColor]}]];
+    if(NSSTRING_HAS_DATA(self.proDetailModal.p_name)) {
+    [attStringDes appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_name] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(13),NSForegroundColorAttributeName : [UIColor blackColor]}]];
+    }
+    if(NSSTRING_HAS_DATA(self.proDetailModal.p_pack)) {
+    [attStringDes appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \n",self.proDetailModal.p_pack] attributes:@{                                                                                                                                                       NSFontAttributeName:FONT_LIGHT(12),NSForegroundColorAttributeName : [UIColor lightGrayColor]}]];
+    }
     
     self.producInfo.attributedText = attStringDes;
     self.producDescriptionLbl.text = self.proDetailModal.product_description;
