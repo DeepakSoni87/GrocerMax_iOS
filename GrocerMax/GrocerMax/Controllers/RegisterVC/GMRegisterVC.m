@@ -102,13 +102,20 @@ static NSString * const kGenderCell                         =  @"Gender";
     
     if(!_cellArray) {
         
+//        _cellArray = [NSMutableArray arrayWithObjects:
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
+//                      nil];
         _cellArray = [NSMutableArray arrayWithObjects:
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
                       nil];
     }
     return _cellArray;
