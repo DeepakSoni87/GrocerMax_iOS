@@ -347,6 +347,9 @@ static int const kGaDispatchPeriod = 20;
         
         NSMutableArray *offersByDealTypeArray = [self createOffersByDealTypeModalFrom:baseMdl];
         
+        if (offersByDealTypeArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
+            return ;
+        }
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = offersByDealTypeArray;
         rootVC.navigationTitleString = categoryModal.categoryName;
@@ -378,7 +381,8 @@ static int const kGaDispatchPeriod = 20;
         
         [self HideProcessingView];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
-        if (dealCategoryArray.count == 0) {
+
+        if (dealCategoryArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
             return ;
         }
         
@@ -441,6 +445,10 @@ static int const kGaDispatchPeriod = 20;
         
         // set this cat modal as ALL tab
         [categoryArray insertObject:categoryModal atIndex:0];
+        
+        if (categoryArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
+            return ;
+        }
         
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = categoryArray;
