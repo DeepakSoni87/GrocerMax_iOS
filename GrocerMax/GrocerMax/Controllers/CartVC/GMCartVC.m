@@ -77,6 +77,9 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
     self.messageString = @"Fetching your cart items from server.";
     self.cartModal = [GMCartModal loadCart];
     //    if(self.cartModal)
+    self.cartDetailModal = [self.cartDetailModal initWithCartModal:self.cartModal];
+    [self.cartDetailTableView reloadData];
+    [self setTotalCount];
     [self fetchCartDetailFromServer];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
 }

@@ -100,10 +100,10 @@
 }
 
 
--(void)adjustShareInsets:(UITabBarItem *)customTabBarItem {
-    [customTabBarItem setTitlePositionAdjustment:UIOffsetMake(0.0, 0.0)];
-    [customTabBarItem setImageInsets:UIEdgeInsetsMake(6, 0, -6, 0)];
-}
+//-(void)adjustShareInsets:(UITabBarItem *)customTabBarItem {
+//    [customTabBarItem setTitlePositionAdjustment:UIOffsetMake(0.0, 0.0)];
+//    [customTabBarItem setImageInsets:UIEdgeInsetsMake(6, 0, -6, 0)];
+//}
  -(void)adjustInsets {
     [self.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0.0, -3.0)];
 }

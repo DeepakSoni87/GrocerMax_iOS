@@ -19,7 +19,7 @@
 */
 
 + (CGFloat)headerHeight {
-    return 110.0;
+    return 121.0;
 }
 
 - (void) configerViewData:(GMOrderDeatilBaseModal *)orderDeatilBaseModal {
@@ -35,11 +35,29 @@
             self.deliveryChargeLbl.text = @"";
         }
     
-    if(NSSTRING_HAS_DATA(orderDeatilBaseModal.totalPrice)) {
-        self.totalCharge.text = [NSString stringWithFormat:@"₹%.2f", orderDeatilBaseModal.totalPrice.floatValue];
+    if(NSSTRING_HAS_DATA(orderDeatilBaseModal.deliveryCharge)) {
+        self.deliveryChargeLbl.text = [NSString stringWithFormat:@"₹%.2f", orderDeatilBaseModal.deliveryCharge.floatValue];
     } else {
         self.deliveryChargeLbl.text = @"";
     }
+    
+    
+    if(NSSTRING_HAS_DATA(orderDeatilBaseModal.couponDiscount) && [orderDeatilBaseModal.couponDiscount floatValue]<-0.00001) {
+        self.couponcodeTextLbl.text = [NSString stringWithFormat:@"Discount Coupon"];
+        self.couponCode.text = [NSString stringWithFormat:@"₹%@",orderDeatilBaseModal.couponDiscount];
+    } else if(NSSTRING_HAS_DATA(orderDeatilBaseModal.couponDiscount) && [orderDeatilBaseModal.couponDiscount floatValue]>0.00001) {
+        self.couponcodeTextLbl.text = [NSString stringWithFormat:@"Discount Coupon"];
+        self.couponCode.text = [NSString stringWithFormat:@"₹%@",orderDeatilBaseModal.couponDiscount];
+    }else {
+        self.couponcodeTextLbl.text = @"";
+        self.couponCode.text = @"";
+    }
+    if(NSSTRING_HAS_DATA(orderDeatilBaseModal.totalPrice)) {
+        self.totalCharge.text = [NSString stringWithFormat:@"₹%.2f",[orderDeatilBaseModal.totalPrice floatValue]];
+    } else {
+        self.totalCharge.text = [NSString stringWithFormat:@"₹0.00"];
+    }
+    
 }
 
 @end

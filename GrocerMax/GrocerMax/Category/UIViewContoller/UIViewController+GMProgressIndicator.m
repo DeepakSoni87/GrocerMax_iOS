@@ -23,11 +23,12 @@
 
 - (void)showProgressWithText:(NSString *)message {
     
-    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+//    [SVProgressHUD setBackgroundColor:[UIColor gmRedColor]];
     [SVProgressHUD setForegroundColor:[UIColor colorFromHexString:@"#FFA800"]];
-    //    [SVProgressHUD setRingThickness:1.0f];
+    [SVProgressHUD setRingThickness:1.0f];
     [SVProgressHUD setFont:FONT_REGULAR(13)];
-    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeGradient];
+//    [SVProgressHUD showWithStatus:message maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     //    [self.view setUserInteractionEnabled:NO];// added by R
     if (![[UIApplication sharedApplication] isIgnoringInteractionEvents])
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -131,9 +132,12 @@
     UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
-    
+    [self adjustShareInsets:profileVC.tabBarItem];
     [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
 }
 
-
+-(void)adjustShareInsets:(UITabBarItem *)customTabBarItem {
+    [customTabBarItem setTitlePositionAdjustment:UIOffsetMake(0.0, 0.0)];
+    [customTabBarItem setImageInsets:UIEdgeInsetsMake(6, 0, -6, 0)];
+}
 @end

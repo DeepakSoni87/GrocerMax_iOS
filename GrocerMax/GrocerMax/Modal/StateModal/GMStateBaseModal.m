@@ -12,6 +12,7 @@ static NSString * const kCityIdKey                     = @"cityId";
 static NSString * const kCityNameKey                   = @"cityName";
 static NSString * const kStateIdKey                    = @"stateId";
 static NSString * const kStateNameKey                  = @"stateName";
+static NSString * const kStoreIdKey                    = @"storeId";
 
 @interface GMStateBaseModal()
 
@@ -75,6 +76,8 @@ static NSString * const kStateNameKey                  = @"stateName";
 
 @property (nonatomic, readwrite, strong) NSString *stateName;
 
+@property (nonatomic, readwrite, strong) NSString *storeId;
+
 @property (nonatomic, readwrite) BOOL isSelected;
 
 @end
@@ -100,10 +103,17 @@ static GMCityModal *cityModal;
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
+//    return @{@"cityId"                  : @"region_id",
+//             @"cityName"                : @"city_name",
+//             @"stateId"                 : @"id",
+//             @"stateName"               : @"default_name",
+//             @"storeId"                 : @"id"
+//             };
     return @{@"cityId"                  : @"id",
              @"cityName"                : @"city_name",
              @"stateId"                 : @"region_id",
-             @"stateName"               : @"default_name"
+             @"stateName"               : @"default_name",
+             @"storeId"                 : @"id"
              };
 }
 
@@ -116,6 +126,7 @@ static GMCityModal *cityModal;
     [aCoder encodeObject:self.cityName forKey:kCityNameKey];
     [aCoder encodeObject:self.stateId forKey:kStateIdKey];
     [aCoder encodeObject:self.stateName forKey:kStateNameKey];
+    [aCoder encodeObject:self.storeId forKey:kStoreIdKey];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -125,6 +136,7 @@ static GMCityModal *cityModal;
         self.cityName = [aDecoder decodeObjectForKey:kCityNameKey];
         self.stateId = [aDecoder decodeObjectForKey:kStateIdKey];
         self.stateName = [aDecoder decodeObjectForKey:kStateNameKey];
+        self.storeId = [aDecoder decodeObjectForKey:kStoreIdKey];
     }
     return self;
 }

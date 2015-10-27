@@ -50,4 +50,14 @@
     }
     return self;
 }
+
+- (instancetype)initWithCartModal:(GMCartModal *)cartModal {
+    
+    if(self = [super init]) {
+        
+        _productItemsArray = [NSMutableArray arrayWithArray:cartModal.cartItems];
+        _deletedProductItemsArray = [NSMutableArray array];
+    }
+    return self;
+}
 @end

@@ -27,4 +27,6 @@
 + (UIColor *)gmBlackColor;
 
 + (UIColor *)gmGrayColor;
+
++ (UIColor *)gmOrangeColor;
 @end

@@ -31,6 +31,10 @@
 
 @property (nonatomic, strong) NSString *totalPrice;
 
+@property (nonatomic, strong) NSString *couponDiscount;
+
+
+
 @property (nonatomic, strong) NSMutableArray *itemModalArray;
 
 - (GMOrderDeatilBaseModal *) initWithDictionary:(NSMutableDictionary *)dataDic;

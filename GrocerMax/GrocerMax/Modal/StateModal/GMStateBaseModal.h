@@ -33,13 +33,23 @@
 
 @property (nonatomic, readonly, strong) NSString *stateName;
 
+@property (nonatomic, readonly, strong) NSString *storeId;
+
 @property (nonatomic, readonly) BOOL isSelected;
 
 - (void) setCityId:(NSString *)cityId;
+
 - (void) setCityName:(NSString *)cityName;
+
 - (void) setStateId:(NSString *)stateId;
+
 - (void) setStateName:(NSString *)stateName;
+
+- (void) setStoreId:(NSString *)storeId;
+
 - (void) setIsSelected:(BOOL)isSelected;
+
 + (instancetype)selectedLocation;
+
 - (void)persistLocation;
 @end

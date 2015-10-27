@@ -76,4 +76,8 @@
 + (UIColor *)gmGrayColor {
     return [UIColor colorFromHexString:@"#7D7D7D"];
 }
+
++ (UIColor *)gmOrangeColor {
+    return [UIColor colorFromHexString:@"#FFA800"];
+}
 @end

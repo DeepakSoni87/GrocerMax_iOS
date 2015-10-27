@@ -30,7 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    [self configureView];
+    //    [self configureView];
     if(self.isPresent)
         self.closeBtn.hidden = NO;
     else
@@ -90,7 +90,7 @@
 }
 
 - (IBAction)fbLoginButtonPressed:(UIButton *)sender {
-
+    
     
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logInWithReadPermissions:@[@"email",@"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
@@ -108,26 +108,30 @@
                 if ([FBSDKAccessToken currentAccessToken])
                 {
                     
-                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
+                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"id,first_name,last_name,email,gender"}]
                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                          if (!error) {
                              
                              NSDictionary *resultDic = result;
-
+                             
                              if(resultDic != nil) {
                                  if ([result objectForKey:@"email"]) {
                                      [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_FacebookLogin withCategory:@"" label:nil value:nil];
                                      
-                                     GMUserModal *userModal = [GMUserModal new];
+                                     GMUserModal *userModal = [[GMUserModal alloc] init];
                                      [userModal setFbId:[result objectForKey:@"id"]];
                                      [userModal setEmail:[result objectForKey:@"email"]];
                                      [userModal setFirstName:[result objectForKey:@"first_name"]];
                                      [userModal setLastName:[result objectForKey:@"last_name"]];
                                      [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
-
-                                     GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-                                     vc.userModal = userModal;
-                                     [self.navigationController pushViewController:vc animated:YES];
+                                     
+                                     if(NSSTRING_HAS_DATA(userModal.email))
+                                         [self fbRegisterOnServerWithUserModal:userModal];
+                                     else {
+                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                                         vc.userModal = userModal;
+                                         [self.navigationController pushViewController:vc animated:YES];
+                                     }
                                  }
                              }
                              
@@ -140,7 +144,7 @@
 }
 
 - (IBAction)googleLoginButtonPressed:(UIButton *)sender {
-   
+    
     [[GIDSignIn sharedInstance] signIn];
 }
 
@@ -151,7 +155,7 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
- 
+    
     [self.view endEditing:YES];
     
     if([self performValidations]) {
@@ -179,7 +183,7 @@
                 [self setSecondTabAsProfile];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
-
+            
         } failureBlock:^(NSError *error) {
             
             [self removeProgress];
@@ -192,7 +196,7 @@
     
     GMRegisterVC *registerVC = [[GMRegisterVC alloc] initWithNibName:@"GMRegisterVC" bundle:nil];
     [self.navigationController pushViewController:registerVC animated:YES];
-//    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
+    //    [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
 }
 
 #pragma mark - Validations...
@@ -226,7 +230,7 @@ didSignInForUser:(GIDGoogleUser *)user
     // ...
     
     if (user.profile.email) {
-    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
         GMUserModal *userModal = [GMUserModal new];
         [userModal setGoogleId:user.userID];
         [userModal setEmail:user.profile.email];
@@ -234,11 +238,16 @@ didSignInForUser:(GIDGoogleUser *)user
         [userModal setLastName:@""];
         [userModal setGender:GMGenderTypeMale];// suppose it defaul
         
-        GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-        vc.userModal = userModal;
-        [self.navigationController pushViewController:vc animated:YES];
+        if(NSSTRING_HAS_DATA(userModal.email))
+            [self fbRegisterOnServerWithUserModal:userModal];
+        else {
+            GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+            vc.userModal = userModal;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
+
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
@@ -263,5 +272,48 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [UIView commitAnimations];
 }
 
+#pragma mark - Send data on server
 
+- (void)fbRegisterOnServerWithUserModal:(GMUserModal *)userModal {
+    
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    [paramDict setObject:userModal.email forKey:kEY_uemail];
+    [paramDict setObject:@"" forKey:kEY_quote_id];
+    [paramDict setObject:userModal.firstName ? userModal.firstName : @"" forKey:kEY_fname];
+    [paramDict setObject:userModal.lastName ? userModal.lastName : @"" forKey:kEY_lname];
+    [paramDict setObject:userModal.mobile ? userModal.mobile : @"" forKey:kEY_number];
+    
+    GMUserModal *savedUserModal = [GMUserModal loggedInUser];
+    if(NSSTRING_HAS_DATA(savedUserModal.quoteId)) {
+    [paramDict setObject:savedUserModal.quoteId forKey:kEY_quote_id];
+    }
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] fgLoginRequestParamsWith:paramDict withSuccessBlock:^(id data) {
+        
+        [self removeProgress];
+        NSDictionary *resDic = data;
+        
+        if ([resDic objectForKey:kEY_UserID]) {
+            [userModal setQuoteId:resDic[kEY_QuoteId]];
+            [userModal setUserId:resDic[kEY_UserID]];
+            [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
+            
+            [userModal persistUser];// save user modal in memory
+            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+            if(self.isPresent) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
+            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:error.localizedDescription];
+    }];
+}
 @end

@@ -10,4 +10,6 @@
 
 @interface GMTabBarVC : UITabBarController
 
+//-(void)adjustShareInsets:(UITabBarItem *)customTabBarItem;
+
 @end

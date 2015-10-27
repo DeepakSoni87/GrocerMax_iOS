@@ -100,9 +100,18 @@
         [self.subTotalPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", subtotal]];
         [self.youSavedLbl setText:[NSString stringWithFormat:@"₹%.2f", saving]];
         double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
+        if(couponDiscount>0.01) {
+            grandTotal = grandTotal - couponDiscount;
+        } else {
+            grandTotal = grandTotal + couponDiscount;
+        }
         [self.totalPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
         [self.totalItemPriceLbl setText:[NSString stringWithFormat:@"₹%.2f", grandTotal]];
+        if(NSSTRING_HAS_DATA(cartDetailModal.couponCode)) {
         [self.couponDiscountLbl setText:[NSString stringWithFormat:@"₹%.2f", couponDiscount]];
+        } else {
+            [self.couponDiscountLbl setText:[NSString stringWithFormat:@"₹0.00"]];
+        }
     }
     
 }

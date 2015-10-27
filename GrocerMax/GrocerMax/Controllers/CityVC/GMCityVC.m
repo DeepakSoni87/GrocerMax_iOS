@@ -144,8 +144,15 @@ static NSString *kIdentifierCityCell = @"CityIdentifierCell";
     }
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SaveCity withCategory:@"" label:self.cityModal.cityName value:nil];
-    [self.cityModal persistLocation];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+     if(NSSTRING_HAS_DATA(self.cityModal.stateId)) {
+        [defaults setObject:self.cityModal.stateId forKey:@"storeId"];
+    }
+    [defaults synchronize];
+    
+    [self.cityModal persistLocation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

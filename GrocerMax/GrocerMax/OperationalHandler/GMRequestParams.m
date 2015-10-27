@@ -10,7 +10,7 @@
 #import "GMAddressModal.h"
 #import "GMCartModal.h"
 #import "GMProductModal.h"
-
+#import "GMStateBaseModal.h"
 
 
 
@@ -722,6 +722,7 @@ static GMRequestParams *sharedClass;
 - (NSDictionary *)getAddAddressParameterDictionaryFrom:(GMAddressModalData *)addressModal andIsNewAddres:(BOOL)isNewAddress {
     
     GMUserModal *userModal = [GMUserModal loggedInUser];
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
     NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionary];
     if(!isNewAddress)
         [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.customer_address_id] forKey:kEY_addressid];
@@ -739,7 +740,7 @@ static GMRequestParams *sharedClass;
     [addressDictionary setObject:@"IN" forKey:kEY_countrycode];
     [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
     [addressDictionary setObject:addressModal.is_default_billing forKey:kEY_default_billing];
-    [addressDictionary setObject:@"1" forKeyedSubscript:kEY_cityId];
+    [addressDictionary setObject:[self getValidStringObjectFromString:cityModal.cityId] forKey:kEY_cityId];
     return addressDictionary;
 }
 

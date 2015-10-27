@@ -24,6 +24,7 @@
 #import "UIGifImage.h"
 #import <GoogleAnalytics/GAI.h>
 #import "GMHotDealVC.h"
+#import <SVProgressHUD/SVIndefiniteAnimatedView.h>
 
 #define TAG_PROCESSING_INDECATOR 100090
 
@@ -40,7 +41,7 @@ static int const kGaDispatchPeriod = 20;
 //@property (nonatomic, strong) XHDrawerController *drawerController;
 @property (nonatomic, strong) GMCategoryModal *rootCategoryModal;
 @property (nonatomic, strong) GMHomeBannerModal *pushModal;
-
+@property (nonatomic, strong) SVIndefiniteAnimatedView *indefiniteAnimatedView;
 @end
 
 @implementation AppDelegate
@@ -273,7 +274,7 @@ static int const kGaDispatchPeriod = 20;
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
         if (searchVC == nil)
             return;
-        [searchVC performSearchOnServerWithParam:localDic];
+        [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
         
     }else if ([typeStr isEqualToString:KEY_Banner_offerbydealtype]) {
         
@@ -624,22 +625,9 @@ static int const kGaDispatchPeriod = 20;
     
     UIView *processingAlertView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height)];
     [processingAlertView setTag:TAG_PROCESSING_INDECATOR];
-//    UIActivityIndicatorView *indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    indicator.center=processingAlertView.center;
-//    [indicator startAnimating];
-//    [processingAlertView addSubview:indicator];
-    [processingAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
-    
-    NSString *testGifPath = [[[NSBundle bundleForClass:self.class] resourcePath] stringByAppendingPathComponent:@"grocerloader.gif"];
-    NSData *gifData = [NSData dataWithContentsOfFile:testGifPath];
-    
-    // test 1
-    
-    UIGifImage *gif = [[UIGifImage alloc] initWithData:gifData];
-    UIImageView *imageview = [[UIImageView alloc] initWithImage:gif];
-    imageview.frame = CGRectMake(0, 0, 85, 85);
-    imageview.center = processingAlertView.center;
-    [processingAlertView addSubview:imageview];
+    [processingAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.4]];
+    self.indefiniteAnimatedView.center = processingAlertView.center;
+    [processingAlertView addSubview:self.indefiniteAnimatedView];
     [self.window addSubview:processingAlertView];
     
     // NSLog(@"Show------>");
@@ -653,5 +641,16 @@ static int const kGaDispatchPeriod = 20;
     
     // NSLog(@"Hide------>");
     
+}
+
+- (SVIndefiniteAnimatedView *)indefiniteAnimatedView {
+    if (_indefiniteAnimatedView == nil) {
+        _indefiniteAnimatedView = [[SVIndefiniteAnimatedView alloc] initWithFrame:CGRectZero];
+        _indefiniteAnimatedView.strokeThickness = 2.0;
+        _indefiniteAnimatedView.strokeColor = [UIColor gmOrangeColor];
+        _indefiniteAnimatedView.radius = 24;
+        [_indefiniteAnimatedView sizeToFit];
+    }
+    return _indefiniteAnimatedView;
 }
 @end

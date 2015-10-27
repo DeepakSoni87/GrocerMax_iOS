@@ -11,12 +11,15 @@
 #import "GMStateBaseModal.h"
 #import "Reachability.h"
 
+#import <Google/SignIn.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #import <GoogleAnalytics/GAITracker.h>
 #import <GoogleAnalytics/GAI.h>
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics/GAIFields.h>
 #import "GMCartModal.h"
-
+#import "NSDateFormatter+Extend.h"
 
 #define kAlertTitle @"GrocerMax"
 
@@ -182,7 +185,10 @@ CGFloat const kMATabBarHeight = 49.0f;
     [defaults removeObjectForKey:signedInUserKey];
     [defaults setObject:@(NO) forKey:loggedInUserKey];
     [defaults synchronize];
-
+    
+//    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+//    [login logOut];
+    [[GIDSignIn sharedInstance] signOut];
 }
 
 #pragma mark - Network Reachbility Test
@@ -291,5 +297,30 @@ CGFloat const kMATabBarHeight = 49.0f;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:baseurl forKey:categoryImageUrlKey];
     [defaults synchronize];
+}
+//- (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest {
+//    [headerRequest setValue:kEY_iOS forKey:kEY_device];
+//    [headerRequest setValue:kAppVersion forKey:keyAppVersion];
+//    return headerRequest;
+//}
+
+- (NSString *)getDate:(NSString *)myDateString withFormate:(NSString *)formate {
+    
+    if(NSSTRING_HAS_DATA(formate)){
+        formate =@"dd-MMM-yyyy";
+    }
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *yourDate = [dateFormatter dateFromString:myDateString];
+    dateFormatter.dateFormat = formate;
+    NSString *newDate = [dateFormatter stringFromDate:yourDate];
+    return newDate;
+}
+
+- (NSString *)getDeliveryDate:(NSString *)deliveryStr {
+    
+    NSDate *deliveryDate = [[NSDateFormatter dateFormatter_yyyy_MM_dd] dateFromString:deliveryStr];
+    NSString *timeStr = [[NSDateFormatter dateFormatter_DD_MMM_YYYY] stringFromDate:deliveryDate];
+    return timeStr;
 }
 @end
