@@ -29,6 +29,15 @@ CGFloat btnHeight = 40.0; //same as scrollview
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    //*******
+#warning Remove "ALL" Tab - 28/10/2015
+    
+    if (!self.isFromSearch && self.pageData.count>0){
+        [self.pageData removeObjectAtIndex:0];
+    }
+    
+    // ****End
+    
     self.modelController = [[GMRootPageModelController alloc] init];
     self.modelController.modelPageData = self.pageData;
     self.modelController.rootControllerType = self.rootControllerType;
@@ -105,12 +114,12 @@ CGFloat btnHeight = 40.0; //same as scrollview
     
     for(int i = 0 ;i<self.pageData.count;i++)
     {
-        NSString *title = @"All";
-        if(self.isFromSearch)
-            title = [self.modelController titleNameFormModal:self.pageData[i]];
+        NSString *title = @"";//@"All"; Remove ALL Tab - 28/10/2015
+//        if(self.isFromSearch)
+//            title = [self.modelController titleNameFormModal:self.pageData[i]];
+//        if (i != 0 ) //Remove ALL Tab - 28/10/2015
         
-        if (i != 0 )
-            title = [self.modelController titleNameFormModal:self.pageData[i]];
+        title = [self.modelController titleNameFormModal:self.pageData[i]];
         
         CGFloat width = [self getBoundingWidthOfText:title];
         
