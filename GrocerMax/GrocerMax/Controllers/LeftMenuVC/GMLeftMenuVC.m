@@ -291,7 +291,8 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
         
         [self removeProgress];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
-        if (dealCategoryArray.count == 0) {
+       
+        if (dealCategoryArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
             return ;
         }
         
