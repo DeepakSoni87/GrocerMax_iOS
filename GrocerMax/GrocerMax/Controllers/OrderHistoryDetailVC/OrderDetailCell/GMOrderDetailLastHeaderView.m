@@ -53,9 +53,9 @@
         self.couponCode.text = @"";
     }
     if(NSSTRING_HAS_DATA(orderDeatilBaseModal.totalPrice)) {
-        self.totalCharge.text = [NSString stringWithFormat:@"₹%@",orderDeatilBaseModal.totalPrice];
+        self.totalCharge.text = [NSString stringWithFormat:@"₹%.2f",[orderDeatilBaseModal.totalPrice floatValue]];
     } else {
-        self.totalCharge.text = [NSString stringWithFormat:@"₹0.0"];
+        self.totalCharge.text = [NSString stringWithFormat:@"₹0.00"];
     }
     
 }

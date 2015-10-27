@@ -46,6 +46,10 @@ static NSString * const kCityCell                       =  @"City";
 static NSString * const kStateCell                      =  @"State";
 static NSString * const kPincodeCell                    =  @"Pincode";
 
+static NSString * const kFirstNameCell                  =  @"First Name";
+static NSString * const kLastNameCell                   =  @"Last Name";
+static NSString * const kPhoneCell                     =  @"Phone Number";
+
 @implementation GMAddShippingAddressVC
 
 - (void)viewDidLoad {
@@ -120,13 +124,24 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     
     if(!_cellArray) {
         
-        _cellArray = [NSMutableArray arrayWithObjects:
+//        _cellArray = [NSMutableArray arrayWithObjects:
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kHouseCell placeHolder:@"required" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kStreetCell placeHolder:@"Select from dropdown" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kClosestLandmarkCell placeHolder:@"to get your groceries to you quicker" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kCityCell placeHolder:@"eg. Gurgaon" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kStateCell placeHolder:@"Select from dropdown" andStatus:kNone],
+//                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPincodeCell placeHolder:@"required" andStatus:kNone],
+//                      nil];
+        
+        _cellArray = [NSMutableArray arrayWithObjects:[[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kHouseCell placeHolder:@"required" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kStreetCell placeHolder:@"Select from dropdown" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kClosestLandmarkCell placeHolder:@"to get your groceries to you quicker" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kCityCell placeHolder:@"eg. Gurgaon" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kStateCell placeHolder:@"Select from dropdown" andStatus:kNone],
                       [[PlaceholderAndValidStatus alloc] initWithCellType:kPincodeCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPhoneCell placeHolder:@"required" andStatus:kNone],
                       nil];
     }
     return _cellArray;
@@ -183,7 +198,15 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     inputCell.inputTextField.enabled = YES;
     [inputCell.inputTextField setBackgroundColor:[UIColor whiteColor]];
     
-    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kHouseCell]) {
+    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kFirstNameCell]) {
+        
+        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.firstName) ? self.addressModal.firstName : @"";
+    }
+    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kLastNameCell]) {
+        
+        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.lastName) ? self.addressModal.lastName : @"";
+    }
+    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kHouseCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.houseNo) ? self.addressModal.houseNo : @"";
     }
@@ -213,6 +236,12 @@ static NSString * const kPincodeCell                    =  @"Pincode";
         inputCell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
         inputCell.inputTextField.keyboardAppearance = UIKeyboardAppearanceDark;
     }
+    else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kPhoneCell]) {
+        
+        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.addressModal.telephone) ? self.addressModal.telephone : @"";
+        inputCell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        inputCell.inputTextField.keyboardAppearance = UIKeyboardAppearanceDark;
+    }
 }
 
 #pragma mark- UITextField Delegates...
@@ -220,7 +249,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     self.currentTextField = textField;
-    if (self.currentTextField.tag == 1) {
+    if (self.currentTextField.tag == 3) {
         
         textField.inputView = [self configureValuePicker];
     }
@@ -235,20 +264,36 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     switch (textField.tag) {
         case 0: {
             
+            NSString *firstName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            textField.text = firstName;
+            [self.addressModal setFirstName:firstName];
+            [self checkValidFirstName];
+        }
+            break;
+        case 1: {
+            
+            NSString *lastName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            textField.text = lastName;
+            [self.addressModal setLastName:lastName];
+            [self checkValidLastName];
+        }
+            break;
+        case 2: {
+            
             NSString *houseNo = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = houseNo;
             [self.addressModal setHouseNo:houseNo];
             [self checkValidHouseNo];
         }
             break;
-        case 1: {
+        case 3: {
             
             if(!NSSTRING_HAS_DATA(textField.text))
                 [self.addressModal setRegion:textField.text];
             [self checkValidStreetAddress];
         }
             break;
-        case 2: {
+        case 4: {
             
             NSString *landmark = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = landmark;
@@ -256,7 +301,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             [self checkValidClosestLandmark];
         }
             break;
-        case 3: {
+        case 5: {
             
             NSString *city = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = city;
@@ -264,18 +309,26 @@ static NSString * const kPincodeCell                    =  @"Pincode";
             //            [self checkValidCity];
         }
             break;
-        case 4: {
+        case 6: {
             
             if(!NSSTRING_HAS_DATA(textField.text))
                 [self.addressModal setRegion:textField.text];
             //            [self checkValidState];
         }
             break;
-        case 5: {
+        case 7: {
             
             NSString *pincode = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = pincode;
             [self.addressModal setPincode:pincode];
+            [self checkValidPincode];
+        }
+            break;
+        case 8: {
+            
+            NSString *phoneNumber = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            textField.text = phoneNumber;
+            [self.addressModal setTelephone:phoneNumber];
             [self checkValidPincode];
         }
             break;
@@ -295,9 +348,15 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     switch (textField.tag) {
             
-        case 5: {
+        case 7: {
             
             if([resultString length] > 6)
+                return NO;
+        }
+            break;
+        case 8: {
+            
+            if([resultString length] > 10)
                 return NO;
         }
             break;
@@ -326,6 +385,17 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)performValidations {
     
     BOOL resultedBool = YES;
+    
+    if (![self checkValidFirstName]) {
+        resultedBool =  resultedBool && NO;
+    }else{
+        resultedBool =  resultedBool && YES;
+    }
+    if (![self checkValidLastName]) {
+        resultedBool =  resultedBool && NO;
+    }else{
+        resultedBool =  resultedBool && YES;
+    }
     
     if (![self checkValidHouseNo]) {
         resultedBool =  resultedBool && NO;
@@ -357,13 +427,61 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     }else{
         resultedBool =  resultedBool && YES;
     }
+    if (![self checkValidMobileNumber]) {
+        resultedBool =  resultedBool && NO;
+    }else{
+        resultedBool =  resultedBool && YES;
+    }
+    
+    return resultedBool;
+}
+
+- (BOOL)checkValidFirstName {
+    
+    BOOL resultedBool = YES;
+    int  rowNumber = 0;
+    GMRegisterInputCell* cell ;
+    if (!NSSTRING_HAS_DATA(self.addressModal.firstName)){
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kInvalid;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kInvalid;
+        return NO;
+    }else {
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kValid;
+        resultedBool = YES;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kValid;
+    }
+    return resultedBool;
+}
+
+- (BOOL)checkValidLastName{
+    
+    BOOL resultedBool = YES;
+    int  rowNumber = 1;
+    GMRegisterInputCell* cell ;
+    if (!NSSTRING_HAS_DATA(self.addressModal.lastName)) {
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kInvalid;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kInvalid;
+        return NO;
+    }else {
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kValid;
+        resultedBool = YES;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kValid;
+    }
     return resultedBool;
 }
 
 - (BOOL)checkValidHouseNo {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 0;
+    int  rowNumber = 2;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.addressModal.houseNo)){
         cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
@@ -384,7 +502,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)checkValidStreetAddress {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 1;
+    int  rowNumber = 3;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.addressModal.locality)) {
         cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
@@ -405,7 +523,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)checkValidClosestLandmark {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 2;
+    int  rowNumber = 4;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.addressModal.closestLandmark)) {
         cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
@@ -426,7 +544,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)checkValidCity {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 3;
+    int  rowNumber = 5;
     GMRegisterInputCell* cell ;
     if (!NSSTRING_HAS_DATA(self.addressModal.city)) {
         cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
@@ -447,7 +565,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)checkValidState {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 4;
+    int  rowNumber = 6;
     GMRegisterInputCell* cell ;
     if(NSSTRING_HAS_DATA(self.addressModal.region)) {
         
@@ -472,7 +590,7 @@ static NSString * const kPincodeCell                    =  @"Pincode";
 - (BOOL)checkValidPincode {
     
     BOOL resultedBool = YES;
-    int  rowNumber = 5;
+    int  rowNumber = 7;
     GMRegisterInputCell* cell ;
     if(NSSTRING_HAS_DATA(self.addressModal.pincode) && [self.addressModal.pincode length] == 6) {
         
@@ -494,6 +612,27 @@ static NSString * const kPincodeCell                    =  @"Pincode";
     return resultedBool;
 }
 
+
+- (BOOL)checkValidMobileNumber{
+    
+    BOOL resultedBool = YES;
+    int  rowNumber = 8;
+    GMRegisterInputCell* cell ;
+    if (![GMSharedClass validateMobileNumberWithString:self.addressModal.telephone]) {
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kInvalid;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kInvalid;
+        return NO;
+    }else {
+        cell =(GMRegisterInputCell*) [self.shippingAddressTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+        cell.statusType = kValid;
+        resultedBool = YES;
+        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+        objPlaceholderAndStatus.statusType = kValid;
+    }
+    return resultedBool;
+}
 #pragma mark - Picker Configurations
 
 - (UIView*)configureValuePicker {
