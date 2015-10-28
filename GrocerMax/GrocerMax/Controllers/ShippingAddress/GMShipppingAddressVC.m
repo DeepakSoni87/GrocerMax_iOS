@@ -13,6 +13,7 @@
 #import "GMBillingAddressVC.h"
 #import "GMDeliveryDetailVC.h"
 #import "GMAddShippingAddressVC.h"
+#import "GMStateBaseModal.h"
 
 static NSString *kIdentifierShippingAddressCell = @"ShippingAddressIdentifierCell";
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
@@ -253,12 +254,13 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
         self.timeSlotBaseModal = responceData;
         if(responceData.addressesArray.count > 0) {
             
+            GMCityModal *cityModal = [GMCityModal  selectedLocation];
             NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
                 
                 int isShippingValue = evaluatedObject.is_default_shipping.intValue;
                 int isBillingValue = evaluatedObject.is_default_billing.intValue;
                 
-                if((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) {
+                if(((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) && [cityModal.cityName isEqualToString:evaluatedObject.city]) {
                     return YES;
                 }
                 else
