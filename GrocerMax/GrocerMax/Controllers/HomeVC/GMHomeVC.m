@@ -83,10 +83,10 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
     
     // if categoies exist in memory
-    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-    if (mdl != nil) {
-        [self getShopByCategoriesFromServer];
-    }
+//    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
+//    if (mdl != nil) {
+//        [self getShopByCategoriesFromServer];
+//    }
     
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Home_Screen];
 }

@@ -112,13 +112,12 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
     [[GMOperationalHandler handler] getAddress:userDic  withSuccessBlock:^(GMAddressModal *responceData) {
         
         [self removeProgress];
-        
+        GMCityModal *cityModal = [GMCityModal  selectedLocation];
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(GMAddressModalData *evaluatedObject, NSDictionary *bindings) {
             
             int isShippingValue = evaluatedObject.is_default_shipping.intValue;
             int isBillingValue = evaluatedObject.is_default_billing.intValue;
-            
-            if((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) {
+            if(((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) && [cityModal.cityName caseInsensitiveCompare:evaluatedObject.city] == NSOrderedSame  && [cityModal.stateName caseInsensitiveCompare:evaluatedObject.region] == NSOrderedSame) {
                 return YES;
             }
             else

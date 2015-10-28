@@ -37,6 +37,13 @@
 
 #define grocerMaxDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
+#define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+#define IS_STANDARD_IPHONE_6 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 667.0  && IS_OS_8_OR_LATER && [UIScreen mainScreen].nativeScale == [UIScreen mainScreen].scale)
+
+
 //border color and Width, cornerRadius
 
 #define BORDER_COLOR [[UIColor lightGrayColor] colorWithAlphaComponent:0.4].CGColor

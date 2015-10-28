@@ -383,7 +383,7 @@ forHTTPHeaderField:(NSString *)field
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if([defaults objectForKey:@"storeId"]) {
-        [defaults setObject:[defaults objectForKey:@"storeId"] forKey:@"storeId"];
+        [mutableRequest setValue:[defaults objectForKey:@"storeId"] forHTTPHeaderField:@"storeid"];
     }
     
     mutableRequest = [[self requestBySerializingRequest:mutableRequest withParameters:parameters error:error] mutableCopy];
