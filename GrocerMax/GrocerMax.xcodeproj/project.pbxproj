@@ -243,7 +243,6 @@
 		82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8BD1BD02EB200DD865C /* GMOrderFailVC.m */; };
 		82E6C8C01BD02EB300DD865C /* GMOrderFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */; };
 		82E80B161BDAAE3C007AAA03 /* NSDateFormatter+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */; };
-		82ECCBD11BD8724F000A10C9 /* grocerloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 82ECCBD01BD8724F000A10C9 /* grocerloader.gif */; };
 		E8326C721BB6B760008ACC8B /* GMCheckOutModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */; };
 		E8326C771BB6DB76008ACC8B /* GMPaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E8326C751BB6DB76008ACC8B /* GMPaymentVC.m */; };
 		E8326C781BB6DB76008ACC8B /* GMPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8326C761BB6DB76008ACC8B /* GMPaymentVC.xib */; };
@@ -715,7 +714,6 @@
 		82E6C8BE1BD02EB200DD865C /* GMOrderFailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderFailVC.xib; sourceTree = "<group>"; };
 		82E80B141BDAAE3C007AAA03 /* NSDateFormatter+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extend.h"; sourceTree = "<group>"; };
 		82E80B151BDAAE3C007AAA03 /* NSDateFormatter+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extend.m"; sourceTree = "<group>"; };
-		82ECCBD01BD8724F000A10C9 /* grocerloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grocerloader.gif; sourceTree = "<group>"; };
 		E8326C701BB6B760008ACC8B /* GMCheckOutModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCheckOutModal.h; sourceTree = "<group>"; };
 		E8326C711BB6B760008ACC8B /* GMCheckOutModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCheckOutModal.m; sourceTree = "<group>"; };
 		E8326C741BB6DB76008ACC8B /* GMPaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentVC.h; sourceTree = "<group>"; };
@@ -1969,7 +1967,6 @@
 			children = (
 				82DC5A611BD6A360009DE39E /* Font */,
 				E8D389081BCED64D0069A37F /* iTunesArtwork */,
-				82ECCBD01BD8724F000A10C9 /* grocerloader.gif */,
 				3B670CCB1BA0BF2400B5EB9D /* Messages.strings */,
 				82B1B2B31B9F5E60001550FC /* Images.xcassets */,
 				82B1B2B51B9F5E60001550FC /* LaunchScreen.xib */,
@@ -2488,7 +2485,6 @@
 				8209F6FC1BCD25BC005B7D08 /* arrow_cb.png in Resources */,
 				E86D14411BB99D4E00D3EAD8 /* EMIOptionView.xib in Resources */,
 				820C50371BB1CC5C00DCCF39 /* GMLeftMenuCell.xib in Resources */,
-				82ECCBD11BD8724F000A10C9 /* grocerloader.gif in Resources */,
 				8209F7341BCD25BC005B7D08 /* RegenerateOTPView_iPhone6.xib in Resources */,
 				E86D14351BB99D4E00D3EAD8 /* prev.png in Resources */,
 				820C50351BB1CC5C00DCCF39 /* GMLeftMenuVC.xib in Resources */,
