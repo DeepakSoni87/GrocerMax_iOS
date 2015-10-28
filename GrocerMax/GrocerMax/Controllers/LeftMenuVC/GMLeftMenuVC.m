@@ -18,6 +18,7 @@
 #import "MGSocialMedia.h"
 #import "GMCityVC.h"
 #import "GMHomeVC.h"
+#import "GMStateBaseModal.h"
 
 #pragma mark - Interface/Implementation SectionModal
 
@@ -28,6 +29,8 @@
 @property (nonatomic, strong) NSMutableArray *rowArray;
 
 @property (nonatomic, assign) BOOL isExpanded;
+
+
 
 - (instancetype)initWithDisplayName:(NSString *)displayName rowArray:(NSMutableArray *)rowArray andIsExpand:(BOOL)isExpand;
 @end
@@ -74,6 +77,7 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
     [self.leftMenuTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,6 +85,12 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     self.navigationController.navigationBarHidden = YES;
     [self createSectionArray];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_HamburgerMain_Screen];
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    if(cityModal != nil) {
+        if(NSSTRING_HAS_DATA(cityModal.cityName)) {
+            self.locationLbl.text = cityModal.cityName;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,8 +117,8 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     [self.sectionArray addObject:getInTouch];
 //    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection rowArray:nil andIsExpand:NO];
 //    [self.sectionArray addObject:payment];
-    SectionModal *changeLocationInTouch = [[SectionModal alloc] initWithDisplayName:kChangeCitySection rowArray:nil andIsExpand:NO];
-    [self.sectionArray addObject:changeLocationInTouch];
+//    SectionModal *changeLocationInTouch = [[SectionModal alloc] initWithDisplayName:kChangeCitySection rowArray:nil andIsExpand:NO];
+//    [self.sectionArray addObject:changeLocationInTouch];
     
     [self.leftMenuTableView reloadData];
 }
@@ -322,6 +332,17 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
     [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
     
+}
+- (IBAction)actionEditLocation:(id)sender {
+    [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kChangeCitySection value:nil];
+    AppDelegate *appDel = APP_DELEGATE;
+    [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    GMCityVC * cityVC  = [GMCityVC new];
+    GMHomeVC *homeVc = [appDel rootHomeVCFromFourthTab];
+    
+    cityVC.isCommimgFromHamberger = YES;
+    [homeVc.navigationController pushViewController:cityVC animated:NO];
+
 }
 
 @end
