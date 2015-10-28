@@ -260,7 +260,7 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
                 int isShippingValue = evaluatedObject.is_default_shipping.intValue;
                 int isBillingValue = evaluatedObject.is_default_billing.intValue;
                 
-                if(((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) && [cityModal.cityName isEqualToString:evaluatedObject.city]) {
+                if(((isShippingValue == 1) || ((isShippingValue == 0) && (isBillingValue == 0))) && [cityModal.cityName caseInsensitiveCompare:evaluatedObject.city] == NSOrderedSame  && [cityModal.stateName caseInsensitiveCompare:evaluatedObject.region] == NSOrderedSame) {
                     return YES;
                 }
                 else
