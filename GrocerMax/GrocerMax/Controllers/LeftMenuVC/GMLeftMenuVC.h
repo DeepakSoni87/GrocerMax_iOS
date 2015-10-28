@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GMLeftMenuVC : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *locationLbl;
 
 @end
