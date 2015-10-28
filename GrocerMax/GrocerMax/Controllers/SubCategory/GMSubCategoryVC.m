@@ -273,6 +273,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
         [categoryArray insertObject:categoryModal atIndex:0];
         
         if (categoryArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
+            [[GMSharedClass sharedClass] showErrorMessage:@"Sorry, No products listed in this category"];
             return ;
         }
         
