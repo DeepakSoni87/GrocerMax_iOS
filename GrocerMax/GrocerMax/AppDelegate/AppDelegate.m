@@ -72,8 +72,8 @@ static int const kGaDispatchPeriod = 20;
 //        NSLog(@"Error configuring the Google context: %@", configureError);
     }
     
-    [GIDSignIn sharedInstance].clientID = @"38746701051-1bi2gqs9obckcf9b6a7fffdmlvfmpr1a.apps.googleusercontent.com";
-    [GIDSignIn sharedInstance].serverClientID = @"38746701051-30a0ch5eogued2mq4hjq8uj25kr75mss.apps.googleusercontent.com";
+    [GIDSignIn sharedInstance].clientID = @"522049028388-d290uain6f364tvk38ee8h82av0b7aep.apps.googleusercontent.com";
+    [GIDSignIn sharedInstance].serverClientID = @"522049028388-d290uain6f364tvk38ee8h82av0b7aep.apps.googleusercontent.com";
     
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"2d4f09907ae76f1bd55ad2572de185e3"];
     // Configure the SDK in here only!
