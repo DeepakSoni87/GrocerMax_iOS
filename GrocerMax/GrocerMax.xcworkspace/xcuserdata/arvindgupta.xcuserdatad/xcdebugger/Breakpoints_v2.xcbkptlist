@@ -441,22 +441,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/HomeVC/TableViewCells/GMPageControllCell.m"
-            timestampString = "467745184.329782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GrocerMax/Controllers/SubCategory/GMSubCategoryVC.m"
             timestampString = "467746505.661517"
             startingColumnNumber = "9223372036854775807"
@@ -480,6 +464,22 @@
             startingLineNumber = "258"
             endingLineNumber = "258"
             landmarkName = "-fetchProductListingDataForCategory:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/Deal/DealCollectionViewCell/GMHotDealCollectionViewCell.m"
+            timestampString = "467748229.464506"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-configureCellWithData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
