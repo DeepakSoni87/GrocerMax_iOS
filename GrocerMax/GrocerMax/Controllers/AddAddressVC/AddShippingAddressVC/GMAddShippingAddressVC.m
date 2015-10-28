@@ -154,8 +154,18 @@ static NSString * const kPhoneCell                     =  @"Phone Number";
         if(!self.editAddressModal) {
             
             _addressModal = [[GMAddressModalData alloc] initWithUserModal:[GMUserModal loggedInUser]];
-            [_addressModal setCity:@"Gurgaon"];
-            [_addressModal setRegion:@"Haryana"];
+            GMCityModal *cityModal = [GMCityModal selectedLocation];
+            if(NSSTRING_HAS_DATA(cityModal.cityName)) {
+                [_addressModal setCity:cityModal.cityName];
+            } else {
+                [_addressModal setCity:@"Gurgaon"];
+            }
+            if(NSSTRING_HAS_DATA(cityModal.stateName)) {
+                [_addressModal setRegion:cityModal.stateName];
+            } else {
+                [_addressModal setRegion:@"Haryana"];
+            }
+            
         }
         else
             _addressModal = self.editAddressModal;

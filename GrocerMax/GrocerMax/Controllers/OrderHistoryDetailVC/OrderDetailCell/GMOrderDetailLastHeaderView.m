@@ -47,7 +47,7 @@
         self.couponCode.text = [NSString stringWithFormat:@"₹%@",orderDeatilBaseModal.couponDiscount];
     } else if(NSSTRING_HAS_DATA(orderDeatilBaseModal.couponDiscount) && [orderDeatilBaseModal.couponDiscount floatValue]>0.00001) {
         self.couponcodeTextLbl.text = [NSString stringWithFormat:@"Discount Coupon"];
-        self.couponCode.text = [NSString stringWithFormat:@"₹%@",orderDeatilBaseModal.couponDiscount];
+        self.couponCode.text = [NSString stringWithFormat:@"₹%.2f",[orderDeatilBaseModal.couponDiscount floatValue]];
     }else {
         self.couponcodeTextLbl.text = @"";
         self.couponCode.text = @"";
