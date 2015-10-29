@@ -228,22 +228,23 @@ didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     // Perform any operations on signed in user here.
     // ...
-    
-    if (user.profile.email) {
-        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
-        GMUserModal *userModal = [GMUserModal new];
-        [userModal setGoogleId:user.userID];
-        [userModal setEmail:user.profile.email];
-        [userModal setFirstName:user.profile.name];
-        [userModal setLastName:@""];
-        [userModal setGender:GMGenderTypeMale];// suppose it defaul
-        
-        if(NSSTRING_HAS_DATA(userModal.email))
-            [self fbRegisterOnServerWithUserModal:userModal];
-        else {
-            GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-            vc.userModal = userModal;
-            [self.navigationController pushViewController:vc animated:YES];
+    if(error == nil) {
+        if (user.profile.email) {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
+            GMUserModal *userModal = [GMUserModal new];
+            [userModal setGoogleId:user.userID];
+            [userModal setEmail:user.profile.email];
+            [userModal setFirstName:user.profile.name];
+            [userModal setLastName:@""];
+            [userModal setGender:GMGenderTypeMale];// suppose it defaul
+            
+            if(NSSTRING_HAS_DATA(userModal.email))
+                [self fbRegisterOnServerWithUserModal:userModal];
+            else {
+                GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                vc.userModal = userModal;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }

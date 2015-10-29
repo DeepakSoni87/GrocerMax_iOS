@@ -142,6 +142,8 @@
 #define kEY_phone                          @"phone"
 #define kEY_phone                          @"phone"
 #define kEY_telephone                      @"telephone"
+#define kEY_region                         @"region"
+#define kEY_regionId                       @"region_id"
 
 #define kEY_default_billing                @"default_billing"
 #define kEY_default_shipping               @"default_shipping"

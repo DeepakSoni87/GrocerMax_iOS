@@ -30,6 +30,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self registerCellsForTableView];
+    self.expandedIndex = -1;
     self.navigationController.navigationBarHidden = NO;
     self.subcategoryDataArray = [[NSMutableArray alloc]init];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
