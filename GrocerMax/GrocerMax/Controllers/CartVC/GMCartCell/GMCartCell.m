@@ -90,7 +90,7 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
     else
         [self.promotionLabel setHidden:YES];
     
-    [self updatePriceLabel];
+    
     
     if ([self.productModal.Status isEqualToString:@"0"]) {
         self.imgViewSoldout.hidden = NO;
@@ -103,6 +103,8 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
         self.zeroPriceLabel.hidden = NO;
     }
     
+    
+   
     
     if (self.productModal.promotion_level.length > 1 && self.productModal.sale_price.integerValue == 0) {
         self.offerImg.hidden = NO;
@@ -119,6 +121,7 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
     else {
         self.offerImg.hidden = YES;
     }
+    [self updatePriceLabel];
     
 }
 
@@ -159,6 +162,12 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
         [self.addSubstractView setHidden:NO];
         [self.deleteButton setHidden:NO];
         [self.zeroPriceLabel setHidden:YES];
+    }
+    if ([self.productModal.Status isEqualToString:@"0"]) {
+        
+        self.zeroPriceLabel.hidden = YES;
+    }else{
+        self.zeroPriceLabel.hidden = NO;
     }
 }
 
