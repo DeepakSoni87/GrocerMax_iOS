@@ -113,7 +113,7 @@ static GMCityModal *cityModal;
              @"cityName"                : @"city_name",
              @"stateId"                 : @"region_id",
              @"stateName"               : @"default_name",
-             @"storeId"                 : @"id"
+             @"storeId"                 : @"storeid"
              };
 }
 
