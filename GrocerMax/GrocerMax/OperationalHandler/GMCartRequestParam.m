@@ -280,6 +280,8 @@ static NSString * const kReservationIdKey                   =    @"reservation_i
     [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.closestLandmark] forKey:kEY_addressline3];
     [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.city] forKey:kEY_city];
     [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.region] forKey:kEY_state];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.region] forKey:kEY_region];
+    [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.region_id] forKey:kEY_regionId];
     [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.pincode] forKey:kEY_postcode];
     [shippingAddress setObject:[self getValidStringObjectFromString:cityModal.cityId] forKey:kEY_cityId];
     [shippingAddress setObject:[self getValidStringObjectFromString:shippingAddressModal.telephone] forKey:kEY_telephone];
