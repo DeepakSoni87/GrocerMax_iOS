@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>HockeySDK-HockeySDKResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MMDrawerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,97 +57,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>004FA9CDAE9A64BC85CEC9F7</key>
+		<key>04D49E42D3083A5A59DFA695B4626F80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11971CAFBD62E9E2738A80363AC28EA4</key>
+		<key>0CA26D5FC42F04AE09FCC1E6FA7B8A31</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>176BDC5AC518AD54A798A887B723333F</key>
+		<key>0E97E32E98033AD80B03090EC56C6E59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18528C2572581902E58AC3F1</key>
+		<key>62A4BD1E4A318F278AB26743F687DB6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CCDA9DBE0F4DDBCA002F3BB2EC4A5D0</key>
+		<key>7CA6026A8428D2A0297B05C0082CE883</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53F76DB4D5BA38A7A731947C8E07C311</key>
+		<key>96D54842C489F6AA893313F4592D8980</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56DEAA19831385B4F29DF4B59D2D64C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5F26F04DF665104F7B004CEF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>66E1FE76D2ECF6A4BDB3A8BFF0C45D3C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D1F52B1A110324F8A77D0D5C8614462</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D7140DBFBB9FB531D3C1DE423BD209F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>77DA3433BBE8EE66CDC8F1CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7D2872551308CC352DE7429F423091D4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7DDE7C2C479DDE1795204531</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>84E9501B825F191BAB8CA6C6CF1B6A00</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>860120F24E21B8B26448CCB8A15A2E4D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8CD1136A950C38ED2E97C15A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>93C78F27BA9FB478188C5CCB97E251D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A240B81DF755629656C0ACEC</key>
+		<key>AA09AA34B6AEBF6DD7130A14FCB5F0D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,47 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1A1444ADCF2D9F098C5632C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B1B12D004E12CC0B5F8AE7CA986CD7AF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B281DA29A9C3EDFB45BA53651F6BA611</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB1BF2FE35A2CB248DF1A766</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DAC1608A5B06A824EC2E64D6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E557491E39D974E33651C759</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>F0E35575FE5723CCD0078E7CE4A6F3D1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F5E4103F5599E958AD8CDD558BC5DFA3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCAF592C68DBFEE68B81AF21A60643CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

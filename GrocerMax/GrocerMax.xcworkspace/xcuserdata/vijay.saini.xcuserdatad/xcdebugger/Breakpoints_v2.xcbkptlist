@@ -19,13 +19,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/ProductListingVC/TableViewCells/GMProductListTableViewCell.m"
-            timestampString = "467402520.193671"
+            filePath = "GrocerMax/Controllers/CartVC/GMCartCell/GMCartCell.m"
+            timestampString = "468430616.514438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-configureCellWithProductModal:andCartModal:"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-configureViewWithProductModal:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/CartVC/GMCartCell/GMCartCell.m"
+            timestampString = "468430693.807287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-configureViewWithProductModal:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrocerMax/Controllers/CartVC/GMCartCell/GMCartCell.m"
+            timestampString = "468431943.092527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-updatePriceLabel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
