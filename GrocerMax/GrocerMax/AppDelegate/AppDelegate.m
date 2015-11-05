@@ -10,7 +10,6 @@
 #import "GMLoginVC.h"
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <HockeySDK/HockeySDK.h>
 #import "GMTabBarVC.h"
 #import "GMHomeVC.h"
 #import "GMLeftMenuVC.h"
@@ -75,11 +74,6 @@ static int const kGaDispatchPeriod = 20;
     [GIDSignIn sharedInstance].clientID = @"522049028388-d290uain6f364tvk38ee8h82av0b7aep.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].serverClientID = @"522049028388-d290uain6f364tvk38ee8h82av0b7aep.apps.googleusercontent.com";
     
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"2d4f09907ae76f1bd55ad2572de185e3"];
-    // Configure the SDK in here only!
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-        
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
