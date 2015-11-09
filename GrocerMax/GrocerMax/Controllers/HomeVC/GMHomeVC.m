@@ -574,8 +574,6 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     }
 }
 
-#pragma mark -
-
 #pragma mark - fetchProductListingDataForCategory
 
 - (void)fetchProductListingDataForCategory:(GMCategoryModal*)categoryModal {

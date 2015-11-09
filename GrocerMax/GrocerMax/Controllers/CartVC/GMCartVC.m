@@ -49,7 +49,7 @@
 @end
 
 static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
-static NSString * const kSoldOutPromotionString = @"Please remove from cart to proceed.";
+static NSString * const kSoldOutPromotionString = @"Please remove item from cart to proceed.";
 
 @implementation GMCartVC
 
