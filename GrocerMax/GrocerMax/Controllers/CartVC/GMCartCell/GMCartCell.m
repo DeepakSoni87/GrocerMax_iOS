@@ -24,7 +24,7 @@
 
 @end
 
-NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Please remove from cart to proceed.";
+NSString * const kFreePromotionString = @"Please remove item from cart to proceed.";
 
 @implementation GMCartCell
 
@@ -97,10 +97,12 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
         self.addSubstractView.hidden = YES;
         [self.promotionLabel setText:kFreePromotionString];
         self.zeroPriceLabel.hidden = YES;
+        [self.promotionLabel setHidden:NO];
     }else{
         self.imgViewSoldout.hidden = YES;
         self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
+        [self.promotionLabel setHidden:YES];
     }
     
     
@@ -163,12 +165,25 @@ NSString * const kFreePromotionString = @"Sorry, Requested item is sold out. Ple
         [self.deleteButton setHidden:NO];
         [self.zeroPriceLabel setHidden:YES];
     }
+//    if ([self.productModal.Status isEqualToString:@"0"]) {
+//        
+//        self.zeroPriceLabel.hidden = YES;
+//    }else{
+//        self.zeroPriceLabel.hidden = NO;
+//    }
     if ([self.productModal.Status isEqualToString:@"0"]) {
-        
+        self.imgViewSoldout.hidden = NO;
+        self.addSubstractView.hidden = YES;
+        [self.promotionLabel setText:kFreePromotionString];
         self.zeroPriceLabel.hidden = YES;
+        [self.promotionLabel setHidden:NO];
     }else{
+        self.imgViewSoldout.hidden = YES;
+        self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
+        [self.promotionLabel setHidden:YES];
     }
+
 }
 
 - (IBAction)actionSubstractProduct:(UIButton *)sender {

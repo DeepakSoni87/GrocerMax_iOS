@@ -49,6 +49,7 @@
 @end
 
 static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
+static NSString * const kSoldOutPromotionString = @"Please remove item from cart to proceed.";
 
 @implementation GMCartVC
 
@@ -98,7 +99,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 #pragma mark - GETTER/SETTER Methods
 
 //- (void)setTotalView:(UIView *)totalView {
-//    
+//
 //    _totalView = totalView;
 //    _totalView.layer.cornerRadius = 5.0;
 //    _totalView.layer.masksToBounds = YES;
@@ -137,11 +138,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
             [self.placeOrderButton setHidden:NO];
             [self.updateOrderButton setHidden:YES];
             [self configureAmountView];
-
+            
             [self setTotalCount];
-
+            
             [self checkIsAnyItemOutOfStock];
-
+            
         } else {
             self.cartDetailModal = nil;
             [self.totalView setHidden:YES];
@@ -227,8 +228,12 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
-    if(NSSTRING_HAS_DATA(productModal.promotion_level))
+    if(NSSTRING_HAS_DATA(productModal.promotion_level) && [productModal.Status isEqualToString:@"0"])
+        return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
+    else if(NSSTRING_HAS_DATA(productModal.promotion_level))
         return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
+    else if ([productModal.Status isEqualToString:@"0"])
+        return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
     else
         return [GMCartCell cellHeightWithNoPromotion];
 }
@@ -338,7 +343,7 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
         }
         if([[GMSharedClass sharedClass] getUserLoggedStatus] == NO) {
             
-
+            
             
             GMLoginVC *loginVC = [[GMLoginVC alloc] initWithNibName:@"GMLoginVC" bundle:nil];
             loginVC.isPresent = YES;
@@ -419,11 +424,11 @@ static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 
 - (IBAction)backButtonTapped:(id)sender {
     
-//    self.navigationController.navigationBarHidden = NO;
+    //    self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     [self.tabBarController setSelectedIndex:0];
-//    AppDelegate *appdel = APP_DELEGATE;
-//    [appdel goToHomeWithAnimation:NO];
+    //    AppDelegate *appdel = APP_DELEGATE;
+    //    [appdel goToHomeWithAnimation:NO];
 }
 
 - (BOOL)checkWhetherUpdateRequestNeeded {
