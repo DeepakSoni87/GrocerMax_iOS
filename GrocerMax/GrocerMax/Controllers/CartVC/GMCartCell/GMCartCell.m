@@ -24,7 +24,7 @@
 
 @end
 
-NSString * const kFreePromotionString = @"Please remove from cart to proceed.";
+NSString * const kFreePromotionString = @"Please remove item from cart to proceed.";
 
 @implementation GMCartCell
 
