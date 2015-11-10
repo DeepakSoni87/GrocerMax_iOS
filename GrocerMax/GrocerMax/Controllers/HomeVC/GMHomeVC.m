@@ -34,6 +34,7 @@
 #import "GMHomeBannerModal.h"
 #import "GMPaymentVC.h"
 #import "GMProductListingVC.h"
+#import "GMHomeModal.h"
 
 //#define   KEY_Banner_search @"search"
 //#define   KEY_Banner_offerbydealtype @"offerbydealtype"
@@ -77,11 +78,11 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     [self userSelectLocation];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabHome withCategory:@"" label:nil value:nil];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass]setTabBarVisible:YES ForController:self animated:YES];
-    
-    
     // if categoies exist in memory
 //    GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
 //    if (mdl != nil) {
@@ -97,7 +98,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
 
 #pragma mark - configureUI
 
--(void) configureUI{
+- (void)configureUI {
     
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
@@ -281,67 +282,42 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
 
 - (void)fetchAllCategoriesAndDeals {
     
-    Sequencer *sequencer = [Sequencer new];
-    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+    [self showProgress];
+    [[GMOperationalHandler handler] fetchHomeScreenDataFromServerWithSuccessBlock:^(GMHomeModal *homeModal) {
         
-        [self showProgress];
-        [[GMOperationalHandler handler] fetchCategoriesFromServerWithSuccessBlock:^(GMCategoryModal *rootCategoryModal) {
-            
-            self.rootCategoryModal = rootCategoryModal;
-            [self categoryLevelCategorization];
-            [self.rootCategoryModal archiveRootCategory];
-            GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
-            
-            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
-            GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
-            self.categoriesArray = defaultCategory.subCategories;
-            self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
-            
-            [self.tblView reloadData];
-            
-            completion (nil);
-        } failureBlock:^(NSError *error) {
-            completion (nil);
-        }];
-    }];
-    
-    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        self.rootCategoryModal = homeModal.rootCategoryModal;
+        [self categoryLevelCategorization];
+        [self.rootCategoryModal archiveRootCategory];
+        GMCategoryModal *mdl = [GMCategoryModal loadRootCategory];
         
-        [[GMOperationalHandler handler] shopByDealType:nil withSuccessBlock:^(GMHotDealBaseModal *hotDealBaseModal) {
-            
-            [hotDealBaseModal archiveHotDeals];
-            self.hotDealsArray = [GMHotDealBaseModal loadHotDeals].hotDealArray;
-            [self.tblView reloadData];
-            completion (nil);
-        } failureBlock:^(NSError *error) {
-            
-            completion (nil);
-        }];
-    }];
-    
-    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
+        GMCategoryModal *defaultCategory = mdl.subCategories.firstObject;
+        self.categoriesArray = defaultCategory.subCategories;
+        self.categoriesArray = [self.categoriesArray filteredArrayUsingPredicate:pred];
         
-        [[GMOperationalHandler handler] homeBannerList:nil withSuccessBlock:^(id responesModal) {
-            
-            GMHomeBannerBaseModal *baseMdl = responesModal;
-            self.bannerListArray = baseMdl.bannerListArray;
-            [self.tblView reloadData];
-            completion (nil);
-        } failureBlock:^(NSError *error) {
-            
-            completion (nil);
-        }];
-    }];
-    
-    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
-        // get shop by categories
-        [self getShopByCategoriesFromServer];
+        GMHotDealBaseModal *hotDealBaseModal = [[GMHotDealBaseModal alloc] init];
+        [hotDealBaseModal setHotDealArray:homeModal.hotDealArray];
+        [hotDealBaseModal archiveHotDeals];
+        self.hotDealsArray = [GMHotDealBaseModal loadHotDeals].hotDealArray;
         
-        completion (nil);
+        self.bannerListArray = homeModal.bannerListArray;
+        
+        NSArray *arr = homeModal.categoryArray;
+        
+        for (NSDictionary *dic in arr) {
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.categoryId == %@", dic[kEY_category_id]];
+            
+            GMCategoryModal *defaultCategory = [[self.categoriesArray filteredArrayUsingPredicate:pred] firstObject];
+            defaultCategory.offercount = dic[kEY_offercount];
+        }
+
+        [self removeProgress];
+        [self.tblView reloadData];
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
     }];
-    
-    
-    [sequencer run];
 }
 
 - (void)categoryLevelCategorization {

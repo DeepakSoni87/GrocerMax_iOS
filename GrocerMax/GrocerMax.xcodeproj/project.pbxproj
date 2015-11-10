@@ -224,6 +224,7 @@
 		824AF9AD1BB5BE67001652B9 /* GMCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9AB1BB5BE67001652B9 /* GMCartCell.m */; };
 		824AF9AE1BB5BE67001652B9 /* GMCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 824AF9AC1BB5BE67001652B9 /* GMCartCell.xib */; };
 		824AF9B21BB5CF6E001652B9 /* GMCartDetailModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */; };
+		82A0C4591BF0D65300B64D9A /* GMHomeModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A0C4581BF0D65300B64D9A /* GMHomeModal.m */; settings = {ASSET_TAGS = (); }; };
 		82A52AA71BB28EE3009A4235 /* GMCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AA21BB28EE3009A4235 /* GMCityCell.m */; };
 		82A52AA81BB28EE3009A4235 /* GMCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A52AA31BB28EE3009A4235 /* GMCityCell.xib */; };
 		82A52AA91BB28EE3009A4235 /* GMCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A52AA51BB28EE3009A4235 /* GMCityVC.m */; };
@@ -679,6 +680,8 @@
 		824AF9AC1BB5BE67001652B9 /* GMCartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCartCell.xib; sourceTree = "<group>"; };
 		824AF9B01BB5CF6E001652B9 /* GMCartDetailModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCartDetailModal.h; sourceTree = "<group>"; };
 		824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCartDetailModal.m; sourceTree = "<group>"; };
+		82A0C4571BF0D65300B64D9A /* GMHomeModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMHomeModal.h; sourceTree = "<group>"; };
+		82A0C4581BF0D65300B64D9A /* GMHomeModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMHomeModal.m; sourceTree = "<group>"; };
 		82A52AA11BB28EE3009A4235 /* GMCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCityCell.h; sourceTree = "<group>"; };
 		82A52AA21BB28EE3009A4235 /* GMCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCityCell.m; sourceTree = "<group>"; };
 		82A52AA31BB28EE3009A4235 /* GMCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCityCell.xib; sourceTree = "<group>"; };
@@ -1068,6 +1071,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				82A0C4561BF0D63900B64D9A /* HomeModal */,
 				3B9872B81BC1151900E2499C /* HomeBanner */,
 				E8916C171BBB171F00DA75BE /* GenralModal */,
 				3B9025111BB8153700603403 /* SearchModal */,
@@ -1809,6 +1813,15 @@
 				824AF9B11BB5CF6E001652B9 /* GMCartDetailModal.m */,
 			);
 			path = CartDetailModal;
+			sourceTree = "<group>";
+		};
+		82A0C4561BF0D63900B64D9A /* HomeModal */ = {
+			isa = PBXGroup;
+			children = (
+				82A0C4571BF0D65300B64D9A /* GMHomeModal.h */,
+				82A0C4581BF0D65300B64D9A /* GMHomeModal.m */,
+			);
+			path = HomeModal;
 			sourceTree = "<group>";
 		};
 		82A52A9F1BB28EE3009A4235 /* CityVC */ = {
@@ -2627,6 +2640,7 @@
 				3BF64CC11BBC98DC00E16DA5 /* GMSearchVC.m in Sources */,
 				820C50341BB1CC5C00DCCF39 /* GMLeftMenuVC.m in Sources */,
 				820C50641BB1CC5C00DCCF39 /* GMSubCategoryHeaderView.m in Sources */,
+				82A0C4591BF0D65300B64D9A /* GMHomeModal.m in Sources */,
 				E85310FA1BB4A286005A008B /* GMOrderItemCell.m in Sources */,
 				820C50071BB1CC5C00DCCF39 /* UITableView+Wave.m in Sources */,
 				820C505C1BB1CC5C00DCCF39 /* GMRegisterInputCell.m in Sources */,
@@ -2877,7 +2891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
@@ -2889,7 +2903,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
 			};
 			name = Debug;
 		};
@@ -2899,7 +2913,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
@@ -2911,7 +2925,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
 			};
 			name = Release;
 		};
@@ -2919,7 +2933,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2932,7 +2946,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2941,7 +2955,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2950,7 +2964,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;

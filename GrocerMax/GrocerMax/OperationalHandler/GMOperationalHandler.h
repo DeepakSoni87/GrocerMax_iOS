@@ -23,6 +23,7 @@
 @class GMCartDetailModal;
 @class GMGenralModal;
 @class GMCoupanCartDetail;
+@class GMHomeModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -282,4 +283,5 @@
  **/
 - (void)deviceToken:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
+- (void)fetchHomeScreenDataFromServerWithSuccessBlock:(void (^)(GMHomeModal *homeModal))successBlock failureBlock:(void (^)(NSError *error))failureBlock;
 @end
