@@ -399,6 +399,7 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
                 [self.dottedImageView setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 self.messageString = @"No item in your cart, Please add item.";
+                [self checkIsAnyItemOutOfStock];
             }
             [self setTotalCount];
             [self.cartDetailTableView reloadData];
@@ -417,8 +418,23 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
     }
     else {
         
-        [self.placeOrderButton setHidden:NO];
-        [self.updateOrderButton setHidden:YES];
+        [self.placeOrderButton setHidden:YES];
+        [self.updateOrderButton setHidden:NO];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.Status == %@", @"0"];
+        NSArray *filteredArr = [self.cartDetailModal.productItemsArray filteredArrayUsingPredicate:pred];
+        if(filteredArr.count) {
+            
+            NSUInteger index = [self.cartDetailModal.productItemsArray indexOfObject:filteredArr.firstObject];
+            [self.cartDetailTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            GMCartCell *cartCell = (GMCartCell *)[self.cartDetailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            [UIView animateWithDuration:0.5 animations:^{
+                cartCell.promotionLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    cartCell.promotionLabel.transform = CGAffineTransformIdentity;
+                } completion:nil];
+            }];
+        }
     }
 }
 
@@ -456,6 +472,25 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
             //            [productModal setIsProductUpdated:YES];
             updateStatus = YES;
             break;
+        }
+    }
+    
+    if(!updateStatus) {
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.Status == %@", @"0"];
+        NSArray *filteredArr = [self.cartDetailModal.productItemsArray filteredArrayUsingPredicate:pred];
+        if(filteredArr.count) {
+            
+            NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(GMProductModal *evaluatedObject, NSDictionary *bindings) {
+                
+                if(evaluatedObject.sale_price.integerValue != 0)
+                    return YES;
+                else
+                    return NO;
+            }];
+            NSArray *arr = [filteredArr filteredArrayUsingPredicate:pred];
+            if(!arr.count)
+                return YES;
         }
     }
     

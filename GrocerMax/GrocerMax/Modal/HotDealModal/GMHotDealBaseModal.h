@@ -12,6 +12,8 @@
 
 @property (nonatomic, readonly, strong) NSArray *hotDealArray;
 
+- (void)setHotDealArray:(NSArray *)hotDealArray;
+
 + (instancetype)loadHotDeals;
 
 - (void)archiveHotDeals;

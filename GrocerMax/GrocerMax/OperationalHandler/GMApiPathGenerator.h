@@ -317,4 +317,6 @@
  * @output JSON string
  */
 + (NSString *)sendDeviceToken;
+
++ (NSString *)homePagePath;
 @end

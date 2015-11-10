@@ -14,8 +14,6 @@
 
 @property (nonatomic, assign) NSUInteger quantityValue;
 
-@property (weak, nonatomic) IBOutlet UILabel *promotionLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *zeroPriceLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgViewSoldout;
@@ -102,7 +100,7 @@ NSString * const kFreePromotionString = @"Please remove item from cart to procee
         self.imgViewSoldout.hidden = YES;
         self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
-        [self.promotionLabel setHidden:YES];
+//        [self.promotionLabel setHidden:YES];
     }
     
     
@@ -165,12 +163,7 @@ NSString * const kFreePromotionString = @"Please remove item from cart to procee
         [self.deleteButton setHidden:NO];
         [self.zeroPriceLabel setHidden:YES];
     }
-//    if ([self.productModal.Status isEqualToString:@"0"]) {
-//        
-//        self.zeroPriceLabel.hidden = YES;
-//    }else{
-//        self.zeroPriceLabel.hidden = NO;
-//    }
+
     if ([self.productModal.Status isEqualToString:@"0"]) {
         self.imgViewSoldout.hidden = NO;
         self.addSubstractView.hidden = YES;
@@ -181,7 +174,7 @@ NSString * const kFreePromotionString = @"Please remove item from cart to procee
         self.imgViewSoldout.hidden = YES;
         self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
-        [self.promotionLabel setHidden:YES];
+//        [self.promotionLabel setHidden:YES];
     }
 
 }

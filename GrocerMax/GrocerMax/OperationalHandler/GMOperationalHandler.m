@@ -34,6 +34,7 @@
 #import "GMGenralModal.h"
 #import "GMCoupanCartDetail.h"
 #import "GMHomeBannerModal.h"
+#import "GMHomeModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -1321,4 +1322,30 @@ static GMOperationalHandler *sharedHandler;
     }];
 }
 
+- (void)fetchHomeScreenDataFromServerWithSuccessBlock:(void (^)(GMHomeModal *))successBlock failureBlock:(void (^)(NSError *))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator homePagePath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *mtlError = nil;
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            
+            GMHomeModal *homeModal = [MTLJSONAdapter modelOfClass:[GMHomeModal class] fromJSONDictionary:responseObject error:&mtlError];
+            if(NSSTRING_HAS_DATA(homeModal.imageUrl))
+                [[GMSharedClass sharedClass] setCategoryImageBaseUrl:homeModal.imageUrl];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(homeModal); }
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
 @end
