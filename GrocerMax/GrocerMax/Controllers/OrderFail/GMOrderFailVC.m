@@ -11,12 +11,14 @@
 #import "GMApiPathGenerator.h"
 #import "PayU_iOS_SDK.h"
 
-
+#import "PGMerchantConfiguration.h"
+#import "PGOrder.h"
+#import "PGTransactionViewController.h"
 
 
 //#define PayU_Product_Info @"GrocerMax Product Info"
 
-@interface GMOrderFailVC ()
+@interface GMOrderFailVC ()<PGTransactionDelegate>
 
 @property (nonatomic, strong) NSString *txnID;
 @property (nonatomic, strong) NSDictionary *hashDict;
@@ -57,7 +59,30 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 }
 */
 - (IBAction)actionRetryPayment:(id)sender {
-    [self createHeashKey];
+    
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Payment By" message:@"Payment" preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *actionPayU = [UIAlertAction actionWithTitle:@"Online Payment (Credit/Debit card, Net Banking)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self createHeashKey];
+        
+    }];
+    UIAlertAction *actionPayTM = [UIAlertAction actionWithTitle:@"PayTM" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self initializedPayTM];
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }];
+    
+    [alertController addAction:actionPayU];
+    [alertController addAction:actionPayTM];
+    [alertController addAction:actionCancel];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 
@@ -324,4 +349,119 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 }
 
 
+- (void)initializedPayTM {
+    PGMerchantConfiguration *merchant = [PGMerchantConfiguration defaultConfiguration];
+    
+//    merchant.clientSSLCertPath = [[NSBundle mainBundle] pathForResource:@"Certificate" ofType:@"p12"];
+//    merchant.clientSSLCertPassword = @"grocermax1234567";
+    
+    merchant.merchantID = PAYTM_MERCHANT_ID;
+    merchant.website = PAYTM_WEBSITE;
+    merchant.industryID = PAYTM_INDUSTRYID;
+    merchant.channelID = PAYTM_CHANNELID;
+    
+    merchant.checksumGenerationURL = PAYTM_CHECKSUMGENRATIONURL;
+    merchant.checksumValidationURL = PAYTM_CHECKVALIDATIONURL;
+    
+    [self customerOrder];
+    
+}
+
+- (void)customerOrder {
+    self.navigationController.navigationBarHidden = NO;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSString *userId = @"test";
+    NSString *emailId = @"deepaksoni01@gmail.com";
+    NSString *mobileNo = @"8585990093";
+    
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        userId = userModal.userId;
+    }
+    if(NSSTRING_HAS_DATA(userModal.email)) {
+        emailId = userModal.email;
+    }
+    if(NSSTRING_HAS_DATA(userModal.mobile)) {
+        mobileNo = userModal.mobile;
+    }
+    
+    PGOrder *order = [PGOrder orderForOrderID:self.txnID customerID:[NSString stringWithFormat:@"CUST_%@",userModal.userId] amount:[NSString stringWithFormat:@"%.2f",self.totalAmount] customerMail:emailId customerMobile:mobileNo];
+    
+    
+    PGTransactionViewController *txtController = [[PGTransactionViewController alloc]initTransactionForOrder:order];
+    
+    txtController.serverType = eServerTypeProduction;
+    txtController.merchant = [PGMerchantConfiguration defaultConfiguration];
+    
+    //    txtController.toolbarItems
+    //    txtController.cancelButton
+    
+    txtController.delegate = self;
+    [self.navigationController pushViewController:txtController animated:YES];
+    
+    
+    
+}
+
+#pragma mark -PayTM PGTransactionDelegate Delegate Methods
+
+
+- (void)didSucceedTransaction:(PGTransactionViewController *)controller
+                     response:(NSDictionary *)response {
+    
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [orderDic setObject:self.orderId forKey:kEY_orderid];
+    }
+    [self removeNotification];
+    [self showProgress];
+    [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.orderId;
+        [self.navigationController pushViewController:successVC animated:YES];
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.orderId;
+        [self.navigationController pushViewController:successVC animated:YES];
+        
+        [self removeProgress];
+    }];
+
+    
+}
+
+//Called when a transaction is failed with any reason. response dictionary will be having details about failed Transaction.
+- (void)didFailTransaction:(PGTransactionViewController *)controller
+                     error:(NSError *)error
+                  response:(NSDictionary *)response {
+    
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [orderDic setObject:self.orderId forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        [self.navigationController popToViewController:self animated:YES];
+        
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        [self.navigationController popToViewController:self animated:YES];
+        [self removeProgress];
+    }];
+
+    
+    
+}
+
+//Called when a transaction is Canceled by User. response dictionary will be having details about Canceled Transaction.
+- (void)didCancelTransaction:(PGTransactionViewController *)controller
+                       error:(NSError *)error
+                    response:(NSDictionary *)response {
+    [self.navigationController popToViewController:self animated:YES];
+}
 @end
