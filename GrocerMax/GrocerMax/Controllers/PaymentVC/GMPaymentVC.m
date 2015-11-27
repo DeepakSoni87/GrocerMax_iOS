@@ -48,6 +48,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     NSString *orderID;
     BOOL isPaymentFail;
 }
+@property (nonatomic,retain) PGMerchantConfiguration *merchant ;
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -830,18 +831,19 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 
 
 - (void)initializedPayTM {
-    PGMerchantConfiguration *merchant = [PGMerchantConfiguration defaultConfiguration];
+    self.merchant = [PGMerchantConfiguration defaultConfiguration];
     
 //    merchant.clientSSLCertPath = [[NSBundle mainBundle] pathForResource:@"Certificate" ofType:@"p12"];
 //    merchant.clientSSLCertPassword = @"grocermax1234567";
     
-    merchant.merchantID = PAYTM_MERCHANT_ID;
-    merchant.website = PAYTM_WEBSITE;
-    merchant.industryID = PAYTM_INDUSTRYID;
-    merchant.channelID = PAYTM_CHANNELID;
+    self.merchant.merchantID = PAYTM_MERCHANT_ID;
+    self.merchant.website = PAYTM_WEBSITE;
+    self.merchant.industryID = PAYTM_INDUSTRYID;
+    self.merchant.channelID = PAYTM_CHANNELID;
+    self.merchant.theme = @"merchant";
     
-    merchant.checksumGenerationURL = PAYTM_CHECKSUMGENRATIONURL;
-    merchant.checksumValidationURL = PAYTM_CHECKVALIDATIONURL;
+    self.merchant.checksumGenerationURL = PAYTM_CHECKSUMGENRATIONURL;
+    self.merchant.checksumValidationURL = PAYTM_CHECKVALIDATIONURL;
     
 //    [self customerOrder];
     
@@ -877,13 +879,13 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         mobileNo = userModal.mobile;
     }
     
-    PGOrder *order = [PGOrder orderForOrderID:self.genralModal.orderID customerID:[NSString stringWithFormat:@"CUST_%@",userModal.userId] amount:[NSString stringWithFormat:@"%.2f",totalAmount] customerMail:emailId customerMobile:mobileNo];
+    PGOrder *order = [PGOrder orderForOrderID:self.genralModal.orderID customerID:userModal.userId amount:[NSString stringWithFormat:@"%.2f",totalAmount] customerMail:emailId customerMobile:mobileNo];
     
     
     PGTransactionViewController *txtController = [[PGTransactionViewController alloc]initTransactionForOrder:order];
     
-    txtController.serverType = eServerTypeStaging;
-    txtController.merchant = [PGMerchantConfiguration defaultConfiguration];
+    txtController.serverType = eServerTypeProduction;
+    txtController.merchant = self.merchant;//[PGMerchantConfiguration defaultConfiguration];
     
 //    txtController.toolbarItems
 //    txtController.cancelButton
