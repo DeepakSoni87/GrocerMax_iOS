@@ -178,7 +178,20 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 }
 - (void) cancel:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
-    //    [self.navigationController popToRootViewControllerAnimated:NO];
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [orderDic setObject:self.orderId forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+    }];
     [self.navigationController popToViewController:self animated:YES];
 }
 
@@ -412,10 +425,15 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(NSSTRING_HAS_DATA(self.orderId)) {
         [orderDic setObject:self.orderId forKey:kEY_orderid];
     }
+    [orderDic setObject:@"success" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.orderDBID)) {
+        [orderDic setObject:self.orderDBID forKey:@"orderdbid"];
+    }
+    
     [self removeNotification];
     [self showProgress];
-    [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
-        
+    
+    [[GMOperationalHandler handler] successForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         [self.navigationController popToRootViewControllerAnimated:NO];
         GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
         successVC.orderId = self.orderId;
@@ -439,29 +457,35 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
                      error:(NSError *)error
                   response:(NSDictionary *)response {
     
-    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
-    if(NSSTRING_HAS_DATA(self.orderId)) {
-        [orderDic setObject:self.orderId forKey:kEY_orderid];
-    }
-    [self showProgress];
-    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
-        [self.navigationController popToViewController:self animated:YES];
-        
-        [self removeProgress];
-        
-    } failureBlock:^(NSError *error) {
-        [self.navigationController popToViewController:self animated:YES];
-        [self removeProgress];
-    }];
-
-    
-    
+    [self failOrCancelPaymentByPayTm];
 }
 
 //Called when a transaction is Canceled by User. response dictionary will be having details about Canceled Transaction.
 - (void)didCancelTransaction:(PGTransactionViewController *)controller
                        error:(NSError *)error
                     response:(NSDictionary *)response {
+    [self failOrCancelPaymentByPayTm];
+}
+
+-(void)failOrCancelPaymentByPayTm {
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [orderDic setObject:self.orderId forKey:kEY_orderid];
+    }
+    [orderDic setObject:@"canceled" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.orderDBID)) {
+        [orderDic setObject:self.orderDBID forKey:@"orderdbid"];
+    }
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] failForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+            [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        
+            [self removeProgress];
+    }];
     [self.navigationController popToViewController:self animated:YES];
+    
 }
 @end

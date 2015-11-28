@@ -149,7 +149,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PlaceOrder withCategory:@"" label:nil value:nil];
     
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
-    if(selectedIndex == 1 || selectedIndex == 2) {
+    if(selectedIndex == 1) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
         if(self.genralModal) {
             if(selectedIndex == 1 ) {
@@ -160,7 +160,17 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
             
             return;
         }
-    } else if(selectedIndex == 0) {
+    }else if(selectedIndex == 2) {
+        [checkOutDic setValue:@"paytm_cc" forKey:kEY_payment_method];
+        if(self.genralModal) {
+            if(selectedIndex == 2 ) {
+                [self initializedPayTM];
+            }
+            return;
+        }
+
+    }
+    else if(selectedIndex == 0) {
         [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
     }
     [self showProgress];
@@ -449,6 +459,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         isPaymentFail = FALSE;
     GMOrderFailVC *orderFailVC = [GMOrderFailVC new];
     orderFailVC.orderId = self.genralModal.orderID;
+    orderFailVC.orderDBID = self.genralModal.orderDBID;
     orderFailVC.totalAmount = totalAmount;
     [self.navigationController pushViewController:orderFailVC animated:NO];
     }
@@ -538,6 +549,21 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     NSLog(@"failure Dict: %@",info);
 //    [self.navigationController popToRootViewControllerAnimated:NO];
     
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        
+        [self removeProgress];
+        
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+    }];
     [self goToFailOrderScreen];
     
 }
@@ -908,8 +934,12 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
     }
+    [orderDic setObject:@"success" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderDBID)) {
+        [orderDic setObject:self.genralModal.orderDBID forKey:@"orderdbid"];
+    }
     [self showProgress];
-    [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+    [[GMOperationalHandler handler] successForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
         //[self.navigationController popToRootViewControllerAnimated:NO];
         GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
@@ -932,13 +962,30 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 - (void)didFailTransaction:(PGTransactionViewController *)controller
                      error:(NSError *)error
                   response:(NSDictionary *)response {
+    [self failOrCancelPaymentByPayTm];
+    
+}
+
+//Called when a transaction is Canceled by User. response dictionary will be having details about Canceled Transaction.
+- (void)didCancelTransaction:(PGTransactionViewController *)controller
+                       error:(NSError *)error
+                    response:(NSDictionary *)response {
+    [self failOrCancelPaymentByPayTm];
+}
+
+-(void)failOrCancelPaymentByPayTm {
     
     NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
     }
+    [orderDic setObject:@"canceled" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderDBID)) {
+        [orderDic setObject:self.genralModal.orderDBID forKey:@"orderdbid"];
+    }
+    
     [self showProgress];
-    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+    [[GMOperationalHandler handler] failForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
         
         [self removeProgress];
@@ -950,13 +997,5 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     }];
     [self goToFailOrderScreen];
     
-    
-}
-
-//Called when a transaction is Canceled by User. response dictionary will be having details about Canceled Transaction.
-- (void)didCancelTransaction:(PGTransactionViewController *)controller
-                       error:(NSError *)error
-                    response:(NSDictionary *)response {
-    [self goToFailOrderScreen];
 }
 @end

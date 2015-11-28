@@ -206,6 +206,18 @@
 - (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
 /**
+ * Function for Successful Payment by paytm
+ * @param
+ **/
+- (void)successForPayTM:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal* responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function for Fail Payment by PayTm
+ * @param
+ **/
+- (void)failForPayTM:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
  * Function for Add to Cart
  * @param
  **/

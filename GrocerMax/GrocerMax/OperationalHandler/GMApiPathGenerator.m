@@ -45,6 +45,10 @@ static NSString const *addCouponMethodName = @"addcoupon";
 static NSString const *removeCouponMethodName = @"removecoupon";
 static NSString const *successMethodName = @"success";
 static NSString const *failMethodName = @"fail";
+
+static NSString const *payTmSuccessMethodName = @"paytmsuccess.php";
+static NSString const *payTmFailMethodName = @"setstatus";
+
 static NSString const *addToCartGustMethodName = @"addtocartgust";
 static NSString const *getLocationMethodName = @"getlocation";
 static NSString const *getStateMethodName = @"getstate";
@@ -213,6 +217,16 @@ static NSString const *homePageMethodName = @"homepage";
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, failMethodName];
 }
+
++ (NSString *)successPathForPayTM{
+    return [NSString stringWithFormat:@"%@%@", baseUrl, payTmSuccessMethodName];
+}
+
++ (NSString *)failPathForPayTM{
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, payTmFailMethodName];
+}
+
 
 + (NSString *)addTocartGustPath{
     

@@ -740,6 +740,7 @@
 		E85310F71BB4A286005A008B /* GMOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderItemCell.h; sourceTree = "<group>"; };
 		E85310F81BB4A286005A008B /* GMOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderItemCell.m; sourceTree = "<group>"; };
 		E85310F91BB4A286005A008B /* GMOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderItemCell.xib; sourceTree = "<group>"; };
+		E855262C1C0A152600A43378 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E8560EAD1BB71B2900C87B2C /* GMPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentCell.h; sourceTree = "<group>"; };
 		E8560EAE1BB71B2900C87B2C /* GMPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentCell.m; sourceTree = "<group>"; };
 		E8560EAF1BB71B2900C87B2C /* GMPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentCell.xib; sourceTree = "<group>"; };
@@ -941,6 +942,7 @@
 		3B90252B1BB8916F00603403 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
+				E855262C1C0A152600A43378 /* Reachability.h */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -2343,7 +2345,6 @@
 				82B1B2A01B9F5E60001550FC /* Frameworks */,
 				82B1B2A11B9F5E60001550FC /* Resources */,
 				5B35169C50489091F54C7D77 /* Copy Pods Resources */,
-				DFD924409016A87264372448 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2649,21 +2650,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		DFD924409016A87264372448 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2931,7 +2917,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
@@ -2944,7 +2931,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/PayTM",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
+				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
 			};
 			name = Debug;
 		};
@@ -2954,7 +2941,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GrocerMax/GMPrefixHeader.pch";
@@ -2967,7 +2954,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/PayTM",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
+				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
 			};
 			name = Release;
 		};
@@ -2975,7 +2962,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2988,7 +2976,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
+				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -2997,7 +2985,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gaurav Guneja (T6NDBJ5D46)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Guneja (5JXCB6SE9P)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -3006,7 +2994,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ace4285-0a78-48d2-be1a-cc3c6cb41c3c";
+				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;
