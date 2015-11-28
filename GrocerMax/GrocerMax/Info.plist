@@ -44,6 +44,14 @@
 				<string>com.grocermax.grocermax</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>grocerMax</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>grocermax</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
