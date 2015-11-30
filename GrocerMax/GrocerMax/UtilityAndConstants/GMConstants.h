@@ -43,6 +43,15 @@
 
 #define IS_STANDARD_IPHONE_6 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 667.0  && IS_OS_8_OR_LATER && [UIScreen mainScreen].nativeScale == [UIScreen mainScreen].scale)
 
+#define APPLE_APP_ID				@"1049822835"
+
+#define PAYTM_MERCHANT_ID            @"grocer28494183264317"
+#define PAYTM_WEBSITE                @"Retailwap"
+#define PAYTM_INDUSTRYID             @"Retail101"
+#define PAYTM_CHANNELID              @"WAP"
+#define PAYTM_CHECKSUMGENRATIONURL   @"http://grocermax.com/generateChecksum.php"
+#define PAYTM_CHECKVALIDATIONURL     @"http://grocermax.com/verifyChecksum.php"
+
 
 //border color and Width, cornerRadius
 
@@ -387,6 +396,7 @@
 #define kEY_GA_Event_PaymentModeSelect       @"Payment mode selected"
 #define kEY_GA_Event_CashOnDelivery          @"Cash on delivery"
 #define kEY_GA_Event_PayU                    @"PayU"
+#define kEY_GA_Event_PayTM                   @"PayTM"
 #define kEY_GA_Event_CodeApplied             @"Code applied"
 #define kEY_GA_Event_PlaceOrder              @"Place Order button selected"
 

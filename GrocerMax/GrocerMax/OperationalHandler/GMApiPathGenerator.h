@@ -219,6 +219,21 @@
  **/
 + (NSString *)failPath;
 
+
+/**
+ * Function for Successful Payment by payTm
+ * @param
+ * @Return successPath
+ **/
++ (NSString *)successPathForPayTM;
+
+/**
+ * Function for Fail Payment by paytm
+ * @param
+ * @Return failPath
+ **/
++ (NSString *)failPathForPayTM;
+
 /**
  * Function for Add to Cart
  * @param
