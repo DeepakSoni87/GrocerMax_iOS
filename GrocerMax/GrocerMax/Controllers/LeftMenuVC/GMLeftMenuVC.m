@@ -20,6 +20,10 @@
 #import "GMHomeVC.h"
 #import "GMStateBaseModal.h"
 
+NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
+NSString *templateReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/idAPP_ID";
+NSString *templateReviewURLiOS8 = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APP_ID&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
+
 #pragma mark - Interface/Implementation SectionModal
 
 @interface SectionModal : NSObject
@@ -66,8 +70,10 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
 static NSString * const kShopByCategorySection                      =  @"SHOP BY CATEGORIES";
 static NSString * const kShopByDealSection                          =  @"SHOP BY DEALS";
 static NSString * const kGetInTouchSection                          =  @"GET IN TOUCH WITH US";
-//static NSString * const kPaymentSection                             =  @"PAYMENTS METHODS";
-static NSString * const kChangeCitySection                      =  @"PICK YOUR CITY";
+//static NSString * const kPaymentSection                           =  @"PAYMENTS METHODS";
+static NSString * const kChangeCitySection                          =  @"PICK YOUR CITY";
+static NSString * const kRateUsSection                              =  @"RATE US";
+
 
 
 @implementation GMLeftMenuVC
@@ -115,6 +121,10 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     [self.sectionArray addObject:shopByDeal];
     SectionModal *getInTouch = [[SectionModal alloc] initWithDisplayName:kGetInTouchSection rowArray:nil andIsExpand:NO];
     [self.sectionArray addObject:getInTouch];
+    SectionModal *rateUS = [[SectionModal alloc] initWithDisplayName:kRateUsSection rowArray:nil andIsExpand:NO];
+    [self.sectionArray addObject:rateUS];
+    
+    
 //    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection rowArray:nil andIsExpand:NO];
 //    [self.sectionArray addObject:payment];
 //    SectionModal *changeLocationInTouch = [[SectionModal alloc] initWithDisplayName:kChangeCitySection rowArray:nil andIsExpand:NO];
@@ -259,7 +269,15 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
         AppDelegate *appDel = APP_DELEGATE;
         [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
         [self shareExperience];
+    } else if ([sectionModal.sectionDisplayName isEqualToString:kRateUsSection]) {
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kRateUsSection value:nil];
+        
+        AppDelegate *appDel = APP_DELEGATE;
+        [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        [self rateUs];
     }
+    
 //    else if ([sectionModal.sectionDisplayName isEqualToString:kPaymentSection]) {
 //        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kPaymentSection value:nil];
 //    }
@@ -331,6 +349,21 @@ static NSString * const kChangeCitySection                      =  @"PICK YOUR C
     
     MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
     [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
+    
+}
+- (void)rateUs{
+    
+    NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", APPLE_APP_ID]];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+        reviewURL = [templateReviewURLiOS7 stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", APPLE_APP_ID]];
+    }
+    else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        reviewURL = [templateReviewURLiOS8 stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", APPLE_APP_ID]];
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
     
 }
 - (IBAction)actionEditLocation:(id)sender {

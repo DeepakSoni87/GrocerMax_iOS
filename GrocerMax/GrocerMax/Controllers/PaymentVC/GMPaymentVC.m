@@ -22,6 +22,10 @@
 #import "GMOrderFailVC.h"
 #import "PayU_iOS_SDK.h"
 
+#import "PGMerchantConfiguration.h"
+#import "PGOrder.h"
+#import "PGTransactionViewController.h"
+
 //#define PayU_Cridentail   @"yPnUG6:test"
 //
 //#define PayU_Key   @"yPnUG6"
@@ -31,14 +35,12 @@
 //#define PayU_Product_Info @"GrocerMax Product Info"
 
 
-
-
 static NSString *kIdentifierPaymentCell = @"paymentIdentifierCell";
 static NSString *kIdentifierPaymentSummuryCell = @"paymentSummeryIdentifierCell";
 static NSString *kIdentifierCoupanCodeCell = @"coupanCodeIdentifierCell";
 static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 
-@interface GMPaymentVC ()<UITextFieldDelegate>
+@interface GMPaymentVC ()<UITextFieldDelegate,PGTransactionDelegate>
 {
     NSInteger selectedIndex;
     float totalAmount;
@@ -46,6 +48,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     NSString *orderID;
     BOOL isPaymentFail;
 }
+@property (nonatomic,retain) PGMerchantConfiguration *merchant ;
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -71,12 +74,13 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
-    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)", nil];
+    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM", nil];
     coupanCode = @"";
     [self registerCellsForTableView];
     selectedIndex = -1;
     [self configerView];
     [self initilizedpayUdata];
+    [self initializedPayTM];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -148,10 +152,25 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(selectedIndex == 1) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
         if(self.genralModal) {
-            [self createHeashKey];
+            if(selectedIndex == 1 ) {
+                [self createHeashKey];
+            } else if(selectedIndex == 2 ) {
+                [self initializedPayTM];
+            }
+            
             return;
         }
-    } else if(selectedIndex == 0) {
+    }else if(selectedIndex == 2) {
+        [checkOutDic setValue:@"paytm_cc" forKey:kEY_payment_method];
+        if(self.genralModal) {
+            if(selectedIndex == 2 ) {
+                [self initializedPayTM];
+            }
+            return;
+        }
+
+    }
+    else if(selectedIndex == 0) {
         [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
     }
     [self showProgress];
@@ -174,6 +193,10 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
                 self.txnID = [self randomStringWithLength:17];
                 }
                 [self createHeashKey];
+            } else if(selectedIndex == 2) {
+                if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+                    [self customerOrder];
+                }
             }
         } else {
             [[GMSharedClass sharedClass] showErrorMessage:responceData.result];
@@ -298,8 +321,10 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         selectedIndex = sender.tag;
         if(selectedIndex == 0) {
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_CashOnDelivery value:nil];
-        } else {
+        } else if(selectedIndex == 1){
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
+        } else if(selectedIndex == 2){
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayTM value:nil];
         }
     }
     self.checkedBtn = sender;
@@ -434,6 +459,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         isPaymentFail = FALSE;
     GMOrderFailVC *orderFailVC = [GMOrderFailVC new];
     orderFailVC.orderId = self.genralModal.orderID;
+    orderFailVC.orderDBID = self.genralModal.orderDBID;
     orderFailVC.totalAmount = totalAmount;
     [self.navigationController pushViewController:orderFailVC animated:NO];
     }
@@ -523,6 +549,21 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     NSLog(@"failure Dict: %@",info);
 //    [self.navigationController popToRootViewControllerAnimated:NO];
     
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        
+        [self removeProgress];
+        
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+    }];
     [self goToFailOrderScreen];
     
 }
@@ -811,4 +852,150 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     return payUParameterDic;
 }
 
+
+
+
+
+- (void)initializedPayTM {
+    self.merchant = [PGMerchantConfiguration defaultConfiguration];
+    
+//    merchant.clientSSLCertPath = [[NSBundle mainBundle] pathForResource:@"Certificate" ofType:@"p12"];
+//    merchant.clientSSLCertPassword = @"grocermax1234567";
+    
+    self.merchant.merchantID = PAYTM_MERCHANT_ID;
+    self.merchant.website = PAYTM_WEBSITE;
+    self.merchant.industryID = PAYTM_INDUSTRYID;
+    self.merchant.channelID = PAYTM_CHANNELID;
+    self.merchant.theme = @"merchant";
+    
+    self.merchant.checksumGenerationURL = PAYTM_CHECKSUMGENRATIONURL;
+    self.merchant.checksumValidationURL = PAYTM_CHECKVALIDATIONURL;
+    
+//    [self customerOrder];
+    
+}
+
+- (void)customerOrder {
+    isPaymentFail = TRUE;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSString *userId = @"test";
+    NSString *emailId = @"deepaksoni01@gmail.com";
+    NSString *mobileNo = @"8585990093";
+    
+    if(self.coupanCartDetail) {
+        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
+    } else {
+        double subtotal = 0;
+        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
+        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        }
+        
+        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
+        totalAmount =  grandTotal;
+    }
+    
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        userId = userModal.userId;
+    }
+    if(NSSTRING_HAS_DATA(userModal.email)) {
+        emailId = userModal.email;
+    }
+    if(NSSTRING_HAS_DATA(userModal.mobile)) {
+        mobileNo = userModal.mobile;
+    }
+    
+    PGOrder *order = [PGOrder orderForOrderID:self.genralModal.orderID customerID:userModal.userId amount:[NSString stringWithFormat:@"%.2f",totalAmount] customerMail:emailId customerMobile:mobileNo];
+    
+    
+    PGTransactionViewController *txtController = [[PGTransactionViewController alloc]initTransactionForOrder:order];
+    
+    txtController.serverType = eServerTypeProduction;
+    txtController.merchant = self.merchant;//[PGMerchantConfiguration defaultConfiguration];
+    
+//    txtController.toolbarItems
+//    txtController.cancelButton
+    
+    txtController.delegate = self;
+    [self.navigationController pushViewController:txtController animated:YES];
+    
+    
+    
+}
+
+#pragma mark -PayTM PGTransactionDelegate Delegate Methods
+
+
+- (void)didSucceedTransaction:(PGTransactionViewController *)controller
+                     response:(NSDictionary *)response {
+    
+    isPaymentFail = FALSE;
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [orderDic setObject:@"success" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderDBID)) {
+        [orderDic setObject:self.genralModal.orderDBID forKey:@"orderdbid"];
+    }
+    [self showProgress];
+    [[GMOperationalHandler handler] successForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        //[self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.genralModal.orderID;
+        [self.navigationController pushViewController:successVC animated:YES];
+        [self removeProgress];
+        
+    } failureBlock:^(NSError *error) {
+        //        [self.navigationController popToRootViewControllerAnimated:NO];
+        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+        successVC.orderId = self.genralModal.orderID;
+        [self.navigationController pushViewController:successVC animated:YES];
+        
+        [self removeProgress];
+    }];
+    
+}
+
+//Called when a transaction is failed with any reason. response dictionary will be having details about failed Transaction.
+- (void)didFailTransaction:(PGTransactionViewController *)controller
+                     error:(NSError *)error
+                  response:(NSDictionary *)response {
+    [self failOrCancelPaymentByPayTm];
+    
+}
+
+//Called when a transaction is Canceled by User. response dictionary will be having details about Canceled Transaction.
+- (void)didCancelTransaction:(PGTransactionViewController *)controller
+                       error:(NSError *)error
+                    response:(NSDictionary *)response {
+    [self failOrCancelPaymentByPayTm];
+}
+
+-(void)failOrCancelPaymentByPayTm {
+    
+    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+    }
+    [orderDic setObject:@"canceled" forKey:@"status"];
+    if(NSSTRING_HAS_DATA(self.genralModal.orderDBID)) {
+        [orderDic setObject:self.genralModal.orderDBID forKey:@"orderdbid"];
+    }
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] failForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+        
+        
+        [self removeProgress];
+        
+        
+    } failureBlock:^(NSError *error) {
+        
+        [self removeProgress];
+    }];
+    [self goToFailOrderScreen];
+    
+}
 @end

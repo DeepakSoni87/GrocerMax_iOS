@@ -667,15 +667,20 @@ static GMOperationalHandler *sharedHandler;
         
         if (responseObject) {
             
-            
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                NSError *mtlError = nil;
+                GMBaseOrderHistoryModal *baseOrderHistoryModal = [MTLJSONAdapter modelOfClass:[GMBaseOrderHistoryModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(baseOrderHistoryModal.orderHistoryArray);}
+            }
+            else {
+                if(failureBlock) failureBlock(error);
+            }
             //
             
-            NSError *mtlError = nil;
             
-            GMBaseOrderHistoryModal *baseOrderHistoryModal = [MTLJSONAdapter modelOfClass:[GMBaseOrderHistoryModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(baseOrderHistoryModal.orderHistoryArray);}
             
         }else {
             
@@ -946,6 +951,67 @@ static GMOperationalHandler *sharedHandler;
 - (void)fail:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator failPath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                NSError *mtlError = nil;
+                
+                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(genralModal); }
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+    
+    
+}
+
+- (void)successForPayTM:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal* responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator successPathForPayTM]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            
+            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                NSError *mtlError = nil;
+                
+                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(genralModal); }
+            }
+        }else {
+            
+            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+    
+    
+}
+
+
+- (void)failForPayTM:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal *responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator failPathForPayTM]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
