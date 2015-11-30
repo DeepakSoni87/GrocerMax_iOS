@@ -251,6 +251,8 @@ CGFloat const kMATabBarHeight = 49.0f;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:scrrenName];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    [[AppsFlyerTracker sharedTracker] trackEvent:scrrenName withValue:nil];
 }
 
 - (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value{
@@ -265,6 +267,8 @@ CGFloat const kMATabBarHeight = 49.0f;
                                              label:label
                                              value:value] build];
     [tracker send:event];
+    
+    [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValue:label];
 }
 
 - (void)clearCart {

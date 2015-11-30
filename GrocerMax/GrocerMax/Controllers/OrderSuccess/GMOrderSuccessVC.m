@@ -73,7 +73,19 @@
     [self.tabBarController setSelectedIndex:1];
     [self.navigationController popToRootViewControllerAnimated:NO];
     GMProfileVC *profileVC = [APP_DELEGATE rootProfileVCFromFourthTab];
-    [profileVC goOrderHistoryList];
+    
+    
+    if([profileVC respondsToSelector:@selector(goOrderHistoryList)]){
+        [profileVC goOrderHistoryList];
+    } else {
+        GMProfileVC *profileVC = [[GMProfileVC alloc] initWithNibName:@"GMProfileVC" bundle:nil];
+        UIImage *profileVCTabImg = [[UIImage imageNamed:@"profile_unselected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+        UIImage *profileVCTabSelectedImg = [[UIImage imageNamed:@"profile_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+        profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:profileVCTabImg selectedImage:profileVCTabSelectedImg];
+        [self adjustShareInsets:profileVC.tabBarItem];
+        [[self.tabBarController.viewControllers objectAtIndex:1] setViewControllers:@[profileVC] animated:YES];
+        [profileVC goOrderHistoryList];
+    }
 }
 
 - (IBAction)shareBtnAction:(UIButton *)sender {
