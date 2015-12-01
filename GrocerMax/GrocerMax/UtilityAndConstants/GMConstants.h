@@ -44,6 +44,7 @@
 #define IS_STANDARD_IPHONE_6 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 667.0  && IS_OS_8_OR_LATER && [UIScreen mainScreen].nativeScale == [UIScreen mainScreen].scale)
 
 #define APPLE_APP_ID				@"1049822835"
+#define AppsFyler_Key	            @"XNjhQZD7Yhe2dFs8kL7bpn"
 
 #define PAYTM_MERCHANT_ID            @"grocer28494183264317"
 #define PAYTM_WEBSITE                @"Retailwap"

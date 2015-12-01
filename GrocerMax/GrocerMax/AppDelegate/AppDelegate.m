@@ -30,7 +30,7 @@
 
 static NSString *const kGaPropertyId = @"UA-64820863-1";
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
-static BOOL const kGaDryRun = YES;
+static BOOL const kGaDryRun = NO;
 static int const kGaDispatchPeriod = 20;
 
 @interface AppDelegate ()
@@ -66,6 +66,10 @@ static int const kGaDispatchPeriod = 20;
          (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
     
+    [AppsFlyerTracker sharedTracker].appleAppID = APPLE_APP_ID; // The Apple app ID. Example 34567899
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFyler_Key;
+    
+    
     //https://developers.google.com/identity/sign-in/ios/offline-access
     [self initializeGoogleAnalytics];
     NSError* configureError;
@@ -80,6 +84,7 @@ static int const kGaDispatchPeriod = 20;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
     self.tabBarVC = [[GMTabBarVC alloc] init];
     
     GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
@@ -104,6 +109,10 @@ static int const kGaDispatchPeriod = 20;
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[AppsFlyerTracker sharedTracker] trackAppLaunch]; //***** THIS LINE IS MANDATORY *****
+    
+    [AppsFlyerTracker sharedTracker].delegate = self;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -860,5 +869,23 @@ static int const kGaDispatchPeriod = 20;
         [_indefiniteAnimatedView sizeToFit];
     }
     return _indefiniteAnimatedView;
+}
+
+#pragma AppsFlyerTrackerDelegate methods
+- (void) onConversionDataReceived:(NSDictionary*) installData{
+    id status = [installData objectForKey:@"af_status"];
+    if([status isEqualToString:@"Non-organic"]) {
+        id sourceID = [installData objectForKey:@"media_source"];
+        id campaign = [installData objectForKey:@"campaign"];
+        NSLog(@"This is a none organic install.");
+        NSLog(@"Media source: %@",sourceID);
+        NSLog(@"Campaign: %@",campaign);
+    } else if([status isEqualToString:@"Organic"]) {
+//        NSLog(@"This is an organic install.");
+    }
+}
+
+- (void) onConversionDataRequestFailure:(NSError *)error{
+    NSLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
 }
 @end
