@@ -336,6 +336,7 @@
 		E86D14551BB99E5E00D3EAD8 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E86D14541BB99E5E00D3EAD8 /* ReachabilityManager.m */; };
 		E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */; };
 		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
+		E88EA0A21C0AB8730033F61A /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E88EA0A11C0AB8730033F61A /* libAppsFlyerLib.a */; };
 		E8916C151BBB073300DA75BE /* GMCoupanCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */; };
 		E8916C161BBB073300DA75BE /* GMCoupanCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */; };
 		E8916C1A1BBB173A00DA75BE /* GMGenralModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E8916C191BBB173A00DA75BE /* GMGenralModal.m */; };
@@ -850,6 +851,8 @@
 		E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailLastHeaderView.h; sourceTree = "<group>"; };
 		E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailLastHeaderView.m; sourceTree = "<group>"; };
 		E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailLastHeaderView.xib; sourceTree = "<group>"; };
+		E88EA0A01C0AB8730033F61A /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
+		E88EA0A11C0AB8730033F61A /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		E8916C121BBB073300DA75BE /* GMCoupanCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCoupanCodeCell.h; sourceTree = "<group>"; };
 		E8916C131BBB073300DA75BE /* GMCoupanCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCoupanCodeCell.m; sourceTree = "<group>"; };
 		E8916C141BBB073300DA75BE /* GMCoupanCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCoupanCodeCell.xib; sourceTree = "<group>"; };
@@ -876,6 +879,7 @@
 				8209F7431BCD29AF005B7D08 /* WebKit.framework in Frameworks */,
 				8209F7411BCD2881005B7D08 /* libz.dylib in Frameworks */,
 				E813E98C1C06EDD200CA08FE /* libPaymentsSDK.a in Frameworks */,
+				E88EA0A21C0AB8730033F61A /* libAppsFlyerLib.a in Frameworks */,
 				E86D14521BB99E0000D3EAD8 /* SystemConfiguration.framework in Frameworks */,
 				766D2F477168E89A780AA2D1 /* libPods-GrocerMax.a in Frameworks */,
 				8209F73F1BCD25BC005B7D08 /* libiOSCustomBrowser.a in Frameworks */,
@@ -1967,6 +1971,7 @@
 		82B1B2E31B9F60D0001550FC /* UtilityAndConstants */ = {
 			isa = PBXGroup;
 			children = (
+				E88EA09F1C0AB84E0033F61A /* AppsFlyerSDK */,
 				E813E9841C06EDB100CA08FE /* PayTM */,
 				8209F6A51BCD25BC005B7D08 /* CustomBrowserPayU */,
 				E86D139B1BB99D4E00D3EAD8 /* PayU_iOS_SDK */,
@@ -2292,6 +2297,15 @@
 				E86D14061BB99D4E00D3EAD8 /* WebViewJavascriptBridgeBase.m */,
 			);
 			path = "WebViewJavascript Bridge";
+			sourceTree = "<group>";
+		};
+		E88EA09F1C0AB84E0033F61A /* AppsFlyerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E88EA0A01C0AB8730033F61A /* AppsFlyerTracker.h */,
+				E88EA0A11C0AB8730033F61A /* libAppsFlyerLib.a */,
+			);
+			path = AppsFlyerSDK;
 			sourceTree = "<group>";
 		};
 		E8916C171BBB171F00DA75BE /* GenralModal */ = {
@@ -2929,6 +2943,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/PayTM",
+					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/AppsFlyerSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
@@ -2952,6 +2967,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/CustomBrowserPayU",
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/PayTM",
+					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/AppsFlyerSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
