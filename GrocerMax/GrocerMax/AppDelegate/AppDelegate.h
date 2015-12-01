@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GMNavigationController.h"
+#import "AppsFlyerTracker.h"
 
 @class GMTabBarVC;
 @class GMSearchVC;
@@ -18,7 +19,7 @@
 @class GMHotDealVC;
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,AppsFlyerTrackerDelegate>
 
 @property (strong, nonatomic) RZMessagingWindow *errorWindow;
 
