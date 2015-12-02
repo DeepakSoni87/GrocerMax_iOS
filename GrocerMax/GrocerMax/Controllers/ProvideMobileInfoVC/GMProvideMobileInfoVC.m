@@ -138,6 +138,18 @@
         if ([resDic objectForKey:kEY_UserID]) {
             [self.userModal setQuoteId:resDic[kEY_QuoteId]];
             [self.userModal setUserId:resDic[kEY_UserID]];
+            
+            
+            if ([resDic objectForKey:kEY_Mobile]) {
+                if ([[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]) {
+                    [self.userModal setMobile:[[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]];
+                }
+            }
+            else if ([resDic objectForKey:@"Mobile"]) {
+                [self.userModal setMobile:[resDic objectForKey:@"Mobile"]];
+            }
+            
+            
             [self.userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
             
             [self.userModal persistUser];// save user modal in memory

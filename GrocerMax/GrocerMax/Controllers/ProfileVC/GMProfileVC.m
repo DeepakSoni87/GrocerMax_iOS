@@ -319,7 +319,7 @@ static CGFloat const kProfileCellHeight = 44.0f;
 
 - (void)goOrderHistoryList {
     
-    [self performSelector:@selector(oderHistory) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(oderHistory) withObject:nil afterDelay:0.15];
     
 }
 

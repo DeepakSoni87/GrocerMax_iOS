@@ -33,38 +33,6 @@
             endingLineNumber = "703"
             landmarkName = "-getOrderDetail:withSuccessBlock:failureBlock:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GMOperationalHandler getOrderDetail:withSuccessBlock:failureBlock:]"
-                  moduleName = "GrocerMax"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
-                  timestampString = "470678985.159754"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "703"
-                  endingLineNumber = "703"
-                  offsetFromSymbolStart = "298">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__69-[GMOperationalHandler getOrderDetail:withSuccessBlock:failureBlock:]_block_invoke"
-                  moduleName = "GrocerMax"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
-                  timestampString = "470678985.160149"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "703"
-                  endingLineNumber = "703"
-                  offsetFromSymbolStart = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -314,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrocerMax/Controllers/LoginVC/GMLoginVC.m"
-            timestampString = "470676731.895782"
+            timestampString = "470749365.437628"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "-fbRegisterOnServerWithUserModal:"
             landmarkType = "5">
          </BreakpointContent>
@@ -361,13 +329,13 @@
                   symbolName = "__56-[GMHomeVC fetchDealCategoriesFromServerWithDealTypeId:]_block_invoke305"
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
-                  timestampString = "470678985.20494"
+                  urlString = "file:///Users/arvindgupta/Documents/Working/Client/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
+                  timestampString = "470749365.666917"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "460"
                   endingLineNumber = "460"
-                  offsetFromSymbolStart = "212">
+                  offsetFromSymbolStart = "199">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -376,13 +344,13 @@
                   symbolName = "__copy_helper_block_310"
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
-                  timestampString = "470678985.205187"
+                  urlString = "file:///Users/arvindgupta/Documents/Working/Client/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
+                  timestampString = "470749365.667276"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "12">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -391,13 +359,13 @@
                   symbolName = "__destroy_helper_block_311"
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
-                  timestampString = "470678985.205394"
+                  urlString = "file:///Users/arvindgupta/Documents/Working/Client/GrocerMax/GrocerMax/Controllers/HomeVC/GMHomeVC.m"
+                  timestampString = "470749365.667626"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "10">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -472,13 +440,13 @@
                   symbolName = "-[GMOperationalHandler getLocalitiesOfCity:withSuccessBlock:failureBlock:]"
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
-                  timestampString = "470678985.208426"
+                  urlString = "file:///Users/arvindgupta/Documents/Working/Client/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
+                  timestampString = "470749365.674045"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1145"
                   endingLineNumber = "1145"
-                  offsetFromSymbolStart = "302">
+                  offsetFromSymbolStart = "298">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -487,13 +455,13 @@
                   symbolName = "__74-[GMOperationalHandler getLocalitiesOfCity:withSuccessBlock:failureBlock:]_block_invoke"
                   moduleName = "GrocerMax"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arvindgupta/Documents/Working/GrocerMax_New/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
-                  timestampString = "470678985.208637"
+                  urlString = "file:///Users/arvindgupta/Documents/Working/Client/GrocerMax/GrocerMax/OperationalHandler/GMOperationalHandler.m"
+                  timestampString = "470749365.674419"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1145"
                   endingLineNumber = "1145"
-                  offsetFromSymbolStart = "86">
+                  offsetFromSymbolStart = "61">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -585,11 +553,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrocerMax/AppDelegate/AppDelegate.m"
-            timestampString = "470677864.177313"
+            timestampString = "470741857.985589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "810"
-            endingLineNumber = "810"
+            startingLineNumber = "818"
+            endingLineNumber = "818"
             landmarkName = "-rootProfileVCFromFourthTab"
             landmarkType = "5">
          </BreakpointContent>
@@ -601,11 +569,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrocerMax/Controllers/PaymentVC/GMPaymentVC.m"
-            timestampString = "470671150.867721"
+            timestampString = "470748991.647043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "940"
-            endingLineNumber = "940"
+            startingLineNumber = "932"
+            endingLineNumber = "932"
             landmarkName = "-didSucceedTransaction:response:"
             landmarkType = "5">
          </BreakpointContent>
@@ -687,22 +655,6 @@
             startingLineNumber = "245"
             endingLineNumber = "245"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GrocerMax/Controllers/LoginVC/GMLoginVC.m"
-            timestampString = "470678846.513587"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-fbLoginButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
