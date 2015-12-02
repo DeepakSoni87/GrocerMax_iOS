@@ -318,8 +318,13 @@ static CGFloat const kProfileCellHeight = 44.0f;
 
 
 - (void)goOrderHistoryList {
+    
+    [self performSelector:@selector(oderHistory) withObject:nil afterDelay:0.1];
+    
+}
+
+-(void)oderHistory {
     GMOrderHistryVC *orderHistryVC = [GMOrderHistryVC new];
     [self.navigationController pushViewController:orderHistryVC animated:YES];
 }
-
 @end

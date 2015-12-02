@@ -2946,7 +2946,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/AppsFlyerSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "4fa86eb7-5833-46c2-bf47-8e2f4013eba5";
 			};
 			name = Debug;
 		};
@@ -2970,7 +2970,7 @@
 					"$(PROJECT_DIR)/GrocerMax/UtilityAndConstants/AppsFlyerSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "4fa86eb7-5833-46c2-bf47-8e2f4013eba5";
 			};
 			name = Release;
 		};
@@ -2992,7 +2992,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "4fa86eb7-5833-46c2-bf47-8e2f4013eba5";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Debug;
@@ -3010,7 +3010,7 @@
 				INFOPLIST_FILE = GrocerMaxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1c10cb5-c8cf-4397-a6ed-7a952599221c";
+				PROVISIONING_PROFILE = "4fa86eb7-5833-46c2-bf47-8e2f4013eba5";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrocerMax.app/GrocerMax";
 			};
 			name = Release;
