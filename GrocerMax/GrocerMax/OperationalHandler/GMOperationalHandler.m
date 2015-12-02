@@ -63,6 +63,7 @@ static GMOperationalHandler *sharedHandler;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [manager.requestSerializer setTimeoutInterval:90];
     return manager;
 }
 

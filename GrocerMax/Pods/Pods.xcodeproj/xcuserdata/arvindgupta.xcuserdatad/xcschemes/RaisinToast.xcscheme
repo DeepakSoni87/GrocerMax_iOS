@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E9D034CA363020C2CB47073"
+               BlueprintIdentifier = "6838E12A3D658CBA56659E9D"
                BuildableName = "libRaisinToast.a"
                BlueprintName = "RaisinToast"
                ReferencedContainer = "container:Pods.xcodeproj">

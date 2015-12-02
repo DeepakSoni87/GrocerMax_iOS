@@ -142,103 +142,106 @@ static int const kGaDispatchPeriod = 20;
     
     
     BOOL isFB = YES;
-    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
-    {
-        
-        if([GMCityModal selectedLocation] == nil) {
-            return YES;
-        }
+//    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
+//    {
+//        
+//        if([GMCityModal selectedLocation] == nil) {
+//            return YES;
+//        }
+//    
+//        NSString *value = @"";
+//        NSString *name = @"";
+//        NSArray* componentsArray = [[url absoluteString] componentsSeparatedByString:@"?"];
+//        if([componentsArray count]>1)
+//        {
+//            NSString* paramsStr = [componentsArray objectAtIndex:1];
+//            NSArray* paramsArray = [paramsStr componentsSeparatedByString:@"&"];
+//            for(NSString* str in paramsArray)
+//            {
+//                NSArray* paramsValuesArray = [str componentsSeparatedByString:@"="];
+//                if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"data"])
+//                {
+//                    value = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
+//                    
+//                } else if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"name"])
+//                {
+//                    name = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
+//                    
+//                }
+//            }
+//        }
+//        
+//        if([[url absoluteString] rangeOfString:KEY_Banner_shopbydealtype].location != NSNotFound) {
+//            GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+//            if (tabBarVC == nil)
+//                return YES;
+//            [tabBarVC.viewControllers objectAtIndex:2];
+//        } else if([[url absoluteString] rangeOfString:KEY_Banner_search].location != NSNotFound) {
+//            
+//            NSMutableDictionary *localDic = [NSMutableDictionary new];
+//            [localDic setObject:value forKey:kEY_keyword];
+//            
+//            [self.tabBarVC  setSelectedIndex:3];
+//            GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
+//            if (searchVC == nil)
+//                return YES;
+//            [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
+//            
+//
+//        } else if([[url absoluteString] rangeOfString:KEY_Banner_offerbydealtype].location != NSNotFound) {
+//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+//            bannerCatMdl.categoryId = value;
+//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
+//                bannerCatMdl.categoryName = self.pushModal.name;
+//            } else {
+//                bannerCatMdl.categoryName = @"Result";
+//            }            
+//            [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+//            
+//            
+//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealsbydealtype].location != NSNotFound) {
+//            
+//            [self fetchDealCategoriesFromServerWithDealTypeId:value];
+//            
+//        } else if([[url absoluteString] rangeOfString:KEY_Banner_productlistall].location != NSNotFound) {
+//            
+//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+//            bannerCatMdl.categoryId = value;
+//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
+//                bannerCatMdl.categoryName = self.pushModal.name;
+//            } else {
+//                bannerCatMdl.categoryName = @"Result";
+//            }
+//            
+//            [self fetchProductListingDataForCategory:bannerCatMdl];
+//            
+//            
+//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealproductlisting].location != NSNotFound) {
+//            
+//            GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
+//            if (hotDealVC == nil)
+//                return YES;
+//            
+//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+//            bannerCatMdl.categoryId = value;
+//            if(NSSTRING_HAS_DATA(name)) {
+//                bannerCatMdl.categoryName = name;
+//            } else {
+//                bannerCatMdl.categoryName = @"Result";
+//            }
+//            [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
+//            
+//            
+//        }
+//        
+//
+//        return YES;
+//        
+//    }else
     
-        NSString *value = @"";
-        NSString *name = @"";
-        NSArray* componentsArray = [[url absoluteString] componentsSeparatedByString:@"?"];
-        if([componentsArray count]>1)
-        {
-            NSString* paramsStr = [componentsArray objectAtIndex:1];
-            NSArray* paramsArray = [paramsStr componentsSeparatedByString:@"&"];
-            for(NSString* str in paramsArray)
-            {
-                NSArray* paramsValuesArray = [str componentsSeparatedByString:@"="];
-                if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"data"])
-                {
-                    value = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-                    
-                } else if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"name"])
-                {
-                    name = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-                    
-                }
-            }
-        }
-        
-        if([[url absoluteString] rangeOfString:KEY_Banner_shopbydealtype].location != NSNotFound) {
-            GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
-            if (tabBarVC == nil)
-                return YES;
-            [tabBarVC.viewControllers objectAtIndex:2];
-        } else if([[url absoluteString] rangeOfString:KEY_Banner_search].location != NSNotFound) {
-            
-            NSMutableDictionary *localDic = [NSMutableDictionary new];
-            [localDic setObject:value forKey:kEY_keyword];
-            
-            [self.tabBarVC  setSelectedIndex:3];
-            GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
-            if (searchVC == nil)
-                return YES;
-            [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
-            
-
-        } else if([[url absoluteString] rangeOfString:KEY_Banner_offerbydealtype].location != NSNotFound) {
-            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-            bannerCatMdl.categoryId = value;
-            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-                bannerCatMdl.categoryName = self.pushModal.name;
-            } else {
-                bannerCatMdl.categoryName = @"Result";
-            }            
-            [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
-            
-            
-        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealsbydealtype].location != NSNotFound) {
-            
-            [self fetchDealCategoriesFromServerWithDealTypeId:value];
-            
-        } else if([[url absoluteString] rangeOfString:KEY_Banner_productlistall].location != NSNotFound) {
-            
-            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-            bannerCatMdl.categoryId = value;
-            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-                bannerCatMdl.categoryName = self.pushModal.name;
-            } else {
-                bannerCatMdl.categoryName = @"Result";
-            }
-            
-            [self fetchProductListingDataForCategory:bannerCatMdl];
-            
-            
-        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealproductlisting].location != NSNotFound) {
-            
-            GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
-            if (hotDealVC == nil)
-                return YES;
-            
-            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-            bannerCatMdl.categoryId = value;
-            if(NSSTRING_HAS_DATA(name)) {
-                bannerCatMdl.categoryName = name;
-            } else {
-                bannerCatMdl.categoryName = @"Result";
-            }
-            [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
-            
-            
-        }
-        
-
-        return YES;
-        
-    }else if (isFB) {
-        
+    
+    if (isFB) {
+    
         return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                               openURL:url
                                                     sourceApplication:sourceApplication
