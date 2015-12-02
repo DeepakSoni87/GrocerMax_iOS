@@ -137,6 +137,14 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 #pragma mark - Action Methods
 - (IBAction)actionPaymentCash:(id)sender {
     
+    
+    
+    GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+    successVC.orderId = @"223324423344334";
+    [self.navigationController pushViewController:successVC animated:YES];
+    
+    return;
+    
 //    self.txnID = [self randomStringWithLength:17];
 //    [self createHeashKey];
 //    return ;
