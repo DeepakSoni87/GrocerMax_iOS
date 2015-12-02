@@ -2359,6 +2359,7 @@
 				82B1B2A01B9F5E60001550FC /* Frameworks */,
 				82B1B2A11B9F5E60001550FC /* Resources */,
 				5B35169C50489091F54C7D77 /* Copy Pods Resources */,
+				1D86574E232F33FA6A7AD204 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2634,6 +2635,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D86574E232F33FA6A7AD204 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrocerMax/Pods-GrocerMax-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5B35169C50489091F54C7D77 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -665,6 +665,16 @@ didDisconnectWithUser:(GIDGoogleUser *)user
         if ([resDic objectForKey:kEY_UserID]) {
             [userModal setQuoteId:resDic[kEY_QuoteId]];
             [userModal setUserId:resDic[kEY_UserID]];
+            
+            if ([resDic objectForKey:kEY_Mobile]) {
+                if ([[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]) {
+                    [userModal setMobile:[[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]];
+                }
+            }
+            else if ([resDic objectForKey:@"Mobile"]) {
+                [userModal setMobile:[resDic objectForKey:@"Mobile"]];
+            }
+            
             [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
             
             [userModal persistUser];// save user modal in memory
