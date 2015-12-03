@@ -141,12 +141,7 @@
             
             
             if ([resDic objectForKey:kEY_Mobile]) {
-                if ([[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]) {
-                    [self.userModal setMobile:[[resDic objectForKey:kEY_Mobile] objectForKey:@"mobileNumber"]];
-                }
-            }
-            else if ([resDic objectForKey:@"Mobile"]) {
-                [self.userModal setMobile:[resDic objectForKey:@"Mobile"]];
+                [self.userModal setMobile:[resDic objectForKey:kEY_Mobile]];
             }
             
             
