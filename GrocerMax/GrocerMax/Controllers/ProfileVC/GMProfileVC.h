@@ -11,5 +11,7 @@
 @interface GMProfileVC : UIViewController
 
 - (void) goOrderHistoryList;
+- (void) goToWallet;
+@property BOOL isMenuWallet;
 
 @end

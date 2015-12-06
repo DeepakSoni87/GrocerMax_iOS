@@ -333,5 +333,39 @@
  */
 + (NSString *)sendDeviceToken;
 
+/**
+ This api  use home page
+ * Function for home page
+ * return home page path URL
+ * mandatory no
+ * @output JSON string
+ */
 + (NSString *)homePagePath;
+
+/**
+ This api  use to reorder your order
+ * Function for reorder your order
+ * return reorder path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)reorderPath;
+
+/**
+ This api  use for wallet
+ * Function for To get internal wallet monney
+ * return internal wallet path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)walletPath;
+
+/**
+ This api  to decrease balence from internal wallet
+ * Function for To decrease balence from internal wallet
+ * return internal wallet balence decrease path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)decreasewWalletBalancePath;
 @end

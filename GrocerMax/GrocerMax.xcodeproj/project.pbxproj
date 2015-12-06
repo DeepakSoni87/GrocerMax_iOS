@@ -334,6 +334,8 @@
 		E86D14501BB99D4E00D3EAD8 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E86D14061BB99D4E00D3EAD8 /* WebViewJavascriptBridgeBase.m */; };
 		E86D14521BB99E0000D3EAD8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86D14511BB99E0000D3EAD8 /* SystemConfiguration.framework */; };
 		E86D14551BB99E5E00D3EAD8 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E86D14541BB99E5E00D3EAD8 /* ReachabilityManager.m */; };
+		E87200EC1C141163006CF465 /* GMMyWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E87200EA1C141163006CF465 /* GMMyWalletVC.m */; };
+		E87200ED1C141163006CF465 /* GMMyWalletVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87200EB1C141163006CF465 /* GMMyWalletVC.xib */; };
 		E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */; };
 		E881BB681BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */; };
 		E88EA0A21C0AB8730033F61A /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E88EA0A11C0AB8730033F61A /* libAppsFlyerLib.a */; };
@@ -848,6 +850,9 @@
 		E86D14511BB99E0000D3EAD8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E86D14531BB99E5E00D3EAD8 /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
 		E86D14541BB99E5E00D3EAD8 /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
+		E87200E91C141163006CF465 /* GMMyWalletVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMMyWalletVC.h; sourceTree = "<group>"; };
+		E87200EA1C141163006CF465 /* GMMyWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMMyWalletVC.m; sourceTree = "<group>"; };
+		E87200EB1C141163006CF465 /* GMMyWalletVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMMyWalletVC.xib; sourceTree = "<group>"; };
 		E881BB641BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMOrderDetailLastHeaderView.h; sourceTree = "<group>"; };
 		E881BB651BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMOrderDetailLastHeaderView.m; sourceTree = "<group>"; };
 		E881BB671BB5DFAA001EEFAA /* GMOrderDetailLastHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMOrderDetailLastHeaderView.xib; sourceTree = "<group>"; };
@@ -1254,6 +1259,7 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E87200E81C141144006CF465 /* MyWallet */,
 				82E6C8BB1BD02EB200DD865C /* OrderFail */,
 				E8916C1E1BBB405E00DA75BE /* ParentConroller */,
 				3BD49B021BB9E0D9009BE425 /* ProvideMobileInfoVC */,
@@ -2299,6 +2305,16 @@
 			path = "WebViewJavascript Bridge";
 			sourceTree = "<group>";
 		};
+		E87200E81C141144006CF465 /* MyWallet */ = {
+			isa = PBXGroup;
+			children = (
+				E87200E91C141163006CF465 /* GMMyWalletVC.h */,
+				E87200EA1C141163006CF465 /* GMMyWalletVC.m */,
+				E87200EB1C141163006CF465 /* GMMyWalletVC.xib */,
+			);
+			path = MyWallet;
+			sourceTree = "<group>";
+		};
 		E88EA09F1C0AB84E0033F61A /* AppsFlyerSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2460,6 +2476,7 @@
 				8209F73C1BCD25BC005B7D08 /* user.png in Resources */,
 				E86D14141BB99D4E00D3EAD8 /* PayUEMIOptionViewController.xib in Resources */,
 				8209F7071BCD25BC005B7D08 /* CBBankPageLoading_iPhone6.xib in Resources */,
+				E87200ED1C141163006CF465 /* GMMyWalletVC.xib in Resources */,
 				3B670CCC1BA0BF2400B5EB9D /* Messages.strings in Resources */,
 				820C503F1BB1CC5C00DCCF39 /* GMOfferListVC.xib in Resources */,
 				82DC5A671BD6A360009DE39E /* Lato-Reg.ttf in Resources */,
@@ -2728,6 +2745,7 @@
 				E86D14121BB99D4E00D3EAD8 /* PayUConnectionHandlerController.m in Sources */,
 				E86D14421BB99D4E00D3EAD8 /* PayUCardProcessViewController.m in Sources */,
 				82E6C8BF1BD02EB300DD865C /* GMOrderFailVC.m in Sources */,
+				E87200EC1C141163006CF465 /* GMMyWalletVC.m in Sources */,
 				E86D143F1BB99D4E00D3EAD8 /* Utils.m in Sources */,
 				820C50221BB1CC5C00DCCF39 /* GMEditProfileVC.m in Sources */,
 				820C503E1BB1CC5C00DCCF39 /* GMOfferListVC.m in Sources */,

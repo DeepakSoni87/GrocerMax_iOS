@@ -42,6 +42,10 @@
     self.cellBgView.layer.cornerRadius = CORNER_RADIUS;
     
     [self setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
+    self.reorderBtn.layer.borderColor = BORDER_COLOR;
+    self.reorderBtn.layer.borderWidth = BORDER_WIDTH;
+    self.reorderBtn.layer.cornerRadius = CORNER_RADIUS;
+    
     
     
 }
@@ -57,7 +61,7 @@
     
     GMOrderHistoryModal *orderHistryModal = (GMOrderHistoryModal *)modal;
     
-    
+    self.reorderBtn.orderHistoryModal = orderHistryModal;
     
     //NSString *mainStrign= @"";
 

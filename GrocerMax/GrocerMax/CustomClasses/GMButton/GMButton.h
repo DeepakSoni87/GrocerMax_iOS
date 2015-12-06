@@ -10,6 +10,8 @@
 #import "GMTimeSloteModal.h"
 #import "GMAddressModal.h"
 #import "GMProductModal.h"
+#import "GMBaseOrderHistoryModal.h"
+
 
 @interface GMButton : UIButton
 
@@ -20,4 +22,6 @@
 @property (nonatomic, strong) GMCityModal *cityModal;
 
 @property (nonatomic, strong) GMProductModal *produtModal;
+
+@property (nonatomic, strong) GMOrderHistoryModal *orderHistoryModal;
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="138"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="138.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMh-7c-GmP">
@@ -62,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThG-JR-abL">
-                                <rect key="frame" x="8" y="101" width="265" height="24"/>
+                                <rect key="frame" x="8" y="101" width="196" height="24"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -80,6 +80,18 @@
                                     <constraint firstAttribute="width" constant="10" id="slA-bR-o1P"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRF-3E-myC" customClass="GMButton">
+                                <rect key="frame" x="206" y="93" width="94" height="30"/>
+                                <color key="backgroundColor" red="0.3597688144429424" green="0.49013476813101264" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZJR-yT-Pmk"/>
+                                    <constraint firstAttribute="width" constant="94" id="s9I-S4-9b5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Reorder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,6 +101,7 @@
                             <constraint firstItem="WgJ-kV-n6G" firstAttribute="top" secondItem="nMh-7c-GmP" secondAttribute="top" constant="5" id="ATw-vE-F1D"/>
                             <constraint firstAttribute="trailing" secondItem="moV-CU-A1x" secondAttribute="trailing" constant="31" id="LkO-dH-khS"/>
                             <constraint firstAttribute="centerY" secondItem="QFa-W1-vUb" secondAttribute="centerY" id="N29-ev-Bfd"/>
+                            <constraint firstAttribute="bottom" secondItem="xRF-3E-myC" secondAttribute="bottom" constant="7" id="P3L-E3-krk"/>
                             <constraint firstAttribute="trailing" secondItem="QFa-W1-vUb" secondAttribute="trailing" constant="10" id="R1k-2B-9Ng"/>
                             <constraint firstItem="ThG-JR-abL" firstAttribute="top" secondItem="qaK-gy-zkD" secondAttribute="bottom" id="RJX-vy-a6a"/>
                             <constraint firstAttribute="trailing" secondItem="WgJ-kV-n6G" secondAttribute="trailing" constant="31" id="RXC-bn-d4k"/>
@@ -96,11 +109,12 @@
                             <constraint firstItem="qaK-gy-zkD" firstAttribute="top" secondItem="Hxk-Q7-yEb" secondAttribute="bottom" id="bc8-s4-XMq"/>
                             <constraint firstItem="WgJ-kV-n6G" firstAttribute="leading" secondItem="nMh-7c-GmP" secondAttribute="leading" constant="8" id="blm-Gz-q3j"/>
                             <constraint firstItem="qaK-gy-zkD" firstAttribute="leading" secondItem="nMh-7c-GmP" secondAttribute="leading" constant="8" id="cnz-yJ-JhJ"/>
-                            <constraint firstAttribute="trailing" secondItem="ThG-JR-abL" secondAttribute="trailing" constant="31" id="dZA-oD-zES"/>
+                            <constraint firstAttribute="trailing" secondItem="ThG-JR-abL" secondAttribute="trailing" constant="100" id="dZA-oD-zES"/>
                             <constraint firstItem="Hxk-Q7-yEb" firstAttribute="leading" secondItem="nMh-7c-GmP" secondAttribute="leading" constant="8" id="hBg-CT-0WV"/>
                             <constraint firstItem="ThG-JR-abL" firstAttribute="leading" secondItem="nMh-7c-GmP" secondAttribute="leading" constant="8" id="uHX-kJ-hUP"/>
                             <constraint firstItem="moV-CU-A1x" firstAttribute="leading" secondItem="nMh-7c-GmP" secondAttribute="leading" constant="8" id="uUb-eJ-etp"/>
                             <constraint firstAttribute="trailing" secondItem="qaK-gy-zkD" secondAttribute="trailing" constant="31" id="wWe-TB-MFl"/>
+                            <constraint firstAttribute="trailing" secondItem="xRF-3E-myC" secondAttribute="trailing" constant="4" id="yhF-vQ-n6T"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -119,6 +133,7 @@
                 <outlet property="orderIdLbl" destination="WgJ-kV-n6G" id="FbC-Fz-gd6"/>
                 <outlet property="orderPaidAmountLbl" destination="Hxk-Q7-yEb" id="2Da-t5-ORa"/>
                 <outlet property="orderStatusLbl" destination="qaK-gy-zkD" id="imC-Aj-5Nw"/>
+                <outlet property="reorderBtn" destination="xRF-3E-myC" id="CCC-g8-UPg"/>
                 <outlet property="totalItemOrderLbl" destination="ThG-JR-abL" id="VK3-Hs-F5O"/>
             </connections>
             <point key="canvasLocation" x="254" y="285.5"/>

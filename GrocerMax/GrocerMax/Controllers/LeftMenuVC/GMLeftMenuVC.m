@@ -74,6 +74,8 @@ static NSString * const kGetInTouchSection                          =  @"GET IN 
 static NSString * const kChangeCitySection                          =  @"PICK YOUR CITY";
 static NSString * const kRateUsSection                              =  @"RATE US";
 
+static NSString * const kWalletSection                              =  @"MY WALLET";
+
 
 
 @implementation GMLeftMenuVC
@@ -115,6 +117,11 @@ static NSString * const kRateUsSection                              =  @"RATE US
     NSMutableArray *hotDeals = [self fetchHotDealsFromDB];
     
     [self.sectionArray removeAllObjects];
+    
+    
+    SectionModal *wallet = [[SectionModal alloc] initWithDisplayName:kWalletSection rowArray:nil andIsExpand:NO];
+    [self.sectionArray addObject:wallet];
+    
     SectionModal *shopByCat = [[SectionModal alloc] initWithDisplayName:kShopByCategorySection rowArray:shopByCatArray andIsExpand:YES];
     [self.sectionArray addObject:shopByCat];
     SectionModal *shopByDeal = [[SectionModal alloc] initWithDisplayName:kShopByDealSection rowArray:hotDeals andIsExpand:NO];
@@ -269,6 +276,14 @@ static NSString * const kRateUsSection                              =  @"RATE US
         AppDelegate *appDel = APP_DELEGATE;
         [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
         [self shareExperience];
+        
+    } else if ([sectionModal.sectionDisplayName isEqualToString:kWalletSection]) {
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kWalletSection value:nil];
+        
+        AppDelegate *appDel = APP_DELEGATE;
+        [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        [self wallet];
     } else if ([sectionModal.sectionDisplayName isEqualToString:kRateUsSection]) {
         
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kRateUsSection value:nil];
@@ -349,6 +364,12 @@ static NSString * const kRateUsSection                              =  @"RATE US
     
     MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
     [socalMedia showActivityView:@"Hey, I cut my grocery bill by 30% at GrocerMax.com. Over 8000 grocery items, all below MRP and unbelievable offers. Apply code APP200 and start with Flat Rs. 200 off on your first bill."];
+    
+}
+- (void)wallet{
+    if([self.delegate respondsToSelector:@selector(goToWallet)]) {
+        [self.delegate goToWallet];
+    }
     
 }
 - (void)rateUs{

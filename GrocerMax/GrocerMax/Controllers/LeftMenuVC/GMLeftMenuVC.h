@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LeftMenuDelegate <NSObject>
+
+-(void)goToWallet;
+
+@end
+
 @interface GMLeftMenuVC : UIViewController
+
+@property (weak, nonatomic) id<LeftMenuDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *locationLbl;
 
 @end

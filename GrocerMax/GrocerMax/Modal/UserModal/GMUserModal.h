@@ -40,6 +40,8 @@
 
 @property (nonatomic, readonly, assign) BOOL isShowTapped;
 
+@property (nonatomic, strong) NSString *balenceInWallet;
+
 - (void)setFirstName:(NSString *)firstName;
 
 - (void)setLastName:(NSString *)lastName;

@@ -16,6 +16,7 @@
 #import "GMAddShippingAddressVC.h"
 #import "MGSocialMedia.h"
 #import "GMChangePasswordVC.h"
+#import "GMMyWalletVC.h"
 #import <MessageUI/MessageUI.h>
 
 
@@ -70,6 +71,7 @@ static NSString * const kInviteFriendsCell                  =  @"Invite Friends"
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
 static NSString * const kChangePasswordCell                 =  @"Change Password";
+static NSString * const kWalletCell                          =  @"MY WALLET";
 static NSString * const kLogOutCell                         =  @"Log out";
 
 static NSString * const customerCareNumber = @"8010500700";
@@ -89,15 +91,22 @@ static NSString * const customerCareNumber = @"8010500700";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationItem.title = @"My Profile";
-    self.navigationController.navigationBarHidden = NO;
-    [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     
-    [self createCellArray];
-    [self configureTableHeaderView];
-    [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Profile_Screen];
+        self.navigationItem.title = @"My Profile";
+        self.navigationController.navigationBarHidden = NO;
+        [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
+        [self createCellArray];
+        [self configureTableHeaderView];
+        [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Profile_Screen];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if(self.isMenuWallet) {
+        self.isMenuWallet = FALSE;
+        [self goToWallet];
+    }
+}
 - (void)createCellArray {
     
     [self.cellArray removeAllObjects];
@@ -114,11 +123,16 @@ static NSString * const customerCareNumber = @"8010500700";
     GMProfileModal *writeUs = [[GMProfileModal alloc] initWithCellText:kWriteToUsCell andClassName:@""];
     [self.cellArray addObject:writeUs];
     
-    GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@""];
+    GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@"GMChangePasswordVC"];
     [self.cellArray addObject:changePassword];
+    
+    GMProfileModal *wallet = [[GMProfileModal alloc] initWithCellText:kWalletCell andClassName:@"GMMyWalletVC"];
+    [self.cellArray addObject:wallet];
     
     GMProfileModal *logout = [[GMProfileModal alloc] initWithCellText:kLogOutCell andClassName:@""];
     [self.cellArray addObject:logout];
+    
+    
     
     [self.profileTableView reloadData];
 }
@@ -193,17 +207,10 @@ static CGFloat const kProfileCellHeight = 44.0f;
     if([profileModal.displayCellText isEqualToString:kInviteFriendsCell]) {
         
         [self shareExperience];
-    }
-    else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
+    } else if([profileModal.displayCellText isEqualToString:kCallUsCell]) {
         [self call];
-    }
-    else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
+    } else if([profileModal.displayCellText isEqualToString:kWriteToUsCell]) {
         [self openMailComposerVC];
-    }
-    else if([profileModal.displayCellText isEqualToString:kChangePasswordCell]) {
-        
-        GMChangePasswordVC *changePasswordVC  = [GMChangePasswordVC new];
-        [self.navigationController pushViewController:changePasswordVC animated:YES];
     } else if([profileModal.displayCellText isEqualToString:kLogOutCell]) {
         
         [[GMSharedClass sharedClass] logout];
@@ -326,5 +333,10 @@ static CGFloat const kProfileCellHeight = 44.0f;
 -(void)oderHistory {
     GMOrderHistryVC *orderHistryVC = [GMOrderHistryVC new];
     [self.navigationController pushViewController:orderHistryVC animated:YES];
+}
+
+-(void)goToWallet {
+    GMMyWalletVC *myWalletVC  = [GMMyWalletVC new];
+    [self.navigationController pushViewController:myWalletVC animated:NO];
 }
 @end

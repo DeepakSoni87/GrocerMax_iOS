@@ -47,6 +47,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     NSString *coupanCode;
     NSString *orderID;
     BOOL isPaymentFail;
+    BOOL isMyWalletSelected;
 }
 @property (nonatomic,retain) PGMerchantConfiguration *merchant ;
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
@@ -74,7 +75,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
-    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM", nil];
+    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"My Wallet",@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM", nil];
     coupanCode = @"";
     [self registerCellsForTableView];
     selectedIndex = -1;
@@ -140,39 +141,53 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    self.txnID = [self randomStringWithLength:17];
 //    [self createHeashKey];
 //    return ;
-    if(selectedIndex == -1) {
+    if(selectedIndex == -1 && !isMyWalletSelected) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please select mode of payment."];
         return;
+    } else if(selectedIndex == -1 && isMyWalletSelected) {
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        [self setAmoutDetuction];
+        if(!NSSTRING_HAS_DATA(userModal.balenceInWallet) || [userModal.balenceInWallet floatValue]<totalAmount) {
+            [[GMSharedClass sharedClass] showErrorMessage:@"No sufficien balence in your wallet"];
+            return;
+        }
+    } else if(selectedIndex != -1 && isMyWalletSelected) {
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        [self setAmoutDetuction];
+        userModal.balenceInWallet = @"1000.9";
+        if(NSSTRING_HAS_DATA(userModal.balenceInWallet) && [userModal.balenceInWallet floatValue]>totalAmount) {
+            [[GMSharedClass sharedClass] showErrorMessage:@"Your wallet have sufficien balence."];
+            return;
+        }
     }
 //
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PlaceOrder withCategory:@"" label:nil value:nil];
     
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
-    if(selectedIndex == 1) {
+    if(selectedIndex == 2) {
         [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
         if(self.genralModal) {
-            if(selectedIndex == 1 ) {
-                [self createHeashKey];
-            } else if(selectedIndex == 2 ) {
-                [self initializedPayTM];
-            }
-            
+            [self createHeashKey];
             return;
         }
-    }else if(selectedIndex == 2) {
+    }else if(selectedIndex == 3) {
         [checkOutDic setValue:@"paytm_cc" forKey:kEY_payment_method];
         if(self.genralModal) {
-            if(selectedIndex == 2 ) {
-                [self initializedPayTM];
-            }
+            [self initializedPayTM];
             return;
         }
 
     }
-    else if(selectedIndex == 0) {
+    else if(selectedIndex == 1) {
         [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
     }
+    
+    if(isMyWalletSelected) {
+        [checkOutDic setValue:@"wallet" forKey:kEY_payment_method_ByWallet];
+        [checkOutDic setValue:@"1" forKey:kEY_IS_PaymentFrom_Wallet];
+    }
+    
     [self showProgress];
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
@@ -181,11 +196,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         if(responceData.flag == 1) {
             [[GMSharedClass sharedClass] clearCart];
             [self.tabBarController updateBadgeValueOnCartTab];
-            if(selectedIndex == 0) {
+            if(selectedIndex == 1) {
                 GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
                 successVC.orderId = responceData.orderID;
                 [self.navigationController pushViewController:successVC animated:YES];
-            } else if(selectedIndex == 1) {
+            } else if(selectedIndex == 2) {
                 //[self initilizedpayUdata];
                 if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
                    self.txnID = self.genralModal.orderID;
@@ -193,7 +208,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
                 self.txnID = [self randomStringWithLength:17];
                 }
                 [self createHeashKey];
-            } else if(selectedIndex == 2) {
+            } else if(selectedIndex == 3) {
                 if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
                     [self customerOrder];
                 }
@@ -311,19 +326,35 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     
     if(sender.selected) {
         sender.selected = FALSE;
-        selectedIndex = -1;
+        if(sender.tag != 0) {
+            selectedIndex = -1;
+        } else {
+            isMyWalletSelected = FALSE;
+            return;
+        }
+        
     }
     else {
+        
+        
+        if(sender.tag == 0) {
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_Wallet value:nil];
+            sender.selected = YES;
+            isMyWalletSelected = YES;
+            return;
+        }
+        
         if(self.checkedBtn) {
             self.checkedBtn.selected = NO;
         }
-        sender.selected = YES;
         selectedIndex = sender.tag;
-        if(selectedIndex == 0) {
+        sender.selected = YES;
+        
+        if(selectedIndex == 1) {
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_CashOnDelivery value:nil];
-        } else if(selectedIndex == 1){
-            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
         } else if(selectedIndex == 2){
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
+        } else if(selectedIndex == 3){
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayTM value:nil];
         }
     }
@@ -682,18 +713,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     
     PayUPaymentOptionsViewController *paymentOptionsVC = [[PayUPaymentOptionsViewController alloc] initWithNibName:@"PayUPaymentOptionsViewController" bundle:nil];
     
-    if(self.coupanCartDetail) {
-        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
-    } else {
-        double subtotal = 0;
-        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
-        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
-            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
-        }
-        
-        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
-        totalAmount =  grandTotal;
-    }
+    [self setAmoutDetuction];
+    
 //    [self.totalPriceLbl setText:[NSString stringWithFormat:@"$%.2f", grandTotal]];
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
@@ -751,18 +772,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     
     NSMutableDictionary *payUParameterDic = [[NSMutableDictionary alloc]init];
     
-    if(self.coupanCartDetail) {
-        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
-    } else {
-        double subtotal = 0;
-        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
-        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
-            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
-        }
-        
-        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
-        totalAmount =  grandTotal;
-    }
+    [self setAmoutDetuction];
+    
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
     NSString *emailId = @"deepaksoni01@gmail.com";
@@ -803,18 +814,8 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     
     NSMutableDictionary *payUParameterDic = [[NSMutableDictionary alloc]init];
     
-    if(self.coupanCartDetail) {
-        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
-    } else {
-        double subtotal = 0;
-        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
-        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
-            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
-        }
-        
-        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
-        totalAmount =  grandTotal;
-    }
+    [self setAmoutDetuction];
+    
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
     NSString *emailId = @"deepaksoni01@gmail.com";
@@ -882,18 +883,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     NSString *emailId = @"deepaksoni01@gmail.com";
     NSString *mobileNo = @"8585990093";
     
-    if(self.coupanCartDetail) {
-        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
-    } else {
-        double subtotal = 0;
-        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
-        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
-            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
-        }
-        
-        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
-        totalAmount =  grandTotal;
-    }
+    [self setAmoutDetuction];
     
     if(NSSTRING_HAS_DATA(userModal.userId)) {
         userId = userModal.userId;
@@ -997,5 +987,21 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     }];
     [self goToFailOrderScreen];
     
+}
+
+
+-(void)setAmoutDetuction {
+    if(self.coupanCartDetail) {
+        totalAmount = [self.coupanCartDetail.grand_total doubleValue];
+    } else {
+        double subtotal = 0;
+        GMCartDetailModal *cartDetailModal = self.checkOutModal.cartDetailModal;
+        for (GMProductModal *productModal in cartDetailModal.productItemsArray) {
+            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        }
+        
+        double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
+        totalAmount =  grandTotal;
+    }
 }
 @end

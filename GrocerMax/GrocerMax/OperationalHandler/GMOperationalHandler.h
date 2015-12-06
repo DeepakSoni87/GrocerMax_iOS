@@ -295,5 +295,27 @@
  **/
 - (void)deviceToken:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 
+/**
+ * Function to get the home data
+ * @param
+ **/
 - (void)fetchHomeScreenDataFromServerWithSuccessBlock:(void (^)(GMHomeModal *homeModal))successBlock failureBlock:(void (^)(NSError *error))failureBlock;
+
+/**
+ * Function to reorder from order history
+ * @param
+ **/
+ -(void)reorderItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function to get user internal wallet from server
+ * @param
+ **/
+ -(void)getUserWalletItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function to decrease the balence of user from internal balence
+ * @param
+ **/
+-(void)decreaseUserWalletBalence:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 @end

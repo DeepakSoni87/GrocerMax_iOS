@@ -10,6 +10,8 @@
 
 @interface GMOrderHistoryCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *cellBgView;
+@property (weak, nonatomic) IBOutlet GMButton *reorderBtn;
+
 //@property (strong, nonatomic) IBOutlet UILabel *titleLbl;
 
 -(void)configerViewWithData:(id)modal;

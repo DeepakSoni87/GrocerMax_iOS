@@ -204,6 +204,8 @@
 #define kEY_shipping_method                @"shipping_method"
 #define kEY_timeslot                       @"timeslot"
 #define kEY_date                           @"date"
+#define kEY_payment_method_ByWallet        @"payment_method_Wallet"
+#define kEY_IS_PaymentFrom_Wallet          @"wallet"
 
 //key : addcoupon
 
@@ -261,6 +263,7 @@
 #define kEY_GA_OTP_Screen                    @"OTPScreen"
 #define kEY_GA_Profile_Screen                @"ProfileScreen"
 #define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
+#define kEY_GA_Wallet_Screen                 @"WalletScreen"
 
 #define kEY_GA_OrderHistory_Screen           @"OrderHistoryListScreen"
 #define kEY_GA_OrderDetail_Screen            @"OrderDetailScreen"
@@ -315,6 +318,7 @@
 #define kEY_GA_Event_CloseDrawer             @"Close Drawer"
 #define kEY_GA_Event_DrawerScroller          @"Drawer Scroll"
 #define kEY_GA_Event_DrawerOptionSelect      @"Drawer Options Selected"
+
 
 #define kEY_GA_Event_TabHome                 @"Bottom Home Button Pressed"
 #define kEY_GA_Event_TabProfile              @"Bottom Profile Button Pressed"
@@ -396,6 +400,7 @@
 #define kEY_GA_Event_ProceedPaymentMethod    @"Proceed to payment method button selection"
 
 #define kEY_GA_Event_PaymentModeSelect       @"Payment mode selected"
+#define kEY_GA_Event_Wallet                  @"Wallet"
 #define kEY_GA_Event_CashOnDelivery          @"Cash on delivery"
 #define kEY_GA_Event_PayU                    @"PayU"
 #define kEY_GA_Event_PayTM                   @"PayTM"

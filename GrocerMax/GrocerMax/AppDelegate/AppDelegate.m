@@ -33,7 +33,7 @@ static NSString *const kTrackingPreferenceKey = @"allowTracking";
 static BOOL const kGaDryRun = NO;
 static int const kGaDispatchPeriod = 20;
 
-@interface AppDelegate ()
+@interface AppDelegate ()<LeftMenuDelegate>
 {
     UIAlertView *alert;
 }
@@ -88,6 +88,7 @@ static int const kGaDispatchPeriod = 20;
     self.tabBarVC = [[GMTabBarVC alloc] init];
     
     GMLeftMenuVC *leftMenuVC = [[GMLeftMenuVC alloc] initWithNibName:@"GMLeftMenuVC" bundle:nil];
+    leftMenuVC.delegate = self;
     self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:self.tabBarVC leftDrawerViewController:[[UINavigationController alloc] initWithRootViewController:leftMenuVC]];
     self.drawerController.maximumLeftDrawerWidth = 260.0;
     
@@ -814,7 +815,14 @@ static int const kGaDispatchPeriod = 20;
         GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
         GMNavigationController *profileNavVC = [tabBarVC.viewControllers objectAtIndex:1];
         
-        GMProfileVC *profileVC = [profileNavVC viewControllers][0];
+        UIViewController *viewController = [profileNavVC viewControllers][0];
+        GMProfileVC *profileVC;
+        if([viewController isKindOfClass:[GMProfileVC class]]) {
+            profileVC = (GMProfileVC *)viewController;
+        } else if([profileNavVC viewControllers].count>1){
+            profileVC = [profileNavVC viewControllers][1];
+        }
+//        profileVC = [profileNavVC viewControllers][0];
         return profileVC;
     }
     @catch (NSException *exception) {
@@ -898,5 +906,19 @@ static int const kGaDispatchPeriod = 20;
 
 - (void) onConversionDataRequestFailure:(NSError *)error{
     NSLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
+}
+
+#pragma mark - LeftMenuDelegate Method
+
+-(void)goToWallet {
+    [self.tabBarVC setSelectedIndex:1];
+    
+    if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
+        
+       GMProfileVC *profileVc = [self rootProfileVCFromFourthTab];
+//        [self.tabBarVC.selectedViewController  popToRootViewControllerAnimated:YES];
+        [self.tabBarVC.selectedViewController popToViewController:profileVc animated:NO];
+        profileVc.isMenuWallet = YES;
+    }
 }
 @end

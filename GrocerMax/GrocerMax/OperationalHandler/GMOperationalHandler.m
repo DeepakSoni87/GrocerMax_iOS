@@ -1415,4 +1415,67 @@ static GMOperationalHandler *sharedHandler;
         if(failureBlock) failureBlock(error);
     }];
 }
+
+
+ -(void)reorderItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+     
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator reorderPath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            
+             if (successBlock) successBlock(responseObject);
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+
+ -(void)getUserWalletItem:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator walletPath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+             if (successBlock) successBlock(responseObject);
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
+-(void)decreaseUserWalletBalence:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator decreasewWalletBalancePath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            if (successBlock) successBlock(responseObject);
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
 @end

@@ -9,8 +9,8 @@
 #import "GMApiPathGenerator.h"
 
 
-//static NSString const *baseUrl = @"http://staging.grocermax.com/api/";
-static NSString const *baseUrl = @"https://grocermax.com/api/";
+static NSString const *baseUrl = @"http://staging.grocermax.com/api/";
+//static NSString const *baseUrl = @"https://grocermax.com/api/";
 //static NSString const *baseUrl = @"http://staging.grocermax.com/webservice/new_services/";
 
 //static NSString const *baseUrl = @"http://dev.grocermax.com/webservice/new_services/"; 
@@ -64,6 +64,13 @@ static NSString const *homeBannerMethodName = @"homebanner";
 static NSString const *hashMethodName = @"getmobilehash";
 static NSString const *deviceTokenMethodName = @"setdevicetoken";
 static NSString const *homePageMethodName = @"homepage";
+
+
+static NSString const *reorderMethodName = @"reoder";
+static NSString const *walletMethodName = @"getwalletbalance";
+static NSString const *decreaseWalletBalenceMethodName = @"decreasewalletbalance";
+
+
 
 
 @implementation GMApiPathGenerator
@@ -295,6 +302,23 @@ static NSString const *homePageMethodName = @"homepage";
 + (NSString *)homePagePath {
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, homePageMethodName];
+}
+
++ (NSString *)reorderPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, reorderMethodName];
+}
+
++ (NSString *)walletPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, walletMethodName];
+}
+
++ (NSString *)decreasewWalletBalancePath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, decreaseWalletBalenceMethodName];
+    
+    //staging.grocermax.com/api/decreasewalletbalance?CustId=xxx&wallet_amount=xxx
 }
 @end
 
