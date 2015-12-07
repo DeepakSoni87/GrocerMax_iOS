@@ -14,6 +14,7 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 @interface GMOrderHistryVC ()
 @property (weak, nonatomic) IBOutlet UITableView *orderHistryTableView;
 @property (nonatomic, strong) GMUserModal *userModal;
+@property (nonatomic, strong) GMOrderHistoryModal *selectedOderHistoryModal;
 
 @end
 
@@ -139,14 +140,38 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 
 -(void)reorderButtonTapped:(GMButton *)sender {
     
-    GMOrderHistoryModal *oderHistoryModal = sender.orderHistoryModal;
-    NSLog(@"oderHistoryModal.orderId = %@",oderHistoryModal.orderId);
+    self.selectedOderHistoryModal = sender.orderHistoryModal;
     
+    
+    if(NSSTRING_HAS_DATA(self.userModal.quoteId)) {
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:key_TitleMessage message:@"Existing items in the cart will be removed." preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *actionContinue = [UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self reorder];
+        }];
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }];
+        
+        [alertController addAction:actionCancel];
+        [alertController addAction:actionContinue];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        [self reorder];
+    }
+    
+}
+
+-(void)reorder {
+    NSLog(@"oderHistoryModal.orderId = %@",self.selectedOderHistoryModal.incrimentId);
     NSMutableDictionary *dicData = [[NSMutableDictionary alloc]init];
     
-    if(NSSTRING_HAS_DATA(oderHistoryModal.incrimentId)) {
-        [dicData setValue:oderHistoryModal.incrimentId forKey:kEY_orderid];
-        [dicData setValue:oderHistoryModal.incrimentId forKey:@"orderId"];
+    if(NSSTRING_HAS_DATA(self.selectedOderHistoryModal.incrimentId)) {
+        [dicData setValue:self.selectedOderHistoryModal.incrimentId forKey:kEY_orderid];
+        [dicData setValue:self.selectedOderHistoryModal.incrimentId forKey:@"orderId"];
     }
     if(NSSTRING_HAS_DATA(self.userModal.userId)) {
         [dicData setValue:self.userModal.userId forKey:kEY_userid];
@@ -154,37 +179,31 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     }
     
     
-        [self showProgress];
-        [[GMOperationalHandler handler] reorderItem:dicData withSuccessBlock:^(id responceData) {
+    [self showProgress];
+    [[GMOperationalHandler handler] reorderItem:dicData withSuccessBlock:^(id responceData) {
+        [self removeProgress];
+        if([responceData isKindOfClass:[NSDictionary class]]) {
             
-            [self removeProgress];
-            
-            
-            
-            if([responceData isKindOfClass:[NSDictionary class]]) {
+            NSString *quoteId;
+            if(HAS_KEY(responceData, @"QuoteId")) {
+                [[GMSharedClass sharedClass] clearCart];
+                quoteId = responceData[@"QuoteId"];
+                GMUserModal *userModal = [GMUserModal loggedInUser];
                 
-                NSString *quoteId;
-                if(HAS_KEY(responceData, @"QuoteId")) {
-                    [[GMSharedClass sharedClass] clearCart];
-                    quoteId = responceData[@"QuoteId"];
-                    GMUserModal *userModal = [GMUserModal loggedInUser];
-                
-                    if(userModal) {
-                        [userModal setQuoteId:quoteId];
-                        [userModal persistUser];
-                    }
-                    [self.tabBarController setSelectedIndex:4];
+                if(userModal) {
+                    [userModal setQuoteId:quoteId];
+                    [userModal persistUser];
                 }
+                [self.tabBarController setSelectedIndex:4];
             }
-                        
-        } failureBlock:^(NSError *error) {
-            [self removeProgress];
-            [[GMSharedClass sharedClass] showErrorMessage:@"Problem to reorder your order, Try again!"];
-        }];
-    
-    
-    
-    
+        }
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:@"Problem to reorder your order, Try again!"];
+    }];
+
 }
+
 
 @end
