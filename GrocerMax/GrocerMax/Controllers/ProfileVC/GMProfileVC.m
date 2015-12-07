@@ -71,7 +71,7 @@ static NSString * const kInviteFriendsCell                  =  @"Invite Friends"
 static NSString * const kCallUsCell                         =  @"Call Us";
 static NSString * const kWriteToUsCell                      =  @"Write To Us";
 static NSString * const kChangePasswordCell                 =  @"Change Password";
-static NSString * const kWalletCell                          =  @"MY WALLET";
+static NSString * const kWalletCell                          =  @"My Wallet";
 static NSString * const kLogOutCell                         =  @"Log out";
 
 static NSString * const customerCareNumber = @"8010500700";
@@ -112,6 +112,10 @@ static NSString * const customerCareNumber = @"8010500700";
     [self.cellArray removeAllObjects];
     GMProfileModal *orderHistory = [[GMProfileModal alloc] initWithCellText:kOrderHistoryCell andClassName:@"GMOrderHistryVC"];
     [self.cellArray addObject:orderHistory];
+    
+    GMProfileModal *wallet = [[GMProfileModal alloc] initWithCellText:kWalletCell andClassName:@"GMMyWalletVC"];
+    [self.cellArray addObject:wallet];
+    
     GMProfileModal *myAddress = [[GMProfileModal alloc] initWithCellText:kMyAddressCell andClassName:@"GMMyAddressesVC"];
     [self.cellArray addObject:myAddress];
     GMProfileModal *editProfile = [[GMProfileModal alloc] initWithCellText:kEditProfileCell andClassName:@"GMEditProfileVC"];
@@ -126,8 +130,7 @@ static NSString * const customerCareNumber = @"8010500700";
     GMProfileModal *changePassword = [[GMProfileModal alloc] initWithCellText:kChangePasswordCell andClassName:@"GMChangePasswordVC"];
     [self.cellArray addObject:changePassword];
     
-    GMProfileModal *wallet = [[GMProfileModal alloc] initWithCellText:kWalletCell andClassName:@"GMMyWalletVC"];
-    [self.cellArray addObject:wallet];
+    
     
     GMProfileModal *logout = [[GMProfileModal alloc] initWithCellText:kLogOutCell andClassName:@""];
     [self.cellArray addObject:logout];

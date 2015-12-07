@@ -38,6 +38,7 @@
              @"paidAmount"                  : @"grand_total",
              @"totalItem"                   : @"total_item_count",
              @"incrimentId"                 : @"increment_id",
+             @"storeId"                     : @"store_id",
              };
 }
 

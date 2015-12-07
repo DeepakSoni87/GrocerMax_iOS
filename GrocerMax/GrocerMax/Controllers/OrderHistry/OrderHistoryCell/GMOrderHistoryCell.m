@@ -8,6 +8,7 @@
 
 #import "GMOrderHistoryCell.h"
 #import "GMBaseOrderHistoryModal.h"
+#import "GMStateBaseModal.h"
 
 #define ORDER_ID @"Order Id: "
 #define ORDER_DATE @"Order Date: "
@@ -62,6 +63,12 @@
     GMOrderHistoryModal *orderHistryModal = (GMOrderHistoryModal *)modal;
     
     self.reorderBtn.orderHistoryModal = orderHistryModal;
+    self.reorderBtn.hidden = TRUE;
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    
+    if([orderHistryModal.storeId isEqualToString:cityModal.storeId]) {
+        self.reorderBtn.hidden = FALSE;
+    }
     
     //NSString *mainStrign= @"";
 

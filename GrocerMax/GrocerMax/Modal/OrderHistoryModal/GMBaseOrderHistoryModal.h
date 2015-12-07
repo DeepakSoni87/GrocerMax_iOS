@@ -23,5 +23,6 @@
 @property(strong, nonatomic)  NSString * paidAmount;
 @property(strong, nonatomic)  NSString * totalItem;
 @property (strong, nonatomic) NSString * incrimentId; //increment_id
+@property (strong, nonatomic) NSString * storeId; 
 
 @end

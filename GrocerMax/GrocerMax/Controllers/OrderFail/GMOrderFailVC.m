@@ -60,28 +60,72 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 */
 - (IBAction)actionRetryPayment:(id)sender {
     
-    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Payment By" message:@"Payment" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Payment By" message:@"Payment" preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    
+//    UIAlertAction *actionPayU = [UIAlertAction actionWithTitle:@"Online Payment (Credit/Debit card, Net Banking)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self createHeashKey];
+//        
+//    }];
+//    UIAlertAction *actionPayTM = [UIAlertAction actionWithTitle:@"PayTM" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self initializedPayTM];
+//    }];
+//    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        
+//    }];
+//    
+//    [alertController addAction:actionPayU];
+//    [alertController addAction:actionPayTM];
+//    [alertController addAction:actionCancel];
+//    
+//    [self presentViewController:alertController animated:YES completion:nil];
     
     
-    UIAlertAction *actionPayU = [UIAlertAction actionWithTitle:@"Online Payment (Credit/Debit card, Net Banking)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self createHeashKey];
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    NSLog(@"oderHistoryModal.orderId = %@",self.orderId);
+    
+    NSMutableDictionary *dicData = [[NSMutableDictionary alloc]init];
+    
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [dicData setValue:self.orderId forKey:kEY_orderid];
+        [dicData setValue:self.orderId forKey:@"orderId"];
+    }
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        [dicData setValue:userModal.userId forKey:kEY_userid];
+        [dicData setObject:userModal.userId forKey:@"CustId"];
+    }
+    
+    
+    [self showProgress];
+    [[GMOperationalHandler handler] reorderItem:dicData withSuccessBlock:^(id responceData) {
         
-    }];
-    UIAlertAction *actionPayTM = [UIAlertAction actionWithTitle:@"PayTM" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self initializedPayTM];
-    }];
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self removeProgress];
         
+        
+        
+        if([responceData isKindOfClass:[NSDictionary class]]) {
+            
+            NSString *quoteId;
+            if(HAS_KEY(responceData, @"QuoteId")) {
+                [[GMSharedClass sharedClass] clearCart];
+                quoteId = responceData[@"QuoteId"];
+                GMUserModal *userModal = [GMUserModal loggedInUser];
+                
+                if(userModal) {
+                    [userModal setQuoteId:quoteId];
+                    [userModal persistUser];
+                }
+                [self.navigationController popToRootViewControllerAnimated:NO];
+            }
+        }
+        
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        [[GMSharedClass sharedClass] showErrorMessage:@"Problem to reorder your order, Try again!"];
     }];
-    
-    [alertController addAction:actionPayU];
-    [alertController addAction:actionPayTM];
-    [alertController addAction:actionCancel];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 

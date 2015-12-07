@@ -25,6 +25,7 @@
 }
 - (void)configerViewData:(NSString *)paymentName {
     self.bottomHorizentalSepretorLbl.hidden = TRUE;
+    self.checkBoxBtn.hidden = FALSE;
     [self.checkBoxBtn setExclusiveTouch:YES];
 //    Arvind : PayU
     if([paymentName isEqualToString:@"payTM"]) {
@@ -35,6 +36,21 @@
         self.paymentImage.hidden = FALSE;
         self.paymentLbl.hidden = TRUE;
         [self.paymentImage setImage:[UIImage imageNamed:@"mobikit"]];
+        
+    } else if([paymentName isEqualToString:@"My Wallet"]) {
+        self.paymentImage.hidden = TRUE;
+        self.paymentLbl.hidden = FALSE;
+        
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        float balence = 0.00;
+        if(NSSTRING_HAS_DATA(userModal.balenceInWallet) && [userModal.balenceInWallet floatValue]>0.01) {
+            balence = [userModal.balenceInWallet floatValue];
+        } else {
+            self.checkBoxBtn.hidden = TRUE;
+        }
+        NSString *balenceStr = [NSString stringWithFormat:@"%@ (₹%.2f)",paymentName,balence];
+        self.paymentLbl.text = balenceStr;
+        
         
     } else {
         self.paymentImage.hidden = TRUE;

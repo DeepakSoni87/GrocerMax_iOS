@@ -22,6 +22,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.topView setBackgroundColor:[UIColor colorFromHexString:@"#EE2D09"]];
+    self.shareBtn.layer.borderWidth = BORDER_WIDTH;
+    self.shareBtn.layer.cornerRadius = CORNER_RADIUS;
+    [self.shareBtn setClipsToBounds:YES];
+    [self.shareBtn setBackgroundColor:[UIColor colorFromHexString:@"#EE2D09"]];
+    self.shareBtn.layer.borderColor = [UIColor colorFromHexString:@"#EE2D09"].CGColor;
     [self getWalletDataFromServer];
 }
 -(void)viewWillAppear:(BOOL)animated {

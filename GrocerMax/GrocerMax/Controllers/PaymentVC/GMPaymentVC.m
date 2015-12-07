@@ -77,6 +77,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
     self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"My Wallet",@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM", nil];
     coupanCode = @"";
+    [self getWalletDataFromServer];
     [self registerCellsForTableView];
     selectedIndex = -1;
     [self configerView];
@@ -148,14 +149,14 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         GMUserModal *userModal = [GMUserModal loggedInUser];
         [self setAmoutDetuction];
         if(!NSSTRING_HAS_DATA(userModal.balenceInWallet) || [userModal.balenceInWallet floatValue]<totalAmount) {
-            [[GMSharedClass sharedClass] showErrorMessage:@"No sufficien balence in your wallet"];
+            [[GMSharedClass sharedClass] showErrorMessage:@"Wallet balance insufficient. Please select another payment option to place order."];
             return;
         }
     } else if(selectedIndex != -1 && isMyWalletSelected) {
         GMUserModal *userModal = [GMUserModal loggedInUser];
         [self setAmoutDetuction];
         if(NSSTRING_HAS_DATA(userModal.balenceInWallet) && [userModal.balenceInWallet floatValue]>totalAmount) {
-            [[GMSharedClass sharedClass] showErrorMessage:@"Your wallet have sufficien balence."];
+            [[GMSharedClass sharedClass] showErrorMessage:@"Sufficient balance in the wallet. Please select only wallet as payment mode."];
             return;
         }
     }
@@ -183,7 +184,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     }
     
     if(isMyWalletSelected) {
-        [checkOutDic setValue:@"wallet" forKey:kEY_payment_method_ByWallet];
+        [checkOutDic setValue:@"customercredit" forKey:kEY_payment_method_ByWallet];
         [checkOutDic setValue:@"1" forKey:kEY_IS_PaymentFrom_Wallet];
     }
     
@@ -1002,5 +1003,32 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
         totalAmount =  grandTotal;
     }
+}
+
+-(void)getWalletDataFromServer {
+    [self showProgress];
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
+    if(NSSTRING_HAS_DATA(userModal.email))
+        [userDic setObject:userModal.email forKey:kEY_email];
+    if(NSSTRING_HAS_DATA(userModal.userId)) {
+        [userDic setObject:userModal.userId forKey:kEY_userid];
+        [userDic setObject:userModal.userId forKey:@"CustId"];
+    }
+    
+    [[GMOperationalHandler handler] getUserWalletItem:userDic withSuccessBlock:^(id responceData) {
+        [self removeProgress];
+        if(HAS_KEY(responceData, @"Balance")) {
+            userModal.balenceInWallet = [NSString stringWithFormat:@"%@",[responceData objectForKey:@"Balance"]];
+        } else {
+            userModal.balenceInWallet = @"0.0";
+        }
+        [userModal persistUser];
+        [self.paymentTableView reloadData];
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+    }];
 }
 @end
