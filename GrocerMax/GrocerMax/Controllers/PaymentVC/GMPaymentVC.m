@@ -154,7 +154,6 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     } else if(selectedIndex != -1 && isMyWalletSelected) {
         GMUserModal *userModal = [GMUserModal loggedInUser];
         [self setAmoutDetuction];
-        userModal.balenceInWallet = @"1000.9";
         if(NSSTRING_HAS_DATA(userModal.balenceInWallet) && [userModal.balenceInWallet floatValue]>totalAmount) {
             [[GMSharedClass sharedClass] showErrorMessage:@"Your wallet have sufficien balence."];
             return;

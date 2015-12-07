@@ -66,7 +66,7 @@ static NSString const *deviceTokenMethodName = @"setdevicetoken";
 static NSString const *homePageMethodName = @"homepage";
 
 
-static NSString const *reorderMethodName = @"reoder";
+static NSString const *reorderMethodName = @"reorder";
 static NSString const *walletMethodName = @"getwalletbalance";
 static NSString const *decreaseWalletBalenceMethodName = @"decreasewalletbalance";
 

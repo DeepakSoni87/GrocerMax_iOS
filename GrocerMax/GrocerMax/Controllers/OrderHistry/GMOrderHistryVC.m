@@ -144,9 +144,9 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     
     NSMutableDictionary *dicData = [[NSMutableDictionary alloc]init];
     
-    if(NSSTRING_HAS_DATA(oderHistoryModal.orderId)) {
-        [dicData setValue:oderHistoryModal.orderId forKey:kEY_orderid];
-        [dicData setValue:oderHistoryModal.orderId forKey:@"orderId"];
+    if(NSSTRING_HAS_DATA(oderHistoryModal.incrimentId)) {
+        [dicData setValue:oderHistoryModal.incrimentId forKey:kEY_orderid];
+        [dicData setValue:oderHistoryModal.incrimentId forKey:@"orderId"];
     }
     if(NSSTRING_HAS_DATA(self.userModal.userId)) {
         [dicData setValue:self.userModal.userId forKey:kEY_userid];

@@ -37,6 +37,8 @@
 
 @property (nonatomic, readwrite, strong) NSString *googleId;
 
+@property (nonatomic,readwrite, strong) NSString *balenceInWallet;
+
 @property (nonatomic, readwrite, assign) BOOL isShowTapped;
 
 @end
@@ -51,6 +53,7 @@ static NSString * const kQuoteIdKey                         = @"quoteId";
 static NSString * const kTotalItemsKey                      = @"totalItems";
 static NSString * const kFBIdKey                            = @"fbId";
 static NSString * const kGoogleIdKey                        = @"googleId";
+static NSString * const kInternalWalletBalenceKey           = @"internalWalletBalence";
 
 static GMUserModal *loggedInUser;
 
@@ -79,7 +82,8 @@ static GMUserModal *loggedInUser;
              @"mobile"                : @"Mobile",
              @"quoteId"               : @"QuoteId",
              @"userId"                : @"UserID",
-             @"totalItem"             : @"TotalItem"
+             @"totalItem"             : @"TotalItem",
+             @"balenceInWallet"       : @"Balance"
              };
 }
 
@@ -97,6 +101,7 @@ static GMUserModal *loggedInUser;
     [aCoder encodeObject:self.totalItem forKey:kTotalItemsKey];
     [aCoder encodeObject:self.fbId forKey:kFBIdKey];
     [aCoder encodeObject:self.googleId forKey:kGoogleIdKey];
+    [aCoder encodeObject:self.balenceInWallet forKey:kInternalWalletBalenceKey];
 
 }
 
@@ -114,6 +119,7 @@ static GMUserModal *loggedInUser;
         self.totalItem = [aDecoder decodeObjectForKey:kTotalItemsKey];
         self.fbId = [aDecoder decodeObjectForKey:kFBIdKey];
         self.googleId = [aDecoder decodeObjectForKey:kGoogleIdKey];
+        self.balenceInWallet = [aDecoder decodeObjectForKey:kInternalWalletBalenceKey];
     }
     return self;
 }

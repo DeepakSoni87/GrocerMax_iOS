@@ -7,8 +7,12 @@
 //
 
 #import "GMMyWalletVC.h"
+#import "MGSocialMedia.h"
 
 @interface GMMyWalletVC ()
+@property (weak, nonatomic) IBOutlet UILabel *walletBalenceLbl;
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end
 
@@ -17,12 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.topView setBackgroundColor:[UIColor colorFromHexString:@"#EE2D09"]];
     [self getWalletDataFromServer];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.title = @"My Wallet";    
+    self.title = @"My Wallet";
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Wallet_Screen];
+//    [self configrationUI];
+    [self updateUI];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -55,9 +62,42 @@
     
     [[GMOperationalHandler handler] getUserWalletItem:userDic withSuccessBlock:^(id responceData) {
         [self removeProgress];
+        if(HAS_KEY(responceData, @"Balance")) {
+            userModal.balenceInWallet = [NSString stringWithFormat:@"%@",[responceData objectForKey:@"Balance"]];
+        } else {
+            userModal.balenceInWallet = @"0.0";
+        }
+        [userModal persistUser];
+        [self updateUI];
     } failureBlock:^(NSError *error) {
         [self removeProgress];
     }];
+}
+-(void) configrationUI {
+    
+    UIImage *image = [UIImage imageNamed:@"walletIcone"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.navigationController.navigationBar.topItem setTitleView:imageView];
+    [self.navigationController.navigationBar.topItem setTitle:@"My Wallet"];
+}
+- (IBAction)shareButtonPressed:(id)sender {
+    
+    MGSocialMedia *socalMedia = [MGSocialMedia sharedSocialMedia];
+    [socalMedia showActivityView:@"Hey, Checkout this product!!!"];
+}
+
+-(void)updateUI {
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    float balence = 0.00;
+    if(NSSTRING_HAS_DATA(userModal.balenceInWallet)) {
+        balence = [userModal.balenceInWallet floatValue];
+    }
+    NSString *balenceStr = [NSString stringWithFormat:@"₹%.2f",balence];
+//    self.walletBalenceLbl.text = [NSString stringWithFormat:@"₹%.2f",balence];// @"₹";
+    
+    NSMutableAttributedString *balenceAttString = [[NSMutableAttributedString alloc] initWithString:balenceStr];
+    [balenceAttString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18]} range:[balenceStr rangeOfString:@"₹"]];
+    self.walletBalenceLbl.attributedText = balenceAttString;
 }
 
 @end

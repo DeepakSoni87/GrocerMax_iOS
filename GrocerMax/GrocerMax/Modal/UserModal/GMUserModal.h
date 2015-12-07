@@ -40,7 +40,7 @@
 
 @property (nonatomic, readonly, assign) BOOL isShowTapped;
 
-@property (nonatomic, strong) NSString *balenceInWallet;
+@property (nonatomic,readonly, strong) NSString *balenceInWallet;
 
 - (void)setFirstName:(NSString *)firstName;
 
@@ -69,6 +69,8 @@
 - (void)setFbId:(NSString *)fbId;
 
 - (void)setGoogleId:(NSString *)googleId;
+
+- (void)setBalenceInWallet:(NSString *)balenceInWallet;
 
 - (void)setIsShowTapped:(BOOL)isShowTapped;
 
