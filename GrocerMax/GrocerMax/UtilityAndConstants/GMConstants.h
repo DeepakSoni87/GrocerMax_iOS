@@ -206,6 +206,8 @@
 #define kEY_date                           @"date"
 #define kEY_payment_method_ByWallet        @"payment_method_Wallet"
 #define kEY_IS_PaymentFrom_Wallet          @"wallet"
+#define kEY_IS_InterNalWallet_Amount       @"internalWalletAmount"
+#define kEY_IS_Total_paid_Amount           @"totalAmount"
 
 //key : addcoupon
 

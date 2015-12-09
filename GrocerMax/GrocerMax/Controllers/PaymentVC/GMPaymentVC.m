@@ -48,6 +48,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     NSString *orderID;
     BOOL isPaymentFail;
     BOOL isMyWalletSelected;
+    float paymentAmount;
 }
 @property (nonatomic,retain) PGMerchantConfiguration *merchant ;
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *paymentTableView;
@@ -142,25 +143,25 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    self.txnID = [self randomStringWithLength:17];
 //    [self createHeashKey];
 //    return ;
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    [self setAmoutDetuction];
     if(selectedIndex == -1 && !isMyWalletSelected) {
         [[GMSharedClass sharedClass] showErrorMessage:@"Please select mode of payment."];
         return;
     } else if(selectedIndex == -1 && isMyWalletSelected) {
-        GMUserModal *userModal = [GMUserModal loggedInUser];
-        [self setAmoutDetuction];
+        
         if(!NSSTRING_HAS_DATA(userModal.balenceInWallet) || [userModal.balenceInWallet floatValue]<totalAmount) {
             [[GMSharedClass sharedClass] showErrorMessage:@"Wallet balance insufficient. Please select another payment option to place order."];
             return;
         }
     } else if(selectedIndex != -1 && isMyWalletSelected) {
-        GMUserModal *userModal = [GMUserModal loggedInUser];
-        [self setAmoutDetuction];
+        
+        
         if(NSSTRING_HAS_DATA(userModal.balenceInWallet) && [userModal.balenceInWallet floatValue]>totalAmount) {
             [[GMSharedClass sharedClass] showErrorMessage:@"Sufficient balance in the wallet. Please select only wallet as payment mode."];
             return;
         }
     }
-//
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PlaceOrder withCategory:@"" label:nil value:nil];
     
@@ -186,6 +187,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(isMyWalletSelected) {
         [checkOutDic setValue:@"customercredit" forKey:kEY_payment_method_ByWallet];
         [checkOutDic setValue:@"1" forKey:kEY_IS_PaymentFrom_Wallet];
+        [checkOutDic setValue:[NSString stringWithFormat:@"%.2f",[userModal.balenceInWallet floatValue]] forKey:kEY_IS_InterNalWallet_Amount];
+        [checkOutDic setValue:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_IS_Total_paid_Amount];
     }
     
     [self showProgress];
@@ -739,7 +742,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjectsAndKeys: PayU_Product_Info,@"productinfo",
                                       emailId,@"firstname",
-                                      [NSString stringWithFormat:@"%.2f",totalAmount],@"amount",
+                                      [NSString stringWithFormat:@"%.2f",paymentAmount],@"amount",
                                       emailId,@"email",
                                       mobileNo, @"phone",
                                       sucessString,@"surl",
@@ -757,7 +760,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    yPnUG6:test
     paymentOptionsVC.parameterDict = paramDict;
     paymentOptionsVC.callBackDelegate = self;
-    paymentOptionsVC.totalAmount  = totalAmount;//[totalAmount floatValue];
+    paymentOptionsVC.totalAmount  = paymentAmount;//[totalAmount floatValue];
     paymentOptionsVC.appTitle     = @"GrocerMax Payment";
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
@@ -804,7 +807,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
     [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
     [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",paymentAmount] forKey:kEY_PayU_Amount];
     
     
     return payUParameterDic;
@@ -846,7 +849,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    [payUParameterDic setObject:PayU_Cridentail forKey:kEY_PayU_User_Credentials];
 //    [payUParameterDic setObject:failString forKey:kEY_PayU_Furl];
 //    [payUParameterDic setObject:sucessString forKey:kEY_PayU_Surl];
-    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_PayU_Amount];
+    [payUParameterDic setObject:[NSString stringWithFormat:@"%.2f",paymentAmount] forKey:kEY_PayU_Amount];
 //    [payUParameterDic setObject:PayU_Salt forKey:@"salt"];
     
     
@@ -895,7 +898,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         mobileNo = userModal.mobile;
     }
     
-    PGOrder *order = [PGOrder orderForOrderID:self.genralModal.orderID customerID:userModal.userId amount:[NSString stringWithFormat:@"%.2f",totalAmount] customerMail:emailId customerMobile:mobileNo];
+    PGOrder *order = [PGOrder orderForOrderID:self.genralModal.orderID customerID:userModal.userId amount:[NSString stringWithFormat:@"%.2f",paymentAmount] customerMail:emailId customerMobile:mobileNo];
     
     
     PGTransactionViewController *txtController = [[PGTransactionViewController alloc]initTransactionForOrder:order];
@@ -1002,6 +1005,19 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         
         double grandTotal = subtotal + cartDetailModal.shippingAmount.doubleValue;
         totalAmount =  grandTotal;
+    }
+    
+    if(isMyWalletSelected) {
+        
+        GMUserModal *userModal = [GMUserModal loggedInUser];
+        float walletAmount = 0.0;
+        if(NSSTRING_HAS_DATA(userModal.balenceInWallet)) {
+            walletAmount = [userModal.balenceInWallet floatValue];
+        }
+            
+        paymentAmount = totalAmount-walletAmount;
+    } else {
+        paymentAmount = totalAmount;
     }
 }
 
