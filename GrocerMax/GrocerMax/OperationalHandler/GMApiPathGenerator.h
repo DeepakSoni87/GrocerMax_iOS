@@ -368,4 +368,13 @@
  * @output JSON string
  */
 + (NSString *)decreasewWalletBalancePath;
+
+/**
+ This api  use to wallet order history
+ * Function wallet order history
+ * return wallet history path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)walletHistoryPath;
 @end

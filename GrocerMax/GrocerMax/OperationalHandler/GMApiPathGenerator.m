@@ -69,7 +69,7 @@ static NSString const *homePageMethodName = @"homepage";
 static NSString const *reorderMethodName = @"reorder";
 static NSString const *walletMethodName = @"getwalletbalance";
 static NSString const *decreaseWalletBalenceMethodName = @"decreasewalletbalance";
-
+static NSString const *walletHistoryMethodName = @"creditlog";
 
 
 
@@ -317,8 +317,11 @@ static NSString const *decreaseWalletBalenceMethodName = @"decreasewalletbalance
 + (NSString *)decreasewWalletBalancePath {
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, decreaseWalletBalenceMethodName];
+}
+
++ (NSString *)walletHistoryPath {
     
-    //staging.grocermax.com/api/decreasewalletbalance?CustId=xxx&wallet_amount=xxx
+    return [NSString stringWithFormat:@"%@%@", baseUrl, walletHistoryMethodName];
 }
 @end
 

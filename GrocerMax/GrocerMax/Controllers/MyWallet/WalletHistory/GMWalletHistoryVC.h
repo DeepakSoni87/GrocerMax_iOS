@@ -10,4 +10,6 @@
 
 @interface GMWalletHistoryVC : UIViewController
 
+@property(nonatomic, strong) NSString *totalPrice;
+
 @end

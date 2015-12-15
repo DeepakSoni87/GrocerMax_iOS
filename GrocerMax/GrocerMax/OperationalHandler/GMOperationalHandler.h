@@ -24,6 +24,7 @@
 @class GMGenralModal;
 @class GMCoupanCartDetail;
 @class GMHomeModal;
+@class GMWalletOrderModal;
 
 @interface GMOperationalHandler : NSObject
 
@@ -318,4 +319,10 @@
  * @param
  **/
 -(void)decreaseUserWalletBalence:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function to get wallet order history
+ * @param
+ **/
+-(void)getUserWalletHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
 @end

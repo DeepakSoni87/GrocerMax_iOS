@@ -35,6 +35,7 @@
 #import "GMCoupanCartDetail.h"
 #import "GMHomeBannerModal.h"
 #import "GMHomeModal.h"
+#import "GMWalletOrderModal.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -1478,4 +1479,36 @@ static GMOperationalHandler *sharedHandler;
         if(failureBlock) failureBlock(error);
     }];
 }
+
+
+-(void)getUserWalletHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator walletHistoryPath]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+//        NSError *mtlError = nil;
+        NSError *error = [self getSuccessResponse:responseObject];
+        if(!error) {
+            
+//            GMWalletOrderModal *walletOrderModal = [MTLJSONAdapter modelOfClass:[GMWalletOrderModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            GMWalletOrderModal *walletOrderModal = [[GMWalletOrderModal alloc]init];
+            [walletOrderModal walletHistoryParseWithDic:responseObject];
+            if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray);
+            
+//            
+//            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+//            else            { if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray); }
+        } else {
+            if(failureBlock) failureBlock(error);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+}
+
 @end

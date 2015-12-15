@@ -24,7 +24,8 @@
 
 #define HAS_KEY(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]))
 
-#define NSSTRING_HAS_DATA(_x) (((_x) != nil) && ( [(_x) length] > 0 ))
+//#define NSSTRING_HAS_DATA(_x) (((_x) != nil) && ( [(_x) length] > 0 ))
+#define NSSTRING_HAS_DATA(_x) (((_x) != nil) && (![(_x) isKindOfClass:[NSNull class]]) && ( [(_x) length]>0))
 
 #define HAS_DATA(_x,_y) (([_x objectForKey:_y]) && !([[_x objectForKey:_y] isEqual:[NSNull null]]) && ([[NSString stringWithFormat:@"%@", [_x objectForKey:_y]] length] > 0))
 
@@ -266,6 +267,7 @@
 #define kEY_GA_Profile_Screen                @"ProfileScreen"
 #define kEY_GA_ForgotPassword_Screen         @"ForgotPasswordScreen"
 #define kEY_GA_Wallet_Screen                 @"WalletScreen"
+#define kEY_GA_WalletHistory_Screen          @"WalletHistoryScreen"
 
 #define kEY_GA_OrderHistory_Screen           @"OrderHistoryListScreen"
 #define kEY_GA_OrderDetail_Screen            @"OrderDetailScreen"

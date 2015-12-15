@@ -260,6 +260,11 @@
 		E8560EB11BB71B2900C87B2C /* GMPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8560EAF1BB71B2900C87B2C /* GMPaymentCell.xib */; };
 		E8560EB51BB732C100C87B2C /* GMPaymentOrderSummryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */; };
 		E8560EB61BB732C100C87B2C /* GMPaymentOrderSummryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */; };
+		E867DEF71C20544A00AED794 /* GMWalletHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E867DEF51C20544A00AED794 /* GMWalletHistoryVC.m */; };
+		E867DEF81C20544A00AED794 /* GMWalletHistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E867DEF61C20544A00AED794 /* GMWalletHistoryVC.xib */; };
+		E867E0801C20562300AED794 /* GMWalletHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E07E1C20562300AED794 /* GMWalletHistoryCell.m */; };
+		E867E0811C20562300AED794 /* GMWalletHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E867E07F1C20562300AED794 /* GMWalletHistoryCell.xib */; };
+		E867E0851C205B6300AED794 /* GMWalletOrderModal.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E0841C205B6300AED794 /* GMWalletOrderModal.m */; };
 		E86D14071BB99D4E00D3EAD8 /* AllPaymentOprionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D139C1BB99D4E00D3EAD8 /* AllPaymentOprionsView.xib */; };
 		E86D14081BB99D4E00D3EAD8 /* CardProcessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D139D1BB99D4E00D3EAD8 /* CardProcessView.xib */; };
 		E86D14091BB99D4E00D3EAD8 /* CardValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = E86D139F1BB99D4E00D3EAD8 /* CardValidation.m */; };
@@ -750,6 +755,14 @@
 		E8560EB21BB732C100C87B2C /* GMPaymentOrderSummryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPaymentOrderSummryCell.h; sourceTree = "<group>"; };
 		E8560EB31BB732C100C87B2C /* GMPaymentOrderSummryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPaymentOrderSummryCell.m; sourceTree = "<group>"; };
 		E8560EB41BB732C100C87B2C /* GMPaymentOrderSummryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMPaymentOrderSummryCell.xib; sourceTree = "<group>"; };
+		E867DEF41C20544A00AED794 /* GMWalletHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMWalletHistoryVC.h; sourceTree = "<group>"; };
+		E867DEF51C20544A00AED794 /* GMWalletHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMWalletHistoryVC.m; sourceTree = "<group>"; };
+		E867DEF61C20544A00AED794 /* GMWalletHistoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMWalletHistoryVC.xib; sourceTree = "<group>"; };
+		E867E07D1C20562300AED794 /* GMWalletHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMWalletHistoryCell.h; sourceTree = "<group>"; };
+		E867E07E1C20562300AED794 /* GMWalletHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMWalletHistoryCell.m; sourceTree = "<group>"; };
+		E867E07F1C20562300AED794 /* GMWalletHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMWalletHistoryCell.xib; sourceTree = "<group>"; };
+		E867E0831C205B6300AED794 /* GMWalletOrderModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMWalletOrderModal.h; sourceTree = "<group>"; };
+		E867E0841C205B6300AED794 /* GMWalletOrderModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMWalletOrderModal.m; sourceTree = "<group>"; };
 		E86D139C1BB99D4E00D3EAD8 /* AllPaymentOprionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllPaymentOprionsView.xib; sourceTree = "<group>"; };
 		E86D139D1BB99D4E00D3EAD8 /* CardProcessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardProcessView.xib; sourceTree = "<group>"; };
 		E86D139E1BB99D4E00D3EAD8 /* CardValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardValidation.h; sourceTree = "<group>"; };
@@ -1085,6 +1098,7 @@
 		820C4EFE1BB1CC5C00DCCF39 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				E867E0821C205B4000AED794 /* WalletOrderHistoryModal */,
 				82A0C4561BF0D63900B64D9A /* HomeModal */,
 				3B9872B81BC1151900E2499C /* HomeBanner */,
 				E8916C171BBB171F00DA75BE /* GenralModal */,
@@ -1259,6 +1273,7 @@
 		820C4F2E1BB1CC5C00DCCF39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E867DEF31C20542D00AED794 /* WalletHistory */,
 				E87200E81C141144006CF465 /* MyWallet */,
 				82E6C8BB1BD02EB200DD865C /* OrderFail */,
 				E8916C1E1BBB405E00DA75BE /* ParentConroller */,
@@ -2151,6 +2166,37 @@
 			path = CashCell;
 			sourceTree = "<group>";
 		};
+		E867DEF31C20542D00AED794 /* WalletHistory */ = {
+			isa = PBXGroup;
+			children = (
+				E867E07C1C20561400AED794 /* WalletHistoryCell */,
+				E867DEF41C20544A00AED794 /* GMWalletHistoryVC.h */,
+				E867DEF51C20544A00AED794 /* GMWalletHistoryVC.m */,
+				E867DEF61C20544A00AED794 /* GMWalletHistoryVC.xib */,
+			);
+			name = WalletHistory;
+			path = MyWallet/WalletHistory;
+			sourceTree = "<group>";
+		};
+		E867E07C1C20561400AED794 /* WalletHistoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				E867E07D1C20562300AED794 /* GMWalletHistoryCell.h */,
+				E867E07E1C20562300AED794 /* GMWalletHistoryCell.m */,
+				E867E07F1C20562300AED794 /* GMWalletHistoryCell.xib */,
+			);
+			path = WalletHistoryCell;
+			sourceTree = "<group>";
+		};
+		E867E0821C205B4000AED794 /* WalletOrderHistoryModal */ = {
+			isa = PBXGroup;
+			children = (
+				E867E0831C205B6300AED794 /* GMWalletOrderModal.h */,
+				E867E0841C205B6300AED794 /* GMWalletOrderModal.m */,
+			);
+			path = WalletOrderHistoryModal;
+			sourceTree = "<group>";
+		};
 		E86D139B1BB99D4E00D3EAD8 /* PayU_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2589,6 +2635,7 @@
 				820C500A1BB1CC5C00DCCF39 /* GMAddBillingAddressVC.xib in Resources */,
 				E86D14341BB99D4E00D3EAD8 /* payu_money.png in Resources */,
 				820C503B1BB1CC5C00DCCF39 /* GMLoginVC.xib in Resources */,
+				E867DEF81C20544A00AED794 /* GMWalletHistoryVC.xib in Resources */,
 				8209F72B1BCD25BC005B7D08 /* otp_icon_large.png in Resources */,
 				8209F6F91BCD25BC005B7D08 /* amex.png in Resources */,
 				8209F71A1BCD25BC005B7D08 /* icon_password_over.png in Resources */,
@@ -2605,6 +2652,7 @@
 				E86D14261BB99D4E00D3EAD8 /* diner.png in Resources */,
 				E86D14231BB99D4E00D3EAD8 /* checkbox.png in Resources */,
 				E86D14361BB99D4E00D3EAD8 /* prev@2x.png in Resources */,
+				E867E0811C20562300AED794 /* GMWalletHistoryCell.xib in Resources */,
 				8209F70A1BCD25BC005B7D08 /* CCBApproveView_iPhone6.xib in Resources */,
 				8209F7181BCD25BC005B7D08 /* icon_otp_over.png in Resources */,
 				E86D14311BB99D4E00D3EAD8 /* master.png in Resources */,
@@ -2749,8 +2797,10 @@
 				E86D143F1BB99D4E00D3EAD8 /* Utils.m in Sources */,
 				820C50221BB1CC5C00DCCF39 /* GMEditProfileVC.m in Sources */,
 				820C503E1BB1CC5C00DCCF39 /* GMOfferListVC.m in Sources */,
+				E867E0851C205B6300AED794 /* GMWalletOrderModal.m in Sources */,
 				820C50261BB1CC5C00DCCF39 /* GMHomeVC.m in Sources */,
 				820C50011BB1CC5C00DCCF39 /* PlaceholderAndValidStatus.m in Sources */,
+				E867E0801C20562300AED794 /* GMWalletHistoryCell.m in Sources */,
 				82A52AA71BB28EE3009A4235 /* GMCityCell.m in Sources */,
 				820C50621BB1CC5C00DCCF39 /* GMSubCategoryCell.m in Sources */,
 				820C50361BB1CC5C00DCCF39 /* GMLeftMenuCell.m in Sources */,
@@ -2799,6 +2849,7 @@
 				E8560EB51BB732C100C87B2C /* GMPaymentOrderSummryCell.m in Sources */,
 				E881BB661BB5DF90001EEFAA /* GMOrderDetailLastHeaderView.m in Sources */,
 				820C50081BB1CC5C00DCCF39 /* UIViewController+GMProgressIndicator.m in Sources */,
+				E867DEF71C20544A00AED794 /* GMWalletHistoryVC.m in Sources */,
 				82B1B2E41B9F60D0001550FC /* AppDelegate.m in Sources */,
 				820C506B1BB1CC5C00DCCF39 /* PBDatePickerVC.m in Sources */,
 				E86D14091BB99D4E00D3EAD8 /* CardValidation.m in Sources */,

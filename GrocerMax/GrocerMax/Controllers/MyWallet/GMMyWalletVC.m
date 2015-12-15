@@ -8,11 +8,13 @@
 
 #import "GMMyWalletVC.h"
 #import "MGSocialMedia.h"
+#import "GMWalletHistoryVC.h"
 
 @interface GMMyWalletVC ()
 @property (weak, nonatomic) IBOutlet UILabel *walletBalenceLbl;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIButton *transactionBtn;
 
 @end
 
@@ -25,6 +27,12 @@
     self.shareBtn.layer.borderWidth = BORDER_WIDTH;
     self.shareBtn.layer.cornerRadius = CORNER_RADIUS;
     [self.shareBtn setClipsToBounds:YES];
+    
+    
+//    self.transactionBtn.layer.borderWidth = BORDER_WIDTH;
+    self.transactionBtn.layer.cornerRadius = 10.0;
+    [self.transactionBtn setClipsToBounds:YES];
+    
     [self.shareBtn setBackgroundColor:[UIColor colorFromHexString:@"#EE2D09"]];
     self.shareBtn.layer.borderColor = [UIColor colorFromHexString:@"#EE2D09"].CGColor;
     [self getWalletDataFromServer];
@@ -103,6 +111,19 @@
     NSMutableAttributedString *balenceAttString = [[NSMutableAttributedString alloc] initWithString:balenceStr];
     [balenceAttString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18]} range:[balenceStr rangeOfString:@"₹"]];
     self.walletBalenceLbl.attributedText = balenceAttString;
+}
+- (IBAction)actionTransactionButtonPressed:(id)sender {
+    
+    GMWalletHistoryVC *walletHistoryVC = [GMWalletHistoryVC new];
+    
+    GMUserModal *userModal = [GMUserModal loggedInUser];
+    float balence = 0.00;
+    if(NSSTRING_HAS_DATA(userModal.balenceInWallet)) {
+        balence = [userModal.balenceInWallet floatValue];
+    }
+    NSString *balenceStr = [NSString stringWithFormat:@"₹%.2f",balence];
+    walletHistoryVC.totalPrice = balenceStr;
+    [self.navigationController pushViewController:walletHistoryVC animated:YES];
 }
 
 @end
