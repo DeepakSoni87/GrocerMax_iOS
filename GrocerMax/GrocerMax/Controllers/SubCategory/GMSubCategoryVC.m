@@ -137,7 +137,7 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     GMCategoryModal *categoryModal = [self.subcategoryDataArray objectAtIndex:indexPath.section];
-    NSLog(@"%ld",indexPath.row);
+//    NSLog(@"%ld",indexPath.row);
     if(categoryModal.subCategories.count%2 == 0) {
         if((categoryModal.subCategories.count/2) == indexPath.row) {
             return 10;

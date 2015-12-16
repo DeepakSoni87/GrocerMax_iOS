@@ -372,7 +372,7 @@ static int const kGaDispatchPeriod = 20;
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
     
-    NSLog(@"My Device token is: %@", deviceToken);
+//    NSLog(@"My Device token is: %@", deviceToken);
     
     NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     deviceTokenString = [deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -386,7 +386,7 @@ static int const kGaDispatchPeriod = 20;
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error {
     
-    NSLog(@"Failed to get token, error: %@", error);
+//    NSLog(@"Failed to get token, error: %@", error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
@@ -905,7 +905,7 @@ static int const kGaDispatchPeriod = 20;
 }
 
 - (void) onConversionDataRequestFailure:(NSError *)error{
-    NSLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
+//    NSLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
 }
 
 #pragma mark - LeftMenuDelegate Method

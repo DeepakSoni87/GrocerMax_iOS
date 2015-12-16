@@ -22,7 +22,7 @@
     });
     
     _sharedFormatter.timeZone = [NSTimeZone defaultTimeZone];
-    NSLog(@"_sharedFormatter.timeZone = %@",_sharedFormatter.timeZone.name);
+//    NSLog(@"_sharedFormatter.timeZone = %@",_sharedFormatter.timeZone.name);
     
     return _sharedFormatter;
 }
