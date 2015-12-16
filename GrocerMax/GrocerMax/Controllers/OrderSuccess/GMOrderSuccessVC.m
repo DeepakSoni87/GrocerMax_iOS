@@ -21,8 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id is  %@", self.orderId]];
-    
+    if(NSSTRING_HAS_DATA(self.orderId)) {
+        [self.orderIdlabel setText:[NSString stringWithFormat:@"order Id is  %@", self.orderId]];
+    } else {
+        [self.orderIdlabel setText:[NSString stringWithFormat:@"Order details send by email and sms."]];
+        self.orderIdlabel.textColor = [UIColor blackColor];
+    }
     NSDictionary* style1 = @{
                              NSFontAttributeName : FONT_LIGHT(14),
                              NSForegroundColorAttributeName : [UIColor gmRedColor]

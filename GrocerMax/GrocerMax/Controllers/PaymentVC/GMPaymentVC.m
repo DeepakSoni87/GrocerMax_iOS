@@ -143,6 +143,10 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 //    self.txnID = [self randomStringWithLength:17];
 //    [self createHeashKey];
 //    return ;
+    if(![[GMSharedClass sharedClass] isInternetAvailable]) {
+        [[GMSharedClass sharedClass] showErrorMessage:@"No internet connection. Please try again."];
+        return;
+    }
     GMUserModal *userModal = [GMUserModal loggedInUser];
     [self setAmoutDetuction];
     if(selectedIndex == -1 && !isMyWalletSelected) {
@@ -221,7 +225,13 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         }
         
     } failureBlock:^(NSError *error) {
-        [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+        
+        if(selectedIndex == 1 || (selectedIndex == -1 && isMyWalletSelected)) {
+            GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+            [self.navigationController pushViewController:successVC animated:YES];
+        } else {
+            [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
+        }
         
         [self removeProgress];
     }];

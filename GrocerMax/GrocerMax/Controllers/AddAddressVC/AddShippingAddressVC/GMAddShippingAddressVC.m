@@ -84,8 +84,8 @@ static NSString * const kPhoneCell                     =  @"Phone Number";
     }
     else {
         
-        self.isDefaultShippingAddress = NO;
-        [self.defaultShippingAddress setSelected:NO];
+        self.isDefaultShippingAddress = YES;
+        [self.defaultShippingAddress setSelected:YES];
         [self.defaultShippingAddress setEnabled:YES];
     }
 }
