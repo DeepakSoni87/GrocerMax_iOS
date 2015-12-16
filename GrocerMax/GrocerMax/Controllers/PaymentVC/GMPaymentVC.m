@@ -199,7 +199,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
         if(responceData.flag == 1) {
             [[GMSharedClass sharedClass] clearCart];
             [self.tabBarController updateBadgeValueOnCartTab];
-            if(selectedIndex == 1) {
+            if(selectedIndex == 1 || (selectedIndex == -1 && isMyWalletSelected)) {
                 GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
                 successVC.orderId = responceData.orderID;
                 [self.navigationController pushViewController:successVC animated:YES];

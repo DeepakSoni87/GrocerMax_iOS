@@ -121,8 +121,8 @@
     if(NSSTRING_HAS_DATA(userModal.balenceInWallet)) {
         balence = [userModal.balenceInWallet floatValue];
     }
-    NSString *balenceStr = [NSString stringWithFormat:@"₹%.2f",balence];
-    walletHistoryVC.totalPrice = balenceStr;
+    NSString *balenceStr = [NSString stringWithFormat:@"%.2f",balence];
+    walletHistoryVC.walletTotalPrice = balenceStr;
     [self.navigationController pushViewController:walletHistoryVC animated:YES];
 }
 

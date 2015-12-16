@@ -27,7 +27,7 @@ static NSString *kIdentifierWalletOrderHeader = @"WalletOrderIdentifierHeader";
 @end
 
 @implementation GMWalletHistoryVC
-@synthesize totalPrice;
+@synthesize walletTotalPrice;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -130,8 +130,8 @@ static NSString *kIdentifierWalletOrderHeader = @"WalletOrderIdentifierHeader";
             header = [[GMOrderDetailHeaderView alloc] initWithReuseIdentifier:kIdentifierWalletOrderHeader];
         }
         
-        if(NSSTRING_HAS_DATA(totalPrice)) {
-        [header congigerHeaderData:[NSString stringWithFormat:@"Balance ₹%@",self.totalPrice]];
+        if(NSSTRING_HAS_DATA(self.walletTotalPrice)) {
+        [header congigerHeaderData:[NSString stringWithFormat:@"Balance ₹%@",self.self.walletTotalPrice]];
         } else {
             [header congigerHeaderData:[NSString stringWithFormat:@"Balance ₹0.00"]];
         }
