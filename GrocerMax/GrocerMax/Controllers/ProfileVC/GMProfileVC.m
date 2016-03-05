@@ -18,6 +18,7 @@
 #import "GMChangePasswordVC.h"
 #import "GMMyWalletVC.h"
 #import <MessageUI/MessageUI.h>
+#import "GMStateBaseModal.h"
 
 
 @interface GMProfileModal : NSObject
@@ -220,6 +221,10 @@ static CGFloat const kProfileCellHeight = 44.0f;
         [[GMSharedClass sharedClass] clearCart];
         [self.tabBarController updateBadgeValueOnCartTab];
         [self setSecondTabAsLogIn];
+        
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Logout"];
+        
     }
     else {
         

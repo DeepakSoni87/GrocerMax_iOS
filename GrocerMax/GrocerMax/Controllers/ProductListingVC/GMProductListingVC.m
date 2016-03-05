@@ -9,6 +9,7 @@
 #import "GMProductListingVC.h"
 #import "GMProductListTableViewCell.h"
 #import "GMProductDescriptionVC.h"
+#import "GMStateBaseModal.h"
 
 NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
 
@@ -33,6 +34,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [self configureUI];
     
     self.rootPageAPIController.delegate = self;
+    
     self.productRequestID = self.catMdl.categoryId;
     
     self.productBaseModal = [self.rootPageAPIController.modalDic objectForKey:self.productRequestID];
@@ -56,6 +58,9 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     [super viewWillAppear:animated];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_ProducList_Screen];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:self.gaTrackingEventText];
+    if(self.parentVC != nil) {
+    self.parentVC.cartModal = [GMCartModal loadCart];
+    }
     [self.productListTblView reloadData];
 }
 - (void)didReceiveMemoryWarning {
@@ -96,6 +101,7 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     GMProductModal *productModal = [self.productBaseModal.productsListArray objectAtIndex:indexPath.row];
     GMProductListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGMProductListTableViewCell];
     cell.delegate = self;
+    
     [cell configureCellWithProductModal:productModal andCartModal:self.parentVC.cartModal];
     [cell.imgBtn addTarget:self action:@selector(imgbtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -198,6 +204,11 @@ NSString *const kGMProductListTableViewCell = @"GMProductListTableViewCell";
     }
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_AddCartitems withCategory:@"" label:[NSString stringWithFormat:@"%@ %@",productModal.productid,productModal.name] value:nil];
+    
+    NSString *title= @"";
+    title = [NSString stringWithFormat:@"%@-%@-%@",productModal.productid,productModal.name,productModal.productQuantity];
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Add to Cart" label:title];
 
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productModal];
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];

@@ -11,6 +11,7 @@
 #import "GMCategoryModal.h"
 #import "GMSubCategoryCell.h"
 #import "GMRootPageViewController.h"
+#import "GMStateBaseModal.h"
 
 static NSString *kIdentifierSubCategoryHeader = @"subcategoryIdentifierHeader";
 static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
@@ -219,6 +220,10 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
 //        [self.navigationController pushViewController:rootVC animated:YES];
         
         [self fetchProductListingDataForCategory:categoryModal];
+        
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"L2" label:categoryModal.categoryName];
     }
 }
 
@@ -263,6 +268,10 @@ static NSString *kIdentifierSubCategoryCell = @"subcategoryIdentifierCell";
             [allCatProductListArray addObjectsFromArray:catMdl.productListArray];
             
             if (catMdl.productListArray.count >= 1) {
+                
+//                if(!NSSTRING_HAS_DATA(catMdl.categoryId)) {
+//                    catMdl.categoryId = @"0";
+//                }
                 [categoryArray addObject:catMdl];
             }
         }

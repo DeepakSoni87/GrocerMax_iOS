@@ -16,6 +16,8 @@
 
 @property (nonatomic, readwrite, strong) NSString *categoryName;
 
+@property (nonatomic, readwrite, strong) NSString *categoryImageURL;
+
 @property (nonatomic, readwrite, strong) NSString *isActive;
 
 @property (nonatomic, readwrite, strong) NSString *position;
@@ -41,6 +43,7 @@ static GMCategoryModal *rootCategoryModal;
 static NSString * const kCategoryIdKey                      = @"categoryId";
 static NSString * const kParentIdKey                        = @"parentId";
 static NSString * const kCategoryNameKey                    = @"categoryName";
+static NSString * const kCategoryImageURLKey                = @"categoryImageURL";
 static NSString * const kIsActiveKey                        = @"isActive";
 static NSString * const kPositionKey                        = @"position";
 static NSString * const kLevelKey                           = @"level";
@@ -54,6 +57,7 @@ static NSString * const kIsExpandKey                        = @"isExpand";
     return @{@"categoryId"                  : @"category_id",
              @"parentId"                    : @"parent_id",
              @"categoryName"                : @"name",
+             @"categoryImageURL"            : @"images",
              @"isActive"                    : @"is_active",
              @"position"                    : @"position",
              @"level"                       : @"level",
@@ -96,6 +100,7 @@ static NSString * const kIsExpandKey                        = @"isExpand";
     [aCoder encodeObject:self.categoryId forKey:kCategoryIdKey];
     [aCoder encodeObject:self.parentId forKey:kParentIdKey];
     [aCoder encodeObject:self.categoryName forKey:kCategoryNameKey];
+    [aCoder encodeObject:self.categoryImageURL forKey:kCategoryImageURLKey];
     [aCoder encodeObject:self.isActive forKey:kIsActiveKey];
     [aCoder encodeObject:self.position forKey:kPositionKey];
     [aCoder encodeObject:self.level forKey:kLevelKey];
@@ -110,6 +115,7 @@ static NSString * const kIsExpandKey                        = @"isExpand";
         self.categoryId = [aDecoder decodeObjectForKey:kCategoryIdKey];
         self.parentId = [aDecoder decodeObjectForKey:kParentIdKey];
         self.categoryName = [aDecoder decodeObjectForKey:kCategoryNameKey];
+        self.categoryImageURL = [aDecoder decodeObjectForKey:kCategoryImageURLKey];
         self.isActive = [aDecoder decodeObjectForKey:kIsActiveKey];
         self.position = [aDecoder decodeObjectForKey:kPositionKey];
         self.level = [aDecoder decodeObjectForKey:kLevelKey];
@@ -144,6 +150,9 @@ static NSString * const kIsExpandKey                        = @"isExpand";
         
         if(HAS_DATA(responseDict, @"category_name"))
             _categoryName = responseDict[@"category_name"];
+        
+        if(HAS_DATA(responseDict, @"images"))
+            _categoryImageURL = responseDict[@"images"];
         
         if(HAS_DATA(responseDict, @"Totalcount"))//14/10/2015
             _totalCount = [responseDict[@"Totalcount"] integerValue];

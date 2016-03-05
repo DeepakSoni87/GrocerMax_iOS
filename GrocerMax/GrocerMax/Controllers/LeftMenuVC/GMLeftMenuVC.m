@@ -76,6 +76,8 @@ static NSString * const kRateUsSection                              =  @"RATE US
 
 static NSString * const kWalletSection                              =  @"MY WALLET";
 
+static NSString * const kContactSection                             =  @"CONTACT US";
+
 
 
 @implementation GMLeftMenuVC
@@ -99,6 +101,7 @@ static NSString * const kWalletSection                              =  @"MY WALL
             self.locationLbl.text = cityModal.cityName;
         }
     }
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Open Drawer" label:@""];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,6 +134,9 @@ static NSString * const kWalletSection                              =  @"MY WALL
     SectionModal *rateUS = [[SectionModal alloc] initWithDisplayName:kRateUsSection rowArray:nil andIsExpand:NO];
     [self.sectionArray addObject:rateUS];
     
+    
+    SectionModal *contactUs = [[SectionModal alloc] initWithDisplayName:kContactSection rowArray:nil andIsExpand:NO];
+    [self.sectionArray addObject:contactUs];
     
 //    SectionModal *payment = [[SectionModal alloc] initWithDisplayName:kPaymentSection rowArray:nil andIsExpand:NO];
 //    [self.sectionArray addObject:payment];
@@ -240,12 +246,18 @@ static NSString * const kWalletSection                              =  @"MY WALL
         GMLeftMenuDetailVC *leftMenuDetailVC = [[GMLeftMenuDetailVC alloc] initWithNibName:@"GMLeftMenuDetailVC" bundle:nil];
         leftMenuDetailVC.subCategoryModal = categoryModal;
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:categoryModal.categoryName value:nil];
+        
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Drawer - L1" label:categoryModal.categoryName];
+        
         [self.navigationController pushViewController:leftMenuDetailVC animated:YES];
     }
     else if ([sectionModal.sectionDisplayName isEqualToString:kShopByDealSection]) {
         
         GMHotDealModal *hotDealModal = [sectionModal.rowArray objectAtIndex:indexPath.row];
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:hotDealModal.dealTypeId value:nil];
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Drawer - Deal Category L1" label:hotDealModal.dealType];
         [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
     }
 }
@@ -284,6 +296,13 @@ static NSString * const kWalletSection                              =  @"MY WALL
         AppDelegate *appDel = APP_DELEGATE;
         [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
         [self wallet];
+    }else if ([sectionModal.sectionDisplayName isEqualToString:kContactSection]) {
+        
+        [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kContactSection value:nil];
+        
+        AppDelegate *appDel = APP_DELEGATE;
+        [appDel.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        [self contactUs];
     } else if ([sectionModal.sectionDisplayName isEqualToString:kRateUsSection]) {
         
         [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DrawerOptionSelect withCategory:@"" label:kRateUsSection value:nil];
@@ -343,6 +362,7 @@ static NSString * const kWalletSection                              =  @"MY WALL
         rootVC.pageData = dealCategoryArray;
         rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
         rootVC.rootControllerType = GMRootPageViewControllerTypeDealCategoryTypeListing;
+        rootVC.isFromDrawerDeals = YES;
         [APP_DELEGATE setTopVCOnHotDealsController:rootVC];
         
     } failureBlock:^(NSError *error) {
@@ -372,6 +392,13 @@ static NSString * const kWalletSection                              =  @"MY WALL
     }
     
 }
+
+- (void)contactUs{
+    
+    if([self.delegate respondsToSelector:@selector(goContactUs)]) {
+        [self.delegate goContactUs];
+    }
+}
 - (void)rateUs{
     
     NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", APPLE_APP_ID]];
@@ -396,6 +423,9 @@ static NSString * const kWalletSection                              =  @"MY WALL
     
     cityVC.isCommimgFromHamberger = YES;
     [homeVc.navigationController pushViewController:cityVC animated:NO];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"City Change" label:@""];
 
 }
 

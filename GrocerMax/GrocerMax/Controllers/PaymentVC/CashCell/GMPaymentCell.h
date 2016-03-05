@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GMPaymentWayModal.h"
 @interface GMPaymentCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *paymentLbl;
 
@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomHorizentalSepretorLbl;
 
 + (CGFloat) cellHeight;
-- (void)configerViewData:(NSString *)paymentName;
+- (void)configerViewData:(GMPaymentWayModal *)paymentName;
 
 @end

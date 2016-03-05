@@ -25,6 +25,9 @@
 #import "GMHotDealVC.h"
 #import "GMStateBaseModal.h"
 #import <SVProgressHUD/SVIndefiniteAnimatedView.h>
+#import "GMCartVC.h"
+#import "GMProductDescriptionVC.h"
+#import "GMWebViewVC.h"
 
 #define TAG_PROCESSING_INDECATOR 100090
 
@@ -68,7 +71,7 @@ static int const kGaDispatchPeriod = 20;
     
     [AppsFlyerTracker sharedTracker].appleAppID = APPLE_APP_ID; // The Apple app ID. Example 34567899
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFyler_Key;
-    
+//    [self sendDeviceToken:@"d6a39b42ca6636de31f4c9e7dbdfd3fca5c731f928b81ad65181009eefd3cf98"];
     
     //https://developers.google.com/identity/sign-in/ios/offline-access
     [self initializeGoogleAnalytics];
@@ -143,102 +146,17 @@ static int const kGaDispatchPeriod = 20;
     
     
     BOOL isFB = YES;
-//    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
-//    {
-//        
-//        if([GMCityModal selectedLocation] == nil) {
-//            return YES;
-//        }
-//    
-//        NSString *value = @"";
-//        NSString *name = @"";
-//        NSArray* componentsArray = [[url absoluteString] componentsSeparatedByString:@"?"];
-//        if([componentsArray count]>1)
-//        {
-//            NSString* paramsStr = [componentsArray objectAtIndex:1];
-//            NSArray* paramsArray = [paramsStr componentsSeparatedByString:@"&"];
-//            for(NSString* str in paramsArray)
-//            {
-//                NSArray* paramsValuesArray = [str componentsSeparatedByString:@"="];
-//                if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"data"])
-//                {
-//                    value = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-//                    
-//                } else if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"name"])
-//                {
-//                    name = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-//                    
-//                }
-//            }
-//        }
-//        
-//        if([[url absoluteString] rangeOfString:KEY_Banner_shopbydealtype].location != NSNotFound) {
-//            GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
-//            if (tabBarVC == nil)
-//                return YES;
-//            [tabBarVC.viewControllers objectAtIndex:2];
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_search].location != NSNotFound) {
-//            
-//            NSMutableDictionary *localDic = [NSMutableDictionary new];
-//            [localDic setObject:value forKey:kEY_keyword];
-//            
-//            [self.tabBarVC  setSelectedIndex:3];
-//            GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
-//            if (searchVC == nil)
-//                return YES;
-//            [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
-//            
-//
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_offerbydealtype].location != NSNotFound) {
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-//                bannerCatMdl.categoryName = self.pushModal.name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }            
-//            [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
-//            
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealsbydealtype].location != NSNotFound) {
-//            
-//            [self fetchDealCategoriesFromServerWithDealTypeId:value];
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_productlistall].location != NSNotFound) {
-//            
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-//                bannerCatMdl.categoryName = self.pushModal.name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }
-//            
-//            [self fetchProductListingDataForCategory:bannerCatMdl];
-//            
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealproductlisting].location != NSNotFound) {
-//            
-//            GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
-//            if (hotDealVC == nil)
-//                return YES;
-//            
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(name)) {
-//                bannerCatMdl.categoryName = name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }
-//            [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
-//            
-//            
-//        }
-//        
-//
-//        return YES;
-//        
-//    }else
+    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
+    {
+        
+        if([GMCityModal selectedLocation] == nil) {
+            return YES;
+        }
+        [self deepLinkingUrl:url];
+
+        return YES;
+        
+    }
     
     
     if (isFB) {
@@ -256,98 +174,15 @@ static int const kGaDispatchPeriod = 20;
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
     
     BOOL isFB = YES;
-//    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
-//    {
-//        
-//        NSString *value = @"";
-//        NSString *name = @"";
-//        NSArray* componentsArray = [[url absoluteString] componentsSeparatedByString:@"?"];
-//        if([componentsArray count]>1)
-//        {
-//            NSString* paramsStr = [componentsArray objectAtIndex:1];
-//            NSArray* paramsArray = [paramsStr componentsSeparatedByString:@"&"];
-//            for(NSString* str in paramsArray)
-//            {
-//                NSArray* paramsValuesArray = [str componentsSeparatedByString:@"="];
-//                if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"data"])
-//                {
-//                    value = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-//                    
-//                } else if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"name"])
-//                {
-//                    name = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
-//                    
-//                }
-//            }
-//        }
-//        
-//        if([[url absoluteString] rangeOfString:KEY_Banner_shopbydealtype].location != NSNotFound) {
-//            GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
-//            if (tabBarVC == nil)
-//                return YES;
-//            [tabBarVC.viewControllers objectAtIndex:2];
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_search].location != NSNotFound) {
-//            
-//            NSMutableDictionary *localDic = [NSMutableDictionary new];
-//            [localDic setObject:value forKey:kEY_keyword];
-//            
-//            [self.tabBarVC  setSelectedIndex:3];
-//            GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
-//            if (searchVC == nil)
-//                return YES;
-//            [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
-//            
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_offerbydealtype].location != NSNotFound) {
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-//                bannerCatMdl.categoryName = self.pushModal.name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }
-//            [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
-//            
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealsbydealtype].location != NSNotFound) {
-//            
-//            [self fetchDealCategoriesFromServerWithDealTypeId:value];
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_productlistall].location != NSNotFound) {
-//            
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(self.pushModal.name)) {
-//                bannerCatMdl.categoryName = self.pushModal.name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }
-//            
-//            [self fetchProductListingDataForCategory:bannerCatMdl];
-//            
-//            
-//        } else if([[url absoluteString] rangeOfString:KEY_Banner_dealproductlisting].location != NSNotFound) {
-//            
-//            GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
-//            if (hotDealVC == nil)
-//                return YES;
-//            
-//            GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
-//            bannerCatMdl.categoryId = value;
-//            if(NSSTRING_HAS_DATA(name)) {
-//                bannerCatMdl.categoryName = name;
-//            } else {
-//                bannerCatMdl.categoryName = @"Result";
-//            }
-//            [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
-//            
-//            
-//        }
-//        
-//        
-//        return YES;
-//        
-//    }
+    if([[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound && [[url absoluteString] rangeOfString:@"grocermax"].location != NSNotFound)
+    {
+        if([GMCityModal selectedLocation] == nil) {
+            return YES;
+        }
+        [self deepLinkingUrl:url];
+        return YES;
+        
+    }
     NSString *source = @"";
     if([options objectForKey:UIApplicationOpenURLOptionsSourceApplicationKey]) {
         source = [options objectForKey:UIApplicationOpenURLOptionsSourceApplicationKey];
@@ -368,6 +203,286 @@ static int const kGaDispatchPeriod = 20;
     
 }
 
+-(void)deepLinkingUrl:(NSURL *)url {
+    
+    self.pushModal = nil;
+    
+    if([GMCityModal selectedLocation] == nil) {
+        return;
+    }
+    NSString *value = @"";
+    NSString *name = @"";
+    NSArray* componentsArray = [[url absoluteString] componentsSeparatedByString:@"?"];
+    if([componentsArray count]>1)
+    {
+        NSString* paramsStr = [componentsArray objectAtIndex:1];
+        NSArray* paramsArray = [paramsStr componentsSeparatedByString:@"&"];
+        for(NSString* str in paramsArray)
+        {
+            NSArray* paramsValuesArray = [str componentsSeparatedByString:@"="];
+            if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"data"])
+            {
+                value = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
+                
+            } else if([[paramsValuesArray objectAtIndex:0] isEqualToString:@"name"])
+            {
+                name = [[paramsValuesArray objectAtIndex:1] stringByRemovingPercentEncoding];
+                
+            }
+        }
+    }
+    
+    
+    if([[url absoluteString] rangeOfString:KEY_Banner_Home].location != NSNotFound) {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        
+        [tabBarVC setSelectedIndex:0];
+        [self performSelector:@selector(goToHome) withObject:nil afterDelay:0.20];
+    }
+    else if([[url absoluteString] rangeOfString:KEY_Banner_shopbydealtype].location != NSNotFound) {
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        
+        [tabBarVC setSelectedIndex:2];
+//        [tabBarVC.viewControllers objectAtIndex:2];
+    } else if([[url absoluteString] rangeOfString:KEY_Banner_search].location != NSNotFound) {
+        
+        NSMutableDictionary *localDic = [NSMutableDictionary new];
+        [localDic setObject:value forKey:kEY_keyword];
+        
+        [self.tabBarVC  setSelectedIndex:3];
+        GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
+        if (searchVC == nil)
+            return ;
+        [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
+        
+        
+    } else if([[url absoluteString] rangeOfString:KEY_Banner_offerbydealtype].location != NSNotFound) {
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+        
+        
+    } else if([[url absoluteString] rangeOfString:KEY_Banner_dealsbydealtype].location != NSNotFound) {
+        
+        [self fetchDealCategoriesFromServerWithDealTypeId:value];
+        
+    } else if([[url absoluteString] rangeOfString:KEY_Banner_productlistall].location != NSNotFound) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        
+        [self fetchProductListingDataForCategory:bannerCatMdl];
+        
+        
+    } else if([[url absoluteString] rangeOfString:KEY_Banner_dealproductlisting].location != NSNotFound) {
+        
+        GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
+        if (hotDealVC == nil)
+            return ;
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
+        
+        
+    }else if([[url absoluteString] rangeOfString:KEY_Notification_Productdetail].location != NSNotFound){
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        [tabBarVC setSelectedIndex:0];
+        
+        GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+        GMProductModal *productModal = [[GMProductModal alloc]init];
+        productModal.productid = value;
+        vc.modal = productModal;
+        vc.parentVC = nil;
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        
+        [centerNavVC pushViewController:vc animated:YES];
+        
+        
+    }
+}
+
+-(void)openScreen:(NSString *)screenName data:(NSString *)value displayName:(NSString *)name{
+    if([screenName isEqualToString:KEY_Notification_Home]) {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        
+        [tabBarVC setSelectedIndex:0];
+        [self performSelector:@selector(goToHome) withObject:nil afterDelay:0.20];
+    }
+    else if([screenName isEqualToString:KEY_Notification_shopbydealtype]) {
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        
+        [tabBarVC setSelectedIndex:2];
+        //        [tabBarVC.viewControllers objectAtIndex:2];
+    } else if([screenName isEqualToString:KEY_Notification_search]) {
+        
+        NSMutableDictionary *localDic = [NSMutableDictionary new];
+        [localDic setObject:value forKey:kEY_keyword];
+        
+        [self.tabBarVC  setSelectedIndex:3];
+        GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
+        if (searchVC == nil)
+            return ;
+        [searchVC performSearchOnServerWithParam:localDic isBanner:YES];
+        
+        
+    } else if([screenName isEqualToString:KEY_Notification_offerbydealtype]) {
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        [self getOffersDealFromServerWithCategoryModal:bannerCatMdl];
+        
+        
+    } else if([screenName isEqualToString:KEY_Notification_dealsbydealtype]) {
+        
+        [self fetchDealCategoriesFromServerWithDealTypeId:value];
+        
+    } else if([screenName isEqualToString:KEY_Notification_productlistall]) {
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        
+        [self fetchProductListingDataForCategory:bannerCatMdl];
+        
+        
+    } else if([screenName isEqualToString:KEY_Notification_dealproductlisting]) {
+        
+        GMHotDealVC *hotDealVC = [self rootHotDealVCFromThirdTab];
+        if (hotDealVC == nil)
+            return ;
+        
+        GMCategoryModal *bannerCatMdl = [GMCategoryModal new];
+        bannerCatMdl.categoryId = value;
+        if(NSSTRING_HAS_DATA(name)) {
+            bannerCatMdl.categoryName = name;
+        } else {
+            bannerCatMdl.categoryName = @"Result";
+        }
+        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
+        
+        
+    }else if([screenName isEqualToString:KEY_Notification_Profile]) {
+        
+        [self.tabBarVC  setSelectedIndex:1];
+        GMProfileVC *profileVc = [self rootProfileVCFromSecondTab];
+        if (profileVc == nil)
+            return ;
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        [centerNavVC popToViewController:profileVc animated:YES];
+        
+        
+    }else if([screenName isEqualToString:KEY_Notification_LogOut]) {
+        GMTabBarVC *privioustabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        UINavigationController *priviouscenterNavVC = [privioustabBarVC.viewControllers objectAtIndex:privioustabBarVC.selectedIndex];
+        [priviouscenterNavVC popToRootViewControllerAnimated:YES];
+        
+        [[GMSharedClass sharedClass] logout];
+        [[GMSharedClass sharedClass] clearCart];
+        [self.tabBarVC updateBadgeValueOnCartTab];
+         
+        [self.tabBarVC  setSelectedIndex:1];
+        GMProfileVC *profileVc = [self rootProfileVCFromSecondTab];
+        
+        if (profileVc == nil)
+            return ;
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        [centerNavVC popToViewController:profileVc animated:YES];
+        
+        [profileVc setSecondTabAsLogIn];
+        
+        
+    }else if([screenName isEqualToString:KEY_Notification_ViewCart]) {
+        
+        [self.tabBarVC  setSelectedIndex:4];
+        GMCartVC *cartVC = [self rootCartVCFromFiftTab];
+        if (cartVC == nil)
+            return ;
+        
+        if([cartVC isKindOfClass:[GMCartVC class]]) {
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        [centerNavVC popToViewController:cartVC animated:YES];
+        }
+        
+    }else if([screenName isEqualToString:KEY_Notification_Productdetail]) {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        [tabBarVC setSelectedIndex:0];
+        
+        GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+        GMProductModal *productModal = [[GMProductModal alloc]init];
+        productModal.productid = value;
+        vc.modal = productModal;
+        vc.parentVC = nil;
+        
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        
+        [centerNavVC pushViewController:vc animated:YES];
+        
+        
+    }else {
+        
+//        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+//        if (tabBarVC == nil)
+//            return ;
+//        [tabBarVC setSelectedIndex:0];
+//        [self performSelector:@selector(goToHome) withObject:nil afterDelay:0.20];
+    }
+
+}
+
+-(void) goToHome{
+    GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+    UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+    for (UIViewController *vc in [centerNavVC viewControllers]) {// pop to dashboard
+        
+        if ( [NSStringFromClass([vc class]) isEqualToString:NSStringFromClass([GMHomeVC class])]) {
+            [centerNavVC popToViewController:vc animated:YES];
+            break;
+        }
+    }
+}
 #pragma mark - PushNotification Delgate
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
@@ -413,12 +528,14 @@ static int const kGaDispatchPeriod = 20;
         self.pushModal = nil;
         [self makePushModal:userInfo];
         [self goFromNotifiedScreen];
+        self.pushModal = nil;
     }
     else
     {
         self.pushModal = nil;
         [self makePushModal:userInfo];
         [self goFromNotifiedScreen];
+        self.pushModal = nil;
     }
 }
 #pragma mark - Push Modal maker Method
@@ -452,6 +569,12 @@ static int const kGaDispatchPeriod = 20;
     if(userModal != nil && NSSTRING_HAS_DATA(userModal.userId)) {
         [deviceDic setObject:userModal.userId forKey:kEY_userid];
     }
+    if(userModal != nil && NSSTRING_HAS_DATA(userModal.email)) {
+        [deviceDic setObject:userModal.email forKey:kEY_email];
+    }
+    if(userModal != nil && NSSTRING_HAS_DATA(userModal.firstName)) {
+        [deviceDic setObject:userModal.firstName forKey:kEY_fname];
+    }
     
     [[GMOperationalHandler handler] deviceToken:deviceDic withSuccessBlock:^(id responceData) {
         
@@ -463,6 +586,10 @@ static int const kGaDispatchPeriod = 20;
 
 - (void) goFromNotifiedScreen {
     
+    if([GMCityModal selectedLocation] == nil) {
+        return;
+    }
+    
     if (!NSSTRING_HAS_DATA(self.pushModal.linkUrl)) {
         return;
     }
@@ -471,8 +598,15 @@ static int const kGaDispatchPeriod = 20;
     NSString *typeStr = typeStringArr.firstObject;
     NSArray *valueStringArr = [self.pushModal.linkUrl componentsSeparatedByString:@"="];
     NSString *value = valueStringArr.lastObject;
-    
-    if ([self.pushModal.linkUrl isEqualToString:KEY_Banner_shopbydealtype]) {
+    if([self.pushModal.linkUrl isEqualToString:KEY_Banner_Home]) {
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        
+        [tabBarVC setSelectedIndex:0];
+        [self performSelector:@selector(goToHome) withObject:nil afterDelay:0.20];
+    }
+    else if ([self.pushModal.linkUrl isEqualToString:KEY_Banner_shopbydealtype]) {
             GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
         if (tabBarVC == nil)
             return;
@@ -490,6 +624,10 @@ static int const kGaDispatchPeriod = 20;
         
         NSMutableDictionary *localDic = [NSMutableDictionary new];
         [localDic setObject:value forKey:kEY_keyword];
+        
+        if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+            [localDic setObject:self.pushModal.notificationId forKey:KEY_Notification_Id];
+        }
         
         [self.tabBarVC  setSelectedIndex:3];
         GMSearchVC *searchVC = [APP_DELEGATE rootSearchVCFromFourthTab];
@@ -540,8 +678,31 @@ static int const kGaDispatchPeriod = 20;
         } else {
             bannerCatMdl.categoryName = @"Result";
         }
+        NSString *notificationId = @"";
+        if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+            notificationId = self.pushModal.notificationId;
+        }
+        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl withNotificationId:notificationId];
+    }else if([typeStr isEqualToString:KEY_Notification_Productdetail]){
         
-        [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        if (tabBarVC == nil)
+            return ;
+        [tabBarVC setSelectedIndex:0];
+        
+        GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+        GMProductModal *productModal = [[GMProductModal alloc]init];
+        NSString *notificationId = @"";
+        if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+            notificationId = self.pushModal.notificationId;
+        }
+        vc.notificationId = notificationId;
+        productModal.productid = value;
+        vc.modal = productModal;
+        vc.parentVC = nil;
+        UINavigationController *centerNavVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+        [centerNavVC pushViewController:vc animated:YES];
+        
     }
 
     
@@ -554,6 +715,10 @@ static int const kGaDispatchPeriod = 20;
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
     [localDic setObject:kEY_iOS forKey:kEY_device];
+    
+    if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+        [localDic setObject:self.pushModal.notificationId forKey:KEY_Notification_Id];
+    }
     
     [self ShowProcessingView];
     [[GMOperationalHandler handler] getOfferByDeal:localDic withSuccessBlock:^(id offersByDealTypeBaseModal) {
@@ -575,6 +740,7 @@ static int const kGaDispatchPeriod = 20;
         rootVC.pageData = offersByDealTypeArray;
         rootVC.navigationTitleString = categoryModal.categoryName;
         rootVC.rootControllerType = GMRootPageViewControllerTypeOffersByDealTypeListing;
+        [self.tabBarVC  setSelectedIndex:0];
        GMHomeVC *homeVC  = [self rootHomeVCFromFourthTab];
         [homeVC.navigationController pushViewController:rootVC animated:YES];
         
@@ -598,7 +764,16 @@ static int const kGaDispatchPeriod = 20;
 - (void)fetchDealCategoriesFromServerWithDealTypeId:(NSString *)dealTypeId {
     
     [self ShowProcessingView];
-    [[GMOperationalHandler handler] dealsByDealType:@{kEY_deal_type_id :dealTypeId, kEY_device : kEY_iOS} withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
+    
+    NSMutableDictionary *localDic = [NSMutableDictionary new];
+    [localDic setObject:dealTypeId forKey:kEY_deal_type_id];
+    [localDic setObject:kEY_iOS forKey:kEY_device];
+    
+    if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+        [localDic setObject:self.pushModal.notificationId forKey:KEY_Notification_Id];
+    }
+    
+    [[GMOperationalHandler handler] dealsByDealType:localDic withSuccessBlock:^(GMDealCategoryBaseModal *dealCategoryBaseModal) {
         
         [self HideProcessingView];
         NSMutableArray *dealCategoryArray = [self createCategoryDealsArrayWith:dealCategoryBaseModal];
@@ -606,7 +781,7 @@ static int const kGaDispatchPeriod = 20;
         if (dealCategoryArray.count < 2) {// GMRootPageViewController, must require at least 2 object, because one object is removing from index 0, in view did load to remove "ALL" tab 28/10/2015
             return ;
         }
-        
+        [self.tabBarVC  setSelectedIndex:0];
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = dealCategoryArray;
         rootVC.navigationTitleString = [dealCategoryBaseModal.dealNameArray firstObject];
@@ -634,6 +809,9 @@ static int const kGaDispatchPeriod = 20;
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:categoryModal.categoryId forKey:kEY_cat_id];
+    if(NSSTRING_HAS_DATA(self.pushModal.notificationId)) {
+        [localDic setObject:self.pushModal.notificationId forKey:KEY_Notification_Id];
+    }
     
     [self ShowProcessingView];
     [[GMOperationalHandler handler] productListAll:localDic withSuccessBlock:^(id productListingBaseModal) {
@@ -675,6 +853,7 @@ static int const kGaDispatchPeriod = 20;
         rootVC.pageData = categoryArray;
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
         rootVC.navigationTitleString = categoryModal.categoryName;
+        [self.tabBarVC  setSelectedIndex:0];
         GMHomeVC *homeVC  = [self rootHomeVCFromFourthTab];
         [homeVC.navigationController pushViewController:rootVC animated:YES];
         
@@ -706,6 +885,12 @@ static int const kGaDispatchPeriod = 20;
     [self.drawerController closeDrawerAnimated:YES completion:nil];
 }
 
+- (UIViewController *)getTopControler {
+    
+    GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+    UIViewController *centerVC = [tabBarVC.viewControllers objectAtIndex:tabBarVC.selectedIndex];
+    return centerVC;
+}
 - (void)popToCenterViewController {
     
     UINavigationController *centerNavVC = (UINavigationController*)(self.drawerController.centerViewController);
@@ -781,6 +966,26 @@ static int const kGaDispatchPeriod = 20;
     return nil;
 }
 
+-(GMCartVC*) rootCartVCFromFiftTab {
+    
+    @try {
+        
+        GMTabBarVC *tabBarVC = (GMTabBarVC *)(self.drawerController.centerViewController);
+        GMNavigationController *hotdealNavVC = [tabBarVC.viewControllers objectAtIndex:4];
+        
+        GMCartVC *cartVC = [hotdealNavVC viewControllers][0];
+        return cartVC;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
 - (void)goToHomeWithAnimation:(BOOL)animation {
     
     [self.window.layer removeAllAnimations];
@@ -808,7 +1013,7 @@ static int const kGaDispatchPeriod = 20;
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Splash_Screen];
 }
 
--(GMProfileVC*) rootProfileVCFromFourthTab {
+-(GMProfileVC*) rootProfileVCFromSecondTab {
     
     @try {
         
@@ -915,10 +1120,22 @@ static int const kGaDispatchPeriod = 20;
     
     if([[GMSharedClass sharedClass] getUserLoggedStatus] == YES) {
         
-       GMProfileVC *profileVc = [self rootProfileVCFromFourthTab];
+       GMProfileVC *profileVc = [self rootProfileVCFromSecondTab];
 //        [self.tabBarVC.selectedViewController  popToRootViewControllerAnimated:YES];
         [self.tabBarVC.selectedViewController popToViewController:profileVc animated:NO];
         profileVc.isMenuWallet = YES;
     }
+}
+
+-(void)goContactUs {
+//    if([[GMSharedClass sharedClass] isInternetAvailable]) {
+        [self.tabBarVC setSelectedIndex:0];
+        GMWebViewVC *webViewVC = [[GMWebViewVC alloc] initWithNibName:@"GMWebViewVC" bundle:nil];
+        webViewVC.isTermsAndCondition = NO;
+        [self.tabBarVC.selectedViewController pushViewController:webViewVC animated:YES];
+//    } else {
+//        [[GMSharedClass sharedClass] showErrorMessage:@"Please check internet connection."];
+//    }
+    
 }
 @end

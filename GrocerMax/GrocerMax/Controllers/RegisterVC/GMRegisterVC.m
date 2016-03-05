@@ -25,6 +25,7 @@
 #import <Google/SignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "GMWebViewVC.h"
 
 @interface GMRegisterVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GMGenderCellDelegate, GIDSignInUIDelegate,GIDSignInDelegate>
 
@@ -45,8 +46,8 @@
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
 
-static NSString * const kFirstNameCell                      =  @"First Name";
-static NSString * const kLastNameCell                       =  @"Last Name";
+static NSString * const kNameCell                           =  @"Name";
+//static NSString * const kLastNameCell                       =  @"Last Name";
 static NSString * const kMobileCell                         =  @"Mobile No";
 static NSString * const kEmailCell                          =  @"Email";
 static NSString * const kPasswordCell                       =  @"Password";
@@ -111,11 +112,10 @@ static NSString * const kGenderCell                         =  @"Gender";
 //                      [[PlaceholderAndValidStatus alloc] initWithCellType:kGenderCell placeHolder:@"required" andStatus:kNone],
 //                      nil];
         _cellArray = [NSMutableArray arrayWithObjects:
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kNameCell placeHolder:kNameCell andStatus:kNone],
+                       [[PlaceholderAndValidStatus alloc] initWithCellType:kEmailCell placeHolder:kEmailCell andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:kMobileCell andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kPasswordCell placeHolder:kPasswordCell andStatus:kNone],
                       nil];
     }
     return _cellArray;
@@ -171,22 +171,24 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (void)configureInputFieldCell:(GMRegisterInputCell*)inputCell withIndex:(NSInteger)cellIndex {
     
     PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:cellIndex];
+    inputCell.inputTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:objPlaceholderAndStatus.placeholder attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+    
     inputCell.inputTextField.returnKeyType = UIReturnKeyNext;
-    inputCell.inputTextField.placeholder = objPlaceholderAndStatus.placeholder ;
+//    inputCell.inputTextField.placeholder = objPlaceholderAndStatus.placeholder ;
     inputCell.statusType = (StatusType) objPlaceholderAndStatus.statusType ;
     inputCell.inputTextField.tag = cellIndex;
     inputCell.inputTextField.secureTextEntry = NO;
-    inputCell.cellNameLabel.text = objPlaceholderAndStatus.inputFieldCellType;
+    inputCell.cellNameLabel.text = @"";//objPlaceholderAndStatus.inputFieldCellType;
     [inputCell.showButton setHidden:YES];
     
-    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kFirstNameCell]) {
+    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kNameCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.firstName) ? self.userModal.firstName : @"";
     }
-    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kLastNameCell]) {
-        
-        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.lastName) ? self.userModal.lastName : @"";
-    }
+//    else if ([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kLastNameCell]) {
+//        
+//        inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.lastName) ? self.userModal.lastName : @"";
+//    }
     else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kMobileCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.mobile) ? self.userModal.mobile : @"";
@@ -217,7 +219,7 @@ static NSString * const kGenderCell                         =  @"Gender";
 
 - (void)showButtonTapped:(UIButton *)sender {
     
-    GMRegisterInputCell *cell = (GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    GMRegisterInputCell *cell = (GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     self.userModal.isShowTapped = !self.userModal.isShowTapped;
     if(self.userModal.isShowTapped) {
         
@@ -250,13 +252,13 @@ static NSString * const kGenderCell                         =  @"Gender";
             [self checkValidFirstName];
         }
             break;
-        case 1: {
-            
-            NSString *lastName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            textField.text = lastName;
-            [self.userModal setLastName:lastName];
-            [self checkValidLastName];
-        }
+//        case 1: {
+//            
+//            NSString *lastName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//            textField.text = lastName;
+//            [self.userModal setLastName:lastName];
+//            [self checkValidLastName];
+//        }
             break;
         case 2: {
             
@@ -266,7 +268,7 @@ static NSString * const kGenderCell                         =  @"Gender";
             [self checkValidMobileNumber];
         }
             break;
-        case 3: {
+        case 1: {
             
             NSString *email = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = email;
@@ -274,7 +276,7 @@ static NSString * const kGenderCell                         =  @"Gender";
             [self checkValidEmailAddress];
         }
             break;
-        case 4: {
+        case 3: {
             
             NSString *password = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             textField.text = password;
@@ -304,25 +306,25 @@ static NSString * const kGenderCell                         =  @"Gender";
                 return NO;
         }
             break;
-        case 1: {
-            ACCEPTABLE_CHARACTERS = @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            if([resultString length] > 30)
-                return NO;
-        }
-            break;
+//        case 1: {
+//            ACCEPTABLE_CHARACTERS = @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//            if([resultString length] > 30)
+//                return NO;
+//        }
+//            break;
         case 2: {
             
             if([resultString length] > 10)
                 return NO;
         }
             break;
-        case 3: {
+        case 1: {
             
             if([resultString length] > 30)
                 return NO;
         }
             break;
-        case 4: {
+        case 3: {
             
             if([resultString length] > 20)
                 return NO;
@@ -366,11 +368,11 @@ static NSString * const kGenderCell                         =  @"Gender";
     }else{
         resultedBool =  resultedBool && YES;
     }
-    if (![self checkValidLastName]) {
-        resultedBool =  resultedBool && NO;
-    }else{
-        resultedBool =  resultedBool && YES;
-    }
+//    if (![self checkValidLastName]) {
+//        resultedBool =  resultedBool && NO;
+//    }else{
+//        resultedBool =  resultedBool && YES;
+//    }
     if (![self checkValidMobileNumber]) {
         resultedBool =  resultedBool && NO;
     }else{
@@ -415,19 +417,19 @@ static NSString * const kGenderCell                         =  @"Gender";
     BOOL resultedBool = YES;
     int  rowNumber = 1;
     GMRegisterInputCell* cell ;
-    if (!NSSTRING_HAS_DATA(self.userModal.lastName)) {
-        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
-        cell.statusType = kInvalid;
-        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
-        objPlaceholderAndStatus.statusType = kInvalid;
-        return NO;
-    }else {
+//    if (!NSSTRING_HAS_DATA(self.userModal.lastName)) {
+//        cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
+//        cell.statusType = kInvalid;
+//        PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
+//        objPlaceholderAndStatus.statusType = kInvalid;
+//        return NO;
+//    }else {
         cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
         cell.statusType = kValid;
         resultedBool = YES;
         PlaceholderAndValidStatus* objPlaceholderAndStatus = [self.cellArray objectAtIndex:rowNumber];
         objPlaceholderAndStatus.statusType = kValid;
-    }
+//    }
     return resultedBool;
 }
 
@@ -455,7 +457,7 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (BOOL)checkValidEmailAddress{
     
     BOOL resultedBool = YES;
-    int  rowNumber = 3;
+    int  rowNumber = 1;
     GMRegisterInputCell* cell ;
     if (![GMSharedClass validateEmail:self.userModal.email]) {
         cell =(GMRegisterInputCell*) [self.registerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];
@@ -476,7 +478,7 @@ static NSString * const kGenderCell                         =  @"Gender";
 - (BOOL)checkValidPassword{
     
     BOOL resultedBool = YES;
-    int  rowNumber = 4;
+    int  rowNumber = 3;
     GMRegisterInputCell* cell ;
     if(NSSTRING_HAS_DATA(self.userModal.password) && [self.userModal.password length] >= 6) {
         
@@ -499,6 +501,16 @@ static NSString * const kGenderCell                         =  @"Gender";
 }
 
 #pragma mark - IBAction Methods
+- (IBAction)termsAndConditionButtonTapped:(id)sender {
+    
+    if([[GMSharedClass sharedClass] isInternetAvailable]) {
+        GMWebViewVC *webViewVC = [[GMWebViewVC alloc] initWithNibName:@"GMWebViewVC" bundle:nil];
+        webViewVC.isTermsAndCondition = TRUE;
+        [self.navigationController pushViewController:webViewVC animated:YES];
+    } else {
+        [[GMSharedClass sharedClass] showErrorMessage:@"Please check internet connection."];
+    }
+}
 
 - (IBAction)createAccountButtonTapped:(id)sender {
     
@@ -507,8 +519,12 @@ static NSString * const kGenderCell                         =  @"Gender";
         NSMutableDictionary *userDic = [[NSMutableDictionary alloc]init];
         if(NSSTRING_HAS_DATA(self.userModal.firstName))
             [userDic setObject:self.userModal.firstName forKey:kEY_fname];
-        if(NSSTRING_HAS_DATA(self.userModal.lastName))
+        if(NSSTRING_HAS_DATA(self.userModal.lastName)) {
             [userDic setObject:self.userModal.lastName forKey:kEY_lname];
+        }
+        else {
+            [userDic setObject:@"" forKey:kEY_lname];
+        }
         if(NSSTRING_HAS_DATA(self.userModal.email))
             [userDic setObject:self.userModal.email forKey:kEY_uemail];
         if(NSSTRING_HAS_DATA(self.userModal.mobile))
@@ -578,13 +594,27 @@ static NSString * const kGenderCell                         =  @"Gender";
                                      [userModal setLastName:[result objectForKey:@"last_name"]];
                                      [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
                                      
-                                     if(NSSTRING_HAS_DATA(userModal.email))
-                                         [self fbRegisterOnServerWithUserModal:userModal];
-                                     else {
-                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-                                         vc.userModal = userModal;
-                                         [self.navigationController pushViewController:vc animated:YES];
-                                     }
+////                                     if(NSSTRING_HAS_DATA(userModal.email))
+////                                         [self fbRegisterOnServerWithUserModal:userModal];
+////                                     else {
+//                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+//                                         vc.userModal = userModal;
+//                                         [self.navigationController pushViewController:vc animated:YES];
+////                                     }
+                                     
+//                                     if([[resultDic objectForKey:kEY_flag] isEqualToString:@"1"]) {
+//                                         [userModal persistUser];// save user modal in memory
+//                                         [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+//                                         
+//                                             [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+//                                             [self.navigationController popToRootViewControllerAnimated:YES];
+//                                     } else {
+//                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+//                                         vc.userModal = userModal;
+//                                         [self.navigationController pushViewController:vc animated:YES];
+//                                     }
+
+                                     [self fbRegisterOnServerWithUserModal:userModal];
                                  }
                              }
                              
@@ -616,13 +646,15 @@ static NSString * const kGenderCell                         =  @"Gender";
         [userModal setLastName:@""];
         [userModal setGender:GMGenderTypeMale];// suppose it defaul
         
-        if(NSSTRING_HAS_DATA(userModal.email))
+//        if(NSSTRING_HAS_DATA(userModal.email))
             [self fbRegisterOnServerWithUserModal:userModal];
-        else {
-            GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-            vc.userModal = userModal;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        [[GIDSignIn sharedInstance] signOut];
+        
+//        else {
+//            GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+//            vc.userModal = userModal;
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
     }
 }
 - (void)signIn:(GIDSignIn *)signIn
@@ -665,18 +697,27 @@ didDisconnectWithUser:(GIDGoogleUser *)user
         if ([resDic objectForKey:kEY_UserID]) {
             [userModal setQuoteId:resDic[kEY_QuoteId]];
             [userModal setUserId:resDic[kEY_UserID]];
-            
+        }
             if ([resDic objectForKey:kEY_Mobile]) {
                 [userModal setMobile:[resDic objectForKey:kEY_Mobile]];
             }
             
             [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
             
-            [userModal persistUser];// save user modal in memory
-            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
-            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
+            
+            if([[resDic objectForKey:kEY_flag] isEqualToString:@"1"]) {
+                [[GMSharedClass sharedClass] makeLastNameFromUserModal:self.userModal];
+                [userModal persistUser];// save user modal in memory
+                [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+                [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            } else {
+                GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                vc.userModal = userModal;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+            
         
     } failureBlock:^(NSError *error) {
         

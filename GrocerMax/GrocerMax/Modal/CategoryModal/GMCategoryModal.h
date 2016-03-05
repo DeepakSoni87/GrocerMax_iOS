@@ -16,6 +16,8 @@
 
 @property (nonatomic, readonly, strong) NSString *categoryName;
 
+@property (nonatomic, readonly, strong) NSString *categoryImageURL;
+
 @property (nonatomic, readonly, strong) NSString *isActive;
 
 @property (nonatomic, readonly, strong) NSString *position;
@@ -36,6 +38,8 @@
 
 @property (nonatomic, readonly, assign) NSUInteger totalCount;
 
+
+
 + (instancetype)loadRootCategory;
 
 - (void)archiveRootCategory;
@@ -45,6 +49,8 @@
 - (void)setParentId:(NSString *)parentId;
 
 - (void)setCategoryName:(NSString *)categoryName;
+
+- (void)setCategoryImageURL:(NSString *)categoryImageURL;
 
 - (void)setIsActive:(NSString *)isActive;
 

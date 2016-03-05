@@ -8,6 +8,7 @@
 
 #import "GMRootPageViewController.h"
 #import "GMRootPageModelController.h"
+#import "GMStateBaseModal.h"
 
 CGFloat originY = 0.0; //for all btn
 CGFloat btnHeight = 40.0; //same as scrollview
@@ -177,6 +178,17 @@ CGFloat btnHeight = 40.0; //same as scrollview
     }
     
     index--;
+    
+    
+    
+    
+    
+    if(self.rootControllerType == GMRootPageViewControllerTypeProductlisting) {
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        NSString *title = @"";
+        title = [self.modelController titleNameFormModal:self.pageData[index]];
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"L3" label:title];
+    }
     return [self.modelController viewControllerAtIndex:index];
 }
 
@@ -192,6 +204,14 @@ CGFloat btnHeight = 40.0; //same as scrollview
     if (index == [self.pageData count]) {
         return nil;
     }
+    
+    if(self.rootControllerType == GMRootPageViewControllerTypeProductlisting) {
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        NSString *title = @"";
+        title = [self.modelController titleNameFormModal:self.pageData[index]];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"L3" label:title];
+    }
+    
     return [self.modelController viewControllerAtIndex:index];
 }
 
@@ -233,6 +253,47 @@ CGFloat btnHeight = 40.0; //same as scrollview
     if(button.tag == self.currentPageIndex) {
         return;
     }
+    
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    
+    NSString *title = @"";
+    
+    
+    switch (self.rootControllerType) {
+        case  GMRootPageViewControllerTypeProductlisting:
+        {
+            title = [self.modelController titleNameFormModal:self.pageData[button.tag]];
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"L3" label:title];
+        }
+            break;
+        case GMRootPageViewControllerTypeOffersByDealTypeListing:
+        {
+            title = [self.modelController titleNameFormModal:self.pageData[button.tag]];
+            title = [NSString stringWithFormat:@"%@-%@",self.navigationTitleString,title];
+            
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Category Deals" label:title];
+        }
+            break;
+        case GMRootPageViewControllerTypeDealCategoryTypeListing:
+        {
+            title = [self.modelController titleNameFormModal:self.pageData[button.tag]];
+            title = [NSString stringWithFormat:@"%@-%@",title,self.navigationTitleString];
+            if(self.isFromDrawerDeals) {
+                [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Drawer - Deal Category L2" label:title];
+            } else {
+                [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Deal Category L2" label:title];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+
+    
+    
     
     if (button.tag > tempIndex) {
         

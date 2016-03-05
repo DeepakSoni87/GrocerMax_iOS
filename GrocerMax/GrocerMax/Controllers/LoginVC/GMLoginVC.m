@@ -14,6 +14,7 @@
 #import "GMForgotVC.h"
 #import "GMProfileVC.h"
 #import "GMProvideMobileInfoVC.h"
+#import "GMStateBaseModal.h"
 
 @interface GMLoginVC ()<UITextFieldDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
@@ -31,10 +32,20 @@
     // Do any additional setup after loading the view from its nib.
     
     //    [self configureView];
-    if(self.isPresent)
-        self.closeBtn.hidden = NO;
-    else
-        self.closeBtn.hidden = YES;
+    self.navigationItem.rightBarButtonItem = nil;
+    if(self.isPresent) {
+        UIBarButtonItem *signoutButton = [[UIBarButtonItem alloc]
+                                          initWithTitle:@"Cancel"
+                                          style:UIBarButtonItemStylePlain
+                                          target:self
+                                          action:@selector(closeBtnPressed:)];
+        self.navigationItem.rightBarButtonItem = signoutButton;
+        //        self.closeBtn.hidden = NO;
+    }
+    else {
+       //        self.closeBtn.hidden = YES;
+    }
+
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabProfile withCategory:@"" label:nil value:nil];
 }
@@ -47,7 +58,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
+    self.navigationItem.title = @"LOGIN";
+    self.navigationController.navigationBarHidden = NO;
     [[GMSharedClass sharedClass] setTabBarVisible:YES ForController:self animated:YES];
     if(self.isPresent) {
         
@@ -75,13 +88,13 @@
 - (void)setTxt_email:(UITextField *)txt_email {
     
     _txt_email = txt_email;
-    _txt_email.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email Address" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
+    _txt_email.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email ID" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
 }
 
 - (void)setTxt_password:(UITextField *)txt_password {
     
     _txt_password = txt_password;
-    _txt_password.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.45]}];
+    _txt_password.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
 }
 
 #pragma mark - Button Action
@@ -121,20 +134,23 @@
                                  if ([result objectForKey:@"email"]) {
                                      [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_FacebookLogin withCategory:@"" label:nil value:nil];
                                      
+                                     GMCityModal *cityModal = [GMCityModal selectedLocation];
+                                     [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Login" label:@"Social"];
+                                     
+                                     
                                      GMUserModal *userModal = [[GMUserModal alloc] init];
                                      [userModal setFbId:[result objectForKey:@"id"]];
                                      [userModal setEmail:[result objectForKey:@"email"]];
                                      [userModal setFirstName:[result objectForKey:@"first_name"]];
-                                     [userModal setLastName:[result objectForKey:@"last_name"]];
                                      [userModal setGender:[[result objectForKey:@"gender"] isEqualToString:@"male"]?GMGenderTypeMale:GMGenderTypeFemale];
                                      
-                                     if(NSSTRING_HAS_DATA(userModal.email))
+//                                     if([[result objectForKey:kEY_flag] isEqualToString:@"1"])
                                          [self fbRegisterOnServerWithUserModal:userModal];
-                                     else {
-                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-                                         vc.userModal = userModal;
-                                         [self.navigationController pushViewController:vc animated:YES];
-                                     }
+//                                     else {
+//                                         GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+//                                         vc.userModal = userModal;
+//                                         [self.navigationController pushViewController:vc animated:YES];
+//                                     }
                                  }
                              }
                              
@@ -169,6 +185,10 @@
         [[GMOperationalHandler handler] login:param withSuccessBlock:^(GMUserModal *userModal) {
             
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_EmailLogin withCategory:@"" label:nil value:nil];
+            
+            GMCityModal *cityModal = [GMCityModal selectedLocation];
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Login" label:@"Regular"];
+            
             [self removeProgress];
             
             GMUserModal *saveUserModal = [GMUserModal loggedInUser];
@@ -186,6 +206,7 @@
                 [self setSecondTabAsProfile];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
+            
             
         } failureBlock:^(NSError *error) {
             
@@ -234,20 +255,25 @@ didSignInForUser:(GIDGoogleUser *)user
     if(error == nil) {
         if (user.profile.email) {
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_GoogleLogin withCategory:@"" label:nil value:nil];
+            
+            GMCityModal *cityModal = [GMCityModal selectedLocation];
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Login" label:@"Social"];
+            
             GMUserModal *userModal = [GMUserModal new];
             [userModal setGoogleId:user.userID];
             [userModal setEmail:user.profile.email];
             [userModal setFirstName:user.profile.name];
             [userModal setLastName:@""];
             [userModal setGender:GMGenderTypeMale];// suppose it defaul
+            [[GIDSignIn sharedInstance] signOut];
             
             if(NSSTRING_HAS_DATA(userModal.email))
                 [self fbRegisterOnServerWithUserModal:userModal];
-            else {
-                GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
-                vc.userModal = userModal;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+//            else {
+//                GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+//                vc.userModal = userModal;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
         }
     }
 }
@@ -300,26 +326,33 @@ didDisconnectWithUser:(GIDGoogleUser *)user
         NSDictionary *resDic = data;
         
         if ([resDic objectForKey:kEY_UserID]) {
-            [userModal setQuoteId:resDic[kEY_QuoteId]];
-            [userModal setUserId:resDic[kEY_UserID]];
+                [userModal setQuoteId:resDic[kEY_QuoteId]];
+                [userModal setUserId:resDic[kEY_UserID]];
+                
+                if ([resDic objectForKey:kEY_Mobile]) {
+                    [userModal setMobile:[resDic objectForKey:kEY_Mobile]];
+                }
+                [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
+             }
             
-            if ([resDic objectForKey:kEY_Mobile]) {
-                [userModal setMobile:[resDic objectForKey:kEY_Mobile]];
-            }
-            
-            
-            
-            [userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
-            
-            [userModal persistUser];// save user modal in memory
-            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
-            if(self.isPresent) {
-                [self dismissViewControllerAnimated:YES completion:nil];
+            if([[resDic objectForKey:kEY_flag] isEqualToString:@"1"]) {
+                [[GMSharedClass sharedClass] makeLastNameFromUserModal:userModal];
+                [userModal persistUser];// save user modal in memory
+                [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+                if(self.isPresent) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                } else {
+                    [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
             } else {
-            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
-            [self.navigationController popToRootViewControllerAnimated:YES];
+                    GMProvideMobileInfoVC *vc = [[GMProvideMobileInfoVC alloc] initWithNibName:@"GMProvideMobileInfoVC" bundle:nil];
+                    vc.userModal = userModal;
+                    [self.navigationController pushViewController:vc animated:YES];
             }
-        }
+            
+            
+       
         
     } failureBlock:^(NSError *error) {
         

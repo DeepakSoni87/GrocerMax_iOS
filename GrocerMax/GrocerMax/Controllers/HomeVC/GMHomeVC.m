@@ -35,6 +35,7 @@
 #import "GMPaymentVC.h"
 #import "GMProductListingVC.h"
 #import "GMHomeModal.h"
+#import "GMProductDescriptionVC.h"
 
 //#define   KEY_Banner_search @"search"
 //#define   KEY_Banner_offerbydealtype @"offerbydealtype"
@@ -246,8 +247,12 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
 #pragma mark - paggin cell Delegate
 
 -(void)didSelectItemAtTableViewCellIndexPath:(NSIndexPath*)tblIndexPath andCollectionViewIndexPath:(NSIndexPath *)collectionIndexpath{
+    GMHomeBannerModal *homeBannerModal =self.bannerListArray[collectionIndexpath.item];
     
-    [self handleBannerAction:self.bannerListArray[collectionIndexpath.item]];
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Banner Click" label:homeBannerModal.imageUrl];
+    
+    [self handleBannerAction:homeBannerModal];
 }
 
 #pragma mark - Categories cell Delegate
@@ -258,6 +263,11 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     GMSubCategoryVC * categoryVC  = [GMSubCategoryVC new];
     categoryVC.rootCategoryModal = catModal;
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CategorySelection withCategory:@"" label:catModal.categoryName value:nil];
+    
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"L1" label:catModal.categoryName];
+    
     [self.navigationController pushViewController:categoryVC animated:YES];
 }
 
@@ -275,6 +285,11 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
     
     GMHotDealModal *hotDealModal = [self.hotDealsArray objectAtIndex:collectionIndexpath.row];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_DealSelection withCategory:@"" label:hotDealModal.dealTypeId value:nil];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Deal Category L1" label:hotDealModal.dealType];
+    
+    
     [self fetchDealCategoriesFromServerWithDealTypeId:hotDealModal.dealTypeId];
 }
 
@@ -310,6 +325,7 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
             
             GMCategoryModal *defaultCategory = [[self.categoriesArray filteredArrayUsingPredicate:pred] firstObject];
             defaultCategory.offercount = dic[kEY_offercount];
+            defaultCategory.categoryImageURL = dic[kEY_images];
         }
 
         [self removeProgress];
@@ -547,6 +563,16 @@ NSString *const ourPromisesCell = @"GMOurPromisesCell";
 //        bannerCatMdl.categoryName = @"Banner Result";
         
         [hotDealVC fetchDealProductListingDataForOffersORDeals:bannerCatMdl];
+    }else if([typeStr isEqualToString:KEY_Notification_Productdetail]){
+        
+        
+        GMProductDescriptionVC* vc = [[GMProductDescriptionVC alloc] initWithNibName:@"GMProductDescriptionVC" bundle:nil];
+        GMProductModal *productModal = [[GMProductModal alloc]init];
+        productModal.productid = value;
+        vc.modal = productModal;
+        vc.parentVC = nil;
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
 }
 

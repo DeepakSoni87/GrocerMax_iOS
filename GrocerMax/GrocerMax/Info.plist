@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -45,6 +45,16 @@
 				<string>com.grocermax.grocermax</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.grocerMax.grocerMax</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>grocermax</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
@@ -68,6 +78,8 @@
 		<string>fbauth2</string>
 		<string>fb-messenger-api20140430</string>
 		<string>fb951586228219659</string>
+		<string>whatsapp</string>
+		<string>grocermax</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

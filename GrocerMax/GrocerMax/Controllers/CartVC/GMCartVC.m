@@ -13,6 +13,7 @@
 #import "GMShipppingAddressVC.h"
 #import "GMLoginVC.h"
 #import "GMParentController.h"
+#import "GMStateBaseModal.h"
 
 
 @interface GMCartVC () <UITableViewDataSource, UITableViewDelegate, GMCartCellDelegate>
@@ -45,11 +46,15 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *dottedImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *billBusterLbl;
+
 @property (nonatomic, strong) NSString *messageString;
 @end
 
 static NSString * const kCartCellIdentifier    = @"cartCellIdentifier";
 static NSString * const kSoldOutPromotionString = @"Please remove item from cart to proceed.";
+
+static NSString * const kOutOfStockString = @"ONLY 121 IN STOCK.PLEASE REDUCE THE QUANTITY.";
 
 @implementation GMCartVC
 
@@ -83,6 +88,11 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
     [self setTotalCount];
     [self fetchCartDetailFromServer];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_Cart_Screen];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Open Cart" label:@""];
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -118,6 +128,8 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
         [self.dottedImageView setHidden:YES];
         [self.placeOrderButton setHidden:YES];
         self.messageString = @"No item in your cart, Please add item.";
+        self.billBusterLbl.hidden = TRUE;
+        self.billBusterLbl.text = @"";
         [self.cartDetailTableView reloadData];
         return;
     }
@@ -149,6 +161,8 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
             [self.placeOrderButton setHidden:YES];
             [self.dottedImageView setHidden:YES];
             self.messageString = @"No item in your cart, Please add item.";
+            self.billBusterLbl.hidden = TRUE;
+            self.billBusterLbl.text = @"";
         }
         [self.cartDetailTableView reloadData];
     } failureBlock:^(NSError *error) {
@@ -159,6 +173,8 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
         [self.updateOrderButton setHidden:YES];
         [self.placeOrderButton setHidden:YES];
         [self.dottedImageView setHidden:YES];
+        self.billBusterLbl.hidden = TRUE;
+        self.billBusterLbl.text= @"";
         [self.cartDetailTableView reloadData];
     }];
 }
@@ -170,6 +186,14 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
     [self.totalLabel setText:[NSString stringWithFormat:@"₹%.2f", self.cartDetailModal.grandTotal.doubleValue]];
     double savingAmount = [self getSavedAmount];
     [self.savedLabel setText:[NSString stringWithFormat:@"₹%.2f", savingAmount]];
+    
+    if(NSSTRING_HAS_DATA(self.cartDetailModal.billBuster)) {
+        [self.billBusterLbl setText:self.cartDetailModal.billBuster];
+        self.billBusterLbl.hidden = FALSE;
+    } else {
+        [self.billBusterLbl setText:@""];
+        self.billBusterLbl.hidden = TRUE;
+    }
 }
 
 - (double)getSavedAmount {
@@ -228,7 +252,28 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GMProductModal *productModal = [self.cartDetailModal.productItemsArray objectAtIndex:indexPath.row];
-    if(NSSTRING_HAS_DATA(productModal.promotion_level) && [productModal.Status isEqualToString:@"0"])
+//    if(NSSTRING_HAS_DATA(productModal.promotion_level) && [productModal.Status isEqualToString:@"0"])
+//        return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
+//    else if(NSSTRING_HAS_DATA(productModal.promotion_level))
+//        return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
+//    else if ([productModal.Status isEqualToString:@"0"])
+//        return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
+//    else
+//        return [GMCartCell cellHeightWithNoPromotion];
+    
+    if([productModal.Status isEqualToString:@"0"] && [productModal.noOfItemInStock intValue]>0) {
+        
+        if(productModal.sale_price.integerValue == 0) {
+            if(NSSTRING_HAS_DATA(productModal.promotion_level))
+                return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
+            else
+                return [GMCartCell cellHeightWithNoPromotion];
+        } else {
+            return [GMCartCell cellHeightForPromotionalLabelWithText:kOutOfStockString];
+        }
+        
+    }
+    else if(NSSTRING_HAS_DATA(productModal.promotion_level) && [productModal.Status isEqualToString:@"0"])
         return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
     else if(NSSTRING_HAS_DATA(productModal.promotion_level))
         return [GMCartCell cellHeightForPromotionalLabelWithText:productModal.promotion_level];
@@ -236,6 +281,10 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
         return [GMCartCell cellHeightForPromotionalLabelWithText:kSoldOutPromotionString];
     else
         return [GMCartCell cellHeightWithNoPromotion];
+    
+    
+    
+//    && [self.productModal.noOfItemInStock intValue]<1
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -358,6 +407,9 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
         }
         else {
             
+            GMCityModal *cityModal = [GMCityModal selectedLocation];
+            [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Proceed to Checkout" label:@""];
+            
             self.checkOutModal = [[GMCheckOutModal alloc]init];
             GMShipppingAddressVC *shipppingAddressVC = [[GMShipppingAddressVC alloc] initWithNibName:@"GMShipppingAddressVC" bundle:nil];
             self.checkOutModal.cartDetailModal = self.cartDetailModal;
@@ -374,6 +426,10 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_CartUpdate withCategory:@"" label:nil value:nil];
     if([self checkWhetherUpdateRequestNeeded]) {
+        
+        
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Update Cart" label:@""];
         
         NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] updateDeleteRequestParameterFromCartDetailModal:self.cartDetailModal];
         [self showProgress];
@@ -399,6 +455,8 @@ static NSString * const kSoldOutPromotionString = @"Please remove item from cart
                 [self.dottedImageView setHidden:NO];
                 [self.updateOrderButton setHidden:YES];
                 self.messageString = @"No item in your cart, Please add item.";
+                self.billBusterLbl.hidden = TRUE;
+                self.billBusterLbl.text = @"";
                 [self checkIsAnyItemOutOfStock];
             }
             [self setTotalCount];

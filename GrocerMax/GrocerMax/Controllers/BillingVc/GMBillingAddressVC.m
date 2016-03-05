@@ -11,6 +11,7 @@
 #import "GMTAddAddressCell.h"
 #import "GMDeliveryDetailVC.h"
 #import "GMAddBillingAddressVC.h"
+#import "GMStateBaseModal.h"
 
 static NSString *kIdentifierBillingAddressCell = @"BillingAddressIdentifierCell";
 static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
@@ -48,6 +49,9 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     self.footerBgView.layer.cornerRadius = CORNER_RADIUS;
     [self.billingAddressTableView setTableFooterView:self.footerView];
     self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Billing address" label:@""];
 
 }
 

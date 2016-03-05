@@ -9,8 +9,11 @@
 #import "GMSearchVC.h"
 #import "GMSearchResultModal.h"
 #import "GMRootPageViewController.h"
+#import "GMStateBaseModal.h"
 
-@interface GMSearchVC ()<UISearchBarDelegate>
+@interface GMSearchVC ()<UISearchBarDelegate> {
+    NSString *keyWord;
+}
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarView;
 
@@ -30,6 +33,9 @@
                                              action:@selector(homeButtonPressed:)];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_TabSearch withCategory:@"" label:nil value:nil];
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_OpenSearch withCategory:@"" label:nil value:nil];
+    if(NSSTRING_HAS_DATA(keyWord)) {
+        self.searchBarView.text = keyWord;
+    }
 
 }
 - (void) viewWillAppear:(BOOL)animated {
@@ -80,6 +86,10 @@
 - (void)performSearchOnServerWithParam:(NSDictionary*)param isBanner:(BOOL)isBanner{
     
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_SearchQuery withCategory:@"" label:[param  objectForKey:kEY_keyword] value:nil];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Search" label:[param  objectForKey:kEY_keyword]];
+    keyWord = [param  objectForKey:kEY_keyword];
     if(isBanner) {
         if([param  objectForKey:kEY_keyword]) {
             self.searchBarView.text = [param  objectForKey:kEY_keyword];
@@ -104,7 +114,11 @@
 
         GMRootPageViewController *rootVC = [[GMRootPageViewController alloc] initWithNibName:@"GMRootPageViewController" bundle:nil];
         rootVC.pageData = searchResultModal.categorysListArray;
+        if(NSSTRING_HAS_DATA(self.searchBarView.text)) {
         rootVC.navigationTitleString = self.searchBarView.text;
+        } else if(NSSTRING_HAS_DATA(keyWord)) {
+            rootVC.navigationTitleString = keyWord;
+        }
         rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
         rootVC.isFromSearch = YES;
         [self.navigationController pushViewController:rootVC animated:YES];

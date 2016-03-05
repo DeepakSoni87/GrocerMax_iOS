@@ -10,7 +10,7 @@
 #import "GMOtpVC.h"
 #import "GMProfileVC.h"
 
-@interface GMProvideMobileInfoVC ()
+@interface GMProvideMobileInfoVC ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *manualTextLbl;
 @property (weak, nonatomic) IBOutlet UIView *txtBGView;
@@ -56,31 +56,44 @@
     self.submitBtn.layer.cornerRadius = 5.0;
     self.submitBtn.layer.masksToBounds = YES;
     
-    if (self.userModal.email.length > 1) {// for phone
+//    if (self.userModal.email.length > 1) {// for phone
         self.manualTextLbl.text = @"Please provide your phone for further communication";
         self.txtField.placeholder = @"Enter Phone";
-    }else{// for email
-        self.manualTextLbl.text = @"Please provide your email for further communication";
-        self.txtField.placeholder = @"Enter Email";
-    }
+    self.txtField.delegate = self;
+//    }else{// for email
+//        self.manualTextLbl.text = @"Please provide your email for further communication";
+//        self.txtField.placeholder = @"Enter Email";
+//    }
 }
 
 #pragma mark - Button Action
 
 - (IBAction)submitBtnPressed:(UIButton *)sender {
     
+    
     if (self.userModal.email.length > 1) {// for phone
+        
         if ([self performValidationsOnPhone]) {
+            [self.view endEditing:YES];
             [self.userModal setMobile:self.txtField.text];
             [self fbRegisterOnServer];
         }
     }else{// for email
         
         if ([self performValidationsOnEmail]) {
+            [self.view endEditing:YES];
             [self.userModal setEmail:self.txtField.text];
             [self fbRegisterOnServer];
         }
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+     NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if([resultString length] > 10)
+        return NO;
+    return YES;
 }
 
 #pragma mark - Validations...
@@ -126,7 +139,7 @@
     [paramDict setObject:self.userModal.email forKey:kEY_uemail];
     [paramDict setObject:@"" forKey:kEY_quote_id];
     [paramDict setObject:self.userModal.firstName ? self.userModal.firstName : @"" forKey:kEY_fname];
-    [paramDict setObject:self.userModal.lastName ? self.userModal.lastName : @"" forKey:kEY_lname];
+//    [paramDict setObject:self.userModal.lastName ? self.userModal.lastName : @"" forKey:kEY_lname];
     [paramDict setObject:self.userModal.mobile forKey:kEY_number];
 
     [self showProgress];
@@ -138,20 +151,30 @@
         if ([resDic objectForKey:kEY_UserID]) {
             [self.userModal setQuoteId:resDic[kEY_QuoteId]];
             [self.userModal setUserId:resDic[kEY_UserID]];
-            
-            
+        }
+        
             if ([resDic objectForKey:kEY_Mobile]) {
                 [self.userModal setMobile:[resDic objectForKey:kEY_Mobile]];
             }
             
             
             [self.userModal setTotalItem:[NSNumber numberWithInteger:[resDic[kEY_TotalItem] integerValue]]];
-            
-            [self.userModal persistUser];// save user modal in memory
-            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
-            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+        
+        if ([resDic objectForKey:@"otp"]) {
+        NSString *optString = [NSString stringWithFormat:@"%@", [resDic objectForKey:@"otp"]];
+        
+            if(NSSTRING_HAS_DATA(optString)) {
+            [self.userModal setOtp:[NSString stringWithFormat:@"%@", [resDic objectForKey:@"otp"]]];
+            }
         }
-                
+            GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
+            otpVC.userModal = self.userModal;
+            [self.navigationController pushViewController:otpVC animated:YES];
+            
+//            [self.userModal persistUser];// save user modal in memory
+//            [[GMSharedClass sharedClass] setUserLoggedStatus:YES];// save logged in status
+//            [self setSecondTabAsProfile];//So user is registered, now set 2nd tab as profile
+            
     } failureBlock:^(NSError *error) {
         
         [self removeProgress];

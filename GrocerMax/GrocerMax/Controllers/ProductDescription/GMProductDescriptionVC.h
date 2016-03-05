@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) GMProductModal *modal;
 @property (nonatomic, strong) GMRootPageViewController *parentVC;
+@property (strong, nonatomic) NSString *notificationId;
 
 @end

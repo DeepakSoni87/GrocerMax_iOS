@@ -8,6 +8,7 @@
 
 #import "GMProductDescriptionVC.h"
 #import "GMProductDetailModal.h"
+#import "GMStateBaseModal.h"
 
 #define kMAX_Quantity 500
 
@@ -79,6 +80,10 @@
     
     NSMutableDictionary *localDic = [NSMutableDictionary new];
     [localDic setObject:self.modal.productid forKey:kEY_pro_id];
+    if(NSSTRING_HAS_DATA(self.notificationId)) {
+        [localDic setObject:self.notificationId forKey:KEY_Notification_Id];
+    }
+    
     
     [self showProgress];
     [[GMOperationalHandler handler] productDetail:localDic withSuccessBlock:^(id responceData) {
@@ -124,8 +129,17 @@
     [self.modal setProductQuantity:[NSString stringWithFormat:@"%ld",self.productQuantity]];
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:self.modal];
     GMProductModal *productCartModal = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
-    [self.parentVC.cartModal.cartItems addObject:productCartModal];
-    [self.parentVC.cartModal archiveCart];
+    if(self.parentVC != nil) {
+        [self.parentVC.cartModal.cartItems addObject:productCartModal];
+        [self.parentVC.cartModal archiveCart];
+    }
+    
+    
+    NSString *title= @"";
+    title = [NSString stringWithFormat:@"%@-%@-%@",productCartModal.productid,productCartModal.name,productCartModal.productQuantity];
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Add to Cart" label:title];
+    
     
     NSDictionary *requestParam = [[GMCartRequestParam sharedCartRequest] addToCartParameterDictionaryFromProductModal:productCartModal];
     [[GMOperationalHandler handler] addTocartGust:requestParam withSuccessBlock:nil failureBlock:nil];

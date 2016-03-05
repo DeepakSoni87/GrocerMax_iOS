@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *linkUrl;
 @property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSString *notificationId;
 
 - (GMHomeBannerModal *)initWithDictionary:(NSDictionary *)notificationDetailDic;
 

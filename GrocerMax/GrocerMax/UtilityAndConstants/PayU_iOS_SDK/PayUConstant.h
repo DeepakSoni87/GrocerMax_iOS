@@ -216,7 +216,7 @@
 
 
 //HTTP methods
-#define  POST  @"POST"
-#define  GET   @"GET"
+#define  POST_PAYU  @"POST"
+#define  GET_PAYU   @"GET"
 
 #endif

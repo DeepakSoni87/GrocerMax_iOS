@@ -377,4 +377,44 @@
  * @output JSON string
  */
 + (NSString *)walletHistoryPath;
+
+/**
+ This api  use to get payment way
+ * Function get payment way
+ * return payment way path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)paymentWayPath;
+
+
+/**
+ This api  use to citrus payment cancle and suceess
+ * Function get payment way
+ * return payment way path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)loadCitrus;
+
+
+/**
+ This api  use to get terms and condition
+ * Function get terms and condition
+ * return terms and condition path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)termandCondition ;
+
+
+/**
+ This api  use to get contact detail
+ * Function get contact detail
+ * return contact path URL
+ * mandatory no
+ * @output JSON string
+ */
++ (NSString *)contact;
+
 @end

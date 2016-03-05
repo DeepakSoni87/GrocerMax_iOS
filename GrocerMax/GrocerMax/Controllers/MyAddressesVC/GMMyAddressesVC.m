@@ -178,6 +178,10 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 
 - (void) editBtnClicked:(GMButton *)sender {
     
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Edit Address"];
+    
     GMAddressModalData *addressModalData = sender.addressModal;
     GMAddShippingAddressVC *shippingAddressVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
     shippingAddressVC.editAddressModal = addressModalData;
@@ -185,6 +189,9 @@ static NSString *kIdentifierMyAddressCell = @"MyAddressIdentifierCell";
 }
 
 - (IBAction)addNewAddressButtonTapped:(id)sender {
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Create Address"];
     
     GMAddShippingAddressVC *shippingAddressVC = [[GMAddShippingAddressVC alloc] initWithNibName:@"GMAddShippingAddressVC" bundle:nil];
     [self.navigationController pushViewController:shippingAddressVC animated:YES];

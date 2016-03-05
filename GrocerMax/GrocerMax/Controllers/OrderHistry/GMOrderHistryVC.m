@@ -10,6 +10,7 @@
 #import "GMOrderHistoryCell.h"
 #import "GMBaseOrderHistoryModal.h"
 #import "GMOrderDetailVC.h"
+#import "GMStateBaseModal.h"
 static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 @interface GMOrderHistryVC ()
 @property (weak, nonatomic) IBOutlet UITableView *orderHistryTableView;
@@ -28,6 +29,9 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
     self.orderHistoryDataArray = [[NSMutableArray alloc]init];
     [self registerCellsForTableView];
     [self getOrderHistryFromServer];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Order History"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,7 +170,11 @@ static NSString *kIdentifierOrderHistoryCell = @"orderHistoryIdentifierCell";
 }
 
 -(void)reorder {
-    NSLog(@"oderHistoryModal.orderId = %@",self.selectedOderHistoryModal.incrimentId);
+//    NSLog(@"oderHistoryModal.orderId = %@",self.selectedOderHistoryModal.incrimentId);
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Reorder"];
+    
     NSMutableDictionary *dicData = [[NSMutableDictionary alloc]init];
     
     if(NSSTRING_HAS_DATA(self.selectedOderHistoryModal.incrimentId)) {

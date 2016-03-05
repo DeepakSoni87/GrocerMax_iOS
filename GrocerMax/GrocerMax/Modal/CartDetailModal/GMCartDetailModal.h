@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) NSString *discountAmount;
 
+@property (nonatomic, strong) NSString *billBuster;
+
 - (instancetype)initWithCartDetailDictionary:(NSDictionary *)responseDict;
 
 - (instancetype)initWithCartModal:(GMCartModal *)cartModal;

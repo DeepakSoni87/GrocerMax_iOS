@@ -13,6 +13,7 @@
 #import "GMUserModal.h"
 #import "TPKeyboardAvoidingTableView.h"
 #import "GMRegistrationResponseModal.h"
+#import "GMStateBaseModal.h"
 
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
@@ -44,6 +45,9 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
     [self registerCellsForTableView];
     [self.changePasswordTableView setSeparatorColor:[UIColor colorFromHexString:@"e2e2e2"]];
     [self uiChange];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Change Password"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,19 +174,19 @@ static NSString * const kConformPasswordCell                 =  @"Confirm Passwo
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.password : @"";
         inputCell.inputTextField.secureTextEntry = YES;
-        [inputCell.showButton setHidden:NO];
+//        [inputCell.showButton setHidden:NO];
     }
     else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kNewPasswordCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.newpassword : @"";
         inputCell.inputTextField.secureTextEntry = YES;
-        [inputCell.showButton setHidden:NO];
+//        [inputCell.showButton setHidden:NO];
     }
     else if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kConformPasswordCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.password) ? self.userModal.conformPassword : @"";
         inputCell.inputTextField.secureTextEntry = YES;
-        [inputCell.showButton setHidden:NO];
+//        [inputCell.showButton setHidden:NO];
     }
 }
 

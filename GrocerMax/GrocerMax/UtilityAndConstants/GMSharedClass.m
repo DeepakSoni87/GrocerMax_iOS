@@ -257,19 +257,37 @@ CGFloat const kMATabBarHeight = 49.0f;
 
 - (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value{
     
+//    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    if(!NSSTRING_HAS_DATA(category)) {
+//        category = @"Action";
+//    }
+//    NSMutableDictionary *event =
+//    [[GAIDictionaryBuilder createEventWithCategory:category
+//                                            action:eventName
+//                                             label:label
+//                                             value:value] build];
+//    [tracker send:event];
+    
+    [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValue:label];
+}
+
+//new Event track
+- (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label{
+    
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    if(!NSSTRING_HAS_DATA(category)) {
-        category = @"Action";
+    if(!NSSTRING_HAS_DATA(eventName)) {
+        eventName = @"";
     }
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:category
                                             action:eventName
                                              label:label
-                                             value:value] build];
+                                             value:0] build];
     [tracker send:event];
     
     [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValue:label];
 }
+
 
 - (void)clearCart {
     
@@ -326,5 +344,118 @@ CGFloat const kMATabBarHeight = 49.0f;
     NSDate *deliveryDate = [[NSDateFormatter dateFormatter_yyyy_MM_dd] dateFromString:deliveryStr];
     NSString *timeStr = [[NSDateFormatter dateFormatter_DD_MMM_YYYY] stringFromDate:deliveryDate];
     return timeStr;
+}
+
+-(void)clearLaterUpdate
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:APPLICATION_UPDATE_LATER])
+    {
+        [defaults removeObjectForKey:APPLICATION_UPDATE_LATER];
+    }
+    if([defaults objectForKey:APPLICATION_UPDATE_IGNORE])
+    {
+        [defaults removeObjectForKey:APPLICATION_UPDATE_IGNORE];
+    }
+    if([defaults objectForKey:APPLICATION_UPDATE_LATER_VALUE])
+    {
+        [defaults removeObjectForKey:APPLICATION_UPDATE_LATER_VALUE];
+    }
+    [defaults synchronize];
+}
+
+-(BOOL)checkConditionShowUpdate
+{
+    BOOL retValue = FALSE;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:APPLICATION_UPDATE_LATER])
+    {
+        NSDate* date1 = [defaults objectForKey:APPLICATION_UPDATE_LATER];
+        NSDate* date2 = [NSDate date];
+        NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+        double secondsInAnHour = 3600;
+        double hoursBetweenDates = distanceBetweenDates / secondsInAnHour;
+        
+        if(hoursBetweenDates>=24)
+        {
+            retValue = YES;
+        }
+        
+        
+    }
+    else if([defaults objectForKey:APPLICATION_UPDATE_IGNORE])
+    {
+        NSDate* date1 = [defaults objectForKey:APPLICATION_UPDATE_IGNORE];
+        NSDate* date2 = [NSDate date];
+        NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+        double secondsInAnHour = 3600;
+        double hoursBetweenDates = distanceBetweenDates / secondsInAnHour;
+        
+        if(hoursBetweenDates>=24*7)
+        {
+            retValue = YES;
+        }
+    }
+    else
+    {
+        retValue = YES;
+    }
+    return retValue;
+}
+
+-(BOOL)checkInternalNotificationWithMessageId:(NSString *)messageId withFrequency:(NSString *)frequency {
+    
+    BOOL retValue = FALSE;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults objectForKey:messageId]  && [defaults objectForKey:messageId] != nil) {
+        
+        NSDate* date1 = [defaults objectForKey:messageId];
+        NSDate* date2 = [NSDate date];
+        NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+        double minutInAnHour = 60;
+        double minutBetweenDates = distanceBetweenDates / minutInAnHour;
+        
+        if(minutBetweenDates>=[frequency doubleValue])
+        {
+            retValue = YES;
+        }
+        
+    } else {
+        retValue = YES;
+    }
+    return retValue;
+    
+}
+
+-(GMUserModal *)makeLastNameFromUserModal:(GMUserModal *)userModal {
+    
+    if(!NSSTRING_HAS_DATA(userModal.lastName)) {
+        if(NSSTRING_HAS_DATA(userModal.firstName)){
+            NSString *name = userModal.firstName;
+            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSArray *names = [name componentsSeparatedByString:@" "];
+            
+            if(names.count>0) {
+                if(names.count>1) {
+                    NSString *lastName = [names lastObject];
+                    userModal.lastName = lastName;
+                    NSString *firstName = @"";
+                    for(int i = 0; i<names.count-1;i++){
+                        if(i==0) {
+                            firstName= [NSString stringWithFormat:@"%@",names[i]];
+                        } else {
+                            firstName= [NSString stringWithFormat:@"%@ %@",firstName,names[i]];
+                        }
+                    }
+                    userModal.firstName = name;
+                }
+            }
+            
+            
+        }
+    }
+    
+    return userModal;
 }
 @end

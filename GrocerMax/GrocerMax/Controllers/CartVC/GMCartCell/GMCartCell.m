@@ -90,16 +90,24 @@ NSString * const kFreePromotionString = @"Please remove item from cart to procee
     
     
     
-    if ([self.productModal.Status isEqualToString:@"0"]) {
+    if ([self.productModal.Status isEqualToString:@"0"] && [self.productModal.noOfItemInStock intValue]<1) {
         self.imgViewSoldout.hidden = NO;
         self.addSubstractView.hidden = YES;
         [self.promotionLabel setText:kFreePromotionString];
         self.zeroPriceLabel.hidden = YES;
         [self.promotionLabel setHidden:NO];
+        self.outOfStockLabel.hidden = YES;
+    }else if ([self.productModal.Status isEqualToString:@"0"] && [self.productModal.noOfItemInStock intValue]>0){
+        self.imgViewSoldout.hidden = YES;
+        self.addSubstractView.hidden = NO;
+        self.zeroPriceLabel.hidden = NO;
+        self.outOfStockLabel.hidden = NO;
+        self.outOfStockLabel.text =[NSString stringWithFormat:@"ONLY %@ IN STOCK. PLEASE REDUCE THE QUANTITY.",self.productModal.noOfItemInStock];
     }else{
         self.imgViewSoldout.hidden = YES;
         self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
+        self.outOfStockLabel.hidden = YES;
 //        [self.promotionLabel setHidden:YES];
     }
     
@@ -164,17 +172,58 @@ NSString * const kFreePromotionString = @"Please remove item from cart to procee
         [self.zeroPriceLabel setHidden:YES];
     }
 
-    if ([self.productModal.Status isEqualToString:@"0"]) {
+    if ([self.productModal.Status isEqualToString:@"0"] && [self.productModal.noOfItemInStock intValue]<1) {
         self.imgViewSoldout.hidden = NO;
         self.addSubstractView.hidden = YES;
         [self.promotionLabel setText:kFreePromotionString];
         self.zeroPriceLabel.hidden = YES;
         [self.promotionLabel setHidden:NO];
+        self.outOfStockLabel.hidden = YES;
+    }else if ([self.productModal.Status isEqualToString:@"0"] && [self.productModal.noOfItemInStock intValue]>0){
+        [self.promotionLabel setHidden:YES];
+        self.imgViewSoldout.hidden = YES;
+        self.addSubstractView.hidden = NO;
+        self.zeroPriceLabel.hidden = NO;
+        self.outOfStockLabel.hidden = NO;
+        self.outOfStockLabel.text =[NSString stringWithFormat:@"ONLY %@ IN STOCK. PLEASE REDUCE THE QUANTITY.",self.productModal.noOfItemInStock];
+        
+        if(self.productModal.sale_price.integerValue == 0) {
+            
+            [self.addSubstractView setHidden:YES];
+            [self.deleteButton setHidden:YES];
+            [self.zeroPriceLabel setHidden:NO];
+            [self.zeroPriceLabel setText:self.productModal.productQuantity];
+            self.outOfStockLabel.hidden = YES;
+            [self.promotionLabel setHidden:NO];
+        }
+        else {
+            
+            [self.addSubstractView setHidden:NO];
+            [self.deleteButton setHidden:NO];
+            [self.zeroPriceLabel setHidden:YES];
+            self.outOfStockLabel.hidden = NO;
+            [self.promotionLabel setHidden:YES];
+        }
     }else{
         self.imgViewSoldout.hidden = YES;
         self.addSubstractView.hidden = NO;
         self.zeroPriceLabel.hidden = NO;
+        self.outOfStockLabel.hidden = YES;
 //        [self.promotionLabel setHidden:YES];
+        
+        if(self.productModal.sale_price.integerValue == 0) {
+            
+            [self.addSubstractView setHidden:YES];
+            [self.deleteButton setHidden:YES];
+            [self.zeroPriceLabel setHidden:NO];
+            [self.zeroPriceLabel setText:self.productModal.productQuantity];
+        }
+        else {
+            
+            [self.addSubstractView setHidden:NO];
+            [self.deleteButton setHidden:NO];
+            [self.zeroPriceLabel setHidden:YES];
+        }
     }
 
 }

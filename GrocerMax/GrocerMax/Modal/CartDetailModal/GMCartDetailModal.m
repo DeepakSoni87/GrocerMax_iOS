@@ -47,6 +47,9 @@
         
         if(HAS_DATA(shippingDict, @"subtotal"))
             _subTotal = shippingDict[@"subtotal"];
+        
+        if(HAS_DATA(responseDict, @"Bill_buster"))
+            _billBuster = responseDict[@"Bill_buster"];
     }
     return self;
 }

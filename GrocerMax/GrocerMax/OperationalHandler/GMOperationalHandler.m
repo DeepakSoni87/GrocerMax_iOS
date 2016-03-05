@@ -36,6 +36,10 @@
 #import "GMHomeBannerModal.h"
 #import "GMHomeModal.h"
 #import "GMWalletOrderModal.h"
+#import "MGAppliactionUpdate.h"
+#import "GMPaymentWayModal.h"
+#import "GMInternalNotificationModal.h"
+#import "MGInternalNotificationAlert.h"
 
 static NSString * const kFlagKey                    = @"flag";
 static NSString * const kCategoryKey                   = @"Category";
@@ -70,6 +74,10 @@ static GMOperationalHandler *sharedHandler;
 
 - (NSError *)getSuccessResponse:(NSDictionary *)responseObject {
     
+    if(responseObject == nil) {
+        return nil;
+    }
+    
     NSString *flag = responseObject[kFlagKey];
     if(flag.boolValue)
         return nil;
@@ -94,23 +102,24 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:[GMRequestParams getUserFBLoginRequestParamsWith:param] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *error = [self getSuccessResponse:responseObject];
-            if(!error) {
-                if([responseObject isKindOfClass:[NSDictionary class]]) {
-                    
-                    if(successBlock) successBlock(responseObject);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                NSError *error = [self getSuccessResponse:responseObject];
+                if(!error) {
+                    if([responseObject isKindOfClass:[NSDictionary class]]) {
+                        
+                        if(successBlock) successBlock(responseObject);
+                    }
+                } else {
+                    if(failureBlock) failureBlock(error);
                 }
-            } else {
-                if(failureBlock) failureBlock(error);
+                
+                
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-            
-            
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -124,18 +133,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            
-            GMUserModal *userModal = [MTLJSONAdapter modelOfClass:[GMUserModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(userModal); }
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                
+                GMUserModal *userModal = [MTLJSONAdapter modelOfClass:[GMUserModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(userModal); }
+            }
+            else
+                if(failureBlock) failureBlock(error);
         }
-        else
-            if(failureBlock) failureBlock(error);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -148,23 +158,23 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            NSString *baseUrl = responseObject[@"urlImg"];
-            if(NSSTRING_HAS_DATA(baseUrl))
-                [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
-            
-            NSDictionary *categoryDict = responseObject[kCategoryKey];
-            GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(rootCategoryModal); }
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                NSString *baseUrl = responseObject[@"urlImg"];
+                if(NSSTRING_HAS_DATA(baseUrl))
+                    [[GMSharedClass sharedClass] setCategoryImageBaseUrl:baseUrl];
+                
+                NSDictionary *categoryDict = responseObject[kCategoryKey];
+                GMCategoryModal *rootCategoryModal = [MTLJSONAdapter modelOfClass:[GMCategoryModal class] fromJSONDictionary:categoryDict error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(rootCategoryModal); }
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -178,21 +188,22 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            if (responseObject) {
-                
-                if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                if (responseObject) {
                     
-                    if(successBlock) successBlock(responseObject);
+                    if([responseObject isKindOfClass:[NSDictionary class]]) {
+                        
+                        if(successBlock) successBlock(responseObject);
+                    }
+                }else {
+                    
+                    if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
                 }
-            }else {
-                
-                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            } else {
+                if(failureBlock) failureBlock(error);
             }
-        } else {
-            if(failureBlock) failureBlock(error);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -208,18 +219,18 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(registrationResponse); }
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(registrationResponse); }
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -233,22 +244,23 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            NSError *error = [self getSuccessResponse:responseObject];
-            if(!error) {
-                if([responseObject isKindOfClass:[NSDictionary class]]) {
-                    
-                    if(successBlock) successBlock(responseObject);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                NSError *error = [self getSuccessResponse:responseObject];
+                if(!error) {
+                    if([responseObject isKindOfClass:[NSDictionary class]]) {
+                        
+                        if(successBlock) successBlock(responseObject);
+                    }
+                } else {
+                    if(failureBlock) failureBlock(error);
                 }
-            } else {
-                if(failureBlock) failureBlock(error);
+                
+                
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-            
-            
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -264,16 +276,17 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                if(successBlock) successBlock(responseObject);
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -287,17 +300,18 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                if(successBlock) successBlock(responseObject);
+                
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -312,20 +326,18 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            NSError *mtlError = nil;
-            
-            GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(registrationResponse); }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                NSError *mtlError = nil;
+                
+                GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(registrationResponse); }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -340,20 +352,18 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            NSError *mtlError = nil;
-            
-            GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(registrationResponse); }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                NSError *mtlError = nil;
+                
+                GMRegistrationResponseModal *registrationResponse = [MTLJSONAdapter modelOfClass:[GMRegistrationResponseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(registrationResponse); }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -371,22 +381,20 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                if(HAS_KEY(responseObject, @"AddressId"))  {
-                    if(successBlock) successBlock(YES);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(HAS_KEY(responseObject, @"AddressId"))  {
+                        if(successBlock) successBlock(YES);
+                    }
+                    else
+                        if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : responseObject[kEY_Result]}]);
                 }
-                else
-                    if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : responseObject[kEY_Result]}]);
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -402,18 +410,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(YES);
+                }
+            }else {
                 
-                if(successBlock) successBlock(YES);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -429,18 +435,19 @@ static GMOperationalHandler *sharedHandler;
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *mtlError = nil;
-            
-            GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);}
-            else            { if (successBlock) successBlock(addressModal);}
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                NSError *mtlError = nil;
+                
+                GMAddressModal *addressModal = [MTLJSONAdapter modelOfClass:[GMAddressModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);}
+                else            { if (successBlock) successBlock(addressModal);}
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -454,18 +461,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -479,27 +484,25 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            NSError *mtlError = nil;
-            
-            GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            for (GMAddressModalData *addressModal in timeSlotBaseModal.addressesArray) {
-                [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                NSError *mtlError = nil;
+                
+                GMTimeSlotBaseModal *timeSlotBaseModal = [MTLJSONAdapter modelOfClass:[GMTimeSlotBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                for (GMAddressModalData *addressModal in timeSlotBaseModal.addressesArray) {
+                    [addressModal updateHouseNoLocalityAndLandmarkWithStreet:addressModal.street];
+                }
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(timeSlotBaseModal); }
+                
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(timeSlotBaseModal); }
-            
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            responseObject = nil;
         }
-        responseObject = nil;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
@@ -511,18 +514,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -538,25 +539,23 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(productListingModal); }
+                    
+                }
+            }else {
                 
-                
-                NSError *mtlError = nil;
-                
-                GMProductListingBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(productListingModal); }
-                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -572,25 +571,23 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMProductDetailBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductDetailBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(productListingModal); }
+                    
+                    
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                GMProductDetailBaseModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMProductDetailBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(productListingModal); }
-                
-                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -606,24 +603,22 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    
+                    GMSearchResultModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMSearchResultModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(productListingModal); }
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                
-                GMSearchResultModal *productListingModal = [MTLJSONAdapter modelOfClass:[GMSearchResultModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(productListingModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -639,18 +634,17 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                if(successBlock) successBlock(responseObject);
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -666,27 +660,28 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *error = [self getSuccessResponse:responseObject];
-            if(!error) {
-                NSError *mtlError = nil;
-                GMBaseOrderHistoryModal *baseOrderHistoryModal = [MTLJSONAdapter modelOfClass:[GMBaseOrderHistoryModal class] fromJSONDictionary:responseObject error:&mtlError];
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(baseOrderHistoryModal.orderHistoryArray);}
+                NSError *error = [self getSuccessResponse:responseObject];
+                if(!error) {
+                    NSError *mtlError = nil;
+                    GMBaseOrderHistoryModal *baseOrderHistoryModal = [MTLJSONAdapter modelOfClass:[GMBaseOrderHistoryModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(baseOrderHistoryModal.orderHistoryArray);}
+                }
+                else {
+                    if(failureBlock) failureBlock(error);
+                }
+                //
+                
+                
+                
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-            else {
-                if(failureBlock) failureBlock(error);
-            }
-            //
-            
-            
-            
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -702,19 +697,17 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                GMOrderDeatilBaseModal *orderDeatilBaseModal = [[GMOrderDeatilBaseModal alloc]initWithDictionary:responseObject];
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    GMOrderDeatilBaseModal *orderDeatilBaseModal = [[GMOrderDeatilBaseModal alloc]initWithDictionary:responseObject];
+                    
+                    if(successBlock) successBlock(orderDeatilBaseModal);
+                }
+            }else {
                 
-                if(successBlock) successBlock(orderDeatilBaseModal);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -730,18 +723,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -757,19 +748,17 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
+                    if(successBlock) successBlock(cartDetailModal);
+                }
+            }else {
                 
-                GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
-                if(successBlock) successBlock(cartDetailModal);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -783,19 +772,17 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
+                    if(successBlock) successBlock(cartDetailModal);
+                }
+            }else {
                 
-                GMCartDetailModal *cartDetailModal = [[GMCartDetailModal alloc] initWithCartDetailDictionary:responseObject[@"CartDetail"]];
-                if(successBlock) successBlock(cartDetailModal);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -809,18 +796,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -834,22 +819,20 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        if(![self cheackHeaderData:operation]) {
         if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(genralModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -865,22 +848,20 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(responseObject[@"flag"] && [responseObject[@"flag"] intValue] == 1) {
+                        GMCoupanCartDetail *coupanCartDetail = [[GMCoupanCartDetail alloc] initWithCartDetailDictionary:responseObject];
+                        if(successBlock) successBlock(coupanCartDetail);            } else {
+                            if(failureBlock) failureBlock(nil);
+                        }
+                }
+            }else {
                 
-                if(responseObject[@"flag"] && [responseObject[@"flag"] intValue] == 1) {
-                    GMCoupanCartDetail *coupanCartDetail = [[GMCoupanCartDetail alloc] initWithCartDetailDictionary:responseObject];
-                    if(successBlock) successBlock(coupanCartDetail);            } else {
-                        if(failureBlock) failureBlock(nil);
-                    }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -896,18 +877,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -923,24 +902,21 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(genralModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -956,23 +932,21 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(genralModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -987,21 +961,22 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                NSError *mtlError = nil;
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
                 
-                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(genralModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1017,23 +992,21 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(genralModal); }
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1049,35 +1022,33 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
-                
-                NSString *quoteId;
-                if(HAS_KEY(responseObject, kQuoteId)) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
                     
-                    quoteId = responseObject[kQuoteId];
-                    GMUserModal *userModal = [GMUserModal loggedInUser];
-                    if(quoteId && !userModal) {
+                    NSString *quoteId;
+                    if(HAS_KEY(responseObject, kQuoteId)) {
                         
-                        userModal = [[GMUserModal alloc] init];
-                        [userModal setQuoteId:quoteId];
-                        [userModal persistUser];
-                    } else {
-                        if(userModal && !NSSTRING_HAS_DATA(userModal.quoteId)) {
+                        quoteId = responseObject[kQuoteId];
+                        GMUserModal *userModal = [GMUserModal loggedInUser];
+                        if(quoteId && !userModal) {
+                            
+                            userModal = [[GMUserModal alloc] init];
                             [userModal setQuoteId:quoteId];
                             [userModal persistUser];
+                        } else {
+                            if(userModal && !NSSTRING_HAS_DATA(userModal.quoteId)) {
+                                [userModal setQuoteId:quoteId];
+                                [userModal persistUser];
+                            }
                         }
                     }
+                    if(successBlock) successBlock(quoteId);
                 }
-                if(successBlock) successBlock(quoteId);
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1093,21 +1064,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            NSError *mtlError = nil;
-            
-            GMStateBaseModal *stateBaseModal = [MTLJSONAdapter modelOfClass:[GMStateBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(stateBaseModal);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                NSError *mtlError = nil;
+                
+                GMStateBaseModal *stateBaseModal = [MTLJSONAdapter modelOfClass:[GMStateBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(stateBaseModal);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1122,13 +1091,14 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        
-        GMStateBaseModal *stateBaseModal = [MTLJSONAdapter modelOfClass:[GMStateBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-        
-        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-        else            { if (successBlock) successBlock(stateBaseModal); }
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            
+            GMStateBaseModal *stateBaseModal = [MTLJSONAdapter modelOfClass:[GMStateBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(stateBaseModal); }
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1144,13 +1114,14 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        
-        GMLocalityBaseModal *localityBaseModal = [MTLJSONAdapter modelOfClass:[GMLocalityBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-        
-        if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-        else            { if (successBlock) successBlock(localityBaseModal); }
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            
+            GMLocalityBaseModal *localityBaseModal = [MTLJSONAdapter modelOfClass:[GMLocalityBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+            
+            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+            else            { if (successBlock) successBlock(localityBaseModal); }
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1164,18 +1135,16 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if(successBlock) successBlock(responseObject[kEY_category]);
+                }
+            }else {
                 
-                if(successBlock) successBlock(responseObject[kEY_category]);
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1188,18 +1157,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *mtlError = nil;
-            
-            GMHotDealBaseModal *hotDealBaseModal = [MTLJSONAdapter modelOfClass:[GMHotDealBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(hotDealBaseModal); }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                NSError *mtlError = nil;
+                
+                GMHotDealBaseModal *hotDealBaseModal = [MTLJSONAdapter modelOfClass:[GMHotDealBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(hotDealBaseModal); }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1212,18 +1182,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *mtlError = nil;
-            
-            GMDealCategoryBaseModal *dealCategoryBaseModal = [MTLJSONAdapter modelOfClass:[GMDealCategoryBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(dealCategoryBaseModal); }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                NSError *mtlError = nil;
+                
+                GMDealCategoryBaseModal *dealCategoryBaseModal = [MTLJSONAdapter modelOfClass:[GMDealCategoryBaseModal class] fromJSONDictionary:responseObject[@"dealcategory"] error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(dealCategoryBaseModal); }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1236,18 +1207,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            NSError *mtlError = nil;
-            
-            GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(productListBaseModal); }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                NSError *mtlError = nil;
+                
+                GMProductListingBaseModal *productListBaseModal = [MTLJSONAdapter modelOfClass:[GMProductListingBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(productListBaseModal); }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1260,24 +1232,22 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMOffersByDealTypeBaseModal *offersByDealTypeBaseModal = [MTLJSONAdapter modelOfClass:[GMOffersByDealTypeBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(offersByDealTypeBaseModal); }
+                    
+                }
+            }else {
                 
-                NSError *mtlError = nil;
-                
-                GMOffersByDealTypeBaseModal *offersByDealTypeBaseModal = [MTLJSONAdapter modelOfClass:[GMOffersByDealTypeBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(offersByDealTypeBaseModal); }
-                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1291,20 +1261,18 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    GMProductListingBaseModal *productListingBaseModal = [[GMProductListingBaseModal alloc] initWithResponseDict:responseObject];
+                    if (successBlock) successBlock(productListingBaseModal);
+                    
+                }
+            }else {
                 
-                GMProductListingBaseModal *productListingBaseModal = [[GMProductListingBaseModal alloc] initWithResponseDict:responseObject];
-                if (successBlock) successBlock(productListingBaseModal);
-                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1317,22 +1285,23 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                NSError *mtlError = nil;
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMHomeBannerBaseModal *bannerBaseModal = [MTLJSONAdapter modelOfClass:[GMHomeBannerBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(bannerBaseModal); }
+                    
+                }
+            }else {
                 
-                GMHomeBannerBaseModal *bannerBaseModal = [MTLJSONAdapter modelOfClass:[GMHomeBannerBaseModal class] fromJSONDictionary:responseObject error:&mtlError];
-                
-                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-                else            { if (successBlock) successBlock(bannerBaseModal); }
-                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1346,20 +1315,19 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            
-            if([responseObject objectForKey:@"Result"]) {
-                if (successBlock) successBlock([responseObject objectForKey:@"Result"]);
-            } else {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                if([responseObject objectForKey:@"Result"]) {
+                    if (successBlock) successBlock([responseObject objectForKey:@"Result"]);
+                } else {
+                    if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+                }
+                
+                
+            }else {
+                
                 if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-            
-            
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1372,18 +1340,19 @@ static GMOperationalHandler *sharedHandler;
     NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator sendDeviceToken]];
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
-    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject) {
-            
-            if([responseObject isKindOfClass:[NSDictionary class]]) {
+    [manager POST:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
                 
-                if (successBlock) successBlock(responseObject);
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    if (successBlock) successBlock(responseObject);
+                }
+                    
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
             }
-                
-        }else {
-            
-            if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1396,21 +1365,21 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *mtlError = nil;
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            
-            GMHomeModal *homeModal = [MTLJSONAdapter modelOfClass:[GMHomeModal class] fromJSONDictionary:responseObject error:&mtlError];
-            if(NSSTRING_HAS_DATA(homeModal.imageUrl))
-                [[GMSharedClass sharedClass] setCategoryImageBaseUrl:homeModal.imageUrl];
-            
-            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-            else            { if (successBlock) successBlock(homeModal); }
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *mtlError = nil;
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                
+                GMHomeModal *homeModal = [MTLJSONAdapter modelOfClass:[GMHomeModal class] fromJSONDictionary:responseObject error:&mtlError];
+                if(NSSTRING_HAS_DATA(homeModal.imageUrl))
+                    [[GMSharedClass sharedClass] setCategoryImageBaseUrl:homeModal.imageUrl];
+                
+                if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                else            { if (successBlock) successBlock(homeModal); }
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1424,15 +1393,15 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            
-             if (successBlock) successBlock(responseObject);
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                
+                 if (successBlock) successBlock(responseObject);
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1446,14 +1415,14 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-             if (successBlock) successBlock(responseObject);
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                 if (successBlock) successBlock(responseObject);
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1466,14 +1435,14 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            if (successBlock) successBlock(responseObject);
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                if (successBlock) successBlock(responseObject);
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
@@ -1487,28 +1456,217 @@ static GMOperationalHandler *sharedHandler;
     
     AFHTTPRequestOperationManager *manager = [self operationManager];
     [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-//        NSError *mtlError = nil;
-        NSError *error = [self getSuccessResponse:responseObject];
-        if(!error) {
-            
-//            GMWalletOrderModal *walletOrderModal = [MTLJSONAdapter modelOfClass:[GMWalletOrderModal class] fromJSONDictionary:responseObject error:&mtlError];
-            
-            GMWalletOrderModal *walletOrderModal = [[GMWalletOrderModal alloc]init];
-            [walletOrderModal walletHistoryParseWithDic:responseObject];
-            if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray);
-            
-//            
-//            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
-//            else            { if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray); }
-        } else {
-            if(failureBlock) failureBlock(error);
+        if(![self cheackHeaderData:operation]) {
+    //        NSError *mtlError = nil;
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                
+    //            GMWalletOrderModal *walletOrderModal = [MTLJSONAdapter modelOfClass:[GMWalletOrderModal class] fromJSONDictionary:responseObject error:&mtlError];
+                
+                GMWalletOrderModal *walletOrderModal = [[GMWalletOrderModal alloc]init];
+                [walletOrderModal walletHistoryParseWithDic:responseObject];
+                if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray);
+                
+    //            
+    //            if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+    //            else            { if (successBlock) successBlock(walletOrderModal.walletOrderHistoryArray); }
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
         }
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if(failureBlock) failureBlock(error);
     }];
+}
+
+-(void)getpaymentWay:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator paymentWayPath]];
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(![self cheackHeaderData:operation]) {
+            NSError *error = [self getSuccessResponse:responseObject];
+            if(!error) {
+                
+                
+                if (successBlock) successBlock(responseObject);
+                
+            } else {
+                if(failureBlock) failureBlock(error);
+            }
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+
+}
+
+
+- (void)loadCitrus:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal* responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator loadCitrus]];
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSError *mtlError = nil;
+                    
+                    GMGenralModal *genralModal = [MTLJSONAdapter modelOfClass:[GMGenralModal class] fromJSONDictionary:responseObject error:&mtlError];
+                    
+                    if (mtlError)   { if (failureBlock) failureBlock(mtlError);   }
+                    else            { if (successBlock) successBlock(genralModal); }
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+    
+    
+}
+
+
+- (void)termsAndConditionOrContact:(NSDictionary *)param isTermsAndCondition:(BOOL)isTermsAndCondition withSuccessBlock:(void(^)(NSString * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator termandCondition]];
+    if(isTermsAndCondition) {
+        urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator termandCondition]];
+    } else {
+        urlStr = [NSString stringWithFormat:@"%@", [GMApiPathGenerator contact]];
+    }
+    
+    AFHTTPRequestOperationManager *manager = [self operationManager];
+    [manager GET:urlStr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(![self cheackHeaderData:operation]) {
+            if (responseObject) {
+                
+                if([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    
+                    NSString *terms = @"";
+                    
+                    if(HAS_DATA(responseObject,@"term")){
+                        terms = [responseObject objectForKey:@"term"];
+                    }
+                    if (successBlock) successBlock(terms);
+                }
+            }else {
+                
+                if(failureBlock) failureBlock([NSError errorWithDomain:@"" code:-1002 userInfo:@{ NSLocalizedDescriptionKey : GMLocalizedString(@"some_error_occurred")}]);
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if(failureBlock) failureBlock(error);
+    }];
+    
+    
+}
+
+
+-(BOOL)cheackHeaderData:(AFHTTPRequestOperation *)operation
+{
+    NSHTTPURLResponse* resp = [operation response];
+    
+    if([resp.allHeaderFields objectForKey:KEY_APPLICATION_INTERNAL_NOTIFICATION] && [[resp.allHeaderFields objectForKey:KEY_APPLICATION_INTERNAL_NOTIFICATION] isKindOfClass:[NSString class]])
+    {
+        
+        NSData *data = [[resp.allHeaderFields objectForKey:KEY_APPLICATION_INTERNAL_NOTIFICATION] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *localError = nil;
+        NSMutableDictionary *responcedictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
+
+        if(responcedictionary.count>0) {
+        
+            GMInternalNotificationModal *internalNotificationModal = [[GMInternalNotificationModal alloc]initWithInternalNotificationItemDict:responcedictionary];
+            NSString *messageId = @"";
+            
+            
+            
+            if(NSSTRING_HAS_DATA(internalNotificationModal.notificationId)){
+                
+                messageId = [NSString stringWithFormat:@"%@",internalNotificationModal.notificationId];
+                
+                if([[GMSharedClass sharedClass] checkInternalNotificationWithMessageId:messageId withFrequency:internalNotificationModal.frequency]){
+                    
+                    if([GMCityModal selectedLocation] != nil) {
+                        NSDate *currentDate = [NSDate date];
+                        
+                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                        [defaults setObject:currentDate forKey:messageId];
+                        [MGInternalNotificationAlert showNotificationAlert:internalNotificationModal];
+                        [defaults synchronize];
+                    }
+                    
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    if([resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE])
+    {
+        
+        if([resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE])
+        {
+            if([[resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE] isEqualToString:@"1"])
+            {
+                [APP_DELEGATE HideProcessingView];
+                [[GMSharedClass sharedClass] clearLaterUpdate];
+                [MGAppliactionUpdate showUpdate:YES message:APPLICATION_UPDATE_HARDCOADED_NOTE];
+                return YES;
+            }
+            else if([[resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE] isEqualToString:@"2"])
+            {
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                if([defaults objectForKey:APPLICATION_UPDATE_LATER_VALUE])
+                {
+                    if([[defaults objectForKey:APPLICATION_UPDATE_LATER_VALUE] integerValue]<[[resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE] integerValue])
+                    {
+                        [[GMSharedClass sharedClass] clearLaterUpdate];
+                        [defaults setObject:[NSString stringWithFormat:@"%@",[resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE]] forKey:APPLICATION_UPDATE_LATER_VALUE];
+                    }
+                    else
+                    {
+                        if([[GMSharedClass sharedClass] checkConditionShowUpdate])
+                        {
+                            [MGAppliactionUpdate showUpdate:NO message:APPLICATION_UPDATE_HARDCOADED_NOTE];
+                        }
+                        return NO;
+                    }
+                }
+                else
+                {
+                    [[GMSharedClass sharedClass] clearLaterUpdate];
+                    [defaults setObject:[NSString stringWithFormat:@"%@",[resp.allHeaderFields objectForKey:KEY_APPLICATION_UPDATE]] forKey:APPLICATION_UPDATE_LATER_VALUE];
+                }
+                [defaults synchronize];
+                
+                
+                if([[GMSharedClass sharedClass] checkConditionShowUpdate])
+                {
+                    [MGAppliactionUpdate showUpdate:NO message:APPLICATION_UPDATE_HARDCOADED_NOTE];
+                }
+                return NO;
+            }
+            else
+            {
+                [[GMSharedClass sharedClass] clearLaterUpdate];
+            }
+        }
+    }
+    return NO;
 }
 
 @end

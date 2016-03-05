@@ -26,6 +26,10 @@
 #import "PGOrder.h"
 #import "PGTransactionViewController.h"
 
+#import "GMPaymentWayModal.h"
+#import "InitialViewController.h"
+#import "SignUpViewController.h"
+
 //#define PayU_Cridentail   @"yPnUG6:test"
 //
 //#define PayU_Key   @"yPnUG6"
@@ -46,7 +50,7 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
     float totalAmount;
     NSString *coupanCode;
     NSString *orderID;
-    BOOL isPaymentFail;
+//    BOOL isPaymentFail;
     BOOL isMyWalletSelected;
     float paymentAmount;
 }
@@ -57,6 +61,8 @@ static NSString *kIdentifierPaymentHeader = @"paymentIdentifierHeader";
 @property (weak, nonatomic) IBOutlet UITextField *couponCodeTextField;
 @property (strong, nonatomic) NSMutableArray *paymentOptionArray;
 @property (strong, nonatomic) GMButton *checkedBtn;
+@property (strong, nonatomic) GMPaymentWayModal *selectedPaymentWayModal;
+
 @property (strong, nonatomic) GMGenralModal *genralModal;
 @property (strong, nonatomic) GMCoupanCartDetail *coupanCartDetail;
 
@@ -76,13 +82,17 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"Cash on delivery",@"Credit / Debit card",@"Sodexho coupons",@"payU",@"mobikwik", nil];
-    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"My Wallet",@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM", nil];
+//    self.paymentOptionArray = [[NSMutableArray alloc]initWithObjects:@"My Wallet",@"Cash on delivery",@"Online Payment (Credit/Debit card, Net Banking)",@"PayTM",@"Citrus Wallet", nil];
+    self.paymentOptionArray = [[NSMutableArray alloc]init];
+    [self setDefaultMethod];
     coupanCode = @"";
     [self getWalletDataFromServer];
     [self registerCellsForTableView];
+    [self getPaymentWayFromServer];
     selectedIndex = -1;
     [self configerView];
     [self initilizedpayUdata];
+    
     [self initializedPayTM];
 }
 -(void)viewWillAppear:(BOOL)animated {
@@ -92,9 +102,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [[GMSharedClass sharedClass] setTabBarVisible:NO ForController:self animated:YES];
     [[GMSharedClass sharedClass] trakScreenWithScreenName:kEY_GA_CartPaymentMethod_Screen];
     
-    if(isPaymentFail) {
-        [self goToFailOrderScreen];
-    }
+//    if(isPaymentFail) {
+//        [self goToFailOrderScreen];
+//    }
     
 }
 
@@ -140,6 +150,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 #pragma mark - Action Methods
 - (IBAction)actionPaymentCash:(id)sender {
     
+    
 //    self.txnID = [self randomStringWithLength:17];
 //    [self createHeashKey];
 //    return ;
@@ -171,13 +182,22 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     
     NSDictionary *checkOutDic = [[GMCartRequestParam sharedCartRequest] finalCheckoutParameterDictionaryFromCheckoutModal:self.checkOutModal];
     if(selectedIndex == 2) {
-        [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
+        if(NSSTRING_HAS_DATA(self.checkedBtn.paymentWayModal.paymentMethodNameCode)){
+            [checkOutDic setValue:self.checkedBtn.paymentWayModal.paymentMethodNameCode forKey:kEY_payment_method];
+        } else {
+            [checkOutDic setValue:@"payucheckout_shared" forKey:kEY_payment_method];
+        }
         if(self.genralModal) {
             [self createHeashKey];
             return;
         }
     }else if(selectedIndex == 3) {
-        [checkOutDic setValue:@"paytm_cc" forKey:kEY_payment_method];
+        if(NSSTRING_HAS_DATA(self.checkedBtn.paymentWayModal.paymentMethodNameCode)){
+            [checkOutDic setValue:self.checkedBtn.paymentWayModal.paymentMethodNameCode forKey:kEY_payment_method];
+        } else {
+            [checkOutDic setValue:@"paytm_cc" forKey:kEY_payment_method];
+        }
+        
         if(self.genralModal) {
             [self initializedPayTM];
             return;
@@ -185,15 +205,46 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
     }
     else if(selectedIndex == 1) {
-        [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
+        if(NSSTRING_HAS_DATA(self.checkedBtn.paymentWayModal.paymentMethodNameCode)){
+            [checkOutDic setValue:self.checkedBtn.paymentWayModal.paymentMethodNameCode forKey:kEY_payment_method];
+        } else {
+            [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
+        }
+//        [checkOutDic setValue:@"cashondelivery" forKey:kEY_payment_method];
+    }else if(selectedIndex == 4) {
+        if(NSSTRING_HAS_DATA(self.checkedBtn.paymentWayModal.paymentMethodNameCode)){
+            [checkOutDic setValue:self.checkedBtn.paymentWayModal.paymentMethodNameCode forKey:kEY_payment_method];
+        } else {
+            [checkOutDic setValue:@"moto" forKey:kEY_payment_method];
+        }
+//        [checkOutDic setValue:@"moto" forKey:kEY_payment_method];
+        
     }
     
     if(isMyWalletSelected) {
-        [checkOutDic setValue:@"customercredit" forKey:kEY_payment_method_ByWallet];
+        
+        NSString *paymentCodeForWallet = @"";
+        for(int i = 0;i< [self.paymentOptionArray count]; i++){
+            GMPaymentWayModal *paymentWayModal = [self.paymentOptionArray objectAtIndex:i];
+            if([paymentWayModal.paymentMethodId isEqualToString:@"1"]){
+                paymentCodeForWallet = paymentWayModal.paymentMethodNameCode;
+                break;
+            }
+        }
+        if(NSSTRING_HAS_DATA(paymentCodeForWallet)) {
+            [checkOutDic setValue:paymentCodeForWallet forKey:kEY_payment_method_ByWallet];
+        } else {
+            [checkOutDic setValue:@"customercredit" forKey:kEY_payment_method_ByWallet];
+        }
+        
         [checkOutDic setValue:@"1" forKey:kEY_IS_PaymentFrom_Wallet];
         [checkOutDic setValue:[NSString stringWithFormat:@"%.2f",[userModal.balenceInWallet floatValue]] forKey:kEY_IS_InterNalWallet_Amount];
         [checkOutDic setValue:[NSString stringWithFormat:@"%.2f",totalAmount] forKey:kEY_IS_Total_paid_Amount];
     }
+    
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Review and Place order" label:@""];
     
     [self showProgress];
     [[GMOperationalHandler handler] checkout:checkOutDic  withSuccessBlock:^(GMGenralModal *responceData) {
@@ -204,9 +255,8 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
             [[GMSharedClass sharedClass] clearCart];
             [self.tabBarController updateBadgeValueOnCartTab];
             if(selectedIndex == 1 || (selectedIndex == -1 && isMyWalletSelected)) {
-                GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-                successVC.orderId = responceData.orderID;
-                [self.navigationController pushViewController:successVC animated:YES];
+                [self paymentSuceessWithOrderId:responceData.orderID];
+                
             } else if(selectedIndex == 2) {
                 //[self initilizedpayUdata];
                 if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
@@ -219,6 +269,11 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
                 if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
                     [self customerOrder];
                 }
+            } else if(selectedIndex == 4) {
+                if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+                    [self payByCitrusWallet];
+                    
+                }
             }
         } else {
             [[GMSharedClass sharedClass] showErrorMessage:responceData.result];
@@ -227,8 +282,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     } failureBlock:^(NSError *error) {
         
         if(selectedIndex == 1 || (selectedIndex == -1 && isMyWalletSelected)) {
-            GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-            [self.navigationController pushViewController:successVC animated:YES];
+            [self paymentSuceessWithOrderId:nil];
         } else {
             [[GMSharedClass sharedClass] showErrorMessage:@"Somthing Wrong !"];
         }
@@ -369,9 +423,62 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayU value:nil];
         } else if(selectedIndex == 3){
             [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_PayTM value:nil];
+        } else if(selectedIndex == 4){
+            [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_PaymentModeSelect withCategory:@"" label:kEY_GA_Event_Citrus value:nil];
         }
     }
     self.checkedBtn = sender;
+    
+}
+
+-(void)paymentSuceessWithOrderId:(NSString*)orderId {
+    GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+    if(NSSTRING_HAS_DATA(orderId)) {
+        successVC.orderId = orderId;
+    }
+    NSString *shippingPrice = @"0.00";
+    NSString *totalPrice = @"0.00";
+    
+    if(self.coupanCartDetail) {
+        if(NSSTRING_HAS_DATA(self.coupanCartDetail.ShippingCharge)) {
+            shippingPrice = [NSString stringWithFormat:@"%.2f",self.coupanCartDetail.ShippingCharge.doubleValue];
+        }
+        if(NSSTRING_HAS_DATA(self.coupanCartDetail.grand_total)) {
+            totalPrice = [NSString stringWithFormat:@"%.2f",self.coupanCartDetail.grand_total.doubleValue];
+        }
+    }
+    else {
+        shippingPrice = [NSString stringWithFormat:@"%.2f",self.checkOutModal.cartDetailModal.shippingAmount.doubleValue];
+        
+        double saving = 0;
+        double subtotal = 0;
+        double couponDiscount = 0;
+        for (GMProductModal *productModal in self.checkOutModal.cartDetailModal.productItemsArray) {
+            
+            saving += productModal.productQuantity.doubleValue * (productModal.Price.doubleValue - productModal.sale_price.doubleValue);
+            subtotal += productModal.productQuantity.integerValue * productModal.sale_price.doubleValue;
+        }
+        if(NSSTRING_HAS_DATA(self.checkOutModal.cartDetailModal.discountAmount)) {
+            saving = saving - self.checkOutModal.cartDetailModal.discountAmount.doubleValue;
+            couponDiscount = self.checkOutModal.cartDetailModal.discountAmount.doubleValue;;
+        }
+        double grandTotal = subtotal + self.checkOutModal.cartDetailModal.shippingAmount.doubleValue;
+        if(couponDiscount>0.01) {
+            grandTotal = grandTotal - couponDiscount;
+        } else {
+            grandTotal = grandTotal + couponDiscount;
+        }
+        totalPrice = [NSString stringWithFormat:@"%.2f", grandTotal];
+    }
+    successVC.totalPrice = totalPrice;
+    successVC.shippingCharge = shippingPrice;
+    [self.navigationController pushViewController:successVC animated:YES];
+}
+
+
+- (void) configerViewData:(GMCartDetailModal *)cartDetailModal coupanCartDetail:(GMCoupanCartDetail *)coupanCartDetail {
+    
+    
     
 }
 
@@ -410,7 +517,6 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     if(indexPath.section == 0) {
         GMPaymentCell *paymentCell = [tableView dequeueReusableCellWithIdentifier:kIdentifierPaymentCell];
         
-        paymentCell.checkBoxBtn.tag = indexPath.row;
         [paymentCell configerViewData:[self.paymentOptionArray objectAtIndex:indexPath.row]];
         if(self.paymentOptionArray.count== indexPath.row+1) {
             paymentCell.bottomHorizentalSepretorLbl.hidden = FALSE;
@@ -499,14 +605,42 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (void) goToFailOrderScreen {
     [self removeNotification];
-    if(isPaymentFail) {
-        isPaymentFail = FALSE;
+//    if(isPaymentFail) {
+//        isPaymentFail = FALSE;
     GMOrderFailVC *orderFailVC = [GMOrderFailVC new];
     orderFailVC.orderId = self.genralModal.orderID;
     orderFailVC.orderDBID = self.genralModal.orderDBID;
     orderFailVC.totalAmount = totalAmount;
     [self.navigationController pushViewController:orderFailVC animated:NO];
-    }
+//    }
+}
+
+
+-(void)payByCitrusWallet {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(success:) name:payment_success_notifications_ByCitrus object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failure:) name:payment_failure_notifications_ByCitrus object:nil];
+    
+    SignUpViewController *signUpViewController = [[SignUpViewController alloc]init];
+    
+    [self setAmoutDetuction];
+    signUpViewController.orderId = self.genralModal.orderID;
+    signUpViewController.totalPrice = [NSString stringWithFormat:@"%.2f", paymentAmount];
+    signUpViewController.shippingAddressModal = self.checkOutModal.shippingAddressModal;
+    [self.navigationController pushViewController:signUpViewController animated:YES];
+//    isPaymentFail = TRUE;
+    
+    
+//    InitialViewController *initialViewController = [[InitialViewController alloc]init];
+//    [self setAmoutDetuction];
+//    initialViewController.orderId = self.genralModal.orderID;
+//    initialViewController.totalPrice = [NSString stringWithFormat:@"%.2f", paymentAmount];
+//    initialViewController.shippingAddressModal = self.checkOutModal.shippingAddressModal;
+//    [self.navigationController pushViewController:initialViewController animated:YES];
+//    isPaymentFail = TRUE;
+}
+- (void)removeNotificationByCitrus {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payment_success_notifications_ByCitrus" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payment_failure_notifications_ByCitrus" object:nil];
 }
 
 /**
@@ -544,7 +678,7 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 
 - (void) success:(NSDictionary *)info{
     
-    isPaymentFail = FALSE;
+//    isPaymentFail = FALSE;
     NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
@@ -553,62 +687,57 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
         //[self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.genralModal.orderID;
-        [self.navigationController pushViewController:successVC animated:YES];
+        [self paymentSuceessWithOrderId:self.genralModal.orderID];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
 //        [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.genralModal.orderID;
-        [self.navigationController pushViewController:successVC animated:YES];
-
+        [self paymentSuceessWithOrderId:self.genralModal.orderID];
         [self removeProgress];
     }];
     
 }
 - (void) failure:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
+    [self failOrCancelPaymentByPayTm];
 //    isPaymentFail = TRUE;
-    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
-    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
-        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
-    }
-    [self showProgress];
-    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
-        
-        
-        [self removeProgress];
-        
-        
-    } failureBlock:^(NSError *error) {
-        
-        [self removeProgress];
-    }];
-    [self goToFailOrderScreen];
+//    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+//    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+//        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+//    }
+//    [self showProgress];
+//    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+//        
+//        [self removeProgress];
+//        
+//    } failureBlock:^(NSError *error) {
+//        
+//        [self removeProgress];
+//    }];
+//    [self goToFailOrderScreen];
     
 }
 - (void) cancel:(NSDictionary *)info{
     NSLog(@"failure Dict: %@",info);
 //    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self failOrCancelPaymentByPayTm];
     
-    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
-    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
-        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
-    }
-    [self showProgress];
-    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
-        
-        
-        [self removeProgress];
-        
-        
-    } failureBlock:^(NSError *error) {
-        
-        [self removeProgress];
-    }];
-    [self goToFailOrderScreen];
+//    NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
+//    if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
+//        [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
+//    }
+//    [self showProgress];
+//    [[GMOperationalHandler handler] fail:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
+//        
+//        
+//        [self removeProgress];
+//        
+//        
+//    } failureBlock:^(NSError *error) {
+//        
+//        [self removeProgress];
+//    }];
+//    [self goToFailOrderScreen];
     
 }
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -775,7 +904,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     if(_hashDict)
         paymentOptionsVC.allHashDict = _hashDict;
     [self.navigationController pushViewController:paymentOptionsVC animated:YES];
-    isPaymentFail = TRUE;
+//    isPaymentFail = TRUE;
 }
 
 
@@ -890,7 +1019,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 }
 
 - (void)customerOrder {
-    isPaymentFail = TRUE;
+//    isPaymentFail = TRUE;
     GMUserModal *userModal = [GMUserModal loggedInUser];
     NSString *userId = @"test";
     NSString *emailId = @"deepaksoni01@gmail.com";
@@ -920,6 +1049,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 //    txtController.cancelButton
     
     txtController.delegate = self;
+//    txtController.view.frame = CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height);
     [self.navigationController pushViewController:txtController animated:YES];
     
     
@@ -932,7 +1062,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 - (void)didSucceedTransaction:(PGTransactionViewController *)controller
                      response:(NSDictionary *)response {
     
-    isPaymentFail = FALSE;
+//    isPaymentFail = FALSE;
     NSMutableDictionary *orderDic = [[NSMutableDictionary alloc]init];
     if(NSSTRING_HAS_DATA(self.genralModal.orderID)) {
         [orderDic setObject:self.genralModal.orderID forKey:kEY_orderid];
@@ -945,17 +1075,12 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     [[GMOperationalHandler handler] successForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
         //[self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.genralModal.orderID;
-        [self.navigationController pushViewController:successVC animated:YES];
+        [self paymentSuceessWithOrderId:self.genralModal.orderID];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
         //        [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.genralModal.orderID;
-        [self.navigationController pushViewController:successVC animated:YES];
-        
+        [self paymentSuceessWithOrderId:self.genralModal.orderID];
         [self removeProgress];
     }];
     
@@ -1057,4 +1182,73 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
         [self removeProgress];
     }];
 }
+
+-(void)getPaymentWayFromServer {
+    [self showProgress];
+    
+    
+    [[GMOperationalHandler handler] getpaymentWay:nil withSuccessBlock:^(id responceData) {
+        if([responceData objectForKey:@"Payment"] && [[responceData objectForKey:@"Payment"] isKindOfClass:[NSArray class]]) {
+            
+        NSMutableArray *paymentArray = [responceData objectForKey:@"Payment"];
+            [self.paymentOptionArray removeAllObjects];
+            
+            NSMutableArray *storePymentModal = [[NSMutableArray alloc]init];
+            
+            for(int i = 0; i<paymentArray.count; i++) {
+                
+                GMPaymentWayModal *paymetWayModal = [[GMPaymentWayModal alloc]initWithPaymentWayDictionary:[paymentArray objectAtIndex:i]];
+                
+                if(NSSTRING_HAS_DATA(paymetWayModal.paymentMethodId)){
+                    [storePymentModal addObject:paymetWayModal];
+                }
+            }
+            
+            NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+            [self.paymentOptionArray addObjectsFromArray:[storePymentModal sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
+            
+            if(self.paymentOptionArray.count==0) {
+                [self setDefaultMethod];
+            }
+            
+        } else {
+            [self setDefaultMethod];
+        }
+        
+        [self removeProgress];
+        [self.paymentTableView reloadData];
+    } failureBlock:^(NSError *error) {
+        [self removeProgress];
+        [self setDefaultMethod];
+        [self.paymentTableView reloadData];
+        
+    }];
+}
+
+-(void)setDefaultMethod {
+    [self.paymentOptionArray removeAllObjects];
+    GMPaymentWayModal *paymetWayModal = [[GMPaymentWayModal alloc] init];
+    paymetWayModal.paymentMethodDefaultName = @"Cash on delivery";
+    paymetWayModal.paymentMethodDisplayName = @"";
+    paymetWayModal.paymentMethodNameCode = @"cashondelivery";
+    paymetWayModal.paymentMethodId = @"1";
+    paymetWayModal.displayOrder = @"1";
+    [self.paymentOptionArray addObject:paymetWayModal];
+//    if(HAS_DATA(responseDict, @"paymentKey"))
+//        _paymentMethodId = responseDict[@"paymentKey"];
+//    
+//    if(HAS_DATA(responseDict, @"mobile_label"))
+//        _paymentMethodDisplayName = responseDict[@"mobile_label"];
+//    
+//    if(HAS_DATA(responseDict, @"value"))
+//        _paymentMethodNameCode = responseDict[@"value"];
+//    
+//    if(HAS_DATA(responseDict, @"default"))
+//        _paymentMethodDefaultName = responseDict[@"default"];
+//    
+//    if(HAS_DATA(responseDict, @"displayOrder"))
+//        _displayOrder = responseDict[@"displayOrder"];
+    
+}
+
 @end

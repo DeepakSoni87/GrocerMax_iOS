@@ -41,7 +41,9 @@
     GMCategoryModal *mdl = data;
 //    NSString *categoryImageUrlStr = [NSString stringWithFormat:@"%@%@.png", [[GMSharedClass sharedClass] getCategoryImageBaseUrl],mdl.categoryId];
 //    [self.bgImgView setImageWithURL:[NSURL URLWithString:categoryImageUrlStr] placeholderImage:nil];
-    [self.bgImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"cat-%@", mdl.categoryId]]];
+//    [self.bgImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"cat-%@", mdl.categoryId]]];
+    
+    [self.bgImgView setImageWithURL:[NSURL URLWithString:mdl.categoryImageURL] placeholderImage:[UIImage categoryPlaceHolderImage]];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.isActive == %@", @"1"];
 

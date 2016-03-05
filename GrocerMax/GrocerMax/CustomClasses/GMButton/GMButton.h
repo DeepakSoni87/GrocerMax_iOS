@@ -11,6 +11,7 @@
 #import "GMAddressModal.h"
 #import "GMProductModal.h"
 #import "GMBaseOrderHistoryModal.h"
+#import "GMPaymentWayModal.h"
 
 
 @interface GMButton : UIButton
@@ -24,4 +25,6 @@
 @property (nonatomic, strong) GMProductModal *produtModal;
 
 @property (nonatomic, strong) GMOrderHistoryModal *orderHistoryModal;
+
+@property (nonatomic, strong) GMPaymentWayModal *paymentWayModal;
 @end

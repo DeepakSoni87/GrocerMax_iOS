@@ -13,10 +13,12 @@
 #import "GMUserModal.h"
 #import "GMRegistrationResponseModal.h"
 #import "TPKeyboardAvoidingTableView.h"
+#import "GMStateBaseModal.h"
+#import "GMOtpVC.h"
 
 static NSString * const kInputFieldCellIdentifier           = @"inputFieldCellIdentifier";
 
-static NSString * const kFirstNameCell                      =  @"First Name";
+static NSString * const kNameCell                      =  @"Name";
 static NSString * const kLastNameCell                       =  @"Last Name";
 static NSString * const kMobileCell                         =  @"Mobile No";
 
@@ -40,10 +42,31 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.userModal = [GMUserModal loggedInUser];
+    GMUserModal *loginUser = [GMUserModal loggedInUser];
+    self.userModal = [[GMUserModal alloc]init];
+    self.userModal.firstName = loginUser.firstName;
+    self.userModal.lastName = loginUser.lastName;
+    self.userModal.mobile = loginUser.mobile;
+    self.userModal.email = loginUser.email;
+    self.userModal.password = loginUser.password;
+    self.userModal.otp = loginUser.otp;
+    self.userModal.gender = loginUser.gender;
+    self.userModal.userId = loginUser.userId;
+    self.userModal.quoteId = loginUser.quoteId;
+    self.userModal.newpassword = loginUser.newpassword;
+    self.userModal.conformPassword = loginUser.conformPassword;
+    
+    self.userModal.fbId = loginUser.fbId;
+    self.userModal.googleId = loginUser.googleId;
+    self.userModal.isShowTapped = loginUser.isShowTapped;
+    self.userModal.balenceInWallet = loginUser.balenceInWallet;
+    
     [self registerCellsForTableView];
     self.editProfileTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.editProfileTableView setSeparatorColor:[UIColor colorFromHexString:@"e2e2e2"]];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Profile Activity" label:@"Edit Information"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,11 +102,27 @@ static NSString * const kMobileCell                         =  @"Mobile No";
         [self showProgress];
         [[GMOperationalHandler handler] editProfile:userDic   withSuccessBlock:^(GMRegistrationResponseModal *registrationResponse) {
             
+            
+            
             if([registrationResponse.flag isEqualToString:@"1"]) {
                 [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
                 [self.userModal persistUser];
                 
                 [self.navigationController popViewControllerAnimated:YES];
+            } else if([registrationResponse.flag isEqualToString:@"2"]) {
+                
+                if (registrationResponse.otp) {
+                    NSString *optString = [NSString stringWithFormat:@"%@", registrationResponse.otp];
+                    
+                    if(NSSTRING_HAS_DATA(optString)) {
+                        [self.userModal setOtp:optString];
+                    }
+                }
+                
+                GMOtpVC *otpVC = [[GMOtpVC alloc] initWithNibName:@"GMOtpVC" bundle:nil];
+                otpVC.userModal = self.userModal;
+                otpVC.isEditProfile = YES;
+                [self.navigationController pushViewController:otpVC animated:YES];
             }
             else
                 [[GMSharedClass sharedClass] showErrorMessage:registrationResponse.result];
@@ -117,9 +156,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     if(!_cellArray) {
         
         _cellArray = [NSMutableArray arrayWithObjects:
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kFirstNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],
-                      [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
+                      [[PlaceholderAndValidStatus alloc] initWithCellType:kNameCell placeHolder:@"required" andStatus:kNone],[[PlaceholderAndValidStatus alloc] initWithCellType:kLastNameCell placeHolder:@"required" andStatus:kNone],                       [[PlaceholderAndValidStatus alloc] initWithCellType:kMobileCell placeHolder:@"required" andStatus:kNone],
                       nil];
     }
     return _cellArray;
@@ -159,7 +196,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
     inputCell.cellNameLabel.text = objPlaceholderAndStatus.inputFieldCellType;
     [inputCell.showButton setHidden:YES];
     
-    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kFirstNameCell]) {
+    if([objPlaceholderAndStatus.inputFieldCellType isEqualToString:kNameCell]) {
         
         inputCell.inputTextField.text = NSSTRING_HAS_DATA(self.userModal.firstName) ? self.userModal.firstName : @"";
     }
@@ -354,7 +391,7 @@ static NSString * const kMobileCell                         =  @"Mobile No";
 - (BOOL)checkValidMobileNumber{
     
     BOOL resultedBool = YES;
-    int  rowNumber = 2;
+    int  rowNumber =2;
     GMRegisterInputCell* cell ;
     if (![GMSharedClass validateMobileNumberWithString:self.userModal.mobile]) {
         cell =(GMRegisterInputCell*) [self.editProfileTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber inSection:0]];

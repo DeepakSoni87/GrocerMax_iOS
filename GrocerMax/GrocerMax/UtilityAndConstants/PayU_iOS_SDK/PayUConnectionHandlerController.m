@@ -90,7 +90,7 @@ void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *
                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                         timeoutInterval:60.0];
     // Specify that it will be a POST request
-    theRequest.HTTPMethod = POST;
+    theRequest.HTTPMethod = POST_PAYU;
     
     
     
@@ -218,7 +218,7 @@ void(^serverResponseForHashGenerationCallback)(NSURLResponse *response, NSData *
                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                         timeoutInterval:60.0];
     // Specify that it will be a POST request
-    theRequest.HTTPMethod = POST;
+    theRequest.HTTPMethod = POST_PAYU;
     
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] initWithDictionary:[[SharedDataManager sharedDataManager] allInfoDict]];
     if(0 == paramDict.allKeys.count){

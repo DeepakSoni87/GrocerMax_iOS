@@ -35,7 +35,7 @@ static GMRequestParams *sharedClass;
     [paramDict setObject:parameterDic[kEY_uemail] forKey:kEY_uemail];
     [paramDict setObject:parameterDic[kEY_quote_id] forKey:kEY_quote_id];
     [paramDict setObject:parameterDic[kEY_fname] forKey:kEY_fname];
-    [paramDict setObject:parameterDic[kEY_lname] forKey:kEY_lname];
+    //[paramDict setObject:parameterDic[kEY_lname] forKey:kEY_lname];
     [paramDict setObject:parameterDic[kEY_number] forKey:kEY_number];
     
     return paramDict;
@@ -733,6 +733,7 @@ static GMRequestParams *sharedClass;
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.telephone] forKey:kEY_phone];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.city] forKey:kEY_city];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.region] forKey:kEY_state];
+    [addressDictionary setObject:[self getValidStringObjectFromString:cityModal.stateId] forKey:kEY_regionId];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.pincode] forKey:kEY_pin];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.houseNo] forKey:kEY_addressline1];
     [addressDictionary setObject:[self getValidStringObjectFromString:addressModal.locality] forKey:kEY_addressline2];
@@ -741,7 +742,7 @@ static GMRequestParams *sharedClass;
     [addressDictionary setObject:addressModal.is_default_shipping forKey:kEY_default_shipping];
     [addressDictionary setObject:addressModal.is_default_billing forKey:kEY_default_billing];
     [addressDictionary setObject:[self getValidStringObjectFromString:cityModal.cityId] forKey:kEY_cityId];
-    return addressDictionary;
+        return addressDictionary;
 }
 
 + (NSString *)shopbyCategoryParameter:(NSDictionary *)parameterDic{

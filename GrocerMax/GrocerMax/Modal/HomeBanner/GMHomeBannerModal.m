@@ -26,9 +26,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
-    return @{@"name"        : @"name",
-             @"linkUrl"     : @"linkurl",
-             @"imageUrl"    : @"imageurl"
+    return @{@"name"            : @"name",
+             @"linkUrl"         : @"linkurl",
+             @"imageUrl"        : @"imageurl",
+             @"notificationId"  : @"notificationid"
              };
 }
 
@@ -44,6 +45,11 @@
     if([notificationDetailDic objectForKey:@"imageurl"]) {
         [self setImageUrl:[NSString stringWithFormat:@"%@",[notificationDetailDic objectForKey:@"imageurl"]]];
     }
+    if([notificationDetailDic objectForKey:@"notificationid"]) {
+        [self setNotificationId:[NSString stringWithFormat:@"%@",[notificationDetailDic objectForKey:@"notificationid"]]];
+    }
+    
+    
     
     return self;
     

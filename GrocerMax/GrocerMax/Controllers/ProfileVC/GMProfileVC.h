@@ -10,6 +10,7 @@
 
 @interface GMProfileVC : UIViewController
 
+- (void)setSecondTabAsLogIn;
 - (void) goOrderHistoryList;
 - (void) goToWallet;
 @property BOOL isMenuWallet;

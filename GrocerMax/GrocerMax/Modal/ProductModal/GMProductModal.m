@@ -95,6 +95,7 @@ static NSString * const kProductQuantityKey                     = @"productQuant
              @"p_pack"             : @"p_pack",
              @"sale_price"         : @"sale_price",
              @"Status"             : @"Status",
+             @"noOfItemInStock"    : @"webqty",
              @"categoryIdArray"    : @"categoryid"
              };
 }
@@ -143,6 +144,8 @@ static NSString * const kProductQuantityKey                     = @"productQuant
         
         if(HAS_KEY(productDict, @"qty"))
             _productQuantity = [NSString stringWithFormat:@"%@", productDict[@"qty"]];
+        if(HAS_KEY(productDict, @"webqty"))
+            _noOfItemInStock = [NSString stringWithFormat:@"%@", productDict[@"webqty"]];
         
         if(HAS_DATA(productDict, @"Status"))
             _Status = productDict[@"Status"];

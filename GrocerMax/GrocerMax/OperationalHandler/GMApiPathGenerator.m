@@ -9,7 +9,10 @@
 #import "GMApiPathGenerator.h"
 
 
+//static NSString const *baseUrl = @"http://qa.grocermax.com/api/";
 //static NSString const *baseUrl = @"http://staging.grocermax.com/api/";
+//static NSString const *baseUrl = @"http://multistore.grocermax.com/api/";
+//
 static NSString const *baseUrl = @"https://grocermax.com/api/";
 //static NSString const *baseUrl = @"http://staging.grocermax.com/webservice/new_services/";
 
@@ -48,6 +51,7 @@ static NSString const *failMethodName = @"fail";
 
 static NSString const *payTmSuccessMethodName = @"paytmsuccess.php";
 static NSString const *payTmFailMethodName = @"setstatus";
+static NSString const *loadCitrusMethodName = @"loadcitrus.php";
 
 static NSString const *addToCartGustMethodName = @"addtocartgust";
 static NSString const *getLocationMethodName = @"getlocation";
@@ -62,7 +66,7 @@ static NSString const *offerbydealtypeMethodName = @"offerbydealtype";
 static NSString const *productlistallMethodName = @"productlistall";
 static NSString const *homeBannerMethodName = @"homebanner";
 static NSString const *hashMethodName = @"getmobilehash";
-static NSString const *deviceTokenMethodName = @"setdevicetoken";
+static NSString const *deviceTokenMethodName = @"regdevicetoken";
 static NSString const *homePageMethodName = @"homepage";
 
 
@@ -70,6 +74,11 @@ static NSString const *reorderMethodName = @"reorder";
 static NSString const *walletMethodName = @"getwalletbalance";
 static NSString const *decreaseWalletBalenceMethodName = @"decreasewalletbalance";
 static NSString const *walletHistoryMethodName = @"creditlog";
+static NSString const *paymentWayMethodName = @"getpayment";
+
+
+static NSString const *termandConditionMethodName = @"termandcondition";
+static NSString const *contactMethodName = @"contact";
 
 
 
@@ -322,6 +331,27 @@ static NSString const *walletHistoryMethodName = @"creditlog";
 + (NSString *)walletHistoryPath {
     
     return [NSString stringWithFormat:@"%@%@", baseUrl, walletHistoryMethodName];
+}
+
++ (NSString *)paymentWayPath {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, paymentWayMethodName];
+}
+
++ (NSString *)loadCitrus {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, loadCitrusMethodName];
+}
+
++ (NSString *)termandCondition {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, termandConditionMethodName];
+}
+
+
++ (NSString *)contact {
+    
+    return [NSString stringWithFormat:@"%@%@", baseUrl, contactMethodName];
 }
 @end
 

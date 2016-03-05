@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -19,25 +19,8 @@
             <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2J-h5-EWW" customClass="GMButton">
-                    <rect key="frame" x="0.0" y="462" width="320" height="42"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="sfj-qV-Cgi"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="CREATE ACCOUNT">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="createAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="2Ag-6b-fq4"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-Ra-pLN" customClass="TPKeyboardAvoidingTableView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="462"/>
-                    <animations/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="M77-iD-NwQ"/>
@@ -45,16 +28,12 @@
                     </connections>
                 </tableView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="r2J-h5-EWW" secondAttribute="trailing" id="AnZ-fM-QEc"/>
                 <constraint firstItem="Aap-Ra-pLN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D51-iX-FIC"/>
                 <constraint firstAttribute="trailing" secondItem="Aap-Ra-pLN" secondAttribute="trailing" id="GhR-h4-tds"/>
                 <constraint firstItem="Aap-Ra-pLN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="S4Z-au-aqc"/>
-                <constraint firstAttribute="bottom" secondItem="r2J-h5-EWW" secondAttribute="bottom" id="fEl-ue-15T"/>
-                <constraint firstItem="r2J-h5-EWW" firstAttribute="top" secondItem="Aap-Ra-pLN" secondAttribute="bottom" id="naw-x0-Cdz"/>
-                <constraint firstItem="r2J-h5-EWW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sqf-lA-mfq"/>
+                <constraint firstAttribute="bottom" secondItem="Aap-Ra-pLN" secondAttribute="bottom" id="SRC-IT-dRa"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -66,7 +45,6 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QX1-3d-L2p">
                     <rect key="frame" x="8" y="15" width="148" height="37"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="zUv-2o-UrF"/>
                     </constraints>
@@ -79,7 +57,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixl-Ci-3j6">
                     <rect key="frame" x="164" y="15" width="148" height="37"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="aX5-1n-1Ih"/>
                     </constraints>
@@ -93,26 +70,23 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGa-qd-TLp">
                     <rect key="frame" x="0.0" y="67" width="320" height="30"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR SIGNUP HERE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgv-Lt-Rdo">
-                            <rect key="frame" x="15" y="0.0" width="200" height="30"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                            <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR SIGNUP HERE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgv-Lt-Rdo">
+                            <rect key="frame" x="15" y="0.0" width="290" height="30"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="NN1-at-KDq"/>
                         <constraint firstItem="Qgv-Lt-Rdo" firstAttribute="top" secondItem="aGa-qd-TLp" secondAttribute="top" id="SiL-mk-VIR"/>
                         <constraint firstAttribute="bottom" secondItem="Qgv-Lt-Rdo" secondAttribute="bottom" id="p9S-K4-hKq"/>
                         <constraint firstItem="Qgv-Lt-Rdo" firstAttribute="leading" secondItem="aGa-qd-TLp" secondAttribute="leading" constant="15" id="uig-Ou-JPJ"/>
-                        <constraint firstAttribute="trailing" secondItem="Qgv-Lt-Rdo" secondAttribute="trailing" constant="105" id="ulN-Jd-BmB"/>
+                        <constraint firstAttribute="trailing" secondItem="Qgv-Lt-Rdo" secondAttribute="trailing" constant="15" id="ulN-Jd-BmB"/>
                     </constraints>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aGa-qd-TLp" firstAttribute="leading" secondItem="uJE-js-IPy" secondAttribute="leading" id="Vbu-ac-SxJ"/>
@@ -130,38 +104,65 @@
             <point key="canvasLocation" x="214" y="-47"/>
         </view>
         <view contentMode="scaleToFill" id="uvz-YY-5HJ" userLabel="Footer View">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZc-6c-JpX">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking this button you agree &amp; accept our user Agreement and Privacy Policy." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktB-a5-iHr">
-                            <rect key="frame" x="13" y="35" width="294" height="30"/>
-                            <animations/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking this button you agree &amp; accept our user Agreement and Privacy Policy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktB-a5-iHr">
+                            <rect key="frame" x="13" y="25" width="294" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="nDS-x9-Odg"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                            <color key="textColor" red="0.74509803921568629" green="0.74509803921568629" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIB-lX-xGX">
+                            <rect key="frame" x="13" y="25" width="294" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="hdL-zy-iWg"/>
+                            </constraints>
+                            <connections>
+                                <action selector="termsAndConditionButtonTapped:" destination="-1" eventType="touchUpInside" id="Jhn-Gb-xAj"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="tIB-lX-xGX" firstAttribute="centerX" secondItem="RZc-6c-JpX" secondAttribute="centerX" id="IRZ-aL-r59"/>
+                        <constraint firstItem="tIB-lX-xGX" firstAttribute="width" secondItem="ktB-a5-iHr" secondAttribute="width" id="W82-zM-XeN"/>
                         <constraint firstItem="ktB-a5-iHr" firstAttribute="width" secondItem="RZc-6c-JpX" secondAttribute="width" multiplier="0.91875" id="lxH-qQ-tQX"/>
                         <constraint firstAttribute="centerX" secondItem="ktB-a5-iHr" secondAttribute="centerX" id="rFl-QV-VCV"/>
-                        <constraint firstItem="ktB-a5-iHr" firstAttribute="top" secondItem="RZc-6c-JpX" secondAttribute="top" constant="35" id="tCu-gA-uBW"/>
+                        <constraint firstItem="ktB-a5-iHr" firstAttribute="top" secondItem="RZc-6c-JpX" secondAttribute="top" constant="25" id="tCu-gA-uBW"/>
+                        <constraint firstItem="tIB-lX-xGX" firstAttribute="top" secondItem="RZc-6c-JpX" secondAttribute="top" constant="25" id="ujF-3S-NaY"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeT-7f-02H" customClass="GMButton">
+                    <rect key="frame" x="15" y="67" width="290" height="42"/>
+                    <color key="backgroundColor" red="0.094117647058823528" green="0.53725490196078429" blue="0.98039215686274506" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="N1o-Ge-Ca6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="CREATE ACCOUNT">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="createAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="H6H-UH-mjv"/>
+                    </connections>
+                </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="RZc-6c-JpX" firstAttribute="top" secondItem="uvz-YY-5HJ" secondAttribute="top" id="6Ug-pj-Nlg"/>
                 <constraint firstItem="RZc-6c-JpX" firstAttribute="leading" secondItem="uvz-YY-5HJ" secondAttribute="leading" id="Ji9-cq-d4b"/>
+                <constraint firstAttribute="bottom" secondItem="QeT-7f-02H" secondAttribute="bottom" constant="1" id="PHM-cI-Kug"/>
                 <constraint firstAttribute="trailing" secondItem="RZc-6c-JpX" secondAttribute="trailing" id="Rqr-7M-6bt"/>
+                <constraint firstItem="QeT-7f-02H" firstAttribute="leading" secondItem="uvz-YY-5HJ" secondAttribute="leading" constant="15" id="TN1-az-QnR"/>
+                <constraint firstAttribute="trailing" secondItem="QeT-7f-02H" secondAttribute="trailing" constant="15" id="Vaf-A0-qwz"/>
                 <constraint firstAttribute="bottom" secondItem="RZc-6c-JpX" secondAttribute="bottom" id="eYp-q2-7cU"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

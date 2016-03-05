@@ -13,6 +13,7 @@
 #import "GMDeliveryDateTimeSlotModal.h"
 #import "GMPaymentVC.h"
 #import "NSDateFormatter+Extend.h"
+#import "GMStateBaseModal.h"
 
 static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell";
 
@@ -44,6 +45,9 @@ static NSString *kIdentifierDeliveryDetailCell = @"deliveryDetailIdentifierCell"
     [self.timeSloteTableView setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:244.0/256.0 blue:244.0/256.0 alpha:1]];
     self.dateTimeSloteModalArray = [[NSMutableArray alloc]init];;
     [self getDateAndTimeSlot];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Delivery details" label:@""];
     
 }
 - (void)viewWillAppear:(BOOL)animated {

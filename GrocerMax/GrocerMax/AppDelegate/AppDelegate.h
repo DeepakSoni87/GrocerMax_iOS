@@ -10,6 +10,7 @@
 #import "GMNavigationController.h"
 #import "AppsFlyerTracker.h"
 
+
 @class GMTabBarVC;
 @class GMSearchVC;
 @class GMProfileVC;
@@ -33,8 +34,11 @@
 - (void)setTopVCOnCenterOfDrawerController:(UIViewController*)topVC;
 
 - (void)setTopVCOnHotDealsController:(UIViewController*)topVC;
+- (UIViewController *)getTopControler;
 
 - (void)popToCenterViewController;
+//use for internal notification
+-(void)openScreen:(NSString *)screenName data:(NSString *)value displayName:(NSString *)name;
 
 -(GMSearchVC*) rootSearchVCFromFourthTab;
 
@@ -42,7 +46,7 @@
 
 - (void)goToHomeWithAnimation:(BOOL)animation;
 
--(GMProfileVC*) rootProfileVCFromFourthTab;
+-(GMProfileVC*) rootProfileVCFromSecondTab;
 
 -(GMHotDealVC*) rootHotDealVCFromThirdTab;
 

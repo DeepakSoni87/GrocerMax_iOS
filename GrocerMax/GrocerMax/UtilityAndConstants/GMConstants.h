@@ -63,7 +63,7 @@
 
 //End border color, Width, cornerRadius
 
-#define kAppVersion       @"1.0"
+#define kAppVersion       @"1.3"
 #define keyAppVersion     @"version"
 #define key_TitleMessage  @"GrocerMax"
 
@@ -84,12 +84,28 @@
 #define FONT_LATO_BOLD(s)    [UIFont fontWithName:@"Lato-Bold" size:s]
 #define FONT_LATO_LIGHT(s)   [UIFont fontWithName:@"Lato-Light" size:s]
 
+
+//Force update or update
+#define KEY_APPLICATION_INTERNAL_NOTIFICATION @"notification"
+#define KEY_APPLICATION_INTERNAL_NOTIFICATION_POPUP @"popup"
+
+#define KEY_APPLICATION_UPDATE @"upgrade-app"
+#define KEY_APPLICATION_UPDATE_NOTE  @"UPDATE_NOTE"
+#define APPLICATION_UPDATE_HARDCOADED_NOTE  @"New version of app is available in App Store.To use this feature please download the latest version of app."
+
+#define APPLICATION_UPDATE_LATER  @"applicationUpdateLater"
+#define APPLICATION_UPDATE_IGNORE @"applicationUpdateIgnore"
+#define APPLICATION_UPDATE_LATER_VALUE @"applicationUpdateLaterValue"
+
+#define PAYMENT_CANCEL_ALERT_MESSAGE  @"Do you want to cancel this payment?"
+
 //Notification key
 #define Keyaps @"aps"
 #define Keyalert @"alert"
 #define KeyapnsType @"apnsType"
 #define Cancel_Text @"Cancel"
 
+#define   KEY_Banner_Home @"home"
 #define   KEY_Banner_search @"search"
 #define   KEY_Banner_offerbydealtype @"offerbydealtype"
 #define   KEY_Banner_dealsbydealtype @"dealsbydealtype"
@@ -97,6 +113,26 @@
 #define   KEY_Banner_dealproductlisting @"dealproductlisting"
 #define   KEY_Banner_shopbydealtype @"shopbydealtype"
 
+
+#define   KEY_Notification_Id @"notificationid"
+
+
+
+#define   KEY_Notification_Home @"home"
+#define   KEY_Notification_search @"search"
+#define   KEY_Notification_offerbydealtype @"offerbydealtype"
+#define   KEY_Notification_dealsbydealtype @"dealsbydealtype"
+#define   KEY_Notification_productlistall @"productlistall"
+#define   KEY_Notification_dealproductlisting @"dealproductlisting"
+#define   KEY_Notification_shopbydealtype @"shopbydealtype"
+#define   KEY_Notification_LogOut @"logout"
+#define   KEY_Notification_Profile @"profile"
+#define   KEY_Notification_ViewCart @"viewcart"
+#define   KEY_Notification_Productdetail @"productdetail"
+
+
+#define   payment_success_notifications_ByCitrus @"payment_success_notifications_ByCitrus"
+#define   payment_failure_notifications_ByCitrus @"payment_failure_notifications_ByCitrus"
 
 //Resoponce Key
 #define kEY_Result                        @"Result"
@@ -226,6 +262,7 @@
 #define kEY_category_id                    @"category_id"
 #define kEY_category                       @"category"
 #define kEY_offercount                     @"offercount"
+#define kEY_images                         @"images"
 
 
 #define kEY_device                           @"device"
@@ -408,6 +445,7 @@
 #define kEY_GA_Event_CashOnDelivery          @"Cash on delivery"
 #define kEY_GA_Event_PayU                    @"PayU"
 #define kEY_GA_Event_PayTM                   @"PayTM"
+#define kEY_GA_Event_Citrus                  @"Citrus Wallet"
 #define kEY_GA_Event_CodeApplied             @"Code applied"
 #define kEY_GA_Event_PlaceOrder              @"Place Order button selected"
 

@@ -93,7 +93,7 @@
     if(self = [super init]) {
         
         _firstName = [self getValidString:userModal.firstName];
-        _lastName = [self getValidString:userModal.lastName];
+//        _lastName = [self getValidString:userModal.lastName];
         _telephone = [self getValidString:userModal.mobile];
     }
     return self;

@@ -12,5 +12,6 @@
 @interface GMOtpVC : UIViewController
 
 @property (nonatomic, strong) GMUserModal *userModal;
+@property BOOL isEditProfile;
 
 @end

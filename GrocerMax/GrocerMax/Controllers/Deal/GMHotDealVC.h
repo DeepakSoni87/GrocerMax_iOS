@@ -11,5 +11,6 @@
 @interface GMHotDealVC : UIViewController
 
 - (void)fetchDealProductListingDataForOffersORDeals:(GMCategoryModal*)catMdl;
+- (void)fetchDealProductListingDataForOffersORDeals:(GMCategoryModal*)catMdl withNotificationId:(NSString *)notificationId;
 
 @end

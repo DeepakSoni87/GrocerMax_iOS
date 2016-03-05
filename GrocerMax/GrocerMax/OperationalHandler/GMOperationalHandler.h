@@ -325,4 +325,25 @@
  * @param
  **/
 -(void)getUserWalletHistory:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+/**
+ * Function to get payment way
+ * @param
+ **/
+
+-(void)getpaymentWay:(NSDictionary *)param withSuccessBlock:(void(^)(id responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+
+/**
+ * Function to get load citrus
+ * @param not in used
+ **/
+- (void)loadCitrus:(NSDictionary *)param withSuccessBlock:(void(^)(GMGenralModal* responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock;
+
+
+/**
+ * Function to get data for terms & conditions or contacts.
+ * @param
+ **/
+- (void)termsAndConditionOrContact:(NSDictionary *)param isTermsAndCondition:(BOOL)isTermsAndCondition withSuccessBlock:(void(^)(NSString * responceData))successBlock failureBlock:(void(^)(NSError * error))failureBlock ;
 @end

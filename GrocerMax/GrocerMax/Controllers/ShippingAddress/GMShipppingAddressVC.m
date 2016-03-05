@@ -53,6 +53,9 @@ static NSString *kIdentifierAddAddressCell = @"AddAddressIdentifierCell";
     [self registerCellsForTableView];
     [self.shippingAddressTableView setTableFooterView:self.footerView];
     self.addNewAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, kScreenWidth - 30 - 7 - 7, 0, 0);
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Shipping address" label:@""];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -9,6 +9,7 @@
 #import "GMLeftMenuDetailVC.h"
 #import "GMLeftMenuCell.h"
 #import "GMRootPageViewController.h"
+#import "GMStateBaseModal.h"
 
 @interface GMLeftMenuDetailVC () <UITableViewDataSource, UITableViewDelegate>
 
@@ -155,6 +156,10 @@ static NSString * const kLeftMenuCellIdentifier                     = @"leftMenu
 //        rootVC.rootControllerType = GMRootPageViewControllerTypeProductlisting;
 //        [self.navigationController popToRootViewControllerAnimated:YES];
 //        [APP_DELEGATE setTopVCOnCenterOfDrawerController:rootVC];
+        
+        GMCityModal *cityModal = [GMCityModal selectedLocation];
+        [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Drawer - L2" label:categoryModal.categoryName];
+        
         [self fetchProductListingDataForCategory:categoryModal];
     }
     [filterCell.expandButton setSelected:categoryModal.isSelected];

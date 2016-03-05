@@ -96,7 +96,7 @@
 + (CreditCardBrand)checkCardBrandWithNumber:(NSString *)cardNumber
 {
     if (![self checkCardLengthWithNumber:cardNumber ForBrand:CreditCardBrandUnknown]) {
-        NSLog(@"checkCardBrandWithNumber, CreditCardBrandUnknown = %@",cardNumber);
+//        NSLog(@"checkCardBrandWithNumber, CreditCardBrandUnknown = %@",cardNumber);
         return CreditCardBrandUnknown;
     }
     CreditCardBrand cardType;

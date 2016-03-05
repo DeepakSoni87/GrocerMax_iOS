@@ -47,9 +47,13 @@
 
 - (BOOL)isInternetAvailable;
 
+-(NSMutableURLRequest *)requestHeader:(NSMutableURLRequest *)webRequest;
+
 - (void)trakScreenWithScreenName:(NSString *)scrrenName ;
 
 - (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label value:(NSNumber *)value;
+
+- (void)trakeEventWithName:(NSString *)eventName withCategory:(NSString *)category label:(NSString *)label;
 
 - (void) clearCart;
 
@@ -61,5 +65,13 @@
 - (NSMutableURLRequest *)setHeaderRequest:(NSMutableURLRequest *)headerRequest;
 
 - (NSString *)getDeliveryDate:(NSString *)deliveryStr;
+
+-(void)clearLaterUpdate;
+
+-(BOOL)checkConditionShowUpdate;
+
+-(BOOL)checkInternalNotificationWithMessageId:(NSString *)messageId_frequency withFrequency:(NSString *)frequency;
+
+-(GMUserModal *)makeLastNameFromUserModal:(GMUserModal *)userModal;
 
 @end

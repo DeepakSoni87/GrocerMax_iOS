@@ -8,6 +8,7 @@
 
 #import "GMPageControllCell.h"
 #import "GMHomeBannerModal.h"
+#import "GMStateBaseModal.h"
 
 @interface GMPageControllCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -82,6 +83,9 @@
     CGFloat pageWidth = self.itemsCollectionView.frame.size.width;
     self.pageControl.currentPage = (self.itemsCollectionView.contentOffset.x + pageWidth / 2) / pageWidth;
     [[GMSharedClass sharedClass] trakeEventWithName:kEY_GA_Event_BannerScroller withCategory:@"" label:nil value:nil];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Banner Scroll" label:@""];
 }
 
 @end

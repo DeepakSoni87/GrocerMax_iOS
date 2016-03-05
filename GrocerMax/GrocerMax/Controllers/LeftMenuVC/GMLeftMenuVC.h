@@ -11,6 +11,8 @@
 @protocol LeftMenuDelegate <NSObject>
 
 -(void)goToWallet;
+-(void)goContactUs;
+
 
 @end
 

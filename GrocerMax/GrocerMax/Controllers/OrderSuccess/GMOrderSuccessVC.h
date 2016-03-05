@@ -11,4 +11,8 @@
 @interface GMOrderSuccessVC : UIViewController
 
 @property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong) NSString *totalPrice;
+@property (nonatomic, strong) NSString *shippingCharge;
+@property (nonatomic, strong) NSString *tax;
+
 @end

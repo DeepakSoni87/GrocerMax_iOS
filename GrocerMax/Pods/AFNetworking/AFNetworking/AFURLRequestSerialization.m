@@ -379,7 +379,7 @@ forHTTPHeaderField:(NSString *)field
         }
     }
     [mutableRequest setValue:@"ios" forHTTPHeaderField:@"device"];
-    [mutableRequest setValue:@"1.0" forHTTPHeaderField:@"version"];
+    [mutableRequest setValue:@"1.3" forHTTPHeaderField:@"version"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if([defaults objectForKey:@"storeId"]) {

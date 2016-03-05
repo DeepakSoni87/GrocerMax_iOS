@@ -19,7 +19,6 @@
 #import "GMEnums.h"
 #import "GMSearchBarView.h"
 
-
 // ThirdParty/POD
 #import "RZErrorMessenger.h"
 

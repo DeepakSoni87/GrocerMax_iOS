@@ -36,6 +36,7 @@
 @property (strong, nonatomic) NSString *productQuantity;
 @property (strong, nonatomic) NSString *sku;
 @property (strong, nonatomic) NSString *noDiscount;
+@property (strong, nonatomic) NSString *noOfItemInStock;
 @property (strong, nonatomic) NSArray *categoryIdArray;
 
 @property (nonatomic, assign) BOOL isProductUpdated;

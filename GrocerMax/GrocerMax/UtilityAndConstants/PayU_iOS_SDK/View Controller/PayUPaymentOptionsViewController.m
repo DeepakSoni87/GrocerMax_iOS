@@ -17,6 +17,9 @@
 #import "Utils.h"
 #import "PayUCashCardViewController.h"
 #import "PayUConnectionHandlerController.h"
+#import "PayUNotificationConstant.h"
+#import "GMPaymentVC.h"
+#import "UIViewController+MGTopNavigationBarViewController.h"
 
 #define CASH_CARD               @"cashcard"
 
@@ -66,6 +69,11 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = YES;
+    
+    GMCommonNavBarView *commonNavBarView = [self addBarViewWithTitle:@"" isRightButton:NO];
+    [commonNavBarView.backBtn addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
     self.navigationController.navigationItem.title = _appTitle;
     _connectionSpecificDataObject = [[NSMutableData alloc] init];
     
@@ -109,8 +117,41 @@ typedef enum : NSUInteger {
 
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 
-
+-(void)backButtonPressed{
+    
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:key_TitleMessage message:PAYMENT_CANCEL_ALERT_MESSAGE preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        for (UIViewController *vc in [self.navigationController viewControllers]) {// pop to dashboard
+            
+            if ( [NSStringFromClass([vc class]) isEqualToString:NSStringFromClass([GMPaymentVC class])]) {
+                 [self.navigationController popToViewController:vc animated:NO];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"payment_failure_notifications" object:nil];
+                break;
+            }
+        }
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:actionCancel];
+    [alertController addAction:actionOk];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

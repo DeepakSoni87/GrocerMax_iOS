@@ -14,7 +14,9 @@
 #import "PGMerchantConfiguration.h"
 #import "PGOrder.h"
 #import "PGTransactionViewController.h"
-
+#import "GMCheckOutModal.h"
+#import "GMCartDetailModal.h"
+#import "GMStateBaseModal.h"
 
 //#define PayU_Product_Info @"GrocerMax Product Info"
 
@@ -35,6 +37,9 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     self.txnID = self.orderId;
     // Do any additional setup after loading the view from its nib.
     [self initilizedpayUdata];
+    
+    GMCityModal *cityModal = [GMCityModal selectedLocation];
+    [[GMSharedClass sharedClass] trakeEventWithName:cityModal.cityName withCategory:@"Order Failed" label:@""];
 }
 
 
@@ -143,6 +148,24 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
 }
 
 
+-(void)paymentSuceessWithOrderId:(NSString*)orderId {
+    GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
+    if(NSSTRING_HAS_DATA(orderId)) {
+        successVC.orderId = orderId;
+    }
+    NSString *shippingPrice = @"0.00";
+    NSString *totalPrice = @"0.00";
+    
+    if(NSSTRING_HAS_DATA(self.checkOutModal.cartDetailModal.shippingAmount)) {
+    shippingPrice = [NSString stringWithFormat:@"%.2f",self.checkOutModal.cartDetailModal.shippingAmount.doubleValue];
+    }
+    totalPrice = [NSString stringWithFormat:@"%.2f", self.totalAmount];
+    
+    successVC.totalPrice = totalPrice;
+    successVC.shippingCharge = shippingPrice;
+    [self.navigationController pushViewController:successVC animated:YES];
+}
+
 /**
  PayU Implementation
  **/
@@ -186,17 +209,12 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     [[GMOperationalHandler handler] success:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         
         [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.orderId;
-        [self.navigationController pushViewController:successVC animated:YES];
+        [self paymentSuceessWithOrderId:self.orderId];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
         [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.orderId;
-        [self.navigationController pushViewController:successVC animated:YES];
-        
+        [self paymentSuceessWithOrderId:self.orderId];
         [self removeProgress];
     }];
     
@@ -479,17 +497,12 @@ typedef void (^urlRequestCompletionBlock)(NSURLResponse *response, NSData *data,
     
     [[GMOperationalHandler handler] successForPayTM:orderDic  withSuccessBlock:^(GMGenralModal *responceData) {
         [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.orderId;
-        [self.navigationController pushViewController:successVC animated:YES];
+        [self paymentSuceessWithOrderId:self.orderId];
         [self removeProgress];
         
     } failureBlock:^(NSError *error) {
         [self.navigationController popToRootViewControllerAnimated:NO];
-        GMOrderSuccessVC *successVC = [[GMOrderSuccessVC alloc] initWithNibName:@"GMOrderSuccessVC" bundle:nil];
-        successVC.orderId = self.orderId;
-        [self.navigationController pushViewController:successVC animated:YES];
-        
+        [self paymentSuceessWithOrderId:self.orderId];
         [self removeProgress];
     }];
 

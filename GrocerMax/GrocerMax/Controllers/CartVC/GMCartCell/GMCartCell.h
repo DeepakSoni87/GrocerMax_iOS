@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet GMButton *deleteButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *promotionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *outOfStockLabel;
 
 + (CGFloat)cellHeightWithNoPromotion;
 
